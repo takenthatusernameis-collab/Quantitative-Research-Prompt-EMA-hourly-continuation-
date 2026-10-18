@@ -1,1 +1,54 @@
-PLACEHOLDER
+name: Kilo General Agent Loop
+
+on:
+  # Validate workflow changes immediately, without needing a pull request or a manual dispatch.
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/main.yml"
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      agents:
+        description: "Maximum sequential Kilo worker sessions for this activation"
+        required: false
+        default: "1000"
+        type: number
+      diagnostics_only:
+        description: "Collect and verify completed-run diagnostics without starting Kilo"
+        required: false
+        default: false
+        type: boolean
+
+# The repository-scoped token can persist ordinary repository changes, but it
+# cannot authorize changes to GitHub Actions workflow files.
+permissions:
+  actions: read
+  contents: write
+
+# Prevent overlapping activations of this workflow in the same repository.
+concurrency:
+  group: kilo-repository
+  cancel-in-progress: false
+
+jobs:
+  kilo:
+    runs-on: ubuntu-24.04
+    # Leave five minutes of margin below GitHub's six-hour job ceiling.
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout latest default branch
+        uses: actions/checkout@v7.0.1
+        with:
+          # A queued workflow_dispatch retains the commit SHA from dispatch time.
+          # Resolve the default branch when the job actually starts instead.
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
+
+      - name: NOTE — full breakout workflow body truncated in this intermediate commit; restoring full file next
+        run: echo "placeholder intermediate"
