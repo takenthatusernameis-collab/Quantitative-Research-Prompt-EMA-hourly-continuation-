@@ -1,30 +1,32 @@
 # INITIAL TASK MESSAGE FOR NEXT AGENT
 
 ## Objective
-Start fresh with this research project. Review current state and determine next steps - but note this baseline is rejected.
+Start fresh with this research project. Review current state and determine next steps - baseline is REJECTED.
 
 ## Key Files to Review
-- PROMPT.md (strategy specification)
-- README.md (project context)
-- results/FINAL_DECISION.md (final decision - REJECTED)
-- NEXT_AGENT_TASK.md (current closed state)
-- backtest/, scripts/, tests/ (implementation)
-- data/fixtures/ (real hourly data, tracked)
-- research_state/, metrics/, signals/, universe/ (artifacts)
+- `PROMPT.md` (strategy specification)
+- `README.md` (project context)
+- `results/FINAL_DECISION.md` (final decision - REJECTED)
+- `NEXT_AGENT_TASK.md` (current closed state)
+- `backtest/`, `scripts/`, `tests/` (implementation)
+- `data/fixtures/` (real hourly data, tracked)
+- `research_state/`, `metrics/`, `signals/`, `universe/` (artifacts)
+- `config/default.json` (configuration)
 
 ## Current State
-Baseline EMA hourly continuation tested comprehensively. All 16 tests pass. OOS pooled shows net PF<1, negative Sharpe, substantial max DD. Cost stress worsens performance; no robustness variant achieves profitability.
+Baseline EMA hourly continuation tested comprehensively. All 16 tests pass. OOS pooled shows net PF < 1 (0.6890), negative Sharpe (-1.9443), substantial max DD (0.6663). Cost stress worsens performance; no robustness variant achieves profitability.
 
 ## Instructions
-1. Read FINAL_DECISION.md and NEXT_AGENT_TASK.md to understand closed state
+1. Read `FINAL_DECISION.md` and `NEXT_AGENT_TASK.md` to understand closed state
 2. Do NOT re-run extensive parameter searches on this baseline - it is rejected
 3. If pursuing new work, formulate a new pre-specified hypothesis with:
 - Clear theoretical rationale
-- Falsifiable acceptance criteria (pre-registered)
+- Falsifiable acceptance criteria (pre-registered, e.g. specific PF/Sharpe/max DD thresholds)
 - Justification for any signal/filters/exit changes
 4. Keep data and fixtures as-is (tracked). Do not modify core baseline without strong justification.
-5. Run tests to validate any changes: `python -m pytest tests/`
+5. Run tests to validate any changes: `python -m pytest tests/ -v`
 6. Document any new hypothesis clearly before implementation
+7. Update results with reproducible artifacts and clear next handoff when done
 
 ## Ground Truth
-Decision: REJECTED. No live trading. New hypothesis required.
+Decision: **REJECTED**. No live trading. New hypothesis required.
