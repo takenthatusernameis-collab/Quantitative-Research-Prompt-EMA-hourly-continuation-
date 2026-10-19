@@ -220,6 +220,126 @@ append-only reason.)
 
 ---
 
+## Batch 5 - expansion to N = 57
+
+- Snapshot: `universe/mcap_snapshot_20261019_185635.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-19T18:56:35Z
+- Previous N -> new N: **47 -> 57** (ranks 48-57 of the working universe)
+- Expansion floor: AERO at 780 838 782 USD (the lowest market cap already in
+  the universe in this snapshot); every added name is strictly below it.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Market cap |
+|---|---|---|
+| 90 | ZRO | 760 259 950 |
+| 92 | CAKE | 688 795 599 |
+| 94 | STX | 675 577 750 |
+| 95 | APT | 674 374 228 |
+| 98 | ETHFI | 654 227 649 |
+| 99 | XDC | 652 852 067 |
+| 100 | DASH | 639 062 735 |
+| 102 | TIA | 596 408 959 |
+| 103 | BDX | 586 463 512 |
+| 105 | CRV | 579 257 148 |
+
+### Hourly coverage of the batch-5 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), 22 000 bars per symbol:
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| CAKE, APT, ETHFI, XDC, DASH, TIA, BDX, CRV | 22 000 | 2024-04-16 .. 2026-10-19 |
+| STX | 22 099 | 2024-04-12 .. 2026-10-19 |
+| ZRO | 20 431 | 2024-06-20 .. 2026-10-19 |
+
+ZRO is the shortest sample in the batch (KuCoin listing date 2024-06-20,
+~2.34 years of hourly bars). It still clears the 2-year eligibility floor and
+covers the largest registered period (P_slow = 200) plus an out-of-sample
+window. All 10 fixtures have no duplicate timestamps and no hourly gaps.
+
+### Rank drift, batch 4 snapshot (18:11) vs batch 5 snapshot (18:56)
+
+Max absolute market-cap drift across the 47 names already in the universe was
+**1.52 %** (WLD -1.52 %, XMR -0.54 %, AAVE -0.38 %). The only order change
+inside the working universe was the already-recorded DOT/WLD inversion
+(WLD 50 -> 51, DOT 51 -> 50 on a 0.77 % market-cap gap); the append-only
+policy keeps the batch-3 order, so the global strictly-descending order is
+preserved apart from that single sub-1 % inversion.
+
+*(This section was reconstructed after the fact from
+`universe/mcap_snapshot_20261019_185635.json`, `universe/mcap_rank.json` and
+`data/fixtures/fetch_manifest.json`; the batch-5 grid itself ran exactly the
+10 names listed above.)*
+
+---
+
+## Batch 6 - expansion to N = 67
+
+- Snapshot: `universe/mcap_snapshot_20261019_200749.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-19T20:07:49Z
+- Previous N -> new N: **57 -> 67** (ranks 58-67 of the working universe)
+- Expansion floor: CRV at 576 270 770 USD (the lowest market cap already in
+  the universe in this snapshot); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself
+  (`--apply-from universe/mcap_snapshot_20261019_200749.json`), so the names
+  processed by the grid are exactly the ones listed below.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Market cap |
+|---|---|---|
+| 106 | VET | 574 830 218 |
+| 107 | PYTH | 566 923 311 |
+| 108 | FLR | 556 391 814 |
+| 113 | RAY | 505 400 534 |
+| 122 | STRK | 438 877 813 |
+| 123 | FET | 433 365 015 |
+| 126 | SEI | 405 089 053 |
+| 128 | PENDLE | 355 726 956 |
+| 129 | BSV | 351 699 982 |
+| 132 | BTT | 345 385 873 |
+
+VET is the first name in the batch and is the 58th symbol of the working
+universe; BTT is the 67th and last. XTZ (rank 136) is the next eligible name
+below the floor and is reserved for batch 7.
+
+### Hourly coverage of the batch-6 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), 22 000 bars per symbol:
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| VET, PYTH, FLR, RAY, STRK, FET, SEI, PENDLE, BSV, BTT | 22 000 | 2024-04-16 05:00 .. 2026-10-19 20:00 |
+
+All 10 fixtures carry the full 22 000 hourly bars (~2.51 years), have no
+duplicate timestamps and no hourly gaps, and comfortably clear the 2-year
+eligibility floor.
+
+### Rank drift, batch 5 snapshot (18:56) vs batch 6 snapshot (20:07)
+
+Max absolute market-cap drift across the 57 names already in the universe was
+**1.08 %** (XMR +1.08 %, AERO +0.91 %, ETHFI -0.82 %, SKY +0.80 %). The only
+order changes inside the working universe are the already-recorded DOT/WLD
+inversion and two new sub-1 % inversions (KAS/JUP and ETHFI/XDC):
+
+| Symbol | 18:56 market cap | 20:07 market cap | Rank |
+|---|---|---|---|
+| WLD | 1 934 801 860 | 1 949 109 830 | 51 -> 50 |
+| DOT | 1 948 989 365 | 1 942 717 060 | 50 -> 51 |
+| KAS | 971 478 091 | 965 596 519 | 77 -> 78 |
+| JUP | 965 652 778 | 969 381 503 | 78 -> 77 |
+| ETHFI | 654 227 649 | 648 845 637 | 98 -> 100 |
+| XDC | 652 852 067 | 652 900 299 | 99 -> 98 |
+
+The working universe is **append-only**: the existing order is kept so that the
+already-processed symbols keep their artifact continuity and the reported
+processing order stays stable. The batch-6 additions are appended strictly
+below the CRV floor, so the global order remains strictly descending across
+batches apart from those sub-1 % inversions inside earlier blocks.
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -229,6 +349,8 @@ append-only reason.)
 | Batch 2 | 27 | complete - SUI, GRAM, HBAR, TAO, SHIB, CRO, QNT, ENA, AAVE, ONDO (66 pairs each) | `results/20261019_135940_grid/` |
 | Batch 3 | 37 | complete - DOT, WLD, MNT, PEPE, SKY, ICP, HTX, ARB, ETC, JST (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 4 | 47 | complete - KCS, ALGO, POL, KAS, JUP, ATOM, RENDER, INJ, FIL, AERO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 5 | 57 | complete - ZRO, CAKE, STX, APT, ETHFI, XDC, DASH, TIA, BDX, CRV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 6 | 67 | complete - VET, PYTH, FLR, RAY, STRK, FET, SEI, PENDLE, BSV, BTT (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.
