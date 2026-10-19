@@ -1,6 +1,6 @@
 {
   "run_id": "20261019_135940_grid",
-  "timestamp": "20261019_235532",
+  "timestamp": "20261019_235725",
   "symbols": [
     "BTC/USDT",
     "ETH/USDT",
@@ -104,11 +104,12 @@
     "ZK/USDT",
     "NEO/USDT",
     "CHZ/USDT",
-    "APE/USDT"
+    "APE/USDT",
+    "IMX/USDT"
   ],
   "n_pairs": 66,
-  "n_symbols": 103,
-  "completed_cells": 6798,
+  "n_symbols": 104,
+  "completed_cells": 6864,
   "completed": [
     {
       "symbol": "AAVE/USDT",
@@ -15287,6 +15288,336 @@
     },
     {
       "symbol": "ICP/USDT",
+      "P_fast": 144,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 12
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 20
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 21
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 26
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 34
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 50
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 55
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 89
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 100
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 20
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 21
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 26
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 34
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 50
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 55
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 89
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 100
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 12,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 20,
+      "P_slow": 21
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 20,
+      "P_slow": 26
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 20,
+      "P_slow": 34
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 20,
+      "P_slow": 50
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 20,
+      "P_slow": 55
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 20,
+      "P_slow": 89
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 20,
+      "P_slow": 100
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 20,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 20,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 21,
+      "P_slow": 26
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 21,
+      "P_slow": 34
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 21,
+      "P_slow": 50
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 21,
+      "P_slow": 55
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 21,
+      "P_slow": 89
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 21,
+      "P_slow": 100
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 21,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 21,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 26,
+      "P_slow": 34
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 26,
+      "P_slow": 50
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 26,
+      "P_slow": 55
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 26,
+      "P_slow": 89
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 26,
+      "P_slow": 100
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 26,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 26,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 34,
+      "P_slow": 50
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 34,
+      "P_slow": 55
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 34,
+      "P_slow": 89
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 34,
+      "P_slow": 100
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 34,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 34,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 50,
+      "P_slow": 55
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 50,
+      "P_slow": 89
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 50,
+      "P_slow": 100
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 50,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 50,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 55,
+      "P_slow": 89
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 55,
+      "P_slow": 100
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 55,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 55,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 89,
+      "P_slow": 100
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 89,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 89,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 100,
+      "P_slow": 144
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 100,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
       "P_fast": 144,
       "P_slow": 200
     },
