@@ -1,0 +1,9 @@
+{
+  "timestamp": "20261019_004951",
+  "taker_fee_bps": 10.0,
+  "slippage_bps": 2.0,
+  "fixture": null,
+  "mcap": null,
+  "n": 3,
+  "strategy": "ema_hourly_continuation"
+}

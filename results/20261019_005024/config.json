@@ -1,0 +1,9 @@
+{
+  "timestamp": "20261019_005024",
+  "taker_fee_bps": 10.0,
+  "slippage_bps": 2.0,
+  "fixture": "data/fixtures/sample_hourly.csv",
+  "mcap": "universe/mcap_rank.json",
+  "n": 3,
+  "strategy": "ema_hourly_continuation"
+}
