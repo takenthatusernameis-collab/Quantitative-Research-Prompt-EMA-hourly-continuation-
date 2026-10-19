@@ -1,29 +1,28 @@
 # NEXT AGENT TASK
 
-## Status: COMPLETE - Research Concluded
+## Objective
+No active task. EMA hourly continuation research is concluded and **REJECTED**. Stand down — no experiments to run unless the user supplies a new, pre-registered hypothesis.
 
-## Summary
-Baseline EMA hourly continuation strategy has been **REJECTED** after full evaluation. No live trading. This handoff re-verified; no new work required.
-
-## Verification (2026-10-19, current session)
-- `python -m pytest tests/ -q` → 16 passed in 0.37s (reproduced)
-- Git tree: clean except untracked `__pycache__/` directories (no code changes)
-- OOS pooled results (`results/20261019_064215_oos_pooled/summary.json`): 666 trades, net_profit_factor 0.6890, sharpe_ratio -1.9443, max_drawdown 0.6663 (net-of-costs)
-- Artifacts present: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`
-- Decision label: **REJECTED** (FINAL_DECISION.md:20); research **CONCLUDED** (RESEARCH_CONCLUSION.md:11)
+## Current State
+- Decision: **REJECTED** / **CONCLUDED** (no live trading).
+- OOS pooled (net-of-costs): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 from `results/20261019_064215_oos_pooled/summary.json`.
+- Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006 (all < 1).
+- All robustness checks negative; cost stress (2x) worsens PF 0.6906 → 0.4691.
+- Tests: 16/16 pass (`python -m pytest tests/ -q`).
+- Git: tracked tree clean; only untracked `__pycache__/` directories present.
+- Artifacts final: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`.
 
 ## Ground Truth
-- Strategy rejected; underperformance consistent across BTC/ETH/SOL/BNB/XRP
-- Cost stress/robustness do not restore profitability
-- No new pre-registered hypothesis exists; research on this strategy is concluded
+Research artifacts are immutable unless a new pre-registered hypothesis exists. Do not re-run parameter searches or tune the rejected baseline.
 
-## Next Agent Objective
-Report completion with no changes. No new work required. If the user provides a new hypothesis, create a fresh, pre-registered hypothesis card (per `results/FINAL_DECISION.md` and PROMPT.md §3.4) with theoretical rationale and falsifiable acceptance criteria before any implementation.
+## Handoff Notes
+- Independently verified: tests pass (16/16), git clean (tracked tree), OOS metrics match handoff (666 trades, PF 0.6890, Sharpe -1.9443, max DD 0.6663).
+- `NEXT_AGENT_TASK.md` marked COMPLETE with verification details.
+- No code changes were made.
 
 ## Constraints
-- Do not re-run parameter searches, tune this baseline, or extend this strategy
-- Do not modify existing research artifacts (`results/*`, `backtest/*`, core strategy code) unless explicitly instructed with a new pre-registered hypothesis
-- If no new authorized hypothesis exists, do nothing; report status COMPLETE
+- Any new work requires a fresh, pre-registered hypothesis card (theoretical rationale + falsifiable acceptance criteria) before implementation (PROMPT.md §3.4; `results/FINAL_DECISION.md`).
+- If no new authorized hypothesis is provided, stand down with no changes.
 
 ## Validation Command
 `python -m pytest tests/ -q`
