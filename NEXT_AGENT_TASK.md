@@ -1,38 +1,36 @@
 # NEXT AGENT TASK
 
 ## Status
-**COMPLETED** - EMA hourly continuation research concluded and rejected. No live trading.
+STANDBY - EMA hourly continuation research is complete and rejected (no live trading). No open tasks pending. Awaiting new pre-registered hypothesis if any.
 
-## Final Decision
-- Status: CONCLUDED, REJECTED (no live trading)
-- Rationale: Fails OOS net-of-costs with negative Sharpe, PF < 1, substantial drawdown. Robustness and cost stress do not reach profitability.
-- Details: `results/FINAL_DECISION.md`
-
-## Verified State (2026-10-19T11:02:35Z UTC)
+## Current State (2026-10-19T11:02:49Z UTC)
+- Research outcome: CONCLUDED, REJECTED (see `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`)
 - Tests: 16/16 passed (`python -m pytest tests/ -q`)
-- Git: Clean tracked tree; only untracked `__pycache__/` in backtest/, data/, signals/, tests/
-- OOS Pooled (`results/20261019_064215_oos_pooled/summary.json`): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663
-- Per-symbol (net PF / net Sharpe / trades): BTC/USDT 0.6860/-0.9004/124, ETH/USDT 0.7861/-1.8710/119, SOL/USDT 0.8792/-1.1395/132, BNB/USDT 0.6955/-2.8661/150, XRP/USDT 0.8006/-1.8986/141
-- Cost stress (`results/20261019_062710_cost_stress/summary.md`): PF 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09
+- Git: Clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/)
+- Final OOS pooled: `results/20261019_064215_oos_pooled/summary.json` (666 trades; net PF 0.6890, net Sharpe -1.9443, max DD 0.6663)
+- Cost stress: `results/20261019_062710_cost_stress/summary.md` (PF 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09)
+- Per-symbol (net PF/Sharpe/trades): BTC 0.6860/-0.9004/124, ETH 0.7861/-1.8710/119, SOL 0.8792/-1.1395/132, BNB 0.6955/-2.8661/150, XRP 0.8006/-1.8986/141
 
-## Final Artifacts
-- `results/FINAL_DECISION.md` (final decision & recommendation)
-- `results/RESEARCH_CONCLUSION.md` (conclusion)
-- `results/robustness_summary.md` (robustness)
-- `results/20261019_064215_oos_pooled/` (OOS pooled results)
-- `results/20261019_062710_cost_stress/` (cost stress results)
+## Final Artifacts (Canonical)
+- `results/FINAL_DECISION.md` — Final decision (REJECTED), recommendation (no live trading)
+- `results/RESEARCH_CONCLUSION.md` — Research conclusion
+- `results/robustness_summary.md` — Robustness summary
+- `results/20261019_064215_oos_pooled/` — Final OOS pooled results (config, summary.json, trades.csv, equity.csv)
+- `results/20261019_062710_cost_stress/` — Cost stress results (summary.md, summary.json, trades.csv, equity.csv)
 
-## Constraints
-- Any new work requires a fresh, pre-registered hypothesis (theoretical rationale + falsifiable acceptance criteria) before implementation (PROMPT.md §3.4; results/FINAL_DECISION.md).
+## Constraints (PROMPT.md §3.4; FINAL_DECISION.md)
+- Any new work requires a fresh, pre-registered hypothesis (theoretical rationale + falsifiable acceptance criteria) before implementation.
 - Do not modify, overwrite, or re-run scripts producing final artifacts unless the new hypothesis explicitly requires it with authorization.
 - If no new authorized hypothesis is provided: stand down with no changes.
 
-## Instructions for Next Agent
-1. If user provides new pre-registered hypothesis (theory + falsifiable acceptance criteria), validate against PROMPT.md §3.4 and final artifacts. Only proceed if justified and authorized.
-2. Else stand down with no changes. Do not re-run backtests, parameter searches, or tuning of rejected baseline.
-3. Run `python -m pytest tests/ -q` to verify state.
+## Initial Task for Next Agent
+1. **Read context**: `README.md`, `PROMPT.md`, `NEXT_AGENT_TASK.md` (this file), and final artifacts in `results/` (especially `results/FINAL_DECISION.md`).
+2. **Check for new input**: Look for user-provided hypothesis (theory + falsifiable acceptance criteria). If none present → stand down with no code changes. Report state (tests pass, research concluded/rejected).
+3. **If hypothesis provided**: Validate against PROMPT.md §3.4 and final artifacts. Only proceed if justified, falsifiable, and authorized. Do not re-run baseline/tuning unless hypothesis explicitly requires it.
+4. **Verify**: Run `python -m pytest tests/ -q` and report result.
+5. **Handoff**: Update this file with outcome (or keep standby). Do not commit unless explicitly requested.
 
-## Validation
-`python -m pytest tests/ -q`
-
-(End of file - total 36 lines)
+## Validation Command
+```bash
+python -m pytest tests/ -q
+```
