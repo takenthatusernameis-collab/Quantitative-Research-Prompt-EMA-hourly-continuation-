@@ -77,10 +77,17 @@ def main():
     parser.add_argument("--target-bars", type=int, default=12000,
                         help="Approximate number of hourly bars to collect per symbol (default 12000 ~ 10 months)")
     parser.add_argument("--output-dir", type=str, default="data/fixtures")
+    parser.add_argument("--reconcile-manifest", action="store_true",
+                        help="Only rebuild data/fixtures/fetch_manifest.json from the fixtures "
+                             "on disk, adding rows for symbols that are missing from it")
     args = parser.parse_args()
 
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.reconcile_manifest:
+        reconcile_manifest(out_dir, out_dir / "fetch_manifest.json")
+        return
 
     # Merge with any existing manifest so expanding the universe does not drop
     # provenance rows for symbols fetched in earlier batches.
@@ -120,6 +127,51 @@ def main():
     with open(manifest_path, "w") as f:
         json.dump(merged, f, indent=2, default=str)
     print(f"\nManifest written to {manifest_path} ({len(merged)} symbols)")
+
+
+def reconcile_manifest(out_dir: Path, manifest_path: Path) -> int:
+    """Add manifest rows for fixtures that are missing from the manifest.
+
+    A fixture is only ever written by this script from the KuCoin public
+    candles API, so the provenance of an existing file can be recovered from
+    the file itself. This keeps the manifest complete when symbols are fetched
+    in separate batches.
+    """
+    manifest = []
+    if manifest_path.exists():
+        try:
+            with open(manifest_path) as f:
+                manifest = json.load(f)
+        except Exception:
+            manifest = []
+    by_symbol = {m.get("symbol"): m for m in manifest if isinstance(m, dict)}
+
+    added = 0
+    for csv_path in sorted(out_dir.glob("*_USDT.csv")):
+        symbol = csv_path.stem.replace("_", "/")
+        if symbol in by_symbol:
+            continue
+        df = pd.read_csv(csv_path)
+        if "timestamp" not in df.columns or df.empty:
+            continue
+        by_symbol[symbol] = {
+            "symbol": symbol,
+            "source": "KuCoin public API /api/v1/market/candles",
+            "interval": "1hour",
+            "timezone": "UTC",
+            "rows": len(df),
+            "start": str(df["timestamp"].min()),
+            "end": str(df["timestamp"].max()),
+            "file": str(csv_path),
+        }
+        added += 1
+        print(f"  + {symbol} rows={len(df)} span={df['timestamp'].min()} .. {df['timestamp'].max()}")
+
+    merged = [by_symbol[k] for k in sorted(by_symbol)]
+    with open(manifest_path, "w") as f:
+        json.dump(merged, f, indent=2, default=str)
+    print(f"Manifest reconciled: {len(merged)} symbols ({added} added)")
+    return added
 
 
 if __name__ == "__main__":

@@ -165,15 +165,24 @@ def main():
     parser.add_argument('--out-dir', type=str, default='universe')
     parser.add_argument('--apply', action='store_true', default=False,
                         help='Write the expanded ranking to universe/mcap_rank.json')
+    parser.add_argument('--apply-from', type=str, default=None,
+                        help='Apply the expansion from a previously fetched snapshot file '
+                             '(universe/mcap_snapshot_<TS>.json) instead of re-fetching, so the '
+                             'batch is exactly the one that was reviewed')
     args = parser.parse_args()
 
-    snapshot = build_snapshot(args.pages)
-    ts = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
-    out_dir = Path(args.out_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    snapshot_path = out_dir / f'mcap_snapshot_{ts}.json'
-    with open(snapshot_path, 'w') as f:
-        json.dump(snapshot, f, indent=2)
+    if args.apply_from:
+        snapshot_path = Path(args.apply_from)
+        snapshot = json.loads(snapshot_path.read_text())
+        ts = snapshot_path.stem.replace('mcap_snapshot_', '')
+    else:
+        snapshot = build_snapshot(args.pages)
+        ts = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
+        out_dir = Path(args.out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        snapshot_path = out_dir / f'mcap_snapshot_{ts}.json'
+        with open(snapshot_path, 'w') as f:
+            json.dump(snapshot, f, indent=2)
 
     # Current working universe
     mcap_path = Path(args.mcap)

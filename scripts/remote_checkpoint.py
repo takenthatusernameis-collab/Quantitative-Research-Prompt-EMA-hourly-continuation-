@@ -63,9 +63,15 @@ def is_excluded(path: str) -> bool:
     return any(fnmatch.fnmatch(path, pat) for pat in EXCLUDE_PATTERNS)
 
 
-def stage_changes():
-    """Stage the working tree, minus the paths the controller never stages."""
-    run(['git', 'add', '-A', '--', '.'])
+def stage_changes(paths=None):
+    """Stage the working tree, minus the paths the controller never stages.
+
+    When `paths` is given, only those pathspecs are staged. This keeps a
+    checkpoint from picking up files that another process is still writing
+    (e.g. a data fixture download that is still in flight).
+    """
+    targets = list(paths) if paths else ['.']
+    run(['git', 'add', '-A', '--'] + targets)
     staged = run(['git', 'diff', '--cached', '--name-only', '-z']).stdout
     for path in staged.split('\0'):
         if path and is_excluded(path):
@@ -85,10 +91,12 @@ def main():
                     help='Skip staging/committing and only push the current HEAD')
     ap.add_argument('--allow-empty', action='store_true',
                     help='Commit even when there is nothing staged')
+    ap.add_argument('--paths', nargs='*', default=None,
+                    help='Restrict staging to these pathspecs (default: whole tree)')
     args = ap.parse_args()
 
     if not args.push_only:
-        staged = stage_changes()
+        staged = stage_changes(args.paths)
         if staged:
             print(f'Staged {len(staged)} path(s).')
             for path in staged[:20]:
