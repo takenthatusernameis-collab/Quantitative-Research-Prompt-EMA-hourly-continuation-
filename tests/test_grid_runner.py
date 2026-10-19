@@ -1,4 +1,5 @@
 """Tests for the full EMA grid runner and grid aggregation."""
+import gzip
 import itertools
 import json
 from pathlib import Path
@@ -6,7 +7,16 @@ from pathlib import Path
 import pandas as pd
 import pytest
 
-from scripts.run_grid import GRID_PAIRS, PERIOD_GRID, period_pairs, symbol_dir_name
+from scripts.run_grid import (
+    EQUITY_FILENAME,
+    GRID_PAIRS,
+    PERIOD_GRID,
+    TRADES_FILENAME,
+    period_pairs,
+    read_artifact_csv,
+    symbol_dir_name,
+    write_csv_gz,
+)
 from scripts.aggregate_grid import label_cell, load_cells, per_pair_table, per_symbol_table
 
 
@@ -34,6 +44,43 @@ def test_grid_pairs_cover_every_unordered_combination():
 def test_symbol_dir_name_is_filesystem_safe():
     assert symbol_dir_name('BTC/USDT') == 'BTC_USDT'
     assert '/' not in symbol_dir_name('ETH/USDT')
+
+
+def test_bulk_artifacts_are_gzip_compressed_and_lossless(tmp_path):
+    """Bulk per-cell artifacts are gzip CSVs so checkpoints stay inside the
+    controller's 30s remote-push budget. Content must round-trip exactly."""
+    df = pd.DataFrame({
+        'index': [0, 1, 2],
+        'timestamp': ['2024-01-01 00:00:00+00:00'] * 3,
+        'equity': [10000.0, 10001.5, 9999.25],
+        'position': [0, 1, -1],
+    })
+    path = tmp_path / TRADES_FILENAME
+    write_csv_gz(df, path)
+
+    assert path.exists()
+    with open(path, 'rb') as fh:
+        assert fh.read(2) == b'\x1f\x8b'  # gzip magic
+    restored = read_artifact_csv(path)
+    pd.testing.assert_frame_equal(restored, df)
+
+
+def test_gzip_artifacts_are_byte_deterministic(tmp_path):
+    """Identical cells must produce identical blobs so git can delta them."""
+    df = pd.DataFrame({'a': [1, 2, 3], 'b': ['x', 'y', 'z']})
+    first = tmp_path / 'a.csv.gz'
+    second = tmp_path / 'b.csv.gz'
+    write_csv_gz(df, first)
+    write_csv_gz(df, second)
+    assert first.read_bytes() == second.read_bytes()
+
+
+def test_read_artifact_csv_handles_plain_csv(tmp_path):
+    """Artifacts written before compression used plain CSV and stay readable."""
+    path = tmp_path / 'trades.csv'
+    pd.DataFrame({'a': [1, 2]}).to_csv(path, index=False)
+    restored = read_artifact_csv(path)
+    assert list(restored['a']) == [1, 2]
 
 
 def _write_cell(root: Path, symbol: str, fast: int, slow: int, pf: float,

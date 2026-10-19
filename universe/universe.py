@@ -16,6 +16,23 @@ def load_mcap_ranking(path: str | Path) -> List[str]:
     raise ValueError("Invalid mcap ranking format")
 
 
+def load_mcap_snapshot(path: str | Path) -> Dict[str, Any]:
+    """Load the full market-cap ranking snapshot, including provenance metadata.
+
+    Returns a dict with at least a 'symbols' list plus any snapshot metadata
+    (snapshot_id, snapshot_source, updated_at, added_in_this_expansion, ...).
+    """
+    path = Path(path)
+    with path.open('r') as f:
+        data = json.load(f)
+    if isinstance(data, list):
+        data = {'symbols': list(data)}
+    if not isinstance(data, dict):
+        raise ValueError("Invalid mcap ranking format")
+    data.setdefault('symbols', [])
+    return data
+
+
 def save_mcap_ranking(symbols: List[str], path: str | Path, updated_at: str | None = None):
     """Save market cap ranking to JSON file."""
     import datetime

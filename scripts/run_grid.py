@@ -10,8 +10,8 @@ Persists one result artifact set per (symbol, P_fast, P_slow) under
 results/<RUNID>_grid/<SYMBOL>/P{fast}_{slow}/:
 
     config.json   experiment config (symbol, P_fast, P_slow, costs, fill rule, ...)
-    trades.csv    trade blotter
-    equity.csv    equity curve
+    trades.csv.gz trade blotter (gzip-compressed CSV)
+    equity.csv.gz equity curve (gzip-compressed CSV)
     summary.json  net/gross metrics
     summary.md    human-readable report
 
@@ -25,6 +25,8 @@ Usage:
     python scripts/run_grid.py --resume results/<RUNID>_grid  # resume a prior run
 """
 import argparse
+import gzip
+import io
 import itertools
 import json
 from datetime import datetime, timezone
@@ -35,7 +37,7 @@ import pandas as pd
 
 from data.data_loader import load_ohlcv_csv
 from signals.signals import generate_signals
-from universe.universe import load_mcap_ranking
+from universe.universe import load_mcap_ranking, load_mcap_snapshot
 from backtest.backtest import backtest_symbol
 from metrics.metrics import calculate_metrics
 
@@ -55,6 +57,28 @@ DEFAULT_RR = 1.0
 DEFAULT_SIZING = 'risk'
 DEFAULT_RISK_FRACTION = 0.01
 DEFAULT_MAX_NOTIONAL_MULTIPLE = 10.0
+
+# Bulk per-cell artifacts are gzip-compressed on disk. The raw trade blotter and
+# hourly equity curve are ~2 MB per cell uncompressed; a 66-cell symbol grid is
+# therefore ~130 MB of CSV. Compressed they are ~4.7x smaller, which keeps the
+# per-checkpoint git push inside the remote persistence budget (the workflow
+# controller aborts `git push` after 30s, and building the pack for ~450 MB of
+# new content alone takes ~34s on a 4-core runner). `mtime=0` keeps the bytes
+# deterministic so identical cells produce identical blobs and git can delta
+# them efficiently.
+TRADES_FILENAME = 'trades.csv.gz'
+EQUITY_FILENAME = 'equity.csv.gz'
+GZIP_LEVEL = 6
+
+ARTIFACT_LAYOUT = {
+    'config': 'config.json',
+    'summary_json': 'summary.json',
+    'summary_md': 'summary.md',
+    'trades': TRADES_FILENAME,
+    'equity': EQUITY_FILENAME,
+    'compression': 'gzip',
+    'note': 'bulk CSV artifacts are gzip-compressed; read with gzip -dc <file> or pandas.read_csv(file, compression="gzip")',
+}
 
 CONFIG_DEFAULTS = {
     'taker_fee_bps': DEFAULT_TAKER_FEE_BPS,
@@ -77,6 +101,32 @@ def period_pairs():
 
 def symbol_dir_name(symbol: str) -> str:
     return symbol.replace('/', '_')
+
+
+def write_csv_gz(df: pd.DataFrame, path: Path) -> Path:
+    """Write a DataFrame as a deterministic gzip-compressed CSV.
+
+    `mtime=0` and a fixed compression level make the output byte-identical for
+    identical input, so re-running a cell does not create a new git blob.
+    """
+    buf = io.StringIO()
+    df.to_csv(buf, index=False)
+    payload = buf.getvalue().encode('utf-8')
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, 'wb') as fh:
+        with gzip.GzipFile(filename='', mode='wb', fileobj=fh,
+                           compresslevel=GZIP_LEVEL, mtime=0) as gz:
+            gz.write(payload)
+    return path
+
+
+def read_artifact_csv(path: str | Path) -> pd.DataFrame:
+    """Read a bulk artifact, transparently handling .csv and .csv.gz."""
+    path = Path(path)
+    if path.suffix == '.gz':
+        with gzip.open(path, 'rt', encoding='utf-8') as fh:
+            return pd.read_csv(fh)
+    return pd.read_csv(path)
 
 
 def run_cell(symbol, df, fast, slow, taker_fee_bps, slippage_bps, rr,
@@ -139,13 +189,14 @@ def save_cell(results_dir, symbol, fast, slow, trades, equity_df, metrics,
         'P_slow': slow,
         'ema_fast_period': fast,
         'ema_slow_period': slow,
+        'artifacts': ARTIFACT_LAYOUT,
     })
     with open(cell_dir / 'config.json', 'w') as f:
         json.dump(cell_config, f, indent=2, default=str)
 
     trades_df = pd.DataFrame([t.__dict__ for t in trades])
-    trades_df.to_csv(cell_dir / 'trades.csv', index=False)
-    equity_df.to_csv(cell_dir / 'equity.csv', index=False)
+    write_csv_gz(trades_df, cell_dir / TRADES_FILENAME)
+    write_csv_gz(equity_df, cell_dir / EQUITY_FILENAME)
 
     with open(cell_dir / 'summary.json', 'w') as f:
         json.dump(metrics, f, indent=2, default=str)
@@ -179,6 +230,8 @@ def save_cell(results_dir, symbol, fast, slow, trades, equity_df, metrics,
     else:
         label = 'rejected'
     lines.append(f'\nDecision label: {label}\n')
+    lines.append(f'\nBulk artifacts: `{TRADES_FILENAME}`, `{EQUITY_FILENAME}` (gzip-compressed CSV). '
+                 f'Read with `gzip -dc <file>` or `pandas.read_csv(file, compression="gzip")`.\n')
     with open(cell_dir / 'summary.md', 'w') as f:
         f.write('\n'.join(lines))
 
@@ -214,6 +267,9 @@ def main():
     parser.add_argument('--max-notional-multiple', type=float,
                         default=CONFIG_DEFAULTS['max_notional_multiple'],
                         help='Cap on position notional as a multiple of equity')
+    parser.add_argument('--note', type=str, default=None,
+                        help='Free-form note recorded in run_config.json (e.g. the universe '
+                             'expansion that triggered this invocation)')
     args = parser.parse_args()
 
     config = dict(CONFIG_DEFAULTS)
@@ -241,6 +297,19 @@ def main():
         run_id = results_dir.name
     results_dir.mkdir(parents=True, exist_ok=True)
 
+    # Keep an audit trail of every invocation against this run directory, so a
+    # resumed/expanded run still records the previous N (symbols, universe).
+    prior_configs = []
+    run_config_path = results_dir / 'run_config.json'
+    if run_config_path.exists():
+        try:
+            with open(run_config_path) as f:
+                prev_cfg = json.load(f)
+            prior_configs = list(prev_cfg.get('history', []))
+            prior_configs.append({k: v for k, v in prev_cfg.items() if k != 'history'})
+        except Exception:
+            prior_configs = []
+
     run_config = {
         'run_id': run_id,
         'timestamp': timestamp,
@@ -255,6 +324,9 @@ def main():
         'max_cells': args.max_cells,
         'resume': args.resume,
         'oos_fraction': args.oos_fraction,
+        'note': args.note,
+        'artifact_layout': ARTIFACT_LAYOUT,
+        'history': prior_configs,
     }
     with open(results_dir / 'run_config.json', 'w') as f:
         json.dump(run_config, f, indent=2, default=str)
@@ -275,6 +347,10 @@ def main():
     symbols = load_mcap_ranking(args.mcap)[:args.n]
     run_config['symbols'] = symbols
     run_config['n_symbols'] = len(symbols)
+    # Log the universe expansion in the experiment config (PROMPT.md §2.1):
+    # previous N -> new N, ranks added, ranking source and timestamp.
+    mcap_snapshot = load_mcap_snapshot(args.mcap)
+    run_config['mcap_snapshot'] = {k: v for k, v in mcap_snapshot.items() if k != 'symbols'}
     with open(results_dir / 'run_config.json', 'w') as f:
         json.dump(run_config, f, indent=2, default=str)
 
