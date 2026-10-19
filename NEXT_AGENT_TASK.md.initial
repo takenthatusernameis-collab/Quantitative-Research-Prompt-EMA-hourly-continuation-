@@ -1,0 +1,30 @@
+# INITIAL TASK MESSAGE FOR NEXT AGENT
+
+## Objective
+Start fresh with this research project. Review current state and determine next steps - but note this baseline is rejected.
+
+## Key Files to Review
+- PROMPT.md (strategy specification)
+- README.md (project context)
+- results/FINAL_DECISION.md (final decision - REJECTED)
+- NEXT_AGENT_TASK.md (current closed state)
+- backtest/, scripts/, tests/ (implementation)
+- data/fixtures/ (real hourly data, tracked)
+- research_state/, metrics/, signals/, universe/ (artifacts)
+
+## Current State
+Baseline EMA hourly continuation tested comprehensively. All 16 tests pass. OOS pooled shows net PF<1, negative Sharpe, substantial max DD. Cost stress worsens performance; no robustness variant achieves profitability.
+
+## Instructions
+1. Read FINAL_DECISION.md and NEXT_AGENT_TASK.md to understand closed state
+2. Do NOT re-run extensive parameter searches on this baseline - it is rejected
+3. If pursuing new work, formulate a new pre-specified hypothesis with:
+- Clear theoretical rationale
+- Falsifiable acceptance criteria (pre-registered)
+- Justification for any signal/filters/exit changes
+4. Keep data and fixtures as-is (tracked). Do not modify core baseline without strong justification.
+5. Run tests to validate any changes: `python -m pytest tests/`
+6. Document any new hypothesis clearly before implementation
+
+## Ground Truth
+Decision: REJECTED. No live trading. New hypothesis required.
