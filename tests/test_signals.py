@@ -32,5 +32,17 @@ def test_generate_signals_basic():
     df = create_test_data(120)
     result = generate_signals(df)
     assert 'signal' in result.columns
-    assert 'ema50' in result.columns
-    assert 'ema100' in result.columns
+    assert 'ema_fast' in result.columns
+    assert 'ema_slow' in result.columns
+
+
+def test_generate_signals_parameterized_periods():
+    """Test signal generation with parameterized P_fast/P_slow."""
+    df = create_test_data(200)
+    result = generate_signals(df, ema_fast_period=12, ema_slow_period=26)
+    assert 'ema_fast' in result.columns
+    assert 'ema_slow' in result.columns
+    assert 'signal' in result.columns
+    # EMA columns should be defined after warmup (>= slow period)
+    assert not pd.isna(result['ema_slow'].iloc[26])
+    assert result['signal'].isin([-1, 0, 1]).all()

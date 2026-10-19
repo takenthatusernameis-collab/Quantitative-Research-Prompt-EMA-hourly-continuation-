@@ -19,8 +19,7 @@ def _make_df(n=120):
         'close': price,
         'volume': [1000] * n,
     })
-    df['ema50'] = 100.0
-    df['ema100'] = 100.0
+    df['ema_slow'] = 100.0
     df['signal'] = 0
     df['entry_price'] = np.nan
     return df
@@ -29,10 +28,10 @@ def _make_df(n=120):
 def test_same_bar_conflict_prioritizes_sl_long():
     """Long: both TP and SL hit same bar -> SL (adverse) wins."""
     df = _make_df()
-    # Long signal at index 100: entry 100, EMA100 99 -> risk 1, SL 99, TP 101
+    # Long signal at index 100: entry 100, EMA_slow 99 -> risk 1, SL 99, TP 101
     df.at[100, 'signal'] = 1
     df.at[100, 'entry_price'] = 100.0
-    df.at[100, 'ema100'] = 99.0
+    df.at[100, 'ema_slow'] = 99.0
     # Bar 101: high >= TP(101) and low <= SL(99) -> conflict
     df.at[101, 'high'] = 101.0
     df.at[101, 'low'] = 99.0
@@ -47,10 +46,10 @@ def test_same_bar_conflict_prioritizes_sl_long():
 def test_same_bar_conflict_prioritizes_sl_short():
     """Short: both TP and SL hit same bar -> SL (adverse) wins."""
     df = _make_df()
-    # Short signal at index 100: entry 100, EMA100 101 -> risk 1, SL 101, TP 99
+    # Short signal at index 100: entry 100, EMA_slow 101 -> risk 1, SL 101, TP 99
     df.at[100, 'signal'] = -1
     df.at[100, 'entry_price'] = 100.0
-    df.at[100, 'ema100'] = 101.0
+    df.at[100, 'ema_slow'] = 101.0
     # Bar 101: high >= SL(101) and low <= TP(99) -> conflict
     df.at[101, 'high'] = 101.0
     df.at[101, 'low'] = 99.0
@@ -63,22 +62,22 @@ def test_same_bar_conflict_prioritizes_sl_short():
 
 
 def test_risk_zero_skips_trade():
-    """entry == EMA100 -> risk 0 -> trade skipped."""
+    """entry == EMA_slow -> risk 0 -> trade skipped."""
     df = _make_df()
     df.at[100, 'signal'] = 1
     df.at[100, 'entry_price'] = 100.0
-    df.at[100, 'ema100'] = 100.0  # risk = 0
+    df.at[100, 'ema_slow'] = 100.0  # risk = 0
 
     trades, _ = backtest_symbol(df, taker_fee_bps=0.0, slippage_bps=0.0)
     assert len(trades) == 0
 
 
 def test_pathological_risk_skips_trade():
-    """entry almost on EMA100 (tiny risk) -> trade skipped."""
+    """entry almost on EMA_slow (tiny risk) -> trade skipped."""
     df = _make_df()
     df.at[100, 'signal'] = 1
     df.at[100, 'entry_price'] = 100.0
-    df.at[100, 'ema100'] = 100.0 + 1e-12  # risk below threshold
+    df.at[100, 'ema_slow'] = 100.0 + 1e-12  # risk below threshold
 
     trades, _ = backtest_symbol(df, taker_fee_bps=0.0, slippage_bps=0.0)
     assert len(trades) == 0

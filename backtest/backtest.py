@@ -33,7 +33,7 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
     Backtest a single symbol.
 
     Costs: taker fee and slippage per side (default 10 bps + 2 bps per side)
-    SL/TP at 1:1 RR where risk = |entry - EMA100[t]| on signal bar
+    SL/TP at 1:1 RR where risk = |entry - EMA_slow[t]| on signal bar
     """
     df = df.copy()
     if min_risk_atr and 'atr14' not in df.columns:
@@ -145,11 +145,11 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
             sig = df['signal'].iloc[i]
             if sig != 0:
                 entry_price = df['entry_price'].iloc[i]
-                ema100_t = df['ema100'].iloc[i] if 'ema100' in df.columns else np.nan
-                if pd.isna(entry_price) or pd.isna(ema100_t):
+                ema_slow_t = df['ema_slow'].iloc[i] if 'ema_slow' in df.columns else (df['ema100'].iloc[i] if 'ema100' in df.columns else np.nan)
+                if pd.isna(entry_price) or pd.isna(ema_slow_t):
                     continue
-                # Calculate risk = |entry - EMA100[t]|
-                risk = abs(entry_price - ema100_t)
+                # Calculate risk = |entry - EMA_slow[t]|
+                risk = abs(entry_price - ema_slow_t)
                 # Skip if risk <= 0 or pathological
                 if risk <= 1e-10:
                     continue

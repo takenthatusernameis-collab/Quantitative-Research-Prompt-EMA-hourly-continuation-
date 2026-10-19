@@ -1,0 +1,22 @@
+{
+  "symbol": "BTC/USDT",
+  "trade_count": 489,
+  "gross_profit_factor": 1.0876938443821302,
+  "win_rate": 0.50920245398773,
+  "avg_win": 863.7954232345752,
+  "avg_loss": -823.9338268159047,
+  "max_drawdown": 10.124028550921153,
+  "sharpe_ratio": 0.39731836824214084,
+  "sortino_ratio": 0.1744593197111327,
+  "cagr": 0.0,
+  "total_trades": 489,
+  "net_profit_factor": 0.6833869138190358,
+  "net_win_rate": 0.46830265848670755,
+  "net_avg_win": 733.7601500514198,
+  "net_avg_loss": -945.6917448393529,
+  "gross_win_rate": 0.50920245398773,
+  "avg_hold_time_bars": 11.695296523517383,
+  "exposure": 0.22876,
+  "P_fast": 55,
+  "P_slow": 144
+}
