@@ -48,6 +48,14 @@ DEFAULT_TAKER_FEE_BPS = 10.0
 DEFAULT_SLIPPAGE_BPS = 2.0
 DEFAULT_RR = 1.0
 
+# Position sizing (PROMPT.md §1.6 prefers risk-based sizing so the equity
+# curve is in the strategy's own currency and is comparable across symbols).
+# 'risk'         : risk `risk_fraction` of equity per trade
+# 'unit_notional': legacy mode, one unit of the base asset per trade
+DEFAULT_SIZING = 'risk'
+DEFAULT_RISK_FRACTION = 0.01
+DEFAULT_MAX_NOTIONAL_MULTIPLE = 10.0
+
 CONFIG_DEFAULTS = {
     'taker_fee_bps': DEFAULT_TAKER_FEE_BPS,
     'slippage_bps': DEFAULT_SLIPPAGE_BPS,
@@ -56,6 +64,9 @@ CONFIG_DEFAULTS = {
     'min_risk_atr': False,
     'atr_threshold': 1.0,
     'conservative_exit': True,
+    'sizing': DEFAULT_SIZING,
+    'risk_fraction': DEFAULT_RISK_FRACTION,
+    'max_notional_multiple': DEFAULT_MAX_NOTIONAL_MULTIPLE,
 }
 
 
@@ -69,22 +80,49 @@ def symbol_dir_name(symbol: str) -> str:
 
 
 def run_cell(symbol, df, fast, slow, taker_fee_bps, slippage_bps, rr,
-             stricter_trend, min_risk_atr, atr_threshold, conservative_exit):
-    """Run a single (symbol, P_fast, P_slow) cell. Returns (trades, equity_df, metrics)."""
+             stricter_trend, min_risk_atr, atr_threshold, conservative_exit,
+             oos_fraction=None, sizing=DEFAULT_SIZING,
+             risk_fraction=DEFAULT_RISK_FRACTION,
+             max_notional_multiple=DEFAULT_MAX_NOTIONAL_MULTIPLE):
+    """Run a single (symbol, P_fast, P_slow) cell. Returns (trades, equity_df, metrics).
+
+    When `oos_fraction` is set, entries are restricted to the trailing
+    (1 - oos_fraction) window of the series and the equity curve is trimmed to
+    that window, so the reported metrics are out-of-sample. EMAs are still
+    computed on the full (causal) series so warm-up is not lost.
+    """
     df_sig = generate_signals(
         df.copy(), ema_fast_period=fast, ema_slow_period=slow,
         stricter_trend=stricter_trend,
     )
+    entry_start_index = 0
+    if oos_fraction is not None and 0.0 < oos_fraction < 1.0:
+        entry_start_index = int(len(df_sig) * (1.0 - oos_fraction))
     trades, equity_df = backtest_symbol(
         df_sig, symbol=symbol,
         taker_fee_bps=taker_fee_bps, slippage_bps=slippage_bps, rr=rr,
         min_risk_atr=min_risk_atr, atr_threshold=atr_threshold,
+        entry_start_index=entry_start_index,
         conservative_exit=conservative_exit,
+        sizing=sizing, risk_fraction=risk_fraction,
+        max_notional_multiple=max_notional_multiple,
     )
+    if entry_start_index:
+        equity_df = equity_df.iloc[entry_start_index:].reset_index(drop=True)
     metrics = calculate_metrics(trades, equity_df, symbol=symbol)
     metrics['P_fast'] = fast
     metrics['P_slow'] = slow
     metrics['symbol'] = symbol
+    metrics['oos_fraction'] = oos_fraction
+    metrics['entry_start_index'] = entry_start_index
+    metrics['sizing'] = sizing
+    metrics['risk_fraction'] = risk_fraction
+    # Reconciliation check: the equity curve must equal starting equity plus
+    # the sum of net trade P&L.
+    metrics['equity_reconciles'] = bool(
+        len(equity_df) == 0
+        or abs(equity_df['equity'].iloc[-1] - (10000.0 + sum(t.pnl_net for t in trades))) < 1e-6
+    )
     return trades, equity_df, metrics
 
 
@@ -117,6 +155,14 @@ def save_cell(results_dir, symbol, fast, slow, trades, equity_df, metrics,
     lines.append(f'**Symbol:** {symbol}  |  **P_fast:** {fast}  |  **P_slow:** {slow}\n')
     lines.append(f'**Costs:** {config["taker_fee_bps"]} bps taker + {config["slippage_bps"]} bps slippage per side\n')
     lines.append(f'**RR:** {config["rr"]}  |  **Fill:** signal-bar close  |  **SL/TP:** 1:1 to EMA_slow\n')
+    if config.get('sizing') == 'risk':
+        lines.append(f'**Sizing:** risk-based, {config["risk_fraction"]:.2%} of equity per trade '
+                     f'(notional cap {config["max_notional_multiple"]}x equity)\n')
+    else:
+        lines.append(f'**Sizing:** {config.get("sizing")} (one unit of base asset per trade)\n')
+    if metrics.get('oos_fraction'):
+        lines.append(f'**Evaluation:** out-of-sample (trailing {metrics["oos_fraction"]:.0%} of bars, '
+                     f'entries restricted to test window)\n')
     lines.append('\n## Metrics (net of costs)\n')
     lines.append('| Metric | Value |\n|---|---|')
     for k in ['trade_count', 'net_profit_factor', 'net_win_rate', 'gross_profit_factor',
@@ -124,7 +170,15 @@ def save_cell(results_dir, symbol, fast, slow, trades, equity_df, metrics,
               'net_avg_win', 'net_avg_loss', 'avg_hold_time_bars', 'exposure']:
         v = metrics.get(k)
         lines.append(f'| {k} | {v:.4f} |' if isinstance(v, float) else f'| {k} | {v} |')
-    lines.append(f'\nDecision label: {"credible candidate" if metrics.get("net_profit_factor", 0) > 1 and metrics.get("trade_count", 0) >= 10 else "rejected/exploratory"}\n')
+    pf = metrics.get('net_profit_factor', 0) or 0.0
+    n = metrics.get('trade_count', 0) or 0
+    if n < 10:
+        label = 'rejected'
+    elif pf > 1.0 and (metrics.get('sharpe_ratio', 0) or 0.0) > 0.0 and n >= 30:
+        label = 'exploratory signal'
+    else:
+        label = 'rejected'
+    lines.append(f'\nDecision label: {label}\n')
     with open(cell_dir / 'summary.md', 'w') as f:
         f.write('\n'.join(lines))
 
@@ -148,6 +202,18 @@ def main():
                         help='Stop after N cells (smoke test / partial run)')
     parser.add_argument('--resume', type=str, default=None,
                         help='Path to a prior results/<RUNID>_grid dir to resume')
+    parser.add_argument('--oos-fraction', type=float, default=None,
+                        help='Trailing out-of-sample fraction (e.g. 0.35). '
+                             'Entries restricted to the test window; default = full sample (in-sample)')
+    parser.add_argument('--sizing', type=str, default=CONFIG_DEFAULTS['sizing'],
+                        choices=['risk', 'unit_notional'],
+                        help="'risk' (default) risks a fixed fraction of equity per trade; "
+                             "'unit_notional' is the legacy one-unit-per-trade mode")
+    parser.add_argument('--risk-fraction', type=float, default=CONFIG_DEFAULTS['risk_fraction'],
+                        help='Fraction of equity risked per trade when sizing=risk')
+    parser.add_argument('--max-notional-multiple', type=float,
+                        default=CONFIG_DEFAULTS['max_notional_multiple'],
+                        help='Cap on position notional as a multiple of equity')
     args = parser.parse_args()
 
     config = dict(CONFIG_DEFAULTS)
@@ -159,6 +225,9 @@ def main():
         'min_risk_atr': args.min_risk_atr,
         'atr_threshold': args.atr_threshold,
         'conservative_exit': not args.aggressive_exit,
+        'sizing': args.sizing,
+        'risk_fraction': args.risk_fraction,
+        'max_notional_multiple': args.max_notional_multiple,
     })
 
     timestamp = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
@@ -185,6 +254,7 @@ def main():
         'fixture_base': args.fixture_base,
         'max_cells': args.max_cells,
         'resume': args.resume,
+        'oos_fraction': args.oos_fraction,
     }
     with open(results_dir / 'run_config.json', 'w') as f:
         json.dump(run_config, f, indent=2, default=str)
@@ -253,7 +323,9 @@ def main():
                     symbol, df, fast, slow,
                     config['taker_fee_bps'], config['slippage_bps'], config['rr'],
                     config['stricter_trend'], config['min_risk_atr'], config['atr_threshold'],
-                    config['conservative_exit'],
+                    config['conservative_exit'], oos_fraction=args.oos_fraction,
+                    sizing=config['sizing'], risk_fraction=config['risk_fraction'],
+                    max_notional_multiple=config['max_notional_multiple'],
                 )
                 save_cell(results_dir, symbol, fast, slow, trades, equity_df, metrics, config)
                 completed.add(cell_key)

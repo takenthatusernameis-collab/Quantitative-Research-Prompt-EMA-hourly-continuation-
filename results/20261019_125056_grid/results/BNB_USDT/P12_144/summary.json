@@ -1,0 +1,22 @@
+{
+  "symbol": "BNB/USDT",
+  "trade_count": 560,
+  "gross_profit_factor": 0.9117098357987808,
+  "win_rate": 0.4732142857142857,
+  "avg_win": 12.029146511679478,
+  "avg_loss": -11.85228353616044,
+  "max_drawdown": 0.17114755722186753,
+  "sharpe_ratio": -2.171673090302516,
+  "sortino_ratio": -0.6052212369434226,
+  "cagr": -0.07052068310717297,
+  "total_trades": 560,
+  "net_profit_factor": 0.6913446589412915,
+  "net_win_rate": 0.43392857142857144,
+  "net_avg_win": 11.350489151495111,
+  "net_avg_loss": -12.585398669536126,
+  "gross_win_rate": 0.4732142857142857,
+  "avg_hold_time_bars": 25.076785714285716,
+  "exposure": 0.6383181818181818,
+  "P_fast": 12,
+  "P_slow": 144
+}

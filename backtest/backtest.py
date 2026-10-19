@@ -22,31 +22,56 @@ class Trade:
     exit_reason: str  # 'tp', 'sl', 'end'
     bar_index: int
     exit_bar_index: int = -1
+    qty: float = 0.0
+    notional: float = 0.0
+    entry_cost: float = 0.0
+    exit_cost: float = 0.0
+    risk_pct: float = 0.0
 
 
 def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                    taker_fee_bps: float = 10.0, slippage_bps: float = 2.0,
                    one_position: bool = True, rr: float = 1.0,
                    min_risk_atr: bool = False, atr_threshold: float = 1.0,
-                   entry_start_index: int = 0, conservative_exit: bool = True) -> tuple:
+                   entry_start_index: int = 0, conservative_exit: bool = True,
+                   sizing: str = 'risk', risk_fraction: float = 0.01,
+                   max_notional_multiple: float = 10.0,
+                   starting_equity: float = 10000.0) -> tuple:
     """
     Backtest a single symbol.
 
     Costs: taker fee and slippage per side (default 10 bps + 2 bps per side)
     SL/TP at 1:1 RR where risk = |entry - EMA_slow[t]| on signal bar
+
+    Sizing
+    ------
+    `sizing='risk'` (default) is risk-based: each trade risks `risk_fraction`
+    of the equity available at entry, so the position notional is
+    ``qty = equity * risk_fraction / risk_distance``. The equity curve is then
+    a real compounding curve in the strategy's own currency, and Sharpe /
+    max drawdown / CAGR are comparable across symbols regardless of the
+    asset's price level.
+
+    `sizing='unit_notional'` is the legacy mode: one unit of the base asset per
+    trade. Trade-level gross P&L is identical in both modes; only the
+    notional scaling differs.
+
+    Entry costs are charged exactly once (at entry) and exit costs exactly
+    once (at exit), so the equity curve reconciles with the trade blotter:
+    ``equity_final == starting_equity + sum(trade.pnl_net)``.
     """
     df = df.copy()
     if min_risk_atr and 'atr14' not in df.columns:
         tr = pd.concat([df['high']-df['low'], (df['high']-df['close'].shift()).abs(), (df['low']-df['close'].shift()).abs()], axis=1).max(axis=1)
         df['atr14'] = tr.rolling(14).mean()
     trades: List[Trade] = []
-    equity = 10000.0  # starting equity
+    equity = float(starting_equity)
     equity_curve = []
     position = 0  # 0 no position, 1 long, -1 short
     entry_trade: Optional[Trade] = None
     position_entry_idx = -1
 
-    # Cost per side
+    # Cost per side (as a fraction of traded notional)
     cost_per_side = (taker_fee_bps + slippage_bps) / 10000.0
 
     for i in range(len(df)):
@@ -80,27 +105,33 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                     else:
                         exit_price = entry_trade.tp
                         exit_reason = 'tp'
-                    pnl = (exit_price - entry_trade.entry_price)
+                    pnl_per_unit = (exit_price - entry_trade.entry_price)
                 elif tp_hit:
                     exit_price = entry_trade.tp
-                    pnl = (exit_price - entry_trade.entry_price)
+                    pnl_per_unit = (exit_price - entry_trade.entry_price)
                     exit_reason = 'tp'
                 elif sl_hit:
                     exit_price = entry_trade.sl
-                    pnl = (exit_price - entry_trade.entry_price)
+                    pnl_per_unit = (exit_price - entry_trade.entry_price)
                     exit_reason = 'sl'
                 else:
                     continue  # no exit yet
-                # Calculate net pnl including costs (enter + exit)
-                pnl_net = pnl - cost_per_side * entry_trade.entry_price - cost_per_side * exit_price  # rough approximation
+                # Scale the per-unit P&L to the traded notional
+                pnl = pnl_per_unit * entry_trade.qty
+                exit_cost = entry_trade.qty * cost_per_side * exit_price
+                # pnl_net is the full round-trip net of this trade (entry + exit
+                # costs). The equity curve charges the entry cost at entry and
+                # the exit cost here, so the two reconcile exactly.
+                pnl_net = pnl - entry_trade.entry_cost - exit_cost
                 entry_trade.exit_time = exit_time
                 entry_trade.exit_price = exit_price
                 entry_trade.exit_bar_index = i
                 entry_trade.pnl = pnl
                 entry_trade.pnl_net = pnl_net
+                entry_trade.exit_cost = exit_cost
                 entry_trade.exit_reason = exit_reason
                 trades.append(entry_trade)
-                equity += pnl_net  # update equity
+                equity += pnl - exit_cost  # entry cost already taken at entry
                 position = 0
                 entry_trade = None
                 continue
@@ -116,32 +147,35 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                     else:
                         exit_price = entry_trade.tp
                         exit_reason = 'tp'
-                    pnl = (entry_trade.entry_price - exit_price)
+                    pnl_per_unit = (entry_trade.entry_price - exit_price)
                 elif tp_hit:
                     exit_price = entry_trade.tp
-                    pnl = (entry_trade.entry_price - exit_price)
+                    pnl_per_unit = (entry_trade.entry_price - exit_price)
                     exit_reason = 'tp'
                 elif sl_hit:
                     exit_price = entry_trade.sl
-                    pnl = (entry_trade.entry_price - exit_price)
+                    pnl_per_unit = (entry_trade.entry_price - exit_price)
                     exit_reason = 'sl'
                 else:
                     continue
-                pnl_net = pnl - cost_per_side * entry_trade.entry_price - cost_per_side * exit_price
+                pnl = pnl_per_unit * entry_trade.qty
+                exit_cost = entry_trade.qty * cost_per_side * exit_price
+                pnl_net = pnl - entry_trade.entry_cost - exit_cost
                 entry_trade.exit_time = exit_time
                 entry_trade.exit_price = exit_price
                 entry_trade.exit_bar_index = i
                 entry_trade.pnl = pnl
                 entry_trade.pnl_net = pnl_net
+                entry_trade.exit_cost = exit_cost
                 entry_trade.exit_reason = exit_reason
                 trades.append(entry_trade)
-                equity += pnl_net
+                equity += pnl - exit_cost
                 position = 0
                 entry_trade = None
                 continue
 
         # Check for new signals if not in position (or if one_position allows new after close - but we manage)
-        if position == 0 and i >= entry_start_index:
+        if position == 0 and i >= entry_start_index and equity > 0:
             sig = df['signal'].iloc[i]
             if sig != 0:
                 entry_price = df['entry_price'].iloc[i]
@@ -168,6 +202,18 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                     side = 'short'
                 else:
                     continue
+                # Position sizing
+                if sizing == 'unit_notional':
+                    qty = 1.0
+                else:
+                    qty = (equity * risk_fraction) / risk
+                    # Cap the notional so a very tight stop cannot lever up
+                    # beyond max_notional_multiple x equity.
+                    max_notional = max_notional_multiple * equity
+                    if qty * entry_price > max_notional:
+                        qty = max_notional / entry_price
+                notional = qty * entry_price
+                entry_cost = notional * cost_per_side
                 # Enter position
                 entry_trade = Trade(
                     symbol=symbol,
@@ -182,12 +228,17 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                     pnl=0.0,
                     pnl_net=0.0,
                     exit_reason='',
-                    bar_index=i
+                    bar_index=i,
+                    qty=float(qty),
+                    notional=float(notional),
+                    entry_cost=float(entry_cost),
+                    exit_cost=0.0,
+                    risk_pct=float(risk / entry_price) if entry_price else 0.0,
                 )
                 position = sig
                 position_entry_idx = i
-                # Deduct entry cost
-                equity -= cost_per_side * entry_price
+                # Charge the entry cost exactly once
+                equity -= entry_cost
 
     # If still in position at end, close it
     if position != 0 and entry_trade is not None:
@@ -196,17 +247,26 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
         exit_price = df['close'].iloc[last_idx]
         exit_time = df['timestamp'].iloc[last_idx] if 'timestamp' in df.columns else last_idx
         if position == 1:
-            pnl = (exit_price - entry_trade.entry_price)
+            pnl_per_unit = (exit_price - entry_trade.entry_price)
         else:
-            pnl = (entry_trade.entry_price - exit_price)
-        pnl_net = pnl - cost_per_side * entry_trade.entry_price - cost_per_side * exit_price
+            pnl_per_unit = (entry_trade.entry_price - exit_price)
+        pnl = pnl_per_unit * entry_trade.qty
+        exit_cost = entry_trade.qty * cost_per_side * exit_price
+        pnl_net = pnl - entry_trade.entry_cost - exit_cost
         entry_trade.exit_time = exit_time
         entry_trade.exit_price = exit_price
         entry_trade.exit_bar_index = last_idx
         entry_trade.pnl = pnl
         entry_trade.pnl_net = pnl_net
+        entry_trade.exit_cost = exit_cost
         entry_trade.exit_reason = 'end'
         trades.append(entry_trade)
+        equity += pnl - exit_cost
+
+    # The last equity row was recorded before the final close, so refresh it
+    # with the settled equity.
+    if equity_curve:
+        equity_curve[-1]['equity'] = equity
 
     equity_df = pd.DataFrame(equity_curve)
     return trades, equity_df

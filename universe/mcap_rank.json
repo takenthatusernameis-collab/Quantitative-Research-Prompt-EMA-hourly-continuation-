@@ -1,4 +1,54 @@
 {
-  "updated_at": "2026-10-19T00:50:00Z",
-  "symbols": ["BTC/USDT", "ETH/USDT", "SOL/USDT", "BNB/USDT", "XRP/USDT"]
+  "updated_at": "2026-10-19T13:34:03.478395Z",
+  "snapshot_id": "mcap_snapshot_20261019_133403",
+  "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
+  "snapshot_fetched_at": "2026-10-19T13:34:03.474335+00:00",
+  "n_symbols": 17,
+  "added_in_this_expansion": [
+    "TRX/USDT",
+    "ZEC/USDT",
+    "DOGE/USDT",
+    "XMR/USDT",
+    "LINK/USDT",
+    "ADA/USDT",
+    "NEAR/USDT",
+    "XLM/USDT",
+    "BCH/USDT",
+    "LTC/USDT",
+    "UNI/USDT",
+    "AVAX/USDT"
+  ],
+  "added_market_caps_usd": {
+    "TRX": 31529306203,
+    "ZEC": 19437807896,
+    "DOGE": 12467701858,
+    "XMR": 11213006011,
+    "LINK": 9260283739,
+    "ADA": 8227929563,
+    "NEAR": 6521016141,
+    "XLM": 6236195716,
+    "BCH": 5605992228,
+    "LTC": 4681549464,
+    "UNI": 4590903394,
+    "AVAX": 4316521653
+  },
+  "symbols": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "SOL/USDT",
+    "BNB/USDT",
+    "XRP/USDT",
+    "TRX/USDT",
+    "ZEC/USDT",
+    "DOGE/USDT",
+    "XMR/USDT",
+    "LINK/USDT",
+    "ADA/USDT",
+    "NEAR/USDT",
+    "XLM/USDT",
+    "BCH/USDT",
+    "LTC/USDT",
+    "UNI/USDT",
+    "AVAX/USDT"
+  ]
 }

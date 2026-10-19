@@ -1,0 +1,22 @@
+{
+  "symbol": "ETH/USDT",
+  "trade_count": 371,
+  "gross_profit_factor": 0.8171492085460985,
+  "win_rate": 0.477088948787062,
+  "avg_win": 61.12183827540673,
+  "avg_loss": -68.24433079973024,
+  "max_drawdown": 0.6497937315437543,
+  "sharpe_ratio": -1.8918196544790808,
+  "sortino_ratio": -0.4471533821062525,
+  "cagr": -0.32425173976751087,
+  "total_trades": 371,
+  "net_profit_factor": 0.6582990103755992,
+  "net_win_rate": 0.4609164420485175,
+  "net_avg_win": 56.13476365972751,
+  "net_avg_loss": -72.9079372330863,
+  "gross_win_rate": 0.477088948787062,
+  "avg_hold_time_bars": 36.528301886792455,
+  "exposure": 0.616,
+  "P_fast": 21,
+  "P_slow": 144
+}

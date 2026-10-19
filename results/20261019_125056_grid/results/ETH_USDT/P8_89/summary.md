@@ -1,0 +1,28 @@
+# EMA Hourly Continuation — ETH/USDT P8_89
+
+**Symbol:** ETH/USDT  |  **P_fast:** 8  |  **P_slow:** 89
+
+**Costs:** 10.0 bps taker + 2.0 bps slippage per side
+
+**RR:** 1.0  |  **Fill:** signal-bar close  |  **SL/TP:** 1:1 to EMA_slow
+
+
+## Metrics (net of costs)
+
+| Metric | Value |
+|---|---|
+| trade_count | 677 |
+| net_profit_factor | 0.7088 |
+| net_win_rate | 0.4387 |
+| gross_profit_factor | 0.9066 |
+| gross_win_rate | 0.4668 |
+| sharpe_ratio | -2.5978 |
+| sortino_ratio | -0.8562 |
+| max_drawdown | 0.8673 |
+| cagr | -0.5460 |
+| net_avg_win | 52.0644 |
+| net_avg_loss | -57.4068 |
+| avg_hold_time_bars | 20.4697 |
+| exposure | 0.6299 |
+
+Decision label: rejected/exploratory

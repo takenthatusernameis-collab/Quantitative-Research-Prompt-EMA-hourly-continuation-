@@ -1,0 +1,22 @@
+{
+  "symbol": "SOL/USDT",
+  "trade_count": 1075,
+  "gross_profit_factor": 0.9122581736866272,
+  "win_rate": 0.4418604651162791,
+  "avg_win": 1.3530452057580422,
+  "avg_loss": -1.174186013114026,
+  "max_drawdown": 0.06298848499943524,
+  "sharpe_ratio": -6.744913357939429,
+  "sortino_ratio": -2.86701145121586,
+  "cagr": -0.025543591758024453,
+  "total_trades": 1075,
+  "net_profit_factor": 0.5206483074794138,
+  "net_win_rate": 0.3944186046511628,
+  "net_avg_win": 1.1273056766583072,
+  "net_avg_loss": -1.4102045157426408,
+  "gross_win_rate": 0.4418604651162791,
+  "avg_hold_time_bars": 2.514418604651163,
+  "exposure": 0.12286363636363637,
+  "P_fast": 20,
+  "P_slow": 34
+}

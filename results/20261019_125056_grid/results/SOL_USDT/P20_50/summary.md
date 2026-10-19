@@ -1,0 +1,28 @@
+# EMA Hourly Continuation — SOL/USDT P20_50
+
+**Symbol:** SOL/USDT  |  **P_fast:** 20  |  **P_slow:** 50
+
+**Costs:** 10.0 bps taker + 2.0 bps slippage per side
+
+**RR:** 1.0  |  **Fill:** signal-bar close  |  **SL/TP:** 1:1 to EMA_slow
+
+
+## Metrics (net of costs)
+
+| Metric | Value |
+|---|---|
+| trade_count | 941 |
+| net_profit_factor | 0.6692 |
+| net_win_rate | 0.4495 |
+| gross_profit_factor | 0.9835 |
+| gross_win_rate | 0.4782 |
+| sharpe_ratio | -4.1609 |
+| sortino_ratio | -1.6190 |
+| max_drawdown | 0.0514 |
+| cagr | -0.0207 |
+| net_avg_win | 1.6580 |
+| net_avg_loss | -2.0232 |
+| avg_hold_time_bars | 4.5909 |
+| exposure | 0.1964 |
+
+Decision label: rejected/exploratory

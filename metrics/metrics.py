@@ -5,12 +5,22 @@ import pandas as pd
 
 
 def calculate_returns(equity_df: pd.DataFrame) -> np.ndarray:
-    """Calculate simple returns from equity curve."""
+    """Calculate simple returns from equity curve.
+
+    Barred at a non-positive equity: once the equity is exhausted the strategy
+    is bankrupt and the return series is undefined (and would otherwise produce
+    sign-flipped, meaningless values).
+    """
     if len(equity_df) == 0:
         return np.array([])
     equity = equity_df['equity'].values
-    returns = np.diff(equity) / equity[:-1] if len(equity) > 1 else np.array([])
-    return returns
+    if len(equity) < 2:
+        return np.array([])
+    denom = equity[:-1]
+    valid = denom > 0
+    if not np.any(valid):
+        return np.array([])
+    return np.diff(equity)[valid] / denom[valid]
 
 
 HOURLY_PERIODS_PER_YEAR = 24 * 365
@@ -44,7 +54,11 @@ def max_drawdown(equity_df: pd.DataFrame) -> float:
     for e in equity:
         if e > peak:
             peak = e
-        dd = (peak - e) / peak if peak > 0 else 0.0
+        if peak <= 0:
+            # Equity exhausted; the drawdown from the peak to zero is total.
+            max_dd = max(max_dd, 1.0)
+            continue
+        dd = (peak - e) / peak
         if dd > max_dd:
             max_dd = dd
     return float(max_dd)

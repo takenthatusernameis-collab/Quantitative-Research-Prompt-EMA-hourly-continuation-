@@ -82,7 +82,18 @@ def main():
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    # Merge with any existing manifest so expanding the universe does not drop
+    # provenance rows for symbols fetched in earlier batches.
+    manifest_path = out_dir / "fetch_manifest.json"
     manifest = []
+    if manifest_path.exists():
+        try:
+            with open(manifest_path) as f:
+                manifest = json.load(f)
+        except Exception:
+            manifest = []
+    manifest_by_symbol = {m.get('symbol'): m for m in manifest if isinstance(m, dict)}
+
     for sym in args.symbols:
         kucoin_sym = sym.replace("/", "-")
         print(f"Fetching {sym} (KuCoin {kucoin_sym}) target={args.target_bars} bars ...")
@@ -93,7 +104,7 @@ def main():
         out_path = out_dir / f"{sym.replace('/', '_')}.csv"
         df.to_csv(out_path, index=False)
         print(f"  -> {out_path} rows={len(df)} span={df['timestamp'].min()} .. {df['timestamp'].max()}")
-        manifest.append({
+        manifest_by_symbol[sym] = {
             "symbol": sym,
             "source": "KuCoin public API /api/v1/market/candles",
             "interval": "1hour",
@@ -102,13 +113,13 @@ def main():
             "start": str(df["timestamp"].min()),
             "end": str(df["timestamp"].max()),
             "file": str(out_path),
-        })
+        }
         time.sleep(PAUSE_SECONDS)
 
-    manifest_path = out_dir / "fetch_manifest.json"
+    merged = [manifest_by_symbol[k] for k in sorted(manifest_by_symbol)]
     with open(manifest_path, "w") as f:
-        json.dump(manifest, f, indent=2, default=str)
-    print(f"\nManifest written to {manifest_path}")
+        json.dump(merged, f, indent=2, default=str)
+    print(f"\nManifest written to {manifest_path} ({len(merged)} symbols)")
 
 
 if __name__ == "__main__":

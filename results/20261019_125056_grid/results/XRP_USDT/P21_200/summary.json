@@ -1,0 +1,22 @@
+{
+  "symbol": "XRP/USDT",
+  "trade_count": 407,
+  "gross_profit_factor": 0.8064173384352263,
+  "win_rate": 0.48402948402948404,
+  "avg_win": 0.04420289349878461,
+  "avg_loss": -0.051420675033726986,
+  "max_drawdown": 0.000510211044840684,
+  "sharpe_ratio": -1.4545462052073692,
+  "sortino_ratio": -0.30657827108582786,
+  "cagr": -0.00017314892288833317,
+  "total_trades": 407,
+  "net_profit_factor": 0.6814631860579414,
+  "net_win_rate": 0.4668304668304668,
+  "net_avg_win": 0.0417413525060696,
+  "net_avg_loss": -0.05363125807591111,
+  "gross_win_rate": 0.48402948402948404,
+  "avg_hold_time_bars": 33.04422604422604,
+  "exposure": 0.6113181818181819,
+  "P_fast": 21,
+  "P_slow": 200
+}

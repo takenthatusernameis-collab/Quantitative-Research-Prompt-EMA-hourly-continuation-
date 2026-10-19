@@ -1,6 +1,6 @@
 {
   "run_id": "20261019_125056_grid",
-  "timestamp": "20261019_125056",
+  "timestamp": "20261019_131242",
   "strategy": "ema_hourly_continuation",
   "mode": "full_ema_grid",
   "period_grid": [
@@ -296,9 +296,13 @@
   "mcap": "universe/mcap_rank.json",
   "fixture_base": "data/fixtures",
   "max_cells": null,
-  "resume": null,
+  "resume": "results/20261019_125056_grid",
   "symbols": [
-    "BTC/USDT"
+    "BTC/USDT",
+    "ETH/USDT",
+    "SOL/USDT",
+    "BNB/USDT",
+    "XRP/USDT"
   ],
-  "n_symbols": 1
+  "n_symbols": 5
 }

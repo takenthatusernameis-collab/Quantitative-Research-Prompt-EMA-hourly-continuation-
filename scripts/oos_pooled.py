@@ -24,7 +24,8 @@ from metrics.metrics import calculate_metrics
 
 
 def run_symbol(symbol, df, test_fraction, taker_fee_bps, slippage_bps,
-               rr, stricter_trend, min_risk_atr, atr_threshold, conservative_exit=True):
+               rr, stricter_trend, min_risk_atr, atr_threshold, conservative_exit=True,
+               sizing='risk', risk_fraction=0.01, max_notional_multiple=10.0):
     n = len(df)
     cut = int(n * (1.0 - test_fraction))
     if cut < 1:
@@ -47,6 +48,8 @@ def run_symbol(symbol, df, test_fraction, taker_fee_bps, slippage_bps,
         taker_fee_bps=taker_fee_bps, slippage_bps=slippage_bps, rr=rr,
         min_risk_atr=min_risk_atr, atr_threshold=atr_threshold,
         entry_start_index=cut, conservative_exit=conservative_exit,
+        sizing=sizing, risk_fraction=risk_fraction,
+        max_notional_multiple=max_notional_multiple,
     )
 
     # Restrict equity curve to test window for test-window metrics
@@ -73,9 +76,9 @@ def main():
     parser.add_argument('--stricter-trend', action='store_true', default=False)
     parser.add_argument('--min-risk-atr', action='store_true', default=True)
     parser.add_argument('--atr-threshold', type=float, default=0.75)
-    parser.add_argument('--aggressive-exit', action='store_true', default=False,
-                        help='On same-bar SL/TP conflict, take TP (favorable) instead of conservative SL')
-    parser.add_argument('--fixture-base', type=str, default='data/fixtures')
+    parser.add_argument('--sizing', type=str, default='risk', choices=['risk', 'unit_notional'])
+    parser.add_argument('--risk-fraction', type=float, default=0.01)
+    parser.add_argument('--max-notional-multiple', type=float, default=10.0)
     args = parser.parse_args()
 
     timestamp = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
@@ -96,6 +99,9 @@ def main():
         'min_risk_atr': args.min_risk_atr,
         'atr_threshold': args.atr_threshold,
         'conservative_exit': not args.aggressive_exit,
+        'sizing': args.sizing,
+        'risk_fraction': args.risk_fraction,
+        'max_notional_multiple': args.max_notional_multiple,
         'symbols': symbols,
         'source_config': 'config/default.json',
     }
