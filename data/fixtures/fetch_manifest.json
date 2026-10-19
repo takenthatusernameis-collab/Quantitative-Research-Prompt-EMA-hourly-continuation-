@@ -4,8 +4,8 @@
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
     "timezone": "UTC",
-    "rows": 15000,
-    "start": "2025-02-01 06:00:00+00:00",
+    "rows": 25000,
+    "start": "2023-12-12 14:00:00+00:00",
     "end": "2026-10-19 05:00:00+00:00",
     "file": "data/fixtures/BTC_USDT.csv"
   },
@@ -14,9 +14,9 @@
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
     "timezone": "UTC",
-    "rows": 15000,
-    "start": "2025-02-01 06:00:00+00:00",
-    "end": "2026-10-19 05:00:00+00:00",
+    "rows": 22000,
+    "start": "2024-04-15 15:00:00+00:00",
+    "end": "2026-10-19 06:00:00+00:00",
     "file": "data/fixtures/ETH_USDT.csv"
   },
   {
@@ -24,9 +24,9 @@
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
     "timezone": "UTC",
-    "rows": 15000,
-    "start": "2025-02-01 06:00:00+00:00",
-    "end": "2026-10-19 05:00:00+00:00",
+    "rows": 22000,
+    "start": "2024-04-15 15:00:00+00:00",
+    "end": "2026-10-19 06:00:00+00:00",
     "file": "data/fixtures/SOL_USDT.csv"
   },
   {
@@ -34,9 +34,9 @@
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
     "timezone": "UTC",
-    "rows": 15000,
-    "start": "2025-02-01 06:00:00+00:00",
-    "end": "2026-10-19 05:00:00+00:00",
+    "rows": 22000,
+    "start": "2024-04-15 15:00:00+00:00",
+    "end": "2026-10-19 06:00:00+00:00",
     "file": "data/fixtures/BNB_USDT.csv"
   },
   {
@@ -44,9 +44,9 @@
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
     "timezone": "UTC",
-    "rows": 15000,
-    "start": "2025-02-01 06:00:00+00:00",
-    "end": "2026-10-19 05:00:00+00:00",
+    "rows": 22000,
+    "start": "2024-04-15 15:00:00+00:00",
+    "end": "2026-10-19 06:00:00+00:00",
     "file": "data/fixtures/XRP_USDT.csv"
   }
 ]
