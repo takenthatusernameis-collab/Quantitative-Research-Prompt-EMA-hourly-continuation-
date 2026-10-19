@@ -28,15 +28,15 @@ Research artifacts are immutable. The decision is final. Only work on the repo i
 - Prompts/constraints reference: `PROMPT.md`, `results/FINAL_DECISION.md`.
 
 ## Verification Log (this session)
-- Ran `python -m pytest tests/ -q` → **16 passed in 0.37s**. No failures.
+- Ran `python -m pytest tests/ -q` → **16 passed in 0.39s**. No failures.
 - Ran `git status` → branch `main` up to date with `origin/main`; only untracked items are `__pycache__/` directories (backtest, data, metrics, scripts, signals, tests, universe). No tracked-file modifications.
-- Ran `git log --oneline -5` → last 5 commits are all `chore(kilo): checkpoint agent session` (a575d28, 728cf83, 2945abe, d54b1ae, dec51f4). No unauthorized changes.
+- Ran `git log --oneline -5` → last 5 commits are all `chore(kilo): checkpoint agent session` (f3a562c, a575d28, 728cf83, 2945abe, d54b1ae). No unauthorized changes.
 - Inspected `results/20261019_064215_oos_pooled/summary.json` directly:
   - `pooled.trade_count` = 666 ✓
   - `pooled.net_profit_factor` = 0.6890352369650845 (≈ 0.6890) ✓
   - `pooled.sharpe_ratio` = -1.9443194166273106 (≈ -1.9443) ✓
   - `pooled.max_drawdown` = 0.666294086926108 (≈ 0.6663) ✓
-  - Per-symbol net PF present: BTC/USDT 0.6859678935410088 (≈ 0.6860) ✓, ETH/USDT 0.7861 ✓, SOL/USDT 0.8792 ✓, BNB/USDT 0.6955 ✓, XRP/USDT 0.8006 ✓
+  - Per-symbol net PF present: BTC/USDT 0.6859678935410088 (≈ 0.6860) ✓, ETH/USDT 0.7861186237188913 (≈ 0.7861) ✓, SOL/USDT 0.8792261246076664 (≈ 0.8792) ✓, BNB/USDT 0.6955373181018516 (≈ 0.6955) ✓, XRP/USDT 0.800559965477645 (≈ 0.8006) ✓
 - All documented values in `results/FINAL_DECISION.md` and `NEXT_AGENT_TASK.md` match the immutable JSON artifacts. No drift detected.
 - Cost-stress figures (base 0.6906 → 0.4691; Sharpe 0.8550 → -0.7038; max DD 1.89 → 4.09) are consistent with `results/FINAL_DECISION.md` and were not re-derived this session (artifacts immutable; re-running would violate the no-re-run constraint).
 - Conclusion: prior agent's state is verified and stable. Research is CONCLUDED and REJECTED. No new authorized hypothesis was supplied; no changes were made beyond this handoff update.
