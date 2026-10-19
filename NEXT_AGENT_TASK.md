@@ -1,33 +1,32 @@
 # NEXT AGENT TASK
 
 ## Objective
-No active task. The EMA hourly continuation research is **CONCLUDED** and **REJECTED** (no live trading).
+**Active.** Run the **full EMA period combination grid** on hourly continuation for each symbol in **market-cap descending** order, and **keep expanding** to lower market-cap candidates even if prior symbols/pairs failed to find an edge.
 
-If the user provides no new pre-registered hypothesis, stand down with no changes. Do not re-run backtests, parameter searches, or tuning of the rejected baseline without explicit authorization.
+Authoritative rules: `PROMPT.md` (updated 2026-10-19). User-authorized program change supersedes the prior “stand down after 50/100 rejection” handoff.
 
-## Current State
-- Decision: **REJECTED** / **CONCLUDED** (no live trading).
-- OOS pooled (net-of-costs): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 from `results/20261019_064215_oos_pooled/summary.json`.
-- Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006 (all < 1).
-- Cost stress (2x): base 0.6906 → 0.4691, Sharpe 0.8550 → -0.7038, max DD 1.89 → 4.09 (from `results/20261019_062710_cost_stress/summary.md`).
-- Tests: 16/16 pass (`python -m pytest tests/ -q`).
-- Tracked git tree clean; only untracked `__pycache__/` directories present.
-- Final artifacts (immutable): `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`, `results/20261019_064215_oos_pooled/summary.json`.
+## Prior result (immutable, do not overwrite)
+- EMA **50/100** on top-5 (BTC/ETH/SOL/BNB/XRP) was **rejected** OOS net-of-costs: 666 trades, net PF 0.6890, net Sharpe −1.9443 (`results/FINAL_DECISION.md`, `results/20261019_064215_oos_pooled/`).
+- Keep those artifacts as historical evidence for the single pair `(50, 100)`. They do **not** cancel the full grid or expansion.
 
-## Constraints (Critical)
-- Any new work requires a fresh, pre-registered hypothesis card (theoretical rationale + falsifiable acceptance criteria) before implementation (PROMPT.md §3.4; `results/FINAL_DECISION.md`).
-- Do not modify, overwrite, or re-run scripts that produced final artifacts unless the new hypothesis explicitly requires it and you have explicit authorization.
-- If no new authorized hypothesis is provided, stand down with no changes.
+## Current mandate
+1. Parameterize `P_fast` / `P_slow` from the registered period set in `PROMPT.md` §1.1: `{8, 12, 20, 21, 26, 34, 50, 55, 89, 100, 144, 200}` with `P_fast < P_slow`.
+2. For **each** eligible symbol (mcap descending): run **all** valid pairs—not only 50/100.
+3. Persist one result set per `(symbol, P_fast, P_slow)`.
+4. When the current snapshot’s candidates are fully processed (grid complete or skipped with reason), **expand** to the next lower market-cap batch (`PROMPT.md` §2.1) and repeat the full grid.
+5. **Continue after total failure:** if every prior candidate and every pair is rejected, still expand and test new descending-mcap names.
 
-## Ground Truth
-Research artifacts are immutable. The decision is final. Only work on the repo if the user supplies a new pre-registered hypothesis card.
+## Acceptance for this session
+- Implement or wire a grid runner (or document the exact next command) that iterates symbols × EMA pairs.
+- Produce or extend artifacts under `results/` with configs that record `P_fast`, `P_slow`, symbol.
+- Leave a handoff naming the next unprocessed symbol/pair or next expansion batch.
+- Tests: `python -m pytest tests/ -q` (extend tests for parameterized periods if you change signal code).
 
-## Handoff Notes
-- Handoff verified/completed by prior session (2026-10-19T12:25Z UTC): tests 16/16 via `python -m pytest tests/ -q`. Git state: tracked tree clean, only `__pycache__/` untracked. All artifacts verified consistent (OOS pooled 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006; cost stress 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09).
-- Completed by this session (2026-10-19T12:27Z UTC): re-verified tests 16/16 (`python -m pytest tests/ -q`), confirmed no new hypothesis present anywhere in repo (no `*hypo*` files; no user-supplied hypothesis in handoff/task files). Decision remains CONCLUDED and REJECTED. No code changes made. Standing down; awaiting new pre-registered hypothesis.
-- Completed by this session (2026-10-19T12:29Z UTC): re-read durable handoff (NEXT_AGENT_TASK.md), re-verified tests 16/16 (`python -m pytest tests/ -q`), confirmed git tracked tree clean (only `__pycache__/` untracked), confirmed no new hypothesis anywhere in repo. Research remains CONCLUDED and REJECTED. No code changes made. Standing down; awaiting new pre-registered hypothesis.
-## Initial Task for Next Agent (copy-ready)
-> "No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading). Verified: tests 16/16 pass (`python -m pytest tests/ -q`); git tracked tree clean (only __pycache__/ untracked); final artifacts in results/ (FINAL_DECISION.md, RESEARCH_CONCLUSION.md, robustness_summary.md, 20261019_064215_oos_pooled/summary.json) match OOS metrics (666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006). Cost stress consistent (0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09). Decision FINAL and REJECTED per results/FINAL_DECISION.md. Handoff verified 2026-10-19T12:27Z UTC. Do NOT run backtests/parameter searches/tuning of the rejected baseline without explicit authorization. If the user provides a new pre-registered hypothesis (theoretical rationale + falsifiable acceptance criteria), start by validating it against PROMPT.md §3.4 and final artifacts; otherwise stand down with no changes. Validation: python -m pytest tests/ -q"
+## Constraints
+- Do not claim live edge without OOS net-of-costs + robustness.
+- Do not fabricate data.
+- Do not delete or rewrite the historical 50/100 rejection artifacts; add new cells beside them.
+- Multiple-testing: report the full grid honestly; do not promote a single lucky cell without OOS and cost stress.
 
 ## Validation Command
 `python -m pytest tests/ -q`
