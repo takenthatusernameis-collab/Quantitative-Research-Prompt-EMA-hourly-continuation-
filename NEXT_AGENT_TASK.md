@@ -3,9 +3,9 @@
 ## Status
 STANDBY - EMA hourly continuation research is complete and rejected (no live trading). No open tasks pending. Awaiting new pre-registered hypothesis if any.
 
-## Current State (2026-10-19T11:02:49Z UTC)
+## Current State (2026-10-19T11:11:29Z UTC)
 - Research outcome: CONCLUDED, REJECTED (see `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`)
-- Tests: 16/16 passed (`python -m pytest tests/ -q`)
+- Tests: 16/16 passed (`python -m pytest tests/ -q`) - re-verified this session
 - Git: Clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/)
 - Final OOS pooled: `results/20261019_064215_oos_pooled/summary.json` (666 trades; net PF 0.6890, net Sharpe -1.9443, max DD 0.6663)
 - Cost stress: `results/20261019_062710_cost_stress/summary.md` (PF 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09)
