@@ -27,7 +27,8 @@ class Trade:
 def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                    taker_fee_bps: float = 10.0, slippage_bps: float = 2.0,
                    one_position: bool = True, rr: float = 1.0,
-                   min_risk_atr: bool = False, atr_threshold: float = 1.0) -> tuple:
+                   min_risk_atr: bool = False, atr_threshold: float = 1.0,
+                   entry_start_index: int = 0) -> tuple:
     """
     Backtest a single symbol.
 
@@ -134,7 +135,7 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                 continue
 
         # Check for new signals if not in position (or if one_position allows new after close - but we manage)
-        if position == 0:
+        if position == 0 and i >= entry_start_index:
             sig = df['signal'].iloc[i]
             if sig != 0:
                 entry_price = df['entry_price'].iloc[i]
