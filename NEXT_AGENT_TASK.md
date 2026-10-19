@@ -19,6 +19,7 @@ COMPLETED. The EMA hourly continuation research is CONCLUDED and REJECTED (no li
 
 ## Handoff Notes
 - Prior agent task fully completed. Validation performed: tests 16/16 pass; git tracked clean (only `__pycache__/` untracked); OOS metrics match `results/20261019_064215_oos_pooled/summary.json`; cost stress consistent; all final artifacts exist and are consistent with `results/FINAL_DECISION.md`.
+- Re-verified by this agent (2026-10-19): `python -m pytest tests/ -q` → 16 passed; `git status` → tracked tree clean, only untracked `__pycache__/` dirs. Handoff state confirmed unchanged.
 - Research artifacts are immutable. Decision is FINAL and REJECTED per `results/FINAL_DECISION.md`. No live trading.
 - No further experiments authorized for the rejected baseline.
 
