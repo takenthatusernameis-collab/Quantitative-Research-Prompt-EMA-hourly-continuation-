@@ -1,22 +1,23 @@
 # INITIAL TASK MESSAGE FOR NEXT AGENT
 
 ## Objective
-No active task. EMA hourly continuation research is concluded and **REJECTED**. No experiments to run.
+No active task. EMA hourly continuation research is concluded and **REJECTED**. Stand down — no experiments to run unless the user supplies a new, pre-registered hypothesis.
 
 ## Current State
-- Decision: REJECTED / CONCLUDED (no live trading).
+- Decision: **REJECTED** / **CONCLUDED** (no live trading).
 - OOS pooled (net-of-costs): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 from `results/20261019_064215_oos_pooled/summary.json`.
-- All robustness checks negative; cost stress worsens performance.
+- Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006 (all < 1).
+- All robustness checks negative; cost stress (2x) worsens PF 0.6906 → 0.4691.
 - Tests: 16/16 pass (`python -m pytest tests/ -q`).
-- Git: tracked tree clean; only untracked `__pycache__/` directories and `.pytest_cache/` present.
-- Artifacts final: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`. (Rejection documented in `results/FINAL_DECISION.md`; `results/REJECTED_SUMMARY.md` does not exist.)
+- Git: tracked tree clean; only untracked `__pycache__/` directories present.
+- Artifacts final: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`.
 
 ## Ground Truth
-Research artifacts are immutable unless a new pre-registered hypothesis exists. Do not re-run searches or tune the rejected baseline.
+Research artifacts are immutable unless a new pre-registered hypothesis exists. Do not re-run parameter searches or tune the rejected baseline.
 
 ## Handoff Notes
-- Verified independently: tests pass, git clean, OOS metrics match handoff.
-- `NEXT_AGENT_TASK.md` marked CLOSED with verification details.
+- Independently verified: tests pass, git clean, OOS metrics match handoff.
+- `NEXT_AGENT_TASK.md` marked COMPLETE with verification details.
 - No code changes were made.
 
 ## Constraints
