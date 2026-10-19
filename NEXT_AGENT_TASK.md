@@ -8,7 +8,7 @@ No active task. The EMA hourly continuation research is **CONCLUDED** and **REJE
 - OOS pooled (net-of-costs): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 from `results/20261019_064215_oos_pooled/summary.json`.
 - Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006 (all < 1).
 - Robustness checks confirm poor performance; cost stress (2x) worsens PF 0.6906 → 0.4691.
-- Tests: 16/16 passed (verified).
+- Tests: 16/16 passed (verified this session).
 - Git: tracked tree clean; only untracked `__pycache__/` directories present.
 - Artifacts final: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`.
 

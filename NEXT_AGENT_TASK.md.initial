@@ -6,9 +6,13 @@ No active task. EMA hourly continuation research is concluded and **REJECTED**. 
 ## Current State
 - Decision: **REJECTED** / **CONCLUDED** (no live trading).
 - OOS pooled (net-of-costs): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 from `results/20261019_064215_oos_pooled/summary.json`.
-- Tests: 16/16 pass.
+- Tests: 16/16 pass (verified).
 - Tracked git tree clean; only untracked `__pycache__/` present.
 - Final artifacts: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`.
 
 ## Constraints
 - New work requires a fresh, pre-registered hypothesis card (theoretical rationale + falsifiable acceptance criteria) before implementation.
+- If no new authorized hypothesis is provided, stand down with no changes.
+
+## Validation Command
+`python -m pytest tests/ -q`
