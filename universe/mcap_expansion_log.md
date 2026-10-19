@@ -120,6 +120,26 @@ anything.
 | 70 | ETC | 1 234 200 245 |
 | 72 | JST | 1 122 408 238 |
 
+### Hourly coverage of the batch-3 fixtures
+
+OHLCV comes from the KuCoin public candles API (1h, UTC), 22 000 bars per
+symbol, same as the earlier batches. Two names have a slightly different span
+because their KuCoin listing date is what bounds the history:
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| DOT, WLD, MNT, PEPE, ICP, ARB, ETC | 22 000 | 2024-04-16 .. 2026-10-19 |
+| HTX | 22 098 | 2024-04-11 .. 2026-10-19 |
+| JST | 22 099 | 2024-04-11 .. 2026-10-19 |
+| SKY | 17 934 | 2024-10-02 .. 2026-10-19 |
+
+SKY is the only name in the batch with a shorter history: it was listed on
+KuCoin in October 2024, so it carries 17 934 hourly bars (~2.04 years). That
+still clears the 2-year eligibility floor used for the ranking filter
+(`MIN_HISTORY_YEARS = 2.0`) and covers the largest registered period
+(P_slow = 200) plus an out-of-sample window, but it is the shortest sample in
+the working universe and is flagged here for the record.
+
 ### Rank drift, batch 2 snapshot (14:42) vs batch 3 snapshot (16:34)
 
 Max absolute market-cap drift across the 27 names already in the universe was
