@@ -1,32 +1,35 @@
 # INITIAL TASK MESSAGE FOR NEXT AGENT
 
 ## Objective
-Start fresh with this research project. Review current state and determine next steps - baseline is REJECTED.
+Decide whether to (a) pursue a new, pre-specified hypothesis for crypto hourly research, or (b) conclude research. The baseline EMA hourly continuation is REJECTED — do not re-run parameter searches on it.
 
 ## Key Files to Review
-- `PROMPT.md` (strategy specification)
-- `README.md` (project context)
-- `results/FINAL_DECISION.md` (final decision - REJECTED)
-- `NEXT_AGENT_TASK.md` (current closed state)
-- `backtest/`, `scripts/`, `tests/` (implementation)
-- `data/fixtures/` (real hourly data, tracked)
-- `research_state/`, `metrics/`, `signals/`, `universe/` (artifacts)
+- `PROMPT.md` (strategy specification & research process)
+- `README.md` (project context, data source, fill assumption, cost model)
+- `results/FINAL_DECISION.md` (final decision — REJECTED, with robustness detail)
+- `results/robustness_summary.md` (tuned config sweep, walk-forward, OOS)
+- `backtest/`, `scripts/`, `tests/`, `signals/`, `metrics/`, `data/`, `universe/` (implementation)
+- `data/fixtures/` (real hourly OHLCV, tracked — keep as-is)
 - `config/default.json` (configuration)
 
 ## Current State
-Baseline EMA hourly continuation tested comprehensively. All 16 tests pass. OOS pooled shows net PF < 1 (0.6890), negative Sharpe (-1.9443), substantial max DD (0.6663). Cost stress worsens performance; no robustness variant achieves profitability.
+Baseline EMA hourly continuation tested comprehensively. All 16 tests pass. OOS pooled: net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 (666 trades). Cost stress worsens performance; no robustness variant reaches profitability. Decision: REJECTED, no live trading.
 
 ## Instructions
-1. Read `FINAL_DECISION.md` and `NEXT_AGENT_TASK.md` to understand closed state
-2. Do NOT re-run extensive parameter searches on this baseline - it is rejected
-3. If pursuing new work, formulate a new pre-specified hypothesis with:
-- Clear theoretical rationale
-- Falsifiable acceptance criteria (pre-registered, e.g. specific PF/Sharpe/max DD thresholds)
-- Justification for any signal/filters/exit changes
-4. Keep data and fixtures as-is (tracked). Do not modify core baseline without strong justification.
-5. Run tests to validate any changes: `python -m pytest tests/ -v`
-6. Document any new hypothesis clearly before implementation
-7. Update results with reproducible artifacts and clear next handoff when done
+1. Read `FINAL_DECISION.md` and `PROMPT.md` §3 (research process) and §5 (extensions) before any new work.
+2. If pursuing new work, formulate one new pre-specified hypothesis before implementing: theoretical rationale, falsifiable pre-registered acceptance criteria, and justification for signal/filter/exit changes. Document the hypothesis card in `results/` before implementation.
+3. Do NOT continue tuning the rejected EMA 50/100 baseline.
+4. Keep data/fixtures as-is (tracked). Do not fabricate market data, metrics, or sources.
+5. Run tests to validate changes: `python -m pytest tests/ -v`
+6. Record parent config → child config → delta metrics for each controlled mutation.
+7. Persist reproducible artifacts and leave a narrow `NEXT_AGENT_TASK.md` handoff with acceptance criteria and validation commands when done.
+
+## Acceptance Criteria
+- Hypothesis card written and pre-registered in `results/` before testing.
+- Net-of-costs OOS metrics reported (gross + net), per-symbol and pooled.
+- Acceptance criteria met or explicitly falsified with evidence.
+- Tests pass: `python -m pytest tests/ -q`
+- Handoff updated with result and next steps.
 
 ## Ground Truth
 Decision: **REJECTED**. No live trading. New hypothesis required.
