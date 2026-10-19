@@ -1,6 +1,6 @@
 {
   "run_id": "20261019_135940_grid",
-  "timestamp": "20261019_201417",
+  "timestamp": "20261019_201725",
   "symbols": [
     "BTC/USDT",
     "ETH/USDT",
@@ -60,11 +60,12 @@
     "BDX/USDT",
     "CRV/USDT",
     "VET/USDT",
-    "PYTH/USDT"
+    "PYTH/USDT",
+    "FLR/USDT"
   ],
   "n_pairs": 66,
-  "n_symbols": 59,
-  "completed_cells": 3894,
+  "n_symbols": 60,
+  "completed_cells": 3960,
   "completed": [
     {
       "symbol": "AAVE/USDT",
@@ -7653,6 +7654,336 @@
     },
     {
       "symbol": "FIL/USDT",
+      "P_fast": 144,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 12
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 20
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 21
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 26
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 34
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 50
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 55
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 89
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 100
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 20
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 21
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 26
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 34
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 50
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 55
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 89
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 100
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 12,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 20,
+      "P_slow": 21
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 20,
+      "P_slow": 26
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 20,
+      "P_slow": 34
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 20,
+      "P_slow": 50
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 20,
+      "P_slow": 55
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 20,
+      "P_slow": 89
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 20,
+      "P_slow": 100
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 20,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 20,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 21,
+      "P_slow": 26
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 21,
+      "P_slow": 34
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 21,
+      "P_slow": 50
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 21,
+      "P_slow": 55
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 21,
+      "P_slow": 89
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 21,
+      "P_slow": 100
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 21,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 21,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 26,
+      "P_slow": 34
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 26,
+      "P_slow": 50
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 26,
+      "P_slow": 55
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 26,
+      "P_slow": 89
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 26,
+      "P_slow": 100
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 26,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 26,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 34,
+      "P_slow": 50
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 34,
+      "P_slow": 55
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 34,
+      "P_slow": 89
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 34,
+      "P_slow": 100
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 34,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 34,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 50,
+      "P_slow": 55
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 50,
+      "P_slow": 89
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 50,
+      "P_slow": 100
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 50,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 50,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 55,
+      "P_slow": 89
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 55,
+      "P_slow": 100
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 55,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 55,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 89,
+      "P_slow": 100
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 89,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 89,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 100,
+      "P_slow": 144
+    },
+    {
+      "symbol": "FLR/USDT",
+      "P_fast": 100,
+      "P_slow": 200
+    },
+    {
+      "symbol": "FLR/USDT",
       "P_fast": 144,
       "P_slow": 200
     },
