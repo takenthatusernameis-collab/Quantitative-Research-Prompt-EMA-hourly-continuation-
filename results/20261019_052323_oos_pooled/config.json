@@ -1,0 +1,20 @@
+{
+  "timestamp": "20261019_052323",
+  "strategy": "ema_hourly_continuation",
+  "mode": "pooled_cross_symbol_oos",
+  "test_fraction": 0.35,
+  "taker_fee_bps": 10.0,
+  "slippage_bps": 2.0,
+  "rr": 1.5,
+  "stricter_trend": false,
+  "min_risk_atr": true,
+  "atr_threshold": 0.75,
+  "symbols": [
+    "BTC/USDT",
+    "ETH/USDT",
+    "SOL/USDT",
+    "BNB/USDT",
+    "XRP/USDT"
+  ],
+  "source_config": "config/default.json"
+}

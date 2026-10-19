@@ -12,7 +12,7 @@ Reports per-symbol and pooled net/gross metrics and signal sparsity.
 import argparse
 import json
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 import pandas as pd
 import numpy as np
 
@@ -76,7 +76,7 @@ def main():
     parser.add_argument('--fixture-base', type=str, default='data/fixtures')
     args = parser.parse_args()
 
-    timestamp = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
+    timestamp = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
     results_dir = Path('results') / f'{timestamp}_oos_pooled'
     results_dir.mkdir(parents=True, exist_ok=True)
 
@@ -130,13 +130,13 @@ def main():
         _, te, _, _, _ = run_symbol(symbol, df, args.test_fraction, args.taker_fee_bps,
                                     args.slippage_bps, args.rr, args.stricter_trend,
                                     args.min_risk_atr, args.atr_threshold)
-        test_equities.append(te)
+        if len(te) > 0:
+            test_equities.append(te)
 
     if test_equities:
-        equity_result = test_equities[0].copy()
         min_len = min(len(eq) for eq in test_equities)
+        equity_result = test_equities[0].iloc[:min_len].copy()
         equity_vals = np.mean([eq['equity'].values[:min_len] for eq in test_equities], axis=0)
-        equity_result = equity_result.iloc[:min_len].copy()
         equity_result['equity'] = equity_vals
     else:
         equity_result = pd.DataFrame(columns=['timestamp', 'equity'])

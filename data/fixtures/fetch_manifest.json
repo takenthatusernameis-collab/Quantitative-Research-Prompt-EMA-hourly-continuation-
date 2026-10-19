@@ -1,0 +1,52 @@
+[
+  {
+    "symbol": "BTC/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 15000,
+    "start": "2025-02-01 06:00:00+00:00",
+    "end": "2026-10-19 05:00:00+00:00",
+    "file": "data/fixtures/BTC_USDT.csv"
+  },
+  {
+    "symbol": "ETH/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 15000,
+    "start": "2025-02-01 06:00:00+00:00",
+    "end": "2026-10-19 05:00:00+00:00",
+    "file": "data/fixtures/ETH_USDT.csv"
+  },
+  {
+    "symbol": "SOL/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 15000,
+    "start": "2025-02-01 06:00:00+00:00",
+    "end": "2026-10-19 05:00:00+00:00",
+    "file": "data/fixtures/SOL_USDT.csv"
+  },
+  {
+    "symbol": "BNB/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 15000,
+    "start": "2025-02-01 06:00:00+00:00",
+    "end": "2026-10-19 05:00:00+00:00",
+    "file": "data/fixtures/BNB_USDT.csv"
+  },
+  {
+    "symbol": "XRP/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 15000,
+    "start": "2025-02-01 06:00:00+00:00",
+    "end": "2026-10-19 05:00:00+00:00",
+    "file": "data/fixtures/XRP_USDT.csv"
+  }
+]
