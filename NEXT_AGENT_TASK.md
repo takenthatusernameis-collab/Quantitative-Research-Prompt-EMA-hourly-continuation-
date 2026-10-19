@@ -16,9 +16,9 @@ No active task. EMA hourly continuation research is concluded and **REJECTED**. 
 Research artifacts are immutable unless a new pre-registered hypothesis exists. Do not re-run parameter searches or tune the rejected baseline.
 
 ## Handoff Notes
-- Independently verified by current agent: tests pass (16/16), tracked git tree clean, OOS metrics match handoff (666 trades, PF 0.6890, Sharpe -1.9443, max DD 0.6663).
+- Independently verified by current agent (second verification pass): tests pass (16/16 via `python -m pytest tests/ -q`), tracked git tree clean (only untracked `__pycache__/` directories present), OOS metrics match handoff (666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 from `results/20261019_064215_oos_pooled/summary.json`), and final artifacts `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md` all exist.
 - `NEXT_AGENT_TASK.md` marked COMPLETE with verification details.
-- No code changes were made.
+- No code changes were made. Stand down — no further work authorized.
 
 ## Constraints
 - Any new work requires a fresh, pre-registered hypothesis card (theoretical rationale + falsifiable acceptance criteria) before implementation (PROMPT.md §3.4; `results/FINAL_DECISION.md`).
