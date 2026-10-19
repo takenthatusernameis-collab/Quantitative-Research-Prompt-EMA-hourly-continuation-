@@ -8,7 +8,7 @@ If the user provides no new pre-registered hypothesis, stand down with no change
 ## Current State
 - Decision: **REJECTED** / **CONCLUDED** (no live trading).
 - OOS pooled (net-of-costs): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 from `results/20261019_064215_oos_pooled/summary.json`.
-- Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006 (all < 1).
+- Per-symbol (net PF / Sharpe): BTC/USDT 0.6860 / -0.9004, ETH/USDT 0.7861 / -1.8710, SOL/USDT 0.8792 / -1.1395, BNB/USDT 0.6955 / -2.8661, XRP/USDT 0.8006 / -1.8986.
 - Cost stress (2x): base 0.6906 → 0.4691, Sharpe 0.8550 → -0.7038, max DD 1.89 → 4.09 (from `results/20261019_062710_cost_stress/summary.md`).
 - Tests: 16/16 pass (`python -m pytest tests/ -q`).
 - Tracked git tree clean; only untracked `__pycache__/` directories present.
@@ -23,11 +23,7 @@ If the user provides no new pre-registered hypothesis, stand down with no change
 Research artifacts are immutable. The decision is final. Only work on the repo if the user supplies a new pre-registered hypothesis card.
 
 ## Handoff Notes
-- Handoff verified/completed by prior session (2026-10-19T12:25Z UTC): tests 16/16 via `python -m pytest tests/ -q`. Git state: tracked tree clean, only `__pycache__/` untracked. All artifacts verified consistent (OOS pooled 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006; cost stress 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09).
-- Completed by this session (2026-10-19T12:27Z UTC): re-verified tests 16/16 (`python -m pytest tests/ -q`), confirmed no new hypothesis present anywhere in repo (no `*hypo*` files; no user-supplied hypothesis in handoff/task files). Decision remains CONCLUDED and REJECTED. No code changes made. Standing down; awaiting new pre-registered hypothesis.
-- Completed by this session (2026-10-19T12:29Z UTC): re-read durable handoff (NEXT_AGENT_TASK.md), re-verified tests 16/16 (`python -m pytest tests/ -q`), confirmed git tracked tree clean (only `__pycache__/` untracked), confirmed no new hypothesis anywhere in repo. Research remains CONCLUDED and REJECTED. No code changes made. Standing down; awaiting new pre-registered hypothesis.
-## Initial Task for Next Agent (copy-ready)
-> "No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading). Verified: tests 16/16 pass (`python -m pytest tests/ -q`); git tracked tree clean (only __pycache__/ untracked); final artifacts in results/ (FINAL_DECISION.md, RESEARCH_CONCLUSION.md, robustness_summary.md, 20261019_064215_oos_pooled/summary.json) match OOS metrics (666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006). Cost stress consistent (0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09). Decision FINAL and REJECTED per results/FINAL_DECISION.md. Handoff verified 2026-10-19T12:27Z UTC. Do NOT run backtests/parameter searches/tuning of the rejected baseline without explicit authorization. If the user provides a new pre-registered hypothesis (theoretical rationale + falsifiable acceptance criteria), start by validating it against PROMPT.md §3.4 and final artifacts; otherwise stand down with no changes. Validation: python -m pytest tests/ -q"
+- Verified 2026-10-19T12:29:25Z UTC: Read durable handoff, re-verified tests 16/16 (`python -m pytest tests/ -q`), confirmed git tracked tree clean (only `__pycache__/` untracked), validated OOS metrics (666 trades, net PF 0.6890, Sharpe -1.9443, max DD 0.6663; per-symbol values match). Decision remains CONCLUDED and REJECTED. No code changes made. Standing down; awaiting new pre-registered hypothesis.
 
 ## Validation Command
 `python -m pytest tests/ -q`
