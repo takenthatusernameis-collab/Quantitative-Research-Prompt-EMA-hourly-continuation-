@@ -340,6 +340,94 @@ batches apart from those sub-1 % inversions inside earlier blocks.
 
 ---
 
+## Batch 7 - expansion to N = 77
+
+- Snapshot: `universe/mcap_snapshot_20261019_204714.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-19T20:47:14Z
+- Previous N -> new N: **67 -> 77** (ranks 68-77 of the working universe)
+- Expansion floor: BTT at 345 406 528 USD (the lowest market cap already in the
+  universe in this snapshot); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself
+  (`--apply-from universe/mcap_snapshot_20261019_204714.json`), so the names
+  processed by the grid are exactly the ones listed below.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Market cap |
+|---|---|---|
+| 135 | XTZ | 330 121 475 |
+| 138 | LDO | 321 149 160 |
+| 140 | SUN | 317 204 872 |
+| 144 | BAT | 294 580 125 |
+| 150 | OP | 284 207 834 |
+| 151 | CFX | 272 199 535 |
+| 155 | GRT | 259 117 191 |
+| 156 | DCR | 257 502 629 |
+| 157 | BONK | 256 628 563 |
+| 158 | LUNC | 252 104 160 |
+
+XTZ is the first name in the batch and is the 68th symbol of the working
+universe; LUNC is the 77th and last. AR (Arweave, rank 160) is the next
+eligible name below the floor and is reserved for batch 8.
+
+### Hourly coverage of the batch-7 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), 22 000 bars per symbol:
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| XTZ, LDO, BAT, OP, CFX, BONK, LUNC | 22 000 | 2024-04-16 05:00/06:00 .. 2026-10-19 20:00/21:00 |
+| SUN | 22 098 | 2024-04-12 01:00 .. 2026-10-19 18:00 |
+| GRT, DCR | 22 099 | 2024-04-12 02:00 .. 2026-10-19 20:00 |
+
+All 10 fixtures carry ~22 000 hourly bars (~2.5 years), have no duplicate
+timestamps and no hourly gaps, and comfortably clear the 2-year eligibility
+floor.
+
+### Rank drift, batch 6 snapshot (20:07) vs batch 7 snapshot (20:47)
+
+Max absolute market-cap drift across the 67 names already in the universe was
+**1.12 %** (ZRO -1.12 %, TIA -0.99 %, NEAR -0.52 %). Six names changed rank,
+all by sub-1.2 % market-cap gaps:
+
+| Symbol | 20:07 market cap | 20:47 market cap | Rank |
+|---|---|---|---|
+| ZRO | 759 959 482 | 751 478 133 | 89 -> 90 |
+| KAS | 965 596 519 | 963 109 731 | 78 -> 79 |
+| TAO | 3 013 164 632 | 3 007 216 660 | 35 -> 36 |
+| ETHFI | 648 845 637 | 647 636 846 | 100 -> 99 |
+| DASH | 636 303 132 | 636 671 012 | 101 -> 100 |
+| XDC | 652 900 299 | 653 002 658 | 99 -> 98 |
+
+The working universe is **append-only**: the existing order is kept so that the
+already-processed symbols keep their artifact continuity and the reported
+processing order stays stable. The batch-7 additions are appended strictly
+below the BTT floor, so the global order remains strictly descending across
+batches apart from those sub-1.2 % inversions inside earlier blocks.
+
+### Batch-7 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| XTZ | 66 | 55 064 | 0.4828 | 0.7513 (P34_144) | -1.9452 | 66 |
+| LDO | 66 | 54 893 | 0.4774 | 0.6505 (P21_200) | -2.2277 | 66 |
+| SUN | 66 | 47 793 | 0.2913 | 0.4978 (P8_200) | -3.8785 | 66 |
+| BAT | 66 | 52 773 | 0.4633 | 0.7500 (P8_200) | -1.4044 | 66 |
+| OP | 66 | 52 241 | 0.5101 | 0.7400 (P34_200) | -1.5232 | 66 |
+| CFX | 66 | 52 968 | 0.5048 | 0.7672 (P8_144) | -1.8555 | 66 |
+| GRT | 66 | 53 055 | 0.5251 | 0.9087 (P20_200) | -0.4398 | 66 |
+| DCR | 66 | 57 530 | 0.4605 | 0.7359 (P21_200) | -2.1056 | 66 |
+| BONK | 66 | 53 245 | 0.5615 | 0.7338 (P8_200) | -1.8996 | 66 |
+| LUNC | 66 | 60 053 | 0.4055 | 0.6568 (P55_200) | -2.7820 | 66 |
+
+Batch 7 alone: 660 / 660 cells rejected, 0 cells with net PF > 1, pooled mean
+net PF 0.4682, median 0.4896, best 0.9087 (GRT/USDT P20_200), 539 615 trades.
+Cumulative over all 77 symbols: **5 082 / 5 082 cells rejected (100 %)**, 0
+cells with net PF > 1, pooled mean net PF 0.4629, median 0.4806, best 0.9523
+(WLD/USDT P20_200).
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -351,6 +439,7 @@ batches apart from those sub-1 % inversions inside earlier blocks.
 | Batch 4 | 47 | complete - KCS, ALGO, POL, KAS, JUP, ATOM, RENDER, INJ, FIL, AERO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 5 | 57 | complete - ZRO, CAKE, STX, APT, ETHFI, XDC, DASH, TIA, BDX, CRV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 6 | 67 | complete - VET, PYTH, FLR, RAY, STRK, FET, SEI, PENDLE, BSV, BTT (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 7 | 77 | complete - XTZ, LDO, SUN, BAT, OP, CFX, GRT, DCR, BONK, LUNC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.
