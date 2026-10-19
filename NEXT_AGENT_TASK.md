@@ -2,6 +2,12 @@
 
 ## Status: CLOSED
 
+## Verification (2026-10-19, by Kilo)
+- `python -m pytest tests/ -q` → 16 passed in 0.38s. Confirmed.
+- `git status` → clean tracked tree; only untracked `__pycache__/` dirs. Confirmed.
+- `results/20261019_064215_oos_pooled/summary.json` → trade_count 666, net_profit_factor 0.6890, sharpe_ratio -1.9443, max_drawdown 0.6663. Confirmed.
+- `results/FINAL_DECISION.md` and `results/RESEARCH_CONCLUSION.md` exist and are consistent with the handoff. Confirmed.
+
 ## Ground Truth
 Baseline EMA hourly continuation **REJECTED** — research concluded, no live trading.
 - `results/FINAL_DECISION.md`: pooled OOS 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663.
