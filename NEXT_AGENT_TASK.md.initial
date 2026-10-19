@@ -16,7 +16,7 @@ No active task. EMA hourly continuation research is concluded and **REJECTED**. 
 Research artifacts are immutable unless a new pre-registered hypothesis exists. Do not re-run parameter searches or tune the rejected baseline.
 
 ## Handoff Notes
-- Independently verified: tests pass, git clean, OOS metrics match handoff.
+- Independently verified by current agent: tests pass (16/16), tracked git tree clean, OOS metrics match handoff (666 trades, PF 0.6890, Sharpe -1.9443, max DD 0.6663).
 - `NEXT_AGENT_TASK.md` marked COMPLETE with verification details.
 - No code changes were made.
 
