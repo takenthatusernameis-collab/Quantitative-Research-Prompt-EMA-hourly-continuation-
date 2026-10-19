@@ -152,6 +152,74 @@ reordering anything.
 
 ---
 
+## Batch 4 - expansion to N = 47
+
+- Snapshot: `universe/mcap_snapshot_20261019_181146.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-19T18:11:46Z
+- Previous N -> new N: **37 -> 47** (ranks 38-47 of the working universe)
+- Expansion floor: JST at 1 121 015 524 USD (the lowest market cap already in
+  the universe in this snapshot); every added name is strictly below it.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Market cap |
+|---|---|---|
+| 74 | KCS | 1 037 220 420 |
+| 75 | ALGO | 985 041 622 |
+| 76 | POL | 978 151 993 |
+| 77 | KAS | 971 555 192 |
+| 78 | JUP | 967 935 498 |
+| 80 | ATOM | 939 040 936 |
+| 81 | RENDER | 932 190 782 |
+| 83 | INJ | 861 230 020 |
+| 84 | FIL | 844 516 724 |
+| 88 | AERO | 783 036 938 |
+
+The batch was applied from the reviewed snapshot file itself
+(`--apply-from universe/mcap_snapshot_20261019_181146.json`), so the names
+processed by the grid are exactly the ones listed above. The batch is in
+strictly descending market-cap order and every name ranks below JST.
+
+### Hourly coverage of the batch-4 fixtures
+
+OHLCV comes from the KuCoin public candles API (1h, UTC), 22 000 bars per
+symbol, same as the earlier batches:
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| KCS, ALGO, POL, KAS, JUP, ATOM, INJ, FIL, AERO | 22 000 | 2024-04-16 .. 2026-10-19 |
+| RENDER | 18 947 | 2024-08-21 .. 2026-10-19 |
+
+RENDER is the only short sample in this batch (KuCoin listing date
+2024-08-21, ~2.16 years of hourly bars); it still clears the 2-year
+eligibility floor and covers the largest registered period (P_slow = 200)
+plus an out-of-sample window. All 10 fixtures have no duplicate timestamps
+and no hourly gaps.
+
+### Rank drift, batch 3 snapshot (16:34) vs batch 4 snapshot (18:11)
+
+Max absolute market-cap drift across the 37 names already in the universe was
+**2.15 %** (DOT -2.15 %, ARB -1.32 %, ICP -1.22 %, TAO -1.18 %, ZEC -1.14 %,
+ENA -1.05 %). Two included names swapped rank with each other:
+
+| Symbol | 16:34 market cap | 18:11 market cap | Rank |
+|---|---|---|---|
+| DOT | 1 992 608 822 | 1 949 703 669 | 50 -> 51 |
+| WLD | 1 958 399 586 | 1 964 671 177 | 51 -> 50 |
+
+DOT and WLD inverted on a 0.77 % market-cap difference. The working universe
+is **append-only**: the batch-3 order (DOT before WLD) is kept so that the
+already-processed symbols keep their artifact continuity and the reported
+processing order stays stable. The batch-4 additions are appended below the
+existing floor, so the global order remains strictly descending across
+batches apart from this single sub-1 % inversion inside the batch-3 block.
+
+(The SOL/BNB order in the working universe is inherited from batch 0, whose
+ranking file carried no source metadata; it was left untouched for the same
+append-only reason.)
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -160,6 +228,7 @@ reordering anything.
 | Batch 1 | 17 | + TRX, ZEC, DOGE, XMR, LINK, ADA, NEAR, XLM, BCH, LTC, UNI, AVAX | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 2 | 27 | complete - SUI, GRAM, HBAR, TAO, SHIB, CRO, QNT, ENA, AAVE, ONDO (66 pairs each) | `results/20261019_135940_grid/` |
 | Batch 3 | 37 | complete - DOT, WLD, MNT, PEPE, SKY, ICP, HTX, ARB, ETC, JST (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 4 | 47 | complete - KCS, ALGO, POL, KAS, JUP, ATOM, RENDER, INJ, FIL, AERO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.
