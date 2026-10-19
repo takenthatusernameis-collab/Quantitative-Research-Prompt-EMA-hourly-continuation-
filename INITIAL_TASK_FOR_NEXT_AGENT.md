@@ -1,9 +1,9 @@
 # INITIAL TASK FOR NEXT AGENT
 
-**Status:** No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading). Last verified 2026-10-19T11:42:54Z UTC.
+**Status:** No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading). Last verified 2026-10-19T11:44:10Z UTC.
 
 ## Current State
-- Tests: 16/16 passed (`python -m pytest tests/ -q`) — verified 2026-10-19T11:42:54Z UTC
+- Tests: 16/16 passed (`python -m pytest tests/ -q`) — verified 2026-10-19T11:44:10Z UTC
 - Git: Clean tracked tree; only untracked `__pycache__/` in backtest/, data/, signals/, tests/
 - OOS pooled (final): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 (`results/20261019_064215_oos_pooled/summary.json`)
 - Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006
@@ -56,5 +56,3 @@
 - Any new work requires a fresh, pre-registered hypothesis before implementation.
 - Do not modify, overwrite, or re-run scripts producing final artifacts without explicit authorization tied to the new hypothesis.
 - If no new authorized hypothesis is provided: stand down with no changes.
-
-(End of file - total 60 lines)
