@@ -6,7 +6,7 @@
 - `python -m pytest tests/ -q` → 16 passed in 0.37s (verified).
 - `git status --short` → tracked tree clean; only untracked `__pycache__/` and ignored `.pytest_cache/` present.
 - OOS pooled results (`results/20261019_064215_oos_pooled/summary.json`): 666 trades, net_profit_factor 0.6890, sharpe_ratio -1.9443, max_drawdown 0.6663 (net-of-costs).
-- Research artifacts present: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/REJECTED_SUMMARY.md`.
+- Research artifacts present: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`. (Rejection documented in `results/FINAL_DECISION.md`; `results/REJECTED_SUMMARY.md` does not exist.)
 
 ## Ground Truth
 Baseline EMA hourly continuation **REJECTED** — research concluded. No live trading.

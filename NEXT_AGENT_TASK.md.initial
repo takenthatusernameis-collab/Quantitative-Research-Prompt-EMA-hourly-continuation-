@@ -9,7 +9,7 @@ No active task. EMA hourly continuation research is concluded and **REJECTED**. 
 - All robustness checks negative; cost stress worsens performance.
 - Tests: 16/16 pass (`python -m pytest tests/ -q`).
 - Git: tracked tree clean; only untracked `__pycache__/` directories and `.pytest_cache/` present.
-- Artifacts final: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/REJECTED_SUMMARY.md`.
+- Artifacts final: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`. (Rejection documented in `results/FINAL_DECISION.md`; `results/REJECTED_SUMMARY.md` does not exist.)
 
 ## Ground Truth
 Research artifacts are immutable unless a new pre-registered hypothesis exists. Do not re-run searches or tune the rejected baseline.
