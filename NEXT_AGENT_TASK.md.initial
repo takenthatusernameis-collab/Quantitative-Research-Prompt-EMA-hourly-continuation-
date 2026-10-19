@@ -4,7 +4,9 @@
 No active task. Research on EMA hourly continuation is concluded (REJECTED). No new experiments without a pre-registered hypothesis card.
 
 ## Current State
-Baseline rejected: OOS pooled net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 (666 trades). All robustness variants negative. Research concluded. Tests 16/16 pass.
+Baseline rejected: OOS pooled net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 (666 trades). All robustness variants negative. Research concluded. Tests 16/16 pass. Git tracked tree clean.
 
 ## Ground Truth
 Decision: **REJECTED / CONCLUDED**. No live trading.
+
+(End of file)
