@@ -1,5 +1,7 @@
 # NEXT AGENT TASK
 
+## Status update (2026-10-19): universe now N=97 but 20 new names lack OHLCV fixtures; grid still 77 symbols / 5,082 cells. Fetch data first.
+
 ## Objective
 **Batch 7 grid (N 77) COMPLETE.** All 5,082 cells (77 symbols x 66 EMA pairs) rejected.
 Per PROMPT.md §2.1 the program must expand again: **N 77 -> 87** (batch 8, next 10
