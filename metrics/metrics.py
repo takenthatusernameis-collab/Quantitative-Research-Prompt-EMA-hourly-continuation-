@@ -13,24 +13,25 @@ def calculate_returns(equity_df: pd.DataFrame) -> np.ndarray:
     return returns
 
 
-def sharpe_ratio(returns: np.ndarray, risk_free: float = 0.0) -> float:
-    """Calculate Sharpe ratio."""
+HOURLY_PERIODS_PER_YEAR = 24 * 365
+
+
+def sharpe_ratio(returns: np.ndarray, risk_free: float = 0.0, periods_per_year: int = HOURLY_PERIODS_PER_YEAR) -> float:
+    """Calculate annualized Sharpe ratio (hourly bars)."""
     if len(returns) == 0 or np.std(returns) == 0:
         return 0.0
-    return (np.mean(returns) - risk_free) / np.std(returns) * np.sqrt(365 * 24) if False else (np.mean(returns) - risk_free) / np.std(returns)  # hourly default? but scale - keep simple
-    # For hourly data, annualize appropriately; but spec just says Sharpe - use simple
-    return float((np.mean(returns) - risk_free) / np.std(returns)) if np.std(returns) > 0 else 0.0
+    return float((np.mean(returns) - risk_free) / np.std(returns) * np.sqrt(periods_per_year))
 
 
-def sortino_ratio(returns: np.ndarray, risk_free: float = 0.0) -> float:
-    """Calculate Sortino ratio."""
+def sortino_ratio(returns: np.ndarray, risk_free: float = 0.0, periods_per_year: int = HOURLY_PERIODS_PER_YEAR) -> float:
+    """Calculate annualized Sortino ratio (hourly bars)."""
     if len(returns) == 0:
         return 0.0
     neg_returns = returns[returns < 0]
     downside_std = np.std(neg_returns) if len(neg_returns) > 0 else 0.0
     if downside_std == 0:
         return 0.0
-    return float((np.mean(returns) - risk_free) / downside_std)
+    return float((np.mean(returns) - risk_free) / downside_std * np.sqrt(periods_per_year))
 
 
 def max_drawdown(equity_df: pd.DataFrame) -> float:
@@ -59,9 +60,10 @@ def cagr(equity_df: pd.DataFrame) -> float:
     n_periods = len(equity_df) - 1
     if n_periods <= 0:
         return 0.0
-    # Assume hourly periods - convert to years? Or just return as (end/start)^(1/n)-1
-    # Keep as simple total return rate form
-    return float((equity[-1] / equity[0]) ** (1.0 / n_periods) - 1.0) if n_periods > 0 else 0.0
+    years = n_periods / HOURLY_PERIODS_PER_YEAR
+    if years <= 0:
+        return 0.0
+    return float((equity[-1] / equity[0]) ** (1.0 / years) - 1.0)
 
 
 def profit_factor(trades: List) -> float:

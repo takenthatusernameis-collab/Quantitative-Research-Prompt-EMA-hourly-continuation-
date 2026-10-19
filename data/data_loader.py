@@ -45,16 +45,20 @@ def load_ohlcv_csv(path: str | Path, timestamp_col: str = 'timestamp') -> pd.Dat
         except Exception:
             pass
 
-    # Sort by timestamp if present
+    # Drop duplicate timestamps
     if 'timestamp' in df.columns:
-        df = df.sort_values('timestamp').reset_index(drop=True)
+        df = df.drop_duplicates(subset=['timestamp']).sort_values('timestamp').reset_index(drop=True)
     else:
-        df = df.reset_index(drop=True)
+        df = df.drop_duplicates().reset_index(drop=True)
 
     # Ensure numeric types
     for col in ['open', 'high', 'low', 'close', 'volume']:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce')
 
+    # Validate OHLC relationships
     df = df.dropna(subset=['open', 'high', 'low', 'close'])
+    df = df[(df['high'] >= df['low']) & (df['high'] >= df['open']) & (df['high'] >= df['close']) &
+            (df['low'] <= df['open']) & (df['low'] <= df['close'])]
+    df = df.reset_index(drop=True)
     return df

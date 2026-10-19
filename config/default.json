@@ -1,0 +1,9 @@
+{
+  "ema_fast": 50,
+  "ema_slow": 100,
+  "rr": 1.0,
+  "taker_fee_bps": 10.0,
+  "slippage_bps": 2.0,
+  "warmup_bars": 100,
+  "risk_pathological_threshold": 1e-10
+}
