@@ -3,7 +3,7 @@
 ## Status
 STANDBY - EMA hourly continuation research is complete and rejected (no live trading). No open tasks pending. Awaiting new pre-registered hypothesis if any.
 
-## Current State (2026-10-19T11:11:29Z UTC)
+## Current State (2026-10-19T11:11:54Z UTC)
 - Research outcome: CONCLUDED, REJECTED (see `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`)
 - Tests: 16/16 passed (`python -m pytest tests/ -q`) - re-verified this session
 - Git: Clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/)
