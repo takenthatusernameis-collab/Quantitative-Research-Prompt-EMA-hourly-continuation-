@@ -1,42 +1,32 @@
 # NEXT AGENT TASK
 
-## Status
-STANDBY - EMA hourly continuation research is complete and rejected (no live trading). No open tasks pending. Awaiting new pre-registered hypothesis if any.
+## Objective
+No active task. The EMA hourly continuation research is **CONCLUDED** and **REJECTED** (no live trading).
 
-## Current State (2026-10-19T12:22:41Z UTC)
-- Research outcome: CONCLUDED, REJECTED (see `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`)
-- Tests: 16/16 passed (`python -m pytest tests/ -q`) - re-verified this session
-- Git: Clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/)
-- Final OOS pooled: `results/20261019_064215_oos_pooled/summary.json` (666 trades; net PF 0.6890, net Sharpe -1.9443, max DD 0.6663)
-- Cost stress: `results/20261019_062710_cost_stress/summary.md` (PF 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09)
-- Per-symbol (net PF/Sharpe/trades): BTC 0.6860/-0.9004/124, ETH 0.7861/-1.8710/119, SOL 0.8792/-1.1395/132, BNB 0.6955/-2.8661/150, XRP 0.8006/-1.8986/141
+If the user provides no new pre-registered hypothesis, stand down with no changes. Do not re-run backtests, parameter searches, or tuning of the rejected baseline without explicit authorization.
 
-## Session Activity (2026-10-19T12:22:41Z UTC)
-- Read handoff (`INITIAL_TASK_FOR_NEXT_AGENT.md`, `NEXT_AGENT_TASK.md`, `README.md`, `PROMPT.md`, `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`).
-- Checked for new input: no new hypothesis file or user-provided rationale present anywhere in the repo (only prior research artifacts exist).
-- Verified state: `python -m pytest tests/ -q` → 16 passed. `git status` → clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/).
-- Action taken: Completed prior agent task - verified tests pass (16/16), confirmed no new hypothesis exists, updated handoff files with current timestamp. Research stands concluded/rejected (no live trading). Standing down with no code changes. Awaiting new pre-registered hypothesis.
+## Current State
+- Decision: **REJECTED** / **CONCLUDED** (no live trading).
+- OOS pooled (net-of-costs): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 from `results/20261019_064215_oos_pooled/summary.json`.
+- Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006 (all < 1).
+- Cost stress (2x): base 0.6906 → 0.4691, Sharpe 0.8550 → -0.7038, max DD 1.89 → 4.09 (from `results/20261019_062710_cost_stress/summary.md`).
+- Tests: 16/16 pass (`python -m pytest tests/ -q`).
+- Tracked git tree clean; only untracked `__pycache__/` directories present.
+- Final artifacts (immutable): `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`, `results/20261019_064215_oos_pooled/summary.json`.
 
-## Final Artifacts (Canonical)
-- `results/FINAL_DECISION.md` — Final decision (REJECTED), recommendation (no live trading)
-- `results/RESEARCH_CONCLUSION.md` — Research conclusion
-- `results/robustness_summary.md` — Robustness summary
-- `results/20261019_064215_oos_pooled/` — Final OOS pooled results
-- `results/20261019_062710_cost_stress/` — Cost stress results
+## Constraints (Critical)
+- Any new work requires a fresh, pre-registered hypothesis card (theoretical rationale + falsifiable acceptance criteria) before implementation (PROMPT.md §3.4; `results/FINAL_DECISION.md`).
+- Do not modify, overwrite, or re-run scripts that produced final artifacts unless the new hypothesis explicitly requires it and you have explicit authorization.
+- If no new authorized hypothesis is provided, stand down with no changes.
 
-## Constraints
-- Any new work requires a fresh, pre-registered hypothesis (theoretical rationale + falsifiable acceptance criteria) before implementation.
-- Do not modify/overwrite/re-run scripts producing final artifacts unless the new hypothesis explicitly requires it with authorization.
-- If no new authorized hypothesis is provided: stand down with no changes.
+## Ground Truth
+Research artifacts are immutable. The decision is final. Only work on the repo if the user supplies a new pre-registered hypothesis card.
 
-## Initial Task for Next Agent
-1. **Read context**: `README.md`, `PROMPT.md`, `NEXT_AGENT_TASK.md` (this file), and final artifacts in `results/` (especially `results/FINAL_DECISION.md`).
-2. **Check for new input**: Look for user-provided hypothesis (theory + falsifiable acceptance criteria). If none present → stand down with no code changes. Report state (tests pass, research concluded/rejected).
-3. **If hypothesis provided**: Validate against PROMPT.md §3.4 and final artifacts. Only proceed if justified, falsifiable, and authorized. Do not re-run baseline/tuning unless hypothesis explicitly requires it.
-4. **Verify**: Run `python -m pytest tests/ -q` and report result.
-5. **Handoff**: Update this file with outcome (or keep standby). Do not commit unless explicitly requested.
+## Handoff Notes
+- Handoff verified/completed by this session (2026-10-19T12:23:03Z UTC). Tests re-verified (16/16 via `python -m pytest tests/ -q`). Git state: tracked tree clean, only `__pycache__/` untracked. All artifacts verified consistent (OOS pooled 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006; cost stress 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09).
+
+## Initial Task for Next Agent (copy-ready)
+> "No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading). Verified: tests 16/16 pass (`python -m pytest tests/ -q`); git tracked tree clean (only __pycache__/ untracked); final artifacts in results/ (FINAL_DECISION.md, RESEARCH_CONCLUSION.md, robustness_summary.md, 20261019_064215_oos_pooled/summary.json) match OOS metrics (666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006). Cost stress consistent (0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09). Decision FINAL and REJECTED per results/FINAL_DECISION.md. Handoff verified 2026-10-19T12:23:03Z UTC. Do NOT run backtests/parameter searches/tuning of the rejected baseline without explicit authorization. If the user provides a new pre-registered hypothesis (theoretical rationale + falsifiable acceptance criteria), start by validating it against PROMPT.md §3.4 and final artifacts; otherwise stand down with no changes. Validation: python -m pytest tests/ -q"
 
 ## Validation Command
-```bash
-python -m pytest tests/ -q
-```
+`python -m pytest tests/ -q`
