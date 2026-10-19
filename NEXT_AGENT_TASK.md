@@ -8,9 +8,9 @@ Stand down. The EMA hourly continuation research is **CONCLUDED** and **REJECTED
 - **Rationale**: Fails on OOS net-of-costs with negative Sharpe, PF < 1, and substantial drawdown; robustness/cost stress do not reach profitability.
 - **Source**: `results/FINAL_DECISION.md`
 
-## Current Verified State (2026-10-19T10:50:00Z UTC)
-- **Tests**: 16/16 passed (`python -m pytest tests/ -q`)
-- **Git**: Tracked tree clean; only untracked `__pycache__/` directories (backtest/, data/, signals/, tests/)
+## Current Verified State (2026-10-19T10:50:22Z UTC)
+- **Tests**: 16/16 passed (`python -m pytest tests/ -q`) — re-verified this session.
+- **Git**: Tracked tree clean; only untracked `__pycache__/` directories (backtest/, data/, signals/, tests/).
 - **OOS Pooled** (`results/20261019_064215_oos_pooled/summary.json`): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663
 - **Per-symbol (net PF / net Sharpe / trades)**: BTC/USDT 0.6860 / -0.9004 / 124; ETH/USDT 0.7861 / -1.8710 / 119; SOL/USDT 0.8792 / -1.1395 / 132; BNB/USDT 0.6955 / -2.8661 / 150; XRP/USDT 0.8006 / -1.8986 / 141
 - **Cost stress** (`results/20261019_062710_cost_stress/summary.md`): base PF 0.6906 → stress 0.4691; Sharpe 0.8550 → -0.7038; max DD 1.89 → 4.09
