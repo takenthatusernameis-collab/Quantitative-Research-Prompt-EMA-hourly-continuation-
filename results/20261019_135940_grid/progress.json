@@ -1,6 +1,6 @@
 {
   "run_id": "20261019_135940_grid",
-  "timestamp": "20261019_231712",
+  "timestamp": "20261019_231905",
   "symbols": [
     "BTC/USDT",
     "ETH/USDT",
@@ -87,11 +87,12 @@
     "ENS/USDT",
     "KMNO/USDT",
     "FLOKI/USDT",
-    "COMP/USDT"
+    "COMP/USDT",
+    "RUNE/USDT"
   ],
   "n_pairs": 66,
-  "n_symbols": 86,
-  "completed_cells": 5676,
+  "n_symbols": 87,
+  "completed_cells": 5742,
   "completed": [
     {
       "symbol": "AAVE/USDT",
@@ -21540,6 +21541,336 @@
     },
     {
       "symbol": "RENDER/USDT",
+      "P_fast": 144,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 12
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 20
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 21
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 26
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 34
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 50
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 55
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 89
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 100
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 20
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 21
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 26
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 34
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 50
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 55
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 89
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 100
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 12,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 20,
+      "P_slow": 21
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 20,
+      "P_slow": 26
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 20,
+      "P_slow": 34
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 20,
+      "P_slow": 50
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 20,
+      "P_slow": 55
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 20,
+      "P_slow": 89
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 20,
+      "P_slow": 100
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 20,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 20,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 21,
+      "P_slow": 26
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 21,
+      "P_slow": 34
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 21,
+      "P_slow": 50
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 21,
+      "P_slow": 55
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 21,
+      "P_slow": 89
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 21,
+      "P_slow": 100
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 21,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 21,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 26,
+      "P_slow": 34
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 26,
+      "P_slow": 50
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 26,
+      "P_slow": 55
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 26,
+      "P_slow": 89
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 26,
+      "P_slow": 100
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 26,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 26,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 34,
+      "P_slow": 50
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 34,
+      "P_slow": 55
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 34,
+      "P_slow": 89
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 34,
+      "P_slow": 100
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 34,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 34,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 50,
+      "P_slow": 55
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 50,
+      "P_slow": 89
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 50,
+      "P_slow": 100
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 50,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 50,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 55,
+      "P_slow": 89
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 55,
+      "P_slow": 100
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 55,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 55,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 89,
+      "P_slow": 100
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 89,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 89,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 100,
+      "P_slow": 144
+    },
+    {
+      "symbol": "RUNE/USDT",
+      "P_fast": 100,
+      "P_slow": 200
+    },
+    {
+      "symbol": "RUNE/USDT",
       "P_fast": 144,
       "P_slow": 200
     },
