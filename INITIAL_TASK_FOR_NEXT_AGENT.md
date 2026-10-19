@@ -1,19 +1,19 @@
 # INITIAL TASK FOR NEXT AGENT
 
-**Status:** No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading).
+**Status:** No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading). Last verified 2026-10-19T11:29:42Z UTC.
 
 ## Current State
-- Tests: 16/16 passed (`python -m pytest tests/ -q`) — verified 2026-10-19T11:25:03Z UTC
+- Tests: 16/16 passed (`python -m pytest tests/ -q`) — verified 2026-10-19T11:29:42Z UTC
 - Git: Clean tracked tree; only untracked `__pycache__/` in backtest/, data/, signals/, tests/
-- OOS pooled (final): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663
+- OOS pooled (final): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 (`results/20261019_064215_oos_pooled/summary.json`)
 - Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006
-- Cost stress (2x): PF 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09
+- Cost stress (2x): PF 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09 (`results/20261019_062710_cost_stress/summary.md`)
 
 ## Key Artifacts
-- `results/FINAL_DECISION.md` — final decision (REJECTED)
+- `results/FINAL_DECISION.md` — final decision (REJECTED) and recommendation (no live trading)
 - `results/RESEARCH_CONCLUSION.md` — research conclusion
-- `results/robustness_summary.md` — robustness checks
-- `results/20261019_064215_oos_pooled/summary.json` — OOS pooled results
+- `results/robustness_summary.md` — robustness checks performed
+- `results/20261019_064215_oos_pooled/summary.json` — final OOS pooled results
 - `results/20261019_062710_cost_stress/summary.md` — cost stress results
 
 ## Instructions
@@ -28,7 +28,7 @@
 
 # CLEAR INITIAL TASK MESSAGE FOR THE NEXT AGENT
 
-**Task:** Stand by. No active work is authorized.
+**Task:** Stand by. No active work is authorized. The EMA hourly continuation research is concluded and rejected (no live trading); do not re-run backtests, parameter searches, or tuning of the rejected baseline unless the user supplies a new authorized pre-registered hypothesis.
 
 **Context to read first:**
 - `README.md` — project overview, components, cost model, fill assumptions, universe selection
