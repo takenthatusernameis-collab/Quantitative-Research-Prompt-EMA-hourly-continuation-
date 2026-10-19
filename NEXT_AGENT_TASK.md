@@ -3,7 +3,7 @@
 ## Status
 STANDBY - EMA hourly continuation research is complete and rejected (no live trading). No open tasks pending. Awaiting new pre-registered hypothesis if any.
 
-## Current State (2026-10-19T11:36:43Z UTC) - re-verified this session
+## Current State (2026-10-19T11:42:54Z UTC) - re-verified this session
 - Research outcome: CONCLUDED, REJECTED (see `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`)
 - Tests: 16/16 passed (`python -m pytest tests/ -q`) - re-verified this session
 - Git: Clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/)
@@ -23,11 +23,11 @@ STANDBY - EMA hourly continuation research is complete and rejected (no live tra
 - Do not modify, overwrite, or re-run scripts producing final artifacts unless the new hypothesis explicitly requires it with authorization.
 - If no new authorized hypothesis is provided: stand down with no changes.
 
-## Session Activity (2026-10-19T11:36:43Z UTC)
+## Session Activity (2026-10-19T11:42:54Z UTC)
 - Read handoff (`INITIAL_TASK_FOR_NEXT_AGENT.md`, this file, `README.md`, `PROMPT.md`, `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`).
 - Checked for new hypothesis input: none present (working tree clean of any new/modified tracked files beyond `__pycache__/`).
-- Verified state: `python -m pytest tests/ -q` → 16 passed. `git status` → clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/).
-- Action taken: prior task completed — verified tests pass; updated handoff files with current timestamp; added clear initial task message for next agent. Research stands concluded/rejected (no live trading). Awaiting new pre-registered hypothesis.
+- Verified state: `python -m pytest tests/ -q` → 16 passed. `git status` → clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/). Final artifacts consistent (`results/20261019_064215_oos_pooled/summary.json`: OOS pooled 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006; `results/20261019_062710_cost_stress/summary.md`: PF 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09).
+- Action taken: prior task completed — verified tests pass; updated handoff files with current timestamp; confirmed clear initial task message for next agent. Research stands concluded/rejected (no live trading). Awaiting new pre-registered hypothesis.
 
 ## Session Activity (2026-10-19T11:34:12Z UTC)
 - Read handoff (`INITIAL_TASK_FOR_NEXT_AGENT.md`, this file, `README.md`, `PROMPT.md`, `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`).
