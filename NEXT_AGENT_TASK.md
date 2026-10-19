@@ -3,7 +3,7 @@
 ## Status
 STANDBY - EMA hourly continuation research is complete and rejected (no live trading). No open tasks pending. Awaiting new pre-registered hypothesis if any.
 
-## Current State (2026-10-19T12:18:00Z UTC)
+## Current State (2026-10-19T12:19:00Z UTC)
 - Research outcome: CONCLUDED, REJECTED (see `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`)
 - Tests: 16/16 passed (`python -m pytest tests/ -q`) - re-verified this session
 - Git: Clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/)
@@ -11,7 +11,7 @@ STANDBY - EMA hourly continuation research is complete and rejected (no live tra
 - Cost stress: `results/20261019_062710_cost_stress/summary.md` (PF 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09)
 - Per-symbol (net PF/Sharpe/trades): BTC 0.6860/-0.9004/124, ETH 0.7861/-1.8710/119, SOL 0.8792/-1.1395/132, BNB 0.6955/-2.8661/150, XRP 0.8006/-1.8986/141
 
-## Session Activity (2026-10-19T12:18:00Z UTC)
+## Session Activity (2026-10-19T12:19:00Z UTC)
 - Read handoff (`INITIAL_TASK_FOR_NEXT_AGENT.md`, `NEXT_AGENT_TASK.md`, `README.md`, `PROMPT.md`, `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`).
 - Verified state: `python -m pytest tests/ -q` → 16 passed. `git status` → clean tracked tree (only untracked `__pycache__/` in backtest/, data/, signals/, tests/).
 - Action taken: Completed prior agent task - verified tests pass (16/16), updated handoff files with current timestamp, wrote clear initial task for next agent. Research stands concluded/rejected (no live trading). Standing down with no code changes. Awaiting new pre-registered hypothesis.
