@@ -74,6 +74,37 @@ Optional clarity for implementation:
    - Exclude stablecoins as quote-only bases if the tradable is `BASE/QUOTE` and BASE is a stable
 5. If "all cryptocurrencies" is infeasible with available data, use the **largest N by market cap** that the data layer can support, document N, and process in descending market-cap order.
 
+### 2.1 Expanding universe after snapshot exhaustion (mandatory)
+
+The working universe is **not** a fixed closed set. Once the current market-cap snapshot's eligible candidates are exhausted (all ranked names have been processed, skipped for failing filters, or blocked by data), **expand the universe** rather than stopping:
+
+1. **Exhaustion criteria** (any of these counts as exhausted for the current snapshot):
+   - Every symbol in the current ranked list has a completed result artifact or an explicit skip reason (insufficient history, no liquidity, stablecoin base, fetch failure after retries).
+   - No remaining unprocessed candidates pass the baseline filters in §2.4.
+   - The data layer cannot supply additional OHLCV for any remaining name in the current snapshot.
+
+2. **Expansion rule** (always descending market capitalization):
+   - Obtain a **fresh or extended market-cap ranking** (same source family as the prior snapshot when possible; document source, timestamp, and any rank drift).
+   - Append the **next batch of names** that (a) rank **below** the lowest market-cap name already included and (b) are not already in the working universe.
+   - Keep global order **strictly descending market cap** across batches: previous batch (higher mcap) before the new batch (lower mcap). Never reorder or interleave batches by other criteria.
+   - Choose batch size by what the data layer can reliably fetch (e.g. next 5–20 names); document the batch size and the new total N.
+
+3. **Persistence and continuity**:
+   - Update `universe/mcap_rank.json` (or equivalent) with the expanded ordered list, `updated_at`, snapshot id, and which ranks were added in this expansion.
+   - Prior symbols and their result artifacts remain valid; do not drop higher-mcap names when expanding.
+   - Continue processing **only** the newly added symbols (or any previously blocked names that became available), still in descending mcap order within the new batch.
+
+4. **Stop conditions for expansion**:
+   - Liquidity or history filters leave zero new eligible names after a full ranking pass.
+   - External data APIs refuse further coverage and no alternative source exists.
+   - A pre-registered experiment scope explicitly caps N (document the cap).
+
+5. **Reporting**:
+   - Every expansion must be logged in the experiment config and the handoff: previous N → new N, rank range added, source/date of the ranking used.
+   - Pooled metrics may be reported for the full expanded universe and, when useful, for rank buckets (e.g. top 5 vs ranks 6–N).
+
+Do not invent symbols. Do not expand by volume, sector, or alphabetical order—**market capitalization descending only**.
+
 ---
 
 ## 3. Research process (mandatory)
@@ -156,6 +187,7 @@ Record parent config → child config → delta metrics for each mutation.
 3. Run tests and report exact commands and results.
 4. Persist findings; leave one narrow `NEXT_AGENT_TASK.md` with acceptance criteria and validation commands.
 5. If blocked on data, make the next task "obtain/fix data for top-N market-cap crypto hourly OHLCV" rather than inventing fills.
+6. When the current market-cap snapshot's candidates are exhausted, **expand the universe** per §2.1 (next lower-mcap batch) instead of treating the list as permanently closed.
 
 ---
 
@@ -166,5 +198,6 @@ Record parent config → child config → delta metrics for each mutation.
 3. Backtest baseline **net of costs**, process symbols in **market-cap descending** order.
 4. Publish pooled and per-bucket metrics, trade counts, and a clear decision label.
 5. Hand off either a robustness/mutation task or a data-blocker task with concrete criteria.
+6. If the current snapshot is exhausted and further names are in scope, expand per §2.1 and continue in descending market-cap order.
 
 Begin by inspecting the repository state, then implement the cheapest path to a correct, cost-aware baseline of this EMA hourly continuation strategy.
