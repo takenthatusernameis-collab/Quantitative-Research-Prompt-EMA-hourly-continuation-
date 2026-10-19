@@ -5,8 +5,8 @@
 ## Summary
 Baseline EMA hourly continuation strategy has been **REJECTED** after full evaluation. No live trading. This handoff re-verified; no new work required.
 
-## Verification (2026-10-19, session 3)
-- `python -m pytest tests/ -q` → 16 passed in 0.38s (reproduced)
+## Verification (2026-10-19, current session)
+- `python -m pytest tests/ -q` → 16 passed in 0.37s (reproduced)
 - Git tree: clean except untracked `__pycache__/` directories (no code changes)
 - OOS pooled results (`results/20261019_064215_oos_pooled/summary.json`): 666 trades, net_profit_factor 0.6890, sharpe_ratio -1.9443, max_drawdown 0.6663 (net-of-costs)
 - Artifacts present: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`
