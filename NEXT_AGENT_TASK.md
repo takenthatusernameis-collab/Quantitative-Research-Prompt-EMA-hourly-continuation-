@@ -39,3 +39,5 @@ Research artifacts are immutable. The decision is final. Only work on the repo i
 
 ## Validation Command
 `python -m pytest tests/ -q`
+
+- Re-verified by this session (2026-10-19T10:05:58Z UTC): tests 16/16 pass via `python -m pytest tests/ -q`; git tracked tree clean (only untracked `__pycache__/` dirs); all final artifacts in results/ match OOS metrics (666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006). Cost stress consistent (0.6906->0.4691, Sharpe 0.8550->-0.7038, max DD 1.89->4.09). No new hypothesis provided by user; stand-down no-op completed. No code changes made.
