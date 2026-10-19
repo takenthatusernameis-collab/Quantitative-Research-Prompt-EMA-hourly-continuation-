@@ -16,13 +16,17 @@ from metrics.metrics import calculate_metrics
 CONFIG_DEFAULTS = {
     'ema_fast': 50,
     'ema_slow': 100,
+    'rr': 1.0,
     'taker_fee_bps': 10.0,
     'slippage_bps': 2.0,
     'warmup_bars': 100,
     'risk_pathological_threshold': 1e-10,
+    'min_risk_atr': False,
+    'atr_threshold': 1.0,
+    'stricter_trend': False,
 }
 
-REQUIRED_CONFIG_KEYS = {'ema_fast', 'ema_slow', 'taker_fee_bps', 'slippage_bps'}
+REQUIRED_CONFIG_KEYS = {'ema_fast', 'ema_slow', 'taker_fee_bps', 'slippage_bps', 'rr'}
 
 
 def load_config(path: str | Path | None) -> dict:
@@ -52,6 +56,10 @@ def main():
     parser.add_argument('--n', type=int, default=3, help='Number of symbols to process')
     parser.add_argument('--taker-fee-bps', type=float, default=None)
     parser.add_argument('--slippage-bps', type=float, default=None)
+    parser.add_argument('--rr', type=float, default=None)
+    parser.add_argument('--stricter-trend', action='store_true', default=None)
+    parser.add_argument('--min-risk-atr', action='store_true', default=None)
+    parser.add_argument('--atr-threshold', type=float, default=None)
     args = parser.parse_args()
 
     config = load_config(args.config)
@@ -61,11 +69,23 @@ def main():
         config['taker_fee_bps'] = args.taker_fee_bps
     if args.slippage_bps is not None:
         config['slippage_bps'] = args.slippage_bps
+    if args.rr is not None:
+        config['rr'] = args.rr
+    if args.stricter_trend is not None:
+        config['stricter_trend'] = args.stricter_trend
+    if args.min_risk_atr is not None:
+        config['min_risk_atr'] = args.min_risk_atr
+    if args.atr_threshold is not None:
+        config['atr_threshold'] = args.atr_threshold
 
     taker_fee_bps = float(config['taker_fee_bps'])
     slippage_bps = float(config['slippage_bps'])
     ema_fast = int(config['ema_fast'])
     ema_slow = int(config['ema_slow'])
+    rr = float(config.get('rr', 1.0))
+    stricter_trend = bool(config.get('stricter_trend', False))
+    min_risk_atr = bool(config.get('min_risk_atr', False))
+    atr_threshold = float(config.get('atr_threshold', 1.0))
 
     # Create results directory
     timestamp = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
@@ -78,6 +98,10 @@ def main():
         'slippage_bps': slippage_bps,
         'ema_fast': ema_fast,
         'ema_slow': ema_slow,
+        'rr': rr,
+        'stricter_trend': stricter_trend,
+        'min_risk_atr': min_risk_atr,
+        'atr_threshold': atr_threshold,
         'fixture': args.fixture,
         'mcap': args.mcap,
         'config': args.config,
@@ -102,36 +126,43 @@ def main():
         symbols = load_mcap_ranking(default_mcap)[:args.n]
 
     # Load data
-    if args.fixture:
-        df = load_ohlcv_csv(args.fixture)
-    else:
-        fixture_path = Path('data') / 'fixtures' / 'sample_hourly.csv'
-        fixture_path.parent.mkdir(parents=True, exist_ok=True)
-        if not fixture_path.exists():
-            dates = pd.date_range('2024-01-01', periods=200, freq='h')
-            np.random.seed(42)
-            price = [100 + i * 0.01 + (i % 20 - 10) * 0.1 for i in range(200)]
-            df_fix = pd.DataFrame({
-                'timestamp': dates,
-                'open': price,
-                'high': [p + 0.3 for p in price],
-                'low': [p - 0.3 for p in price],
-                'close': price,
-                'volume': 1000
-            })
-            df_fix.to_csv(fixture_path, index=False)
-        df = load_ohlcv_csv(fixture_path)
-
+    fixture_base = Path('data') / 'fixtures'
     all_trades = []
     all_equity = []
 
     for symbol in symbols:
-        df_sig = generate_signals(df.copy())
+        sym_file = fixture_base / f'{symbol.replace("/", "_")}.csv'
+        if args.fixture:
+            # if single fixture passed, maybe use it for all? but better to use per-symbol if exists
+            df = load_ohlcv_csv(args.fixture)
+        elif sym_file.exists():
+            df = load_ohlcv_csv(sym_file)
+        else:
+            fixture_path = Path('data') / 'fixtures' / 'sample_hourly.csv'
+            fixture_path.parent.mkdir(parents=True, exist_ok=True)
+            if not fixture_path.exists():
+                dates = pd.date_range('2024-01-01', periods=200, freq='h')
+                np.random.seed(42)
+                price = [100 + i * 0.01 + (i % 20 - 10) * 0.1 for i in range(200)]
+                df_fix = pd.DataFrame({
+                    'timestamp': dates,
+                    'open': price,
+                    'high': [p + 0.3 for p in price],
+                    'low': [p - 0.3 for p in price],
+                    'close': price,
+                    'volume': 1000
+                })
+                df_fix.to_csv(fixture_path, index=False)
+            df = load_ohlcv_csv(fixture_path)
+        df_sig = generate_signals(df.copy(), stricter_trend=stricter_trend)
         trades, equity_df = backtest_symbol(
             df_sig,
             symbol=symbol,
             taker_fee_bps=taker_fee_bps,
-            slippage_bps=slippage_bps
+            slippage_bps=slippage_bps,
+            rr=rr,
+            min_risk_atr=min_risk_atr,
+            atr_threshold=atr_threshold
         )
         all_trades.extend(trades)
         all_equity.append(equity_df)

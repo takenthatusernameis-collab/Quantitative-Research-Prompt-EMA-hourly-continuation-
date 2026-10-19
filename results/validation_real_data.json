@@ -1,0 +1,75 @@
+{
+  "parent": {
+    "trade_count": 46,
+    "net_profit_factor": 0.009457792682774666,
+    "net_win_rate": 0.2391304347826087,
+    "sharpe_ratio": -25.51139898354646,
+    "n_symbols": 5,
+    "rr": 1.0
+  },
+  "child_b_rr1.5": {
+    "trade_count": 68,
+    "net_profit_factor": 0.012855571028999972,
+    "net_win_rate": 0.25,
+    "sharpe_ratio": -25.147358462000977,
+    "n_symbols": 5,
+    "rr": 1.5
+  },
+  "child_c_minrisk_tuned": {
+    "trade_count": 36,
+    "net_profit_factor": 0.4256546831005531,
+    "net_win_rate": 0.3888888888888889,
+    "sharpe_ratio": -7.989792975627675,
+    "n_symbols": 5,
+    "rr": 1.5,
+    "atr_threshold": 0.75
+  },
+  "delta_b_vs_parent": {
+    "net_profit_factor": 0.003397778346225306,
+    "net_win_rate": 0.010869565217391297,
+    "sharpe_ratio": 0.3640405215454834
+  },
+  "child_b_cost_stress_2x": {
+    "base_taker_fee_bps": 10.0,
+    "base_slippage_bps": 2.0,
+    "stress_taker_fee_bps": 20.0,
+    "stress_slippage_bps": 4.0,
+    "stress_multiplier": 2.0,
+    "base": {
+      "trade_count": 68,
+      "net_profit_factor": 0.012855571028999972,
+      "net_win_rate": 0.25,
+      "sharpe_ratio": -25.147358462000977,
+      "sortino_ratio": -13.511881154680237,
+      "max_drawdown": 0.06489040764621168,
+      "cagr": -0.691937359935332,
+      "net_avg_win": 1.7067181846907704,
+      "net_avg_loss": -44.25365938862112,
+      "exposure": 0.046,
+      "avg_hold_time_bars": 5.397058823529412
+    },
+    "stress": {
+      "trade_count": 68,
+      "net_profit_factor": 0.0013358112266704668,
+      "net_win_rate": 0.16176470588235295,
+      "sharpe_ratio": -25.93069469270503,
+      "sortino_ratio": -14.235001158316225,
+      "max_drawdown": 0.12581720039009706,
+      "cagr": -0.9056327745391701,
+      "net_avg_win": 0.5179561628195043,
+      "net_avg_loss": -74.82827698871994,
+      "exposure": 0.046,
+      "avg_hold_time_bars": 5.397058823529412
+    },
+    "delta": {
+      "net_profit_factor": -0.011519759802329506,
+      "net_win_rate": -0.08823529411764705,
+      "sharpe_ratio": -0.7833362307040517,
+      "sortino_ratio": -0.7231200036359873,
+      "max_drawdown": 0.06092679274388538,
+      "cagr": -0.21369541460383812,
+      "net_avg_win": -1.1887620218712662,
+      "net_avg_loss": -30.57461760009882
+    }
+  }
+}

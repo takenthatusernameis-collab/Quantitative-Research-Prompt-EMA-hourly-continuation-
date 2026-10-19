@@ -18,15 +18,19 @@ from backtest.backtest import backtest_symbol
 from metrics.metrics import calculate_metrics
 
 
-def run(symbols, df, taker_fee_bps, slippage_bps, n):
+def run(symbols, taker_fee_bps, slippage_bps, n, rr=1.0, stricter_trend=False, min_risk_atr=False, atr_threshold=1.0):
     """Run backtest over symbols and return pooled trades + equity + metrics."""
+    from pathlib import Path
+    fixture_base = Path('data') / 'fixtures'
     all_trades = []
     all_equity = []
     for symbol in symbols[:n]:
-        df_sig = generate_signals(df.copy())
+        sym_file = fixture_base / f'{symbol.replace("/", "_")}.csv'
+        df = load_ohlcv_csv(sym_file) if sym_file.exists() else load_ohlcv_csv(Path('data') / 'fixtures' / 'sample_hourly.csv')
+        df_sig = generate_signals(df.copy(), stricter_trend=stricter_trend)
         trades, equity_df = backtest_symbol(
             df_sig, symbol=symbol,
-            taker_fee_bps=taker_fee_bps, slippage_bps=slippage_bps,
+            taker_fee_bps=taker_fee_bps, slippage_bps=slippage_bps, rr=rr, min_risk_atr=min_risk_atr, atr_threshold=atr_threshold,
         )
         all_trades.extend(trades)
         all_equity.append(equity_df)
@@ -52,6 +56,10 @@ def main():
     parser.add_argument('--slippage-bps', type=float, default=2.0)
     parser.add_argument('--stress-multiplier', type=float, default=2.0,
                         help='Multiplier applied to fees/slippage for stress leg')
+    parser.add_argument('--rr', type=float, default=1.0)
+    parser.add_argument('--stricter-trend', action='store_true')
+    parser.add_argument('--min-risk-atr', action='store_true')
+    parser.add_argument('--atr-threshold', type=float, default=1.0)
     args = parser.parse_args()
 
     # Create results directory
@@ -68,36 +76,20 @@ def main():
             save_mcap_ranking(['BTC/USDT', 'ETH/USDT', 'SOL/USDT'], default_mcap)
         symbols = load_mcap_ranking(default_mcap)
 
-    # Load data
-    if args.fixture:
-        df = load_ohlcv_csv(args.fixture)
-    else:
-        fixture_path = Path('data') / 'fixtures' / 'sample_hourly.csv'
-        if not fixture_path.exists():
-            dates = pd.date_range('2024-01-01', periods=200, freq='h')
-            import numpy as np
-            np.random.seed(42)
-            price = [100 + i * 0.01 + (i % 20 - 10) * 0.1 for i in range(200)]
-            df_fix = pd.DataFrame({
-                'timestamp': dates,
-                'open': price,
-                'high': [p + 0.3 for p in price],
-                'low': [p - 0.3 for p in price],
-                'close': price,
-                'volume': 1000,
-            })
-            df_fix.to_csv(fixture_path, index=False)
-        df = load_ohlcv_csv(fixture_path)
+# Data loaded per-symbol in run()
+    df = None
 
     # Baseline leg (1x cost)
     _, _, base_metrics = run(
-        symbols, df, args.taker_fee_bps, args.slippage_bps, args.n,
+        symbols, args.taker_fee_bps, args.slippage_bps, args.n, rr=args.rr,
+        stricter_trend=args.stricter_trend, min_risk_atr=args.min_risk_atr, atr_threshold=args.atr_threshold,
     )
     # Stress leg (multiplier x cost)
     stress_taker = args.taker_fee_bps * args.stress_multiplier
     stress_slippage = args.slippage_bps * args.stress_multiplier
     _, _, stress_metrics = run(
-        symbols, df, stress_taker, stress_slippage, args.n,
+        symbols, stress_taker, stress_slippage, args.n, rr=args.rr,
+        stricter_trend=args.stricter_trend, min_risk_atr=args.min_risk_atr, atr_threshold=args.atr_threshold,
     )
 
     comparison = {

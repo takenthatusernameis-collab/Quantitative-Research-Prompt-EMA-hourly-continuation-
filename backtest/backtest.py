@@ -27,7 +27,7 @@ class Trade:
 def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                    taker_fee_bps: float = 10.0, slippage_bps: float = 2.0,
                    one_position: bool = True, rr: float = 1.0,
-                   min_risk_atr: bool = False) -> tuple:
+                   min_risk_atr: bool = False, atr_threshold: float = 1.0) -> tuple:
     """
     Backtest a single symbol.
 
@@ -148,7 +148,7 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                     continue
                 if min_risk_atr:
                     atr_val = df['atr14'].iloc[i] if 'atr14' in df.columns else float('nan')
-                    if pd.isna(atr_val) or risk < atr_val:
+                    if pd.isna(atr_val) or risk < atr_val * atr_threshold:
                         continue
                 # Calculate SL/TP
                 if sig == 1:  # long
