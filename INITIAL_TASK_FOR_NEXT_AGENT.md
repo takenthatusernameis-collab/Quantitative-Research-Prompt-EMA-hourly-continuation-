@@ -3,7 +3,7 @@
 **Status:** No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading).
 
 ## Current State
-- Tests: 16/16 passed (`python -m pytest tests/ -q`) — verified 2026-10-19T11:18:20Z UTC
+- Tests: 16/16 passed (`python -m pytest tests/ -q`) — verified 2026-10-19T11:19:12Z UTC
 - Git: Clean tracked tree; only untracked `__pycache__/` in backtest/, data/, signals/, tests/
 - OOS pooled (final): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663
 - Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006
@@ -24,4 +24,37 @@
 ## Validation Command
 `python -m pytest tests/ -q`
 
-(End of file - total 25 lines)
+---
+
+# CLEAR INITIAL TASK MESSAGE FOR THE NEXT AGENT
+
+**Task:** Stand by. No active work is authorized.
+
+**Context to read first:**
+- `README.md` — project overview, components, cost model, fill assumptions, universe selection
+- `PROMPT.md` — research protocol, including §3.4 (hypothesis registration and validation rules)
+- `NEXT_AGENT_TASK.md` — durable handoff with full session history and constraints
+- `results/FINAL_DECISION.md` — the final decision (REJECTED) and recommendation
+- `results/RESEARCH_CONCLUSION.md` — research conclusion
+- `results/robustness_summary.md` — robustness checks performed
+
+**Current state (re-verified this session):**
+- Tests: 16/16 passed (`python -m pytest tests/ -q`)
+- Git: Clean tracked tree (only untracked `__pycache__/` directories)
+- Research outcome: CONCLUDED, REJECTED — no live trading recommended
+- Final OOS pooled: 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663
+- Cost stress (2x): PF 0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09
+
+**What to do:**
+1. Check for a new, user-provided pre-registered hypothesis (must include theoretical rationale + falsifiable acceptance criteria).
+2. If **none** is present: stand down with no code changes. Report the state above (tests pass, research concluded/rejected). Do not re-run backtests, parameter searches, or tuning of the rejected baseline.
+3. If a hypothesis **is** provided: validate it against PROMPT.md §3.4 and the final artifacts. Only proceed if it is justified, falsifiable, and explicitly authorized. Do not modify or re-run scripts producing final artifacts unless the hypothesis explicitly requires it with authorization.
+4. Verify state with `python -m pytest tests/ -q` before concluding.
+5. Update `NEXT_AGENT_TASK.md` with the outcome (or keep it in standby). Do not commit unless explicitly requested.
+
+**Constraints (from PROMPT.md §3.4 and FINAL_DECISION.md):**
+- Any new work requires a fresh, pre-registered hypothesis before implementation.
+- Do not modify, overwrite, or re-run scripts producing final artifacts without explicit authorization tied to the new hypothesis.
+- If no new authorized hypothesis is provided: stand down with no changes.
+
+(End of file - total 59 lines)
