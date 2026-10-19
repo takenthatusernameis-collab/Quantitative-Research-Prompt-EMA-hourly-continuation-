@@ -3,7 +3,7 @@
 **Status:** No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading).
 
 ## Current State
-- Tests: 16/16 passed (`python -m pytest tests/ -q`) — verified 2026-10-19T11:11:54Z UTC
+- Tests: 16/16 passed (`python -m pytest tests/ -q`) — verified 2026-10-19T11:17:06Z UTC
 - Git: Clean tracked tree; only untracked `__pycache__/` in backtest/, data/, signals/, tests/
 - OOS pooled (final): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663
 - Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006
