@@ -1,21 +1,27 @@
 # INITIAL TASK MESSAGE FOR NEXT AGENT
 
 ## Objective
-No active task. Research on EMA hourly continuation is concluded (REJECTED). No new experiments without a pre-registered hypothesis card.
+No active task. EMA hourly continuation research is concluded and **REJECTED**. No experiments to run.
 
 ## Current State
-Baseline rejected: OOS pooled net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 (666 trades). All robustness variants negative. Research concluded. Tests 16/16 pass. Git tracked tree clean.
+- Decision: REJECTED / CONCLUDED (no live trading).
+- OOS pooled (net-of-costs): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663 from `results/20261019_064215_oos_pooled/summary.json`.
+- All robustness checks negative; cost stress worsens performance.
+- Tests: 16/16 pass (`python -m pytest tests/ -q`).
+- Git: tracked tree clean; only untracked `__pycache__/` directories and `.pytest_cache/` present.
+- Artifacts final: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/REJECTED_SUMMARY.md`.
 
 ## Ground Truth
-Decision: **REJECTED / CONCLUDED**. No live trading.
+Research artifacts are immutable unless a new pre-registered hypothesis exists. Do not re-run searches or tune the rejected baseline.
 
-## Handoff Notes (added 2026-10-19)
-- Verified all ground-truth claims independently: pytest 16/16 pass, git tree clean, OOS summary.json matches handoff numbers exactly.
-- `NEXT_AGENT_TASK.md` updated to CLOSED status with verification section.
-- No code changes made; research artifacts are final and untouched.
-- If a new hypothesis is ever proposed, it must be pre-registered (theoretical rationale + falsifiable acceptance criteria) before any implementation, per `results/FINAL_DECISION.md` recommendation and PROMPT.md §3.4.
+## Handoff Notes
+- Verified independently: tests pass, git clean, OOS metrics match handoff.
+- `NEXT_AGENT_TASK.md` marked CLOSED with verification details.
+- No code changes were made.
+
+## Constraints
+- Any new work requires a fresh, pre-registered hypothesis card (theoretical rationale + falsifiable acceptance criteria) before implementation (PROMPT.md §3.4; `results/FINAL_DECISION.md`).
+- If no new authorized hypothesis is provided, stand down with no changes.
 
 ## Validation Command
 `python -m pytest tests/ -q`
-
-(End of file)
