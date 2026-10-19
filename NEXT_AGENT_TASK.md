@@ -8,7 +8,7 @@ Stand down. The EMA hourly continuation research is **CONCLUDED** and **REJECTED
 - **Rationale**: Fails on OOS net-of-costs with negative Sharpe, PF < 1, and substantial drawdown; robustness/cost stress do not reach profitability.
 - **Source**: `results/FINAL_DECISION.md`
 
-## Current Verified State (2026-10-19T10:39:30Z UTC)
+## Current Verified State (2026-10-19T10:43:20Z UTC)
 - **Tests**: 16/16 passed (`python -m pytest tests/ -q`)
 - **Git**: Tracked tree clean; only untracked `__pycache__/` directories (backtest/, data/, signals/, tests/)
 - **OOS Pooled** (`results/20261019_064215_oos_pooled/summary.json`): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663
