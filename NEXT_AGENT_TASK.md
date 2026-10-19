@@ -8,7 +8,7 @@
 - Rationale: Fails OOS net-of-costs with negative Sharpe, PF < 1, substantial drawdown. Robustness and cost stress do not reach profitability.
 - Details: `results/FINAL_DECISION.md`
 
-## Verified State (2026-10-19T11:00:50Z UTC)
+## Verified State (2026-10-19T11:02:35Z UTC)
 - Tests: 16/16 passed (`python -m pytest tests/ -q`)
 - Git: Clean tracked tree; only untracked `__pycache__/` in backtest/, data/, signals/, tests/
 - OOS Pooled (`results/20261019_064215_oos_pooled/summary.json`): 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663
