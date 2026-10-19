@@ -1,0 +1,28 @@
+{
+  "parent": {
+    "trade_count": 15,
+    "net_profit_factor": Infinity,
+    "net_win_rate": 1.0,
+    "sharpe_ratio": -6.246393719864085
+  },
+  "children": {
+    "A_stricter_trend": {
+      "trade_count": 15,
+      "net_profit_factor": Infinity,
+      "net_win_rate": 1.0,
+      "sharpe_ratio": -6.246393719864085
+    },
+    "B_rr1.5": {
+      "trade_count": 15,
+      "net_profit_factor": Infinity,
+      "net_win_rate": 1.0,
+      "sharpe_ratio": 5.663826775050059
+    },
+    "C_min_risk_atr": {
+      "trade_count": 0,
+      "net_profit_factor": 0.0,
+      "net_win_rate": 0.0,
+      "sharpe_ratio": 0.0
+    }
+  }
+}

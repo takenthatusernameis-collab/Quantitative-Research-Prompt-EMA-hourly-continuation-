@@ -26,7 +26,8 @@ class Trade:
 
 def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                    taker_fee_bps: float = 10.0, slippage_bps: float = 2.0,
-                   one_position: bool = True) -> tuple:
+                   one_position: bool = True, rr: float = 1.0,
+                   min_risk_atr: bool = False) -> tuple:
     """
     Backtest a single symbol.
 
@@ -34,6 +35,9 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
     SL/TP at 1:1 RR where risk = |entry - EMA100[t]| on signal bar
     """
     df = df.copy()
+    if min_risk_atr and 'atr14' not in df.columns:
+        tr = pd.concat([df['high']-df['low'], (df['high']-df['close'].shift()).abs(), (df['low']-df['close'].shift()).abs()], axis=1).max(axis=1)
+        df['atr14'] = tr.rolling(14).mean()
     trades: List[Trade] = []
     equity = 10000.0  # starting equity
     equity_curve = []
@@ -142,14 +146,18 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                 # Skip if risk <= 0 or pathological
                 if risk <= 1e-10:
                     continue
+                if min_risk_atr:
+                    atr_val = df['atr14'].iloc[i] if 'atr14' in df.columns else float('nan')
+                    if pd.isna(atr_val) or risk < atr_val:
+                        continue
                 # Calculate SL/TP
                 if sig == 1:  # long
-                    sl = entry_price - risk  # SL at EMA100 level
-                    tp = entry_price + risk
+                    sl = entry_price - risk
+                    tp = entry_price + rr * risk
                     side = 'long'
                 elif sig == -1:  # short
-                    sl = entry_price + risk  # SL above
-                    tp = entry_price - risk  # TP below
+                    sl = entry_price + risk
+                    tp = entry_price - rr * risk
                     side = 'short'
                 else:
                     continue
