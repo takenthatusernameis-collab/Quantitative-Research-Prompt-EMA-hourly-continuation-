@@ -97,6 +97,41 @@ anything.
 
 ---
 
+## Batch 3 - expansion to N = 37
+
+- Snapshot: `universe/mcap_snapshot_20261019_163400.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-19T16:34:00Z
+- Previous N -> new N: **27 -> 37** (ranks 28-37 of the working universe)
+- Expansion floor: ONDO at 2 122 015 803 USD (the lowest market cap already in
+  the universe in this snapshot); every added name is strictly below it.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Market cap |
+|---|---|---|
+| 50 | DOT | 1 992 608 822 |
+| 51 | WLD | 1 958 399 586 |
+| 56 | MNT | 1 768 796 975 |
+| 59 | PEPE | 1 734 788 742 |
+| 62 | SKY | 1 629 404 908 |
+| 63 | ICP | 1 598 220 188 |
+| 65 | HTX | 1 469 017 242 |
+| 66 | ARB | 1 358 407 731 |
+| 70 | ETC | 1 234 200 245 |
+| 72 | JST | 1 122 408 238 |
+
+### Rank drift, batch 2 snapshot (14:42) vs batch 3 snapshot (16:34)
+
+Max absolute market-cap drift across the 27 names already in the universe was
+**2.33 %** (ENA +2.33 %, NEAR +1.83 %, ZEC +1.80 %). Two names changed rank
+(NEAR 20 -> 19, QNT 40 -> 38) because of names that are **not** in the working
+universe, so the relative order of the 27 already-included names is unchanged.
+The global strictly-descending market-cap order is therefore preserved across
+the three snapshots, and the batch-3 additions can be appended without
+reordering anything.
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -104,6 +139,7 @@ anything.
 | Batch 0 | 5 | BTC, ETH, SOL, BNB, XRP | `results/20261019_135940_grid/` |
 | Batch 1 | 17 | + TRX, ZEC, DOGE, XMR, LINK, ADA, NEAR, XLM, BCH, LTC, UNI, AVAX | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 2 | 27 | complete - SUI, GRAM, HBAR, TAO, SHIB, CRO, QNT, ENA, AAVE, ONDO (66 pairs each) | `results/20261019_135940_grid/` |
+| Batch 3 | 37 | complete - DOT, WLD, MNT, PEPE, SKY, ICP, HTX, ARB, ETC, JST (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.
