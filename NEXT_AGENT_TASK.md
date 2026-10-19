@@ -11,7 +11,7 @@ If the user provides no new pre-registered hypothesis, stand down with no change
 - Per-symbol (net PF): BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006 (all < 1).
 - Cost stress (2x): base 0.6906 → stress 0.4691; Sharpe 0.8550 → -0.7038; max DD 1.89 → 4.09 (from `results/20261019_062710_cost_stress/summary.md`).
 - Tests: 16/16 pass (`python -m pytest tests/ -q`).
-- Tracked git tree clean.
+- Tracked git tree clean (only untracked `__pycache__/` dirs).
 - Final artifacts (immutable): `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `results/robustness_summary.md`, `results/20261019_064215_oos_pooled/summary.json`.
 
 ## Constraints (Critical)
@@ -23,10 +23,10 @@ If the user provides no new pre-registered hypothesis, stand down with no change
 Research artifacts are immutable. The decision is final. Only work on the repo if the user supplies a new pre-registered hypothesis card.
 
 ## Handoff Notes
-- Handoff re-verified by this session (2026-10-19T09:36:00Z UTC). Tests re-run: 16/16 pass via `python -m pytest tests/ -q`. Git tracked tree clean (only untracked `__pycache__/` dirs). All artifacts consistent with OOS metrics (666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006). Cost stress consistent (0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09). No new hypothesis provided by user; stand-down no-op completed. No code changes made.
+- Handoff re-verified by this session (2026-10-19T09:37:40Z UTC). Tests re-run: 16/16 pass via `python -m pytest tests/ -q`. Git tracked tree clean (only untracked `__pycache__/` dirs). All artifacts consistent with OOS metrics (666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006). Cost stress consistent (0.6906→0.4691, Sharpe 0.8550→-0.7038, max DD 1.89→4.09). No new hypothesis provided by user; stand-down no-op completed. No code changes made.
 
 ## Initial Task for Next Agent (copy-ready)
-> "No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading). Verified: tests 16/16 pass (`python -m pytest tests/ -q`); git tracked tree clean (only untracked `__pycache__/` dirs); final artifacts in results/ (FINAL_DECISION.md, RESEARCH_CONCLUSION.md, robustness_summary.md, 20261019_064215_oos_pooled/summary.json) match OOS metrics (666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006). Cost stress consistent (0.6906->0.4691, Sharpe 0.8550->-0.7038, max DD 1.89->4.09). Decision FINAL and REJECTED per results/FINAL_DECISION.md. Handoff verified 2026-10-19T09:36:00Z UTC. Do NOT run backtests/parameter searches/tuning of the rejected baseline without explicit authorization. If the user provides a new pre-registered hypothesis (theoretical rationale + falsifiable acceptance criteria), start by validating it against PROMPT.md §3.4 and final artifacts; otherwise stand down with no changes. Validation: python -m pytest tests/ -q"
+> "No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading). Verified: tests 16/16 pass (`python -m pytest tests/ -q`); git tracked tree clean (only untracked `__pycache__/` dirs); final artifacts in results/ (FINAL_DECISION.md, RESEARCH_CONCLUSION.md, robustness_summary.md, 20261019_064215_oos_pooled/summary.json) match OOS metrics (666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663; per-symbol net PF BTC 0.6860, ETH 0.7861, SOL 0.8792, BNB 0.6955, XRP 0.8006). Cost stress consistent (0.6906->0.4691, Sharpe 0.8550->-0.7038, max DD 1.89->4.09). Decision FINAL and REJECTED per results/FINAL_DECISION.md. Handoff verified 2026-10-19T09:37:40Z UTC. Do NOT run backtests/parameter searches/tuning of the rejected baseline without explicit authorization. If the user provides a new pre-registered hypothesis (theoretical rationale + falsifiable acceptance criteria), start by validating it against PROMPT.md §3.4 and final artifacts; otherwise stand down with no changes. Validation: python -m pytest tests/ -q"
 
 ## Validation Command
 `python -m pytest tests/ -q`
