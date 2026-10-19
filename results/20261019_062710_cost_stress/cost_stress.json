@@ -1,0 +1,43 @@
+{
+  "base_taker_fee_bps": 10.0,
+  "base_slippage_bps": 2.0,
+  "stress_taker_fee_bps": 20.0,
+  "stress_slippage_bps": 4.0,
+  "stress_multiplier": 2.0,
+  "base": {
+    "trade_count": 1921,
+    "net_profit_factor": 0.6906405063593863,
+    "net_win_rate": 0.40655908381051536,
+    "sharpe_ratio": 0.8550362361360128,
+    "sortino_ratio": 0.6113249845562061,
+    "max_drawdown": 1.8873910857786032,
+    "cagr": 0.0,
+    "net_avg_win": 212.80317350649048,
+    "net_avg_loss": -211.0922244707242,
+    "exposure": 0.19777272727272727,
+    "avg_hold_time_bars": 11.067152524726705
+  },
+  "stress": {
+    "trade_count": 1921,
+    "net_profit_factor": 0.46911291805591343,
+    "net_win_rate": 0.398750650702759,
+    "sharpe_ratio": -0.703838717487012,
+    "sortino_ratio": -0.17944780671756053,
+    "max_drawdown": 4.092220790113825,
+    "cagr": 0.0,
+    "net_avg_win": 175.87286278579347,
+    "net_avg_loss": -248.63841346859599,
+    "exposure": 0.19777272727272727,
+    "avg_hold_time_bars": 11.067152524726705
+  },
+  "delta": {
+    "net_profit_factor": -0.2215275883034729,
+    "net_win_rate": -0.007808433107756363,
+    "sharpe_ratio": -1.5588749536230249,
+    "sortino_ratio": -0.7907727912737667,
+    "max_drawdown": 2.2048297043352223,
+    "cagr": 0,
+    "net_avg_win": -36.93031072069701,
+    "net_avg_loss": -37.54618899787178
+  }
+}

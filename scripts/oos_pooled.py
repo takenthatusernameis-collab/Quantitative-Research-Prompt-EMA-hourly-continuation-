@@ -24,7 +24,7 @@ from metrics.metrics import calculate_metrics
 
 
 def run_symbol(symbol, df, test_fraction, taker_fee_bps, slippage_bps,
-               rr, stricter_trend, min_risk_atr, atr_threshold):
+               rr, stricter_trend, min_risk_atr, atr_threshold, conservative_exit=True):
     n = len(df)
     cut = int(n * (1.0 - test_fraction))
     if cut < 1:
@@ -46,7 +46,7 @@ def run_symbol(symbol, df, test_fraction, taker_fee_bps, slippage_bps,
         df_sig, symbol=symbol,
         taker_fee_bps=taker_fee_bps, slippage_bps=slippage_bps, rr=rr,
         min_risk_atr=min_risk_atr, atr_threshold=atr_threshold,
-        entry_start_index=cut,
+        entry_start_index=cut, conservative_exit=conservative_exit,
     )
 
     # Restrict equity curve to test window for test-window metrics
@@ -73,6 +73,8 @@ def main():
     parser.add_argument('--stricter-trend', action='store_true', default=False)
     parser.add_argument('--min-risk-atr', action='store_true', default=True)
     parser.add_argument('--atr-threshold', type=float, default=0.75)
+    parser.add_argument('--aggressive-exit', action='store_true', default=False,
+                        help='On same-bar SL/TP conflict, take TP (favorable) instead of conservative SL')
     parser.add_argument('--fixture-base', type=str, default='data/fixtures')
     args = parser.parse_args()
 
@@ -93,6 +95,7 @@ def main():
         'stricter_trend': args.stricter_trend,
         'min_risk_atr': args.min_risk_atr,
         'atr_threshold': args.atr_threshold,
+        'conservative_exit': not args.aggressive_exit,
         'symbols': symbols,
         'source_config': 'config/default.json',
     }
@@ -110,6 +113,7 @@ def main():
         trades, test_equity, sym_metrics, train, test = run_symbol(
             symbol, df, args.test_fraction, args.taker_fee_bps, args.slippage_bps,
             args.rr, args.stricter_trend, args.min_risk_atr, args.atr_threshold,
+            conservative_exit=not args.aggressive_exit,
         )
         all_trades.extend(trades)
         per_symbol[symbol] = sym_metrics
@@ -129,7 +133,8 @@ def main():
         cut = int(len(df) * (1.0 - args.test_fraction))
         _, te, _, _, _ = run_symbol(symbol, df, args.test_fraction, args.taker_fee_bps,
                                     args.slippage_bps, args.rr, args.stricter_trend,
-                                    args.min_risk_atr, args.atr_threshold)
+                                    args.min_risk_atr, args.atr_threshold,
+                                    conservative_exit=not args.aggressive_exit)
         if len(te) > 0:
             test_equities.append(te)
 

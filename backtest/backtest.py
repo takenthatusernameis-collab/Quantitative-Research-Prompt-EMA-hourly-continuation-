@@ -28,7 +28,7 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                    taker_fee_bps: float = 10.0, slippage_bps: float = 2.0,
                    one_position: bool = True, rr: float = 1.0,
                    min_risk_atr: bool = False, atr_threshold: float = 1.0,
-                   entry_start_index: int = 0) -> tuple:
+                   entry_start_index: int = 0, conservative_exit: bool = True) -> tuple:
     """
     Backtest a single symbol.
 
@@ -73,12 +73,14 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                 tp_hit = high >= entry_trade.tp
                 sl_hit = low <= entry_trade.sl
                 if tp_hit and sl_hit:
-                    # Same-bar conflict: treat conservatively (adverse first for long? - if price goes down through SL first conceptually, but we only know range)
-                    # Default conservative: take SL first (worse case) or as per implementation choice - document
-                    # Here: prioritize SL on conflict (adverse)
-                    exit_price = entry_trade.sl
+                    # Same-bar conflict: conservative = SL first (adverse), aggressive = TP first (favorable)
+                    if conservative_exit:
+                        exit_price = entry_trade.sl
+                        exit_reason = 'sl'
+                    else:
+                        exit_price = entry_trade.tp
+                        exit_reason = 'tp'
                     pnl = (exit_price - entry_trade.entry_price)
-                    exit_reason = 'sl'
                 elif tp_hit:
                     exit_price = entry_trade.tp
                     pnl = (exit_price - entry_trade.entry_price)
@@ -107,10 +109,14 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                 tp_hit = low <= entry_trade.tp  # for short, TP is below
                 sl_hit = high >= entry_trade.sl  # for short, SL is above
                 if tp_hit and sl_hit:
-                    # Same-bar conflict: prioritize SL (adverse for short)
-                    exit_price = entry_trade.sl
+                    # Same-bar conflict: conservative = SL first (adverse), aggressive = TP first (favorable)
+                    if conservative_exit:
+                        exit_price = entry_trade.sl
+                        exit_reason = 'sl'
+                    else:
+                        exit_price = entry_trade.tp
+                        exit_reason = 'tp'
                     pnl = (entry_trade.entry_price - exit_price)
-                    exit_reason = 'sl'
                 elif tp_hit:
                     exit_price = entry_trade.tp
                     pnl = (entry_trade.entry_price - exit_price)

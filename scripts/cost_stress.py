@@ -36,9 +36,10 @@ def run(symbols, taker_fee_bps, slippage_bps, n, rr=1.0, stricter_trend=False, m
         all_equity.append(equity_df)
 
     if all_equity:
-        equity_result = all_equity[0].copy()
+        min_len = min(len(eq) for eq in all_equity)
+        equity_result = all_equity[0].iloc[:min_len].copy()
         import numpy as np
-        equity_vals = np.mean([eq['equity'].values for eq in all_equity], axis=0)
+        equity_vals = np.mean([eq['equity'].values[:min_len] for eq in all_equity], axis=0)
         equity_result['equity'] = equity_vals
     else:
         equity_result = pd.DataFrame(columns=['timestamp', 'equity'])
