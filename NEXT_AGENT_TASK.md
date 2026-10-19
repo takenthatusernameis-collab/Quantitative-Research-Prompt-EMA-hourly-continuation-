@@ -23,7 +23,7 @@ If the user provides no new pre-registered hypothesis, stand down with no change
 Research artifacts are immutable. The decision is final. Only work on the repo if the user supplies a new pre-registered hypothesis card.
 
 ## Handoff Notes
-- This session confirmed: tests pass (16/16), git status clean on tracked files (only `__pycache__/` untracked), OOS metrics match documented values, and all final artifacts exist and are consistent.
+- This session completed the prior handoff task: verified tests pass (16/16), git tracked tree clean (only `__pycache__/` untracked), OOS metrics match documented values, all final artifacts exist and are consistent.
 - Prior agent's work is complete and archived. No further experiments authorized without a new pre-registered hypothesis card.
 - Prompts/constraints reference: `PROMPT.md`, `results/FINAL_DECISION.md`.
 
