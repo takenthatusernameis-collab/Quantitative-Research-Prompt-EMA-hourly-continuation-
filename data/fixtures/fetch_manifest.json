@@ -64,9 +64,9 @@
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
     "timezone": "UTC",
-    "rows": 99,
-    "start": "2026-10-15 12:00:00+00:00",
-    "end": "2026-10-19 14:00:00+00:00",
+    "rows": 22000,
+    "start": "2024-04-16 00:00:00+00:00",
+    "end": "2026-10-19 15:00:00+00:00",
     "file": "data/fixtures/CRO_USDT.csv"
   },
   {

@@ -40,7 +40,15 @@ def fetch_candles(symbol: str, start_at: int = None, end_at: int = None,
 
 
 def fetch_full_history(symbol: str, target_bars: int, end_ts: int = None) -> pd.DataFrame:
-    """Paginate backwards from end_ts (or now) until target_bars collected or history exhausted."""
+    """Paginate backwards from end_ts (or now) until target_bars collected or history exhausted.
+
+    KuCoin does not always honour the requested page size: a `limit=100` request can
+    come back with 99 rows (e.g. when the requested end timestamp falls on a bar that
+    is excluded from the response). Treating any short page as "end of history" used
+    to truncate the download to that first page - CRO/USDT was fetched with only 99
+    hourly bars instead of 22 000. Pagination therefore now stops only when the API
+    returns nothing, when the oldest bar stops advancing, or when the target is met.
+    """
     all_rows = []
     current_end = end_ts
     last_oldest = None
@@ -50,10 +58,7 @@ def fetch_full_history(symbol: str, target_bars: int, end_ts: int = None) -> pd.
             break
         all_rows.extend(rows)
         oldest_ts = int(rows[-1][0])
-        # If the API returned fewer than requested, we've likely hit the beginning of history
-        if len(rows) < MAX_PER_REQUEST:
-            break
-        # Guard against infinite loop if the same oldest bar repeats
+        # Guard against an infinite loop if the API keeps returning the same page
         if last_oldest is not None and oldest_ts >= last_oldest:
             break
         last_oldest = oldest_ts
