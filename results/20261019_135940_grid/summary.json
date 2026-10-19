@@ -1,23 +1,23 @@
 {
   "pooled": {
-    "n_cells": 1122,
-    "n_symbols": 17,
+    "n_cells": 1782,
+    "n_symbols": 27,
     "n_pairs": 66,
-    "total_trades": 927431,
-    "mean_trades_per_cell": 826.5873440285205,
-    "mean_net_pf": 0.4067311826468755,
-    "median_net_pf": 0.42220034250090016,
+    "total_trades": 1483132,
+    "mean_trades_per_cell": 832.2850729517396,
+    "mean_net_pf": 0.43888012981254065,
+    "median_net_pf": 0.44944697088644864,
     "best_net_pf": 0.9219251904911006,
-    "mean_net_sharpe": -8.461236519757216,
+    "mean_net_sharpe": -7.975993699171751,
     "max_net_sharpe": -0.42276820320062514,
     "n_cells_net_pf_gt_1": 0,
     "frac_cells_net_pf_gt_1": 0.0,
     "n_exploratory_signal": 0,
-    "n_rejected": 1122,
+    "n_rejected": 1782,
     "n_blocked": 0,
     "null_frac_net_pf_gt_1": 0.5,
     "excess_vs_null": -0.5,
-    "multiple_testing_note": "1122 cells tested. Under a no-edge null, ~50% of cells should show net PF > 1 by chance alone; observed 0.0%."
+    "multiple_testing_note": "1782 cells tested. Under a no-edge null, ~50% of cells should show net PF > 1 by chance alone; observed 0.0%."
   },
-  "n_cells": 1122
+  "n_cells": 1782
 }
