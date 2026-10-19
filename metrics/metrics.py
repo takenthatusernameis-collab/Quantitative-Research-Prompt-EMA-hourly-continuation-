@@ -97,29 +97,34 @@ def avg_win_loss(trades: List) -> tuple:
 
 
 def avg_hold_time(trades: List) -> float:
-    """Calculate average hold time (in periods/bars)."""
+    """Calculate average hold time (in bars)."""
     if not trades:
         return 0.0
     holds = []
     for t in trades:
-        # If timestamps are datetime, compute diff; else bar diff
+        entry_bar = getattr(t, 'bar_index', None)
+        exit_bar = getattr(t, 'exit_bar_index', None)
+        if entry_bar is not None and exit_bar is not None and exit_bar >= 0:
+            holds.append(float(exit_bar - entry_bar))
+            continue
+        # Fallback to datetime difference in hours
         if hasattr(t.entry_time, 'to_pydatetime') or isinstance(t.entry_time, pd.Timestamp):
             try:
                 if hasattr(t.exit_time, 'to_pydatetime') or isinstance(t.exit_time, pd.Timestamp):
                     delta = (pd.Timestamp(t.exit_time) - pd.Timestamp(t.entry_time))
-                    holds.append(delta.total_seconds() / 3600.0)  # hours
+                    holds.append(delta.total_seconds() / 3600.0)
                     continue
             except Exception:
                 pass
-        # Fallback to bar index difference
-        if hasattr(t, 'bar_index'):
-            pass
-    # Simple bar-based if no time
-    holds = []
-    for t in trades:
-        # try to get indices if stored
-        pass
     return float(np.mean(holds)) if holds else 0.0
+
+
+def exposure(equity_df: pd.DataFrame) -> float:
+    """Fraction of bars with an open position (exposure)."""
+    if len(equity_df) == 0 or 'position' not in equity_df.columns:
+        return 0.0
+    pos = equity_df['position'].values
+    return float(np.mean(pos != 0))
 
 
 def calculate_metrics(trades: List, equity_df: pd.DataFrame, symbol: str = 'all') -> Dict[str, Any]:
@@ -163,4 +168,6 @@ def calculate_metrics(trades: List, equity_df: pd.DataFrame, symbol: str = 'all'
     # Also store gross explicitly
     metrics['gross_win_rate'] = wr
     metrics['gross_profit_factor'] = pf
+    metrics['avg_hold_time_bars'] = float(avg_hold_time(trades))
+    metrics['exposure'] = float(exposure(equity_df))
     return metrics

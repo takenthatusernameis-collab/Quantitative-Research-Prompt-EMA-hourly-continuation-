@@ -21,6 +21,7 @@ class Trade:
     pnl_net: float
     exit_reason: str  # 'tp', 'sl', 'end'
     bar_index: int
+    exit_bar_index: int = -1
 
 
 def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
@@ -87,6 +88,7 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                 pnl_net = pnl - cost_per_side * entry_trade.entry_price - cost_per_side * exit_price  # rough approximation
                 entry_trade.exit_time = exit_time
                 entry_trade.exit_price = exit_price
+                entry_trade.exit_bar_index = i
                 entry_trade.pnl = pnl
                 entry_trade.pnl_net = pnl_net
                 entry_trade.exit_reason = exit_reason
@@ -117,6 +119,7 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
                 pnl_net = pnl - cost_per_side * entry_trade.entry_price - cost_per_side * exit_price
                 entry_trade.exit_time = exit_time
                 entry_trade.exit_price = exit_price
+                entry_trade.exit_bar_index = i
                 entry_trade.pnl = pnl
                 entry_trade.pnl_net = pnl_net
                 entry_trade.exit_reason = exit_reason
@@ -184,6 +187,7 @@ def backtest_symbol(df: pd.DataFrame, symbol: str = 'SYMBOL',
         pnl_net = pnl - cost_per_side * entry_trade.entry_price - cost_per_side * exit_price
         entry_trade.exit_time = exit_time
         entry_trade.exit_price = exit_price
+        entry_trade.exit_bar_index = last_idx
         entry_trade.pnl = pnl
         entry_trade.pnl_net = pnl_net
         entry_trade.exit_reason = 'end'

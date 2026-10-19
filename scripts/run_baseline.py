@@ -13,32 +13,80 @@ from universe.universe import load_mcap_ranking, save_mcap_ranking
 from backtest.backtest import backtest_symbol
 from metrics.metrics import calculate_metrics
 
+CONFIG_DEFAULTS = {
+    'ema_fast': 50,
+    'ema_slow': 100,
+    'taker_fee_bps': 10.0,
+    'slippage_bps': 2.0,
+    'warmup_bars': 100,
+    'risk_pathological_threshold': 1e-10,
+}
+
+REQUIRED_CONFIG_KEYS = {'ema_fast', 'ema_slow', 'taker_fee_bps', 'slippage_bps'}
+
+
+def load_config(path: str | Path | None) -> dict:
+    """Load config from JSON file, merging with defaults."""
+    config = dict(CONFIG_DEFAULTS)
+    if path is None:
+        return config
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(f"Config file not found: {path}")
+    with path.open('r') as f:
+        file_config = json.load(f)
+    if not isinstance(file_config, dict):
+        raise ValueError(f"Config file {path} must contain a JSON object")
+    missing = REQUIRED_CONFIG_KEYS - set(file_config.keys())
+    if missing:
+        raise ValueError(f"Config missing required keys: {sorted(missing)}")
+    config.update(file_config)
+    return config
+
 
 def main():
     parser = argparse.ArgumentParser(description='Run EMA hourly continuation baseline')
     parser.add_argument('--fixture', type=str, help='Path to CSV fixture')
     parser.add_argument('--mcap', type=str, help='Path to mcap ranking JSON')
+    parser.add_argument('--config', type=str, help='Path to JSON config file')
     parser.add_argument('--n', type=int, default=3, help='Number of symbols to process')
-    parser.add_argument('--taker-fee-bps', type=float, default=10.0)
-    parser.add_argument('--slippage-bps', type=float, default=2.0)
+    parser.add_argument('--taker-fee-bps', type=float, default=None)
+    parser.add_argument('--slippage-bps', type=float, default=None)
     args = parser.parse_args()
+
+    config = load_config(args.config)
+
+    # CLI args override config values
+    if args.taker_fee_bps is not None:
+        config['taker_fee_bps'] = args.taker_fee_bps
+    if args.slippage_bps is not None:
+        config['slippage_bps'] = args.slippage_bps
+
+    taker_fee_bps = float(config['taker_fee_bps'])
+    slippage_bps = float(config['slippage_bps'])
+    ema_fast = int(config['ema_fast'])
+    ema_slow = int(config['ema_slow'])
 
     # Create results directory
     timestamp = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
     results_dir = Path('results') / timestamp
     results_dir.mkdir(parents=True, exist_ok=True)
 
-    config = {
+    run_config = {
         'timestamp': timestamp,
-        'taker_fee_bps': args.taker_fee_bps,
-        'slippage_bps': args.slippage_bps,
+        'taker_fee_bps': taker_fee_bps,
+        'slippage_bps': slippage_bps,
+        'ema_fast': ema_fast,
+        'ema_slow': ema_slow,
         'fixture': args.fixture,
         'mcap': args.mcap,
+        'config': args.config,
         'n': args.n,
-        'strategy': 'ema_hourly_continuation'
+        'strategy': 'ema_hourly_continuation',
+        'source_config': dict(config),
     }
     with open(results_dir / 'config.json', 'w') as f:
-        json.dump(config, f, indent=2)
+        json.dump(run_config, f, indent=2)
 
     # Load universe
     if args.mcap:
@@ -82,8 +130,8 @@ def main():
         trades, equity_df = backtest_symbol(
             df_sig,
             symbol=symbol,
-            taker_fee_bps=args.taker_fee_bps,
-            slippage_bps=args.slippage_bps
+            taker_fee_bps=taker_fee_bps,
+            slippage_bps=slippage_bps
         )
         all_trades.extend(trades)
         all_equity.append(equity_df)
@@ -134,7 +182,7 @@ def main():
         f.write(f"| CAGR | {metrics.get('cagr', 0):.4f} |\n\n")
         f.write('## Processing\n\n')
         f.write(f'- Processed in market cap descending order: {", ".join(symbols)}\n')
-        f.write(f'- Costs: {args.taker_fee_bps} bps taker + {args.slippage_bps} bps slippage per side\n')
+        f.write(f'- Costs: {taker_fee_bps} bps taker + {slippage_bps} bps slippage per side\n')
 
     print(f'Results saved to {results_dir}')
     print(f'Trades: {len(all_trades)}')
