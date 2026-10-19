@@ -2,7 +2,7 @@
 
 No active task. EMA hourly continuation research is CONCLUDED and REJECTED (no live trading).
 
-Verified 2026-10-19T10:50:22Z UTC:
+Verified 2026-10-19T10:51:19Z UTC:
 - Tests: 16/16 pass (`python -m pytest tests/ -q`)
 - Git tracked tree clean (only untracked `__pycache__/` dirs: backtest/, data/, signals/, tests/)
 - Final artifacts in results/ confirm OOS pooled: 666 trades, net PF 0.6890, net Sharpe -1.9443, max DD 0.6663
