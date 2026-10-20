@@ -1,6 +1,6 @@
 # NEXT AGENT TASK
 
-## Status update (2026-10-20): batch 14 COMPLETE. Universe N=147, grid 9,702/9,702 cells, 0 credible candidates. Next: batch 15 (N 147 -> 157).
+## Status update (2026-10-20): batch 15 COMPLETE. Universe N=157, grid 10,362/10,362 cells, 0 credible candidates. Next: batch 16 (N 157 -> 167) if continuing.
 
 ## Objective
 **Batch 14 grid COMPLETE.** All 660 cells (10 symbols x 66 EMA pairs) are finished;

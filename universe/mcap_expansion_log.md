@@ -1039,9 +1039,36 @@ cells above 1.0 against a ~50 % null).
 | Batch 12 | 127 | complete - DYDX, MINA, ZRX, WEMIX, GMX, PROM, W, ARKM, LPT, SAFE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 13 | 137 | complete - KSM, NMR, YFI, HNT, ORDI, KAVA, CKB, DUSK, AMP, VELO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 14 | 147 | complete - ZETA, ALT, AXL, BABYDOGE, TFUEL, IO, SUSHI, EDU, DGB, DEXE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 15 | 157 | complete - RLC, ROSE, TURBO, XPR, ENJ, T, ONT, ASTR, PHA, MEME (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.
 OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in
 `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`,
 1h, UTC).
+
+## Batch 15 - expansion to N = 157 (COMPLETED 2026-10-20)
+
+- Previous N -> new N: **147 -> 157** (ranks 148-157)
+- Snapshot: `universe/mcap_snapshot_20261020_041243.json` (fetched 2026-10-20T04:12:43Z)
+- Added (market cap at snapshot time, USD):
+
+| # | Symbol | Market cap |
+|---|---|---|
+| 148 | RLC/USDT | 60,905,772 |
+| 149 | ROSE/USDT | 59,243,861 |
+| 150 | TURBO/USDT | 57,952,190 |
+| 151 | XPR/USDT | 55,086,574 |
+| 152 | ENJ/USDT | 54,873,285 |
+| 153 | T/USDT | 53,675,358 |
+| 154 | ONT/USDT | 52,871,091 |
+| 155 | ASTR/USDT | 52,502,307 |
+| 156 | PHA/USDT | 51,979,788 |
+| 157 | MEME/USDT | 51,673,755 |
+
+- OHLCV: fetched via `scripts/fetch_kucoin.py --target-bars 22000` for all 10; fixtures added to `data/fixtures/` (all 10 present). Manifest reconciled (`data/fixtures/fetch_manifest.json`, 157 symbols).
+- Grid: ran `scripts/run_grid.py --resume results/20261019_135940_grid` per-symbol (n 148-157) with checkpoint after each. **10,362 / 10,362 cells complete** (157 symbols x 66 pairs), 0 blocked.
+- Aggregate: `scripts/aggregate_grid.py` -> mean net PF **0.4918**, median 0.5120, best 2.2274; cells with net PF > 1: **35/10362 (0.3%)**; exploratory 25, rejected 10337.
+- Robustness: `scripts/candidate_check.py` (artifact `results/20261020_062438_candidate_check/`) tested all 35 net-PF>1 cells: 32 BABYDOGE cells have **0 OOS trades** (rejected), JASMY P20_200/P21_200 and SUPER P8_200 fail **cost stress** (OOS+2x costs) -> **0 credible candidates**.
+- Cumulative rejection rate: **10337 / 10362 cells (99.76 %)**, 0 credible candidates. Pooled 8,313,668 trades.
+- Checkpoints pushed to remote after each symbol (VERIFIED).
