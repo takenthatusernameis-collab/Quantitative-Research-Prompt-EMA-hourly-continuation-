@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-20T13:09:02.404894+00:00",
+  "recorded_at": "2026-10-20T14:22:09.732924+00:00",
   "state": "EXPANSION_AVAILABLE",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
@@ -14,73 +14,13 @@
     "lowest_market_cap_usd": 15174185
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 187,
+  "universe_n": 197,
   "expansion_floor": {
-    "symbol": "SSV/USDT",
-    "market_cap_usd": 37149593
+    "symbol": "CATI/USDT",
+    "market_cap_usd": 33051490
   },
-  "eligible_unseen_below_floor_count": 79,
+  "eligible_unseen_below_floor_count": 69,
   "eligible_unseen_below_floor": [
-    {
-      "rank": 572,
-      "symbol": "OSMO",
-      "name": "Osmosis",
-      "market_cap_usd": 37083307
-    },
-    {
-      "rank": 574,
-      "symbol": "MOODENG",
-      "name": "Moo Deng",
-      "market_cap_usd": 37050928
-    },
-    {
-      "rank": 580,
-      "symbol": "MEW",
-      "name": "cat in a dogs world",
-      "market_cap_usd": 36350256
-    },
-    {
-      "rank": 590,
-      "symbol": "MERL",
-      "name": "Merlin Chain",
-      "market_cap_usd": 35731205
-    },
-    {
-      "rank": 598,
-      "symbol": "RPL",
-      "name": "Rocket Pool",
-      "market_cap_usd": 34904326
-    },
-    {
-      "rank": 599,
-      "symbol": "MOCA",
-      "name": "Moca Network",
-      "market_cap_usd": 34900812
-    },
-    {
-      "rank": 601,
-      "symbol": "UMA",
-      "name": "UMA",
-      "market_cap_usd": 34706377
-    },
-    {
-      "rank": 615,
-      "symbol": "DEGEN",
-      "name": "Degen",
-      "market_cap_usd": 33756064
-    },
-    {
-      "rank": 619,
-      "symbol": "ORBS",
-      "name": "Orbs",
-      "market_cap_usd": 33552511
-    },
-    {
-      "rank": 623,
-      "symbol": "CATI",
-      "name": "Catizen",
-      "market_cap_usd": 33051490
-    },
     {
       "rank": 626,
       "symbol": "METIS",
@@ -497,16 +437,16 @@
     }
   ],
   "batch_selected": [
-    "OSMO/USDT",
-    "MOODENG/USDT",
-    "MEW/USDT",
-    "MERL/USDT",
-    "RPL/USDT",
-    "MOCA/USDT",
-    "UMA/USDT",
-    "DEGEN/USDT",
-    "ORBS/USDT",
-    "CATI/USDT"
+    "METIS/USDT",
+    "REZ/USDT",
+    "LISTA/USDT",
+    "COTI/USDT",
+    "MAGIC/USDT",
+    "GTC/USDT",
+    "MANTA/USDT",
+    "LUNA/USDT",
+    "FLUX/USDT",
+    "XCH/USDT"
   ],
   "next_eligible_refresh_at": null
 }

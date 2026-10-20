@@ -1287,6 +1287,109 @@ The 2026-10-20T11:30:04Z snapshot still holds **79 eligible unseen names below t
 
 ---
 
+## Batch 19 - expansion to N = 197 (COMPLETED 2026-10-20)
+
+- Previous N -> new N: **187 -> 197** (ranks 188-197 of the working universe)
+- Snapshot: `universe/mcap_snapshot_20261020_113004.json` (fetched 2026-10-20T11:30:04Z, pages 1-10, 1 000 ranked entries down to $15 174 185 - the pass covers the band below the floor)
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Expansion floor at selection time: SSV at 37 149 593 USD (the lowest market cap already in the universe); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself (`--apply-from universe/mcap_snapshot_20261020_113004.json`), so the names processed by the grid are exactly the ones listed below.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap |
+|---|---|---|---|---|
+| 572 | 188 | OSMO/USDT | Osmosis | 37 083 307 |
+| 574 | 189 | MOODENG/USDT | Moo Deng | 37 050 928 |
+| 580 | 190 | MEW/USDT | cat in a dogs world | 36 350 256 |
+| 590 | 191 | MERL/USDT | Merlin Chain | 35 731 205 |
+| 598 | 192 | RPL/USDT | Rocket Pool | 34 904 326 |
+| 599 | 193 | MOCA/USDT | Moca Network | 34 900 812 |
+| 601 | 194 | UMA/USDT | UMA | 34 706 377 |
+| 615 | 195 | DEGEN/USDT | Degen | 33 756 064 |
+| 619 | 196 | ORBS/USDT | Orbs | 33 552 511 |
+| 623 | 197 | CATI/USDT | Catizen | 33 051 490 |
+
+CATI is the 197th and last symbol of the working universe; the floor is now **$33 051 490**.
+
+### Hourly coverage of the batch-19 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC):
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| OSMO, MEW, UMA, ORBS | 22 000 | 2024-04-16 22:00 .. 2026-10-20 13:00 |
+| RPL | 22 097 | 2024-04-12 18:00 .. 2026-10-20 10:00 |
+| DEGEN | 21 964 | 2024-04-18 10:00 .. 2026-10-20 13:00 |
+| MERL | 21 939 | 2024-04-19 10:00 .. 2026-10-20 12:00 |
+| MOCA | 19 948 | 2024-07-11 10:00 .. 2026-10-20 13:00 |
+| MOODENG | 18 073 | 2024-09-27 11:00 .. 2026-10-20 11:00 |
+| CATI | 18 243 | 2024-09-20 10:00 .. 2026-10-20 12:00 |
+
+MOODENG's fixture was already on disk from the batch-18 pass; the other 9 were
+fetched for this batch. All 10 fixtures are reconciled in
+`data/fixtures/fetch_manifest.json`.
+
+### Batch-19 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| OSMO | 66 | 52 916 | 0.5335 | 0.7832 (P20_200) | -1.6617 | 66 |
+| MOODENG | 66 | 43 952 | 0.6315 | **1.0567 (P8_200)** | **+0.3519** | 65 |
+| MEW | 66 | 52 726 | 0.5572 | 0.7822 (P8_200) | -1.2124 | 66 |
+| MERL | 66 | 52 696 | 0.5765 | 0.8224 (P8_200) | -0.8938 | 66 |
+| RPL | 66 | 48 642 | 0.5970 | 0.9671 (P8_200) | -0.1366 | 66 |
+| MOCA | 66 | 47 404 | 0.4914 | 0.6126 (P50_200) | -2.8635 | 66 |
+| UMA | 66 | 53 572 | 0.4869 | 0.6526 (P50_200) | -2.4956 | 66 |
+| DEGEN | 66 | 50 888 | 0.6455 | 0.8306 (P8_144) | -1.2464 | 66 |
+| ORBS | 66 | 56 745 | 0.4406 | 0.6407 (P21_200) | -3.4239 | 66 |
+| CATI | 66 | 48 383 | 0.4662 | 0.5890 (P34_89) | -3.7009 | 66 |
+
+Batch 19 alone: 660 cells, **659 rejected, 1 exploratory signal**
+(MOODENG/USDT P8_200), 516 924 trades. DEGEN has the highest mean net PF of
+any batch symbol so far (0.6455) and still contains no surviving edge.
+
+### The MOODENG/USDT P8_200 cell (batch 19's only in-sample survivor)
+
+| Symbol | Cell | Trades | Net PF | Net Sharpe | Gross PF | Net win rate | Avg hold (bars) |
+|---|---|---|---|---|---|---|---|
+| MOODENG/USDT | P8_200 | 213 | 1.0567 | +0.3519 | 1.2608 | 0.5587 | 71.3 |
+
+The candidate check (artifact `results/20261020_141749_candidate_check/`) rejects
+it: out-of-sample (trailing 35 % of bars) net PF **0.8576** with net Sharpe
+**-0.9291** over 121 OOS trades, and under 2x fees/slippage the net PF falls to
+**0.8999** (OOS 0.6726). It fails the OOS leg and the cost-stress leg, so it is
+**not** a credible candidate (PROMPT.md §3.4).
+
+---
+
+## Cumulative state after batch 19 (N = 197)
+
+- **13 002 / 13 002 cells** complete (197 symbols x 66 EMA pairs), 0 blocked.
+- 12 976 cells **rejected** (99.80 %), 26 cells **exploratory signal** in the aggregate scan and **rejected** by the OOS + cost-stress check, **0 credible candidates**.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4959**, median 0.5162, best net PF **2.2274**
+  (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 10 618 456 trades.
+- Cells with net PF > 1: 36 / 13 002 = 0.28 % against a ~50 % no-edge null
+  (excess -49.7 %). All 36 failed OOS + cost stress (artifact
+  `results/20261020_141749_candidate_check/`): 32 BABYDOGE cells have zero OOS
+  trades; JASMY P20_200 / P21_200, SUPER P8_200 and MOODENG P8_200 fail the
+  OOS and cost-stress legs.
+- Per-pair pooled leaders (mean net PF over 197 symbols): P8_200 0.6803,
+  P12_200 0.6707, P20_200 0.6694, P21_200 0.6646. Worst: P20_21 0.1446,
+  P50_55 0.2137, P8_12 0.2157.
+- Mean net PF by batch (b7-b19): 0.4682, 0.5085, 0.5210, 0.5017, 0.5287,
+  0.5010, 0.4961, 0.5222, 0.4977, 0.5318, ~0.5229, ~0.5223. Lower market cap
+  does not improve the registered rule.
+
+### Remaining eligible names below the floor (batch 20 candidates)
+
+The 2026-10-20T11:30:04Z snapshot still holds **69 eligible unseen names below
+the current floor** (CATI, $33 051 490), so the universe is **not** exhausted and
+no new CoinGecko query is needed for the next batch. The next 10 by rank are
+METIS, REZ, LISTA, COTI, MAGIC, GTC, MANTA, LUNA, FLUX, XCH.
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -1310,5 +1413,6 @@ The 2026-10-20T11:30:04Z snapshot still holds **79 eligible unseen names below t
 | Batch 16 | 167 | complete - WIN, TRB, CELO, FLOW, ID, CTC, DEEP, BRETT, CFG, XNO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 17 | 177 | complete - XYO, POLYX, AURORA, POPCAT, REQ, LSK, MASK, ZIL, ANKR, BOME (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 18 | 187 | complete - API3, SYN, BAND, MOG, CSPR, NOT, ETN, PEOPLE, IOTX, SSV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 19 | 197 | complete - OSMO, MOODENG, MEW, MERL, RPL, MOCA, UMA, DEGEN, ORBS, CATI (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).

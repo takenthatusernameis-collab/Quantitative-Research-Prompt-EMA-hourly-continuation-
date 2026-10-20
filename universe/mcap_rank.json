@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-10-20T13:09:02.405682Z",
+  "updated_at": "2026-10-20T14:22:09.733656Z",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
   "snapshot_fetched_at": "2026-10-20T11:30:04.315667+00:00",
-  "n_symbols": 197,
+  "n_symbols": 207,
   "added_in_this_expansion": [
-    "OSMO/USDT",
-    "MOODENG/USDT",
-    "MEW/USDT",
-    "MERL/USDT",
-    "RPL/USDT",
-    "MOCA/USDT",
-    "UMA/USDT",
-    "DEGEN/USDT",
-    "ORBS/USDT",
-    "CATI/USDT"
+    "METIS/USDT",
+    "REZ/USDT",
+    "LISTA/USDT",
+    "COTI/USDT",
+    "MAGIC/USDT",
+    "GTC/USDT",
+    "MANTA/USDT",
+    "LUNA/USDT",
+    "FLUX/USDT",
+    "XCH/USDT"
   ],
   "added_market_caps_usd": {
-    "OSMO": 37083307,
-    "MOODENG": 37050928,
-    "MEW": 36350256,
-    "MERL": 35731205,
-    "RPL": 34904326,
-    "MOCA": 34900812,
-    "UMA": 34706377,
-    "DEGEN": 33756064,
-    "ORBS": 33552511,
-    "CATI": 33051490
+    "METIS": 32766651,
+    "REZ": 32719574,
+    "LISTA": 32577613,
+    "COTI": 32033554,
+    "MAGIC": 31646368,
+    "GTC": 31056372,
+    "MANTA": 30597776,
+    "LUNA": 30498213,
+    "FLUX": 29307821,
+    "XCH": 29168720
   },
   "symbols": [
     "BTC/USDT",
@@ -225,6 +225,16 @@
     "UMA/USDT",
     "DEGEN/USDT",
     "ORBS/USDT",
-    "CATI/USDT"
+    "CATI/USDT",
+    "METIS/USDT",
+    "REZ/USDT",
+    "LISTA/USDT",
+    "COTI/USDT",
+    "MAGIC/USDT",
+    "GTC/USDT",
+    "MANTA/USDT",
+    "LUNA/USDT",
+    "FLUX/USDT",
+    "XCH/USDT"
   ]
 }
