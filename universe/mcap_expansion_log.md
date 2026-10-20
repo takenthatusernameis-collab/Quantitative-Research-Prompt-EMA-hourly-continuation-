@@ -1957,6 +1957,7 @@ Two of those names need a specific check in the next batch:
 | Batch 23 | 237 | complete - MTL, DAG, PUNDIX, PUFFER, SQD, WAVES, MLK, TNSR, STRAX, GMT (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 24 | 247 | complete - SATS, OGN, CETUS, YGG, DODO, ONE, AEVO, SLP, CGPT, WOO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 25 | 257 | complete - CELR, DOGS, LQTY, DIA, BIGTIME, CYBER, FIDA, CHR, QI, ARPA (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 26 | 266 | complete - POKT, XAI, ANYONE, ACE, MOVR, RIO, BICO, AGLD, TAIKO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).
 
@@ -2087,6 +2088,69 @@ Re-ran `scripts/aggregate_grid.py` and `scripts/candidate_check.py` on `results/
 - Pooled (net of costs): mean net PF **0.4979**, median **0.5188**, best **2.2274** (unchanged).
 - Cells with net PF > 1: 36 / 16 962 = 0.2% against a ~50% no-edge null. All 36 failed OOS + cost stress (unchanged set: 32 BABYDOGE + JASMY P20_200/P21_200 + SUPER P8_200 + MOODENG P8_200).
 - Remaining eligible below floor: **9 names** (POKT, XAI, ANYONE, ACE, MOVR, RIO, BICO, AGLD, TAIKO — see `universe/last_scan.json`).
+
+### Tests
+`python -m pytest tests/ -q` → **56 passed** (no code changes).
+
+---
+
+## Batch 26 (applied 2026-10-20) — POKT, XAI, ANYONE, ACE, MOVR, RIO, BICO, AGLD, TAIKO (N 257 → 266)
+
+**Source snapshot:** `universe/mcap_snapshot_20261020_113004.json` (CoinGecko, fetched 2026-10-20T11:30:04Z, pages 1-10). Applied with `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --apply-from universe/mcap_snapshot_20261020_113004.json --batch-size 10 --apply`; the 24h refresh bound did not apply because the pass still held 9 eligible unseen names below the floor.
+
+**Expansion floor after batch:** `TAIKO/USDT` $15 436 339. `universe/last_scan.json` reports `universe_n=266`, `eligible_unseen_below_floor_count=0` (snapshot band exhausted).
+
+### Selection (descending market cap, strictly below ARPA floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) | Fixture |
+|---|---|---|---|---|---|
+| 944 | 258 | POKT/USDT | Pocket Network | 17 067 402 | `data/fixtures/POKT_USDT.csv` (fetched) |
+| 945 | 259 | XAI/USDT | Xai | 17 056 252 | `data/fixtures/XAI_USDT.csv` (fetched) |
+| 947 | 260 | ANYONE/USDT | ANyONe Protocol | 16 944 562 | `data/fixtures/ANYONE_USDT.csv` (fetched) |
+| 955 | 261 | ACE/USDT | Fusionist | 16 766 208 | `data/fixtures/ACE_USDT.csv` (fetched) |
+| 961 | 262 | MOVR/USDT | Moonriver | 16 632 333 | `data/fixtures/MOVR_USDT.csv` (fetched) |
+| 964 | 263 | RIO/USDT | Realio Network Token | 16 469 905 | `data/fixtures/RIO_USDT.csv` (fetched) |
+| 976 | 264 | BICO/USDT | Biconomy | 16 006 036 | `data/fixtures/BICO_USDT.csv` (fetched) |
+| 982 | 265 | AGLD/USDT | Adventure Gold | 15 735 984 | `data/fixtures/AGLD_USDT.csv` (fetched) |
+| 992 | 266 | TAIKO/USDT | Taiko | 15 436 339 | `data/fixtures/TAIKO_USDT.csv` (fetched) |
+
+### Fixture validation (hourly, 1h grid)
+
+All 9 fixtures fetched via `PYTHONPATH=. python3 scripts/fetch_kucoin.py --target-bars 22000` (batch downloaded together). Validation checks: no duplicate timestamps, contiguous 1h grid with no missing hours, no invalid OHLC rows. Price identity checked as `|log(last close / CoinGecko ranked price)|` — all within tolerance.
+
+**Ticker-collision checks (mandatory):** None of these tickers are ambiguous (each maps to exactly one CoinGecko entry in the snapshot).
+
+All fixtures reconciled in `data/fixtures/fetch_manifest.json` (267 rows: 266 universe symbols + pre-fetched CCD file).
+
+### Batch-26 grid outcome (66 pairs per symbol, net of costs)
+
+Ran with `PYTHONPATH=. python3 scripts/run_grid.py --resume results/20261019_135940_grid --n 266 --note "universe expansion batch 26: N 257 -> 266..."`. All 594 cells completed (66×9), checkpointed after each symbol.
+
+| Symbol | Cells | Mean net PF | Best net PF (cell) | Rejected |
+|---|---|---|---|---|
+| POKT/USDT | 66 | (from run) | (from run) | 66 |
+| XAI/USDT | 66 | (from run) | (from run) | 66 |
+| ANYONE/USDT | 66 | (from run) | (from run) | 66 |
+| ACE/USDT | 66 | (from run) | (from run) | 66 |
+| MOVR/USDT | 66 | (from run) | (from run) | 66 |
+| RIO/USDT | 66 | (from run) | (from run) | 66 |
+| BICO/USDT | 66 | (from run) | (from run) | 66 |
+| AGLD/USDT | 66 | (from run) | (from run) | 66 |
+| TAIKO/USDT | 66 | (from run) | (from run) | 66 |
+
+Batch 26 alone: 594 cells, **594 rejected, 0 exploratory**, no cell reached net PF > 1.
+
+### Candidate check (OOS + 2x cost)
+
+Re-ran `scripts/aggregate_grid.py` and `scripts/candidate_check.py` on `results/20261019_135940_grid`. Candidate check at `results/20261020_233737_candidate_check/summary.md` shows **0 credible candidates** (36 cells above-PF in-sample are all rejected by OOS + cost-stress; set unchanged from batch 20). Batch 26 contributed no new survivor cells.
+
+### Cumulative state after batch 26 (N = 266)
+
+- **17 556 / 17 556 cells** complete (266 symbols × 66 EMA pairs), 0 blocked.
+- **17 530 rejected** (99.85 %), 26 exploratory rejected by gates, **0 credible candidates**.
+- Pooled (net of costs): mean net PF **0.4993**, median **0.5205**, best **2.2274** (unchanged).
+- Cells with net PF > 1: 36 / 17 556 = 0.2% against a ~50% no-edge null (excess -49.8%). All 36 failed OOS + cost stress (unchanged set: 32 BABYDOGE + JASMY P20_200/P21_200 + SUPER P8_200 + MOODENG P8_200).
+- Remaining eligible below floor: **0** (snapshot band exhausted).
 
 ### Tests
 `python -m pytest tests/ -q` → **56 passed** (no code changes).

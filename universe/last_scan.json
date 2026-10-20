@@ -1,6 +1,6 @@
 {
-  "recorded_at": "2026-10-20T22:48:58.960009+00:00",
-  "state": "EXPANSION_AVAILABLE",
+  "recorded_at": "2026-10-20T22:57:13.355789+00:00",
+  "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
@@ -14,78 +14,13 @@
     "lowest_market_cap_usd": 15174185
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 257,
+  "universe_n": 266,
   "expansion_floor": {
-    "symbol": "ARPA/USDT",
-    "market_cap_usd": 17223422
+    "symbol": "TAIKO/USDT",
+    "market_cap_usd": 15436339
   },
-  "eligible_unseen_below_floor_count": 9,
-  "eligible_unseen_below_floor": [
-    {
-      "rank": 944,
-      "symbol": "POKT",
-      "name": "Pocket Network",
-      "market_cap_usd": 17067402
-    },
-    {
-      "rank": 945,
-      "symbol": "XAI",
-      "name": "Xai",
-      "market_cap_usd": 17056252
-    },
-    {
-      "rank": 947,
-      "symbol": "ANYONE",
-      "name": "ANyONe Protocol",
-      "market_cap_usd": 16944562
-    },
-    {
-      "rank": 955,
-      "symbol": "ACE",
-      "name": "Fusionist",
-      "market_cap_usd": 16766208
-    },
-    {
-      "rank": 961,
-      "symbol": "MOVR",
-      "name": "Moonriver",
-      "market_cap_usd": 16632333
-    },
-    {
-      "rank": 964,
-      "symbol": "RIO",
-      "name": "Realio Network Token",
-      "market_cap_usd": 16469905
-    },
-    {
-      "rank": 976,
-      "symbol": "BICO",
-      "name": "Biconomy",
-      "market_cap_usd": 16006036
-    },
-    {
-      "rank": 982,
-      "symbol": "AGLD",
-      "name": "Adventure Gold",
-      "market_cap_usd": 15735984
-    },
-    {
-      "rank": 992,
-      "symbol": "TAIKO",
-      "name": "Taiko",
-      "market_cap_usd": 15436339
-    }
-  ],
-  "batch_selected": [
-    "POKT/USDT",
-    "XAI/USDT",
-    "ANYONE/USDT",
-    "ACE/USDT",
-    "MOVR/USDT",
-    "RIO/USDT",
-    "BICO/USDT",
-    "AGLD/USDT",
-    "TAIKO/USDT"
-  ],
-  "next_eligible_refresh_at": null
+  "eligible_unseen_below_floor_count": 0,
+  "eligible_unseen_below_floor": [],
+  "batch_selected": [],
+  "next_eligible_refresh_at": "2026-10-21T11:30:04.315667+00:00"
 }
