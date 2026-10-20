@@ -721,6 +721,101 @@ surviving edge.
 
 ---
 
+## Batch 12 - expansion to N = 127
+
+- Snapshot: `universe/mcap_snapshot_20261020_011116.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-20T01:11:16Z
+- Previous N -> new N: **117 -> 127** (ranks 118-127 of the working universe)
+- Expansion floor: GALA at 97 855 080 USD (the lowest market cap already in the
+  universe in this snapshot); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself
+  (`--apply-from universe/mcap_snapshot_20261020_011116.json`).
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Name | Market cap |
+|---|---|---|---|
+| 290 | DYDX | dYdX | 96 133 434 |
+| 297 | MINA | Mina Protocol | 91 161 485 |
+| 299 | ZRX | 0x Protocol | 90 898 735 |
+| 301 | WEMIX | WEMIX | 90 295 428 |
+| 304 | GMX | GMX | 88 421 953 |
+| 305 | PROM | Prom | 87 913 778 |
+| 308 | W | Wormhole | 86 027 111 |
+| 313 | ARKM | Arkham | 82 554 390 |
+| 316 | LPT | Livepeer | 80 760 813 |
+| 319 | SAFE | Safe | 80 267 894 |
+
+DYDX is the 118th symbol of the working universe; SAFE is the 127th and last.
+`W` is **Wormhole**, `ZRX` is **0x Protocol**, `DYDX` is **dYdX** (the
+re-launched, renamed dYdX chain token) and `ARKM` is **Arkham** - tickers that
+collide with unrelated tokens elsewhere in the market, so the CoinGecko `name`
+column (reproduced above) is the authoritative identity for every batch.
+
+### Data-layer incident during batch 12 (transient, resolved)
+
+The first attempt to download the batch-12 fixtures failed for the six names
+DYDX, MINA, ZRX, WEMIX, GMX and PROM with KuCoin error `400100`
+(*symbol does not exist*), and the universe file had already been written with
+all 10 names. The failure was **not** a real listing gap: all ten pairs are
+listed and enabled on KuCoin (`/api/v1/symbols` reports
+`GMX-USDT`, `PROM-USDT`, `W-USDT`, `ARKM-USDT`, `LPT-USDT`, `SAFE-USDT` with
+`enableTrading = true`) and the CoinGecko eligibility filter had already passed
+for all ten in the 01:11 and 01:23 snapshots. A re-query of the candles endpoint
+returned `code = 200000` for every one of them, so the earlier `400100` was a
+transient API error, not missing data.
+
+Re-running `scripts/fetch_kucoin.py` on the same six names fetched all of them
+cleanly, so **no name was dropped from the universe and no alternate exchange
+was needed**. The universe stayed append-only and strictly market-cap
+descending (PROMPT.md §2.1.2). Lesson for the next agent: a KuCoin `400100`
+on a name that `/api/v1/symbols` reports as enabled should be retried before
+the name is treated as ineligible.
+
+### Hourly coverage of the batch-12 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC):
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| GMX, PROM, W, ARKM, LPT | 22 000 | 2024-04-16 10:00 .. 2026-10-20 01:00 |
+| SAFE | 21 836 | 2024-04-23 06:00 .. 2026-10-20 01:00 |
+
+All 10 fixtures have no duplicate timestamps and no hourly gaps; SAFE is the
+shortest at 21 836 hourly bars (~2.49 years) and still clears the 2-year
+eligibility floor with more OOS head-room than batch 11's DBR (17 585 bars).
+
+Thin pairs quote-carry: a bar can have zero traded volume while the OHLC
+values move. GMX has the highest share of such bars in the program so far
+(2 655 of 22 000 = 12.1 %), followed by PROM 8.8 %, SAFE 3.6 %, LPT 3.3 %,
+ARKM 0.7 % and W 0.1 %. This is not new to the program (DBR 20.6 %, SUN 15.0 %,
+DCR 14.8 %, HTX 12.1 %, GLM 10.4 % in earlier batches), so the baseline was left
+unchanged; a zero-volume-bar filter would be a registered mutation (§5), not a
+silent change.
+
+### Batch-12 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| DYDX | 66 | 52 965 | 0.5666 | 0.8425 (P50_200) | -0.9243 | 66 |
+| MINA | 66 | 53 016 | 0.5559 | 0.7974 (P34_200) | -1.1384 | 66 |
+| ZRX | 66 | 52 956 | 0.4964 | 0.7381 (P8_144) | -2.0713 | 66 |
+| WEMIX | 66 | 79 618 | 0.2376 | 0.3780 (P34_200) | -7.9026 | 66 |
+| GMX | 66 | 54 090 | 0.5069 | 0.7177 (P8_200) | -2.4255 | 66 |
+| PROM | 66 | 56 765 | 0.4176 | 0.5733 (P12_89) | -5.1076 | 66 |
+| W | 66 | 53 055 | 0.6345 | 0.9717 (P8_200) | -0.1056 | 66 |
+| ARKM | 66 | 55 735 | 0.5584 | 0.7426 (P20_200) | -1.8402 | 66 |
+| LPT | 66 | 56 447 | 0.5094 | 0.7141 (P34_200) | -2.1415 | 66 |
+| SAFE | 66 | 50 942 | 0.5266 | 0.7998 (P34_200) | -1.3193 | 66 |
+
+Batch 12 alone: 660 cells, **660 rejected, 0 exploratory**, pooled mean net PF
+0.5010, median 0.5248, best 0.9717 (W/USDT P8_200), 565 589 trades. No cell in
+the batch reached net PF > 1 - the ninth of the thirteen batches so far with
+no cell clearing the in-sample scan threshold (only batches 8, 10 and 11
+produced any).
+
+---
+
 ## Robustness check of the net-PF > 1 cells (PROMPT.md §3.3)
 
 `scripts/candidate_check.py` re-runs every cell in the run with net PF > 1 in
@@ -741,35 +836,58 @@ After batch 11 (N = 117), artifact `results/20261020_015931_candidate_check/`:
 |---|---|---|---|---|---|---|---|---|---|
 | JASMY/USDT | P20_200 | 1.0097 | +0.1189 | 0.9068 | -0.5973 | 174 | 0.7465 | 0.5944 | rejected |
 | JASMY/USDT | P21_200 | 1.0341 | +0.2673 | 0.9167 | -0.5194 | 173 | 0.7576 | 0.6015 | rejected |
-| SUPER/USDT | P8_200 | 1.0377 | +0.2611 | 0.9536 | -0.4627 | 78 | 0.8093 | 0.6975 | rejected |
+| SUPER/USDT | P8_200 | 1.0377 | +0.2611 | 0.9536 | -0.1638 | 78 | 0.8093 | 0.7176 | rejected |
+
+(The SUPER/USDT row was transcribed incorrectly when the batch-11 table was
+first written - OOS Sharpe -0.4627 / 2x-cost OOS PF 0.6975. The artifact
+`results/20261020_015931_candidate_check/summary.json` has always carried
+-0.1638 / 0.7176, and the batch-12 re-run reproduces those numbers exactly;
+the table above is corrected to match the artifact. The verdict is unchanged.)
+
+After batch 12 (N = 127), artifact `results/20261020_020152_candidate_check/`:
+
+| Symbol | Cell | Base net PF | Base Sharpe | OOS net PF | OOS Sharpe | OOS trades | 2x-cost net PF | 2x-cost OOS net PF | Verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| JASMY/USDT | P20_200 | 1.0097 | +0.1189 | 0.9068 | -0.5973 | 174 | 0.7465 | 0.5944 | rejected |
+| JASMY/USDT | P21_200 | 1.0341 | +0.2673 | 0.9167 | -0.5194 | 173 | 0.7576 | 0.6015 | rejected |
+| SUPER/USDT | P8_200 | 1.0377 | +0.2611 | 0.9536 | -0.1638 | 78 | 0.8093 | 0.7176 | rejected |
+
+The batch-12 grid added no cell above net PF > 1, so the candidate set is
+unchanged - still the same three in-sample survivors, all of them failing the
+same gates.
 
 **Every cell that has ever reached net PF > 1 in this program failed both
 out-of-sample and cost stress**, so all of them are rejected rather than
 promoted (PROMPT.md §3.4). The program's cumulative credible-candidate count
-stays at **0** after 7 722 grid cells: an in-sample profit factor of ~1.03-1.04
+stays at **0** after 8 382 grid cells: an in-sample profit factor of ~1.03-1.04
 is scan noise, exactly as the multiple-testing expectation predicted (0.04 % of
 cells above 1.0 against a ~50 % null).
 
 ---
 
-## Cumulative state after batch 11 (N = 117)
+## Cumulative state after batch 12 (N = 127)
 
-- **7 722 / 7 722 cells** complete (117 symbols x 66 EMA pairs), 0 blocked.
-- 7 719 cells **rejected** (99.96 %), 3 cells **exploratory signal** in the
+- **8 382 / 8 382 cells** complete (127 symbols x 66 EMA pairs), 0 blocked.
+- 8 379 cells **rejected** (99.96 %), 3 cells **exploratory signal** in the
   aggregate scan and **rejected** by the OOS + cost-stress check above,
   **0 credible candidates**.
 - Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
-  mean net PF **0.4807**, median 0.5023, best net PF **1.0377**
-  (SUPER/USDT P8_200, rejected OOS), 6 353 224 trades.
-- Cells with net PF > 1: 3 / 7 722 = 0.04 % against a ~50 % no-edge null
+  mean net PF **0.4823**, median 0.5037, best net PF **1.0377**
+  (SUPER/USDT P8_200, rejected OOS), 6 918 813 trades.
+- Cells with net PF > 1: 3 / 8 382 = 0.04 % against a ~50 % no-edge null
   (excess -49.96 %).
-- Per-pair pooled leaders (mean net PF over 117 symbols): P8_200 0.6790,
-  P20_200 0.6686, P12_200 0.6650, P21_200 0.6617. Worst: P20_21 0.1300,
-  P50_55 0.1892, P8_12 0.1920.
+- Per-pair pooled leaders (mean net PF over 127 symbols): P8_200 0.6778,
+  P20_200 0.6672, P12_200 0.6653, P21_200 0.6604. Worst: P20_21 0.1316,
+  P50_55 0.1913, P8_12 0.1950.
 - The shape of the result is stable across every batch: mean net PF per batch
-  0.4682 (b7), 0.5085 (b8), 0.5210 (b9), 0.5017 (b10), 0.5287 (b11). Lower
-  market cap does not improve the registered rule, and the pooled mean net PF
-  is drifting *up* only because the smaller names trade less often per bar.
+  0.4682 (b7), 0.5085 (b8), 0.5210 (b9), 0.5017 (b10), 0.5287 (b11),
+  0.5010 (b12). Lower market cap does not improve the registered rule, and the
+  pooled mean net PF is drifting *up* only because the smaller names trade less
+  often per bar.
+- Mean net PF by market-cap decile (10 symbols each, ranks 1-10 = largest):
+  0.3783, 0.4556, 0.5050, 0.4259, 0.5142, 0.4644, 0.4779, 0.4728, 0.5401,
+  0.5061, 0.5162, 0.5297, 0.4844 (ranks 121-127). There is no monotone
+  relationship between market cap and the registered rule's net PF.
 
 ---
 
@@ -789,6 +907,7 @@ cells above 1.0 against a ~50 % null).
 | Batch 9 | 97 | complete - IOTA, ZBCN, AKT, WIF, CVX, TWT, THETA, AXS, SAND, TRAC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 10 | 107 | complete - MANA, XCN, ZK, NEO, CHZ, APE, IMX, AIOZ, 1INCH, XEC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 11 | 117 | complete - SNX, SUPER, DBR, RSR, EGLD, GLM, ZEN, ATH, ORCA, GALA (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 12 | 127 | complete - DYDX, MINA, ZRX, WEMIX, GMX, PROM, W, ARKM, LPT, SAFE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.

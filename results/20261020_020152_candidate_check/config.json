@@ -1,0 +1,43 @@
+{
+  "timestamp": "20261020_020152",
+  "source_run": "results/20261019_135940_grid",
+  "oos_fraction": 0.35,
+  "stress_multiplier": 2.0,
+  "base_costs_bps": {
+    "taker": 10.0,
+    "slippage": 2.0
+  },
+  "stress_costs_bps": {
+    "taker": 20.0,
+    "slippage": 4.0
+  },
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": false,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "cells": [
+    {
+      "symbol": "JASMY/USDT",
+      "P_fast": 20,
+      "P_slow": 200
+    },
+    {
+      "symbol": "JASMY/USDT",
+      "P_fast": 21,
+      "P_slow": 200
+    },
+    {
+      "symbol": "SUPER/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    }
+  ]
+}
