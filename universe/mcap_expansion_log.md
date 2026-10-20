@@ -1643,6 +1643,142 @@ on disk yet.
 
 ---
 
+## Batch 22 - expansion to N = 227 (COMPLETED 2026-10-20)
+
+- Previous N -> new N: **217 -> 227** (ranks 218-227 of the working universe)
+- Snapshot: `universe/mcap_snapshot_20261020_113004.json` (fetched 2026-10-20T11:30:04Z, pages 1-10, 1 000 ranked entries down to $15 174 185 - the pass covers the band below the floor)
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Expansion floor at selection time: EUL at 26 770 327 USD (the lowest market cap already in the universe); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself (`--apply-from universe/mcap_snapshot_20261020_113004.json`), so the names processed by the grid are exactly the ones listed below; the dry run and the applied run agree with the names named in the batch-21 handoff. **No new CoinGecko request was made**: the saved pass was not empty, so the 24 h refresh bound of PROMPT.md §2.1.5 did not apply.
+- Snapshot coverage/exclusions (1 000 entries): 269 eligible; 731 excluded - 505 `no_tradable_kucoin_spot_usdt_pair`, 185 `insufficient_hourly_history_for_grid`, 25 `stablecoin_or_fiat_pegged`, 16 `kucoin_pair_trades_a_different_asset`.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap |
+|---|---|---|---|---|
+| 721 | 218 | FLIP/USDT | Chainflip | 26 697 475 |
+| 726 | 219 | G/USDT | Gravity (by Galxe) | 26 376 038 |
+| 730 | 220 | EWT/USDT | Energy Web Token | 26 309 600 |
+| 734 | 221 | ERG/USDT | Ergo | 26 061 512 |
+| 745 | 222 | NYM/USDT | Nym | 25 472 687 |
+| 746 | 223 | SKL/USDT | SKALE | 25 450 152 |
+| 752 | 224 | AUCTION/USDT | Bounce | 25 193 109 |
+| 754 | 225 | KNC/USDT | Kyber Network Crystal | 25 068 821 |
+| 756 | 226 | VR/USDT | Victoria VR | 25 025 182 |
+| 763 | 227 | CARV/USDT | CARV | 24 788 571 |
+
+CARV is the 227th and last symbol of the working universe; the floor is now **$24 788 571**.
+
+### Hourly coverage of the batch-22 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), 22 000 bars requested per
+symbol. All ten were fetched in a single pass with **no failed symbols and no
+re-queries**, and every fixture was checked for duplicate timestamps, hourly
+gaps, invalid OHLC rows and ticker identity (last close vs the ranked
+CoinGecko price):
+
+| Symbol | Rows | Span (UTC) | Zero-volume bars | max abs 1h return | median abs 1h return | `|log(last close / CG price)|` |
+|---|---|---|---|---|---|---|
+| FLIP | 22 000 | 2024-04-17 02:00 .. 2026-10-20 17:00 | 2 076 | 22.9 % | 0.225 % | 0.0005 |
+| G | 19 018 | 2024-08-19 08:00 .. 2026-10-20 17:00 | 2 957 | 42.8 % | 0.424 % | 0.0397 |
+| EWT | 22 000 | 2024-04-17 02:00 .. 2026-10-20 17:00 | 76 | 21.5 % | 0.330 % | 0.0013 |
+| ERG | 22 000 | 2024-04-17 02:00 .. 2026-10-20 17:00 | 435 | 23.4 % | 0.391 % | 0.0179 |
+| NYM | 22 000 | 2024-04-17 02:00 .. 2026-10-20 17:00 | 1 068 | 32.3 % | 0.193 % | 0.0190 |
+| SKL | 22 000 | 2024-04-17 02:00 .. 2026-10-20 17:00 | 171 | 30.3 % | 0.548 % | 0.0293 |
+| AUCTION | 22 095 | 2024-04-12 22:00 .. 2026-10-20 12:00 | 3 462 | 66.2 % | 0.429 % | 0.0000 |
+| KNC | 22 000 | 2024-04-17 02:00 .. 2026-10-20 17:00 | 2 579 | 39.8 % | 0.375 % | 0.0289 |
+| VR | 22 000 | 2024-04-17 02:00 .. 2026-10-20 17:00 | 80 | 35.7 % | 0.333 % | 0.0021 |
+| CARV | 17 770 | 2024-10-10 08:00 .. 2026-10-20 17:00 | 1 303 | 38.5 % | 0.476 % | 0.0281 |
+
+All 10 fixtures have **no duplicate timestamps, no missing hours (contiguous 1h
+grid, max gap 1 h) and no invalid OHLC rows**, and each ticker maps to exactly
+one CoinGecko entry, so each KuCoin pair trades the asset the ranking
+describes.
+
+**Ticker-collision check (mandatory for this batch).** `G/USDT` (Gravity by
+Galxe) and `VR/USDT` (Victoria VR) were the two short tickers that could have
+resolved to a different KuCoin asset. Both resolve to the ranked asset:
+G/USDT last close 0.003790 USD vs the ranked CoinGecko price 0.00364249 USD ->
+`|log ratio|` = **0.0397**; VR/USDT last close 0.001493 USD vs 0.00148993 USD ->
+**0.0021**. Both are far inside the script's 0.20 log tolerance, so neither is
+the `kucoin_pair_trades_a_different_asset` exclusion.
+
+Two names were listed later than the rest and therefore have shorter
+histories: G (19 018 bars from 2024-08-19) and CARV (17 770 bars from
+2024-10-10). Both still exceed the 17 520-bar (2-year) eligibility floor and
+cover the largest `P_slow` (200) plus the trailing 35 % OOS window.
+
+Unlike ELON (batch 21) there is **no cost-dominated name in this batch**: the
+median absolute hourly move ranges from 0.19 % (NYM) to 0.55 % (SKL) and the
+cheapest pair trades at $0.00149 (VR), so the registered 12 bps per side is not
+the dominant term. All 10 fixtures also have **0 zero-volume-but-moving-OHLC
+quote-carry bars** (as in batch 21); the highest zero-volume share is AUCTION
+(3 462 / 22 095 bars, 15.7 %) and G (2 957 / 19 018, 15.6 %). The baseline was
+left unchanged (a zero-volume-bar filter would be a registered mutation, §5).
+
+All 10 fixtures are reconciled in `data/fixtures/fetch_manifest.json` (228
+rows: the 227 universe symbols plus the pre-fetched CCD file, which is not in
+the universe).
+
+### Names deliberately skipped (still above the expansion floor)
+
+| Rank | Symbol | Name | Market cap | Note |
+|---|---|---|---|---|
+| 320 | GAS | Gas | 80 295 659 | eligible, but far above the floor |
+| 533 | CCD | Concordium | 41 793 103 | eligible; its hourly fixture is already on disk (`data/fixtures/CCD_USDT.csv`). It enters the universe automatically if a later snapshot puts it below the floor. |
+
+### Batch-22 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| FLIP | 66 | 37 320 | 0.4403 | 0.6898 (P12_200) | -1.8704 | 66 |
+| G | 66 | 41 434 | 0.4868 | 0.7296 (P8_144) | -1.9085 | 66 |
+| EWT | 66 | 51 882 | 0.4204 | 0.6688 (P34_200) | -2.4457 | 66 |
+| ERG | 66 | 57 614 | 0.3359 | 0.5497 (P8_200) | -3.5263 | 66 |
+| NYM | 66 | 48 273 | 0.2528 | 0.4406 (P8_89) | -6.2148 | 66 |
+| SKL | 66 | 55 027 | 0.5675 | 0.8103 (P12_144) | -1.7685 | 66 |
+| AUCTION | 66 | 51 524 | 0.4847 | 0.6441 (P12_200) | -2.6580 | 66 |
+| KNC | 66 | 48 130 | 0.5266 | 0.7780 (P26_200) | -1.4994 | 66 |
+| VR | 66 | 59 399 | 0.4013 | 0.5530 (P8_100) | -7.4552 | 66 |
+| CARV | 66 | 39 197 | 0.5181 | 0.7504 (P8_89) | -2.5496 | 66 |
+
+Batch 22 alone: 660 cells, **660 rejected, 0 exploratory**, 489 800 trades. No
+cell in the batch reached net PF > 1 (the closest was SKL/USDT P12_144 at
+0.8103), so no batch-22 cell ever entered the OOS + cost-stress check. Batch 22
+has the **lowest mean net PF of any batch so far (0.4434)**: extending further
+down the market-cap ranking keeps making the registered rule worse.
+
+---
+
+## Cumulative state after batch 22 (N = 227)
+
+- **14 982 / 14 982 cells** complete (227 symbols x 66 EMA pairs), 0 blocked.
+- 14 956 cells **rejected** (99.76 %), 26 cells **exploratory signal** in the aggregate scan and **rejected** by the OOS + cost-stress check, **0 credible candidates**.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4943**, median 0.5143, best net PF **2.2274**
+  (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 12 156 385 trades.
+- Cells with net PF > 1: 36 / 14 982 = 0.24 % against a ~50 % no-edge null
+  (excess -49.8 %). All 36 failed OOS + cost stress and the set is **unchanged
+  from batch 20**: 32 BABYDOGE cells (zero OOS trades), JASMY P20_200 / P21_200,
+  SUPER P8_200 and MOODENG P8_200. Batch 22 contributed no new survivor.
+- Per-pair pooled leaders (mean net PF over 227 symbols): P8_200 0.6781,
+  P12_200 0.6676, P20_200 0.6662, P21_200 0.6623, P26_200 0.6558. Worst:
+  P20_21 0.1447, P50_55 0.2130, P8_12 0.2165.
+- Mean net PF by batch (b7-b22), recomputed in this session from
+  `results/20261019_135940_grid/per_symbol.json` and the batch boundaries in
+  the coverage table below: 0.4682, 0.5085, 0.5210, 0.5017, 0.5287, 0.5010,
+  0.4961, 0.5722, 0.5279, 0.4977, 0.4837, 0.5229, 0.5426, 0.5400, 0.4697,
+  0.4434. Lower market cap does not improve the registered rule.
+
+### Remaining eligible names below the floor (batch 23 candidates)
+
+The 2026-10-20T11:30:04Z snapshot still holds **39 eligible unseen names below
+the current floor** (CARV, $24 788 571), so the universe is **not** exhausted and
+no new CoinGecko query is needed for the next batch. The next 10 by rank are
+MTL, DAG, PUNDIX, PUFFER, SQD, WAVES, MLK, TNSR, STRAX, GMT. None of them has a
+fixture on disk yet.
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -1669,5 +1805,6 @@ on disk yet.
 | Batch 19 | 197 | complete - OSMO, MOODENG, MEW, MERL, RPL, MOCA, UMA, DEGEN, ORBS, CATI (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 20 | 207 | complete - METIS, REZ, LISTA, COTI, MAGIC, GTC, MANTA, LUNA, FLUX, XCH (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 21 | 217 | complete - ELON, CTSI, IOST, SWFTC, UQC, ILV, AVA, CPOOL, BLUR, EUL (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 22 | 227 | complete - FLIP, G, EWT, ERG, NYM, SKL, AUCTION, KNC, VR, CARV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).
