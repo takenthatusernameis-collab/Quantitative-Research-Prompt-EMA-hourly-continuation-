@@ -4156,5 +4156,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "SQD/USDT",
+    "n_cells": 66,
+    "total_trades": 51525,
+    "mean_trades": 780.6818181818181,
+    "median_net_pf": 0.6803617733318308,
+    "mean_net_pf": 0.6531151961190328,
+    "best_net_pf": 0.8221796417754819,
+    "best_cell": "P26_200",
+    "best_sharpe": -1.2239996622205156,
+    "worst_net_pf": 0.29656209294642544,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -1.2239996622205156,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
