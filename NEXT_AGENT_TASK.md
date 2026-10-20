@@ -1,6 +1,6 @@
 # NEXT AGENT TASK
 
-## Current state (verified against the saved artifacts, 2026-10-20)
+## Current state (verified against the saved artifacts, 2026-10-20T10:15:00Z)
 
 **Program status: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, not permanently complete.** Batch 17 completed the universe expansion from N=167 to N=177. The most recent recorded universe is `universe/mcap_rank.json`, snapshot `mcap_snapshot_20261020_082835` (CoinGecko, retrieved 2026-10-20T08:28:35Z). Batch 17 appended XYO, POLYX, AURORA, POPCAT, REQ, LSK, MASK, ZIL, ANKR and BOME in descending market-cap order. The current floor is BOME at approximately USD 41.20M in that snapshot.
 
@@ -12,7 +12,11 @@
 - Tests last recorded: `python -m pytest tests/ -q` → **46 passed**.
 - Latest expansion added: `universe/mcap_rank.json` N=177, snapshot `mcap_snapshot_20261020_082835`.
 
+**Fresh ranking scan (2026-10-20T10:02:36Z):** Retrieved `universe/mcap_snapshot_20261020_100236.json` (pages 1–5, 500 entries). Checked all eligible (tradable on KuCoin spot USDT, no exclusion) entries not in the working universe (N=177). Found **GAS/USDT (rank 318, mcap ~80.37M)** which is above the current BOME floor (~41.20M). **No eligible unseen assets below the current floor.** The symbols below BOME in the prior snapshot (e.g. CCD, CSPR, API3, NOT, MOG, PEOPLE, etc.) were not present as eligible tradable pairs in the fresh snapshot or had dropped below eligibility. Evidence: full scan of pages 1–5 complete; no candidates with mcap < 41.20M satisfy KuCoin spot USDT tradability and history filters.
+
 The prior handoff records that a scan of CoinGecko pages 4–5 found no currently eligible unseen assets below the existing market-cap floor. That is evidence about that checked snapshot and the filters at that time, **not proof that future snapshots can never produce eligible assets**. Do not fabricate a batch, and do not mark the long-running research program permanently complete solely because one full scan found no candidates.
+
+**State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. **Next eligible refresh:** no earlier than 2026-10-21T10:02:36Z (>= 24h after the 2026-10-20T10:02:36Z scan). Do **not** re-scan more frequently than once per 24h while in this state.
 
 ## Required next action — continue market-cap expansion safely
 
@@ -24,7 +28,7 @@ The prior handoff records that a scan of CoinGecko pages 4–5 found no currentl
 6. Run the **entire 66-pair grid for each newly appended symbol** in strict market-cap order, checkpointing one symbol at a time. Resume the existing run; do not overwrite completed cells:
    `PYTHONPATH=. python3 scripts/run_grid.py --n <rank-in-working-universe> --resume results/20261019_135940_grid --note "universe expansion batch 18: N 177 -> 187 (<SYMBOL>/USDT, 66-pair EMA grid)"`
    After each symbol, checkpoint its result as in the previous batches. Then run `scripts/aggregate_grid.py --run results/20261019_135940_grid` and `scripts/candidate_check.py --run results/20261019_135940_grid`; update the expansion log, progress summary and this handoff with the actual outcome.
-7. **If a full fresh ranking pass again yields zero eligible names**, persist a truthful `AWAITING_NEW_ELIGIBLE_CANDIDATES` state with evidence and the next eligible refresh time. Do not invent names, repeatedly hit providers, change the strategy baseline, or call a candidate credible on in-sample metrics. On a later due refresh, repeat the scan and continue if the opportunity set has changed.
+7. **If a full fresh ranking pass again yields zero eligible names**, persist a truthful `AWAITING_NEW_ELIGIBLE_CANDIDATES` state with evidence and the next eligible refresh time (>=24h out). Do not invent names, repeatedly hit providers, change the strategy baseline, or call a candidate credible on in-sample metrics. On a later due refresh, repeat the scan and continue if the opportunity set has changed.
 
 ## Guardrails
 
