@@ -4120,5 +4120,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "PUNDIX/USDT",
+    "n_cells": 66,
+    "total_trades": 52869,
+    "mean_trades": 801.0454545454545,
+    "median_net_pf": 0.48813312860341246,
+    "mean_net_pf": 0.45925563285691473,
+    "best_net_pf": 0.7682959800075648,
+    "best_cell": "P12_200",
+    "best_sharpe": -1.485446105755489,
+    "worst_net_pf": 0.11684305181150026,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -1.485446105755489,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
