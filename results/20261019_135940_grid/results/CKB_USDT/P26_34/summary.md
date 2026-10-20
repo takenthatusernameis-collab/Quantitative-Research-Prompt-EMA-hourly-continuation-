@@ -1,0 +1,33 @@
+# EMA Hourly Continuation — CKB/USDT P26_34
+
+**Symbol:** CKB/USDT  |  **P_fast:** 26  |  **P_slow:** 34
+
+**Costs:** 10.0 bps taker + 2.0 bps slippage per side
+
+**RR:** 1.0  |  **Fill:** signal-bar close  |  **SL/TP:** 1:1 to EMA_slow
+
+**Sizing:** risk-based, 1.00% of equity per trade (notional cap 10.0x equity)
+
+
+## Metrics (net of costs)
+
+| Metric | Value |
+|---|---|
+| trade_count | 1072 |
+| net_profit_factor | 0.3007 |
+| net_win_rate | 0.3843 |
+| gross_profit_factor | 0.7003 |
+| gross_win_rate | 0.4338 |
+| sharpe_ratio | -12.2442 |
+| sortino_ratio | -5.7674 |
+| max_drawdown | 0.9995 |
+| cagr | -0.9497 |
+| net_avg_win | 10.4289 |
+| net_avg_loss | -21.6533 |
+| avg_hold_time_bars | 2.1772 |
+| exposure | 0.1061 |
+
+Decision label: rejected
+
+
+Bulk artifacts: `trades.csv.gz`, `equity.csv.gz` (gzip-compressed CSV). Read with `gzip -dc <file>` or `pandas.read_csv(file, compression="gzip")`.
