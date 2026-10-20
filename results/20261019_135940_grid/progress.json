@@ -1,6 +1,6 @@
 {
   "run_id": "20261019_135940_grid",
-  "timestamp": "20261020_051945",
+  "timestamp": "20261020_052010",
   "symbols": [
     "BTC/USDT",
     "ETH/USDT",
@@ -152,10 +152,11 @@
     "RLC/USDT",
     "ROSE/USDT",
     "TURBO/USDT",
-    "XPR/USDT"
+    "XPR/USDT",
+    "ENJ/USDT"
   ],
   "n_pairs": 66,
-  "n_symbols": 151,
+  "n_symbols": 152,
   "completed_cells": 10032,
   "completed": [
     {
