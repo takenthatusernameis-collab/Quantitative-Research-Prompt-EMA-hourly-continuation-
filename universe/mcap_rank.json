@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-10-20T14:22:09.733656Z",
+  "updated_at": "2026-10-20T15:34:46.779329Z",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
   "snapshot_fetched_at": "2026-10-20T11:30:04.315667+00:00",
-  "n_symbols": 207,
+  "n_symbols": 217,
   "added_in_this_expansion": [
-    "METIS/USDT",
-    "REZ/USDT",
-    "LISTA/USDT",
-    "COTI/USDT",
-    "MAGIC/USDT",
-    "GTC/USDT",
-    "MANTA/USDT",
-    "LUNA/USDT",
-    "FLUX/USDT",
-    "XCH/USDT"
+    "ELON/USDT",
+    "CTSI/USDT",
+    "IOST/USDT",
+    "SWFTC/USDT",
+    "UQC/USDT",
+    "ILV/USDT",
+    "AVA/USDT",
+    "CPOOL/USDT",
+    "BLUR/USDT",
+    "EUL/USDT"
   ],
   "added_market_caps_usd": {
-    "METIS": 32766651,
-    "REZ": 32719574,
-    "LISTA": 32577613,
-    "COTI": 32033554,
-    "MAGIC": 31646368,
-    "GTC": 31056372,
-    "MANTA": 30597776,
-    "LUNA": 30498213,
-    "FLUX": 29307821,
-    "XCH": 29168720
+    "ELON": 28983090,
+    "CTSI": 28823155,
+    "IOST": 28658475,
+    "SWFTC": 28193368,
+    "UQC": 27726441,
+    "ILV": 27459683,
+    "AVA": 27100879,
+    "CPOOL": 26920775,
+    "BLUR": 26892547,
+    "EUL": 26770327
   },
   "symbols": [
     "BTC/USDT",
@@ -235,6 +235,16 @@
     "MANTA/USDT",
     "LUNA/USDT",
     "FLUX/USDT",
-    "XCH/USDT"
+    "XCH/USDT",
+    "ELON/USDT",
+    "CTSI/USDT",
+    "IOST/USDT",
+    "SWFTC/USDT",
+    "UQC/USDT",
+    "ILV/USDT",
+    "AVA/USDT",
+    "CPOOL/USDT",
+    "BLUR/USDT",
+    "EUL/USDT"
   ]
 }
