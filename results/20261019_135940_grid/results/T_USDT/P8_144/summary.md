@@ -25,7 +25,7 @@
 | net_avg_win | 67.0382 |
 | net_avg_loss | -91.2362 |
 | avg_hold_time_bars | 36.6889 |
-| exposure | 0.7205 |
+| exposure | 0.7206 |
 
 Decision label: rejected
 
