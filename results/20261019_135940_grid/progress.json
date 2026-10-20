@@ -1,6 +1,6 @@
 {
   "run_id": "20261019_135940_grid",
-  "timestamp": "20261020_060023",
+  "timestamp": "20261020_060710",
   "symbols": [
     "BTC/USDT",
     "ETH/USDT",
@@ -156,11 +156,12 @@
     "ENJ/USDT",
     "T/USDT",
     "ONT/USDT",
-    "ASTR/USDT"
+    "ASTR/USDT",
+    "PHA/USDT"
   ],
   "n_pairs": 66,
-  "n_symbols": 155,
-  "completed_cells": 10230,
+  "n_symbols": 156,
+  "completed_cells": 10296,
   "completed": [
     {
       "symbol": "1INCH/USDT",
@@ -33159,6 +33160,336 @@
     },
     {
       "symbol": "PEPE/USDT",
+      "P_fast": 144,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 12
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 20
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 21
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 26
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 34
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 50
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 55
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 89
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 100
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 20
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 21
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 26
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 34
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 50
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 55
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 89
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 100
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 12,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 20,
+      "P_slow": 21
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 20,
+      "P_slow": 26
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 20,
+      "P_slow": 34
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 20,
+      "P_slow": 50
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 20,
+      "P_slow": 55
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 20,
+      "P_slow": 89
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 20,
+      "P_slow": 100
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 20,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 20,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 21,
+      "P_slow": 26
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 21,
+      "P_slow": 34
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 21,
+      "P_slow": 50
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 21,
+      "P_slow": 55
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 21,
+      "P_slow": 89
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 21,
+      "P_slow": 100
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 21,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 21,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 26,
+      "P_slow": 34
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 26,
+      "P_slow": 50
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 26,
+      "P_slow": 55
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 26,
+      "P_slow": 89
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 26,
+      "P_slow": 100
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 26,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 26,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 34,
+      "P_slow": 50
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 34,
+      "P_slow": 55
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 34,
+      "P_slow": 89
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 34,
+      "P_slow": 100
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 34,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 34,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 50,
+      "P_slow": 55
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 50,
+      "P_slow": 89
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 50,
+      "P_slow": 100
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 50,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 50,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 55,
+      "P_slow": 89
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 55,
+      "P_slow": 100
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 55,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 55,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 89,
+      "P_slow": 100
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 89,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 89,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 100,
+      "P_slow": 144
+    },
+    {
+      "symbol": "PHA/USDT",
+      "P_fast": 100,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PHA/USDT",
       "P_fast": 144,
       "P_slow": 200
     },
