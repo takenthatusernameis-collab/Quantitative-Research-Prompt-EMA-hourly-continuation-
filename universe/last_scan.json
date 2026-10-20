@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-20T17:27:30.456636+00:00",
+  "recorded_at": "2026-10-20T18:30:58.255465+00:00",
   "state": "EXPANSION_AVAILABLE",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
@@ -14,73 +14,13 @@
     "lowest_market_cap_usd": 15174185
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 227,
+  "universe_n": 237,
   "expansion_floor": {
-    "symbol": "CARV/USDT",
-    "market_cap_usd": 24788571
+    "symbol": "GMT/USDT",
+    "market_cap_usd": 22410555
   },
-  "eligible_unseen_below_floor_count": 39,
+  "eligible_unseen_below_floor_count": 29,
   "eligible_unseen_below_floor": [
-    {
-      "rank": 765,
-      "symbol": "MTL",
-      "name": "Metal DAO",
-      "market_cap_usd": 24764629
-    },
-    {
-      "rank": 768,
-      "symbol": "DAG",
-      "name": "Constellation",
-      "market_cap_usd": 24579494
-    },
-    {
-      "rank": 769,
-      "symbol": "PUNDIX",
-      "name": "Pundi X",
-      "market_cap_usd": 24563087
-    },
-    {
-      "rank": 770,
-      "symbol": "PUFFER",
-      "name": "Puffer",
-      "market_cap_usd": 24423363
-    },
-    {
-      "rank": 779,
-      "symbol": "SQD",
-      "name": "SQD",
-      "market_cap_usd": 23936491
-    },
-    {
-      "rank": 785,
-      "symbol": "WAVES",
-      "name": "Waves",
-      "market_cap_usd": 23321655
-    },
-    {
-      "rank": 786,
-      "symbol": "MLK",
-      "name": "MiL.k",
-      "market_cap_usd": 23301530
-    },
-    {
-      "rank": 789,
-      "symbol": "TNSR",
-      "name": "Tensor",
-      "market_cap_usd": 23080708
-    },
-    {
-      "rank": 795,
-      "symbol": "STRAX",
-      "name": "Xertra",
-      "market_cap_usd": 22663753
-    },
-    {
-      "rank": 799,
-      "symbol": "GMT",
-      "name": "GMT",
-      "market_cap_usd": 22410555
-    },
     {
       "rank": 816,
       "symbol": "SATS",
@@ -257,16 +197,16 @@
     }
   ],
   "batch_selected": [
-    "MTL/USDT",
-    "DAG/USDT",
-    "PUNDIX/USDT",
-    "PUFFER/USDT",
-    "SQD/USDT",
-    "WAVES/USDT",
-    "MLK/USDT",
-    "TNSR/USDT",
-    "STRAX/USDT",
-    "GMT/USDT"
+    "SATS/USDT",
+    "OGN/USDT",
+    "CETUS/USDT",
+    "YGG/USDT",
+    "DODO/USDT",
+    "ONE/USDT",
+    "AEVO/USDT",
+    "SLP/USDT",
+    "CGPT/USDT",
+    "WOO/USDT"
   ],
   "next_eligible_refresh_at": null
 }

@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-10-20T17:27:27.705561Z",
+  "updated_at": "2026-10-20T18:28:55.747596Z",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
   "snapshot_fetched_at": "2026-10-20T11:30:04.315667+00:00",
-  "n_symbols": 227,
+  "n_symbols": 237,
   "added_in_this_expansion": [
-    "FLIP/USDT",
-    "G/USDT",
-    "EWT/USDT",
-    "ERG/USDT",
-    "NYM/USDT",
-    "SKL/USDT",
-    "AUCTION/USDT",
-    "KNC/USDT",
-    "VR/USDT",
-    "CARV/USDT"
+    "MTL/USDT",
+    "DAG/USDT",
+    "PUNDIX/USDT",
+    "PUFFER/USDT",
+    "SQD/USDT",
+    "WAVES/USDT",
+    "MLK/USDT",
+    "TNSR/USDT",
+    "STRAX/USDT",
+    "GMT/USDT"
   ],
   "added_market_caps_usd": {
-    "FLIP": 26697475,
-    "G": 26376038,
-    "EWT": 26309600,
-    "ERG": 26061512,
-    "NYM": 25472687,
-    "SKL": 25450152,
-    "AUCTION": 25193109,
-    "KNC": 25068821,
-    "VR": 25025182,
-    "CARV": 24788571
+    "MTL": 24764629,
+    "DAG": 24579494,
+    "PUNDIX": 24563087,
+    "PUFFER": 24423363,
+    "SQD": 23936491,
+    "WAVES": 23321655,
+    "MLK": 23301530,
+    "TNSR": 23080708,
+    "STRAX": 22663753,
+    "GMT": 22410555
   },
   "symbols": [
     "BTC/USDT",
@@ -255,6 +255,16 @@
     "AUCTION/USDT",
     "KNC/USDT",
     "VR/USDT",
-    "CARV/USDT"
+    "CARV/USDT",
+    "MTL/USDT",
+    "DAG/USDT",
+    "PUNDIX/USDT",
+    "PUFFER/USDT",
+    "SQD/USDT",
+    "WAVES/USDT",
+    "MLK/USDT",
+    "TNSR/USDT",
+    "STRAX/USDT",
+    "GMT/USDT"
   ]
 }
