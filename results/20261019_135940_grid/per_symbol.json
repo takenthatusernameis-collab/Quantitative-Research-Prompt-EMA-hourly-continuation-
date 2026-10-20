@@ -4102,5 +4102,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "DAG/USDT",
+    "n_cells": 66,
+    "total_trades": 57211,
+    "mean_trades": 866.8333333333334,
+    "median_net_pf": 0.4538157971942425,
+    "mean_net_pf": 0.44600428089064487,
+    "best_net_pf": 0.6852670146807366,
+    "best_cell": "P34_200",
+    "best_sharpe": -2.2228480448949375,
+    "worst_net_pf": 0.14734706117155,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -2.2228480448949375,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
