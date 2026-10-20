@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-20T15:34:46.778629+00:00",
+  "recorded_at": "2026-10-20T16:49:57.990739+00:00",
   "state": "EXPANSION_AVAILABLE",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
@@ -14,73 +14,13 @@
     "lowest_market_cap_usd": 15174185
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 207,
+  "universe_n": 217,
   "expansion_floor": {
-    "symbol": "XCH/USDT",
-    "market_cap_usd": 29168720
+    "symbol": "EUL/USDT",
+    "market_cap_usd": 26770327
   },
-  "eligible_unseen_below_floor_count": 59,
+  "eligible_unseen_below_floor_count": 49,
   "eligible_unseen_below_floor": [
-    {
-      "rank": 687,
-      "symbol": "ELON",
-      "name": "Dogelon Mars",
-      "market_cap_usd": 28983090
-    },
-    {
-      "rank": 689,
-      "symbol": "CTSI",
-      "name": "Cartesi",
-      "market_cap_usd": 28823155
-    },
-    {
-      "rank": 693,
-      "symbol": "IOST",
-      "name": "IOST",
-      "market_cap_usd": 28658475
-    },
-    {
-      "rank": 699,
-      "symbol": "SWFTC",
-      "name": "SWFTCOIN",
-      "market_cap_usd": 28193368
-    },
-    {
-      "rank": 705,
-      "symbol": "UQC",
-      "name": "Uquid Coin",
-      "market_cap_usd": 27726441
-    },
-    {
-      "rank": 709,
-      "symbol": "ILV",
-      "name": "Illuvium",
-      "market_cap_usd": 27459683
-    },
-    {
-      "rank": 712,
-      "symbol": "AVA",
-      "name": "AVA (Travala)",
-      "market_cap_usd": 27100879
-    },
-    {
-      "rank": 716,
-      "symbol": "CPOOL",
-      "name": "Clearpool",
-      "market_cap_usd": 26920775
-    },
-    {
-      "rank": 717,
-      "symbol": "BLUR",
-      "name": "Blur",
-      "market_cap_usd": 26892547
-    },
-    {
-      "rank": 720,
-      "symbol": "EUL",
-      "name": "Euler",
-      "market_cap_usd": 26770327
-    },
     {
       "rank": 721,
       "symbol": "FLIP",
@@ -377,16 +317,16 @@
     }
   ],
   "batch_selected": [
-    "ELON/USDT",
-    "CTSI/USDT",
-    "IOST/USDT",
-    "SWFTC/USDT",
-    "UQC/USDT",
-    "ILV/USDT",
-    "AVA/USDT",
-    "CPOOL/USDT",
-    "BLUR/USDT",
-    "EUL/USDT"
+    "FLIP/USDT",
+    "G/USDT",
+    "EWT/USDT",
+    "ERG/USDT",
+    "NYM/USDT",
+    "SKL/USDT",
+    "AUCTION/USDT",
+    "KNC/USDT",
+    "VR/USDT",
+    "CARV/USDT"
   ],
   "next_eligible_refresh_at": null
 }
