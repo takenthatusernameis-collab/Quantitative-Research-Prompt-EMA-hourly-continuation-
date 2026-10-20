@@ -816,6 +816,65 @@ produced any).
 
 ---
 
+## Batch 13 - expansion to N = 137
+
+- Snapshot: `universe/mcap_snapshot_20261020_021004.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-20T02:10:04Z
+- Previous N -> new N: **127 -> 137** (ranks 128-137 of the working universe)
+- Expansion floor: SAFE at 80 642 232 USD (the lowest market cap already in
+  the universe in this snapshot); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself
+  (`--apply-from universe/mcap_snapshot_20261020_021004.json`).
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Name | Market cap |
+|---|---|---|---|
+| 320 | KSM | Kusama | 79 352 005 |
+| 323 | NMR | Numeraire | 79 072 655 |
+| 324 | YFI | yearn.finance | 78 877 573 |
+| 325 | HNT | Helium | 78 667 114 |
+| 326 | ORDI | ORDI | 78 525 316 |
+| 331 | KAVA | Kava | 76 724 152 |
+| 348 | CKB | Nervos Network | 72 155 051 |
+| 349 | DUSK | DUSK Network | 72 144 987 |
+| 350 | AMP | Amp | 72 021 528 |
+| 358 | VELO | Velo | 70 523 988 |
+
+KSM is the 128th symbol of the working universe; VELO is the 137th and last.
+
+### Hourly coverage of the batch-13 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC):
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| KSM, NMR, HNT, ORDI, KAVA, CKB, DUSK, AMP, VELO | 22 000 | 2024-04-16 11:00 .. 2026-10-20 02:00 |
+| YFI | 22 099 | 2024-04-12 07:00 .. 2026-10-20 01:00 |
+
+All 10 fixtures have no duplicate timestamps and no hourly gaps.
+
+### Batch-13 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| KSM | 66 | 52 327 | 0.4905 | 0.6988 (P34_200) | -2.2663 | 66 |
+| NMR | 66 | 57 589 | 0.5342 | 0.6991 (P8_200) | -2.1037 | 66 |
+| YFI | 66 | 59 706 | 0.4186 | 0.6605 (P34_200) | -2.5851 | 66 |
+| HNT | 66 | 56 881 | 0.4746 | 0.7381 (P20_200) | -1.7414 | 66 |
+| ORDI | 66 | 55 959 | 0.5569 | 0.7760 (P26_200) | -1.7852 | 66 |
+| KAVA | 66 | 57 128 | 0.4576 | 0.6337 (P34_200) | -3.2862 | 66 |
+| CKB | 66 | 54 794 | 0.5159 | 0.6866 (P8_144) | -2.3224 | 66 |
+| DUSK | 66 | 52 108 | 0.5811 | 0.8137 (P8_144) | -1.1330 | 66 |
+| AMP | 66 | 75 572 | 0.3167 | 0.4552 (P12_200) | -5.5779 | 66 |
+| VELO | 66 | 57 920 | 0.6150 | 0.8305 (P20_144) | -1.3268 | 66 |
+
+Batch 13 alone: 660 cells, **660 rejected, 0 exploratory**, pooled mean net PF
+0.4961, median 0.5159, best 0.8305 (VELO/USDT P20_144), 579 984 trades. No cell
+in the batch reached net PF > 1.
+
+---
+
 ## Robustness check of the net-PF > 1 cells (PROMPT.md §3.3)
 
 `scripts/candidate_check.py` re-runs every cell in the run with net PF > 1 in
@@ -852,38 +911,42 @@ After batch 12 (N = 127), artifact `results/20261020_020152_candidate_check/`:
 | JASMY/USDT | P21_200 | 1.0341 | +0.2673 | 0.9167 | -0.5194 | 173 | 0.7576 | 0.6015 | rejected |
 | SUPER/USDT | P8_200 | 1.0377 | +0.2611 | 0.9536 | -0.1638 | 78 | 0.8093 | 0.7176 | rejected |
 
-The batch-12 grid added no cell above net PF > 1, so the candidate set is
+After batch 13 (N = 137), artifact `results/20261020_025729_candidate_check/`:
+same three cells re-checked against the expanded 9 042-cell grid, same
+outcome - all rejected.
+
+The batch-13 grid added no cell above net PF > 1, so the candidate set is
 unchanged - still the same three in-sample survivors, all of them failing the
 same gates.
 
 **Every cell that has ever reached net PF > 1 in this program failed both
 out-of-sample and cost stress**, so all of them are rejected rather than
 promoted (PROMPT.md §3.4). The program's cumulative credible-candidate count
-stays at **0** after 8 382 grid cells: an in-sample profit factor of ~1.03-1.04
-is scan noise, exactly as the multiple-testing expectation predicted (0.04 % of
+stays at **0** after 9 042 grid cells: an in-sample profit factor of ~1.03-1.04
+is scan noise, exactly as the multiple-testing expectation predicted (0.03 % of
 cells above 1.0 against a ~50 % null).
 
 ---
 
-## Cumulative state after batch 12 (N = 127)
+## Cumulative state after batch 13 (N = 137)
 
-- **8 382 / 8 382 cells** complete (127 symbols x 66 EMA pairs), 0 blocked.
-- 8 379 cells **rejected** (99.96 %), 3 cells **exploratory signal** in the
+- **9 042 / 9 042 cells** complete (137 symbols x 66 EMA pairs), 0 blocked.
+- 9 039 cells **rejected** (99.97 %), 3 cells **exploratory signal** in the
   aggregate scan and **rejected** by the OOS + cost-stress check above,
   **0 credible candidates**.
 - Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
-  mean net PF **0.4823**, median 0.5037, best net PF **1.0377**
-  (SUPER/USDT P8_200, rejected OOS), 6 918 813 trades.
-- Cells with net PF > 1: 3 / 8 382 = 0.04 % against a ~50 % no-edge null
-  (excess -49.96 %).
-- Per-pair pooled leaders (mean net PF over 127 symbols): P8_200 0.6778,
-  P20_200 0.6672, P12_200 0.6653, P21_200 0.6604. Worst: P20_21 0.1316,
-  P50_55 0.1913, P8_12 0.1950.
+  mean net PF **0.4833**, median 0.5056, best net PF **1.0377**
+  (SUPER/USDT P8_200, rejected OOS), 7 498 797 trades.
+- Cells with net PF > 1: 3 / 9 042 = 0.03 % against a ~50 % no-edge null
+  (excess -49.97 %).
+- Per-pair pooled leaders (mean net PF over 137 symbols): P8_200 0.6794,
+  P20_200 0.6687, P12_200 0.6669, P21_200 0.6619. Worst: P20_21 0.1323,
+  P50_55 0.1920, P8_12 0.1958.
 - The shape of the result is stable across every batch: mean net PF per batch
   0.4682 (b7), 0.5085 (b8), 0.5210 (b9), 0.5017 (b10), 0.5287 (b11),
-  0.5010 (b12). Lower market cap does not improve the registered rule, and the
-  pooled mean net PF is drifting *up* only because the smaller names trade less
-  often per bar.
+  0.5010 (b12), 0.4961 (b13). Lower market cap does not improve the registered
+  rule, and the pooled mean net PF is drifting *up* only because the smaller
+  names trade less often per bar.
 - Mean net PF by market-cap decile (10 symbols each, ranks 1-10 = largest):
   0.3783, 0.4556, 0.5050, 0.4259, 0.5142, 0.4644, 0.4779, 0.4728, 0.5401,
   0.5061, 0.5162, 0.5297, 0.4844 (ranks 121-127). There is no monotone
@@ -908,6 +971,7 @@ cells above 1.0 against a ~50 % null).
 | Batch 10 | 107 | complete - MANA, XCN, ZK, NEO, CHZ, APE, IMX, AIOZ, 1INCH, XEC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 11 | 117 | complete - SNX, SUPER, DBR, RSR, EGLD, GLM, ZEN, ATH, ORCA, GALA (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 12 | 127 | complete - DYDX, MINA, ZRX, WEMIX, GMX, PROM, W, ARKM, LPT, SAFE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 13 | 137 | complete - KSM, NMR, YFI, HNT, ORDI, KAVA, CKB, DUSK, AMP, VELO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.
