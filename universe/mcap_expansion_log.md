@@ -875,6 +875,75 @@ in the batch reached net PF > 1.
 
 ---
 
+## Batch 14 - expansion to N = 147
+
+- Snapshot: `universe/mcap_snapshot_20261020_030608.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-20T03:06:08Z
+- Previous N -> new N: **137 -> 147** (ranks 138-147 of the working universe)
+- Expansion floor: VELO at 70 523 988 USD (the lowest market cap already in
+  the universe in this snapshot); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself
+  (`--apply-from universe/mcap_snapshot_20261020_030608.json`).
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Market cap |
+|---|---|---|
+| 138 | ZETA | 69 127 750 |
+| 139 | ALT | 68 615 672 |
+| 140 | AXL | 68 245 246 |
+| 141 | BABYDOGE | 65 893 189 |
+| 142 | TFUEL | 65 223 292 |
+| 143 | IO | 64 059 810 |
+| 144 | SUSHI | 62 190 873 |
+| 145 | EDU | 61 859 142 |
+| 146 | DGB | 61 553 312 |
+| 147 | DEXE | 61 407 515 |
+
+ZETA is the 138th symbol of the working universe; DEXE is the 147th and last.
+Ranks 138-144 (ZETA, ALT, AXL, BABYDOGE, TFUEL, IO, SUSHI) were grid-processed
+in the prior session; ranks 145-147 (EDU, DGB, DEXE) were grid-processed in this
+session. Note: the fresh 03:06 snapshot displaced RLC with DEXE and reordered
+ALT/AXL and IO/SUSHI versus the 02:10 snapshot; the applied ranking is
+strictly market-cap descending.
+
+### Hourly coverage of the batch-14 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), 22 000 bars per symbol:
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| ZETA, ALT, AXL, BABYDOGE, TFUEL, IO, SUSHI, EDU, DGB, DEXE | 22 000 | 2024-04-16 .. 2026-10-20 |
+
+All 10 fixtures have no duplicate timestamps and no hourly gaps.
+
+### Batch-14 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| ZETA | 66 | 51 823 | 0.5767 | 0.8062 (P21_200) | -1.3291 | 66 |
+| ALT | 66 | 47 542 | 0.5679 | 0.7340 (P26_200) | -1.9025 | 66 |
+| AXL | 66 | 59 203 | 0.5463 | 0.7225 (P26_200) | -2.3306 | 66 |
+| BABYDOGE | 66 | 2 775 | 1.0628 | 2.2274 (P50_55) | 0.9426 | 44 |
+| TFUEL | 66 | 63 820 | 0.4235 | 0.5659 (P8_89) | -5.5003 | 66 |
+| IO | 66 | 52 120 | 0.5642 | 0.7403 (P55_200) | -2.0819 | 66 |
+| SUSHI | 66 | 54 945 | 0.4933 | 0.6540 (P50_200) | -2.4837 | 66 |
+| EDU | 66 | 56 676 | 0.5107 | 0.7100 (P21_200) | -2.3085 | 66 |
+| DGB | 66 | 61 038 | 0.4808 | 0.7099 (P20_200) | -2.6803 | 66 |
+| DEXE | 66 | 49 652 | 0.4963 | 0.8354 (P12_144) | -0.9126 | 66 |
+
+Batch 14 alone: 660 cells, **638 rejected, 22 exploratory signal** (all BABYDOGE),
+0 cells surviving OOS + cost stress. Pooled mean net PF 0.5222, 499 594 trades.
+No non-BABYDOGE cell reached net PF > 1.
+
+BABYDOGE (rank 141) produced 32 in-sample cells with net PF > 1 (best 2.2274,
+P50_55) but all are rejected: 30 have zero out-of-sample trades, and the 2 with
+adequate OOS trades fail 2x cost stress (OOS PF 0.0000). BABYDOGE is a very
+thinly traded name (2 775 total trades across 66 cells), so its in-sample PFs
+are multiple-testing noise on a tiny sample.
+
+---
+
 ## Robustness check of the net-PF > 1 cells (PROMPT.md §3.3)
 
 `scripts/candidate_check.py` re-runs every cell in the run with net PF > 1 in
@@ -928,29 +997,26 @@ cells above 1.0 against a ~50 % null).
 
 ---
 
-## Cumulative state after batch 13 (N = 137)
+## Cumulative state after batch 14 (N = 147)
 
-- **9 042 / 9 042 cells** complete (137 symbols x 66 EMA pairs), 0 blocked.
-- 9 039 cells **rejected** (99.97 %), 3 cells **exploratory signal** in the
+- **9 702 / 9 702 cells** complete (147 symbols x 66 EMA pairs), 0 blocked.
+- 9 677 cells **rejected** (99.74 %), 25 cells **exploratory signal** in the
   aggregate scan and **rejected** by the OOS + cost-stress check above,
   **0 credible candidates**.
 - Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
-  mean net PF **0.4833**, median 0.5056, best net PF **1.0377**
-  (SUPER/USDT P8_200, rejected OOS), 7 498 797 trades.
-- Cells with net PF > 1: 3 / 9 042 = 0.03 % against a ~50 % no-edge null
-  (excess -49.97 %).
-- Per-pair pooled leaders (mean net PF over 137 symbols): P8_200 0.6794,
-  P20_200 0.6687, P12_200 0.6669, P21_200 0.6619. Worst: P20_21 0.1323,
-  P50_55 0.1920, P8_12 0.1958.
+  mean net PF **0.4894**, median 0.5098, best net PF **2.2274**
+  (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 7 998 391 trades.
+- Cells with net PF > 1: 35 / 9 702 = 0.4 % against a ~50 % no-edge null
+  (excess -49.6 %). All 35 failed OOS + cost stress: 32 BABYDOGE cells have
+  zero OOS trades; JASMY P20_200 / P21_200 and SUPER P8_200 fail cost stress.
+- Per-pair pooled leaders (mean net PF over 147 symbols): P8_200 0.6750,
+  P20_200 0.6713, P12_200 0.6669, P21_200 0.6653. Worst: P20_21 0.1371,
+  P50_55 0.2094, P8_12 0.2043.
+- Mean net PF by batch (b7-b14): 0.4682, 0.5085, 0.5210, 0.5017, 0.5287,
+  0.5010, 0.4961, 0.5222. Lower market cap does not improve the registered rule.
 - The shape of the result is stable across every batch: mean net PF per batch
-  0.4682 (b7), 0.5085 (b8), 0.5210 (b9), 0.5017 (b10), 0.5287 (b11),
-  0.5010 (b12), 0.4961 (b13). Lower market cap does not improve the registered
-  rule, and the pooled mean net PF is drifting *up* only because the smaller
+  stays in the 0.46-0.53 band. The pooled mean drifts up only because smaller
   names trade less often per bar.
-- Mean net PF by market-cap decile (10 symbols each, ranks 1-10 = largest):
-  0.3783, 0.4556, 0.5050, 0.4259, 0.5142, 0.4644, 0.4779, 0.4728, 0.5401,
-  0.5061, 0.5162, 0.5297, 0.4844 (ranks 121-127). There is no monotone
-  relationship between market cap and the registered rule's net PF.
 
 ---
 
@@ -972,6 +1038,7 @@ cells above 1.0 against a ~50 % null).
 | Batch 11 | 117 | complete - SNX, SUPER, DBR, RSR, EGLD, GLM, ZEN, ATH, ORCA, GALA (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 12 | 127 | complete - DYDX, MINA, ZRX, WEMIX, GMX, PROM, W, ARKM, LPT, SAFE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 13 | 137 | complete - KSM, NMR, YFI, HNT, ORDI, KAVA, CKB, DUSK, AMP, VELO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 14 | 147 | complete - ZETA, ALT, AXL, BABYDOGE, TFUEL, IO, SUSHI, EDU, DGB, DEXE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.
