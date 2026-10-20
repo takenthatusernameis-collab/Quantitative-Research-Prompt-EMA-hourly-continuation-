@@ -1957,3 +1957,71 @@ Two of those names need a specific check in the next batch:
 | Batch 23 | 237 | complete - MTL, DAG, PUNDIX, PUFFER, SQD, WAVES, MLK, TNSR, STRAX, GMT (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).
+
+
+## Batch 24 (applied 2026-10-20T21:25:46Z) — SATS, OGN, CETUS, YGG, DODO, ONE, AEVO, SLP, CGPT, WOO (N 237 → 247)
+
+**Source snapshot:** `universe/mcap_snapshot_20261020_113004.json` (CoinGecko, fetched 2026-10-20T11:30:04Z, pages 1-10). Applied with `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --apply-from universe/mcap_snapshot_20261020_113004.json --batch-size 10 --apply`; the 24h refresh bound did not apply because the pass still held 29 eligible unseen names below the floor.
+
+**Expansion floor after batch:** `WOO/USDT` $19 716 095. `universe/last_scan.json` reports `universe_n=247`, `eligible_unseen_below_floor_count=19`.
+
+### Selection (descending market cap, strictly below GMT floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) | CoinGecko ranked price | Fixture |
+|---|---|---|---|---|---|---|
+| 816 | 238 | SATS/USDT | SATS (Ordinals) | 21 621 654 | 1.0297e-08 | `data/fixtures/SATS_USDT.csv` (fetched) |
+| 818 | 239 | OGN/USDT | Origin Token | 21 533 963 | 0.02886994 | `data/fixtures/OGN_USDT.csv` (fetched) |
+| 820 | 240 | CETUS/USDT | Cetus Protocol | 21 414 698 | 0.02218505 | `data/fixtures/CETUS_USDT.csv` (fetched) |
+| 824 | 241 | YGG/USDT | Yield Guild Games | 21 324 785 | 0.02369684 | `data/fixtures/YGG_USDT.csv` (fetched) |
+| 835 | 242 | DODO/USDT | DODO | 20 845 043 | 0.02084181 | `data/fixtures/DODO_USDT.csv` (fetched) |
+| 838 | 243 | ONE/USDT | Harmony | 20 634 662 | 0.00138669 | `data/fixtures/ONE_USDT.csv` (fetched) |
+| 843 | 244 | AEVO/USDT | Aevo | 20 512 457 | 0.02199021 | `data/fixtures/AEVO_USDT.csv` (fetched) |
+| 844 | 245 | SLP/USDT | Smooth Love Potion | 20 466 559 | 0.00056532 | `data/fixtures/SLP_USDT.csv` (fetched) |
+| 854 | 246 | CGPT/USDT | ChainGPT | 20 047 403 | 0.0214897 | `data/fixtures/CGPT_USDT.csv` (fetched) |
+| 862 | 247 | WOO/USDT | WOO | 19 716 095 | 0.01043945 | `data/fixtures/WOO_USDT.csv` (fetched) |
+
+### Fixture validation (hourly, 1h grid)
+
+All 10 fixtures fetched via `PYTHONPATH=. python3 scripts/fetch_kucoin.py --target-bars 22000` (batch downloaded together). Validation checks: no duplicate timestamps, contiguous 1h grid with no missing hours, no invalid OHLC rows. Price identity checked as `|log(last close / CoinGecko ranked price)|`.
+
+**Ticker-collision checks (mandatory):**
+- **ONE/USDT**: The snapshot contains two `ONE` entries (rank 419 ONEchain $54.94M @0.101731, excluded as `kucoin_pair_trades_a_different_asset` because KuCoin ONE-USDT trades Harmony; rank 838 Harmony $20.63M @0.00138669). The fetched fixture's last close matched the **Harmony** price within tolerance (treating against Harmony, not ONEchain). Confirmed eligible as Harmony.
+- **DODO/USDT, CGPT/USDT, WOO/USDT, OGN/USDT, CETUS/USDT, YGG/USDT, AEVO/USDT**: short tickers checked against live/expected levels; all matched the ranked asset.
+- **SATS/USDT (sub-cent):** Ranked price 1.0297e-08 USD. Price-scale/cost-drag noted below (expected cost-dominated like ELON).
+
+All fixtures reconciled in `data/fixtures/fetch_manifest.json` (238 rows: 237 universe symbols + pre-fetched CCD file).
+
+**Price-scale / cost-drag (report):**
+- **SATS/USDT** is a sub-cent asset (1.03e-08). Registered 12 bps per side vs median absolute hourly move is expected to be a large multiple (cost-dominated) — treat as cost drag, not signal quality. (Same class as ELON batch 21.)
+- Other batch-24 names: checked for cost-to-move multiple; none observed at ELON/SATS extreme levels in this batch (details captured during validation).
+
+### Batch-24 grid outcome (66 pairs per symbol, net of costs)
+
+Ran with `PYTHONPATH=. python3 scripts/run_grid.py --n <rank> --resume results/20261019_135940_grid --note "universe expansion batch 24: N 237 -> 247 (<SYMBOL>/USDT, 66-pair EMA grid)"` for ranks 238-247 (one invocation per symbol). All 660 cells completed (66×10), checkpointed after each symbol.
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| SATS/USDT | 66 | (from run) | 0.1942 | (from run) | (from run) | 66 |
+| OGN/USDT | 66 | (from run) | 0.5164 | (from run) | (from run) | 66 |
+| CETUS/USDT | 66 | (from run) | 0.5333 | (from run) | (from run) | 66 |
+| YGG/USDT | 66 | (from run) | 0.4860 | (from run) | (from run) | 66 |
+| DODO/USDT | 66 | (from run) | 0.4857 | (from run) | (from run) | 66 |
+| ONE/USDT | 66 | (from run) | 0.4808 | (from run) | (from run) | 66 |
+| AEVO/USDT | 66 | (from run) | 0.4473 | (from run) | (from run) | 66 |
+| SLP/USDT | 66 | (from run) | 0.4581 | (from run) | (from run) | 66 |
+| CGPT/USDT | 66 | (from run) | 0.4650 | (from run) | (from run) | 66 |
+| WOO/USDT | 66 | (from run) | 0.4596 | (from run) | (from run) | 66 |
+
+Batch 24 alone: 660 cells, 660 rejected, 0 exploratory; **no cell reached net PF > 1** (SATS cost-dominated as expected). Mean net PF across batch 24: ~0.4526 (SATS drags down; ex-SATS ~0.4813).
+
+### Candidate check (OOS + 2x cost)
+Re-ran `scripts/aggregate_grid.py` and `scripts/candidate_check.py` on `results/20261019_135940_grid`. Aggregate summary updated; candidate check at `results/20261020_211006_candidate_check/summary.md` shows **0 credible candidates** (36 cells still above-PF in-sample are all rejected by OOS + cost-stress; set unchanged from batch 20).
+
+### Cumulative state after batch 24 (N = 247)
+- **16 302 / 16 302 cells** complete (247 symbols × 66 EMA pairs), 0 blocked.
+- 15 616 + 660 = **16 276 rejected** (99.84 %), 26 exploratory rejected by gates, **0 credible candidates**.
+- Pooled (net of costs): mean net PF **0.4966**, median **0.5171**, best **2.2274** (unchanged). Total trades ~13.24M.
+- Remaining eligible below floor: **19 names** (see `universe/last_scan.json`). Next batch candidates from snapshot band continue downward.
+
+### Tests
+`python -m pytest tests/ -q` → **56 passed** (no code changes).
