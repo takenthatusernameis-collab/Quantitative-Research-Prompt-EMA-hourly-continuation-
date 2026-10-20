@@ -1955,6 +1955,8 @@ Two of those names need a specific check in the next batch:
 | Batch 21 | 217 | complete - ELON, CTSI, IOST, SWFTC, UQC, ILV, AVA, CPOOL, BLUR, EUL (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 22 | 227 | complete - FLIP, G, EWT, ERG, NYM, SKL, AUCTION, KNC, VR, CARV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 23 | 237 | complete - MTL, DAG, PUNDIX, PUFFER, SQD, WAVES, MLK, TNSR, STRAX, GMT (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 24 | 247 | complete - SATS, OGN, CETUS, YGG, DODO, ONE, AEVO, SLP, CGPT, WOO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 25 | 257 | complete - CELR, DOGS, LQTY, DIA, BIGTIME, CYBER, FIDA, CHR, QI, ARPA (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).
 
@@ -2022,6 +2024,69 @@ Re-ran `scripts/aggregate_grid.py` and `scripts/candidate_check.py` on `results/
 - 15 616 + 660 = **16 276 rejected** (99.84 %), 26 exploratory rejected by gates, **0 credible candidates**.
 - Pooled (net of costs): mean net PF **0.4966**, median **0.5171**, best **2.2274** (unchanged). Total trades ~13.24M.
 - Remaining eligible below floor: **19 names** (see `universe/last_scan.json`). Next batch candidates from snapshot band continue downward.
+
+### Tests
+`python -m pytest tests/ -q` → **56 passed** (no code changes).
+
+---
+
+## Batch 25 (applied 2026-10-20) — CELR, DOGS, LQTY, DIA, BIGTIME, CYBER, FIDA, CHR, QI, ARPA (N 247 → 257)
+
+**Source snapshot:** `universe/mcap_snapshot_20261020_113004.json` (CoinGecko, fetched 2026-10-20T11:30:04Z, pages 1-10). Applied with `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --apply-from universe/mcap_snapshot_20261020_113004.json --batch-size 10 --apply`; the 24h refresh bound did not apply because the pass still held 19 eligible unseen names below the floor.
+
+**Expansion floor after batch:** `ARPA/USDT` $17 223 422. `universe/last_scan.json` reports `universe_n=257`, `eligible_unseen_below_floor_count=9`.
+
+### Selection (descending market cap, strictly below WOO floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) | Fixture |
+|---|---|---|---|---|---|
+| 863 | 248 | CELR/USDT | Celer Network | 19 715 136 | `data/fixtures/CELR_USDT.csv` (fetched) |
+| 867 | 249 | DOGS/USDT | Dogs | 19 645 934 | `data/fixtures/DOGS_USDT.csv` (fetched) |
+| 881 | 250 | LQTY/USDT | Liquity | 19 254 508 | `data/fixtures/LQTY_USDT.csv` (fetched) |
+| 884 | 251 | DIA/USDT | DIA | 19 167 153 | `data/fixtures/DIA_USDT.csv` (fetched) |
+| 888 | 252 | BIGTIME/USDT | Big Time | 19 057 587 | `data/fixtures/BIGTIME_USDT.csv` (fetched) |
+| 893 | 253 | CYBER/USDT | CYBER | 18 929 002 | `data/fixtures/CYBER_USDT.csv` (fetched) |
+| 918 | 254 | FIDA/USDT | Bonfida | 17 875 930 | `data/fixtures/FIDA_USDT.csv` (fetched) |
+| 922 | 255 | CHR/USDT | Chromia | 17 769 533 | `data/fixtures/CHR_USDT.csv` (fetched) |
+| 939 | 256 | QI/USDT | BENQI | 17 229 915 | `data/fixtures/QI_USDT.csv` (fetched) |
+| 940 | 257 | ARPA/USDT | ARPA Chain | 17 223 422 | `data/fixtures/ARPA_USDT.csv` (fetched) |
+
+### Fixture validation (hourly, 1h grid)
+
+All 10 fixtures fetched via `PYTHONPATH=. python3 scripts/fetch_kucoin.py --target-bars 22000` (batch downloaded together). Validation checks: no duplicate timestamps, contiguous 1h grid with no missing hours, no invalid OHLC rows. Price identity checked as `|log(last close / CoinGecko ranked price)|` — all within tolerance.
+
+**Ticker-collision checks (mandatory):** None of these tickers are ambiguous (each maps to exactly one CoinGecko entry in the snapshot).
+
+All fixtures reconciled in `data/fixtures/fetch_manifest.json` (258 symbols: 257 universe symbols + pre-fetched CCD file).
+
+### Batch-25 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Rejected |
+|---|---|---|---|---|---|
+| CELR/USDT | 66 | 52 659 | 0.5110 | 0.7048 | 66 |
+| DOGS/USDT | 66 | 48 517 | 0.5447 | 0.7854 | 66 |
+| LQTY/USDT | 66 | 52 981 | 0.5258 | 0.8083 | 66 |
+| DIA/USDT | 66 | 52 763 | 0.5255 | 0.8888 | 66 |
+| BIGTIME/USDT | 66 | 50 008 | 0.6249 | 0.9130 | 66 |
+| CYBER/USDT | 66 | 51 889 | 0.5534 | 0.7774 | 66 |
+| FIDA/USDT | 66 | 52 873 | 0.4839 | 0.6492 | 66 |
+| CHR/USDT | 66 | 53 501 | 0.5451 | 0.8068 | 66 |
+| QI/USDT | 66 | 49 386 | 0.5038 | 0.6911 | 66 |
+| ARPA/USDT | 66 | 58 622 | 0.4735 | 0.6266 | 66 |
+
+Batch 25 alone: 660 cells, **660 rejected, 0 exploratory**, mean net PF ~0.5201, no cell reached net PF > 1.
+
+### Candidate check (OOS + 2x cost)
+
+Re-ran `scripts/aggregate_grid.py` and `scripts/candidate_check.py` on `results/20261019_135940_grid`. Candidate check at `results/20261020_223841_candidate_check/summary.md` shows **0 credible candidates** (36 cells above-PF in-sample are all rejected by OOS + cost-stress; set unchanged from batch 20). Batch 25 contributed no new survivor cells.
+
+### Cumulative state after batch 25 (N = 257)
+
+- **16 962 / 16 962 cells** complete (257 symbols × 66 EMA pairs), 0 blocked.
+- **16 936 rejected** (99.85 %), 26 exploratory rejected by gates, **0 credible candidates**.
+- Pooled (net of costs): mean net PF **0.4979**, median **0.5188**, best **2.2274** (unchanged).
+- Cells with net PF > 1: 36 / 16 962 = 0.2% against a ~50% no-edge null. All 36 failed OOS + cost stress (unchanged set: 32 BABYDOGE + JASMY P20_200/P21_200 + SUPER P8_200 + MOODENG P8_200).
+- Remaining eligible below floor: **9 names** (POKT, XAI, ANYONE, ACE, MOVR, RIO, BICO, AGLD, TAIKO — see `universe/last_scan.json`).
 
 ### Tests
 `python -m pytest tests/ -q` → **56 passed** (no code changes).

@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-10-20T20:14:17.459381Z",
+  "updated_at": "2026-10-20T21:35:40.234660Z",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
   "snapshot_fetched_at": "2026-10-20T11:30:04.315667+00:00",
-  "n_symbols": 247,
+  "n_symbols": 257,
   "added_in_this_expansion": [
-    "SATS/USDT",
-    "OGN/USDT",
-    "CETUS/USDT",
-    "YGG/USDT",
-    "DODO/USDT",
-    "ONE/USDT",
-    "AEVO/USDT",
-    "SLP/USDT",
-    "CGPT/USDT",
-    "WOO/USDT"
+    "CELR/USDT",
+    "DOGS/USDT",
+    "LQTY/USDT",
+    "DIA/USDT",
+    "BIGTIME/USDT",
+    "CYBER/USDT",
+    "FIDA/USDT",
+    "CHR/USDT",
+    "QI/USDT",
+    "ARPA/USDT"
   ],
   "added_market_caps_usd": {
-    "SATS": 21621654,
-    "OGN": 21533963,
-    "CETUS": 21414698,
-    "YGG": 21324785,
-    "DODO": 20845043,
-    "ONE": 20634662,
-    "AEVO": 20512457,
-    "SLP": 20466559,
-    "CGPT": 20047403,
-    "WOO": 19716095
+    "CELR": 19715136,
+    "DOGS": 19645934,
+    "LQTY": 19254508,
+    "DIA": 19167153,
+    "BIGTIME": 19057587,
+    "CYBER": 18929002,
+    "FIDA": 17875930,
+    "CHR": 17769533,
+    "QI": 17229915,
+    "ARPA": 17223422
   },
   "symbols": [
     "BTC/USDT",
@@ -275,6 +275,16 @@
     "AEVO/USDT",
     "SLP/USDT",
     "CGPT/USDT",
-    "WOO/USDT"
+    "WOO/USDT",
+    "CELR/USDT",
+    "DOGS/USDT",
+    "LQTY/USDT",
+    "DIA/USDT",
+    "BIGTIME/USDT",
+    "CYBER/USDT",
+    "FIDA/USDT",
+    "CHR/USDT",
+    "QI/USDT",
+    "ARPA/USDT"
   ]
 }

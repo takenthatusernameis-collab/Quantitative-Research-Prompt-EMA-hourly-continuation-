@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-20T21:23:56.206409+00:00",
+  "recorded_at": "2026-10-20T21:35:44.078678+00:00",
   "state": "EXPANSION_AVAILABLE",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
@@ -14,73 +14,13 @@
     "lowest_market_cap_usd": 15174185
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 247,
+  "universe_n": 257,
   "expansion_floor": {
-    "symbol": "WOO/USDT",
-    "market_cap_usd": 19716095
+    "symbol": "ARPA/USDT",
+    "market_cap_usd": 17223422
   },
-  "eligible_unseen_below_floor_count": 19,
+  "eligible_unseen_below_floor_count": 9,
   "eligible_unseen_below_floor": [
-    {
-      "rank": 863,
-      "symbol": "CELR",
-      "name": "Celer Network",
-      "market_cap_usd": 19715136
-    },
-    {
-      "rank": 867,
-      "symbol": "DOGS",
-      "name": "Dogs",
-      "market_cap_usd": 19645934
-    },
-    {
-      "rank": 881,
-      "symbol": "LQTY",
-      "name": "Liquity",
-      "market_cap_usd": 19254508
-    },
-    {
-      "rank": 884,
-      "symbol": "DIA",
-      "name": "DIA",
-      "market_cap_usd": 19167153
-    },
-    {
-      "rank": 888,
-      "symbol": "BIGTIME",
-      "name": "Big Time",
-      "market_cap_usd": 19057587
-    },
-    {
-      "rank": 893,
-      "symbol": "CYBER",
-      "name": "CYBER",
-      "market_cap_usd": 18929002
-    },
-    {
-      "rank": 918,
-      "symbol": "FIDA",
-      "name": "Bonfida",
-      "market_cap_usd": 17875930
-    },
-    {
-      "rank": 922,
-      "symbol": "CHR",
-      "name": "Chromia",
-      "market_cap_usd": 17769533
-    },
-    {
-      "rank": 939,
-      "symbol": "QI",
-      "name": "BENQI",
-      "market_cap_usd": 17229915
-    },
-    {
-      "rank": 940,
-      "symbol": "ARPA",
-      "name": "ARPA",
-      "market_cap_usd": 17223422
-    },
     {
       "rank": 944,
       "symbol": "POKT",
@@ -137,16 +77,15 @@
     }
   ],
   "batch_selected": [
-    "CELR/USDT",
-    "DOGS/USDT",
-    "LQTY/USDT",
-    "DIA/USDT",
-    "BIGTIME/USDT",
-    "CYBER/USDT",
-    "FIDA/USDT",
-    "CHR/USDT",
-    "QI/USDT",
-    "ARPA/USDT"
+    "POKT/USDT",
+    "XAI/USDT",
+    "ANYONE/USDT",
+    "ACE/USDT",
+    "MOVR/USDT",
+    "RIO/USDT",
+    "BICO/USDT",
+    "AGLD/USDT",
+    "TAIKO/USDT"
   ],
   "next_eligible_refresh_at": null
 }

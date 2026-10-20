@@ -170,6 +170,16 @@
     "file": "data/fixtures/ARKM_USDT.csv"
   },
   {
+    "symbol": "ARPA/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-13 03:00:00+00:00",
+    "end": "2026-10-20 21:00:00+00:00",
+    "file": "data/fixtures/ARPA_USDT.csv"
+  },
+  {
     "symbol": "ASTR/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -310,6 +320,16 @@
     "file": "data/fixtures/BDX_USDT.csv"
   },
   {
+    "symbol": "BIGTIME/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22098,
+    "start": "2024-04-13 02:00:00+00:00",
+    "end": "2026-10-20 19:00:00+00:00",
+    "file": "data/fixtures/BIGTIME_USDT.csv"
+  },
+  {
     "symbol": "BLUR/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -440,6 +460,16 @@
     "file": "data/fixtures/CELO_USDT.csv"
   },
   {
+    "symbol": "CELR/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-13 02:00:00+00:00",
+    "end": "2026-10-20 20:00:00+00:00",
+    "file": "data/fixtures/CELR_USDT.csv"
+  },
+  {
     "symbol": "CETUS/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -478,6 +508,16 @@
     "start": "2024-04-17 05:00:00+00:00",
     "end": "2026-10-20 20:00:00+00:00",
     "file": "data/fixtures/CGPT_USDT.csv"
+  },
+  {
+    "symbol": "CHR/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-13 03:00:00+00:00",
+    "end": "2026-10-20 21:00:00+00:00",
+    "file": "data/fixtures/CHR_USDT.csv"
   },
   {
     "symbol": "CHZ/USDT",
@@ -590,6 +630,16 @@
     "file": "data/fixtures/CVX_USDT.csv"
   },
   {
+    "symbol": "CYBER/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-04-17 06:00:00+00:00",
+    "end": "2026-10-20 21:00:00+00:00",
+    "file": "data/fixtures/CYBER_USDT.csv"
+  },
+  {
     "symbol": "DAG/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -670,6 +720,16 @@
     "file": "data/fixtures/DGB_USDT.csv"
   },
   {
+    "symbol": "DIA/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-13 02:00:00+00:00",
+    "end": "2026-10-20 20:00:00+00:00",
+    "file": "data/fixtures/DIA_USDT.csv"
+  },
+  {
     "symbol": "DODO/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -688,6 +748,16 @@
     "start": "2024-04-15 22:00:00+00:00",
     "end": "2026-10-19 13:00:00+00:00",
     "file": "data/fixtures/DOGE_USDT.csv"
+  },
+  {
+    "symbol": "DOGS/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 18850,
+    "start": "2024-08-26 12:00:00+00:00",
+    "end": "2026-10-20 21:00:00+00:00",
+    "file": "data/fixtures/DOGS_USDT.csv"
   },
   {
     "symbol": "DOT/USDT",
@@ -868,6 +938,16 @@
     "start": "2024-04-16 05:00:00+00:00",
     "end": "2026-10-19 20:00:00+00:00",
     "file": "data/fixtures/FET_USDT.csv"
+  },
+  {
+    "symbol": "FIDA/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-13 03:00:00+00:00",
+    "end": "2026-10-20 21:00:00+00:00",
+    "file": "data/fixtures/FIDA_USDT.csv"
   },
   {
     "symbol": "FIL/USDT",
@@ -1268,6 +1348,16 @@
     "start": "2024-04-16 10:00:00+00:00",
     "end": "2026-10-20 01:00:00+00:00",
     "file": "data/fixtures/LPT_USDT.csv"
+  },
+  {
+    "symbol": "LQTY/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-13 02:00:00+00:00",
+    "end": "2026-10-20 20:00:00+00:00",
+    "file": "data/fixtures/LQTY_USDT.csv"
   },
   {
     "symbol": "LSK/USDT",
@@ -1718,6 +1808,16 @@
     "start": "2024-04-16 05:00:00+00:00",
     "end": "2026-10-19 20:00:00+00:00",
     "file": "data/fixtures/PYTH_USDT.csv"
+  },
+  {
+    "symbol": "QI/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-13 03:00:00+00:00",
+    "end": "2026-10-20 21:00:00+00:00",
+    "file": "data/fixtures/QI_USDT.csv"
   },
   {
     "symbol": "QNT/USDT",
