@@ -12,4 +12,4 @@ Current key metrics: mean net PF 0.4917; median net PF 0.5112; best in-sample PF
 
 Guardrails: no fabricated symbols, no silent baseline/parameter changes, no lowering of data requirements, and no in-sample-only promotion. Run `python -m pytest tests/ -q` after code changes and report the actual result.
 
-- Session note (2026-10-20T12:21:59Z): tests verified 56 passed; state remains `AWAITING_NEW_ELIGIBLE_CANDIDATES`; next refresh >= 2026-10-21T10:02:36Z.
+- Session note (2026-10-20T12:26:29Z): tests verified 56 passed; state remains `AWAITING_NEW_ELIGIBLE_CANDIDATES`; next refresh >= 2026-10-21T10:02:36Z. No code changes.
