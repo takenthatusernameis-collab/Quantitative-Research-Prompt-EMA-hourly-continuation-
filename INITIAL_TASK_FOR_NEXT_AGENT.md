@@ -11,3 +11,5 @@ Read `NEXT_AGENT_TASK.md` first. It contains the exact next steps for checking s
 Current key metrics: mean net PF 0.4917; median net PF 0.5112; best in-sample PF 2.2274 but rejected for zero OOS trades; 35 cells had net PF > 1 and all failed OOS/cost stress; 9,567,069 aggregate trades; 0 credible candidates. All backtest metrics are historical research estimates, not live performance.
 
 Guardrails: no fabricated symbols, no silent baseline/parameter changes, no lowering of data requirements, and no in-sample-only promotion. Run `python -m pytest tests/ -q` after code changes and report the actual result.
+
+- Session note (2026-10-20T12:21:59Z): tests verified 56 passed; state remains `AWAITING_NEW_ELIGIBLE_CANDIDATES`; next refresh >= 2026-10-21T10:02:36Z.

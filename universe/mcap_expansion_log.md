@@ -1139,6 +1139,69 @@ Batch 16 alone: 660 cells, **660 rejected, 0 exploratory**, pooled mean net PF 0
 
 ---
 
+## Batch 17 - expansion to N = 177 (COMPLETED 2026-10-20)
+
+- Previous N -> new N: **167 -> 177** (ranks 168-177 of the working universe)
+- Snapshot: `universe/mcap_snapshot_20261020_082835.json` (fetched 2026-10-20T08:28:35Z, pages 1-10, 1 000 ranked entries down to $15 182 785 - the pass covers the band below the floor)
+- Expansion floor: MEME at 51 673 755 USD (the lowest market cap already in the universe); every added name is strictly below it.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Market cap |
+|---|---|---|
+| 168 | XYO/USDT | 45 129 567 |
+| 169 | POLYX/USDT | 44 933 926 |
+| 170 | AURORA/USDT | 44 114 791 |
+| 171 | POPCAT/USDT | 43 197 187 |
+| 172 | REQ/USDT | 42 955 154 |
+| 173 | LSK/USDT | 42 473 640 |
+| 174 | MASK/USDT | 41 802 261 |
+| 175 | ZIL/USDT | 41 689 179 |
+| 176 | ANKR/USDT | 41 277 977 |
+| 177 | BOME/USDT | 41 203 035 |
+
+BOME is the 177th and last symbol of the working universe; the floor is now $41 203 035.
+
+### Hourly coverage of the batch-17 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC):
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| XYO | 22 099 | 2024-04-12 .. 2026-10-20 |
+| POLYX, AURORA, REQ, LSK, MASK, ZIL, ANKR, BOME | 22 000 | 2024-04-16 .. 2026-10-20 |
+| POPCAT | 18 930 | 2024-08-22 .. 2026-10-20 |
+
+All 10 fixtures are present and reconciled in `data/fixtures/fetch_manifest.json` (177 symbols).
+
+### Batch-17 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| XYO | 66 | 61 521 | 0.3873 | 0.5513 (P21_200) | -4.2426 | 66 |
+| POLYX | 66 | 50 649 | 0.5615 | 0.7721 (P21_200) | -1.4871 | 66 |
+| AURORA | 66 | 46 469 | 0.4697 | 0.6727 (P8_144) | -2.7630 | 66 |
+| POPCAT | 66 | 47 653 | 0.5882 | 0.8890 (P34_200) | -0.7522 | 66 |
+| REQ | 66 | 63 224 | 0.3891 | 0.5324 (P26_144) | -6.4234 | 66 |
+| LSK | 66 | 45 894 | 0.5454 | 0.7650 (P8_200) | -1.6394 | 66 |
+| MASK | 66 | 55 546 | 0.3989 | 0.6380 (P50_200) | -2.7920 | 66 |
+| ZIL | 66 | 54 709 | 0.4804 | 0.7036 (P8_200) | -2.1128 | 66 |
+| ANKR | 66 | 52 735 | 0.4843 | 0.7038 (P8_200) | -2.0698 | 66 |
+| BOME | 66 | 53 168 | 0.5318 | 0.7778 (P8_200) | -1.2516 | 66 |
+
+Batch 17 alone: 660 cells, **660 rejected, 0 exploratory**, 531 568 trades. No cell in the batch reached net PF > 1.
+
+---
+
+## Cumulative state after batch 17 (N = 177)
+
+- **11 682 / 11 682 cells** complete (177 symbols x 66 EMA pairs), 0 blocked.
+- 11 657 cells **rejected**, 25 cells **exploratory signal** in the aggregate scan and **rejected** by the OOS + cost-stress check, **0 credible candidates**.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4917**, median 0.5112, best net PF **2.2274** (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 9 567 069 trades.
+- Cells with net PF > 1: 35 / 11 682 = 0.3 % against a ~50 % no-edge null (excess -49.7 %). All 35 failed OOS + cost stress (artifact `results/20261020_094859_candidate_check/`): 32 BABYDOGE cells have zero OOS trades; JASMY P20_200 / P21_200 and SUPER P8_200 fail cost stress.
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -1160,5 +1223,6 @@ Batch 16 alone: 660 cells, **660 rejected, 0 exploratory**, pooled mean net PF 0
 | Batch 14 | 147 | complete - ZETA, ALT, AXL, BABYDOGE, TFUEL, IO, SUSHI, EDU, DGB, DEXE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 15 | 157 | complete - RLC, ROSE, TURBO, XPR, ENJ, T, ONT, ASTR, PHA, MEME (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 16 | 167 | complete - WIN, TRB, CELO, FLOW, ID, CTC, DEEP, BRETT, CFG, XNO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 17 | 177 | complete - XYO, POLYX, AURORA, POPCAT, REQ, LSK, MASK, ZIL, ANKR, BOME (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).

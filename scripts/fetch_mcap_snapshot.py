@@ -37,6 +37,12 @@ KUCOIN_TICKER_URL = 'https://api.kucoin.com/api/v1/market/orderbook/level1'
 REQUEST_TIMEOUT = 30
 PAUSE_SECONDS = 0.6
 
+# The CoinGecko free tier rate-limits the public markets endpoint to a handful of
+# calls per minute; paging through 10 pages 0.6s apart reliably answers 429 on
+# page 6. The ranking pages are therefore spaced out so a multi-page pass
+# completes instead of aborting half-way through the coverage band.
+COINGECKO_PAUSE_SECONDS = 9.0
+
 # A ticker can name two different assets (CoinGecko "ONE" is "ONEchain" while
 # KuCoin's ONE-USDT is "Harmony"). Trading the wrong asset would put a name in
 # the universe whose market cap does not match the asset actually backtested, so
@@ -100,9 +106,15 @@ WRAPPED_DUPLICATES = {
 }
 
 
-def fetch_markets(pages: int, per_page: int = 100) -> list:
-    """Fetch market-cap-descending market data from CoinGecko."""
+def fetch_markets(pages: int, per_page: int = 100):
+    """Fetch market-cap-descending market data from CoinGecko.
+
+    Returns (rows, pages_fetched). `pages_fetched` counts the pages that
+    actually returned rows, so a pass that stops early is never recorded as a
+    complete pass over the requested page range.
+    """
     out = []
+    pages_fetched = 0
     for page in range(1, pages + 1):
         params = {
             'vs_currency': 'usd',
@@ -116,8 +128,9 @@ def fetch_markets(pages: int, per_page: int = 100) -> list:
         if not rows:
             break
         out.extend(rows)
-        time.sleep(PAUSE_SECONDS)
-    return out
+        pages_fetched = page
+        time.sleep(COINGECKO_PAUSE_SECONDS)
+    return out, pages_fetched
 
 
 def fetch_kucoin_usdt_pairs() -> set:
@@ -187,7 +200,7 @@ def price_identity_ok(entry: dict) -> bool:
 
 
 def build_snapshot(pages: int) -> dict:
-    rows = fetch_markets(pages)
+    rows, pages_fetched = fetch_markets(pages)
     kucoin_pairs = fetch_kucoin_usdt_pairs()
 
     entries = []
@@ -222,11 +235,90 @@ def build_snapshot(pages: int) -> dict:
             reason = None
         entry['exclusion_reason'] = reason
         entries.append(entry)
-    return {
+    snapshot = {
         'source': 'CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)',
-        'pages_fetched': pages,
+        'pages_requested': pages,
+        'pages_fetched': pages_fetched,
+        'all_requested_pages_returned': pages_fetched == pages,
+        'entries_count': len(entries),
         'fetched_at': datetime.now(timezone.utc).isoformat(),
         'entries': entries,
+    }
+    snapshot.update(coverage_facts(snapshot))
+    return snapshot
+
+
+def coverage_facts(snapshot: dict) -> dict:
+    """Page/entry coverage of a ranking snapshot, derived from the entries.
+
+    Older snapshots do not carry the coverage fields, so they are recomputed
+    from the entry list. The lowest covered rank and market cap are what decide
+    whether a pass actually reached below the current expansion floor.
+    """
+    entries = snapshot.get('entries') or []
+    last = entries[-1] if entries else {}
+    pages_requested = snapshot.get('pages_requested', snapshot.get('pages_fetched'))
+    pages_fetched = snapshot.get('pages_fetched')
+    return {
+        'pages_requested': pages_requested,
+        'pages_fetched': pages_fetched,
+        'all_requested_pages_returned': (
+            None if pages_requested is None or pages_fetched is None
+            else pages_fetched == pages_requested
+        ),
+        'entries_count': len(entries),
+        'lowest_rank_covered': last.get('rank'),
+        'lowest_market_cap_usd': last.get('market_cap_usd'),
+    }
+
+
+def coverage_reaches_below_floor(snapshot: dict, floor_mcap: float) -> bool:
+    """True when the pass observed at least one name below the expansion floor.
+
+    A pass that stops above the floor cannot see the band the expansion works
+    on, so "no eligible name found" means "nothing looked at", not "nothing
+    there".
+    """
+    facts = coverage_facts(snapshot)
+    lowest = facts.get('lowest_market_cap_usd')
+    if lowest is None or not floor_mcap:
+        return False
+    return lowest < floor_mcap
+
+
+def build_scan_record(snapshot: dict, snapshot_path: Path, current_symbols: list,
+                      floor_mcap: float, floor_symbol: str, eligible_below: list,
+                      batch: list, scanned_at: str) -> dict:
+    """Machine-readable record of one ranking pass (PROMPT.md §2.1.5)."""
+    facts = coverage_facts(snapshot)
+    reaches = coverage_reaches_below_floor(snapshot, floor_mcap)
+    if eligible_below:
+        state = 'EXPANSION_AVAILABLE'
+        next_refresh = None
+    elif reaches:
+        state = 'AWAITING_NEW_ELIGIBLE_CANDIDATES'
+        scanned = datetime.fromisoformat(scanned_at)
+        next_refresh = (scanned + timedelta(hours=24)).isoformat()
+    else:
+        state = 'INCOMPLETE_SCAN'
+        next_refresh = datetime.now(timezone.utc).isoformat()
+    return {
+        'recorded_at': datetime.now(timezone.utc).isoformat(),
+        'state': state,
+        'snapshot_id': snapshot_path.stem,
+        'snapshot_path': str(snapshot_path),
+        'snapshot_source': snapshot.get('source'),
+        'scanned_at': scanned_at,
+        'coverage': facts,
+        'coverage_reaches_below_floor': reaches,
+        'universe_n': len(current_symbols),
+        'expansion_floor': {'symbol': floor_symbol, 'market_cap_usd': floor_mcap},
+        'eligible_unseen_below_floor_count': len(eligible_below),
+        'eligible_unseen_below_floor': [
+            {'rank': e['rank'], 'symbol': e['symbol'], 'name': e.get('name'),
+             'market_cap_usd': e['market_cap_usd']} for e in eligible_below],
+        'batch_selected': [f"{e['symbol']}/USDT" for e in batch],
+        'next_eligible_refresh_at': next_refresh,
     }
 
 
@@ -347,29 +439,55 @@ def main():
         included_mcaps[s] = entry.get('market_cap_usd') if entry else None
     known = [m for m in included_mcaps.values() if m]
     floor_mcap = min(known) if known else 0
+    floor_symbol = None
+    if known:
+        floor_symbol = min(((m, s) for s, m in included_mcaps.items() if m))[1]
 
-    added = []
-    added_tickers = set()
+    eligible_below = []
+    seen_tickers = set()
     for e in snapshot['entries']:
-        if len(added) >= args.batch_size:
-            break
         if e['exclusion_reason'] is not None:
             continue
-        if e['symbol'] in current_set or e['symbol'] in added_tickers:
+        if e['symbol'] in current_set or e['symbol'] in seen_tickers:
             continue
         if e['market_cap_usd'] >= floor_mcap:
             continue
-        added.append(e)
-        added_tickers.add(e['symbol'])
+        eligible_below.append(e)
+        seen_tickers.add(e['symbol'])
+
+    added = eligible_below[:args.batch_size]
+
+    facts = coverage_facts(snapshot)
+    reaches_floor = coverage_reaches_below_floor(snapshot, floor_mcap)
 
     print(f'Snapshot: {snapshot_path}')
+    print(f'Coverage: {facts["entries_count"]} entries, '
+          f'pages {facts["pages_fetched"]}/{facts["pages_requested"]}, '
+          f'lowest covered rank {facts["lowest_rank_covered"]} '
+          f'(${facts["lowest_market_cap_usd"]:,})')
     print(f'Current universe ({len(current_symbols)}): {current_symbols}')
     print(f'Included market caps (fresh snapshot): {included_mcaps}')
-    print(f'Expansion floor (lowest included mcap): {floor_mcap}')
+    print(f'Expansion floor (lowest included mcap): {floor_mcap} ({floor_symbol})')
+    if not reaches_floor:
+        print(f'WARNING: the ranking pass stops at ${facts["lowest_market_cap_usd"]:,}, '
+              f'which is ABOVE the expansion floor ${floor_mcap:,}.')
+        print('         The band below the floor was NOT observed, so this pass cannot '
+              'answer whether eligible names exist there.')
+        print('         Fetch more pages before concluding that no eligible name is left.')
+    print(f'Eligible unseen names below the floor: {len(eligible_below)}')
     print(f'New batch ({len(added)}):')
     for e in added:
         print(f"  #{e['rank']:>4} {e['symbol']:<8} mcap=${e['market_cap_usd']:,} "
               f"px={e['price_usd']} name={e['name']}")
+
+    record = build_scan_record(
+        snapshot, snapshot_path, current_symbols, floor_mcap, floor_symbol,
+        eligible_below, added, snapshot['fetched_at'])
+    record_path = Path(args.out_dir) / 'last_scan.json'
+    record_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(record_path, 'w') as f:
+        json.dump(record, f, indent=2)
+    print(f'Scan record: {record_path} (state={record["state"]})')
 
     if args.apply and added:
         expanded = current_symbols + [f"{e['symbol']}/USDT" for e in added]

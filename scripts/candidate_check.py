@@ -24,6 +24,9 @@ Usage:
     python scripts/candidate_check.py --run results/20261019_135940_grid
     python scripts/candidate_check.py --run results/20261019_135940_grid \
         --cells "JASMY/USDT:20:200" --oos-fraction 0.35
+
+Each finished cell is appended to <out>/rows.jsonl, so a run that is cut short
+keeps the cells it already computed and the next invocation resumes from them.
 """
 import argparse
 import json
@@ -35,6 +38,28 @@ from scripts.run_grid import CONFIG_DEFAULTS, run_cell
 
 MIN_TRADES_EXPLORATORY = 30
 MIN_TRADES_CREDIBLE = 30
+ROWS_FILENAME = 'rows.jsonl'
+
+
+def load_completed_rows(path: Path) -> dict:
+    """Cell results already computed in an earlier, interrupted run.
+
+    Keyed by (symbol, P_fast, P_slow). A truncated trailing line is ignored.
+    """
+    rows = {}
+    if not path.exists():
+        return rows
+    with open(path) as fh:
+        for line in fh:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            rows[(row['symbol'], row['P_fast'], row['P_slow'])] = row
+    return rows
 
 
 def load_candidates(run_dir: Path, explicit: str) -> list:
@@ -101,6 +126,8 @@ def main():
     ap.add_argument('--stress-multiplier', type=float, default=2.0)
     ap.add_argument('--out', type=str, default=None,
                     help='Output dir (default results/<TS>_candidate_check)')
+    ap.add_argument('--restart', action='store_true', default=False,
+                    help='Ignore a previously written rows.jsonl and recompute every cell')
     args = ap.parse_args()
 
     run_dir = Path(args.run)
@@ -112,6 +139,11 @@ def main():
     if not candidates:
         print('No candidate cells to check.')
         return
+
+    rows_path = out_dir / ROWS_FILENAME
+    done = {} if args.restart else load_completed_rows(rows_path)
+    if done:
+        print(f'Resuming from {rows_path}: {len(done)} cell(s) already computed.')
 
     cfg = dict(CONFIG_DEFAULTS)
     taker = cfg['taker_fee_bps']
@@ -133,44 +165,54 @@ def main():
         json.dump(run_config, fh, indent=2, default=str)
 
     rows = []
-    for symbol, fast, slow in candidates:
-        fixture = Path(args.fixture_base) / f"{symbol.replace('/', '_')}.csv"
-        df = load_ohlcv_csv(str(fixture))
-        legs = {}
-        legs['base'] = {'metrics': run_cell(symbol, df, fast, slow, taker, slip, cfg['rr'],
-                                            cfg['stricter_trend'], cfg['min_risk_atr'],
-                                            cfg['atr_threshold'], cfg['conservative_exit'],
-                                            oos_fraction=None, sizing=cfg['sizing'],
-                                            risk_fraction=cfg['risk_fraction'],
-                                            max_notional_multiple=cfg['max_notional_multiple'])[2]}
-        legs['oos'] = {'metrics': run_cell(symbol, df, fast, slow, taker, slip, cfg['rr'],
-                                           cfg['stricter_trend'], cfg['min_risk_atr'],
-                                           cfg['atr_threshold'], cfg['conservative_exit'],
-                                           oos_fraction=args.oos_fraction, sizing=cfg['sizing'],
-                                           risk_fraction=cfg['risk_fraction'],
-                                           max_notional_multiple=cfg['max_notional_multiple'])[2]}
-        legs['stress'] = {'metrics': run_cell(symbol, df, fast, slow, stress_taker, stress_slip,
-                                               cfg['rr'], cfg['stricter_trend'], cfg['min_risk_atr'],
+    with open(rows_path, 'a') as rows_fh:
+        for symbol, fast, slow in candidates:
+            key = (symbol, fast, slow)
+            if key in done:
+                rows.append(done[key])
+                continue
+            fixture = Path(args.fixture_base) / f"{symbol.replace('/', '_')}.csv"
+            df = load_ohlcv_csv(str(fixture))
+            legs = {}
+            legs['base'] = {'metrics': run_cell(symbol, df, fast, slow, taker, slip, cfg['rr'],
+                                                cfg['stricter_trend'], cfg['min_risk_atr'],
+                                                cfg['atr_threshold'], cfg['conservative_exit'],
+                                                oos_fraction=None, sizing=cfg['sizing'],
+                                                risk_fraction=cfg['risk_fraction'],
+                                                max_notional_multiple=cfg['max_notional_multiple'])[2]}
+            legs['oos'] = {'metrics': run_cell(symbol, df, fast, slow, taker, slip, cfg['rr'],
+                                               cfg['stricter_trend'], cfg['min_risk_atr'],
                                                cfg['atr_threshold'], cfg['conservative_exit'],
-                                               oos_fraction=None, sizing=cfg['sizing'],
+                                               oos_fraction=args.oos_fraction, sizing=cfg['sizing'],
                                                risk_fraction=cfg['risk_fraction'],
                                                max_notional_multiple=cfg['max_notional_multiple'])[2]}
-        legs['stress_oos'] = {'metrics': run_cell(symbol, df, fast, slow, stress_taker, stress_slip,
+            legs['stress'] = {'metrics': run_cell(symbol, df, fast, slow, stress_taker, stress_slip,
                                                    cfg['rr'], cfg['stricter_trend'], cfg['min_risk_atr'],
                                                    cfg['atr_threshold'], cfg['conservative_exit'],
-                                                   oos_fraction=args.oos_fraction, sizing=cfg['sizing'],
+                                                   oos_fraction=None, sizing=cfg['sizing'],
                                                    risk_fraction=cfg['risk_fraction'],
                                                    max_notional_multiple=cfg['max_notional_multiple'])[2]}
-        label = verdict(legs)
-        rows.append({'symbol': symbol, 'P_fast': fast, 'P_slow': slow,
-                     'decision_label': label,
-                     'legs': {k: v['metrics'] for k, v in legs.items()}})
-        print(f'{symbol} P{fast}_{slow}: base netPF={legs["base"]["metrics"].get("net_profit_factor"):.4f} '
-              f'oos netPF={legs["oos"]["metrics"].get("net_profit_factor"):.4f} '
-              f'(trades {legs["oos"]["metrics"].get("trade_count")}) '
-              f'stress netPF={legs["stress"]["metrics"].get("net_profit_factor"):.4f} '
-              f'-> {label}', flush=True)
+            legs['stress_oos'] = {'metrics': run_cell(symbol, df, fast, slow, stress_taker, stress_slip,
+                                                       cfg['rr'], cfg['stricter_trend'], cfg['min_risk_atr'],
+                                                       cfg['atr_threshold'], cfg['conservative_exit'],
+                                                       oos_fraction=args.oos_fraction, sizing=cfg['sizing'],
+                                                       risk_fraction=cfg['risk_fraction'],
+                                                       max_notional_multiple=cfg['max_notional_multiple'])[2]}
+            label = verdict(legs)
+            row = {'symbol': symbol, 'P_fast': fast, 'P_slow': slow,
+                   'decision_label': label,
+                   'legs': {k: v['metrics'] for k, v in legs.items()}}
+            rows.append(row)
+            done[key] = row
+            rows_fh.write(json.dumps(row, default=str) + '\n')
+            rows_fh.flush()
+            print(f'{symbol} P{fast}_{slow}: base netPF={legs["base"]["metrics"].get("net_profit_factor"):.4f} '
+                  f'oos netPF={legs["oos"]["metrics"].get("net_profit_factor"):.4f} '
+                  f'(trades {legs["oos"]["metrics"].get("trade_count")}) '
+                  f'stress netPF={legs["stress"]["metrics"].get("net_profit_factor"):.4f} '
+                  f'-> {label}', flush=True)
 
+    rows.sort(key=lambda r: (r['symbol'], r['P_fast'], r['P_slow']))
     with open(out_dir / 'summary.json', 'w') as fh:
         json.dump({'run_config': run_config, 'cells': rows}, fh, indent=2, default=str)
 

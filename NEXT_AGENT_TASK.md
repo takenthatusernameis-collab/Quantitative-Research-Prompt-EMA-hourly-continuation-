@@ -9,8 +9,7 @@
 - Pooled, full-sample net of costs (10 bps taker + 2 bps slippage per side): mean net profit factor **0.4917**, median **0.5112**, best in-sample PF **2.2274** (BABYDOGE/USDT P50_55; rejected, zero OOS trades), **9,567,069 trades**.
 - Cells with full-sample net PF > 1: **35 / 11,682 (0.30%)**. All 35 failed the required OOS and 2×-cost checks. The OOS window is the trailing 35% of each symbol's bars. No credible cell has been found.
 - Candidate-check artifact: `results/20261020_094859_candidate_check/summary.md`. Requirements for credibility remain: OOS net PF > 1, OOS Sharpe > 0, at least 30 OOS trades, and PF > 1 under 2× fees/slippage.
-- Tests last recorded: `python -m pytest tests/ -q` → **46 passed**.
-- Latest expansion added: `universe/mcap_rank.json` N=177, snapshot `mcap_snapshot_20261020_082835`.
+- Tests last recorded: `python -m pytest tests/ -q` → **56 passed** (verified 2026-10-20T12:21:59Z).- Latest expansion added: `universe/mcap_rank.json` N=177, snapshot `mcap_snapshot_20261020_082835`.
 
 **Fresh ranking scan (2026-10-20T10:02:36Z):** Retrieved `universe/mcap_snapshot_20261020_100236.json` (pages 1–5, 500 entries). Checked all eligible (tradable on KuCoin spot USDT, no exclusion) entries not in the working universe (N=177). Found **GAS/USDT (rank 318, mcap ~80.37M)** which is above the current BOME floor (~41.20M). **No eligible unseen assets below the current floor.** The symbols below BOME in the prior snapshot (e.g. CCD, CSPR, API3, NOT, MOG, PEOPLE, etc.) were not present as eligible tradable pairs in the fresh snapshot or had dropped below eligibility. Evidence: full scan of pages 1–5 complete; no candidates with mcap < 41.20M satisfy KuCoin spot USDT tradability and history filters.
 
@@ -30,7 +29,12 @@ The prior handoff records that a scan of CoinGecko pages 4–5 found no currentl
    After each symbol, checkpoint its result as in the previous batches. Then run `scripts/aggregate_grid.py --run results/20261019_135940_grid` and `scripts/candidate_check.py --run results/20261019_135940_grid`; update the expansion log, progress summary and this handoff with the actual outcome.
 7. **If a full fresh ranking pass again yields zero eligible names**, persist a truthful `AWAITING_NEW_ELIGIBLE_CANDIDATES` state with evidence and the next eligible refresh time (>=24h out). Do not invent names, repeatedly hit providers, change the strategy baseline, or call a candidate credible on in-sample metrics. On a later due refresh, repeat the scan and continue if the opportunity set has changed.
 
-## Guardrails
+## Session update (2026-10-20T12:21:59Z)
+
+- Reconciled state: still `AWAITING_NEW_ELIGIBLE_CANDIDATES`. No new eligible names; 24h refresh not due until 2026-10-21T10:02:36Z.
+- Independent verification performed: `python -m pytest tests/ -q` → 56 passed. No code changes.
+- Universe remains N=177, floor BOME ~USD 41.20M. Grid complete 11,682/11,682, 0 credible candidates.
+- Next eligible refresh: no earlier than 2026-10-21T10:02:36Z.
 
 - Keep the universe append-only and strictly market-cap descending; add only new eligible symbols below the existing floor.
 - Never stop merely because the grid or a batch produced no edge. No eligible names *in a particular checked snapshot* means wait for a later bounded refresh, not permanent closure.

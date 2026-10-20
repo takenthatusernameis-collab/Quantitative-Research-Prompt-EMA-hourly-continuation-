@@ -1,0 +1,572 @@
+{
+  "recorded_at": "2026-10-20T11:32:02.107993+00:00",
+  "state": "EXPANSION_AVAILABLE",
+  "snapshot_id": "mcap_snapshot_20261020_113004",
+  "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
+  "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
+  "scanned_at": "2026-10-20T11:30:04.315667+00:00",
+  "coverage": {
+    "pages_requested": 10,
+    "pages_fetched": 10,
+    "all_requested_pages_returned": true,
+    "entries_count": 1000,
+    "lowest_rank_covered": 1000,
+    "lowest_market_cap_usd": 15174185
+  },
+  "coverage_reaches_below_floor": true,
+  "universe_n": 177,
+  "expansion_floor": {
+    "symbol": "BOME/USDT",
+    "market_cap_usd": 40764606
+  },
+  "eligible_unseen_below_floor_count": 89,
+  "eligible_unseen_below_floor": [
+    {
+      "rank": 546,
+      "symbol": "API3",
+      "name": "Api3",
+      "market_cap_usd": 39787614
+    },
+    {
+      "rank": 548,
+      "symbol": "SYN",
+      "name": "Synapse",
+      "market_cap_usd": 39709917
+    },
+    {
+      "rank": 549,
+      "symbol": "BAND",
+      "name": "Band",
+      "market_cap_usd": 39644632
+    },
+    {
+      "rank": 550,
+      "symbol": "MOG",
+      "name": "Mog Coin",
+      "market_cap_usd": 39157351
+    },
+    {
+      "rank": 551,
+      "symbol": "CSPR",
+      "name": "Casper Network",
+      "market_cap_usd": 39152806
+    },
+    {
+      "rank": 554,
+      "symbol": "NOT",
+      "name": "Notcoin",
+      "market_cap_usd": 38716786
+    },
+    {
+      "rank": 559,
+      "symbol": "ETN",
+      "name": "Electroneum",
+      "market_cap_usd": 38334381
+    },
+    {
+      "rank": 564,
+      "symbol": "PEOPLE",
+      "name": "ConstitutionDAO",
+      "market_cap_usd": 38019382
+    },
+    {
+      "rank": 569,
+      "symbol": "IOTX",
+      "name": "IoTeX",
+      "market_cap_usd": 37390402
+    },
+    {
+      "rank": 571,
+      "symbol": "SSV",
+      "name": "SSV Network",
+      "market_cap_usd": 37149593
+    },
+    {
+      "rank": 572,
+      "symbol": "OSMO",
+      "name": "Osmosis",
+      "market_cap_usd": 37083307
+    },
+    {
+      "rank": 574,
+      "symbol": "MOODENG",
+      "name": "Moo Deng",
+      "market_cap_usd": 37050928
+    },
+    {
+      "rank": 580,
+      "symbol": "MEW",
+      "name": "cat in a dogs world",
+      "market_cap_usd": 36350256
+    },
+    {
+      "rank": 590,
+      "symbol": "MERL",
+      "name": "Merlin Chain",
+      "market_cap_usd": 35731205
+    },
+    {
+      "rank": 598,
+      "symbol": "RPL",
+      "name": "Rocket Pool",
+      "market_cap_usd": 34904326
+    },
+    {
+      "rank": 599,
+      "symbol": "MOCA",
+      "name": "Moca Network",
+      "market_cap_usd": 34900812
+    },
+    {
+      "rank": 601,
+      "symbol": "UMA",
+      "name": "UMA",
+      "market_cap_usd": 34706377
+    },
+    {
+      "rank": 615,
+      "symbol": "DEGEN",
+      "name": "Degen",
+      "market_cap_usd": 33756064
+    },
+    {
+      "rank": 619,
+      "symbol": "ORBS",
+      "name": "Orbs",
+      "market_cap_usd": 33552511
+    },
+    {
+      "rank": 623,
+      "symbol": "CATI",
+      "name": "Catizen",
+      "market_cap_usd": 33051490
+    },
+    {
+      "rank": 626,
+      "symbol": "METIS",
+      "name": "Metis",
+      "market_cap_usd": 32766651
+    },
+    {
+      "rank": 628,
+      "symbol": "REZ",
+      "name": "Renzo",
+      "market_cap_usd": 32719574
+    },
+    {
+      "rank": 631,
+      "symbol": "LISTA",
+      "name": "Lista DAO",
+      "market_cap_usd": 32577613
+    },
+    {
+      "rank": 640,
+      "symbol": "COTI",
+      "name": "COTI",
+      "market_cap_usd": 32033554
+    },
+    {
+      "rank": 643,
+      "symbol": "MAGIC",
+      "name": "Treasure",
+      "market_cap_usd": 31646368
+    },
+    {
+      "rank": 651,
+      "symbol": "GTC",
+      "name": "Gitcoin",
+      "market_cap_usd": 31056372
+    },
+    {
+      "rank": 659,
+      "symbol": "MANTA",
+      "name": "Manta Network",
+      "market_cap_usd": 30597776
+    },
+    {
+      "rank": 662,
+      "symbol": "LUNA",
+      "name": "Terra",
+      "market_cap_usd": 30498213
+    },
+    {
+      "rank": 680,
+      "symbol": "FLUX",
+      "name": "Flux",
+      "market_cap_usd": 29307821
+    },
+    {
+      "rank": 682,
+      "symbol": "XCH",
+      "name": "Chia",
+      "market_cap_usd": 29168720
+    },
+    {
+      "rank": 687,
+      "symbol": "ELON",
+      "name": "Dogelon Mars",
+      "market_cap_usd": 28983090
+    },
+    {
+      "rank": 689,
+      "symbol": "CTSI",
+      "name": "Cartesi",
+      "market_cap_usd": 28823155
+    },
+    {
+      "rank": 693,
+      "symbol": "IOST",
+      "name": "IOST",
+      "market_cap_usd": 28658475
+    },
+    {
+      "rank": 699,
+      "symbol": "SWFTC",
+      "name": "SWFTCOIN",
+      "market_cap_usd": 28193368
+    },
+    {
+      "rank": 705,
+      "symbol": "UQC",
+      "name": "Uquid Coin",
+      "market_cap_usd": 27726441
+    },
+    {
+      "rank": 709,
+      "symbol": "ILV",
+      "name": "Illuvium",
+      "market_cap_usd": 27459683
+    },
+    {
+      "rank": 712,
+      "symbol": "AVA",
+      "name": "AVA (Travala)",
+      "market_cap_usd": 27100879
+    },
+    {
+      "rank": 716,
+      "symbol": "CPOOL",
+      "name": "Clearpool",
+      "market_cap_usd": 26920775
+    },
+    {
+      "rank": 717,
+      "symbol": "BLUR",
+      "name": "Blur",
+      "market_cap_usd": 26892547
+    },
+    {
+      "rank": 720,
+      "symbol": "EUL",
+      "name": "Euler",
+      "market_cap_usd": 26770327
+    },
+    {
+      "rank": 721,
+      "symbol": "FLIP",
+      "name": "Chainflip",
+      "market_cap_usd": 26697475
+    },
+    {
+      "rank": 726,
+      "symbol": "G",
+      "name": "Gravity (by Galxe)",
+      "market_cap_usd": 26376038
+    },
+    {
+      "rank": 730,
+      "symbol": "EWT",
+      "name": "Energy Web Token",
+      "market_cap_usd": 26309600
+    },
+    {
+      "rank": 734,
+      "symbol": "ERG",
+      "name": "Ergo",
+      "market_cap_usd": 26061512
+    },
+    {
+      "rank": 745,
+      "symbol": "NYM",
+      "name": "Nym",
+      "market_cap_usd": 25472687
+    },
+    {
+      "rank": 746,
+      "symbol": "SKL",
+      "name": "SKALE",
+      "market_cap_usd": 25450152
+    },
+    {
+      "rank": 752,
+      "symbol": "AUCTION",
+      "name": "Bounce",
+      "market_cap_usd": 25193109
+    },
+    {
+      "rank": 754,
+      "symbol": "KNC",
+      "name": "Kyber Network Crystal",
+      "market_cap_usd": 25068821
+    },
+    {
+      "rank": 756,
+      "symbol": "VR",
+      "name": "Victoria VR",
+      "market_cap_usd": 25025182
+    },
+    {
+      "rank": 763,
+      "symbol": "CARV",
+      "name": "CARV",
+      "market_cap_usd": 24788571
+    },
+    {
+      "rank": 765,
+      "symbol": "MTL",
+      "name": "Metal DAO",
+      "market_cap_usd": 24764629
+    },
+    {
+      "rank": 768,
+      "symbol": "DAG",
+      "name": "Constellation",
+      "market_cap_usd": 24579494
+    },
+    {
+      "rank": 769,
+      "symbol": "PUNDIX",
+      "name": "Pundi X",
+      "market_cap_usd": 24563087
+    },
+    {
+      "rank": 770,
+      "symbol": "PUFFER",
+      "name": "Puffer",
+      "market_cap_usd": 24423363
+    },
+    {
+      "rank": 779,
+      "symbol": "SQD",
+      "name": "SQD",
+      "market_cap_usd": 23936491
+    },
+    {
+      "rank": 785,
+      "symbol": "WAVES",
+      "name": "Waves",
+      "market_cap_usd": 23321655
+    },
+    {
+      "rank": 786,
+      "symbol": "MLK",
+      "name": "MiL.k",
+      "market_cap_usd": 23301530
+    },
+    {
+      "rank": 789,
+      "symbol": "TNSR",
+      "name": "Tensor",
+      "market_cap_usd": 23080708
+    },
+    {
+      "rank": 795,
+      "symbol": "STRAX",
+      "name": "Xertra",
+      "market_cap_usd": 22663753
+    },
+    {
+      "rank": 799,
+      "symbol": "GMT",
+      "name": "GMT",
+      "market_cap_usd": 22410555
+    },
+    {
+      "rank": 816,
+      "symbol": "SATS",
+      "name": "SATS (Ordinals)",
+      "market_cap_usd": 21621654
+    },
+    {
+      "rank": 818,
+      "symbol": "OGN",
+      "name": "Origin Token",
+      "market_cap_usd": 21533963
+    },
+    {
+      "rank": 820,
+      "symbol": "CETUS",
+      "name": "Cetus Protocol",
+      "market_cap_usd": 21414698
+    },
+    {
+      "rank": 824,
+      "symbol": "YGG",
+      "name": "Yield Guild Games",
+      "market_cap_usd": 21324785
+    },
+    {
+      "rank": 835,
+      "symbol": "DODO",
+      "name": "DODO",
+      "market_cap_usd": 20845043
+    },
+    {
+      "rank": 838,
+      "symbol": "ONE",
+      "name": "Harmony",
+      "market_cap_usd": 20634662
+    },
+    {
+      "rank": 843,
+      "symbol": "AEVO",
+      "name": "Aevo",
+      "market_cap_usd": 20512457
+    },
+    {
+      "rank": 844,
+      "symbol": "SLP",
+      "name": "Smooth Love Potion",
+      "market_cap_usd": 20466559
+    },
+    {
+      "rank": 854,
+      "symbol": "CGPT",
+      "name": "ChainGPT",
+      "market_cap_usd": 20047403
+    },
+    {
+      "rank": 862,
+      "symbol": "WOO",
+      "name": "WOO",
+      "market_cap_usd": 19716095
+    },
+    {
+      "rank": 863,
+      "symbol": "CELR",
+      "name": "Celer Network",
+      "market_cap_usd": 19715136
+    },
+    {
+      "rank": 867,
+      "symbol": "DOGS",
+      "name": "Dogs",
+      "market_cap_usd": 19645934
+    },
+    {
+      "rank": 881,
+      "symbol": "LQTY",
+      "name": "Liquity",
+      "market_cap_usd": 19254508
+    },
+    {
+      "rank": 884,
+      "symbol": "DIA",
+      "name": "DIA",
+      "market_cap_usd": 19167153
+    },
+    {
+      "rank": 888,
+      "symbol": "BIGTIME",
+      "name": "Big Time",
+      "market_cap_usd": 19057587
+    },
+    {
+      "rank": 893,
+      "symbol": "CYBER",
+      "name": "CYBER",
+      "market_cap_usd": 18929002
+    },
+    {
+      "rank": 918,
+      "symbol": "FIDA",
+      "name": "Bonfida",
+      "market_cap_usd": 17875930
+    },
+    {
+      "rank": 922,
+      "symbol": "CHR",
+      "name": "Chromia",
+      "market_cap_usd": 17769533
+    },
+    {
+      "rank": 939,
+      "symbol": "QI",
+      "name": "BENQI",
+      "market_cap_usd": 17229915
+    },
+    {
+      "rank": 940,
+      "symbol": "ARPA",
+      "name": "ARPA",
+      "market_cap_usd": 17223422
+    },
+    {
+      "rank": 944,
+      "symbol": "POKT",
+      "name": "Pocket Network",
+      "market_cap_usd": 17067402
+    },
+    {
+      "rank": 945,
+      "symbol": "XAI",
+      "name": "Xai",
+      "market_cap_usd": 17056252
+    },
+    {
+      "rank": 947,
+      "symbol": "ANYONE",
+      "name": "ANyONe Protocol",
+      "market_cap_usd": 16944562
+    },
+    {
+      "rank": 955,
+      "symbol": "ACE",
+      "name": "Fusionist",
+      "market_cap_usd": 16766208
+    },
+    {
+      "rank": 961,
+      "symbol": "MOVR",
+      "name": "Moonriver",
+      "market_cap_usd": 16632333
+    },
+    {
+      "rank": 964,
+      "symbol": "RIO",
+      "name": "Realio Network Token",
+      "market_cap_usd": 16469905
+    },
+    {
+      "rank": 976,
+      "symbol": "BICO",
+      "name": "Biconomy",
+      "market_cap_usd": 16006036
+    },
+    {
+      "rank": 982,
+      "symbol": "AGLD",
+      "name": "Adventure Gold",
+      "market_cap_usd": 15735984
+    },
+    {
+      "rank": 992,
+      "symbol": "TAIKO",
+      "name": "Taiko",
+      "market_cap_usd": 15436339
+    }
+  ],
+  "batch_selected": [
+    "API3/USDT",
+    "SYN/USDT",
+    "BAND/USDT",
+    "MOG/USDT",
+    "CSPR/USDT",
+    "NOT/USDT",
+    "ETN/USDT",
+    "PEOPLE/USDT",
+    "IOTX/USDT",
+    "SSV/USDT"
+  ],
+  "next_eligible_refresh_at": null
+}

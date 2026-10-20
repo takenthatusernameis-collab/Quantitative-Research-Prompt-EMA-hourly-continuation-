@@ -1,5 +1,11 @@
 """Tests for the candidate-check harness (OOS + cost stress gates)."""
-from scripts.candidate_check import load_candidates, verdict
+import json
+import sys
+
+import pandas as pd
+
+from scripts import candidate_check
+from scripts.candidate_check import load_candidates, load_completed_rows, verdict
 
 
 def _legs(base_pf=1.2, base_sh=0.5, oos_pf=1.1, oos_sh=0.2, oos_n=100,
@@ -66,3 +72,45 @@ def test_load_candidates_discovers_cells_above_one_pf(tmp_path):
     (other / 'summary.json').write_text(
         '{"P_fast": 20, "P_slow": 200, "net_profit_factor": 0.5}')
     assert load_candidates(run_dir, None) == [('JASMY/USDT', 20, 200)]
+
+
+def test_load_completed_rows_ignores_a_truncated_line(tmp_path):
+    """An interrupted run leaves a partial last line; it must not break resume."""
+    path = tmp_path / 'rows.jsonl'
+    row = {'symbol': 'AAA/USDT', 'P_fast': 8, 'P_slow': 12, 'decision_label': 'rejected'}
+    path.write_text(json.dumps(row) + '\n' + '{"symbol": "BBB/UDT')
+    done = load_completed_rows(path)
+    assert list(done) == [('AAA/USDT', 8, 12)]
+
+
+def test_candidate_check_reuses_computed_cells(tmp_path, monkeypatch):
+    """A cell already computed in an interrupted run is not recomputed."""
+    out = tmp_path / 'check'
+    out.mkdir()
+    row = {'symbol': 'AAA/USDT', 'P_fast': 8, 'P_slow': 12,
+           'decision_label': 'rejected',
+           'legs': {'base': {'net_profit_factor': 1.0, 'sharpe_ratio': 0.0},
+                    'oos': {'net_profit_factor': 0.0, 'sharpe_ratio': 0.0, 'trade_count': 0},
+                    'stress': {'net_profit_factor': 1.0},
+                    'stress_oos': {'net_profit_factor': 0.0}}}
+    (out / 'rows.jsonl').write_text(json.dumps(row) + '\n')
+
+    calls = []
+
+    def fake_run_cell(*args, **kwargs):
+        calls.append(args[:3])
+        return pd.DataFrame(), pd.DataFrame(), {'net_profit_factor': 0.0,
+                                                'sharpe_ratio': 0.0, 'trade_count': 0}
+
+    monkeypatch.setattr(candidate_check, 'load_candidates',
+                        lambda run_dir, explicit: [('AAA/USDT', 8, 12)])
+    monkeypatch.setattr(candidate_check, 'run_cell', fake_run_cell)
+    monkeypatch.setattr(candidate_check, 'load_ohlcv_csv', lambda path: pd.DataFrame({'close': [1.0]}))
+    monkeypatch.setattr(sys, 'argv', ['candidate_check.py', '--run', str(tmp_path / 'grid'),
+                                      '--out', str(out)])
+
+    candidate_check.main()
+
+    assert calls == []
+    summary = json.loads((out / 'summary.json').read_text())
+    assert [c['symbol'] for c in summary['cells']] == ['AAA/USDT']
