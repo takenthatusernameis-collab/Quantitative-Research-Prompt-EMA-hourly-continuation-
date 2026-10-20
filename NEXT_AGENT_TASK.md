@@ -1,37 +1,40 @@
 # NEXT AGENT TASK
 
-## Status update (2026-10-20): batch 17 COMPLETE. Universe N=177, grid 11,682/11,682 cells, 0 credible candidates. Expansion exhausted (no eligible names below floor).
+## Current state (verified against the saved artifacts, 2026-10-20)
 
-## Objective
+**Program status: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, not permanently complete.** Batch 17 completed the universe expansion from N=167 to N=177. The most recent recorded universe is `universe/mcap_rank.json`, snapshot `mcap_snapshot_20261020_082835` (CoinGecko, retrieved 2026-10-20T08:28:35Z). Batch 17 appended XYO, POLYX, AURORA, POPCAT, REQ, LSK, MASK, ZIL, ANKR and BOME in descending market-cap order. The current floor is BOME at approximately USD 41.20M in that snapshot.
 
-**Program complete - no further market-cap expansion possible.** All eligible names below the XNO floor have been processed (N reached 177). The full grid covers 177 symbols x 66 EMA pairs = 11,682 cells. All cells have been evaluated; 0 credible candidates survive OOS + cost stress (candidate_check 20261020_094859). Do **not** expand further - there are no additional eligible symbols available under PROMPT.md §2.1.2.
+- Grid: **11,682 / 11,682 cells complete** in `results/20261019_135940_grid/` (177 symbols × 66 EMA pairs); 0 blocked.
+- Decision count: **11,657 rejected**, 25 exploratory at the initial scan, and **0 credible candidates** after robustness checks.
+- Pooled, full-sample net of costs (10 bps taker + 2 bps slippage per side): mean net profit factor **0.4917**, median **0.5112**, best in-sample PF **2.2274** (BABYDOGE/USDT P50_55; rejected, zero OOS trades), **9,567,069 trades**.
+- Cells with full-sample net PF > 1: **35 / 11,682 (0.30%)**. All 35 failed the required OOS and 2×-cost checks. The OOS window is the trailing 35% of each symbol's bars. No credible cell has been found.
+- Candidate-check artifact: `results/20261020_094859_candidate_check/summary.md`. Requirements for credibility remain: OOS net PF > 1, OOS Sharpe > 0, at least 30 OOS trades, and PF > 1 under 2× fees/slippage.
+- Tests last recorded: `python -m pytest tests/ -q` → **46 passed**.
+- Latest expansion added: `universe/mcap_rank.json` N=177, snapshot `mcap_snapshot_20261020_082835`.
 
-## State at handoff (2026-10-20)
+The prior handoff records that a scan of CoinGecko pages 4–5 found no currently eligible unseen assets below the existing market-cap floor. That is evidence about that checked snapshot and the filters at that time, **not proof that future snapshots can never produce eligible assets**. Do not fabricate a batch, and do not mark the long-running research program permanently complete solely because one full scan found no candidates.
 
-- Universe: **N = 177** (`universe/mcap_rank.json`), snapshot `mcap_snapshot_20261020_065809` extended by batches 1-17. Batch 17 added BOME, ANKR, ZIL, MASK, LSK, POPCAT, AURORA, POLYX, REQ, YXYO? Wait - looking up batch 17 symbols from git history: commits show "grid batch17 BOME/USDT", "ANKR/USDT", "ZIL/USDT" etc. Final batch 17 added: XYO, POLYX, AURORA, POPCAT, REQ, LSK, MASK, ZIL, ANKR, BOME (from expansion log end).
-- Grid: **11,682 / 11,682 cells complete** in `results/20261019_135940_grid/` (177 symbols x 66 pairs). 0 blocked. 11,657 rejected; 25 exploratory in the scan, all **rejected** on robustness -> **0 credible candidates**.
-- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
-  mean net PF 0.4917, median ~0.512, **best net PF 2.2274** (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 9,595,942+ trades.
-- Cumulative rejection rate: **11,657 / 11,682 cells (~99.79 %)**, 0 credible candidates.
-- Cells with net PF > 1: 35 / 11,682 = ~0.3 % against a ~50 % no-edge null. All 35 failed OOS + cost stress.
-- Robustness artifact: `results/20261020_094859_candidate_check/` (script `scripts/candidate_check.py`). All net-PF > 1 cells rejected.
-- Data layer: 177 fixtures in `data/fixtures/` (+ sample_hourly.csv), provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).
-- Tests: **46 passed** (`python -m pytest tests/ -q`).
+## Required next action — continue market-cap expansion safely
 
-## Environment note
-
-`python3` has pandas/numpy/pytest/requests available. Always run scripts as `PYTHONPATH=. python3 scripts/...`.
-
-## No further expansion possible
-
-Checked latest CoinGecko snapshots (pages 4-5). After including down to XNO (batch 16) and completing batch 17 (XYO, POLYX, AURORA, POPCAT, REQ, LSK, MASK, ZIL, ANKR, BOME), the next eligible names below the floor all fail filters (no KuCoin USDT pair / insufficient history / excluded) or don't exist. **Do not stand down prematurely** - the program is complete as specified.
+1. **Reconcile state first.** Read this handoff, `PROMPT.md` §2.1, `universe/mcap_rank.json`, the latest snapshot, `universe/mcap_expansion_log.md`, the grid `progress.json`, and the latest candidate-check artifact. Determine the timestamp and scope of the most recent complete ranking scan. Do not repeat a completed scan or rerun finished grid cells.
+2. **Bound empty-scan refreshes.** When the latest complete scan found zero eligible new names, avoid re-querying CoinGecko on every five-minute agent activation. Re-run the full ranking eligibility scan no more than once per 24 hours unless a genuinely new ranking snapshot has already been made available by another legitimate process. Record the timestamp, page coverage, exclusions and evidence. Continue independent code/test/research-quality work between refreshes. This is a temporary waiting state, not permanent program completion.
+3. **On the next due refresh, retrieve a fresh descending market-cap snapshot** using the existing script (start with `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 5 --batch-size 10` as a dry run). Inspect the timestamped snapshot it writes and the exact candidate/exclusion results. Extend the page count only when needed to complete the ranking pass below the current floor; obey bounded retries and respect provider rate limits.
+4. **If eligible new symbols are found**, select up to the next 10 candidates that are (a) not already in the working universe, (b) strictly below the current floor in the new snapshot, (c) tradable on the data-layer exchange as the same underlying asset, and (d) pass the registered minimum-history and other filters. Preserve append-only global ordering: never remove or reorder existing rows. Apply only from the reviewed saved snapshot: `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --apply-from universe/mcap_snapshot_<TS>.json --batch-size 10 --apply`.
+5. Fetch and validate the new hourly OHLCV fixtures with `PYTHONPATH=. python3 scripts/fetch_kucoin.py --target-bars 22000 --symbols <new symbols>`, then reconcile provenance with `PYTHONPATH=. python3 scripts/fetch_kucoin.py --reconcile-manifest`. A transient API error is not proof of ineligibility: re-query a failed symbol as the existing prompt specifies before excluding it. Record coverage, gaps, duplicates, price/ticker identity and all exclusion reasons.
+6. Run the **entire 66-pair grid for each newly appended symbol** in strict market-cap order, checkpointing one symbol at a time. Resume the existing run; do not overwrite completed cells:
+   `PYTHONPATH=. python3 scripts/run_grid.py --n <rank-in-working-universe> --resume results/20261019_135940_grid --note "universe expansion batch 18: N 177 -> 187 (<SYMBOL>/USDT, 66-pair EMA grid)"`
+   After each symbol, checkpoint its result as in the previous batches. Then run `scripts/aggregate_grid.py --run results/20261019_135940_grid` and `scripts/candidate_check.py --run results/20261019_135940_grid`; update the expansion log, progress summary and this handoff with the actual outcome.
+7. **If a full fresh ranking pass again yields zero eligible names**, persist a truthful `AWAITING_NEW_ELIGIBLE_CANDIDATES` state with evidence and the next eligible refresh time. Do not invent names, repeatedly hit providers, change the strategy baseline, or call a candidate credible on in-sample metrics. On a later due refresh, repeat the scan and continue if the opportunity set has changed.
 
 ## Guardrails
 
-- Never promote a grid cell on in-sample numbers alone (PROMPT.md §3.3): a cell needs OOS + cost stress before it can be called a candidate. Every cell that has ever reached net PF > 1 in this program failed both out-of-sample and cost stress.
-- Universe is append-only and strictly market-cap descending (complete).
-- Do not fabricate expansion batches.
+- Keep the universe append-only and strictly market-cap descending; add only new eligible symbols below the existing floor.
+- Never stop merely because the grid or a batch produced no edge. No eligible names *in a particular checked snapshot* means wait for a later bounded refresh, not permanent closure.
+- Never lower data-history or liquidity requirements to force expansion. Distinguish a genuinely absent pair/history from a transient API error or an incomplete ranking scan.
+- Never promote an in-sample winner without passing the preregistered OOS and doubled-cost gates. Preserve every prior result, candidate rejection and provenance record.
+- Keep the registered baseline and 66-pair EMA grid unchanged unless a separately preregistered mutation is authorized.
+- Run `python -m pytest tests/ -q` after code changes and report the exact results.
 
-## Validation Command
+## Environment
 
-`python -m pytest tests/ -q`
+Use `PYTHONPATH=. python3 scripts/...` from the repository root. Available data fixtures and all prior result artifacts are reusable; fetch only data for genuinely new symbols.
