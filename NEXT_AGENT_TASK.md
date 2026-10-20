@@ -53,3 +53,10 @@ Use `PYTHONPATH=. python3 scripts/...` from the repository root. Available data 
 - Independent verification performed: `python -m pytest tests/ -q` → 56 passed. No code changes.
 - Universe remains N=177, floor BOME ~USD 41.20M. Grid complete 11,682/11,682, 0 credible candidates.
 - Next eligible refresh: no earlier than 2026-10-21T10:02:36Z.
+
+## Session update (2026-10-20T12:35:38Z)
+
+- Reconciled state: still `AWAITING_NEW_ELIGIBLE_CANDIDATES`. No new eligible names; 24h refresh not due until 2026-10-21T10:02:36Z.
+- Independent verification performed: `python -m pytest tests/ -q` → 56 passed. No code changes.
+- Universe remains N=177, floor BOME ~USD 41.20M. Grid complete 11,682/11,682, 0 credible candidates.
+- Next eligible refresh: no earlier than 2026-10-21T10:02:36Z.
