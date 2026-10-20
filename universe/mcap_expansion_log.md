@@ -1072,3 +1072,93 @@ OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in
 - Robustness: `scripts/candidate_check.py` (artifact `results/20261020_062438_candidate_check/`) tested all 35 net-PF>1 cells: 32 BABYDOGE cells have **0 OOS trades** (rejected), JASMY P20_200/P21_200 and SUPER P8_200 fail **cost stress** (OOS+2x costs) -> **0 credible candidates**.
 - Cumulative rejection rate: **10337 / 10362 cells (99.76 %)**, 0 credible candidates. Pooled 8,313,668 trades.
 - Checkpoints pushed to remote after each symbol (VERIFIED).
+
+---
+
+## Batch 16 - expansion to N = 167 (COMPLETED 2026-10-20)
+
+- Previous N -> new N: **157 -> 167** (ranks 158-167)
+- Snapshot: `universe/mcap_snapshot_20261020_065809.json` (fetched 2026-10-20T06:58:09Z)
+- Expansion floor: MEME at 51,673,755 USD (the lowest market cap already in the universe); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself (`--apply-from universe/mcap_snapshot_20261020_065809.json`), so the names processed by the grid are exactly the ones listed below.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Market cap |
+|---|---|---|
+| 158 | WIN/USDT | 50,429,633 |
+| 159 | TRB/USDT | 50,377,279 |
+| 160 | CELO/USDT | 49,862,879 |
+| 161 | FLOW/USDT | 49,834,441 |
+| 162 | ID/USDT | 48,146,413 |
+| 163 | CTC/USDT | 47,969,021 |
+| 164 | DEEP/USDT | 47,666,673 |
+| 165 | BRETT/USDT | 46,407,594 |
+| 166 | CFG/USDT | 45,703,546 |
+| 167 | XNO/USDT | 45,527,633 |
+
+WIN is the 158th symbol of the working universe; XNO is the 167th and last.
+
+### Hourly coverage of the batch-16 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), 22 000 bars per symbol:
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| WIN, TRB, CELO, FLOW, ID, CTC, DEEP, BRETT, CFG, XNO | 22 000 | 2024-04-16 .. 2026-10-20 |
+
+All 10 fixtures have no duplicate timestamps and no hourly gaps. Manifest reconciled (`data/fixtures/fetch_manifest.json`, 167 symbols).
+
+### Batch-16 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| WIN | 66 | 51 380 | 0.3576 | 0.6402 (P12_200) | -2.1786 | 66 |
+| TRB | 66 | 56 623 | 0.4536 | 0.6601 (P34_200) | -2.3833 | 66 |
+| CELO | 66 | 51 311 | 0.5546 | 0.8204 (P34_200) | -1.2170 | 66 |
+| FLOW | 66 | 54 372 | 0.4669 | 0.6445 (P8_144) | -2.5071 | 66 |
+| ID | 66 | 48 847 | 0.5310 | 0.7778 (P12_144) | -1.5534 | 66 |
+| CTC | 66 | 55 063 | 0.4587 | 0.6644 (P12_144) | -2.9713 | 66 |
+| DEEP | 66 | 38 932 | 0.6564 | 0.8235 (P26_100) | -1.1582 | 66 |
+| BRETT | 66 | 49 505 | 0.5853 | 0.8337 (P8_200) | -0.7766 | 66 |
+| CFG | 66 | 49 598 | 0.4798 | 0.7124 (P8_200) | -1.7807 | 66 |
+| XNO | 66 | 65 410 | 0.4328 | 0.5774 (P12_200) | -4.2023 | 66 |
+
+Batch 16 alone: 660 cells, **660 rejected, 0 exploratory**, pooled mean net PF 0.4977, 521,041 trades. No cell in the batch reached net PF > 1.
+
+---
+
+## Cumulative state after batch 16 (N = 167)
+
+- **11,022 / 11,022 cells** complete (167 symbols x 66 EMA pairs), 0 blocked.
+- 10,997 cells **rejected** (99.77 %), 25 cells **exploratory signal** in the aggregate scan and **rejected** by the OOS + cost-stress check, **0 credible candidates**.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4922**, median 0.5124, best net PF **2.2274** (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 9,035,501 trades.
+- Cells with net PF > 1: 35 / 11,022 = 0.3 % against a ~50 % no-edge null (excess -49.7 %). All 35 failed OOS + cost stress: 32 BABYDOGE cells have zero OOS trades; JASMY P20_200 / P21_200 and SUPER P8_200 fail cost stress.
+- Per-pair pooled leaders (mean net PF over 167 symbols): P8_200 0.6750, P20_200 0.6713, P12_200 0.6669, P21_200 0.6653. Worst: P20_21 0.1371, P50_55 0.2094, P8_12 0.2043.
+- Mean net PF by batch (b7-b16): 0.4682, 0.5085, 0.5210, 0.5017, 0.5287, 0.5010, 0.4961, 0.5222, ~0.4977. Lower market cap does not improve the registered rule.
+
+---
+
+## Grid coverage per batch
+
+| Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
+|---|---|---|---|
+| Batch 0 | 5 | BTC, ETH, SOL, BNB, XRP | `results/20261019_135940_grid/` |
+| Batch 1 | 17 | + TRX, ZEC, DOGE, XMR, LINK, ADA, NEAR, XLM, BCH, LTC, UNI, AVAX | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 2 | 27 | complete - SUI, GRAM, HBAR, TAO, SHIB, CRO, QNT, ENA, AAVE, ONDO (66 pairs each) | `results/20261019_135940_grid/` |
+| Batch 3 | 37 | complete - DOT, WLD, MNT, PEPE, SKY, ICP, HTX, ARB, ETC, JST (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 4 | 47 | complete - KCS, ALGO, POL, KAS, JUP, ATOM, RENDER, INJ, FIL, AERO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 5 | 57 | complete - ZRO, CAKE, STX, APT, ETHFI, XDC, DASH, TIA, BDX, CRV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 6 | 67 | complete - VET, PYTH, FLR, RAY, STRK, FET, SEI, PENDLE, BSV, BTT (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 7 | 77 | complete - XTZ, LDO, SUN, BAT, OP, CFX, GRT, DCR, BONK, LUNC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 8 | 87 | complete - AR, JTO, NFT, JASMY, EIGEN, ENS, KMNO, FLOKI, COMP, RUNE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 9 | 97 | complete - IOTA, ZBCN, AKT, WIF, CVX, TWT, THETA, AXS, SAND, TRAC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 10 | 107 | complete - MANA, XCN, ZK, NEO, CHZ, APE, IMX, AIOZ, 1INCH, XEC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 11 | 117 | complete - SNX, SUPER, DBR, RSR, EGLD, GLM, ZEN, ATH, ORCA, GALA (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 12 | 127 | complete - DYDX, MINA, ZRX, WEMIX, GMX, PROM, W, ARKM, LPT, SAFE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 13 | 137 | complete - KSM, NMR, YFI, HNT, ORDI, KAVA, CKB, DUSK, AMP, VELO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 14 | 147 | complete - ZETA, ALT, AXL, BABYDOGE, TFUEL, IO, SUSHI, EDU, DGB, DEXE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 15 | 157 | complete - RLC, ROSE, TURBO, XPR, ENJ, T, ONT, ASTR, PHA, MEME (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 16 | 167 | complete - WIN, TRB, CELO, FLOW, ID, CTC, DEEP, BRETT, CFG, XNO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+
+The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).
