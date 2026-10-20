@@ -4210,5 +4210,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "TNSR/USDT",
+    "n_cells": 66,
+    "total_trades": 53405,
+    "mean_trades": 809.1666666666666,
+    "median_net_pf": 0.6412858303680571,
+    "mean_net_pf": 0.6204912469176749,
+    "best_net_pf": 0.763349132232648,
+    "best_cell": "P12_100",
+    "best_sharpe": -2.8339608297122574,
+    "worst_net_pf": 0.2362384871629827,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -2.223421894083635,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
