@@ -1,0 +1,26 @@
+{
+  "taker_fee_bps": 10.0,
+  "slippage_bps": 2.0,
+  "rr": 1.0,
+  "stricter_trend": false,
+  "min_risk_atr": false,
+  "atr_threshold": 1.0,
+  "conservative_exit": true,
+  "sizing": "risk",
+  "risk_fraction": 0.01,
+  "max_notional_multiple": 10.0,
+  "symbol": "W/USDT",
+  "P_fast": 34,
+  "P_slow": 89,
+  "ema_fast_period": 34,
+  "ema_slow_period": 89,
+  "artifacts": {
+    "config": "config.json",
+    "summary_json": "summary.json",
+    "summary_md": "summary.md",
+    "trades": "trades.csv.gz",
+    "equity": "equity.csv.gz",
+    "compression": "gzip",
+    "note": "bulk CSV artifacts are gzip-compressed; read with gzip -dc <file> or pandas.read_csv(file, compression=\"gzip\")"
+  }
+}
