@@ -117,10 +117,12 @@ The working universe is **not** a fixed closed set. Once the current market-cap 
    - Do **not** treat “no edge so far” as a program stop. Document the cumulative failure rate, then expand.
    - A prior rejection of EMA 50/100 on the top-N names does **not** cancel the grid or the expansion policy.
 
-5. **Stop conditions for expansion** (only these):
-   - Liquidity or history filters leave zero new eligible names after a full ranking pass.
-   - External data APIs refuse further coverage and no alternative source exists.
-   - The user explicitly cancels the research program.
+5. **Empty-snapshot handling and program stop conditions**:
+   - If a complete ranking pass yields zero currently eligible unseen symbols, record the snapshot id, fetch time, rank/page coverage, the existing market-cap floor, and the exclusions/evidence, then enter **`AWAITING_NEW_ELIGIBLE_CANDIDATES`**. This is a temporary waiting state for that snapshot, **not** permanent program completion.
+   - While waiting, refresh the ranking at least once every 24 hours, unless a genuinely new timestamped snapshot has already been supplied by another legitimate process. Do not hit CoinGecko or the data layer on every five-minute agent activation; inspect saved state first and respect bounded retries/rate limits.
+   - When a later snapshot contains eligible unseen assets below the current floor, continue the normal append-only expansion rule in §2.1.2, process each new symbol through the full grid and robustness gates, then repeat the cycle.
+   - Distinguish an empty-but-complete ranking from an incomplete scan, transient API error, or provider outage. API failures are not proof that a symbol is ineligible. If the provider is unavailable and no alternative source exists, record a truthful blocked/waiting state and recheck only after a meaningful state change or the next bounded refresh.
+   - Only an explicit user cancellation is a permanent research-program stop. An empty current snapshot or a batch with no strategy edge must never silently disable future market-cap refreshes.
 
 6. **Reporting**:
    - Every expansion must be logged in the experiment config and the handoff: previous N → new N, rank range added, source/date of the ranking used.
