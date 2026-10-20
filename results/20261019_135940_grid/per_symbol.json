@@ -4012,5 +4012,41 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "AUCTION/USDT",
+    "n_cells": 66,
+    "total_trades": 51524,
+    "mean_trades": 780.6666666666666,
+    "median_net_pf": 0.49914807052890975,
+    "mean_net_pf": 0.4846794482399921,
+    "best_net_pf": 0.6440522263706853,
+    "best_cell": "P12_200",
+    "best_sharpe": -2.6579858601274604,
+    "worst_net_pf": 0.15445475798330296,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -2.6579858601274604,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
+  },
+  {
+    "symbol": "KNC/USDT",
+    "n_cells": 66,
+    "total_trades": 48130,
+    "mean_trades": 729.2424242424242,
+    "median_net_pf": 0.5750200867655237,
+    "mean_net_pf": 0.5265738625946683,
+    "best_net_pf": 0.778025627440097,
+    "best_cell": "P26_200",
+    "best_sharpe": -1.5471194334109635,
+    "worst_net_pf": 0.13064213998655008,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -1.4993537535184418,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
