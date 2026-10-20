@@ -1202,6 +1202,91 @@ Batch 17 alone: 660 cells, **660 rejected, 0 exploratory**, 531 568 trades. No c
 
 ---
 
+## Batch 18 - expansion to N = 187 (COMPLETED 2026-10-20)
+
+- Previous N -> new N: **177 -> 187** (ranks 178-187 of the working universe)
+- Snapshot: `universe/mcap_snapshot_20261020_113004.json` (fetched 2026-10-20T11:30:04Z, pages 1-10, 1 000 ranked entries down to $15 174 185 - the pass covers the band below the floor)
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Expansion floor at selection time: BOME at 40 764 606 USD (the lowest market cap already in the universe); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself (`--apply-from universe/mcap_snapshot_20261020_113004.json`), so the names processed by the grid are exactly the ones listed below.
+- Snapshot coverage/exclusions (1 000 entries): 269 eligible; 731 excluded - 505 `no_tradable_kucoin_spot_usdt_pair`, 185 `insufficient_hourly_history_for_grid`, 25 `stablecoin_or_fiat_pegged`, 16 `kucoin_pair_trades_a_different_asset`.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Universe rank | Symbol | Market cap |
+|---|---|---|---|
+| 546 | 178 | API3/USDT | 39 787 614 |
+| 548 | 179 | SYN/USDT | 39 709 917 |
+| 549 | 180 | BAND/USDT | 39 644 632 |
+| 550 | 181 | MOG/USDT | 39 157 351 |
+| 551 | 182 | CSPR/USDT | 39 152 806 |
+| 554 | 183 | NOT/USDT | 38 716 786 |
+| 559 | 184 | ETN/USDT | 38 334 381 |
+| 564 | 185 | PEOPLE/USDT | 38 019 382 |
+| 569 | 186 | IOTX/USDT | 37 390 402 |
+| 571 | 187 | SSV/USDT | 37 149 593 |
+
+SSV is the 187th and last symbol of the working universe; the floor is now **$37 149 593**.
+
+### Hourly coverage of the batch-18 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), verified per fixture: no duplicate timestamps, no missing hours (contiguous 1h grid), no invalid OHLC rows.
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| API3, SYN, CSPR, IOTX | 22 000 | 2024-04-16 .. 2026-10-20 |
+| BAND, PEOPLE, SSV | 22 099 | 2024-04-12 .. 2026-10-20 |
+| NOT | 21 288 | 2024-05-16 .. 2026-10-20 |
+| MOG | 20 116 | 2024-07-04 .. 2026-10-20 |
+| ETN | 18 410 | 2024-09-13 .. 2026-10-20 |
+
+Ticker identity: each of the 10 tickers maps to exactly one CoinGecko entry, and the last close of every fixture is within `|log(close / coingecko price)| <= 0.012` of the ranked price (script tolerance 0.20), so each KuCoin pair trades the asset the ranking describes. All 10 fixtures are reconciled in `data/fixtures/fetch_manifest.json` (189 rows: the 187 universe symbols plus the pre-fetched CCD and MOODENG files, which are not in the universe - see the skipped names note below).
+
+### Batch-18 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| API3 | 66 | 54 791 | 0.5633 | 0.7980 (P89_200) | -1.4175 | 66 |
+| SYN | 66 | 52 207 | 0.5665 | 0.8407 (P34_200) | -0.9444 | 66 |
+| BAND | 66 | 49 062 | 0.5476 | 0.8339 (P12_200) | -1.0851 | 66 |
+| MOG | 66 | 48 733 | 0.6368 | 0.9033 (P8_200) | -0.4967 | 66 |
+| CSPR | 66 | 70 513 | 0.3847 | 0.5698 (P12_200) | -4.5062 | 66 |
+| NOT | 66 | 53 210 | 0.5520 | 0.7995 (P12_144) | -1.3003 | 66 |
+| ETN | 66 | 52 976 | 0.3485 | 0.5473 (P34_200) | -5.0131 | 66 |
+| PEOPLE | 66 | 51 086 | 0.5747 | 0.8733 (P21_144) | -0.7810 | 66 |
+| IOTX | 66 | 54 372 | 0.5234 | 0.7234 (P8_200) | -1.6411 | 66 |
+| SSV | 66 | 56 513 | 0.5318 | 0.7285 (P8_200) | -1.4505 | 66 |
+
+Batch 18 alone: 660 cells, **660 rejected, 0 exploratory**, mean net PF 0.5229, 543 463 trades. No cell in the batch reached net PF > 1.
+
+### Names deliberately skipped in the batch-18 snapshot
+
+Two names in the snapshot are eligible but rank **above** the expansion floor, so the strict "append only names strictly below the floor" rule (PROMPT.md §2.1.2) keeps them out of the universe for now:
+
+| Rank | Symbol | Name | Market cap | Note |
+|---|---|---|---|---|
+| 320 | GAS | Gas | 80 295 659 | eligible, but far above the floor |
+| 533 | CCD | Concordium | 41 793 103 | eligible; it was the 11th eligible name below the floor when batch 17 took the first 10, and its market cap has since drifted above the floor. Its hourly fixture is already on disk (`data/fixtures/CCD_USDT.csv`). |
+
+MOODENG (rank 574, $37 050 928) is eligible and **below** the new floor; it is the first name of the next batch.
+
+---
+
+## Cumulative state after batch 18 (N = 187)
+
+- **12 342 / 12 342 cells** complete (187 symbols x 66 EMA pairs), 0 blocked.
+- 12 317 cells **rejected** (99.80 %), 25 cells **exploratory signal** in the aggregate scan and **rejected** by the OOS + cost-stress check, **0 credible candidates**.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4934**, median 0.5134, best net PF **2.2274** (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 10 110 532 trades.
+- Cells with net PF > 1: 35 / 12 342 = 0.28 % against a ~50 % no-edge null (excess -49.7 %). All 35 failed OOS + cost stress (artifact `results/20261020_125819_candidate_check/`): 32 BABYDOGE cells have zero OOS trades; JASMY P20_200 / P21_200 and SUPER P8_200 fail cost stress.
+- Per-pair pooled leaders (mean net PF over 187 symbols): P8_200 0.6772, P12_200 0.6694, P20_200 0.6684, P21_200 0.6637. Worst: P20_21 0.1419, P8_12 0.2114, P50_55 0.2115.
+- Mean net PF by batch (b7-b18): 0.4682, 0.5085, 0.5210, 0.5017, 0.5287, 0.5010, 0.4961, 0.5222, 0.4977, 0.5318, ~0.5229. Lower market cap does not improve the registered rule.
+
+### Remaining eligible names below the floor (batch 19 candidates)
+
+The 2026-10-20T11:30:04Z snapshot still holds **79 eligible unseen names below the current floor** (SSV, $37 149 593), so the universe is **not** exhausted and no new CoinGecko query is needed for the next batch. The next 10 by rank are OSMO, MOODENG, MEW, MERL, RPL, MOCA, UMA, DEGEN, ORBS, CATI. MOODENG's fixture is already on disk; the other 9 still need fetching.
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -1224,5 +1309,6 @@ Batch 17 alone: 660 cells, **660 rejected, 0 exploratory**, 531 568 trades. No c
 | Batch 15 | 157 | complete - RLC, ROSE, TURBO, XPR, ENJ, T, ONT, ASTR, PHA, MEME (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 16 | 167 | complete - WIN, TRB, CELO, FLOW, ID, CTC, DEEP, BRETT, CFG, XNO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 17 | 177 | complete - XYO, POLYX, AURORA, POPCAT, REQ, LSK, MASK, ZIL, ANKR, BOME (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 18 | 187 | complete - API3, SYN, BAND, MOG, CSPR, NOT, ETN, PEOPLE, IOTX, SSV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).

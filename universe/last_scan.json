@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-20T11:32:02.107993+00:00",
+  "recorded_at": "2026-10-20T13:07:02.686865+00:00",
   "state": "EXPANSION_AVAILABLE",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
@@ -14,73 +14,13 @@
     "lowest_market_cap_usd": 15174185
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 177,
+  "universe_n": 187,
   "expansion_floor": {
-    "symbol": "BOME/USDT",
-    "market_cap_usd": 40764606
+    "symbol": "SSV/USDT",
+    "market_cap_usd": 37149593
   },
-  "eligible_unseen_below_floor_count": 89,
+  "eligible_unseen_below_floor_count": 79,
   "eligible_unseen_below_floor": [
-    {
-      "rank": 546,
-      "symbol": "API3",
-      "name": "Api3",
-      "market_cap_usd": 39787614
-    },
-    {
-      "rank": 548,
-      "symbol": "SYN",
-      "name": "Synapse",
-      "market_cap_usd": 39709917
-    },
-    {
-      "rank": 549,
-      "symbol": "BAND",
-      "name": "Band",
-      "market_cap_usd": 39644632
-    },
-    {
-      "rank": 550,
-      "symbol": "MOG",
-      "name": "Mog Coin",
-      "market_cap_usd": 39157351
-    },
-    {
-      "rank": 551,
-      "symbol": "CSPR",
-      "name": "Casper Network",
-      "market_cap_usd": 39152806
-    },
-    {
-      "rank": 554,
-      "symbol": "NOT",
-      "name": "Notcoin",
-      "market_cap_usd": 38716786
-    },
-    {
-      "rank": 559,
-      "symbol": "ETN",
-      "name": "Electroneum",
-      "market_cap_usd": 38334381
-    },
-    {
-      "rank": 564,
-      "symbol": "PEOPLE",
-      "name": "ConstitutionDAO",
-      "market_cap_usd": 38019382
-    },
-    {
-      "rank": 569,
-      "symbol": "IOTX",
-      "name": "IoTeX",
-      "market_cap_usd": 37390402
-    },
-    {
-      "rank": 571,
-      "symbol": "SSV",
-      "name": "SSV Network",
-      "market_cap_usd": 37149593
-    },
     {
       "rank": 572,
       "symbol": "OSMO",
@@ -557,16 +497,16 @@
     }
   ],
   "batch_selected": [
-    "API3/USDT",
-    "SYN/USDT",
-    "BAND/USDT",
-    "MOG/USDT",
-    "CSPR/USDT",
-    "NOT/USDT",
-    "ETN/USDT",
-    "PEOPLE/USDT",
-    "IOTX/USDT",
-    "SSV/USDT"
+    "OSMO/USDT",
+    "MOODENG/USDT",
+    "MEW/USDT",
+    "MERL/USDT",
+    "RPL/USDT",
+    "MOCA/USDT",
+    "UMA/USDT",
+    "DEGEN/USDT",
+    "ORBS/USDT",
+    "CATI/USDT"
   ],
   "next_eligible_refresh_at": null
 }

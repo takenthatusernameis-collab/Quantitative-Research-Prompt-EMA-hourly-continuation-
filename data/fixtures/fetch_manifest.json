@@ -870,6 +870,16 @@
     "file": "data/fixtures/IOTA_USDT.csv"
   },
   {
+    "symbol": "IOTX/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-04-16 20:00:00+00:00",
+    "end": "2026-10-20 11:00:00+00:00",
+    "file": "data/fixtures/IOTX_USDT.csv"
+  },
+  {
     "symbol": "JASMY/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -1428,6 +1438,16 @@
     "start": "2024-04-15 15:00:00+00:00",
     "end": "2026-10-19 06:00:00+00:00",
     "file": "data/fixtures/SOL_USDT.csv"
+  },
+  {
+    "symbol": "SSV/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-12 16:00:00+00:00",
+    "end": "2026-10-20 10:00:00+00:00",
+    "file": "data/fixtures/SSV_USDT.csv"
   },
   {
     "symbol": "STRK/USDT",
