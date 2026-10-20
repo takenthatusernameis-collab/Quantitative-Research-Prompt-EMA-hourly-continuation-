@@ -3922,5 +3922,41 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "G/USDT",
+    "n_cells": 66,
+    "total_trades": 41434,
+    "mean_trades": 627.7878787878788,
+    "median_net_pf": 0.5062272369062703,
+    "mean_net_pf": 0.48684226740547315,
+    "best_net_pf": 0.7295713591190853,
+    "best_cell": "P8_144",
+    "best_sharpe": -1.9084886630931093,
+    "worst_net_pf": 0.19533481404891972,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -1.9084886630931093,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
+  },
+  {
+    "symbol": "EWT/USDT",
+    "n_cells": 66,
+    "total_trades": 51882,
+    "mean_trades": 786.0909090909091,
+    "median_net_pf": 0.447765467464224,
+    "mean_net_pf": 0.4203920230385373,
+    "best_net_pf": 0.6688434174574788,
+    "best_cell": "P34_200",
+    "best_sharpe": -2.445718952999809,
+    "worst_net_pf": 0.14860416414010466,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -2.445718952999809,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
