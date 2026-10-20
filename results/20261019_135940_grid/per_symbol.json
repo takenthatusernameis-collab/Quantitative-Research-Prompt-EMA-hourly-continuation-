@@ -4192,5 +4192,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "MLK/USDT",
+    "n_cells": 66,
+    "total_trades": 71521,
+    "mean_trades": 1083.6515151515152,
+    "median_net_pf": 0.27113992923045593,
+    "mean_net_pf": 0.27250132002294347,
+    "best_net_pf": 0.4401424605709419,
+    "best_cell": "P8_200",
+    "best_sharpe": -7.974636578600474,
+    "worst_net_pf": 0.08283460930871678,
+    "worst_cell": "P8_12",
+    "max_net_sharpe": -7.911068936490447,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
