@@ -4048,5 +4048,41 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "VR/USDT",
+    "n_cells": 66,
+    "total_trades": 59399,
+    "mean_trades": 899.9848484848485,
+    "median_net_pf": 0.4247756454292799,
+    "mean_net_pf": 0.4012548099611207,
+    "best_net_pf": 0.5529997359590862,
+    "best_cell": "P8_100",
+    "best_sharpe": -7.666233257902556,
+    "worst_net_pf": 0.16256322004447474,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -7.455205086173849,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
+  },
+  {
+    "symbol": "CARV/USDT",
+    "n_cells": 66,
+    "total_trades": 39197,
+    "mean_trades": 593.8939393939394,
+    "median_net_pf": 0.5315342096243747,
+    "mean_net_pf": 0.5181070698485939,
+    "best_net_pf": 0.7503607871866785,
+    "best_cell": "P8_89",
+    "best_sharpe": -2.549582257370334,
+    "worst_net_pf": 0.21718236562656332,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -2.549582257370334,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
