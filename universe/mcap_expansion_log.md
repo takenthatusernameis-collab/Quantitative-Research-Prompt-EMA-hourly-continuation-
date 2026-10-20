@@ -1390,6 +1390,130 @@ METIS, REZ, LISTA, COTI, MAGIC, GTC, MANTA, LUNA, FLUX, XCH.
 
 ---
 
+## Batch 20 - expansion to N = 207 (COMPLETED 2026-10-20)
+
+- Previous N -> new N: **197 -> 207** (ranks 198-207 of the working universe)
+- Snapshot: `universe/mcap_snapshot_20261020_113004.json` (fetched 2026-10-20T11:30:04Z, pages 1-10, 1 000 ranked entries down to $15 174 185 - the pass covers the band below the floor)
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Expansion floor at selection time: CATI at 33 051 490 USD (the lowest market cap already in the universe); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself (`--apply-from universe/mcap_snapshot_20261020_113004.json`), so the names processed by the grid are exactly the ones listed below.
+- Snapshot coverage/exclusions (1 000 entries): 269 eligible; 731 excluded - 505 `no_tradable_kucoin_spot_usdt_pair`, 185 `insufficient_hourly_history_for_grid`, 25 `stablecoin_or_fiat_pegged`, 16 `kucoin_pair_trades_a_different_asset`.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap |
+|---|---|---|---|---|
+| 626 | 198 | METIS/USDT | Metis | 32 766 651 |
+| 628 | 199 | REZ/USDT | Renzo | 32 719 574 |
+| 631 | 200 | LISTA/USDT | Lista DAO | 32 577 613 |
+| 640 | 201 | COTI/USDT | COTI | 32 033 554 |
+| 643 | 202 | MAGIC/USDT | Treasure | 31 646 368 |
+| 651 | 203 | GTC/USDT | Gitcoin | 31 056 372 |
+| 659 | 204 | MANTA/USDT | Manta Network | 30 597 776 |
+| 662 | 205 | LUNA/USDT | Terra | 30 498 213 |
+| 680 | 206 | FLUX/USDT | Flux | 29 307 821 |
+| 682 | 207 | XCH/USDT | Chia | 29 168 720 |
+
+XCH is the 207th and last symbol of the working universe; the floor is now **$29 168 720**.
+
+### Hourly coverage of the batch-20 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), 22 000 bars per symbol.
+Every fixture was checked for duplicate timestamps, hourly gaps, invalid OHLC
+rows and ticker identity (last close vs the ranked CoinGecko price):
+
+| Symbol | Rows | Span (UTC) | Zero-volume bars | max abs 1h return | `|log(last close / CG price)|` |
+|---|---|---|---|---|---|
+| METIS | 22 000 | 2024-04-16 23:00 .. 2026-10-20 14:00 | 274 | 58.2 % | 0.0293 |
+| REZ | 21 675 | 2024-04-30 12:00 .. 2026-10-20 14:00 | 1 025 | 33.3 % | 0.0643 |
+| LISTA | 20 451 | 2024-06-20 10:00 .. 2026-10-20 12:00 | 2 637 | 40.3 % | 0.0114 |
+| COTI | 22 000 | 2024-04-16 23:00 .. 2026-10-20 14:00 | 30 | 29.2 % | 0.0542 |
+| MAGIC | 22 000 | 2024-04-16 23:00 .. 2026-10-20 14:00 | 2 038 | 30.6 % | 0.0264 |
+| GTC | 22 000 | 2024-04-16 23:00 .. 2026-10-20 14:00 | 2 353 | 95.0 % | 0.0589 |
+| MANTA | 22 000 | 2024-04-16 23:00 .. 2026-10-20 14:00 | 567 | 50.6 % | 0.0450 |
+| LUNA | 22 000 | 2024-04-16 23:00 .. 2026-10-20 14:00 | 0 | 30.7 % | 0.0398 |
+| FLUX | 22 000 | 2024-04-16 23:00 .. 2026-10-20 14:00 | 8 | 107.1 % | 0.0435 |
+| XCH | 22 000 | 2024-04-16 23:00 .. 2026-10-20 14:00 | 45 | 66.7 % | 0.0260 |
+
+All 10 fixtures have **no duplicate timestamps, no missing hours (contiguous 1h
+grid, max gap 1 h) and no invalid OHLC rows**, and each ticker maps to exactly
+one CoinGecko entry, so each KuCoin pair trades the asset the ranking describes.
+Every price-identity gap is well inside the script's 0.20 log tolerance, so
+none of the ten names is a ticker collision.
+
+REZ (21 675 bars) and LISTA (20 451 bars) are the two short samples in the
+batch (KuCoin listing dates 2024-04-30 and 2024-06-20); both still clear the
+registered 2-year eligibility floor (17 520 hourly bars) and cover the largest
+registered period (P_slow = 200) plus an out-of-sample window.
+
+Thin pairs quote-carry: a bar can have zero traded volume while the OHLC values
+move. LISTA has the highest share of such bars in this batch (2 637 of 20 451 =
+12.9 %), followed by GTC 11.5 %, MAGIC 9.3 % and REZ 4.7 %. This is not new to
+the program (DBR 20.6 %, SUN 15.0 %, DCR 14.8 %, GMX 12.1 % in earlier
+batches), so the baseline was left unchanged; a zero-volume-bar filter would be
+a registered mutation (§5), not a silent change.
+
+All 10 fixtures are reconciled in `data/fixtures/fetch_manifest.json` (208
+rows: the 207 universe symbols plus the pre-fetched CCD file, which is not in
+the universe - see the skipped names note below).
+
+### Batch-20 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| METIS | 66 | 54 311 | 0.4838 | 0.7301 (P8_144) | -2.2841 | 66 |
+| REZ | 66 | 51 445 | 0.6629 | 0.9066 (P21_144) | -0.6547 | 66 |
+| LISTA | 66 | 46 950 | 0.5836 | 0.7704 (P12_200) | -1.7151 | 66 |
+| COTI | 66 | 56 962 | 0.5946 | 0.9569 (P34_200) | -0.2160 | 66 |
+| MAGIC | 66 | 49 924 | 0.5909 | 0.7671 (P20_144) | -1.8291 | 66 |
+| GTC | 66 | 50 987 | 0.5168 | 0.6895 (P8_89) | -2.4852 | 66 |
+| MANTA | 66 | 51 959 | 0.5758 | 0.8722 (P20_200) | -0.7619 | 66 |
+| LUNA | 66 | 62 040 | 0.4291 | 0.6334 (P21_200) | -3.2749 | 66 |
+| FLUX | 66 | 54 516 | 0.5408 | 0.9429 (P8_200) | -0.2530 | 66 |
+| XCH | 66 | 63 875 | 0.4219 | 0.6865 (P12_200) | -2.4549 | 66 |
+
+Batch 20 alone: 660 cells, **660 rejected, 0 exploratory**, 542 969 trades. No
+cell in the batch reached net PF > 1. Batch 20 has the highest mean net PF of
+any batch so far (**0.5400**), and REZ/USDT is the strongest single symbol in
+the whole program (mean net PF 0.6629 over 51 445 trades, best cell 0.9066) -
+and it still contains no surviving edge.
+
+---
+
+## Cumulative state after batch 20 (N = 207)
+
+- **13 662 / 13 662 cells** complete (207 symbols x 66 EMA pairs), 0 blocked.
+- 13 636 cells **rejected** (99.74 %), 26 cells **exploratory signal** in the aggregate scan and **rejected** by the OOS + cost-stress check, **0 credible candidates**.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4980**, median 0.5188, best net PF **2.2274**
+  (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 11 161 425 trades.
+- Cells with net PF > 1: 36 / 13 662 = 0.26 % against a ~50 % no-edge null
+  (excess -49.7 %). All 36 failed OOS + cost stress: 32 BABYDOGE cells have zero
+  OOS trades; JASMY P20_200 / P21_200, SUPER P8_200 and MOODENG P8_200 fail the
+  OOS and cost-stress legs.
+- Per-pair pooled leaders (mean net PF over 207 symbols): P8_200 0.6829,
+  P12_200 0.6728, P20_200 0.6712, P21_200 0.6666. Worst: P20_21 0.1461,
+  P50_55 0.2147, P8_12 0.2176.
+- Mean net PF by batch (b7-b20): 0.4682, 0.5085, 0.5210, 0.5017, 0.5287,
+  0.5010, 0.4961, 0.5222, 0.4977, 0.5318, ~0.5229, ~0.5223, ~0.5400. Lower
+  market cap does not improve the registered rule.
+
+### Remaining eligible names below the floor (batch 21 candidates)
+
+The 2026-10-20T11:30:04Z snapshot still holds **59 eligible unseen names below
+the current floor** (XCH, $29 168 720), so the universe is **not** exhausted and
+no new CoinGecko query is needed for the next batch. The next 10 by rank are
+ELON, CTSI, IOST, SWFTC, UQC, ILV, AVA, CPOOL, BLUR, EUL. None of them has a
+fixture on disk yet.
+
+### Names deliberately skipped (still above the expansion floor)
+
+| Rank | Symbol | Name | Market cap | Note |
+|---|---|---|---|---|
+| 320 | GAS | Gas | 80 295 659 | eligible, but far above the floor |
+| 533 | CCD | Concordium | 41 793 103 | eligible; its hourly fixture is already on disk (`data/fixtures/CCD_USDT.csv`). It enters the universe automatically if a later snapshot puts it below the floor. |
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -1414,5 +1538,6 @@ METIS, REZ, LISTA, COTI, MAGIC, GTC, MANTA, LUNA, FLUX, XCH.
 | Batch 17 | 177 | complete - XYO, POLYX, AURORA, POPCAT, REQ, LSK, MASK, ZIL, ANKR, BOME (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 18 | 187 | complete - API3, SYN, BAND, MOG, CSPR, NOT, ETN, PEOPLE, IOTX, SSV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 19 | 197 | complete - OSMO, MOODENG, MEW, MERL, RPL, MOCA, UMA, DEGEN, ORBS, CATI (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 20 | 207 | complete - METIS, REZ, LISTA, COTI, MAGIC, GTC, MANTA, LUNA, FLUX, XCH (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).

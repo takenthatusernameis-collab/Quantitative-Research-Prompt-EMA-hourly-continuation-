@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-20T14:22:09.732924+00:00",
+  "recorded_at": "2026-10-20T15:25:04.713409+00:00",
   "state": "EXPANSION_AVAILABLE",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
@@ -14,73 +14,13 @@
     "lowest_market_cap_usd": 15174185
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 197,
+  "universe_n": 207,
   "expansion_floor": {
-    "symbol": "CATI/USDT",
-    "market_cap_usd": 33051490
+    "symbol": "XCH/USDT",
+    "market_cap_usd": 29168720
   },
-  "eligible_unseen_below_floor_count": 69,
+  "eligible_unseen_below_floor_count": 59,
   "eligible_unseen_below_floor": [
-    {
-      "rank": 626,
-      "symbol": "METIS",
-      "name": "Metis",
-      "market_cap_usd": 32766651
-    },
-    {
-      "rank": 628,
-      "symbol": "REZ",
-      "name": "Renzo",
-      "market_cap_usd": 32719574
-    },
-    {
-      "rank": 631,
-      "symbol": "LISTA",
-      "name": "Lista DAO",
-      "market_cap_usd": 32577613
-    },
-    {
-      "rank": 640,
-      "symbol": "COTI",
-      "name": "COTI",
-      "market_cap_usd": 32033554
-    },
-    {
-      "rank": 643,
-      "symbol": "MAGIC",
-      "name": "Treasure",
-      "market_cap_usd": 31646368
-    },
-    {
-      "rank": 651,
-      "symbol": "GTC",
-      "name": "Gitcoin",
-      "market_cap_usd": 31056372
-    },
-    {
-      "rank": 659,
-      "symbol": "MANTA",
-      "name": "Manta Network",
-      "market_cap_usd": 30597776
-    },
-    {
-      "rank": 662,
-      "symbol": "LUNA",
-      "name": "Terra",
-      "market_cap_usd": 30498213
-    },
-    {
-      "rank": 680,
-      "symbol": "FLUX",
-      "name": "Flux",
-      "market_cap_usd": 29307821
-    },
-    {
-      "rank": 682,
-      "symbol": "XCH",
-      "name": "Chia",
-      "market_cap_usd": 29168720
-    },
     {
       "rank": 687,
       "symbol": "ELON",
@@ -437,16 +377,16 @@
     }
   ],
   "batch_selected": [
-    "METIS/USDT",
-    "REZ/USDT",
-    "LISTA/USDT",
-    "COTI/USDT",
-    "MAGIC/USDT",
-    "GTC/USDT",
-    "MANTA/USDT",
-    "LUNA/USDT",
-    "FLUX/USDT",
-    "XCH/USDT"
+    "ELON/USDT",
+    "CTSI/USDT",
+    "IOST/USDT",
+    "SWFTC/USDT",
+    "UQC/USDT",
+    "ILV/USDT",
+    "AVA/USDT",
+    "CPOOL/USDT",
+    "BLUR/USDT",
+    "EUL/USDT"
   ],
   "next_eligible_refresh_at": null
 }
