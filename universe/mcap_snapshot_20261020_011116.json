@@ -1,0 +1,4007 @@
+{
+  "source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
+  "pages_fetched": 4,
+  "fetched_at": "2026-10-20T01:11:16.573450+00:00",
+  "entries": [
+    {
+      "rank": 1,
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "market_cap_usd": 1637832324843,
+      "price_usd": 81454,
+      "volume_24h_usd": 25520139871,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 2,
+      "symbol": "ETH",
+      "name": "Ethereum",
+      "market_cap_usd": 292239801252,
+      "price_usd": 2391.21,
+      "volume_24h_usd": 9037293574,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 3,
+      "symbol": "USDT",
+      "name": "Tether",
+      "market_cap_usd": 183028518901,
+      "price_usd": 0.999192,
+      "volume_24h_usd": 46940958732,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 4,
+      "symbol": "BNB",
+      "name": "BNB",
+      "market_cap_usd": 95727087251,
+      "price_usd": 727.68,
+      "volume_24h_usd": 720937527,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 5,
+      "symbol": "XRP",
+      "name": "XRP",
+      "market_cap_usd": 81694289515,
+      "price_usd": 1.29,
+      "volume_24h_usd": 1272871035,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 6,
+      "symbol": "USDC",
+      "name": "USDC",
+      "market_cap_usd": 72061413242,
+      "price_usd": 0.999888,
+      "volume_24h_usd": 16366522226,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 7,
+      "symbol": "SOL",
+      "name": "Solana",
+      "market_cap_usd": 61536061556,
+      "price_usd": 104.34,
+      "volume_24h_usd": 2571821061,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 8,
+      "symbol": "TRX",
+      "name": "TRON",
+      "market_cap_usd": 31510516504,
+      "price_usd": 0.331652,
+      "volume_24h_usd": 318234879,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 9,
+      "symbol": "FIGR_HELOC",
+      "name": "Figure Heloc",
+      "market_cap_usd": 24528639146,
+      "price_usd": 1.021,
+      "volume_24h_usd": 18947021,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 10,
+      "symbol": "ZEC",
+      "name": "Zcash",
+      "market_cap_usd": 19324079510,
+      "price_usd": 1136.65,
+      "volume_24h_usd": 798377205,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 11,
+      "symbol": "HYPE",
+      "name": "Hyperliquid",
+      "market_cap_usd": 17513350326,
+      "price_usd": 78.66,
+      "volume_24h_usd": 496405273,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 12,
+      "symbol": "DOGE",
+      "name": "Dogecoin",
+      "market_cap_usd": 12360550277,
+      "price_usd": 0.078999,
+      "volume_24h_usd": 387463255,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 13,
+      "symbol": "XMR",
+      "name": "Monero",
+      "market_cap_usd": 11326125724,
+      "price_usd": 601.67,
+      "volume_24h_usd": 181627752,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 14,
+      "symbol": "USDS",
+      "name": "USDS",
+      "market_cap_usd": 10044430495,
+      "price_usd": 0.999974,
+      "volume_24h_usd": 115220804,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 15,
+      "symbol": "WBT",
+      "name": "WhiteBIT Coin",
+      "market_cap_usd": 9463900481,
+      "price_usd": 79.67,
+      "volume_24h_usd": 87634571,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 16,
+      "symbol": "LINK",
+      "name": "Chainlink",
+      "market_cap_usd": 9150389024,
+      "price_usd": 11.92,
+      "volume_24h_usd": 237611274,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 17,
+      "symbol": "LEO",
+      "name": "LEO Token",
+      "market_cap_usd": 8313012993,
+      "price_usd": 9.04,
+      "volume_24h_usd": 163024,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 18,
+      "symbol": "ADA",
+      "name": "Cardano",
+      "market_cap_usd": 8136458835,
+      "price_usd": 0.216547,
+      "volume_24h_usd": 221922988,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 19,
+      "symbol": "NEAR",
+      "name": "NEAR Protocol",
+      "market_cap_usd": 6308046035,
+      "price_usd": 4.81,
+      "volume_24h_usd": 682780217,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 20,
+      "symbol": "RAIN",
+      "name": "Rain",
+      "market_cap_usd": 6213122773,
+      "price_usd": 0.00875888,
+      "volume_24h_usd": 18223955,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 21,
+      "symbol": "XLM",
+      "name": "Stellar",
+      "market_cap_usd": 6208693855,
+      "price_usd": 0.176251,
+      "volume_24h_usd": 106660049,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 22,
+      "symbol": "BCH",
+      "name": "Bitcoin Cash",
+      "market_cap_usd": 5590518231,
+      "price_usd": 277.98,
+      "volume_24h_usd": 126655853,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 23,
+      "symbol": "USDE",
+      "name": "Ethena USDe",
+      "market_cap_usd": 4676472062,
+      "price_usd": 0.999701,
+      "volume_24h_usd": 41873854,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 24,
+      "symbol": "LTC",
+      "name": "Litecoin",
+      "market_cap_usd": 4613703517,
+      "price_usd": 59.32,
+      "volume_24h_usd": 229302347,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 25,
+      "symbol": "UNI",
+      "name": "Uniswap",
+      "market_cap_usd": 4533448183,
+      "price_usd": 7.25,
+      "volume_24h_usd": 321192899,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 26,
+      "symbol": "DAI",
+      "name": "Dai",
+      "market_cap_usd": 4526564837,
+      "price_usd": 1.0,
+      "volume_24h_usd": 342380591,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 27,
+      "symbol": "AVAX",
+      "name": "Avalanche",
+      "market_cap_usd": 4225728681,
+      "price_usd": 9.52,
+      "volume_24h_usd": 193897212,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 28,
+      "symbol": "CC",
+      "name": "Canton",
+      "market_cap_usd": 4175412265,
+      "price_usd": 0.104692,
+      "volume_24h_usd": 13999224,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 29,
+      "symbol": "SUI",
+      "name": "Sui",
+      "market_cap_usd": 4071478944,
+      "price_usd": 0.988348,
+      "volume_24h_usd": 585709301,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 30,
+      "symbol": "USD1",
+      "name": "USD1",
+      "market_cap_usd": 4007817104,
+      "price_usd": 0.998953,
+      "volume_24h_usd": 961056553,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 31,
+      "symbol": "GRAM",
+      "name": "Gram (prev. Toncoin)",
+      "market_cap_usd": 3840689111,
+      "price_usd": 1.36,
+      "volume_24h_usd": 23469931,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 32,
+      "symbol": "HBAR",
+      "name": "Hedera",
+      "market_cap_usd": 3634258821,
+      "price_usd": 0.08251,
+      "volume_24h_usd": 93857102,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 33,
+      "symbol": "XAUT",
+      "name": "Tether Gold",
+      "market_cap_usd": 3337930577,
+      "price_usd": 4125.72,
+      "volume_24h_usd": 161045455,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 34,
+      "symbol": "USDG",
+      "name": "Global Dollar",
+      "market_cap_usd": 3130452272,
+      "price_usd": 1.0,
+      "volume_24h_usd": 415133792,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 35,
+      "symbol": "BTW",
+      "name": "Bitway",
+      "market_cap_usd": 3014859224,
+      "price_usd": 2.0,
+      "volume_24h_usd": 42981493,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 36,
+      "symbol": "TAO",
+      "name": "Bittensor",
+      "market_cap_usd": 3010108060,
+      "price_usd": 265.29,
+      "volume_24h_usd": 121127955,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 37,
+      "symbol": "SHIB",
+      "name": "Shiba Inu",
+      "market_cap_usd": 2939328860,
+      "price_usd": 4.99e-06,
+      "volume_24h_usd": 38567741,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 38,
+      "symbol": "CRO",
+      "name": "Cronos",
+      "market_cap_usd": 2891873342,
+      "price_usd": 0.056996,
+      "volume_24h_usd": 6907484,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 39,
+      "symbol": "PYUSD",
+      "name": "PayPal USD",
+      "market_cap_usd": 2883454945,
+      "price_usd": 0.999986,
+      "volume_24h_usd": 59127293,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 40,
+      "symbol": "QNT",
+      "name": "Quant",
+      "market_cap_usd": 2804597024,
+      "price_usd": 192.52,
+      "volume_24h_usd": 64866874,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 41,
+      "symbol": "ENA",
+      "name": "Ethena",
+      "market_cap_usd": 2513672988,
+      "price_usd": 0.187383,
+      "volume_24h_usd": 308384130,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 42,
+      "symbol": "RLUSD",
+      "name": "Ripple USD",
+      "market_cap_usd": 2402895650,
+      "price_usd": 1.0,
+      "volume_24h_usd": 98127936,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 43,
+      "symbol": "USYC",
+      "name": "Circle USYC",
+      "market_cap_usd": 2387495066,
+      "price_usd": 1.14,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 44,
+      "symbol": "OKB",
+      "name": "OKB",
+      "market_cap_usd": 2382753105,
+      "price_usd": 113.46,
+      "volume_24h_usd": 19874478,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 45,
+      "symbol": "USDY",
+      "name": "Ondo US Dollar Yield",
+      "market_cap_usd": 2350907512,
+      "price_usd": 1.15,
+      "volume_24h_usd": 6192617,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 46,
+      "symbol": "AAVE",
+      "name": "Aave",
+      "market_cap_usd": 2302701226,
+      "price_usd": 149.08,
+      "volume_24h_usd": 219598489,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 47,
+      "symbol": "BUIDL",
+      "name": "BlackRock USD Institutional Digital Liquidity Fund",
+      "market_cap_usd": 2188141089,
+      "price_usd": 1.0,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 48,
+      "symbol": "ONDO",
+      "name": "Ondo",
+      "market_cap_usd": 2104505713,
+      "price_usd": 0.431858,
+      "volume_24h_usd": 93091472,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 49,
+      "symbol": "PUMP",
+      "name": "Pump.fun",
+      "market_cap_usd": 2051712904,
+      "price_usd": 0.00443693,
+      "volume_24h_usd": 208898393,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 50,
+      "symbol": "WLD",
+      "name": "Worldcoin",
+      "market_cap_usd": 2042214885,
+      "price_usd": 0.533811,
+      "volume_24h_usd": 334108029,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 51,
+      "symbol": "DOT",
+      "name": "Polkadot",
+      "market_cap_usd": 1947403248,
+      "price_usd": 1.14,
+      "volume_24h_usd": 178354595,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 52,
+      "symbol": "ASTER",
+      "name": "Aster",
+      "market_cap_usd": 1914191311,
+      "price_usd": 0.70457,
+      "volume_24h_usd": 91428171,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 53,
+      "symbol": "USDF",
+      "name": "Falcon USD",
+      "market_cap_usd": 1882080489,
+      "price_usd": 0.994962,
+      "volume_24h_usd": 405851,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 54,
+      "symbol": "PAXG",
+      "name": "PAX Gold",
+      "market_cap_usd": 1822715735,
+      "price_usd": 4125.21,
+      "volume_24h_usd": 116584668,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 55,
+      "symbol": "USDD",
+      "name": "USDD",
+      "market_cap_usd": 1768012361,
+      "price_usd": 0.998699,
+      "volume_24h_usd": 2692295,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 56,
+      "symbol": "MNT",
+      "name": "Mantle",
+      "market_cap_usd": 1755984934,
+      "price_usd": 0.531675,
+      "volume_24h_usd": 19593782,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 57,
+      "symbol": "PEPE",
+      "name": "Pepe",
+      "market_cap_usd": 1744777624,
+      "price_usd": 4.14e-06,
+      "volume_24h_usd": 232755312,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 58,
+      "symbol": "MORPHO",
+      "name": "Morpho",
+      "market_cap_usd": 1728415026,
+      "price_usd": 2.46,
+      "volume_24h_usd": 33384423,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 59,
+      "symbol": "WLFI",
+      "name": "World Liberty Financial",
+      "market_cap_usd": 1712025267,
+      "price_usd": 0.053867,
+      "volume_24h_usd": 47931530,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 60,
+      "symbol": "EURSAFO",
+      "name": "Spiko Amundi Overnight Swap Fund (EUR)",
+      "market_cap_usd": 1710481669,
+      "price_usd": 1.14,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 61,
+      "symbol": "SKY",
+      "name": "Sky",
+      "market_cap_usd": 1665487710,
+      "price_usd": 0.071048,
+      "volume_24h_usd": 6932922,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 62,
+      "symbol": "M",
+      "name": "MemeCore",
+      "market_cap_usd": 1653439758,
+      "price_usd": 0.722918,
+      "volume_24h_usd": 2536340,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 63,
+      "symbol": "ICP",
+      "name": "Internet Computer",
+      "market_cap_usd": 1582747803,
+      "price_usd": 2.84,
+      "volume_24h_usd": 36248386,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 64,
+      "symbol": "U",
+      "name": "United Stables",
+      "market_cap_usd": 1580204837,
+      "price_usd": 0.999457,
+      "volume_24h_usd": 125918680,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 65,
+      "symbol": "HTX",
+      "name": "HTX DAO",
+      "market_cap_usd": 1467167197,
+      "price_usd": 1.65e-06,
+      "volume_24h_usd": 86888145,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 66,
+      "symbol": "ARB",
+      "name": "Arbitrum",
+      "market_cap_usd": 1366625564,
+      "price_usd": 0.198067,
+      "volume_24h_usd": 249252335,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 67,
+      "symbol": "BGB",
+      "name": "Bitget Token",
+      "market_cap_usd": 1318530358,
+      "price_usd": 1.88,
+      "volume_24h_usd": 9443665,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 68,
+      "symbol": "BFUSD",
+      "name": "BFUSD",
+      "market_cap_usd": 1318114831,
+      "price_usd": 0.998571,
+      "volume_24h_usd": 1689944,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 69,
+      "symbol": "USDGO",
+      "name": "USDGO",
+      "market_cap_usd": 1273487317,
+      "price_usd": 1.0,
+      "volume_24h_usd": 12802099,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 70,
+      "symbol": "ETC",
+      "name": "Ethereum Classic",
+      "market_cap_usd": 1226811116,
+      "price_usd": 7.72,
+      "volume_24h_usd": 40375994,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 71,
+      "symbol": "VVV",
+      "name": "Venice Token",
+      "market_cap_usd": 1159495496,
+      "price_usd": 23.87,
+      "volume_24h_usd": 38347404,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 72,
+      "symbol": "JST",
+      "name": "JUST",
+      "market_cap_usd": 1131357477,
+      "price_usd": 0.141095,
+      "volume_24h_usd": 27207469,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 73,
+      "symbol": "GT",
+      "name": "Gate",
+      "market_cap_usd": 1031594078,
+      "price_usd": 9.85,
+      "volume_24h_usd": 1284291,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 74,
+      "symbol": "KCS",
+      "name": "KuCoin",
+      "market_cap_usd": 1029949623,
+      "price_usd": 7.37,
+      "volume_24h_usd": 13381317,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 75,
+      "symbol": "ALGO",
+      "name": "Algorand",
+      "market_cap_usd": 997545460,
+      "price_usd": 0.109913,
+      "volume_24h_usd": 48599373,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 76,
+      "symbol": "POL",
+      "name": "POL (ex-MATIC)",
+      "market_cap_usd": 976663396,
+      "price_usd": 0.091778,
+      "volume_24h_usd": 44241503,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 77,
+      "symbol": "JUP",
+      "name": "Jupiter",
+      "market_cap_usd": 970829518,
+      "price_usd": 0.292129,
+      "volume_24h_usd": 51560499,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 78,
+      "symbol": "BCAP",
+      "name": "Blockchain Capital",
+      "market_cap_usd": 963514617,
+      "price_usd": 105.74,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 79,
+      "symbol": "KAS",
+      "name": "Kaspa",
+      "market_cap_usd": 960346314,
+      "price_usd": 0.0345747,
+      "volume_24h_usd": 11040988,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 80,
+      "symbol": "ATOM",
+      "name": "Cosmos Hub",
+      "market_cap_usd": 934598833,
+      "price_usd": 1.74,
+      "volume_24h_usd": 52722036,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 81,
+      "symbol": "RENDER",
+      "name": "Render",
+      "market_cap_usd": 930592305,
+      "price_usd": 1.79,
+      "volume_24h_usd": 42990696,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 82,
+      "symbol": "PI",
+      "name": "Pi Network",
+      "market_cap_usd": 877376247,
+      "price_usd": 0.077869,
+      "volume_24h_usd": 3403761,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 83,
+      "symbol": "INJ",
+      "name": "Injective",
+      "market_cap_usd": 850768534,
+      "price_usd": 8.5,
+      "volume_24h_usd": 133238431,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 84,
+      "symbol": "FIL",
+      "name": "Filecoin",
+      "market_cap_usd": 843741127,
+      "price_usd": 1.009,
+      "volume_24h_usd": 117558735,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 85,
+      "symbol": "OUSD",
+      "name": "Open USD",
+      "market_cap_usd": 824309083,
+      "price_usd": 0.999663,
+      "volume_24h_usd": 240772,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 86,
+      "symbol": "NEXO",
+      "name": "NEXO",
+      "market_cap_usd": 804769093,
+      "price_usd": 0.807311,
+      "volume_24h_usd": 2063061,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 87,
+      "symbol": "AERO",
+      "name": "Aerodrome Finance",
+      "market_cap_usd": 792615183,
+      "price_usd": 0.789557,
+      "volume_24h_usd": 38098615,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 88,
+      "symbol": "USTB",
+      "name": "Invesco Short Duration US Government Securities Fund",
+      "market_cap_usd": 791893613,
+      "price_usd": 11.25,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 89,
+      "symbol": "LIT",
+      "name": "Lighter",
+      "market_cap_usd": 778446485,
+      "price_usd": 3.11,
+      "volume_24h_usd": 53314465,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 90,
+      "symbol": "ZRO",
+      "name": "LayerZero",
+      "market_cap_usd": 746422611,
+      "price_usd": 1.87,
+      "volume_24h_usd": 91359637,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 91,
+      "symbol": "PRL",
+      "name": "Pearl",
+      "market_cap_usd": 706274360,
+      "price_usd": 2.01,
+      "volume_24h_usd": 502357,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 92,
+      "symbol": "GHO",
+      "name": "GHO",
+      "market_cap_usd": 697868699,
+      "price_usd": 0.998383,
+      "volume_24h_usd": 2236436,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 93,
+      "symbol": "CAKE",
+      "name": "PancakeSwap",
+      "market_cap_usd": 691832242,
+      "price_usd": 2.18,
+      "volume_24h_usd": 48707116,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 94,
+      "symbol": "AKE",
+      "name": "Akedo",
+      "market_cap_usd": 680955888,
+      "price_usd": 0.02986376,
+      "volume_24h_usd": 8632310,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 95,
+      "symbol": "APT",
+      "name": "Aptos",
+      "market_cap_usd": 671840293,
+      "price_usd": 0.760281,
+      "volume_24h_usd": 60490565,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 96,
+      "symbol": "STX",
+      "name": "Stacks",
+      "market_cap_usd": 666815826,
+      "price_usd": 0.355325,
+      "volume_24h_usd": 25249483,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 97,
+      "symbol": "NIGHT",
+      "name": "Midnight",
+      "market_cap_usd": 661737505,
+      "price_usd": 0.03982859,
+      "volume_24h_usd": 13962451,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 98,
+      "symbol": "ETHFI",
+      "name": "Ether.fi",
+      "market_cap_usd": 658826073,
+      "price_usd": 0.682289,
+      "volume_24h_usd": 37228525,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 99,
+      "symbol": "XDC",
+      "name": "XDC Network",
+      "market_cap_usd": 649649175,
+      "price_usd": 0.03257241,
+      "volume_24h_usd": 8913822,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 100,
+      "symbol": "DASH",
+      "name": "Dash",
+      "market_cap_usd": 639468395,
+      "price_usd": 49.67,
+      "volume_24h_usd": 48058070,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 101,
+      "symbol": "TIA",
+      "name": "Celestia",
+      "market_cap_usd": 602144802,
+      "price_usd": 0.612177,
+      "volume_24h_usd": 82740100,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 102,
+      "symbol": "Q",
+      "name": "Quack AI",
+      "market_cap_usd": 600582619,
+      "price_usd": 0.127254,
+      "volume_24h_usd": 52785402,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 103,
+      "symbol": "BDX",
+      "name": "Beldex",
+      "market_cap_usd": 588104117,
+      "price_usd": 0.074699,
+      "volume_24h_usd": 2296333,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 104,
+      "symbol": "JAAA",
+      "name": "Janus Henderson Anemoy AAA CLO Fund",
+      "market_cap_usd": 580710561,
+      "price_usd": 1.053,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 105,
+      "symbol": "CRV",
+      "name": "Curve DAO",
+      "market_cap_usd": 575243759,
+      "price_usd": 0.363798,
+      "volume_24h_usd": 80494116,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 106,
+      "symbol": "VET",
+      "name": "VeChain",
+      "market_cap_usd": 575090154,
+      "price_usd": 0.00667865,
+      "volume_24h_usd": 5625476,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 107,
+      "symbol": "PYTH",
+      "name": "Pyth Network",
+      "market_cap_usd": 568762262,
+      "price_usd": 0.07219,
+      "volume_24h_usd": 32658709,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 108,
+      "symbol": "FLR",
+      "name": "Flare",
+      "market_cap_usd": 557054827,
+      "price_usd": 0.00636853,
+      "volume_24h_usd": 3032139,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 109,
+      "symbol": "USD0",
+      "name": "Usual USD",
+      "market_cap_usd": 541088724,
+      "price_usd": 0.998352,
+      "volume_24h_usd": 215430,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 110,
+      "symbol": "KAU",
+      "name": "Kinesis Gold",
+      "market_cap_usd": 529364498,
+      "price_usd": 132.92,
+      "volume_24h_usd": 137991,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 111,
+      "symbol": "EUTBL",
+      "name": "Spiko EU T-Bills Money Market Fund",
+      "market_cap_usd": 518261554,
+      "price_usd": 1.19,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 112,
+      "symbol": "RAY",
+      "name": "Raydium",
+      "market_cap_usd": 509287103,
+      "price_usd": 1.89,
+      "volume_24h_usd": 39414607,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 113,
+      "symbol": "YLDS",
+      "name": "YLDS",
+      "market_cap_usd": 506542598,
+      "price_usd": 0.999225,
+      "volume_24h_usd": 6239710,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 114,
+      "symbol": "EURC",
+      "name": "EURC",
+      "market_cap_usd": 493914507,
+      "price_usd": 1.12,
+      "volume_24h_usd": 27785709,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 115,
+      "symbol": "TUSD",
+      "name": "TrueUSD",
+      "market_cap_usd": 493862744,
+      "price_usd": 0.998679,
+      "volume_24h_usd": 12872463,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 116,
+      "symbol": "\u5e01\u5b89\u4eba\u751f",
+      "name": "\u5e01\u5b89\u4eba\u751f (BinanceLife)",
+      "market_cap_usd": 490922875,
+      "price_usd": 0.490878,
+      "volume_24h_usd": 2751619,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 117,
+      "symbol": "TRUMP",
+      "name": "Official Trump",
+      "market_cap_usd": 473521600,
+      "price_usd": 1.68,
+      "volume_24h_usd": 107336425,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 118,
+      "symbol": "PENGU",
+      "name": "Pudgy Penguins",
+      "market_cap_usd": 473178546,
+      "price_usd": 0.00752548,
+      "volume_24h_usd": 120658807,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 119,
+      "symbol": "STABLE",
+      "name": "\u200b\u200bStable",
+      "market_cap_usd": 458852446,
+      "price_usd": 0.02546903,
+      "volume_24h_usd": 10343546,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 120,
+      "symbol": "A7A5",
+      "name": "A7A5",
+      "market_cap_usd": 454731498,
+      "price_usd": 0.01158814,
+      "volume_24h_usd": 1227.99,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 121,
+      "symbol": "FET",
+      "name": "Artificial Superintelligence Alliance",
+      "market_cap_usd": 437333217,
+      "price_usd": 0.189088,
+      "volume_24h_usd": 82002864,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 122,
+      "symbol": "STRK",
+      "name": "Starknet",
+      "market_cap_usd": 434347193,
+      "price_usd": 0.057199,
+      "volume_24h_usd": 77403788,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 123,
+      "symbol": "VIRTUAL",
+      "name": "Virtuals Protocol",
+      "market_cap_usd": 433867826,
+      "price_usd": 0.658301,
+      "volume_24h_usd": 29927901,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 124,
+      "symbol": "GRASS",
+      "name": "Grass",
+      "market_cap_usd": 429127540,
+      "price_usd": 0.613009,
+      "volume_24h_usd": 25191490,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 125,
+      "symbol": "SEI",
+      "name": "Sei",
+      "market_cap_usd": 404204455,
+      "price_usd": 0.060005,
+      "volume_24h_usd": 42184628,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 126,
+      "symbol": "DRV",
+      "name": "Derive",
+      "market_cap_usd": 389726085,
+      "price_usd": 0.389779,
+      "volume_24h_usd": 11188298,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 127,
+      "symbol": "HASH",
+      "name": "Provenance Blockchain",
+      "market_cap_usd": 383902001,
+      "price_usd": 0.00648215,
+      "volume_24h_usd": 71320,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 128,
+      "symbol": "PENDLE",
+      "name": "Pendle",
+      "market_cap_usd": 359861331,
+      "price_usd": 2.07,
+      "volume_24h_usd": 47967688,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 129,
+      "symbol": "BSV",
+      "name": "Bitcoin SV",
+      "market_cap_usd": 351150139,
+      "price_usd": 17.47,
+      "volume_24h_usd": 5988704,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 130,
+      "symbol": "SOFID",
+      "name": "SoFiUSD",
+      "market_cap_usd": 349105991,
+      "price_usd": 0.999591,
+      "volume_24h_usd": 6285282,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 131,
+      "symbol": "FF",
+      "name": "Falcon Finance",
+      "market_cap_usd": 346779062,
+      "price_usd": 0.103711,
+      "volume_24h_usd": 6838863,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 132,
+      "symbol": "BTT",
+      "name": "BitTorrent",
+      "market_cap_usd": 346286389,
+      "price_usd": 3.58683e-07,
+      "volume_24h_usd": 11178755,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 133,
+      "symbol": "XPL",
+      "name": "Plasma",
+      "market_cap_usd": 344113369,
+      "price_usd": 0.075892,
+      "volume_24h_usd": 30737295,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 134,
+      "symbol": "REUSD",
+      "name": "Re Protocol reUSD",
+      "market_cap_usd": 341201766,
+      "price_usd": 1.11,
+      "volume_24h_usd": 6319572,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 135,
+      "symbol": "SPX",
+      "name": "SPX6900",
+      "market_cap_usd": 330262589,
+      "price_usd": 0.354669,
+      "volume_24h_usd": 3705730,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 136,
+      "symbol": "XTZ",
+      "name": "Tezos",
+      "market_cap_usd": 328875156,
+      "price_usd": 0.299096,
+      "volume_24h_usd": 4551608,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 137,
+      "symbol": "JTRSY",
+      "name": "Janus Henderson Anemoy Treasury Fund",
+      "market_cap_usd": 326707922,
+      "price_usd": 1.12,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 138,
+      "symbol": "LDO",
+      "name": "Lido DAO",
+      "market_cap_usd": 323990115,
+      "price_usd": 0.390121,
+      "volume_24h_usd": 46009742,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 139,
+      "symbol": "OUSG",
+      "name": "Ondo Short-Term U.S. Government Bond Fund",
+      "market_cap_usd": 320174533,
+      "price_usd": 116.96,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 140,
+      "symbol": "SUN",
+      "name": "Sun Token",
+      "market_cap_usd": 317567574,
+      "price_usd": 0.01651734,
+      "volume_24h_usd": 11077414,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 141,
+      "symbol": "FDUSD",
+      "name": "First Digital USD",
+      "market_cap_usd": 305137443,
+      "price_usd": 0.997403,
+      "volume_24h_usd": 66389340,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 142,
+      "symbol": "APXUSD",
+      "name": "apxUSD",
+      "market_cap_usd": 304783083,
+      "price_usd": 0.984447,
+      "volume_24h_usd": 1700498,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 143,
+      "symbol": "GNO",
+      "name": "Gnosis",
+      "market_cap_usd": 302325065,
+      "price_usd": 114.54,
+      "volume_24h_usd": 719591,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 144,
+      "symbol": "PIEVERSE",
+      "name": "Pieverse",
+      "market_cap_usd": 292753962,
+      "price_usd": 1.065,
+      "volume_24h_usd": 2336684,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 145,
+      "symbol": "OHM",
+      "name": "Olympus",
+      "market_cap_usd": 292570510,
+      "price_usd": 19.59,
+      "volume_24h_usd": 56550,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 146,
+      "symbol": "UB",
+      "name": "Unibase",
+      "market_cap_usd": 292022458,
+      "price_usd": 0.116669,
+      "volume_24h_usd": 8575342,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 147,
+      "symbol": "KITE",
+      "name": "Kite",
+      "market_cap_usd": 290658616,
+      "price_usd": 0.121618,
+      "volume_24h_usd": 9394266,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 148,
+      "symbol": "CARDS",
+      "name": "Collector Crypt",
+      "market_cap_usd": 289667689,
+      "price_usd": 0.3209,
+      "volume_24h_usd": 22616222,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 149,
+      "symbol": "BAT",
+      "name": "Basic Attention",
+      "market_cap_usd": 288110237,
+      "price_usd": 0.192608,
+      "volume_24h_usd": 47026475,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 150,
+      "symbol": "OP",
+      "name": "Optimism",
+      "market_cap_usd": 285819471,
+      "price_usd": 0.124223,
+      "volume_24h_usd": 57789432,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 151,
+      "symbol": "BP",
+      "name": "Backpack",
+      "market_cap_usd": 282500594,
+      "price_usd": 1.13,
+      "volume_24h_usd": 5152081,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 152,
+      "symbol": "CFX",
+      "name": "Conflux",
+      "market_cap_usd": 273624309,
+      "price_usd": 0.052098,
+      "volume_24h_usd": 4286126,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 153,
+      "symbol": "KAIA",
+      "name": "Kaia",
+      "market_cap_usd": 263131513,
+      "price_usd": 0.04079744,
+      "volume_24h_usd": 6421314,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 154,
+      "symbol": "USDAI",
+      "name": "USDai",
+      "market_cap_usd": 261939331,
+      "price_usd": 0.999205,
+      "volume_24h_usd": 4066253,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 155,
+      "symbol": "GRT",
+      "name": "The Graph",
+      "market_cap_usd": 257337145,
+      "price_usd": 0.02348945,
+      "volume_24h_usd": 9745147,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 156,
+      "symbol": "BONK",
+      "name": "Bonk",
+      "market_cap_usd": 257228182,
+      "price_usd": 2.92e-06,
+      "volume_24h_usd": 19746431,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 157,
+      "symbol": "DCR",
+      "name": "Decred",
+      "market_cap_usd": 255463862,
+      "price_usd": 14.47,
+      "volume_24h_usd": 821692,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 158,
+      "symbol": "LUNC",
+      "name": "Terra Luna Classic",
+      "market_cap_usd": 253834354,
+      "price_usd": 4.598e-05,
+      "volume_24h_usd": 6336952,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 159,
+      "symbol": "APEPE",
+      "name": "Ape and Pepe",
+      "market_cap_usd": 247246005,
+      "price_usd": 1.18e-06,
+      "volume_24h_usd": 7083123,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 160,
+      "symbol": "AR",
+      "name": "Arweave",
+      "market_cap_usd": 246609966,
+      "price_usd": 3.76,
+      "volume_24h_usd": 9362808,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 161,
+      "symbol": "MON",
+      "name": "Monad",
+      "market_cap_usd": 244960935,
+      "price_usd": 0.02069827,
+      "volume_24h_usd": 10988994,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 162,
+      "symbol": "SHFL",
+      "name": "Shuffle",
+      "market_cap_usd": 241241605,
+      "price_usd": 0.488376,
+      "volume_24h_usd": 877211,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 163,
+      "symbol": "JTO",
+      "name": "Jito",
+      "market_cap_usd": 237625660,
+      "price_usd": 0.444474,
+      "volume_24h_usd": 22979863,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 164,
+      "symbol": "NFT",
+      "name": "AINFT",
+      "market_cap_usd": 236791270,
+      "price_usd": 2.39157e-07,
+      "volume_24h_usd": 5319333,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 165,
+      "symbol": "SAFO",
+      "name": "Spiko Amundi Overnight Swap Fund",
+      "market_cap_usd": 236539384,
+      "price_usd": 1.025,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 166,
+      "symbol": "JASMY",
+      "name": "JasmyCoin",
+      "market_cap_usd": 232115553,
+      "price_usd": 0.00469299,
+      "volume_24h_usd": 9653135,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 167,
+      "symbol": "ENS",
+      "name": "Ethereum Name Service",
+      "market_cap_usd": 230232304,
+      "price_usd": 5.45,
+      "volume_24h_usd": 6493274,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 168,
+      "symbol": "EIGEN",
+      "name": "EigenCloud (prev. EigenLayer)",
+      "market_cap_usd": 230043617,
+      "price_usd": 0.236173,
+      "volume_24h_usd": 23765704,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 169,
+      "symbol": "KMNO",
+      "name": "Kamino",
+      "market_cap_usd": 229644679,
+      "price_usd": 0.03963458,
+      "volume_24h_usd": 7678917,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 170,
+      "symbol": "FLOKI",
+      "name": "FLOKI",
+      "market_cap_usd": 226687929,
+      "price_usd": 2.35e-05,
+      "volume_24h_usd": 13715385,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 171,
+      "symbol": "SYRUP",
+      "name": "Maple Finance",
+      "market_cap_usd": 226494492,
+      "price_usd": 0.194023,
+      "volume_24h_usd": 8065854,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 172,
+      "symbol": "S",
+      "name": "Sonic",
+      "market_cap_usd": 223602659,
+      "price_usd": 0.057497,
+      "volume_24h_usd": 62283345,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 173,
+      "symbol": "FRAX",
+      "name": "Legacy Frax Dollar",
+      "market_cap_usd": 217033192,
+      "price_usd": 0.989698,
+      "volume_24h_usd": 92053,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 174,
+      "symbol": "COMP",
+      "name": "Compound",
+      "market_cap_usd": 215515038,
+      "price_usd": 21.54,
+      "volume_24h_usd": 9436061,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 175,
+      "symbol": "KOGE",
+      "name": "KOGE",
+      "market_cap_usd": 214202335,
+      "price_usd": 63.37,
+      "volume_24h_usd": 13677.58,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 176,
+      "symbol": "CRVUSD",
+      "name": "crvUSD",
+      "market_cap_usd": 212643067,
+      "price_usd": 0.999113,
+      "volume_24h_usd": 9280149,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 177,
+      "symbol": "IOTA",
+      "name": "IOTA",
+      "market_cap_usd": 211440385,
+      "price_usd": 0.04495956,
+      "volume_24h_usd": 3201667,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 178,
+      "symbol": "RUNE",
+      "name": "THORChain",
+      "market_cap_usd": 210119376,
+      "price_usd": 0.639447,
+      "volume_24h_usd": 36814877,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 179,
+      "symbol": "KAG",
+      "name": "Kinesis Silver",
+      "market_cap_usd": 209671670,
+      "price_usd": 57.07,
+      "volume_24h_usd": 123354,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 180,
+      "symbol": "USX",
+      "name": "USX",
+      "market_cap_usd": 209291679,
+      "price_usd": 0.999306,
+      "volume_24h_usd": 1317769,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 181,
+      "symbol": "AKT",
+      "name": "Akash Network",
+      "market_cap_usd": 208310076,
+      "price_usd": 0.695919,
+      "volume_24h_usd": 6182335,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 182,
+      "symbol": "ZBCN",
+      "name": "Zebec Network",
+      "market_cap_usd": 208223718,
+      "price_usd": 0.00208232,
+      "volume_24h_usd": 7658889,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 183,
+      "symbol": "PC0000031",
+      "name": "Tradable NA Rent Financing Platform SSTN",
+      "market_cap_usd": 207500000,
+      "price_usd": 1.0,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 184,
+      "symbol": "GRX",
+      "name": "GRX Chain",
+      "market_cap_usd": 198711444,
+      "price_usd": 20.89,
+      "volume_24h_usd": 3096076,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 185,
+      "symbol": "WIF",
+      "name": "dogwifhat",
+      "market_cap_usd": 198413404,
+      "price_usd": 0.19853,
+      "volume_24h_usd": 37391989,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 186,
+      "symbol": "CVX",
+      "name": "Convex Finance",
+      "market_cap_usd": 193919699,
+      "price_usd": 2.08,
+      "volume_24h_usd": 5388384,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 187,
+      "symbol": "FLUID",
+      "name": "Fluid",
+      "market_cap_usd": 192167553,
+      "price_usd": 2.3,
+      "volume_24h_usd": 3334983,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 188,
+      "symbol": "BR",
+      "name": "Bedrock",
+      "market_cap_usd": 191604584,
+      "price_usd": 0.64615,
+      "volume_24h_usd": 19789129,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 189,
+      "symbol": "EURCV",
+      "name": "EUR CoinVertible",
+      "market_cap_usd": 189626592,
+      "price_usd": 1.12,
+      "volume_24h_usd": 19340675,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 190,
+      "symbol": "TWT",
+      "name": "Trust Wallet",
+      "market_cap_usd": 189043663,
+      "price_usd": 0.453441,
+      "volume_24h_usd": 4788603,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 191,
+      "symbol": "MET",
+      "name": "Meteora",
+      "market_cap_usd": 188112626,
+      "price_usd": 0.336564,
+      "volume_24h_usd": 8201691,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 192,
+      "symbol": "ZAMA",
+      "name": "Zama",
+      "market_cap_usd": 186612088,
+      "price_usd": 0.073255,
+      "volume_24h_usd": 6862893,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 193,
+      "symbol": "THETA",
+      "name": "Theta Network",
+      "market_cap_usd": 186470078,
+      "price_usd": 0.18632,
+      "volume_24h_usd": 2631310,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 194,
+      "symbol": "PONS",
+      "name": "Pons",
+      "market_cap_usd": 186228007,
+      "price_usd": 0.276203,
+      "volume_24h_usd": 24123876,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 195,
+      "symbol": "USAT",
+      "name": "USAT",
+      "market_cap_usd": 183078622,
+      "price_usd": 0.9987,
+      "volume_24h_usd": 1094717,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 196,
+      "symbol": "AUSD",
+      "name": "AUSD",
+      "market_cap_usd": 181909488,
+      "price_usd": 0.999028,
+      "volume_24h_usd": 9130427,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 197,
+      "symbol": "MX",
+      "name": "MX",
+      "market_cap_usd": 177005824,
+      "price_usd": 1.93,
+      "volume_24h_usd": 4365175,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 198,
+      "symbol": "TRAC",
+      "name": "OriginTrail",
+      "market_cap_usd": 174593559,
+      "price_usd": 0.390499,
+      "volume_24h_usd": 3258019,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 199,
+      "symbol": "ANVL",
+      "name": "Anvil",
+      "market_cap_usd": 174578897,
+      "price_usd": 0.00198207,
+      "volume_24h_usd": 101145,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 200,
+      "symbol": "AXS",
+      "name": "Axie Infinity",
+      "market_cap_usd": 174496201,
+      "price_usd": 0.993238,
+      "volume_24h_usd": 19968769,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 201,
+      "symbol": "SAND",
+      "name": "The Sandbox",
+      "market_cap_usd": 170906243,
+      "price_usd": 0.058235,
+      "volume_24h_usd": 79940123,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 202,
+      "symbol": "BTSE",
+      "name": "BTSE Token",
+      "market_cap_usd": 167930025,
+      "price_usd": 1.036,
+      "volume_24h_usd": 234824,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 203,
+      "symbol": "USTBL",
+      "name": "Spiko US T-Bills Money Market Fund",
+      "market_cap_usd": 164760641,
+      "price_usd": 1.099,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 204,
+      "symbol": "BORG",
+      "name": "SwissBorg",
+      "market_cap_usd": 160445467,
+      "price_usd": 0.163494,
+      "volume_24h_usd": 141025,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 205,
+      "symbol": "MANA",
+      "name": "Decentraland",
+      "market_cap_usd": 160146422,
+      "price_usd": 0.081769,
+      "volume_24h_usd": 7471267,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 206,
+      "symbol": "SENT",
+      "name": "Sentient",
+      "market_cap_usd": 159465765,
+      "price_usd": 0.02202218,
+      "volume_24h_usd": 16769651,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 207,
+      "symbol": "XCN",
+      "name": "Onyxcoin",
+      "market_cap_usd": 159045396,
+      "price_usd": 0.00401641,
+      "volume_24h_usd": 6572458,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 208,
+      "symbol": "ZK",
+      "name": "ZKsync",
+      "market_cap_usd": 157855931,
+      "price_usd": 0.01458795,
+      "volume_24h_usd": 9769873,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 209,
+      "symbol": "APYUSD",
+      "name": "apyUSD",
+      "market_cap_usd": 156850235,
+      "price_usd": 1.39,
+      "volume_24h_usd": 549056,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 210,
+      "symbol": "BEAM",
+      "name": "Beam",
+      "market_cap_usd": 156409572,
+      "price_usd": 0.00304788,
+      "volume_24h_usd": 11099774,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 211,
+      "symbol": "STRCX",
+      "name": "Strategy PP Variable xStock",
+      "market_cap_usd": 155987989,
+      "price_usd": 105.52,
+      "volume_24h_usd": 369900,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 212,
+      "symbol": "NEO",
+      "name": "NEO",
+      "market_cap_usd": 155057241,
+      "price_usd": 2.2,
+      "volume_24h_usd": 2738953,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 213,
+      "symbol": "COCO",
+      "name": "coco",
+      "market_cap_usd": 153845472,
+      "price_usd": 0.153832,
+      "volume_24h_usd": 45507,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 214,
+      "symbol": "VSN",
+      "name": "Vision",
+      "market_cap_usd": 153748840,
+      "price_usd": 0.04050916,
+      "volume_24h_usd": 5790177,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 215,
+      "symbol": "GOMINING",
+      "name": "GoMining Token",
+      "market_cap_usd": 152151141,
+      "price_usd": 0.377872,
+      "volume_24h_usd": 12249480,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 216,
+      "symbol": "2Z",
+      "name": "DoubleZero",
+      "market_cap_usd": 151512015,
+      "price_usd": 0.02912224,
+      "volume_24h_usd": 4196387,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 217,
+      "symbol": "A",
+      "name": "Vaulta",
+      "market_cap_usd": 150465639,
+      "price_usd": 0.089833,
+      "volume_24h_usd": 16881654,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 218,
+      "symbol": "GUSD",
+      "name": "GUSD",
+      "market_cap_usd": 149427248,
+      "price_usd": 0.997577,
+      "volume_24h_usd": 158391,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 219,
+      "symbol": "CRCLB",
+      "name": "Circle Internet Group (bStocks Tokenized Stock)",
+      "market_cap_usd": 148842940,
+      "price_usd": 81.16,
+      "volume_24h_usd": 17539866,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 220,
+      "symbol": "NPC",
+      "name": "Non-Playable Coin",
+      "market_cap_usd": 147472572,
+      "price_usd": 0.01831935,
+      "volume_24h_usd": 2991366,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 221,
+      "symbol": "SN51",
+      "name": "lium",
+      "market_cap_usd": 145688855,
+      "price_usd": 29.63,
+      "volume_24h_usd": 2031012,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 222,
+      "symbol": "APE",
+      "name": "ApeCoin",
+      "market_cap_usd": 144300757,
+      "price_usd": 0.144278,
+      "volume_24h_usd": 12106824,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 223,
+      "symbol": "CHZ",
+      "name": "Chiliz",
+      "market_cap_usd": 143970310,
+      "price_usd": 0.01362461,
+      "volume_24h_usd": 15388651,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 224,
+      "symbol": "FARTCOIN",
+      "name": "Fartcoin",
+      "market_cap_usd": 141915635,
+      "price_usd": 0.141794,
+      "volume_24h_usd": 26019351,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 225,
+      "symbol": "DGAI",
+      "name": "DGrid AI",
+      "market_cap_usd": 140967565,
+      "price_usd": 0.939699,
+      "volume_24h_usd": 27967140,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 226,
+      "symbol": "USELESS",
+      "name": "Useless Coin",
+      "market_cap_usd": 139742549,
+      "price_usd": 0.139714,
+      "volume_24h_usd": 8220898,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 227,
+      "symbol": "SPCXB",
+      "name": "SpaceX (bStocks Tokenized Stock)",
+      "market_cap_usd": 137006450,
+      "price_usd": 147.58,
+      "volume_24h_usd": 53527152,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 228,
+      "symbol": "IMX",
+      "name": "Immutable",
+      "market_cap_usd": 136917928,
+      "price_usd": 0.151357,
+      "volume_24h_usd": 4989458,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 229,
+      "symbol": "0G",
+      "name": "0G",
+      "market_cap_usd": 136191850,
+      "price_usd": 0.225783,
+      "volume_24h_usd": 4311169,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 230,
+      "symbol": "JPYC",
+      "name": "JPY Coin",
+      "market_cap_usd": 133375742,
+      "price_usd": 0.00626604,
+      "volume_24h_usd": 605756,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 231,
+      "symbol": "RAIL",
+      "name": "Railgun",
+      "market_cap_usd": 129740078,
+      "price_usd": 2.16,
+      "volume_24h_usd": 1618086,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 232,
+      "symbol": "AIOZ",
+      "name": "AIOZ Network",
+      "market_cap_usd": 129596449,
+      "price_usd": 0.10082,
+      "volume_24h_usd": 7753255,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 233,
+      "symbol": "1INCH",
+      "name": "1INCH",
+      "market_cap_usd": 129164206,
+      "price_usd": 0.091827,
+      "volume_24h_usd": 14769415,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 234,
+      "symbol": "JPYSC",
+      "name": "JPYSC",
+      "market_cap_usd": 128474402,
+      "price_usd": 0.00630678,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 235,
+      "symbol": "ONYC",
+      "name": "OnRe Tokenized Reinsurance",
+      "market_cap_usd": 128357930,
+      "price_usd": 1.16,
+      "volume_24h_usd": 1699480,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 236,
+      "symbol": "XEC",
+      "name": "eCash",
+      "market_cap_usd": 128269245,
+      "price_usd": 6.38e-06,
+      "volume_24h_usd": 2403331,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 237,
+      "symbol": "AWE",
+      "name": "AWE Network",
+      "market_cap_usd": 127087283,
+      "price_usd": 0.065405,
+      "volume_24h_usd": 1578963,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 238,
+      "symbol": "B",
+      "name": "BUILDon",
+      "market_cap_usd": 126856076,
+      "price_usd": 0.126848,
+      "volume_24h_usd": 3237714,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 239,
+      "symbol": "CASH",
+      "name": "CASH",
+      "market_cap_usd": 126740242,
+      "price_usd": 0.999217,
+      "volume_24h_usd": 5471734,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 240,
+      "symbol": "ULTIMA",
+      "name": "Ultima",
+      "market_cap_usd": 126128083,
+      "price_usd": 1488.98,
+      "volume_24h_usd": 5008837,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 241,
+      "symbol": "OZO",
+      "name": "Ozone Chain",
+      "market_cap_usd": 125658580,
+      "price_usd": 0.130764,
+      "volume_24h_usd": 212511,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 242,
+      "symbol": "SNX",
+      "name": "Synthetix",
+      "market_cap_usd": 125142362,
+      "price_usd": 0.215072,
+      "volume_24h_usd": 4998598,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 243,
+      "symbol": "BC",
+      "name": "BCGame Coin",
+      "market_cap_usd": 123250674,
+      "price_usd": 0.03839394,
+      "volume_24h_usd": 59880,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 244,
+      "symbol": "SFP",
+      "name": "SafePal",
+      "market_cap_usd": 122270145,
+      "price_usd": 0.244472,
+      "volume_24h_usd": 678911,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 245,
+      "symbol": "GEOD",
+      "name": "Geodnet",
+      "market_cap_usd": 122172214,
+      "price_usd": 0.264131,
+      "volume_24h_usd": 1003844,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 246,
+      "symbol": "AVUSD",
+      "name": "Avant USD",
+      "market_cap_usd": 120038948,
+      "price_usd": 0.998267,
+      "volume_24h_usd": 11.3,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 247,
+      "symbol": "SUPER",
+      "name": "SuperVerse",
+      "market_cap_usd": 119408051,
+      "price_usd": 0.182802,
+      "volume_24h_usd": 5593671,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 248,
+      "symbol": "DBR",
+      "name": "deBridge",
+      "market_cap_usd": 119401891,
+      "price_usd": 0.01828421,
+      "volume_24h_usd": 2958501,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 249,
+      "symbol": "MGLO",
+      "name": "Midas Fasanara Global Open",
+      "market_cap_usd": 119015917,
+      "price_usd": 1.006,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 250,
+      "symbol": "THBILL",
+      "name": "Theo Short Duration US Treasury Fund",
+      "market_cap_usd": 117636425,
+      "price_usd": 1.015,
+      "volume_24h_usd": 1261.84,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 251,
+      "symbol": "H",
+      "name": "Humanity",
+      "market_cap_usd": 117606956,
+      "price_usd": 0.05545,
+      "volume_24h_usd": 1193595,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 252,
+      "symbol": "RSR",
+      "name": "Reserve Rights",
+      "market_cap_usd": 117168290,
+      "price_usd": 0.00187134,
+      "volume_24h_usd": 8757462,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 253,
+      "symbol": "PLUME",
+      "name": "Plume",
+      "market_cap_usd": 114800833,
+      "price_usd": 0.01736593,
+      "volume_24h_usd": 10118918,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 254,
+      "symbol": "MSTRX",
+      "name": "MicroStrategy xStock",
+      "market_cap_usd": 114718736,
+      "price_usd": 135.2,
+      "volume_24h_usd": 2061942,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 255,
+      "symbol": "NOPAL",
+      "name": "Nest BlackOpal LiquidStone II Vault",
+      "market_cap_usd": 114579276,
+      "price_usd": 1.11,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 256,
+      "symbol": "PC0000023",
+      "name": "Tradable Singapore Fintech SSL",
+      "market_cap_usd": 114500000,
+      "price_usd": 1.0,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 257,
+      "symbol": "ALFW",
+      "name": "Alpha Bulgaria Warrants",
+      "market_cap_usd": 114330001,
+      "price_usd": 3.2,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 258,
+      "symbol": "RLB",
+      "name": "Rollbit Coin",
+      "market_cap_usd": 113380398,
+      "price_usd": 0.073045,
+      "volume_24h_usd": 99602,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 259,
+      "symbol": "PC0000085",
+      "name": "Tradable LatAm Middle-Market Lender SSTL",
+      "market_cap_usd": 111874199,
+      "price_usd": 1.0,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 260,
+      "symbol": "META",
+      "name": "MetaDAO",
+      "market_cap_usd": 111689824,
+      "price_usd": 4.92,
+      "volume_24h_usd": 853844,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 261,
+      "symbol": "EGLD",
+      "name": "MultiversX",
+      "market_cap_usd": 111446188,
+      "price_usd": 3.59,
+      "volume_24h_usd": 2522567,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 262,
+      "symbol": "GLM",
+      "name": "Golem",
+      "market_cap_usd": 111281338,
+      "price_usd": 0.111329,
+      "volume_24h_usd": 1513912,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 263,
+      "symbol": "USDF",
+      "name": "Aster USDF",
+      "market_cap_usd": 111037699,
+      "price_usd": 0.996622,
+      "volume_24h_usd": 111901,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "stablecoin_or_fiat_pegged"
+    },
+    {
+      "rank": 264,
+      "symbol": "ZEN",
+      "name": "Horizen",
+      "market_cap_usd": 110064497,
+      "price_usd": 5.98,
+      "volume_24h_usd": 5869272,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 265,
+      "symbol": "SN64",
+      "name": "Chutes",
+      "market_cap_usd": 110000716,
+      "price_usd": 17.81,
+      "volume_24h_usd": 406599,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 266,
+      "symbol": "KNTQ",
+      "name": "Kinetiq",
+      "market_cap_usd": 109539209,
+      "price_usd": 0.347761,
+      "volume_24h_usd": 7861013,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 267,
+      "symbol": "ATH",
+      "name": "Aethir",
+      "market_cap_usd": 107928390,
+      "price_usd": 0.00536023,
+      "volume_24h_usd": 7561957,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 268,
+      "symbol": "SHX",
+      "name": "Stronghold",
+      "market_cap_usd": 106691743,
+      "price_usd": 0.00574422,
+      "volume_24h_usd": 1585343,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 269,
+      "symbol": "ORCA",
+      "name": "Orca",
+      "market_cap_usd": 105093090,
+      "price_usd": 1.73,
+      "volume_24h_usd": 10384944,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 270,
+      "symbol": "STAC",
+      "name": "Securitize Tokenized AAA CLO Fund",
+      "market_cap_usd": 104388245,
+      "price_usd": 1036.82,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 271,
+      "symbol": "USDAT",
+      "name": "Saturn Dollar",
+      "market_cap_usd": 103827289,
+      "price_usd": 0.998824,
+      "volume_24h_usd": 782903,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 272,
+      "symbol": "SOON",
+      "name": "SOON",
+      "market_cap_usd": 103609163,
+      "price_usd": 0.305006,
+      "volume_24h_usd": 5929907,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 273,
+      "symbol": "CASHCAT",
+      "name": "Cash Cat",
+      "market_cap_usd": 103461871,
+      "price_usd": 0.104658,
+      "volume_24h_usd": 6644596,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 274,
+      "symbol": "CRCLX",
+      "name": "Circle xStock",
+      "market_cap_usd": 103432042,
+      "price_usd": 81.18,
+      "volume_24h_usd": 12711911,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 275,
+      "symbol": "CAP",
+      "name": "Cap",
+      "market_cap_usd": 103233067,
+      "price_usd": 0.066198,
+      "volume_24h_usd": 8001557,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 276,
+      "symbol": "SKR",
+      "name": "Seeker",
+      "market_cap_usd": 103064961,
+      "price_usd": 0.01437877,
+      "volume_24h_usd": 1616176,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 277,
+      "symbol": "FRXUSD",
+      "name": "Frax USD",
+      "market_cap_usd": 102438934,
+      "price_usd": 1.0,
+      "volume_24h_usd": 2774894,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 278,
+      "symbol": "USD3",
+      "name": "3Jane USD3",
+      "market_cap_usd": 102280274,
+      "price_usd": 1.19,
+      "volume_24h_usd": 300262,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 279,
+      "symbol": "EDGE",
+      "name": "edgeX",
+      "market_cap_usd": 101820251,
+      "price_usd": 0.290913,
+      "volume_24h_usd": 1375801,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 280,
+      "symbol": "GENIUS",
+      "name": "Genius",
+      "market_cap_usd": 100846726,
+      "price_usd": 0.300543,
+      "volume_24h_usd": 2654344,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 281,
+      "symbol": "UUSD",
+      "name": "Unity USD",
+      "market_cap_usd": 99908299,
+      "price_usd": 0.999104,
+      "volume_24h_usd": 2895730,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 282,
+      "symbol": "WAL",
+      "name": "Walrus",
+      "market_cap_usd": 98863942,
+      "price_usd": 0.03776126,
+      "volume_24h_usd": 8677013,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 283,
+      "symbol": "SOSO",
+      "name": "SoSoValue",
+      "market_cap_usd": 98255915,
+      "price_usd": 0.28733,
+      "volume_24h_usd": 3082233,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 284,
+      "symbol": "QRL",
+      "name": "Quantum Resistant Ledger",
+      "market_cap_usd": 98201106,
+      "price_usd": 1.25,
+      "volume_24h_usd": 128953,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 285,
+      "symbol": "FUN",
+      "name": "FUNToken",
+      "market_cap_usd": 97602288,
+      "price_usd": 0.0088722,
+      "volume_24h_usd": 1290638,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 286,
+      "symbol": "GALA",
+      "name": "GALA",
+      "market_cap_usd": 97493096,
+      "price_usd": 0.00192097,
+      "volume_24h_usd": 24408497,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 287,
+      "symbol": "BGBTC",
+      "name": "Bitget Wrapped BTC",
+      "market_cap_usd": 96914114,
+      "price_usd": 81853,
+      "volume_24h_usd": 454160,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 288,
+      "symbol": "CRCLON",
+      "name": "Circle Internet Group (Ondo Tokenized Stock)",
+      "market_cap_usd": 96842940,
+      "price_usd": 81.21,
+      "volume_24h_usd": 642432,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 289,
+      "symbol": "AUTO",
+      "name": "Hastra AUTO",
+      "market_cap_usd": 96724022,
+      "price_usd": 1.027,
+      "volume_24h_usd": 187399,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 290,
+      "symbol": "DYDX",
+      "name": "dYdX",
+      "market_cap_usd": 96133434,
+      "price_usd": 0.113598,
+      "volume_24h_usd": 2729042,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 291,
+      "symbol": "NXM",
+      "name": "Nexus Mutual",
+      "market_cap_usd": 95581635,
+      "price_usd": 60.31,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 292,
+      "symbol": "ACRED",
+      "name": "Apollo Diversified Credit Securitize Fund",
+      "market_cap_usd": 95236812,
+      "price_usd": 1106.58,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 293,
+      "symbol": "USDA",
+      "name": "USDa",
+      "market_cap_usd": 94542304,
+      "price_usd": 0.967102,
+      "volume_24h_usd": 10.67,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 294,
+      "symbol": "FORM",
+      "name": "Four",
+      "market_cap_usd": 94002410,
+      "price_usd": 0.246114,
+      "volume_24h_usd": 2812404,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 295,
+      "symbol": "PEAQ",
+      "name": "peaq",
+      "market_cap_usd": 91983482,
+      "price_usd": 0.03558618,
+      "volume_24h_usd": 1937608,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 296,
+      "symbol": "BABYCLAW",
+      "name": "Baby Claw",
+      "market_cap_usd": 91376294,
+      "price_usd": 0.091376,
+      "volume_24h_usd": 5.43,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 297,
+      "symbol": "MINA",
+      "name": "Mina Protocol",
+      "market_cap_usd": 91161485,
+      "price_usd": 0.070447,
+      "volume_24h_usd": 7693551,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 298,
+      "symbol": "CHEEMS",
+      "name": "Cheems Token",
+      "market_cap_usd": 90929988,
+      "price_usd": 4.46753e-07,
+      "volume_24h_usd": 354209,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 299,
+      "symbol": "ZRX",
+      "name": "0x Protocol",
+      "market_cap_usd": 90898735,
+      "price_usd": 0.107097,
+      "volume_24h_usd": 4457416,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 300,
+      "symbol": "QTUM",
+      "name": "Qtum",
+      "market_cap_usd": 90691075,
+      "price_usd": 0.854497,
+      "volume_24h_usd": 1311377,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 301,
+      "symbol": "WEMIX",
+      "name": "WEMIX",
+      "market_cap_usd": 90295428,
+      "price_usd": 0.180607,
+      "volume_24h_usd": 419754,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 302,
+      "symbol": "DOG",
+      "name": "Dog (Bitcoin)",
+      "market_cap_usd": 90165511,
+      "price_usd": 0.00090137,
+      "volume_24h_usd": 346926,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 303,
+      "symbol": "MAG7.SSI",
+      "name": "MAG7.ssi",
+      "market_cap_usd": 89091461,
+      "price_usd": 0.531927,
+      "volume_24h_usd": 468540,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 304,
+      "symbol": "GMX",
+      "name": "GMX",
+      "market_cap_usd": 88421953,
+      "price_usd": 8.28,
+      "volume_24h_usd": 2386273,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 305,
+      "symbol": "PROM",
+      "name": "Prom",
+      "market_cap_usd": 87913778,
+      "price_usd": 4.82,
+      "volume_24h_usd": 3474588,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 306,
+      "symbol": "STONK",
+      "name": "STONK",
+      "market_cap_usd": 87898441,
+      "price_usd": 0.111438,
+      "volume_24h_usd": 6614706,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 307,
+      "symbol": "YZY",
+      "name": "YZY",
+      "market_cap_usd": 87857028,
+      "price_usd": 0.293872,
+      "volume_24h_usd": 6513.52,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 308,
+      "symbol": "W",
+      "name": "Wormhole",
+      "market_cap_usd": 86027111,
+      "price_usd": 0.01290128,
+      "volume_24h_usd": 18030612,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 309,
+      "symbol": "PROS",
+      "name": "Pharos",
+      "market_cap_usd": 85337079,
+      "price_usd": 0.629232,
+      "volume_24h_usd": 1440880,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 310,
+      "symbol": "GGBR",
+      "name": "Goldfish Gold",
+      "market_cap_usd": 84075523,
+      "price_usd": 4.12,
+      "volume_24h_usd": 120863,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 311,
+      "symbol": "SN4",
+      "name": "Targon",
+      "market_cap_usd": 83796308,
+      "price_usd": 14.19,
+      "volume_24h_usd": 665744,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 312,
+      "symbol": "CHIP",
+      "name": "USD.AI",
+      "market_cap_usd": 83704479,
+      "price_usd": 0.04185067,
+      "volume_24h_usd": 11392831,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 313,
+      "symbol": "ARKM",
+      "name": "Arkham",
+      "market_cap_usd": 82554390,
+      "price_usd": 0.115723,
+      "volume_24h_usd": 6364602,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 314,
+      "symbol": "USDA",
+      "name": "USDA",
+      "market_cap_usd": 82101471,
+      "price_usd": 0.944051,
+      "volume_24h_usd": 1814184,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 315,
+      "symbol": "MELANIA",
+      "name": "Melania Meme",
+      "market_cap_usd": 81448263,
+      "price_usd": 0.081442,
+      "volume_24h_usd": 6182869,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 316,
+      "symbol": "LPT",
+      "name": "Livepeer",
+      "market_cap_usd": 80760813,
+      "price_usd": 1.63,
+      "volume_24h_usd": 6884184,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 317,
+      "symbol": "PGOLD",
+      "name": "Pleasing Gold",
+      "market_cap_usd": 80557137,
+      "price_usd": 4130.07,
+      "volume_24h_usd": 2.61,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 318,
+      "symbol": "CUSD",
+      "name": "Cap USD",
+      "market_cap_usd": 80324939,
+      "price_usd": 0.999814,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 319,
+      "symbol": "SAFE",
+      "name": "Safe",
+      "market_cap_usd": 80267894,
+      "price_usd": 0.102438,
+      "volume_24h_usd": 740804,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 320,
+      "symbol": "GAS",
+      "name": "Gas",
+      "market_cap_usd": 80177522,
+      "price_usd": 1.23,
+      "volume_24h_usd": 280459,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 321,
+      "symbol": "NMR",
+      "name": "Numeraire",
+      "market_cap_usd": 79792159,
+      "price_usd": 11.13,
+      "volume_24h_usd": 8821436,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 322,
+      "symbol": "KSM",
+      "name": "Kusama",
+      "market_cap_usd": 79283156,
+      "price_usd": 4.17,
+      "volume_24h_usd": 1746305,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 323,
+      "symbol": "FXUSD",
+      "name": "f(x) Protocol fxUSD",
+      "market_cap_usd": 79232035,
+      "price_usd": 1.001,
+      "volume_24h_usd": 4472239,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 324,
+      "symbol": "PC0000019",
+      "name": "Tradable North America PoS Lender SSTN",
+      "market_cap_usd": 79201862,
+      "price_usd": 1.0,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 325,
+      "symbol": "YFI",
+      "name": "yearn.finance",
+      "market_cap_usd": 79038007,
+      "price_usd": 2190.27,
+      "volume_24h_usd": 2202629,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 326,
+      "symbol": "HNT",
+      "name": "Helium",
+      "market_cap_usd": 78503137,
+      "price_usd": 0.398812,
+      "volume_24h_usd": 2845530,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 327,
+      "symbol": "ORDI",
+      "name": "ORDI",
+      "market_cap_usd": 78269001,
+      "price_usd": 3.72,
+      "volume_24h_usd": 11075981,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 328,
+      "symbol": "USDSUI",
+      "name": "USDsui",
+      "market_cap_usd": 77980468,
+      "price_usd": 0.999496,
+      "volume_24h_usd": 2133657,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 329,
+      "symbol": "ADI",
+      "name": "ADI",
+      "market_cap_usd": 77534566,
+      "price_usd": 8.22,
+      "volume_24h_usd": 3286064,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 330,
+      "symbol": "WM",
+      "name": "WrappedM by M0",
+      "market_cap_usd": 77317388,
+      "price_usd": 0.999308,
+      "volume_24h_usd": 21.54,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 331,
+      "symbol": "MARSCOIN",
+      "name": "MarsCoin",
+      "market_cap_usd": 76774037,
+      "price_usd": 0.076734,
+      "volume_24h_usd": 15804756,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 332,
+      "symbol": "PC0000101",
+      "name": "Tradable NA Post-Settlement Legal Financing Receivables",
+      "market_cap_usd": 76722081,
+      "price_usd": 1.0,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 333,
+      "symbol": "KAVA",
+      "name": "Kava",
+      "market_cap_usd": 76577254,
+      "price_usd": 0.070716,
+      "volume_24h_usd": 8379102,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 334,
+      "symbol": "MTBILL",
+      "name": "Midas mTBILL",
+      "market_cap_usd": 76499147,
+      "price_usd": 1.075,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 335,
+      "symbol": "FXSAVE",
+      "name": "f(x) USD Saving",
+      "market_cap_usd": 75731035,
+      "price_usd": 1.12,
+      "volume_24h_usd": 12496.79,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 336,
+      "symbol": "CGUSD",
+      "name": "Cygnus Finance Global USD",
+      "market_cap_usd": 75608264,
+      "price_usd": 0.991466,
+      "volume_24h_usd": 1.25,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 337,
+      "symbol": "LISUSD",
+      "name": "Lista USD",
+      "market_cap_usd": 75568761,
+      "price_usd": 0.995806,
+      "volume_24h_usd": 324.72,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 338,
+      "symbol": "AMP",
+      "name": "Amp",
+      "market_cap_usd": 75070474,
+      "price_usd": 0.00083552,
+      "volume_24h_usd": 45539870,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 339,
+      "symbol": "OMI",
+      "name": "ECOMI",
+      "market_cap_usd": 74994356,
+      "price_usd": 0.00027681,
+      "volume_24h_usd": 1210764,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 340,
+      "symbol": "AI",
+      "name": "Artificial Inu",
+      "market_cap_usd": 74876915,
+      "price_usd": 0.075544,
+      "volume_24h_usd": 7079812,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 341,
+      "symbol": "FEUSD",
+      "name": "Felix feUSD",
+      "market_cap_usd": 74777840,
+      "price_usd": 0.996983,
+      "volume_24h_usd": 56776,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 342,
+      "symbol": "RED",
+      "name": "RedStone",
+      "market_cap_usd": 74710516,
+      "price_usd": 0.135917,
+      "volume_24h_usd": 1769380,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 343,
+      "symbol": "COW",
+      "name": "CoW Protocol",
+      "market_cap_usd": 74134471,
+      "price_usd": 0.129022,
+      "volume_24h_usd": 1625981,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 344,
+      "symbol": "DOLA",
+      "name": "DOLA",
+      "market_cap_usd": 73986020,
+      "price_usd": 0.996843,
+      "volume_24h_usd": 384129,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 345,
+      "symbol": "APES",
+      "name": "APES",
+      "market_cap_usd": 73972772,
+      "price_usd": 0.082192,
+      "volume_24h_usd": 1.027,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 346,
+      "symbol": "RIF",
+      "name": "Rootstock Infrastructure Framework",
+      "market_cap_usd": 73843042,
+      "price_usd": 0.073841,
+      "volume_24h_usd": 7226889,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 347,
+      "symbol": "ZANO",
+      "name": "Zano",
+      "market_cap_usd": 73742426,
+      "price_usd": 4.77,
+      "volume_24h_usd": 1461488,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 348,
+      "symbol": "ALEO",
+      "name": "ALEO",
+      "market_cap_usd": 73597402,
+      "price_usd": 0.04883671,
+      "volume_24h_usd": 4786740,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 349,
+      "symbol": "BRLV",
+      "name": "Crown BRLV",
+      "market_cap_usd": 73194324,
+      "price_usd": 0.198243,
+      "volume_24h_usd": 3763.06,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 350,
+      "symbol": "DUSK",
+      "name": "DUSK",
+      "market_cap_usd": 72754411,
+      "price_usd": 0.119279,
+      "volume_24h_usd": 8602487,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 351,
+      "symbol": "CKB",
+      "name": "Nervos Network",
+      "market_cap_usd": 72073386,
+      "price_usd": 0.00144842,
+      "volume_24h_usd": 3404558,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 352,
+      "symbol": "UNT",
+      "name": "UnityWallet Token",
+      "market_cap_usd": 71907406,
+      "price_usd": 0.109621,
+      "volume_24h_usd": 172.3,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 353,
+      "symbol": "MCAT",
+      "name": "Marscat Token",
+      "market_cap_usd": 71722178,
+      "price_usd": 0.762517,
+      "volume_24h_usd": 790557,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 354,
+      "symbol": "TRUSD",
+      "name": "Tori trUSD",
+      "market_cap_usd": 71534088,
+      "price_usd": 0.999603,
+      "volume_24h_usd": 223166,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 355,
+      "symbol": "UNP",
+      "name": "Unipoly",
+      "market_cap_usd": 71445360,
+      "price_usd": 0.255865,
+      "volume_24h_usd": 181149,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 356,
+      "symbol": "PC0000049",
+      "name": "Tradable Eu/LatAm PoS Financing SSTL",
+      "market_cap_usd": 71300000,
+      "price_usd": 1.0,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 357,
+      "symbol": "VELO",
+      "name": "Velo",
+      "market_cap_usd": 71192904,
+      "price_usd": 0.00405331,
+      "volume_24h_usd": 1576632,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 358,
+      "symbol": "TSLAX",
+      "name": "Tesla xStock",
+      "market_cap_usd": 70569443,
+      "price_usd": 366.11,
+      "volume_24h_usd": 10130300,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 359,
+      "symbol": "ZIG",
+      "name": "ZIG Finance",
+      "market_cap_usd": 70544341,
+      "price_usd": 0.050069,
+      "volume_24h_usd": 2310142,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 360,
+      "symbol": "XAUM",
+      "name": "Matrixdock Gold",
+      "market_cap_usd": 69648503,
+      "price_usd": 4095.45,
+      "volume_24h_usd": 489261,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 361,
+      "symbol": "UAI",
+      "name": "UnifAI Network",
+      "market_cap_usd": 69506861,
+      "price_usd": 0.290784,
+      "volume_24h_usd": 1959533,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 362,
+      "symbol": "NOXO",
+      "name": "NOXO",
+      "market_cap_usd": 69248276,
+      "price_usd": 0.41549,
+      "volume_24h_usd": 21235,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 363,
+      "symbol": "ZETA",
+      "name": "ZetaChain",
+      "market_cap_usd": 68788093,
+      "price_usd": 0.0415561,
+      "volume_24h_usd": 4603953,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 364,
+      "symbol": "TEMPLE",
+      "name": "TempleDAO",
+      "market_cap_usd": 68340224,
+      "price_usd": 2.88,
+      "volume_24h_usd": 429.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 365,
+      "symbol": "FT",
+      "name": "Flying Tulip",
+      "market_cap_usd": 68085487,
+      "price_usd": 0.139846,
+      "volume_24h_usd": 48863,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 366,
+      "symbol": "IUSD",
+      "name": "InfiniFi USD",
+      "market_cap_usd": 67778461,
+      "price_usd": 1.0,
+      "volume_24h_usd": 3610.18,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 367,
+      "symbol": "AXL",
+      "name": "Axelar",
+      "market_cap_usd": 67477904,
+      "price_usd": 0.053975,
+      "volume_24h_usd": 9614694,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 368,
+      "symbol": "SPYX",
+      "name": "SP500 xStock",
+      "market_cap_usd": 67307941,
+      "price_usd": 770.04,
+      "volume_24h_usd": 7807309,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 369,
+      "symbol": "USDX",
+      "name": "Axis USD",
+      "market_cap_usd": 67143367,
+      "price_usd": 0.999255,
+      "volume_24h_usd": 200824,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 370,
+      "symbol": "ALT",
+      "name": "AltLayer",
+      "market_cap_usd": 66610777,
+      "price_usd": 0.00904195,
+      "volume_24h_usd": 15746317,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 371,
+      "symbol": "LINEA",
+      "name": "Linea",
+      "market_cap_usd": 66216769,
+      "price_usd": 0.00269853,
+      "volume_24h_usd": 6177313,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 372,
+      "symbol": "QUBIC",
+      "name": "Qubic",
+      "market_cap_usd": 66191665,
+      "price_usd": 4.60616e-07,
+      "volume_24h_usd": 2009963,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 373,
+      "symbol": "KAITO",
+      "name": "KAITO",
+      "market_cap_usd": 66154042,
+      "price_usd": 0.274053,
+      "volume_24h_usd": 8811303,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 374,
+      "symbol": "NILA",
+      "name": "MindWaveDAO",
+      "market_cap_usd": 66060590,
+      "price_usd": 0.078368,
+      "volume_24h_usd": 318535,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 375,
+      "symbol": "MF-ONE",
+      "name": "Midas mF-ONE",
+      "market_cap_usd": 65959616,
+      "price_usd": 1.13,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 376,
+      "symbol": "BABYDOGE",
+      "name": "Baby Doge Coin",
+      "market_cap_usd": 65937311,
+      "price_usd": 3.58093e-10,
+      "volume_24h_usd": 2351673,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 377,
+      "symbol": "HOODINU",
+      "name": "Hood Sword Inu",
+      "market_cap_usd": 65781327,
+      "price_usd": 0.065711,
+      "volume_24h_usd": 3831634,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 378,
+      "symbol": "GAL",
+      "name": "GAL (migrated to Gravity - G)",
+      "market_cap_usd": 65467764,
+      "price_usd": 0.512243,
+      "volume_24h_usd": 257.63,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 379,
+      "symbol": "PRIZE",
+      "name": "Prize Protocol",
+      "market_cap_usd": 65227680,
+      "price_usd": 0.00116365,
+      "volume_24h_usd": 52740,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 380,
+      "symbol": "PMUSD",
+      "name": "Precious Metals USD",
+      "market_cap_usd": 65099370,
+      "price_usd": 0.692537,
+      "volume_24h_usd": 15477.99,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 381,
+      "symbol": "ELG",
+      "name": "Escoin",
+      "market_cap_usd": 64990264,
+      "price_usd": 0.291582,
+      "volume_24h_usd": 391478,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 382,
+      "symbol": "O",
+      "name": "o1.exchange",
+      "market_cap_usd": 64982015,
+      "price_usd": 0.406117,
+      "volume_24h_usd": 2242939,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 383,
+      "symbol": "TFUEL",
+      "name": "Theta Fuel",
+      "market_cap_usd": 64922328,
+      "price_usd": 0.0086516,
+      "volume_24h_usd": 343497,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 384,
+      "symbol": "DIEM",
+      "name": "Diem",
+      "market_cap_usd": 64848343,
+      "price_usd": 1766.35,
+      "volume_24h_usd": 916847,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 385,
+      "symbol": "SPK",
+      "name": "Spark",
+      "market_cap_usd": 64683299,
+      "price_usd": 0.01916669,
+      "volume_24h_usd": 5706488,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 386,
+      "symbol": "VTHO",
+      "name": "VeThor",
+      "market_cap_usd": 64566867,
+      "price_usd": 0.00062163,
+      "volume_24h_usd": 827258,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 387,
+      "symbol": "HOT",
+      "name": "Holo",
+      "market_cap_usd": 63150130,
+      "price_usd": 0.00035566,
+      "volume_24h_usd": 2818897,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 388,
+      "symbol": "USDON",
+      "name": "Ondo U.S. Dollar Token",
+      "market_cap_usd": 63133542,
+      "price_usd": 1.0,
+      "volume_24h_usd": 0.0,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 389,
+      "symbol": "IO",
+      "name": "io.net",
+      "market_cap_usd": 62913268,
+      "price_usd": 0.152161,
+      "volume_24h_usd": 6896507,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 390,
+      "symbol": "REUR",
+      "name": "Royal Euro",
+      "market_cap_usd": 62008637,
+      "price_usd": 4.13,
+      "volume_24h_usd": 19804868,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 391,
+      "symbol": "DGB",
+      "name": "DigiByte",
+      "market_cap_usd": 61946784,
+      "price_usd": 0.00334657,
+      "volume_24h_usd": 2067865,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 392,
+      "symbol": "SUSHI",
+      "name": "Sushi",
+      "market_cap_usd": 61872861,
+      "price_usd": 0.215733,
+      "volume_24h_usd": 3599769,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 393,
+      "symbol": "AP3X",
+      "name": "APEX",
+      "market_cap_usd": 61847519,
+      "price_usd": 0.03364551,
+      "volume_24h_usd": 1603.1,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 394,
+      "symbol": "EDU",
+      "name": "Open Campus",
+      "market_cap_usd": 61390933,
+      "price_usd": 0.072783,
+      "volume_24h_usd": 6146697,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 395,
+      "symbol": "RLC",
+      "name": "iExec RLC",
+      "market_cap_usd": 60912732,
+      "price_usd": 0.699961,
+      "volume_24h_usd": 19123320,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 396,
+      "symbol": "IVVON",
+      "name": "iShares Core S&P 500 ETF (Ondo Tokenized ETF)",
+      "market_cap_usd": 60876014,
+      "price_usd": 781.18,
+      "volume_24h_usd": 3787.28,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 397,
+      "symbol": "BANANAS31",
+      "name": "Banana For Scale",
+      "market_cap_usd": 60715075,
+      "price_usd": 0.00606986,
+      "volume_24h_usd": 2087432,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 398,
+      "symbol": "DEXE",
+      "name": "DeXe",
+      "market_cap_usd": 60538689,
+      "price_usd": 1.72,
+      "volume_24h_usd": 5887458,
+      "kucoin_usdt_pair": true,
+      "exclusion_reason": null
+    },
+    {
+      "rank": 399,
+      "symbol": "STRCON",
+      "name": "Strategy Stretch Preferred (Ondo Tokenized)",
+      "market_cap_usd": 60456579,
+      "price_usd": 105.37,
+      "volume_24h_usd": 1848625,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 400,
+      "symbol": "SWOP",
+      "name": "Swop",
+      "market_cap_usd": 60454853,
+      "price_usd": 0.00604549,
+      "volume_24h_usd": 98.22,
+      "kucoin_usdt_pair": false,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    }
+  ]
+}
