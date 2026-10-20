@@ -1514,6 +1514,135 @@ fixture on disk yet.
 
 ---
 
+## Batch 21 - expansion to N = 217 (COMPLETED 2026-10-20)
+
+- Previous N -> new N: **207 -> 217** (ranks 208-217 of the working universe)
+- Snapshot: `universe/mcap_snapshot_20261020_113004.json` (fetched 2026-10-20T11:30:04Z, pages 1-10, 1 000 ranked entries down to $15 174 185 - the pass covers the band below the floor)
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Expansion floor at selection time: XCH at 29 168 720 USD (the lowest market cap already in the universe); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself (`--apply-from universe/mcap_snapshot_20261020_113004.json`), so the names processed by the grid are exactly the ones listed below. The dry run and the applied run agree with the names named in the previous handoff.
+- Snapshot coverage/exclusions (1 000 entries): 269 eligible; 731 excluded - 505 `no_tradable_kucoin_spot_usdt_pair`, 185 `insufficient_hourly_history_for_grid`, 25 `stablecoin_or_fiat_pegged`, 16 `kucoin_pair_trades_a_different_asset`.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap |
+|---|---|---|---|---|
+| 687 | 208 | ELON/USDT | Dogelon Mars | 28 983 090 |
+| 689 | 209 | CTSI/USDT | Cartesi | 28 823 155 |
+| 693 | 210 | IOST/USDT | IOST | 28 658 475 |
+| 699 | 211 | SWFTC/USDT | SWFTCOIN | 28 193 368 |
+| 705 | 212 | UQC/USDT | Uquid Coin | 27 726 441 |
+| 709 | 213 | ILV/USDT | Illuvium | 27 459 683 |
+| 712 | 214 | AVA/USDT | AVA (Travala) | 27 100 879 |
+| 716 | 215 | CPOOL/USDT | Clearpool | 26 920 775 |
+| 717 | 216 | BLUR/USDT | Blur | 26 892 547 |
+| 720 | 217 | EUL/USDT | Euler | 26 770 327 |
+
+EUL is the 217th and last symbol of the working universe; the floor is now **$26 770 327**.
+
+### Hourly coverage of the batch-21 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), 22 000 bars per symbol.
+Every fixture was checked for duplicate timestamps, hourly gaps, invalid OHLC
+rows and ticker identity (last close vs the ranked CoinGecko price):
+
+| Symbol | Rows | Span (UTC) | Zero-volume bars | max abs 1h return | `|log(last close / CG price)|` |
+|---|---|---|---|---|---|
+| ELON | 22 000 | 2024-04-17 00:00 .. 2026-10-20 15:00 | 6 | 63.2 % | 0.0222 |
+| CTSI | 22 000 | 2024-04-17 00:00 .. 2026-10-20 15:00 | 2 255 | 62.6 % | 0.0225 |
+| IOST | 22 000 | 2024-04-17 00:00 .. 2026-10-20 15:00 | 1 381 | 103.5 % | 0.1353 |
+| SWFTC | 22 000 | 2024-04-17 00:00 .. 2026-10-20 15:00 | 186 | 35.6 % | 0.0014 |
+| UQC | 22 095 | 2024-04-12 20:00 .. 2026-10-20 10:00 | 10 800 | 71.0 % | 0.0018 |
+| ILV | 22 000 | 2024-04-17 00:00 .. 2026-10-20 15:00 | 269 | 38.2 % | 0.0257 |
+| AVA | 22 000 | 2024-04-17 00:00 .. 2026-10-20 15:00 | 409 | 127.6 % | 0.0543 |
+| CPOOL | 22 000 | 2024-04-17 01:00 .. 2026-10-20 16:00 | 14 | 52.1 % | 0.0033 |
+| BLUR | 22 099 | 2024-04-12 21:00 .. 2026-10-20 15:00 | 860 | 28.7 % | 0.0103 |
+| EUL | 22 000 | 2024-04-17 01:00 .. 2026-10-20 16:00 | 1 705 | 28.6 % | 0.0492 |
+
+All 10 fixtures have **no duplicate timestamps, no missing hours (contiguous 1h
+grid, max gap 1 h) and no invalid OHLC rows**, and each ticker maps to exactly
+one CoinGecko entry, so each KuCoin pair trades the asset the ranking describes.
+Every price-identity gap is well inside the script's 0.20 log tolerance (largest:
+IOST 0.1353), so none of the ten names is a ticker collision.
+
+Two data-layer properties of this batch are worth recording, because they shape
+the result rather than signal an error:
+
+- **ELON is cost-dominated, as warned in the handoff.** It trades at ~2.96e-08
+  USD, so the registered 12 bps per side is roughly **29x the median absolute
+  hourly move** (median |1h return| 0.41 %). Its cells therefore measure cost
+  drag, not signal quality, and the result must not be read as a statement about
+  the rule. Contrary to the expectation recorded in the handoff, the trade
+  counts did **not** explode: 53 114 trades over 66 cells (805 per cell) is in
+  line with the other batch-21 names.
+- **UQC is an extremely thin pair.** 10 800 of its 22 095 bars (48.9 %) have zero
+  traded volume and 55.8 % of bars close unchanged, so the median absolute
+  hourly return is ~0. Its low trade count (24 855 over 66 cells, the lowest of
+  the batch) and mean net PF 0.2053 follow from the flat price, not from a
+  broken fixture. UQC has **0** zero-volume-but-moving-OHLC quote-carry bars,
+  which is cleaner than the LISTA (12.9 %) / GTC (11.5 %) / MAGIC (9.3 %) bars
+  flagged in batch 20; the baseline was left unchanged (a zero-volume-bar filter
+  would be a registered mutation, §5).
+
+All 10 fixtures are reconciled in `data/fixtures/fetch_manifest.json` (218
+rows: the 217 universe symbols plus the pre-fetched CCD file, which is not in
+the universe - see the skipped names note below).
+
+### Batch-21 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| ELON | 66 | 53 114 | 0.4218 | 0.6622 (P12_200) | -2.7366 | 66 |
+| CTSI | 66 | 54 606 | 0.5300 | 0.7532 (P8_200) | -1.6352 | 66 |
+| IOST | 66 | 51 917 | 0.5093 | 0.7912 (P21_200) | -1.3145 | 66 |
+| SWFTC | 66 | 55 302 | 0.4160 | 0.6278 (P8_200) | -4.0402 | 66 |
+| UQC | 66 | 24 855 | 0.2053 | 0.3990 (P8_100) | -3.9864 | 66 |
+| ILV | 66 | 52 564 | 0.5768 | 0.9895 (P34_200) | -0.0027 | 66 |
+| AVA | 66 | 53 390 | 0.4713 | 0.7106 (P55_200) | -1.7824 | 66 |
+| CPOOL | 66 | 57 075 | 0.5629 | 0.7576 (P21_144) | -2.4484 | 66 |
+| BLUR | 66 | 51 626 | 0.5926 | 0.9310 (P55_200) | -0.3555 | 66 |
+| EUL | 66 | 50 711 | 0.4110 | 0.6299 (P21_144) | -2.7071 | 66 |
+
+Batch 21 alone: 660 cells, **660 rejected, 0 exploratory**, 505 160 trades. No
+cell in the batch reached net PF > 1; the closest was ILV/USDT P34_200 at
+0.9895, which is still below 1 and therefore never reached the OOS + cost-stress
+check. Batch 21 has the **lowest mean net PF of any batch so far (0.4697)**, so
+extending further down the market-cap ranking continues to make the registered
+rule worse, not better.
+
+---
+
+## Cumulative state after batch 21 (N = 217)
+
+- **14 322 / 14 322 cells** complete (217 symbols x 66 EMA pairs), 0 blocked.
+- 14 296 cells **rejected** (99.82 %), 26 cells **exploratory signal** in the aggregate scan and **rejected** by the OOS + cost-stress check, **0 credible candidates**.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4967**, median 0.5177, best net PF **2.2274**
+  (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 11 666 585 trades.
+- Cells with net PF > 1: 36 / 14 322 = 0.25 % against a ~50 % no-edge null
+  (excess -49.7 %). All 36 failed OOS + cost stress and the set is **unchanged
+  from batch 20**: 32 BABYDOGE cells (zero OOS trades), JASMY P20_200 / P21_200,
+  SUPER P8_200 and MOODENG P8_200. Batch 21 contributed no new survivor.
+- Per-pair pooled leaders (mean net PF over 217 symbols): P8_200 0.6825,
+  P12_200 0.6717, P20_200 0.6704, P21_200 0.6661, P26_200 0.6604. Worst:
+  P20_21 0.1448, P50_55 0.2135, P8_12 0.2163.
+- Mean net PF by batch (b7-b21), recomputed in this session from
+  `results/20261019_135940_grid/per_symbol.json` and the batch boundaries in
+  the coverage table below: 0.4682, 0.5085, 0.5210, 0.5017, 0.5287, 0.5010,
+  0.4961, 0.5722, 0.5279, 0.4977, 0.4837, 0.5229, 0.5426, 0.5400, 0.4697.
+  Lower market cap does not improve the registered rule. (The b7-b20 list
+  printed in the batch-20 cumulative section was misaligned by one entry from
+  b14 onward; the recomputed values above are the correct ones.)
+
+### Remaining eligible names below the floor (batch 22 candidates)
+
+The 2026-10-20T11:30:04Z snapshot still holds **49 eligible unseen names below
+the current floor** (EUL, $26 770 327), so the universe is **not** exhausted and
+no new CoinGecko query is needed for the next batch. The next 10 by rank are
+FLIP, G, EWT, ERG, NYM, SKL, AUCTION, KNC, VR, CARV. None of them has a fixture
+on disk yet.
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -1539,5 +1668,6 @@ fixture on disk yet.
 | Batch 18 | 187 | complete - API3, SYN, BAND, MOG, CSPR, NOT, ETN, PEOPLE, IOTX, SSV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 19 | 197 | complete - OSMO, MOODENG, MEW, MERL, RPL, MOCA, UMA, DEGEN, ORBS, CATI (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 20 | 207 | complete - METIS, REZ, LISTA, COTI, MAGIC, GTC, MANTA, LUNA, FLUX, XCH (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 21 | 217 | complete - ELON, CTSI, IOST, SWFTC, UQC, ILV, AVA, CPOOL, BLUR, EUL (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).
