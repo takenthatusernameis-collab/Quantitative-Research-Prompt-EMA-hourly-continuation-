@@ -4174,5 +4174,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "WAVES/USDT",
+    "n_cells": 66,
+    "total_trades": 63233,
+    "mean_trades": 958.0757575757576,
+    "median_net_pf": 0.422609893439556,
+    "mean_net_pf": 0.4178947030412083,
+    "best_net_pf": 0.5622938927117394,
+    "best_cell": "P20_200",
+    "best_sharpe": -4.2123838404025795,
+    "worst_net_pf": 0.12505356191275693,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -4.2123838404025795,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
