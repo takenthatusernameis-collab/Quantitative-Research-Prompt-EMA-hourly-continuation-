@@ -4138,5 +4138,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "PUFFER/USDT",
+    "n_cells": 66,
+    "total_trades": 39790,
+    "mean_trades": 602.8787878787879,
+    "median_net_pf": 0.6268317565292134,
+    "mean_net_pf": 0.617713487546745,
+    "best_net_pf": 0.8963619347280265,
+    "best_cell": "P20_200",
+    "best_sharpe": -0.5566794945777025,
+    "worst_net_pf": 0.22149638320964354,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -0.5566794945777025,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
