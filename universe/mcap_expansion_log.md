@@ -1769,13 +1769,161 @@ down the market-cap ranking keeps making the registered rule worse.
   0.4961, 0.5722, 0.5279, 0.4977, 0.4837, 0.5229, 0.5426, 0.5400, 0.4697,
   0.4434. Lower market cap does not improve the registered rule.
 
-### Remaining eligible names below the floor (batch 23 candidates)
+## Batch 23 - expansion to N = 237 (COMPLETED 2026-10-20)
 
-The 2026-10-20T11:30:04Z snapshot still holds **39 eligible unseen names below
-the current floor** (CARV, $24 788 571), so the universe is **not** exhausted and
+- Previous N -> new N: **227 -> 237** (ranks 228-237 of the working universe)
+- Snapshot: `universe/mcap_snapshot_20261020_113004.json` (fetched 2026-10-20T11:30:04Z, pages 1-10, 1 000 ranked entries down to $15 174 185 - the pass covers the band below the floor)
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Expansion floor at selection time: CARV at 24 788 571 USD (the lowest market cap already in the universe); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself (`--apply-from universe/mcap_snapshot_20261020_113004.json --batch-size 10 --apply`); the dry run and the applied run produced exactly the ten names named in the batch-22 handoff (MTL, DAG, PUNDIX, PUFFER, SQD, WAVES, MLK, TNSR, STRAX, GMT). **No new CoinGecko request was made**: the saved pass still held 39 eligible unseen names below the floor, so the 24 h refresh bound of PROMPT.md §2.1.5 did not apply.
+- Snapshot coverage/exclusions (1 000 entries): 269 eligible; 731 excluded - 505 `no_tradable_kucoin_spot_usdt_pair`, 185 `insufficient_hourly_history_for_grid`, 25 `stablecoin_or_fiat_pegged`, 16 `kucoin_pair_trades_a_different_asset`.
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap |
+|---|---|---|---|---|
+| 765 | 228 | MTL/USDT | Metal DAO | 24 764 629 |
+| 768 | 229 | DAG/USDT | Constellation | 24 579 494 |
+| 769 | 230 | PUNDIX/USDT | Pundi X | 24 563 087 |
+| 770 | 231 | PUFFER/USDT | Puffer | 24 423 363 |
+| 779 | 232 | SQD/USDT | SQD | 23 936 491 |
+| 785 | 233 | WAVES/USDT | Waves | 23 321 655 |
+| 786 | 234 | MLK/USDT | MiL.k | 23 301 530 |
+| 789 | 235 | TNSR/USDT | Tensor | 23 080 708 |
+| 795 | 236 | STRAX/USDT | Xertra | 22 663 753 |
+| 799 | 237 | GMT/USDT | GMT | 22 410 555 |
+
+GMT is the 237th and last symbol of the working universe; the floor is now **$22 410 555**.
+
+### Hourly coverage of the batch-23 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC), 22 000 bars requested per
+symbol. All ten were fetched in a single pass with **no failed symbols and no
+re-queries**, and every fixture was checked for duplicate timestamps, hourly
+gaps, invalid OHLC rows and ticker identity (last close vs the ranked
+CoinGecko price):
+
+| Symbol | Rows | Span (UTC) | Zero-volume bars | max abs 1h return | median abs 1h return | `|log(last close / CG price)|` |
+|---|---|---|---|---|---|---|
+| MTL | 22 098 | 2024-04-12 23:00 .. 2026-10-20 16:00 | 3 681 (16.7 %) | 135.6 % | 0.361 % | 0.0269 |
+| DAG | 22 000 | 2024-04-17 03:00 .. 2026-10-20 18:00 | 0 (0.0 %) | 35.8 % | 0.455 % | 0.0043 |
+| PUNDIX | 22 000 | 2024-04-17 03:00 .. 2026-10-20 18:00 | 3 315 (15.1 %) | 35.3 % | 0.407 % | 0.0280 |
+| PUFFER | 17 671 | 2024-10-14 12:00 .. 2026-10-20 18:00 | 1 443 (8.2 %) | 203.9 % | 0.615 % | 0.0396 |
+| SQD | 21 275 | 2024-05-17 08:00 .. 2026-10-20 18:00 | 366 (1.7 %) | 53.5 % | 0.632 % | 0.0486 |
+| WAVES | 22 000 | 2024-04-17 03:00 .. 2026-10-20 18:00 | 181 (0.8 %) | 27.3 % | 0.410 % | 0.0328 |
+| MLK | 22 097 | 2024-04-12 23:00 .. 2026-10-20 15:00 | 2 035 (9.2 %) | 42.4 % | 0.315 % | 0.0022 |
+| TNSR | 22 097 | 2024-04-12 23:00 .. 2026-10-20 15:00 | 1 352 (6.1 %) | 62.4 % | 0.612 % | 0.0327 |
+| STRAX | 21 872 | 2024-04-22 09:00 .. 2026-10-20 16:00 | 5 184 (23.7 %) | 70.6 % | 0.335 % | 0.0161 |
+| GMT | 22 000 | 2024-04-17 03:00 .. 2026-10-20 18:00 | 13 (0.1 %) | 25.0 % | 0.505 % | 0.0243 |
+
+All 10 fixtures have **no duplicate timestamps, no missing hours (contiguous 1h
+grid, max gap 1 h), no invalid OHLC rows and no NaN rows**, and each ticker maps
+to exactly one CoinGecko entry, so each KuCoin pair trades the asset the ranking
+describes.
+
+**Ticker-collision check (mandatory for this batch).** `MLK/USDT` (MiL.k),
+`DAG/USDT` (Constellation), `GMT/USDT` (GMT) and `SQD/USDT` were the four short
+tickers that could have resolved to a different KuCoin asset. All four resolve
+to the ranked asset: the binding gate is the fixture's last close against the
+ranked CoinGecko price, and every gap is far inside the script's 0.20 log
+tolerance - MLK 0.0022, DAG 0.0043, GMT 0.0243, SQD 0.0486, MTL 0.0269,
+PUNDIX 0.0280, PUFFER 0.0396, WAVES 0.0328, TNSR 0.0327, STRAX 0.0161. The
+largest (SQD 0.0486) is a 4.9 % price gap between the last hourly close and the
+ranking snapshot's price, not a different asset, so none of the ten is the
+`kucoin_pair_trades_a_different_asset` case.
+
+Three names were listed later than the rest and therefore have shorter
+histories: PUFFER (17 671 bars from 2024-10-14), SQD (21 275 bars from
+2024-05-17) and STRAX (21 872 bars from 2024-04-22). All three still exceed the
+17 520-bar (2-year) eligibility floor and cover the largest `P_slow` (200) plus
+the trailing 35 % OOS window; PUFFER is the tightest (151 bars of headroom).
+
+Unlike ELON (batch 21) there is **no cost-dominated name in this batch**: the
+median absolute hourly move ranges from 0.315 % (MLK) to 0.632 % (SQD) and the
+cheapest pair trades at $0.00621 (DAG), so the registered 12 bps per side is
+0.19x-0.38x of the median absolute hourly move and is not the dominant term.
+All 10 fixtures also have **0 zero-volume-but-moving-OHLC quote-carry bars**
+(as in batches 21 and 22); the highest zero-volume share is STRAX
+(5 184 / 21 872 bars, 23.7 %) and MTL (3 681 / 22 098, 16.7 %). The baseline
+was left unchanged (a zero-volume-bar filter would be a registered mutation, §5).
+
+All 10 fixtures are reconciled in `data/fixtures/fetch_manifest.json` (238
+rows: the 237 universe symbols plus the pre-fetched CCD file, which is not in
+the universe).
+
+### Names deliberately skipped (still above the expansion floor)
+
+| Rank | Symbol | Name | Market cap | Note |
+|---|---|---|---|---|
+| 320 | GAS | Gas | 80 295 659 | eligible, but far above the floor |
+| 533 | CCD | Concordium | 41 793 103 | eligible; its hourly fixture is already on disk (`data/fixtures/CCD_USDT.csv`). It enters the universe automatically if a later snapshot puts it below the floor. |
+
+### Batch-23 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| MTL | 66 | 48 202 | 0.4757 | 0.8682 (P8_200) | -0.6355 | 66 |
+| DAG | 66 | 57 211 | 0.4460 | 0.6853 (P34_200) | -2.2228 | 66 |
+| PUNDIX | 66 | 52 869 | 0.4593 | 0.7683 (P12_200) | -1.4854 | 66 |
+| PUFFER | 66 | 39 790 | 0.6177 | 0.8964 (P20_200) | -0.5567 | 66 |
+| SQD | 66 | 51 525 | 0.6531 | 0.8222 (P26_200) | -1.2240 | 66 |
+| WAVES | 66 | 63 233 | 0.4179 | 0.5623 (P20_200) | -4.2124 | 66 |
+| MLK | 66 | 71 521 | 0.2725 | 0.4401 (P8_200) | -7.9111 | 66 |
+| TNSR | 66 | 53 405 | 0.6205 | 0.7633 (P12_100) | -2.2234 | 66 |
+| STRAX | 66 | 57 211 | 0.4710 | 0.6056 (P8_100) | -4.3469 | 66 |
+| GMT | 66 | 54 632 | 0.4983 | 0.7889 (P12_200) | -1.1936 | 66 |
+
+Batch 23 alone: 660 cells, **660 rejected, 0 exploratory**, 549 599 trades. No
+cell in the batch reached net PF > 1 (the closest was PUFFER/USDT P20_200 at
+0.8964), so no batch-23 cell ever entered the OOS + cost-stress check. The
+batch mean net PF is **0.4932**, above batch 22's 0.4434 but still far below
+the 0.5 no-edge mark: extending further down the market-cap ranking does not
+improve the registered rule.
+
+---
+
+## Cumulative state after batch 23 (N = 237)
+
+- **15 642 / 15 642 cells** complete (237 symbols x 66 EMA pairs), 0 blocked.
+- 15 616 cells **rejected** (99.77 %), 26 cells **exploratory signal** in the aggregate scan and **rejected** by the OOS + cost-stress check, **0 credible candidates**.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4943**, median 0.5141, best net PF **2.2274**
+  (BABYDOGE/USDT P50_55, rejected - 0 OOS trades), 12 705 984 trades.
+- Cells with net PF > 1: 36 / 15 642 = 0.23 % against a ~50 % no-edge null
+  (excess -49.8 %). All 36 failed OOS + cost stress and the set is **unchanged
+  from batch 20**: 32 BABYDOGE cells (zero OOS trades), JASMY P20_200 / P21_200,
+  SUPER P8_200 and MOODENG P8_200. Batch 23 contributed no new survivor.
+- Per-pair pooled leaders (mean net PF over 237 symbols): P8_200 0.6776,
+  P12_200 0.6681, P20_200 0.6652, P21_200 0.6609, P26_200 0.6547. Worst:
+  P20_21 0.1455, P50_55 0.2139, P8_12 0.2175.
+- Mean net PF by batch (b7-b23), recomputed in this session from
+  `results/20261019_135940_grid/per_symbol.json` and the batch boundaries in
+  the coverage table below: 0.4682, 0.5085, 0.5210, 0.5017, 0.5287, 0.5010,
+  0.4961, 0.5722, 0.5279, 0.4977, 0.4837, 0.5229, 0.5426, 0.5400, 0.4697,
+  0.4434, 0.4932. Lower market cap does not improve the registered rule.
+
+### Remaining eligible names below the floor (batch 24 candidates)
+
+The 2026-10-20T11:30:04Z snapshot still holds **29 eligible unseen names below
+the current floor** (GMT, $22 410 555), so the universe is **not** exhausted and
 no new CoinGecko query is needed for the next batch. The next 10 by rank are
-MTL, DAG, PUNDIX, PUFFER, SQD, WAVES, MLK, TNSR, STRAX, GMT. None of them has a
+SATS, OGN, CETUS, YGG, DODO, ONE, AEVO, SLP, CGPT, WOO. None of them has a
 fixture on disk yet.
+
+Two of those names need a specific check in the next batch:
+
+- **`ONE/USDT` is Harmony** (CoinGecko rank 838, $20 634 662), *not* ONEchain.
+  The snapshot holds two `ONE` entries - rank 419 "ONEchain" ($54 939 516, price
+  0.101731) and rank 838 "Harmony" ($20 634 662, price 0.00138669). The
+  ONEchain entry is already excluded in the saved snapshot as
+  `kucoin_pair_trades_a_different_asset`, because the live KuCoin ONE-USDT
+  price is Harmony's ~0.0014, so the eligible `ONE` row is Harmony. Confirm the
+  fixture's last close against the Harmony price (tolerance 0.20 in log terms),
+  not against the ONEchain price.
+- **`SATS/USDT` is a sub-cent asset** (rank 816, $21 621 654, price
+  1.0297e-08 USD), in the same class as ELON (batch 21). The registered 12 bps
+  per side is likely a large multiple of its median absolute hourly move; run
+  the price-scale check and report the multiple rather than reading its cells
+  as a statement about signal quality.
 
 ---
 
@@ -1806,5 +1954,6 @@ fixture on disk yet.
 | Batch 20 | 207 | complete - METIS, REZ, LISTA, COTI, MAGIC, GTC, MANTA, LUNA, FLUX, XCH (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 21 | 217 | complete - ELON, CTSI, IOST, SWFTC, UQC, ILV, AVA, CPOOL, BLUR, EUL (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 22 | 227 | complete - FLIP, G, EWT, ERG, NYM, SKL, AUCTION, KNC, VR, CARV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 23 | 237 | complete - MTL, DAG, PUNDIX, PUFFER, SQD, WAVES, MLK, TNSR, STRAX, GMT (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).

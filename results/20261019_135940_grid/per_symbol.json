@@ -4246,5 +4246,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "GMT/USDT",
+    "n_cells": 66,
+    "total_trades": 54632,
+    "mean_trades": 827.7575757575758,
+    "median_net_pf": 0.5324917826001891,
+    "mean_net_pf": 0.4983472722200514,
+    "best_net_pf": 0.7888985889100688,
+    "best_cell": "P12_200",
+    "best_sharpe": -1.1935940160665832,
+    "worst_net_pf": 0.08375424969563061,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -1.1935940160665832,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
