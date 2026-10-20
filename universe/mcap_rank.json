@@ -1,32 +1,32 @@
 {
-  "updated_at": "2026-10-20T18:28:55.747596Z",
+  "updated_at": "2026-10-20T20:14:17.459381Z",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
   "snapshot_fetched_at": "2026-10-20T11:30:04.315667+00:00",
-  "n_symbols": 237,
+  "n_symbols": 247,
   "added_in_this_expansion": [
-    "MTL/USDT",
-    "DAG/USDT",
-    "PUNDIX/USDT",
-    "PUFFER/USDT",
-    "SQD/USDT",
-    "WAVES/USDT",
-    "MLK/USDT",
-    "TNSR/USDT",
-    "STRAX/USDT",
-    "GMT/USDT"
+    "SATS/USDT",
+    "OGN/USDT",
+    "CETUS/USDT",
+    "YGG/USDT",
+    "DODO/USDT",
+    "ONE/USDT",
+    "AEVO/USDT",
+    "SLP/USDT",
+    "CGPT/USDT",
+    "WOO/USDT"
   ],
   "added_market_caps_usd": {
-    "MTL": 24764629,
-    "DAG": 24579494,
-    "PUNDIX": 24563087,
-    "PUFFER": 24423363,
-    "SQD": 23936491,
-    "WAVES": 23321655,
-    "MLK": 23301530,
-    "TNSR": 23080708,
-    "STRAX": 22663753,
-    "GMT": 22410555
+    "SATS": 21621654,
+    "OGN": 21533963,
+    "CETUS": 21414698,
+    "YGG": 21324785,
+    "DODO": 20845043,
+    "ONE": 20634662,
+    "AEVO": 20512457,
+    "SLP": 20466559,
+    "CGPT": 20047403,
+    "WOO": 19716095
   },
   "symbols": [
     "BTC/USDT",
@@ -265,6 +265,16 @@
     "MLK/USDT",
     "TNSR/USDT",
     "STRAX/USDT",
-    "GMT/USDT"
+    "GMT/USDT",
+    "SATS/USDT",
+    "OGN/USDT",
+    "CETUS/USDT",
+    "YGG/USDT",
+    "DODO/USDT",
+    "ONE/USDT",
+    "AEVO/USDT",
+    "SLP/USDT",
+    "CGPT/USDT",
+    "WOO/USDT"
   ]
 }

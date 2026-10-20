@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-20T18:30:58.255465+00:00",
+  "recorded_at": "2026-10-20T20:14:22.617452+00:00",
   "state": "EXPANSION_AVAILABLE",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
@@ -14,73 +14,13 @@
     "lowest_market_cap_usd": 15174185
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 237,
+  "universe_n": 247,
   "expansion_floor": {
-    "symbol": "GMT/USDT",
-    "market_cap_usd": 22410555
+    "symbol": "WOO/USDT",
+    "market_cap_usd": 19716095
   },
-  "eligible_unseen_below_floor_count": 29,
+  "eligible_unseen_below_floor_count": 19,
   "eligible_unseen_below_floor": [
-    {
-      "rank": 816,
-      "symbol": "SATS",
-      "name": "SATS (Ordinals)",
-      "market_cap_usd": 21621654
-    },
-    {
-      "rank": 818,
-      "symbol": "OGN",
-      "name": "Origin Token",
-      "market_cap_usd": 21533963
-    },
-    {
-      "rank": 820,
-      "symbol": "CETUS",
-      "name": "Cetus Protocol",
-      "market_cap_usd": 21414698
-    },
-    {
-      "rank": 824,
-      "symbol": "YGG",
-      "name": "Yield Guild Games",
-      "market_cap_usd": 21324785
-    },
-    {
-      "rank": 835,
-      "symbol": "DODO",
-      "name": "DODO",
-      "market_cap_usd": 20845043
-    },
-    {
-      "rank": 838,
-      "symbol": "ONE",
-      "name": "Harmony",
-      "market_cap_usd": 20634662
-    },
-    {
-      "rank": 843,
-      "symbol": "AEVO",
-      "name": "Aevo",
-      "market_cap_usd": 20512457
-    },
-    {
-      "rank": 844,
-      "symbol": "SLP",
-      "name": "Smooth Love Potion",
-      "market_cap_usd": 20466559
-    },
-    {
-      "rank": 854,
-      "symbol": "CGPT",
-      "name": "ChainGPT",
-      "market_cap_usd": 20047403
-    },
-    {
-      "rank": 862,
-      "symbol": "WOO",
-      "name": "WOO",
-      "market_cap_usd": 19716095
-    },
     {
       "rank": 863,
       "symbol": "CELR",
@@ -197,16 +137,16 @@
     }
   ],
   "batch_selected": [
-    "SATS/USDT",
-    "OGN/USDT",
-    "CETUS/USDT",
-    "YGG/USDT",
-    "DODO/USDT",
-    "ONE/USDT",
-    "AEVO/USDT",
-    "SLP/USDT",
-    "CGPT/USDT",
-    "WOO/USDT"
+    "CELR/USDT",
+    "DOGS/USDT",
+    "LQTY/USDT",
+    "DIA/USDT",
+    "BIGTIME/USDT",
+    "CYBER/USDT",
+    "FIDA/USDT",
+    "CHR/USDT",
+    "QI/USDT",
+    "ARPA/USDT"
   ],
   "next_eligible_refresh_at": null
 }
