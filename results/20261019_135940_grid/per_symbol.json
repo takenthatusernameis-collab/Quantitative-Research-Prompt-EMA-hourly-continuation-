@@ -4228,5 +4228,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "STRAX/USDT",
+    "n_cells": 66,
+    "total_trades": 57211,
+    "mean_trades": 866.8333333333334,
+    "median_net_pf": 0.4941951629602962,
+    "mean_net_pf": 0.4709850361608326,
+    "best_net_pf": 0.6056487946573921,
+    "best_cell": "P8_100",
+    "best_sharpe": -6.058823276519107,
+    "worst_net_pf": 0.20021233075090067,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -4.346862762407748,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
