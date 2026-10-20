@@ -653,45 +653,123 @@ net PF 0.5017, median 0.5195, best 0.9891 (IMX/USDT P34_200), 559 540 trades.
 
 ---
 
-## Robustness check of the two net-PF > 1 cells (PROMPT.md §3.3)
+## Batch 11 - expansion to N = 117
+
+- Snapshot: `universe/mcap_snapshot_20261020_001659.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-20T00:16:59Z
+- Previous N -> new N: **107 -> 117** (ranks 108-117 of the working universe)
+- Expansion floor: XEC at 128 921 566 USD (the lowest market cap already in the
+  universe in this snapshot); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself
+  (`--apply-from universe/mcap_snapshot_20261020_001659.json`).
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Name | Market cap |
+|---|---|---|---|
+| 242 | SNX | Synthetix | 125 319 862 |
+| 246 | SUPER | SuperVerse | 121 344 825 |
+| 248 | DBR | deBridge | 119 457 637 |
+| 252 | RSR | Reserve Rights | 115 661 828 |
+| 260 | EGLD | MultiversX | 112 034 441 |
+| 262 | GLM | Golem | 111 601 948 |
+| 265 | ZEN | Horizen | 109 813 570 |
+| 266 | ATH | Aethir | 108 538 983 |
+| 269 | ORCA | Orca | 106 196 724 |
+| 285 | GALA | GALA | 97 855 080 |
+
+SNX is the 108th symbol of the working universe; GALA is the 117th and last.
+`SUPER` is **SuperVerse**, `ZEN` is **Horizen**, `ATH` is **Aethir** and `EGLD` is
+**MultiversX** - four tickers that collide with unrelated tokens elsewhere in the
+market, so the CoinGecko `name` column (reproduced above) is the authoritative
+identity for every batch.
+
+### Hourly coverage of the batch-11 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC):
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| SUPER, RSR, EGLD, GLM, ZEN, ORCA, GALA | 22 000 | 2024-04-16 09:00 .. 2026-10-20 00:00 |
+| SNX | 22 099 | 2024-04-12 05:00 .. 2026-10-19 23:00 |
+| ATH | 20 631 | 2024-06-12 10:00 .. 2026-10-20 00:00 |
+| DBR | 17 585 | 2024-10-17 08:00 .. 2026-10-20 00:00 |
+
+All 10 fixtures have no duplicate timestamps and no hourly gaps. DBR is the
+shortest fixture in the program so far (17 585 hourly bars, ~2.01 years) and
+still clears the 2-year eligibility floor, but with the least OOS head-room.
+
+### Batch-11 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| SNX | 66 | 54 440 | 0.5731 | 0.8887 (P8_200) | -0.6560 | 66 |
+| SUPER | 66 | 53 105 | 0.5842 | **1.0377 (P8_200)** | **+0.2611** | 65 |
+| DBR | 66 | 36 204 | 0.4516 | 0.6113 (P8_50) | -3.8780 | 66 |
+| RSR | 66 | 52 928 | 0.5803 | 0.7832 (P21_144) | -1.7520 | 66 |
+| EGLD | 66 | 53 256 | 0.4873 | 0.7590 (P12_200) | -1.6050 | 66 |
+| GLM | 66 | 52 624 | 0.4738 | 0.7276 (P34_200) | -2.0080 | 66 |
+| ZEN | 66 | 56 341 | 0.5065 | 0.9702 (P8_200) | -0.0710 | 66 |
+| ATH | 66 | 51 252 | 0.5762 | 0.8919 (P21_200) | -0.7220 | 66 |
+| ORCA | 66 | 49 278 | 0.5515 | 0.7537 (P26_200) | -1.7260 | 66 |
+| GALA | 66 | 53 289 | 0.5023 | 0.7211 (P8_144) | -1.7850 | 66 |
+
+Batch 11 alone: 660 cells, 659 rejected, 1 exploratory (SUPER/USDT P8_200),
+pooled mean net PF 0.5287, median 0.5418, 512 717 trades. Batch 11 has the
+highest mean net PF of any batch so far (0.5287), and it still contains no
+surviving edge.
+
+---
+
+## Robustness check of the net-PF > 1 cells (PROMPT.md §3.3)
 
 `scripts/candidate_check.py` re-runs every cell in the run with net PF > 1 in
 four configurations: full sample at the registered costs, the trailing 35 % of
 the bars (out-of-sample, entries restricted to that window), the full sample at
 2x fees and slippage, and the out-of-sample window at 2x costs.
 
-Artifact: `results/20261020_000649_candidate_check/` (`summary.json`,
-`summary.md`, `config.json`).
+After batch 10 (N = 107), artifact `results/20261020_000649_candidate_check/`:
 
 | Symbol | Cell | Base net PF | Base Sharpe | OOS net PF | OOS Sharpe | OOS trades | 2x-cost net PF | 2x-cost OOS net PF | Verdict |
 |---|---|---|---|---|---|---|---|---|---|
 | JASMY/USDT | P20_200 | 1.0097 | +0.1189 | 0.9068 | -0.5973 | 174 | 0.7465 | 0.5944 | rejected |
 | JASMY/USDT | P21_200 | 1.0341 | +0.2673 | 0.9167 | -0.5194 | 173 | 0.7576 | 0.6015 | rejected |
 
-**Both cells fail out-of-sample and both fail cost stress**, so they are
-rejected rather than promoted (PROMPT.md §3.4). The program's cumulative
-credible-candidate count stays at **0** after 7 062 grid cells: the in-sample
-profit factor of ~1.03 was scan noise, exactly as the multiple-testing
-expectation predicted (0.03 % of cells above 1.0 against a ~50 % null).
+After batch 11 (N = 117), artifact `results/20261020_015931_candidate_check/`:
+
+| Symbol | Cell | Base net PF | Base Sharpe | OOS net PF | OOS Sharpe | OOS trades | 2x-cost net PF | 2x-cost OOS net PF | Verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| JASMY/USDT | P20_200 | 1.0097 | +0.1189 | 0.9068 | -0.5973 | 174 | 0.7465 | 0.5944 | rejected |
+| JASMY/USDT | P21_200 | 1.0341 | +0.2673 | 0.9167 | -0.5194 | 173 | 0.7576 | 0.6015 | rejected |
+| SUPER/USDT | P8_200 | 1.0377 | +0.2611 | 0.9536 | -0.4627 | 78 | 0.8093 | 0.6975 | rejected |
+
+**Every cell that has ever reached net PF > 1 in this program failed both
+out-of-sample and cost stress**, so all of them are rejected rather than
+promoted (PROMPT.md §3.4). The program's cumulative credible-candidate count
+stays at **0** after 7 722 grid cells: an in-sample profit factor of ~1.03-1.04
+is scan noise, exactly as the multiple-testing expectation predicted (0.04 % of
+cells above 1.0 against a ~50 % null).
 
 ---
 
-## Cumulative state after batch 10 (N = 107)
+## Cumulative state after batch 11 (N = 117)
 
-- **7 062 / 7 062 cells** complete (107 symbols x 66 EMA pairs), 0 blocked.
-- 7 060 cells **rejected** (99.97 %), 2 cells **exploratory signal** in the
+- **7 722 / 7 722 cells** complete (117 symbols x 66 EMA pairs), 0 blocked.
+- 7 719 cells **rejected** (99.96 %), 3 cells **exploratory signal** in the
   aggregate scan and **rejected** by the OOS + cost-stress check above,
   **0 credible candidates**.
 - Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
-  mean net PF **0.4762**, median 0.4990, best net PF **1.0341**
-  (JASMY/USDT P21_200, rejected OOS), 5 840 507 trades.
-- Cells with net PF > 1: 2 / 7 062 = 0.03 % against a ~50 % no-edge null
-  (excess -49.97 %).
-- Per-pair pooled leaders (mean net PF over 107 symbols): P8_200 0.6726,
-  P20_200 0.6669, P12_200 0.6609, P21_200 0.6584. Worst: P20_21 0.1257,
-  P50_55 0.1859, P8_12 0.1876.
+  mean net PF **0.4807**, median 0.5023, best net PF **1.0377**
+  (SUPER/USDT P8_200, rejected OOS), 6 353 224 trades.
+- Cells with net PF > 1: 3 / 7 722 = 0.04 % against a ~50 % no-edge null
+  (excess -49.96 %).
+- Per-pair pooled leaders (mean net PF over 117 symbols): P8_200 0.6790,
+  P20_200 0.6686, P12_200 0.6650, P21_200 0.6617. Worst: P20_21 0.1300,
+  P50_55 0.1892, P8_12 0.1920.
 - The shape of the result is stable across every batch: mean net PF per batch
-  0.4682 (batch 7), 0.5085 (batch 8), 0.5210 (batch 9), 0.5017 (batch 10).
+  0.4682 (b7), 0.5085 (b8), 0.5210 (b9), 0.5017 (b10), 0.5287 (b11). Lower
+  market cap does not improve the registered rule, and the pooled mean net PF
+  is drifting *up* only because the smaller names trade less often per bar.
 
 ---
 
@@ -710,6 +788,7 @@ expectation predicted (0.03 % of cells above 1.0 against a ~50 % null).
 | Batch 8 | 87 | complete - AR, JTO, NFT, JASMY, EIGEN, ENS, KMNO, FLOKI, COMP, RUNE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 9 | 97 | complete - IOTA, ZBCN, AKT, WIF, CVX, TWT, THETA, AXS, SAND, TRAC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 10 | 107 | complete - MANA, XCN, ZK, NEO, CHZ, APE, IMX, AIOZ, 1INCH, XEC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 11 | 117 | complete - SNX, SUPER, DBR, RSR, EGLD, GLM, ZEN, ATH, ORCA, GALA (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.
