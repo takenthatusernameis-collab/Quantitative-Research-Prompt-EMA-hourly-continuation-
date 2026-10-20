@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-20T17:16:53.388475+00:00",
+  "recorded_at": "2026-10-20T17:27:30.456636+00:00",
   "state": "EXPANSION_AVAILABLE",
   "snapshot_id": "mcap_snapshot_20261020_113004",
   "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
@@ -14,73 +14,13 @@
     "lowest_market_cap_usd": 15174185
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 217,
+  "universe_n": 227,
   "expansion_floor": {
-    "symbol": "EUL/USDT",
-    "market_cap_usd": 26770327
+    "symbol": "CARV/USDT",
+    "market_cap_usd": 24788571
   },
-  "eligible_unseen_below_floor_count": 49,
+  "eligible_unseen_below_floor_count": 39,
   "eligible_unseen_below_floor": [
-    {
-      "rank": 721,
-      "symbol": "FLIP",
-      "name": "Chainflip",
-      "market_cap_usd": 26697475
-    },
-    {
-      "rank": 726,
-      "symbol": "G",
-      "name": "Gravity (by Galxe)",
-      "market_cap_usd": 26376038
-    },
-    {
-      "rank": 730,
-      "symbol": "EWT",
-      "name": "Energy Web Token",
-      "market_cap_usd": 26309600
-    },
-    {
-      "rank": 734,
-      "symbol": "ERG",
-      "name": "Ergo",
-      "market_cap_usd": 26061512
-    },
-    {
-      "rank": 745,
-      "symbol": "NYM",
-      "name": "Nym",
-      "market_cap_usd": 25472687
-    },
-    {
-      "rank": 746,
-      "symbol": "SKL",
-      "name": "SKALE",
-      "market_cap_usd": 25450152
-    },
-    {
-      "rank": 752,
-      "symbol": "AUCTION",
-      "name": "Bounce",
-      "market_cap_usd": 25193109
-    },
-    {
-      "rank": 754,
-      "symbol": "KNC",
-      "name": "Kyber Network Crystal",
-      "market_cap_usd": 25068821
-    },
-    {
-      "rank": 756,
-      "symbol": "VR",
-      "name": "Victoria VR",
-      "market_cap_usd": 25025182
-    },
-    {
-      "rank": 763,
-      "symbol": "CARV",
-      "name": "CARV",
-      "market_cap_usd": 24788571
-    },
     {
       "rank": 765,
       "symbol": "MTL",
@@ -317,16 +257,16 @@
     }
   ],
   "batch_selected": [
-    "FLIP/USDT",
-    "G/USDT",
-    "EWT/USDT",
-    "ERG/USDT",
-    "NYM/USDT",
-    "SKL/USDT",
-    "AUCTION/USDT",
-    "KNC/USDT",
-    "VR/USDT",
-    "CARV/USDT"
+    "MTL/USDT",
+    "DAG/USDT",
+    "PUNDIX/USDT",
+    "PUFFER/USDT",
+    "SQD/USDT",
+    "WAVES/USDT",
+    "MLK/USDT",
+    "TNSR/USDT",
+    "STRAX/USDT",
+    "GMT/USDT"
   ],
   "next_eligible_refresh_at": null
 }
