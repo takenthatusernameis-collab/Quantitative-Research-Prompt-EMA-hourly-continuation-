@@ -1,7 +1,7 @@
 # EMA Hourly Continuation — Full Grid Aggregate
 
-**Run:** `results/20261019_135940_grid`  
-**Cells:** 7062 (107 symbols x 66 EMA pairs)  
+**Run:** `results/20261019_135940_grid`
+**Cells:** 7062 (107 symbols x 66 EMA pairs)
 **Blocked cells:** 0
 
 ## Pooled headline (all cells, net of costs)

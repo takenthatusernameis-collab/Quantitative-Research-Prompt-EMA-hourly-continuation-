@@ -175,9 +175,9 @@ def main():
         json.dump({'run_config': run_config, 'cells': rows}, fh, indent=2, default=str)
 
     lines = ['# Candidate Check — OOS + Cost Stress for net PF > 1 Grid Cells\n']
-    lines.append(f'**Source run:** `{run_dir}`  ')
-    lines.append(f'**OOS fraction:** trailing {args.oos_fraction:.0%} of bars  ')
-    lines.append(f'**Cost stress:** {args.stress_multiplier:g}x fees and slippage  ')
+    lines.append(f'**Source run:** `{run_dir}`')
+    lines.append(f'**OOS fraction:** trailing {args.oos_fraction:.0%} of bars')
+    lines.append(f'**Cost stress:** {args.stress_multiplier:g}x fees and slippage')
     lines.append(f'**Base costs:** {taker:g} bps taker + {slip:g} bps slippage per side\n')
     lines.append('| Symbol | Cell | Label | Base PF | Base Sharpe | OOS PF | OOS Sharpe | OOS trades | Stress PF | Stress OOS PF |')
     lines.append('|---|---|---|---|---|---|---|---|---|---|')
@@ -193,7 +193,7 @@ def main():
     lines.append('\nDecision gates (PROMPT.md §3.4): credible candidate = net OOS PF > 1, '
                  'net OOS Sharpe > 0, >= 30 OOS trades, and net PF still > 1 under the cost stress.\n')
     with open(out_dir / 'summary.md', 'w') as fh:
-        fh.write('\n'.join(lines) + '\n')
+        fh.write('\n'.join(lines).rstrip('\n') + '\n')
 
     print(f'\nWrote {out_dir}/summary.json and {out_dir}/summary.md')
 
