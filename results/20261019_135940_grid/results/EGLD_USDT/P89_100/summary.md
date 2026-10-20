@@ -1,0 +1,33 @@
+# EMA Hourly Continuation — EGLD/USDT P89_100
+
+**Symbol:** EGLD/USDT  |  **P_fast:** 89  |  **P_slow:** 100
+
+**Costs:** 10.0 bps taker + 2.0 bps slippage per side
+
+**RR:** 1.0  |  **Fill:** signal-bar close  |  **SL/TP:** 1:1 to EMA_slow
+
+**Sizing:** risk-based, 1.00% of equity per trade (notional cap 10.0x equity)
+
+
+## Metrics (net of costs)
+
+| Metric | Value |
+|---|---|
+| trade_count | 586 |
+| net_profit_factor | 0.1895 |
+| net_win_rate | 0.3959 |
+| gross_profit_factor | 0.6589 |
+| gross_win_rate | 0.4488 |
+| sharpe_ratio | -9.1675 |
+| sortino_ratio | -3.2176 |
+| max_drawdown | 0.9868 |
+| cagr | -0.8199 |
+| net_avg_win | 9.9396 |
+| net_avg_loss | -34.3815 |
+| avg_hold_time_bars | 2.1058 |
+| exposure | 0.0561 |
+
+Decision label: rejected
+
+
+Bulk artifacts: `trades.csv.gz`, `equity.csv.gz` (gzip-compressed CSV). Read with `gzip -dc <file>` or `pandas.read_csv(file, compression="gzip")`.
