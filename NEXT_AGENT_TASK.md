@@ -55,3 +55,5 @@ Use `PYTHONPATH=. python3 scripts/...` from repo root. Checkpoint durably after 
 
 ## Session update (2026-10-20T22:30:00Z)
 - Applied batch 25 from saved snapshot (N 247→257). Fetched/validated 10 fixtures (all below WOO floor, now ARPA floor). Completed 66-pair grid for all 10 (660 cells), re-ran aggregate and candidate check: 0 credible candidates. Updated `universe/mcap_expansion_log.md` with batch 25 section. Refreshed handoffs. Tests: 56 passed. No code changes.
+## Session update (2026-10-20T22:46:59Z)
+- Apply step completed: universe expanded 257 -> 266 (batch 26 names applied, floor now TAIKO/USDT). Remaining steps blocked: environment lacks pandas/numpy/pytest (no venv), so fetch/grid/aggregate/candidate-check/tests could not run. Next agent must install dependencies or use prepared environment, then continue from step 3.
