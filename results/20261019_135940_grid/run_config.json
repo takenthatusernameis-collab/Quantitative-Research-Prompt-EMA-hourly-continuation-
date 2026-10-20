@@ -1,6 +1,6 @@
 {
   "run_id": "20261019_135940_grid",
-  "timestamp": "20261020_185721",
+  "timestamp": "20261020_190509",
   "strategy": "ema_hourly_continuation",
   "mode": "full_ema_grid",
   "period_grid": [
@@ -301,7 +301,7 @@
   "max_cells": null,
   "resume": "results/20261019_135940_grid",
   "oos_fraction": null,
-  "note": "universe expansion batch 23: N 227 -> 237 (MTL/USDT, 66-pair EMA grid)",
+  "note": "universe expansion batch 23: N 227 -> 237 (DAG/USDT, 66-pair EMA grid)",
   "artifact_layout": {
     "config": "config.json",
     "summary_json": "summary.json",
@@ -115137,6 +115137,582 @@
           "CARV": 24788571
         }
       }
+    },
+    {
+      "run_id": "20261019_135940_grid",
+      "timestamp": "20261020_185721",
+      "strategy": "ema_hourly_continuation",
+      "mode": "full_ema_grid",
+      "period_grid": [
+        8,
+        12,
+        20,
+        21,
+        26,
+        34,
+        50,
+        55,
+        89,
+        100,
+        144,
+        200
+      ],
+      "grid_pairs": [
+        [
+          8,
+          12
+        ],
+        [
+          8,
+          20
+        ],
+        [
+          8,
+          21
+        ],
+        [
+          8,
+          26
+        ],
+        [
+          8,
+          34
+        ],
+        [
+          8,
+          50
+        ],
+        [
+          8,
+          55
+        ],
+        [
+          8,
+          89
+        ],
+        [
+          8,
+          100
+        ],
+        [
+          8,
+          144
+        ],
+        [
+          8,
+          200
+        ],
+        [
+          12,
+          20
+        ],
+        [
+          12,
+          21
+        ],
+        [
+          12,
+          26
+        ],
+        [
+          12,
+          34
+        ],
+        [
+          12,
+          50
+        ],
+        [
+          12,
+          55
+        ],
+        [
+          12,
+          89
+        ],
+        [
+          12,
+          100
+        ],
+        [
+          12,
+          144
+        ],
+        [
+          12,
+          200
+        ],
+        [
+          20,
+          21
+        ],
+        [
+          20,
+          26
+        ],
+        [
+          20,
+          34
+        ],
+        [
+          20,
+          50
+        ],
+        [
+          20,
+          55
+        ],
+        [
+          20,
+          89
+        ],
+        [
+          20,
+          100
+        ],
+        [
+          20,
+          144
+        ],
+        [
+          20,
+          200
+        ],
+        [
+          21,
+          26
+        ],
+        [
+          21,
+          34
+        ],
+        [
+          21,
+          50
+        ],
+        [
+          21,
+          55
+        ],
+        [
+          21,
+          89
+        ],
+        [
+          21,
+          100
+        ],
+        [
+          21,
+          144
+        ],
+        [
+          21,
+          200
+        ],
+        [
+          26,
+          34
+        ],
+        [
+          26,
+          50
+        ],
+        [
+          26,
+          55
+        ],
+        [
+          26,
+          89
+        ],
+        [
+          26,
+          100
+        ],
+        [
+          26,
+          144
+        ],
+        [
+          26,
+          200
+        ],
+        [
+          34,
+          50
+        ],
+        [
+          34,
+          55
+        ],
+        [
+          34,
+          89
+        ],
+        [
+          34,
+          100
+        ],
+        [
+          34,
+          144
+        ],
+        [
+          34,
+          200
+        ],
+        [
+          50,
+          55
+        ],
+        [
+          50,
+          89
+        ],
+        [
+          50,
+          100
+        ],
+        [
+          50,
+          144
+        ],
+        [
+          50,
+          200
+        ],
+        [
+          55,
+          89
+        ],
+        [
+          55,
+          100
+        ],
+        [
+          55,
+          144
+        ],
+        [
+          55,
+          200
+        ],
+        [
+          89,
+          100
+        ],
+        [
+          89,
+          144
+        ],
+        [
+          89,
+          200
+        ],
+        [
+          100,
+          144
+        ],
+        [
+          100,
+          200
+        ],
+        [
+          144,
+          200
+        ]
+      ],
+      "n_pairs": 66,
+      "config": {
+        "taker_fee_bps": 10.0,
+        "slippage_bps": 2.0,
+        "rr": 1.0,
+        "stricter_trend": false,
+        "min_risk_atr": false,
+        "atr_threshold": 1.0,
+        "conservative_exit": true,
+        "sizing": "risk",
+        "risk_fraction": 0.01,
+        "max_notional_multiple": 10.0
+      },
+      "mcap": "universe/mcap_rank.json",
+      "fixture_base": "data/fixtures",
+      "max_cells": null,
+      "resume": "results/20261019_135940_grid",
+      "oos_fraction": null,
+      "note": "universe expansion batch 23: N 227 -> 237 (MTL/USDT, 66-pair EMA grid)",
+      "artifact_layout": {
+        "config": "config.json",
+        "summary_json": "summary.json",
+        "summary_md": "summary.md",
+        "trades": "trades.csv.gz",
+        "equity": "equity.csv.gz",
+        "compression": "gzip",
+        "note": "bulk CSV artifacts are gzip-compressed; read with gzip -dc <file> or pandas.read_csv(file, compression=\"gzip\")"
+      },
+      "symbols": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "SOL/USDT",
+        "BNB/USDT",
+        "XRP/USDT",
+        "TRX/USDT",
+        "ZEC/USDT",
+        "DOGE/USDT",
+        "XMR/USDT",
+        "LINK/USDT",
+        "ADA/USDT",
+        "NEAR/USDT",
+        "XLM/USDT",
+        "BCH/USDT",
+        "LTC/USDT",
+        "UNI/USDT",
+        "AVAX/USDT",
+        "SUI/USDT",
+        "GRAM/USDT",
+        "HBAR/USDT",
+        "TAO/USDT",
+        "SHIB/USDT",
+        "CRO/USDT",
+        "QNT/USDT",
+        "ENA/USDT",
+        "AAVE/USDT",
+        "ONDO/USDT",
+        "DOT/USDT",
+        "WLD/USDT",
+        "MNT/USDT",
+        "PEPE/USDT",
+        "SKY/USDT",
+        "ICP/USDT",
+        "HTX/USDT",
+        "ARB/USDT",
+        "ETC/USDT",
+        "JST/USDT",
+        "KCS/USDT",
+        "ALGO/USDT",
+        "POL/USDT",
+        "KAS/USDT",
+        "JUP/USDT",
+        "ATOM/USDT",
+        "RENDER/USDT",
+        "INJ/USDT",
+        "FIL/USDT",
+        "AERO/USDT",
+        "ZRO/USDT",
+        "CAKE/USDT",
+        "STX/USDT",
+        "APT/USDT",
+        "ETHFI/USDT",
+        "XDC/USDT",
+        "DASH/USDT",
+        "TIA/USDT",
+        "BDX/USDT",
+        "CRV/USDT",
+        "VET/USDT",
+        "PYTH/USDT",
+        "FLR/USDT",
+        "RAY/USDT",
+        "STRK/USDT",
+        "FET/USDT",
+        "SEI/USDT",
+        "PENDLE/USDT",
+        "BSV/USDT",
+        "BTT/USDT",
+        "XTZ/USDT",
+        "LDO/USDT",
+        "SUN/USDT",
+        "BAT/USDT",
+        "OP/USDT",
+        "CFX/USDT",
+        "GRT/USDT",
+        "DCR/USDT",
+        "BONK/USDT",
+        "LUNC/USDT",
+        "AR/USDT",
+        "JTO/USDT",
+        "NFT/USDT",
+        "JASMY/USDT",
+        "EIGEN/USDT",
+        "ENS/USDT",
+        "KMNO/USDT",
+        "FLOKI/USDT",
+        "COMP/USDT",
+        "RUNE/USDT",
+        "IOTA/USDT",
+        "ZBCN/USDT",
+        "AKT/USDT",
+        "WIF/USDT",
+        "CVX/USDT",
+        "TWT/USDT",
+        "THETA/USDT",
+        "AXS/USDT",
+        "SAND/USDT",
+        "TRAC/USDT",
+        "MANA/USDT",
+        "XCN/USDT",
+        "ZK/USDT",
+        "NEO/USDT",
+        "CHZ/USDT",
+        "APE/USDT",
+        "IMX/USDT",
+        "AIOZ/USDT",
+        "1INCH/USDT",
+        "XEC/USDT",
+        "SNX/USDT",
+        "SUPER/USDT",
+        "DBR/USDT",
+        "RSR/USDT",
+        "EGLD/USDT",
+        "GLM/USDT",
+        "ZEN/USDT",
+        "ATH/USDT",
+        "ORCA/USDT",
+        "GALA/USDT",
+        "DYDX/USDT",
+        "MINA/USDT",
+        "ZRX/USDT",
+        "WEMIX/USDT",
+        "GMX/USDT",
+        "PROM/USDT",
+        "W/USDT",
+        "ARKM/USDT",
+        "LPT/USDT",
+        "SAFE/USDT",
+        "KSM/USDT",
+        "NMR/USDT",
+        "YFI/USDT",
+        "HNT/USDT",
+        "ORDI/USDT",
+        "KAVA/USDT",
+        "CKB/USDT",
+        "DUSK/USDT",
+        "AMP/USDT",
+        "VELO/USDT",
+        "ZETA/USDT",
+        "ALT/USDT",
+        "AXL/USDT",
+        "BABYDOGE/USDT",
+        "TFUEL/USDT",
+        "IO/USDT",
+        "SUSHI/USDT",
+        "EDU/USDT",
+        "DGB/USDT",
+        "DEXE/USDT",
+        "RLC/USDT",
+        "ROSE/USDT",
+        "TURBO/USDT",
+        "XPR/USDT",
+        "ENJ/USDT",
+        "T/USDT",
+        "ONT/USDT",
+        "ASTR/USDT",
+        "PHA/USDT",
+        "MEME/USDT",
+        "WIN/USDT",
+        "TRB/USDT",
+        "CELO/USDT",
+        "FLOW/USDT",
+        "ID/USDT",
+        "CTC/USDT",
+        "DEEP/USDT",
+        "BRETT/USDT",
+        "CFG/USDT",
+        "XNO/USDT",
+        "XYO/USDT",
+        "POLYX/USDT",
+        "AURORA/USDT",
+        "POPCAT/USDT",
+        "REQ/USDT",
+        "LSK/USDT",
+        "MASK/USDT",
+        "ZIL/USDT",
+        "ANKR/USDT",
+        "BOME/USDT",
+        "API3/USDT",
+        "SYN/USDT",
+        "BAND/USDT",
+        "MOG/USDT",
+        "CSPR/USDT",
+        "NOT/USDT",
+        "ETN/USDT",
+        "PEOPLE/USDT",
+        "IOTX/USDT",
+        "SSV/USDT",
+        "OSMO/USDT",
+        "MOODENG/USDT",
+        "MEW/USDT",
+        "MERL/USDT",
+        "RPL/USDT",
+        "MOCA/USDT",
+        "UMA/USDT",
+        "DEGEN/USDT",
+        "ORBS/USDT",
+        "CATI/USDT",
+        "METIS/USDT",
+        "REZ/USDT",
+        "LISTA/USDT",
+        "COTI/USDT",
+        "MAGIC/USDT",
+        "GTC/USDT",
+        "MANTA/USDT",
+        "LUNA/USDT",
+        "FLUX/USDT",
+        "XCH/USDT",
+        "ELON/USDT",
+        "CTSI/USDT",
+        "IOST/USDT",
+        "SWFTC/USDT",
+        "UQC/USDT",
+        "ILV/USDT",
+        "AVA/USDT",
+        "CPOOL/USDT",
+        "BLUR/USDT",
+        "EUL/USDT",
+        "FLIP/USDT",
+        "G/USDT",
+        "EWT/USDT",
+        "ERG/USDT",
+        "NYM/USDT",
+        "SKL/USDT",
+        "AUCTION/USDT",
+        "KNC/USDT",
+        "VR/USDT",
+        "CARV/USDT",
+        "MTL/USDT"
+      ],
+      "n_symbols": 228,
+      "mcap_snapshot": {
+        "updated_at": "2026-10-20T18:28:55.747596Z",
+        "snapshot_id": "mcap_snapshot_20261020_113004",
+        "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
+        "snapshot_fetched_at": "2026-10-20T11:30:04.315667+00:00",
+        "n_symbols": 237,
+        "added_in_this_expansion": [
+          "MTL/USDT",
+          "DAG/USDT",
+          "PUNDIX/USDT",
+          "PUFFER/USDT",
+          "SQD/USDT",
+          "WAVES/USDT",
+          "MLK/USDT",
+          "TNSR/USDT",
+          "STRAX/USDT",
+          "GMT/USDT"
+        ],
+        "added_market_caps_usd": {
+          "MTL": 24764629,
+          "DAG": 24579494,
+          "PUNDIX": 24563087,
+          "PUFFER": 24423363,
+          "SQD": 23936491,
+          "WAVES": 23321655,
+          "MLK": 23301530,
+          "TNSR": 23080708,
+          "STRAX": 22663753,
+          "GMT": 22410555
+        }
+      }
     }
   ],
   "symbols": [
@@ -115367,9 +115943,10 @@
     "KNC/USDT",
     "VR/USDT",
     "CARV/USDT",
-    "MTL/USDT"
+    "MTL/USDT",
+    "DAG/USDT"
   ],
-  "n_symbols": 228,
+  "n_symbols": 229,
   "mcap_snapshot": {
     "updated_at": "2026-10-20T18:28:55.747596Z",
     "snapshot_id": "mcap_snapshot_20261020_113004",

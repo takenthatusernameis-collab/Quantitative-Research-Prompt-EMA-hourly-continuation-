@@ -4084,5 +4084,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "MTL/USDT",
+    "n_cells": 66,
+    "total_trades": 48202,
+    "mean_trades": 730.3333333333334,
+    "median_net_pf": 0.482180675110227,
+    "mean_net_pf": 0.4757284645267448,
+    "best_net_pf": 0.8681845050578149,
+    "best_cell": "P8_200",
+    "best_sharpe": -0.6354905979221239,
+    "worst_net_pf": 0.1166270123212028,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -0.6354905979221239,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]
