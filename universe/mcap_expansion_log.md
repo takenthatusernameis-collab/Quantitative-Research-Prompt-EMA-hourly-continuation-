@@ -428,6 +428,273 @@ cells with net PF > 1, pooled mean net PF 0.4629, median 0.4806, best 0.9523
 
 ---
 
+## Batch 8 - expansion to N = 87
+
+- Snapshot: `universe/mcap_snapshot_20261019_221313.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-19T22:13:13Z
+- Previous N -> new N: **77 -> 87** (ranks 78-87 of the working universe)
+- Expansion floor: LUNC at 254 234 276 USD (the lowest market cap already in the
+  universe in this snapshot); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself
+  (`--apply-from universe/mcap_snapshot_20261019_221313.json`).
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Name | Market cap |
+|---|---|---|---|
+| 159 | AR | Arweave | 247 175 234 |
+| 163 | JTO | Jito | 238 996 450 |
+| 164 | NFT | AINFT | 237 016 002 |
+| 166 | JASMY | JasmyCoin | 235 618 171 |
+| 168 | EIGEN | EigenCloud | 234 581 116 |
+| 169 | ENS | Ethereum Name Service | 232 440 182 |
+| 170 | KMNO | Kamino | 228 817 283 |
+| 171 | FLOKI | FLOKI | 227 904 935 |
+| 175 | COMP | Compound | 215 992 779 |
+| 178 | RUNE | THORChain | 212 038 301 |
+
+AR is the 78th symbol of the working universe; RUNE is the 87th and last. The
+name `NFT` is CoinGecko's ticker for **AINFT** (not an NFT collection index) and
+`RUNE` is **THORChain**; both are distinct, liquid spot names on KuCoin.
+
+### Hourly coverage of the batch-8 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC):
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| AR, JTO, NFT, JASMY, ENS, FLOKI, COMP, RUNE | 22 000 | 2024-04-16 07:00 .. 2026-10-19 22:00 |
+| KMNO | 21 659 | 2024-04-30 12:00 .. 2026-10-19 22:00 |
+| EIGEN | 17 971 | 2024-10-01 04:00 .. 2026-10-19 22:00 |
+
+All 10 fixtures have no duplicate timestamps and no hourly gaps. KMNO and
+EIGEN are listed later than the rest (EIGEN still clears the 2-year floor with
+17 971 hourly bars).
+
+### Batch-8 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| AR | 66 | 53 213 | 0.5196 | 0.8616 (P8_200) | -0.6920 | 66 |
+| JTO | 66 | 53 809 | 0.5736 | 0.8488 (P8_200) | -1.0030 | 66 |
+| NFT | 66 | 88 188 | 0.2038 | 0.3322 (P12_100) | -12.9510 | 66 |
+| JASMY | 66 | 54 353 | 0.5950 | **1.0341 (P21_200)** | **+0.2673** | 64 |
+| EIGEN | 66 | 44 378 | 0.6113 | 0.8574 (P20_200) | -0.9950 | 66 |
+| ENS | 66 | 54 536 | 0.5044 | 0.6795 (P12_144) | -2.2080 | 66 |
+| KMNO | 66 | 45 605 | 0.5582 | 0.8142 (P8_200) | -1.2120 | 66 |
+| FLOKI | 66 | 55 663 | 0.5365 | 0.7157 (P12_100) | -2.0310 | 66 |
+| COMP | 66 | 56 509 | 0.4352 | 0.6550 (P8_89) | -2.4860 | 66 |
+| RUNE | 66 | 49 710 | 0.5475 | 0.8114 (P50_200) | -1.0050 | 66 |
+
+Batch 8 alone: 660 cells, 658 rejected, 2 exploratory (net PF > 1), pooled mean
+net PF 0.5085, median 0.5432, 555 964 trades.
+
+**The first cells in the whole program with net PF > 1** are both on JASMY/USDT:
+
+| Symbol | Cell | Trades | Net PF | Net Sharpe | Gross PF | Net win rate | Avg hold (bars) |
+|---|---|---|---|---|---|---|---|
+| JASMY/USDT | P20_200 | 353 | 1.0097 | +0.1189 | 1.4115 | 0.5779 | 40.9 |
+| JASMY/USDT | P21_200 | 362 | 1.0341 | +0.2673 | 1.4577 | 0.5856 | 38.7 |
+
+They are **not** promoted to "credible candidate": with 6 402 cells scanned, a
+0.03 % hit rate is 50x *below* the ~50 % null expectation of a no-edge strategy,
+so a marginal in-sample profit factor of 1.03 with a Sharpe of 0.27 is what
+noise looks like. They need an out-of-sample and cost-stress check before any
+claim (PROMPT.md §3.3, §3.4).
+
+**AINFT (`NFT`) is a price-scale outlier**: its spot price is ~4.6e-07 USD, so
+the fixed 12 bps per side cost is a large fraction of every bar move, the
+registered 1 % risk rule fires on essentially every EMA cross, and the cell trade
+counts explode (88 188 trades over 66 cells vs ~50 000 for ordinary names). It is
+a valid test of the registered rules, but its result is dominated by cost drag
+rather than by signal quality.
+
+---
+
+## Batch 9 - expansion to N = 97
+
+- Snapshot: `universe/mcap_snapshot_20261019_221514.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-19T22:15:14Z
+- Previous N -> new N: **87 -> 97** (ranks 88-97 of the working universe)
+- Expansion floor: RUNE at 212 066 417 USD (the lowest market cap already in the
+  universe in this snapshot); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself
+  (`--apply-from universe/mcap_snapshot_20261019_221514.json`).
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Name | Market cap |
+|---|---|---|---|
+| 179 | IOTA | IOTA | 211 287 520 |
+| 182 | ZBCN | Zebec Network | 208 394 911 |
+| 184 | AKT | Akash Network | 207 165 183 |
+| 186 | WIF | dogwifhat | 200 666 439 |
+| 187 | CVX | Convex Finance | 195 374 485 |
+| 190 | TWT | Trust Wallet | 189 404 592 |
+| 191 | THETA | Theta Network | 187 286 791 |
+| 198 | AXS | Axie Infinity | 175 746 207 |
+| 200 | SAND | The Sandbox | 174 429 112 |
+| 201 | TRAC | OriginTrail | 174 150 625 |
+
+IOTA is the 88th symbol of the working universe; TRAC is the 97th and last.
+`AXS` here is **Axie Infinity** (not the `AXS` wrapper of a different token) and
+`TRAC` is **OriginTrail** (not `TRAC` the crypto index); both are liquid spot
+USDT pairs on KuCoin and pass the 2-year hourly-history filter.
+
+### Hourly coverage of the batch-9 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC):
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| IOTA, AKT, WIF, CVX, TWT, THETA, SAND, TRAC | 22 000 | 2024-04-16 07:00/08:00 .. 2026-10-19 22:00/23:00 |
+| ZBCN | 21 614 | 2024-05-02 09:00 .. 2026-10-19 22:00 |
+| AXS | 22 099 | 2024-04-12 04:00 .. 2026-10-19 22:00 |
+
+All 10 fixtures have no duplicate timestamps and no hourly gaps. AXS, SAND and
+TRAC were re-fetched in this session because the earlier expansion pass had
+left them without an OHLCV fixture.
+
+### Batch-9 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| IOTA | 66 | 54 400 | 0.4875 | 0.7740 (P8_200) | -1.5490 | 66 |
+| ZBCN | 66 | 62 063 | 0.5594 | 0.8712 (P12_200) | -1.0330 | 66 |
+| AKT | 66 | 53 244 | 0.5659 | 0.7774 (P34_200) | -1.5150 | 66 |
+| WIF | 66 | 54 981 | 0.5844 | 0.7137 (P12_144) | -2.3840 | 66 |
+| CVX | 66 | 52 895 | 0.5130 | 0.8391 (P8_200) | -0.8250 | 66 |
+| TWT | 66 | 57 795 | 0.4248 | 0.6753 (P12_200) | -2.1900 | 66 |
+| THETA | 66 | 52 998 | 0.5286 | 0.8508 (P8_200) | -0.9860 | 66 |
+| AXS | 66 | 50 377 | 0.5469 | 0.8426 (P55_200) | -0.9870 | 66 |
+| SAND | 66 | 50 742 | 0.4660 | 0.7213 (P50_200) | -2.0260 | 66 |
+| TRAC | 66 | 48 642 | 0.5339 | 0.7126 (P26_144) | -2.1530 | 66 |
+
+Batch 9 alone: 660 / 660 cells rejected, 0 cells with net PF > 1, pooled mean
+net PF 0.5210, median 0.5453, best 0.8712 (ZBCN/USDT P12_200), 538 137 trades.
+
+### Cumulative state after batch 9 (N = 97)
+
+- **6 402 / 6 402 cells** complete (97 symbols x 66 EMA pairs), 0 blocked.
+- 6 400 cells **rejected** (99.97 %), 2 cells **exploratory signal** (the JASMY
+  P20_200 / P21_200 cells above), 0 credible candidates.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4736**, median 0.4955, best net PF **1.0341**
+  (JASMY/USDT P21_200), 5 280 967 trades.
+- Cells with net PF > 1: 2 / 6 402 = 0.03 % against a ~50 % no-edge null
+  (excess -49.97 %).
+- Per-pair pooled leaders (mean net PF over 97 symbols): P8_200 0.6708,
+  P20_200 0.6639, P12_200 0.6602, P21_200 0.6549. Worst: P20_21 0.1236,
+  P50_55 0.1825, P8_12 0.1845.
+- The first 77 symbols are unchanged (mean net PF 0.4629, best 0.9523), so the
+  new batches did not resurrect the baseline.
+
+---
+
+## Batch 10 - expansion to N = 107
+
+- Snapshot: `universe/mcap_snapshot_20261019_231438.json`
+- Source: CoinGecko `/api/v3/coins/markets` (`order=market_cap_desc`)
+- Fetched at: 2026-10-19T23:14:38Z
+- Previous N -> new N: **97 -> 107** (ranks 98-107 of the working universe)
+- Expansion floor: TRAC at 174 258 174 USD (the lowest market cap already in the
+  universe in this snapshot); every added name is strictly below it.
+- The batch was applied from the reviewed snapshot file itself
+  (`--apply-from universe/mcap_snapshot_20261019_231438.json`).
+- Added (market cap at snapshot time, USD):
+
+| Rank in snapshot | Symbol | Name | Market cap |
+|---|---|---|---|
+| 204 | MANA | Decentraland | 161 677 485 |
+| 207 | XCN | Onyxcoin | 160 532 201 |
+| 208 | ZK | ZKsync | 159 134 167 |
+| 210 | NEO | NEO | 156 227 504 |
+| 222 | CHZ | Chiliz | 145 184 423 |
+| 223 | APE | ApeCoin | 145 092 257 |
+| 228 | IMX | Immutable | 137 664 148 |
+| 232 | AIOZ | AIOZ Network | 130 967 117 |
+| 233 | 1INCH | 1INCH | 129 868 057 |
+| 234 | XEC | eCash | 129 191 291 |
+
+MANA is the 98th symbol of the working universe; XEC is the 107th and last.
+`XCN` is **Onyxcoin** (Onyx Protocol), not a wrapped variant of any name already
+in the universe.
+
+### Hourly coverage of the batch-10 fixtures
+
+OHLCV from the KuCoin public candles API (1h, UTC):
+
+| Symbol | Rows | Span (UTC) |
+|---|---|---|
+| MANA, XCN, NEO, CHZ, APE, AIOZ, 1INCH | 22 000 | 2024-04-16 08:00 .. 2026-10-19 23:00 |
+| IMX, XEC | 22 099 | 2024-04-12 04:00 .. 2026-10-19 22:00 |
+| ZK | 20 511 | 2024-06-17 08:00 .. 2026-10-19 22:00 |
+
+All 10 fixtures have no duplicate timestamps and no hourly gaps; ZK is listed
+later than the rest but still clears the 2-year floor with 20 511 hourly bars.
+
+### Batch-10 grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF (cell) | Max net Sharpe | Rejected |
+|---|---|---|---|---|---|---|
+| MANA | 66 | 53 756 | 0.4909 | 0.7493 (P26_200) | -1.7920 | 66 |
+| XCN | 66 | 66 758 | 0.3750 | 0.6097 (P26_200) | -3.5650 | 66 |
+| ZK | 66 | 52 705 | 0.5977 | 0.8084 (P12_200) | -1.2190 | 66 |
+| NEO | 66 | 54 441 | 0.4280 | 0.6798 (P8_200) | -2.1480 | 66 |
+| CHZ | 66 | 53 504 | 0.5327 | 0.8649 (P20_200) | -0.8210 | 66 |
+| APE | 66 | 54 416 | 0.5099 | 0.7283 (P20_200) | -1.7740 | 66 |
+| IMX | 66 | 52 249 | 0.5783 | 0.9891 (P34_200) | -0.0015 | 66 |
+| AIOZ | 66 | 59 072 | 0.5778 | 0.7206 (P8_144) | -2.6530 | 66 |
+| 1INCH | 66 | 54 921 | 0.4634 | 0.8176 (P34_200) | -0.9580 | 66 |
+| XEC | 66 | 57 718 | 0.4630 | 0.6660 (P26_144) | -2.9520 | 66 |
+
+Batch 10 alone: 660 / 660 cells rejected, 0 cells with net PF > 1, pooled mean
+net PF 0.5017, median 0.5195, best 0.9891 (IMX/USDT P34_200), 559 540 trades.
+
+---
+
+## Robustness check of the two net-PF > 1 cells (PROMPT.md §3.3)
+
+`scripts/candidate_check.py` re-runs every cell in the run with net PF > 1 in
+four configurations: full sample at the registered costs, the trailing 35 % of
+the bars (out-of-sample, entries restricted to that window), the full sample at
+2x fees and slippage, and the out-of-sample window at 2x costs.
+
+Artifact: `results/20261020_000649_candidate_check/` (`summary.json`,
+`summary.md`, `config.json`).
+
+| Symbol | Cell | Base net PF | Base Sharpe | OOS net PF | OOS Sharpe | OOS trades | 2x-cost net PF | 2x-cost OOS net PF | Verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| JASMY/USDT | P20_200 | 1.0097 | +0.1189 | 0.9068 | -0.5973 | 174 | 0.7465 | 0.5944 | rejected |
+| JASMY/USDT | P21_200 | 1.0341 | +0.2673 | 0.9167 | -0.5194 | 173 | 0.7576 | 0.6015 | rejected |
+
+**Both cells fail out-of-sample and both fail cost stress**, so they are
+rejected rather than promoted (PROMPT.md §3.4). The program's cumulative
+credible-candidate count stays at **0** after 7 062 grid cells: the in-sample
+profit factor of ~1.03 was scan noise, exactly as the multiple-testing
+expectation predicted (0.03 % of cells above 1.0 against a ~50 % null).
+
+---
+
+## Cumulative state after batch 10 (N = 107)
+
+- **7 062 / 7 062 cells** complete (107 symbols x 66 EMA pairs), 0 blocked.
+- 7 060 cells **rejected** (99.97 %), 2 cells **exploratory signal** in the
+  aggregate scan and **rejected** by the OOS + cost-stress check above,
+  **0 credible candidates**.
+- Pooled (net of costs, full sample, 10 bps taker + 2 bps slippage per side):
+  mean net PF **0.4762**, median 0.4990, best net PF **1.0341**
+  (JASMY/USDT P21_200, rejected OOS), 5 840 507 trades.
+- Cells with net PF > 1: 2 / 7 062 = 0.03 % against a ~50 % no-edge null
+  (excess -49.97 %).
+- Per-pair pooled leaders (mean net PF over 107 symbols): P8_200 0.6726,
+  P20_200 0.6669, P12_200 0.6609, P21_200 0.6584. Worst: P20_21 0.1257,
+  P50_55 0.1859, P8_12 0.1876.
+- The shape of the result is stable across every batch: mean net PF per batch
+  0.4682 (batch 7), 0.5085 (batch 8), 0.5210 (batch 9), 0.5017 (batch 10).
+
+---
+
 ## Grid coverage per batch
 
 | Batch | Universe N | Symbols with a full 66-pair grid | Grid artifact |
@@ -440,6 +707,9 @@ cells with net PF > 1, pooled mean net PF 0.4629, median 0.4806, best 0.9523
 | Batch 5 | 57 | complete - ZRO, CAKE, STX, APT, ETHFI, XDC, DASH, TIA, BDX, CRV (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 6 | 67 | complete - VET, PYTH, FLR, RAY, STRK, FET, SEI, PENDLE, BSV, BTT (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 7 | 77 | complete - XTZ, LDO, SUN, BAT, OP, CFX, GRT, DCR, BONK, LUNC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 8 | 87 | complete - AR, JTO, NFT, JASMY, EIGEN, ENS, KMNO, FLOKI, COMP, RUNE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 9 | 97 | complete - IOTA, ZBCN, AKT, WIF, CVX, TWT, THETA, AXS, SAND, TRAC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 10 | 107 | complete - MANA, XCN, ZK, NEO, CHZ, APE, IMX, AIOZ, 1INCH, XEC (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 
 The grid directory is shared across batches (the runner resumes from
 `progress.json`), so one aggregate report covers the whole processed universe.
