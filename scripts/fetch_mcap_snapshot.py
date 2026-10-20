@@ -21,7 +21,9 @@ Usage:
     python scripts/fetch_mcap_snapshot.py --pages 4 --batch-size 10 --apply
 """
 import argparse
+import csv
 import json
+import math
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -31,8 +33,45 @@ import requests
 COINGECKO_URL = 'https://api.coingecko.com/api/v3/coins/markets'
 KUCOIN_SYMBOLS_URL = 'https://api.kucoin.com/api/v1/symbols'
 KUCOIN_CANDLES_URL = 'https://api.kucoin.com/api/v1/market/candles'
+KUCOIN_TICKER_URL = 'https://api.kucoin.com/api/v1/market/orderbook/level1'
 REQUEST_TIMEOUT = 30
 PAUSE_SECONDS = 0.6
+
+# A ticker can name two different assets (CoinGecko "ONE" is "ONEchain" while
+# KuCoin's ONE-USDT is "Harmony"). Trading the wrong asset would put a name in
+# the universe whose market cap does not match the asset actually backtested, so
+# a candidate is only eligible when the KuCoin pair trades at the same price as
+# the ranked CoinGecko entry (within this log tolerance).
+PRICE_MATCH_TOLERANCE = 0.20
+
+# The public CoinGecko endpoint rate-limits with HTTP 429 under burst traffic, which
+# aborted the ranking fetch mid-way. Retry those (and transient 5xx) with a bounded
+# exponential backoff instead of losing the whole snapshot.
+MAX_RETRIES = 6
+RETRY_BACKOFF_SECONDS = 5.0
+RETRYABLE_STATUS = {429, 500, 502, 503, 504}
+
+
+def get_with_retry(url: str, params: dict, timeout: int = REQUEST_TIMEOUT,
+                   max_retries: int = MAX_RETRIES) -> requests.Response:
+    """GET with bounded exponential backoff on rate limits and transient server errors."""
+    last_exc = None
+    for attempt in range(max_retries):
+        try:
+            resp = requests.get(url, params=params, timeout=timeout)
+        except requests.RequestException as exc:
+            last_exc = exc
+        else:
+            if resp.status_code not in RETRYABLE_STATUS:
+                resp.raise_for_status()
+                return resp
+            last_exc = requests.HTTPError(
+                f'{resp.status_code} for {resp.url}', response=resp)
+        sleep_for = RETRY_BACKOFF_SECONDS * (2 ** attempt)
+        print(f'  retry {attempt + 1}/{max_retries} in {sleep_for:.0f}s '
+              f'({last_exc})', flush=True)
+        time.sleep(sleep_for)
+    raise last_exc
 
 # Minimum hourly history a name needs before it is eligible (PROMPT.md §2.4).
 # Must cover the largest P_slow in the grid (200) plus an out-of-sample window.
@@ -72,8 +111,7 @@ def fetch_markets(pages: int, per_page: int = 100) -> list:
             'page': page,
             'sparkline': 'false',
         }
-        resp = requests.get(COINGECKO_URL, params=params, timeout=REQUEST_TIMEOUT)
-        resp.raise_for_status()
+        resp = get_with_retry(COINGECKO_URL, params)
         rows = resp.json()
         if not rows:
             break
@@ -84,8 +122,7 @@ def fetch_markets(pages: int, per_page: int = 100) -> list:
 
 def fetch_kucoin_usdt_pairs() -> set:
     """Return set of tradable KuCoin spot USDT pair base assets."""
-    resp = requests.get(KUCOIN_SYMBOLS_URL, timeout=REQUEST_TIMEOUT)
-    resp.raise_for_status()
+    resp = get_with_retry(KUCOIN_SYMBOLS_URL, {})
     payload = resp.json()
     pairs = set()
     for s in payload.get('data', []) or []:
@@ -103,8 +140,7 @@ def has_min_history(symbol: str, min_years: float = MIN_HISTORY_YEARS) -> bool:
     probe_ts = int((datetime.now(timezone.utc) - timedelta(days=365.25 * min_years)).timestamp())
     params = {'symbol': f'{symbol}-USDT', 'type': '1hour', 'limit': 1, 'endAt': probe_ts}
     try:
-        resp = requests.get(KUCOIN_CANDLES_URL, params=params, timeout=REQUEST_TIMEOUT)
-        resp.raise_for_status()
+        resp = get_with_retry(KUCOIN_CANDLES_URL, params)
         payload = resp.json()
     except Exception:
         return False
@@ -115,6 +151,39 @@ def has_min_history(symbol: str, min_years: float = MIN_HISTORY_YEARS) -> bool:
         return False
     oldest = int(rows[-1][0])
     return oldest <= probe_ts
+
+
+def kucoin_last_price(symbol: str):
+    """Last traded price of BASE-USDT on KuCoin, or None when unavailable."""
+    try:
+        resp = get_with_retry(KUCOIN_TICKER_URL, {'symbol': f'{symbol}-USDT'})
+        payload = resp.json()
+    except Exception:
+        return None
+    if payload.get('code') != '200000':
+        return None
+    try:
+        price = float((payload.get('data') or {}).get('price'))
+    except (TypeError, ValueError):
+        return None
+    return price if price > 0 else None
+
+
+def price_identity_ok(entry: dict) -> bool:
+    """True when the KuCoin pair trades the same asset the ranking describes.
+
+    A ticker can belong to two different assets; the KuCoin pair may then be a
+    completely different coin. Comparing the live KuCoin price with the ranked
+    CoinGecko price catches that. An unavailable price is not treated as a
+    mismatch: a name is never dropped because an API call failed.
+    """
+    cg_price = entry.get('price_usd')
+    if not cg_price or cg_price <= 0:
+        return True
+    kc_price = kucoin_last_price(entry['symbol'])
+    if kc_price is None:
+        return True
+    return abs(math.log(kc_price / cg_price)) <= PRICE_MATCH_TOLERANCE
 
 
 def build_snapshot(pages: int) -> dict:
@@ -129,17 +198,7 @@ def build_snapshot(pages: int) -> dict:
         if not sym or not mcap:
             continue
         rank += 1
-        if sym.lower() in STABLE_SYMBOLS:
-            reason = 'stablecoin_or_fiat_pegged'
-        elif sym.lower() in WRAPPED_DUPLICATES:
-            reason = 'wrapped_or_staked_duplicate'
-        elif sym not in kucoin_pairs:
-            reason = 'no_tradable_kucoin_spot_usdt_pair'
-        elif not has_min_history(sym):
-            reason = 'insufficient_hourly_history_for_grid'
-        else:
-            reason = None
-        entries.append({
+        entry = {
             'rank': rank,
             'symbol': sym,
             'name': row.get('name'),
@@ -147,8 +206,22 @@ def build_snapshot(pages: int) -> dict:
             'price_usd': row.get('current_price'),
             'volume_24h_usd': row.get('total_volume'),
             'kucoin_usdt_pair': sym in kucoin_pairs,
-            'exclusion_reason': reason,
-        })
+            'exclusion_reason': None,
+        }
+        if sym.lower() in STABLE_SYMBOLS:
+            reason = 'stablecoin_or_fiat_pegged'
+        elif sym.lower() in WRAPPED_DUPLICATES:
+            reason = 'wrapped_or_staked_duplicate'
+        elif sym not in kucoin_pairs:
+            reason = 'no_tradable_kucoin_spot_usdt_pair'
+        elif not price_identity_ok(entry):
+            reason = 'kucoin_pair_trades_a_different_asset'
+        elif not has_min_history(sym):
+            reason = 'insufficient_hourly_history_for_grid'
+        else:
+            reason = None
+        entry['exclusion_reason'] = reason
+        entries.append(entry)
     return {
         'source': 'CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)',
         'pages_fetched': pages,
@@ -157,18 +230,66 @@ def build_snapshot(pages: int) -> dict:
     }
 
 
+def fixture_last_close(ticker: str, fixtures_dir: Path):
+    """Last close of the hourly fixture we hold for `ticker`, or None."""
+    path = fixtures_dir / f'{ticker.replace("/", "_")}.csv'
+    if not path.exists():
+        return None
+    try:
+        with open(path) as f:
+            rows = list(csv.DictReader(f))
+    except Exception:
+        return None
+    if not rows:
+        return None
+    try:
+        value = float(rows[-1]['close'])
+    except (KeyError, TypeError, ValueError):
+        return None
+    return value if value > 0 else None
+
+
+def match_entry(entries: list, ticker: str, fixtures_dir: Path):
+    """Pick the snapshot entry that corresponds to the asset we actually hold.
+
+    Several CoinGecko assets can share one ticker. For an unambiguous ticker the
+    single entry is used. For an ambiguous ticker the entry whose quoted price is
+    closest to the last close of our own fixture wins - that is the asset the
+    grid actually traded.
+    """
+    if not entries:
+        return None
+    if len(entries) == 1:
+        return entries[0]
+    close = fixture_last_close(ticker, fixtures_dir)
+    if close:
+        def price_distance(e):
+            price = e.get('price_usd')
+            if not price or price <= 0:
+                return float('inf')
+            return abs(math.log(price / close))
+        return min(entries, key=price_distance)
+    return entries[0]
+
+
 def main():
     parser = argparse.ArgumentParser(description='Fetch market-cap snapshot and expand universe')
     parser.add_argument('--pages', type=int, default=4, help='CoinGecko pages of 100 to fetch')
     parser.add_argument('--batch-size', type=int, default=10, help='Max new names to append')
     parser.add_argument('--mcap', type=str, default='universe/mcap_rank.json')
     parser.add_argument('--out-dir', type=str, default='universe')
+    parser.add_argument('--fixtures-dir', type=str, default='data/fixtures',
+                        help='Hourly fixtures used to disambiguate shared tickers')
     parser.add_argument('--apply', action='store_true', default=False,
                         help='Write the expanded ranking to universe/mcap_rank.json')
     parser.add_argument('--apply-from', type=str, default=None,
                         help='Apply the expansion from a previously fetched snapshot file '
                              '(universe/mcap_snapshot_<TS>.json) instead of re-fetching, so the '
                              'batch is exactly the one that was reviewed')
+    parser.add_argument('--verify-prices', action='store_true', default=False,
+                        help='Check that each eligible candidate\'s KuCoin pair trades the same '
+                             'asset the ranking describes (ticker collisions) and mark the '
+                             'mismatches in the snapshot before selecting the batch')
     args = parser.parse_args()
 
     if args.apply_from:
@@ -184,6 +305,23 @@ def main():
         with open(snapshot_path, 'w') as f:
             json.dump(snapshot, f, indent=2)
 
+    if args.verify_prices:
+        mismatches = []
+        for e in snapshot['entries']:
+            if e.get('exclusion_reason') is not None:
+                continue
+            if not price_identity_ok(e):
+                e['exclusion_reason'] = 'kucoin_pair_trades_a_different_asset'
+                mismatches.append(e)
+        snapshot['price_verified_at'] = datetime.now(timezone.utc).isoformat()
+        with open(snapshot_path, 'w') as f:
+            json.dump(snapshot, f, indent=2)
+        print(f'Price identity check: {len(mismatches)} candidate(s) excluded as a '
+              f'different asset')
+        for e in mismatches:
+            print(f"  #{e['rank']:>4} {e['symbol']:<8} {e['name']} "
+                  f"mcap=${e['market_cap_usd']:,} px={e['price_usd']}")
+
     # Current working universe
     mcap_path = Path(args.mcap)
     with open(mcap_path) as f:
@@ -192,22 +330,37 @@ def main():
     current_set = {s.split('/')[0].upper() for s in current_symbols}
 
     # Market cap of each already-included name, from the fresh snapshot.
-    by_sym = {e['symbol']: e for e in snapshot['entries']}
-    included_mcaps = {s: by_sym.get(s.split('/')[0].upper(), {}).get('market_cap_usd') for s in current_symbols}
+    # A ticker can map to several different assets in the CoinGecko ranking (e.g.
+    # VELO is both "Velo" and "Velodrome Finance"), so a ticker alone is not a
+    # safe key: matching the wrong asset moves the expansion floor and silently
+    # skips eligible names. Every ambiguous ticker is resolved against the last
+    # close of the fixture we actually hold for that symbol.
+    by_sym = {}
+    for e in snapshot['entries']:
+        by_sym.setdefault(e['symbol'], []).append(e)
+
+    fixtures_dir = Path(args.fixtures_dir)
+    included_mcaps = {}
+    for s in current_symbols:
+        ticker = s.split('/')[0].upper()
+        entry = match_entry(by_sym.get(ticker, []), ticker, fixtures_dir)
+        included_mcaps[s] = entry.get('market_cap_usd') if entry else None
     known = [m for m in included_mcaps.values() if m]
     floor_mcap = min(known) if known else 0
 
     added = []
+    added_tickers = set()
     for e in snapshot['entries']:
         if len(added) >= args.batch_size:
             break
         if e['exclusion_reason'] is not None:
             continue
-        if e['symbol'] in current_set:
+        if e['symbol'] in current_set or e['symbol'] in added_tickers:
             continue
         if e['market_cap_usd'] >= floor_mcap:
             continue
         added.append(e)
+        added_tickers.add(e['symbol'])
 
     print(f'Snapshot: {snapshot_path}')
     print(f'Current universe ({len(current_symbols)}): {current_symbols}')
@@ -215,7 +368,8 @@ def main():
     print(f'Expansion floor (lowest included mcap): {floor_mcap}')
     print(f'New batch ({len(added)}):')
     for e in added:
-        print(f"  #{e['rank']:>4} {e['symbol']:<8} mcap=${e['market_cap_usd']:,}")
+        print(f"  #{e['rank']:>4} {e['symbol']:<8} mcap=${e['market_cap_usd']:,} "
+              f"px={e['price_usd']} name={e['name']}")
 
     if args.apply and added:
         expanded = current_symbols + [f"{e['symbol']}/USDT" for e in added]

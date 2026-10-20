@@ -22,6 +22,13 @@ MAX_PER_REQUEST = 100  # KuCoin public endpoint caps at 100 bars per request
 REQUEST_TIMEOUT = 30
 PAUSE_SECONDS = 0.4  # be polite to public API
 
+# The public candles endpoint intermittently answers "400100" (symbol does not
+# exist) for symbols that do exist - in batch 12 that was transient for all six
+# affected names. Transient failures are therefore retried before a symbol is
+# treated as unusable.
+MAX_RETRIES = 5
+RETRY_BACKOFF_SECONDS = 3.0
+
 
 def fetch_candles(symbol: str, start_at: int = None, end_at: int = None,
                   limit: int = MAX_PER_REQUEST) -> list:
@@ -31,12 +38,22 @@ def fetch_candles(symbol: str, start_at: int = None, end_at: int = None,
         params["startAt"] = start_at
     if end_at is not None:
         params["endAt"] = end_at
-    resp = requests.get(KUCOIN_CANDLES_URL, params=params, timeout=REQUEST_TIMEOUT)
-    resp.raise_for_status()
-    payload = resp.json()
-    if payload.get("code") != "200000":
-        raise RuntimeError(f"KuCoin error for {symbol}: {payload}")
-    return payload.get("data", []) or []
+    last_error = None
+    for attempt in range(MAX_RETRIES):
+        try:
+            resp = requests.get(KUCOIN_CANDLES_URL, params=params, timeout=REQUEST_TIMEOUT)
+            resp.raise_for_status()
+            payload = resp.json()
+        except (requests.RequestException, ValueError) as exc:
+            last_error = exc
+        else:
+            if payload.get("code") == "200000":
+                return payload.get("data", []) or []
+            last_error = RuntimeError(f"KuCoin error for {symbol}: {payload}")
+        sleep_for = RETRY_BACKOFF_SECONDS * (2 ** attempt)
+        print(f"  retry {attempt + 1}/{MAX_RETRIES} in {sleep_for:.0f}s ({last_error})", flush=True)
+        time.sleep(sleep_for)
+    raise RuntimeError(f"KuCoin fetch failed for {symbol} after {MAX_RETRIES} attempts: {last_error}")
 
 
 def fetch_full_history(symbol: str, target_bars: int, end_ts: int = None) -> pd.DataFrame:
@@ -106,12 +123,21 @@ def main():
             manifest = []
     manifest_by_symbol = {m.get('symbol'): m for m in manifest if isinstance(m, dict)}
 
+    failed = []
     for sym in args.symbols:
         kucoin_sym = sym.replace("/", "-")
         print(f"Fetching {sym} (KuCoin {kucoin_sym}) target={args.target_bars} bars ...")
-        df = fetch_full_history(kucoin_sym, target_bars=args.target_bars)
+        try:
+            df = fetch_full_history(kucoin_sym, target_bars=args.target_bars)
+        except RuntimeError as exc:
+            # One bad symbol must not abort the rest of the batch. The failure is
+            # reported so it can be re-queried or documented as ineligible.
+            print(f"  ERROR: {exc}")
+            failed.append(sym)
+            continue
         if df.empty:
             print(f"  WARNING: no data for {sym}")
+            failed.append(sym)
             continue
         out_path = out_dir / f"{sym.replace('/', '_')}.csv"
         df.to_csv(out_path, index=False)
@@ -132,6 +158,9 @@ def main():
     with open(manifest_path, "w") as f:
         json.dump(merged, f, indent=2, default=str)
     print(f"\nManifest written to {manifest_path} ({len(merged)} symbols)")
+    if failed:
+        print(f"FAILED symbols ({len(failed)}): {failed} - re-query these before "
+              f"treating them as ineligible")
 
 
 def reconcile_manifest(out_dir: Path, manifest_path: Path) -> int:
