@@ -1,6 +1,6 @@
 {
   "run_id": "20261019_135940_grid",
-  "timestamp": "20261020_085654",
+  "timestamp": "20261020_090122",
   "symbols": [
     "BTC/USDT",
     "ETH/USDT",
@@ -170,11 +170,12 @@
     "CFG/USDT",
     "XNO/USDT",
     "XYO/USDT",
-    "POLYX/USDT"
+    "POLYX/USDT",
+    "AURORA/USDT"
   ],
   "n_pairs": 66,
-  "n_symbols": 169,
-  "completed_cells": 11154,
+  "n_symbols": 170,
+  "completed_cells": 11220,
   "completed": [
     {
       "symbol": "1INCH/USDT",
@@ -5783,6 +5784,336 @@
     },
     {
       "symbol": "ATOM/USDT",
+      "P_fast": 144,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 12
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 20
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 21
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 26
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 34
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 50
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 55
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 89
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 100
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 20
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 21
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 26
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 34
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 50
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 55
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 89
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 100
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 12,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 20,
+      "P_slow": 21
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 20,
+      "P_slow": 26
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 20,
+      "P_slow": 34
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 20,
+      "P_slow": 50
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 20,
+      "P_slow": 55
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 20,
+      "P_slow": 89
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 20,
+      "P_slow": 100
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 20,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 20,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 21,
+      "P_slow": 26
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 21,
+      "P_slow": 34
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 21,
+      "P_slow": 50
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 21,
+      "P_slow": 55
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 21,
+      "P_slow": 89
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 21,
+      "P_slow": 100
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 21,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 21,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 26,
+      "P_slow": 34
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 26,
+      "P_slow": 50
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 26,
+      "P_slow": 55
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 26,
+      "P_slow": 89
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 26,
+      "P_slow": 100
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 26,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 26,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 34,
+      "P_slow": 50
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 34,
+      "P_slow": 55
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 34,
+      "P_slow": 89
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 34,
+      "P_slow": 100
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 34,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 34,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 50,
+      "P_slow": 55
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 50,
+      "P_slow": 89
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 50,
+      "P_slow": 100
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 50,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 50,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 55,
+      "P_slow": 89
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 55,
+      "P_slow": 100
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 55,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 55,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 89,
+      "P_slow": 100
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 89,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 89,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 100,
+      "P_slow": 144
+    },
+    {
+      "symbol": "AURORA/USDT",
+      "P_fast": 100,
+      "P_slow": 200
+    },
+    {
+      "symbol": "AURORA/USDT",
       "P_fast": 144,
       "P_slow": 200
     },
