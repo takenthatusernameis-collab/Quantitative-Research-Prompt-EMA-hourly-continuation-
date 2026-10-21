@@ -292,6 +292,118 @@ def test_verdict_names_the_null_mode_that_was_actually_run():
     assert 'None' not in text
 
 
+def test_grid_summary_reports_the_family_wise_reading_for_every_null_mode():
+    """Each null the leg ran gets its own tail reading, not only the primary one.
+
+    The leg now runs the block, the timing and the sign null over the whole
+    grid. The family-wise reading - how often a null cell reaches the best
+    real cell, and how often the real rule beats its own null - is the
+    question the leg exists to answer, so it has to be answered for every
+    mode the leg ran.
+    """
+    rows = [
+        {'real': {'net_pf': 1.4, 'net_win_sum': 140.0, 'net_loss_abs': 100.0,
+                  'net_pnl': 40.0, 'gross_pf': 1.6, 'trades': 50},
+         'null': {'block': {'net_pf': 1.5, 'net_win_sum': 150.0, 'net_loss_abs': 100.0,
+                            'net_pnl': 50.0, 'gross_pf': 1.7, 'trades': 50},
+                  'timing': {'net_pf': 0.9, 'net_win_sum': 90.0, 'net_loss_abs': 100.0,
+                             'net_pnl': -10.0, 'gross_pf': 1.0, 'trades': 50}}},
+        {'real': {'net_pf': 0.6, 'net_win_sum': 60.0, 'net_loss_abs': 100.0,
+                  'net_pnl': -40.0, 'gross_pf': 0.7, 'trades': 50},
+         'null': {'block': {'net_pf': 0.5, 'net_win_sum': 50.0, 'net_loss_abs': 100.0,
+                            'net_pnl': -50.0, 'gross_pf': 0.6, 'trades': 50},
+                  'timing': {'net_pf': 0.7, 'net_win_sum': 70.0, 'net_loss_abs': 100.0,
+                             'net_pnl': -30.0, 'gross_pf': 0.8, 'trades': 50}}},
+    ]
+    summary = build_grid_summary(rows, ['block', 'timing'], 30)
+    # The block null reaches the real best (1.5 >= 1.4); the timing null does not.
+    assert summary['block_null_at_or_above_best'] == 1
+    assert summary['timing_null_at_or_above_best'] == 0
+    # The real rule beats the timing null in one cell and loses to it in the other.
+    assert summary['timing_n_real_beats_null'] == 1
+    assert summary['timing_n_null_beats_real'] == 1
+    assert summary['block_n_real_beats_null'] == 1
+    # The mode-less keys are the primary mode's numbers.
+    assert summary['primary_null_mode'] == 'block'
+    assert summary['primary_null_at_or_above_best'] == summary['block_null_at_or_above_best']
+    assert summary['n_real_beats_timing_null'] == summary['block_n_real_beats_null']
+    assert summary['family_wise_p_value'] == summary['block_family_wise_p_value']
+
+
+def test_the_report_shows_the_tail_reading_of_every_null_mode(tmp_path):
+    """The report has one column per null mode in the tail table."""
+    from scripts import null_grid_scan
+
+    def _cell(symbol, fast, slow, pf, null_pf):
+        return {'symbol': symbol, 'P_fast': fast, 'P_slow': slow,
+                'n_bars': 100, 'entry_start_index': 50, 'n_signals': 10,
+                'real': {'trades': 40, 'net_pf': pf, 'gross_pf': pf + 0.1,
+                         'stress_net_pf': 0.5, 'net_pnl': 0.0, 'net_win_sum': 10.0,
+                         'net_loss_abs': 10.0, 'sharpe': 0.1, 'net_win_rate': 0.5,
+                         'median_risk_pct': 0.01},
+                'null': {mode: {'trades': 40, 'net_pf': null_pf, 'gross_pf': null_pf + 0.1,
+                                'stress_net_pf': 0.5, 'net_pnl': 0.0, 'net_win_sum': 10.0,
+                                'net_loss_abs': 10.0, 'sharpe': 0.1, 'net_win_rate': 0.5,
+                                'median_risk_pct': 0.01}
+                         for mode in ('block', 'timing', 'sign')}}
+
+    rows = [_cell('ADA/USDT', 8, 20, 1.2, 0.9), _cell('ADA/USDT', 8, 50, 0.7, 0.8)]
+    grid = build_grid_summary(rows, ['block', 'timing', 'sign'], 30)
+    payload = {'generated_at': 'now', 'source_run': 'run', 'oos_fraction': 0.35,
+               'stress_multiplier': 2.0, 'min_trades': 30, 'modes': ['block', 'timing', 'sign'],
+               'survivor_modes': ['block', 'timing', 'sign'], 'block_bars': 240,
+               'n_symbols': 1, 'n_cells': len(rows), 'grid': grid,
+               'validation': {'n_cells': 0, 'n_summary_matches': 0,
+                              'n_window_matches': 0, 'n_signals_match': 0, 'cells': []},
+               'survivors': [], 'n_survivor_cells': 0, 'n_control_cells': 0,
+               'survivor_replicates': 50}
+    payload['verdict_lines'] = build_verdict(payload)
+    out_dir = tmp_path / 'leg'
+    out_dir.mkdir()
+    null_grid_scan.write_report(out_dir, payload)
+    text = (out_dir / 'summary.md').read_text()
+    leg2 = text.split('## Leg 2')[1]
+    assert 'block null' in leg2 and 'timing null' in leg2 and 'sign null' in leg2
+    assert 'Family-wise probability of a null cell reaching the real best' in leg2
+    # The verdict names every mode the leg ran.
+    assert 'block' in ' '.join(payload['verdict_lines'])
+
+
+def test_a_truncated_checkpoint_line_is_dropped_and_the_cell_is_run_again(tmp_path,
+                                                                       monkeypatch):
+    """A pass killed mid-write must not take the next pass down with it.
+
+    The checkpoint is appended to while the pass runs, so a pass that is
+    killed can leave a half-written last line. The next pass has to skip
+    that line and re-run the cell it belongs to.
+    """
+    from scripts import null_grid_scan
+
+    run_dir = _fake_grid_run(tmp_path)
+    out_dir = tmp_path / 'leg'
+    out_dir.mkdir()
+    monkeypatch.setattr(sys, 'argv', [
+        'null_grid_scan.py', '--run', str(run_dir), '--out', str(out_dir),
+        '--modes', 'block', '--workers', '1', '--validate-sample', '0',
+        '--survivor-replicates', '2',
+    ])
+    null_grid_scan.main()
+    checkpoint = out_dir / 'cells.jsonl'
+    with open(checkpoint, 'a') as fh:
+        fh.write('{"symbol": "ADA/USDT", "P_fast": 8, "P_slo')
+
+    monkeypatch.setattr(sys, 'argv', [
+        'null_grid_scan.py', '--run', str(run_dir), '--out', str(out_dir),
+        '--modes', 'block', '--workers', '1', '--validate-sample', '0',
+        '--survivor-replicates', '2',
+    ])
+    null_grid_scan.main()
+    rows = [json.loads(line) for line in
+            checkpoint.read_text().splitlines() if line.strip()]
+    assert len(rows) == 1
+    assert 'block' in rows[0]['null']
+
+
 def test_fmt_probability_shows_the_distance_from_one():
     """A probability of essentially 1 is unreadable as '1.0000'."""
     assert fmt_probability(0.5) == '0.5000'

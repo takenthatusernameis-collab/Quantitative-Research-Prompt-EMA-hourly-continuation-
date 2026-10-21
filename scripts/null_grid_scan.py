@@ -572,35 +572,54 @@ def build_grid_summary(rows: list, modes: list, min_trades: int) -> dict:
              and math.isfinite(r['null'][mode]['net_pf'])), default=None)
         grid_summary[f'{mode}_null_pooled_pf'] = pooled_ratio(rows, 'null', mode)
 
-    # Family-wise reading of the observed best cell, against the primary null.
+    # The family-wise reading of the observed best cell, and the paired
+    # cell-by-cell comparison, are computed for every null mode the leg ran.
+    # A leg that runs more than one null has to answer the question for each
+    # of them: the block null keeps the market context, the timing null does
+    # not, and they do not have to reach the same verdict.
+    n_cells = len(rows)
+    real_max = grid_summary['real_max_pf']
+    for mode in modes:
+        finite_null = [p for p in (r['null'][mode]['net_pf'] for r in rows)
+                       if p is not None and math.isfinite(p)]
+        exceed = sum(1 for p in finite_null if real_max is not None and p >= real_max)
+        q = exceed / n_cells if n_cells else 0.0
+        grid_summary[f'{mode}_null_at_or_above_best'] = exceed
+        grid_summary[f'{mode}_family_wise_p_value'] = (
+            1.0 - (1.0 - q) ** n_cells if n_cells else 1.0)
+        beats = sum(1 for r in rows
+                    if (r['real']['net_pf'] or 0.0) > (r['null'][mode]['net_pf'] or 0.0))
+        grid_summary[f'{mode}_n_real_beats_null'] = beats
+        # The other side of the same comparison, so the report can say which
+        # side wins instead of leaving the reader to infer it from a count.
+        grid_summary[f'{mode}_n_null_beats_real'] = n_cells - beats
+        grid_summary[f'{mode}_sign_test_p_value'] = binomial_tail(beats, n_cells)
+        gross_beats = sum(
+            1 for r in rows
+            if (r['real'].get('gross_pf') or 0.0) > (r['null'][mode].get('gross_pf') or 0.0))
+        grid_summary[f'{mode}_n_real_beats_null_on_gross_pf'] = gross_beats
+        grid_summary[f'{mode}_n_null_beats_real_on_gross_pf'] = n_cells - gross_beats
+        grid_summary[f'{mode}_gross_sign_test_p_value'] = binomial_tail(gross_beats, n_cells)
+
     # The primary null is the first mode of the leg, so the verdict and the
-    # report always talk about the null that was actually run.
+    # report always talk about the null that was actually run. The keys
+    # without a mode in their name are the primary mode's numbers.
     primary_mode = modes[0] if modes else None
     grid_summary['primary_null_mode'] = primary_mode
     if primary_mode is None:
         return grid_summary
-    real_max = grid_summary['real_max_pf']
-    primary_null = [r['null'][primary_mode]['net_pf'] for r in rows]
-    finite_null = [p for p in primary_null if p is not None and math.isfinite(p)]
-    n_cells = len(rows)
-    exceed = sum(1 for p in finite_null if real_max is not None and p >= real_max)
-    q = exceed / n_cells if n_cells else 0.0
-    grid_summary['timing_null_at_or_above_best'] = exceed
-    grid_summary['family_wise_p_value'] = 1.0 - (1.0 - q) ** n_cells if n_cells else 1.0
-
-    beats = sum(1 for r in rows
-                if (r['real']['net_pf'] or 0.0) > (r['null'][primary_mode]['net_pf'] or 0.0))
-    grid_summary['n_real_beats_timing_null'] = beats
-    # The other side of the same comparison, so the report can say which side
-    # wins instead of leaving the reader to infer it from a count.
-    grid_summary['n_null_beats_real'] = n_cells - beats
-    grid_summary['sign_test_p_value'] = binomial_tail(beats, n_cells)
-    gross_beats = sum(
-        1 for r in rows
-        if (r['real'].get('gross_pf') or 0.0) > (r['null'][primary_mode].get('gross_pf') or 0.0))
-    grid_summary['n_real_beats_null_on_gross_pf'] = gross_beats
-    grid_summary['n_null_beats_real_on_gross_pf'] = n_cells - gross_beats
-    grid_summary['gross_sign_test_p_value'] = binomial_tail(gross_beats, n_cells)
+    grid_summary['primary_null_at_or_above_best'] = grid_summary[
+        f'{primary_mode}_null_at_or_above_best']
+    grid_summary['family_wise_p_value'] = grid_summary[f'{primary_mode}_family_wise_p_value']
+    grid_summary['n_real_beats_timing_null'] = grid_summary[f'{primary_mode}_n_real_beats_null']
+    grid_summary['n_null_beats_real'] = grid_summary[f'{primary_mode}_n_null_beats_real']
+    grid_summary['sign_test_p_value'] = grid_summary[f'{primary_mode}_sign_test_p_value']
+    grid_summary['n_real_beats_null_on_gross_pf'] = grid_summary[
+        f'{primary_mode}_n_real_beats_null_on_gross_pf']
+    grid_summary['n_null_beats_real_on_gross_pf'] = grid_summary[
+        f'{primary_mode}_n_null_beats_real_on_gross_pf']
+    grid_summary['gross_sign_test_p_value'] = grid_summary[
+        f'{primary_mode}_gross_sign_test_p_value']
     return grid_summary
 
 
@@ -694,23 +713,53 @@ def write_report(out_dir: Path, payload: dict) -> None:
                      f"in Leg 3.\n")
 
     lines.append('## Leg 2 — The observed tail against the null tail\n')
-    lines.append('| Quantity | Value |')
-    lines.append('|---|---|')
-    lines.append(f"| Best cell of the grid (real) | {fmt(grid['real_max_pf'])} |")
-    for mode in grid_modes:
-        lines.append(f"| Best cell of the {mode} null | {fmt(grid[f'{mode}_null_max_pf'])} |")
-    lines.append(f"| Null cells at or above the real best | {grid['timing_null_at_or_above_best']} |")
-    lines.append(f"| Family-wise probability of a null cell reaching the real best | "
-                 f"{fmt_probability(grid['family_wise_p_value'])} |")
-    lines.append(f"| Cells where the real rule beats its own {grid['primary_null_mode']} null | "
-                 f"{grid['n_real_beats_timing_null']} of {payload['n_cells']} |")
-    lines.append(f"| Cells where the null beats the real rule | "
-                 f"{grid.get('n_null_beats_real')} of {payload['n_cells']} |")
-    lines.append(f"| Two-sided sign test on that comparison | {fmt_pf(grid['sign_test_p_value'])} |")
-    lines.append(f"| Same comparison on the gross profit factor (no cost drag) | "
-                 f"{grid['n_real_beats_null_on_gross_pf']} of {payload['n_cells']} |")
-    lines.append(f"| Two-sided sign test on the gross comparison | "
-                 f"{fmt_pf(grid['gross_sign_test_p_value'])} |")
+    # A summary written before the per-mode reading existed carries the
+    # numbers under the primary mode's names; they are used as the fallback
+    # so an older artifact still renders.
+    legacy = {
+        'null_at_or_above_best': 'timing_null_at_or_above_best',
+        'family_wise_p_value': 'family_wise_p_value',
+        'n_real_beats_null': 'n_real_beats_timing_null',
+        'n_null_beats_real': 'n_null_beats_real',
+        'sign_test_p_value': 'sign_test_p_value',
+        'n_real_beats_null_on_gross_pf': 'n_real_beats_null_on_gross_pf',
+        'gross_sign_test_p_value': 'gross_sign_test_p_value',
+    }
+
+    def _tail_value(mode, key):
+        if f'{mode}_{key}' in grid:
+            return grid[f'{mode}_{key}']
+        fallback = legacy.get(key)
+        if fallback and fallback in grid:
+            return grid[fallback]
+        return None
+
+    lines.append('| Statistic | Real rule | '
+                 + ' | '.join(f'{m} null' for m in grid_modes) + ' |')
+    lines.append('|---|---' + '|'.join('---' for _ in grid_modes) + '|')
+    lines.append(f"| Best cell of the grid | {fmt(grid['real_max_pf'])} | "
+                 + ' | '.join(fmt(grid[f'{m}_null_max_pf']) for m in grid_modes) + ' |')
+    lines.append("| Null cells at or above the real best | - | "
+                 + ' | '.join(str(_tail_value(m, 'null_at_or_above_best'))
+                              for m in grid_modes) + ' |')
+    lines.append("| Family-wise probability of a null cell reaching the real best | - | "
+                 + ' | '.join(fmt_probability(_tail_value(m, 'family_wise_p_value'))
+                              for m in grid_modes) + ' |')
+    lines.append("| Cells where the real rule beats its own null | - | "
+                 + ' | '.join(str(_tail_value(m, 'n_real_beats_null'))
+                              for m in grid_modes) + ' |')
+    lines.append("| Cells where the null beats the real rule | - | "
+                 + ' | '.join(str(_tail_value(m, 'n_null_beats_real'))
+                              for m in grid_modes) + ' |')
+    lines.append("| Two-sided sign test on that comparison | - | "
+                 + ' | '.join(fmt_pf(_tail_value(m, 'sign_test_p_value'))
+                              for m in grid_modes) + ' |')
+    lines.append("| Same comparison on the gross profit factor (no cost drag) | - | "
+                 + ' | '.join(str(_tail_value(m, 'n_real_beats_null_on_gross_pf'))
+                              for m in grid_modes) + ' |')
+    lines.append("| Two-sided sign test on the gross comparison | - | "
+                 + ' | '.join(fmt_pf(_tail_value(m, 'gross_sign_test_p_value'))
+                              for m in grid_modes) + ' |')
     lines.append('')
     lines.append('A sign test p-value this small means the two sides of the comparison are '
                  'not exchangeable. The direction is the point: the counts above say which '
@@ -817,11 +866,20 @@ def summarize_existing(out_dir: Path, args) -> None:
     if not path.exists():
         raise SystemExit(f'no cells.jsonl in {out_dir}')
     rows = []
+    n_truncated = 0
     with open(path) as fh:
         for line in fh:
             line = line.strip()
-            if line:
+            if not line:
+                continue
+            try:
                 rows.append(json.loads(line))
+            except json.JSONDecodeError:
+                # A truncated line from a pass that was killed mid-write is
+                # dropped; the cell is recomputed by the pass that continues.
+                n_truncated += 1
+    if n_truncated:
+        print(f'Dropped {n_truncated} truncated line(s) from {path}')
     if not rows:
         raise SystemExit(f'{path} is empty')
     modes = [m for m in args.modes
@@ -938,14 +996,26 @@ def main():
     # null mode) can therefore be completed instead of restarted from scratch.
     checkpoint_path = out_dir / 'cells.jsonl'
     by_key = {}
+    n_truncated = 0
     if checkpoint_path.exists():
         with open(checkpoint_path) as fh:
             for line in fh:
                 line = line.strip()
                 if not line:
                     continue
-                r = json.loads(line)
+                try:
+                    r = json.loads(line)
+                except json.JSONDecodeError:
+                    # A pass that was killed while it was writing can leave a
+                    # truncated last line. The cell it belongs to is simply
+                    # run again, so the line is dropped instead of taking the
+                    # whole pass down with it.
+                    n_truncated += 1
+                    continue
                 by_key[(r['symbol'], r['P_fast'], r['P_slow'])] = r
+    if n_truncated:
+        print(f'Checkpoint held {n_truncated} truncated line(s); they are re-run.',
+              flush=True)
 
     config = dict(CONFIG_DEFAULTS)
     config['stress_multiplier'] = args.stress_multiplier
@@ -1037,8 +1107,12 @@ def main():
     with open(checkpoint_path) as fh:
         for line in fh:
             line = line.strip()
-            if line:
+            if not line:
+                continue
+            try:
                 all_rows.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
     rows = all_rows
 
     grid_summary = build_grid_summary(rows, args.modes, args.min_trades)
@@ -1252,6 +1326,18 @@ def build_verdict(payload: dict) -> list:
             f"{grid.get('n_null_beats_real')} (sign test p = "
             f"{fmt_pf(grid['sign_test_p_value'])}).")
     survivors = payload.get('survivors') or []
+    # Every null the leg ran, side by side: the grid-wide counts of the real
+    # rule against each of them. A leg with more than one null has to show
+    # all of them, not only the primary one.
+    grid_modes = [m for m in payload.get('modes') or []
+                  if f'{m}_null_pf_gt_1' in grid]
+    if grid_modes:
+        parts = [f"real {grid['real_pf_gt_1']}/{grid['real_gate']}"]
+        for m in grid_modes:
+            parts.append(f"{m} {grid[f'{m}_null_pf_gt_1']}/{grid[f'{m}_null_gate']}")
+        lines.append(
+            'Grid-wide null counts (cells with an out-of-sample net PF above 1 / '
+            'cells clearing the gate): ' + '; '.join(parts) + '.')
     tested = [s for s in survivors if s.get('group') == 'survivor']
     if tested:
         significant = [s for s in tested
