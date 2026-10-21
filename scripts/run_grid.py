@@ -36,9 +36,9 @@ import numpy as np
 import pandas as pd
 
 from data.data_loader import load_ohlcv_csv
-from signals.signals import generate_signals
+from signals.signals import generate_signals, generate_signals_vectorized
 from universe.universe import load_mcap_ranking, load_mcap_snapshot
-from backtest.backtest import backtest_symbol
+from backtest.backtest import backtest_symbol, backtest_symbol_fast
 from metrics.metrics import calculate_metrics
 
 # Registered EMA period grid (PROMPT.md §1.1). P_fast < P_slow for every valid pair.
@@ -129,26 +129,68 @@ def read_artifact_csv(path: str | Path) -> pd.DataFrame:
     return pd.read_csv(path)
 
 
+def run_config(run_dir: str | Path) -> dict:
+    """The config a grid run was produced with.
+
+    A leg that re-runs the cells of a grid has to use the config of that run,
+    not the default config: a pre-registered mutation run (e.g. the ATR
+    minimum-risk filter) stores its own `run_config.json`, and re-running its
+    cells with the default config would measure the parent rule instead of
+    the child. The baseline grid's stored config is the default config, so
+    every leg that audits the baseline grid is unchanged.
+    """
+    config = dict(CONFIG_DEFAULTS)
+    path = Path(run_dir) / 'run_config.json'
+    if path.exists():
+        try:
+            stored = json.loads(path.read_text()).get('config') or {}
+            for key, value in stored.items():
+                if key in config:
+                    config[key] = value
+        except Exception:
+            pass
+    return config
+
+
 def run_cell(symbol, df, fast, slow, taker_fee_bps, slippage_bps, rr,
              stricter_trend, min_risk_atr, atr_threshold, conservative_exit,
              oos_fraction=None, sizing=DEFAULT_SIZING,
              risk_fraction=DEFAULT_RISK_FRACTION,
-             max_notional_multiple=DEFAULT_MAX_NOTIONAL_MULTIPLE):
+             max_notional_multiple=DEFAULT_MAX_NOTIONAL_MULTIPLE,
+             engine='reference'):
     """Run a single (symbol, P_fast, P_slow) cell. Returns (trades, equity_df, metrics).
 
     When `oos_fraction` is set, entries are restricted to the trailing
     (1 - oos_fraction) window of the series and the equity curve is trimmed to
     that window, so the reported metrics are out-of-sample. EMAs are still
     computed on the full (causal) series so warm-up is not lost.
+
+    `engine='reference'` uses the bar-by-bar research engine; `engine='fast'`
+    uses the array-based twin of both the signal generator and the backtest
+    engine, which produces the same trades, the same equity curve and
+    therefore the same metrics, but runs ~100x faster on a 22 000-bar
+    series. The twins are proved equivalent to the research path by
+    `results/signal_equivalence_check.json` (268 symbols, 1 360 cells, no
+    mismatch) and by `scripts/verify_grid_repro.py --engine fast`, which
+    re-runs stored grid cells and compares them with the stored summaries. The
+    reference engine stays the default so that the baseline grid keeps being
+    produced by the research path.
     """
-    df_sig = generate_signals(
-        df.copy(), ema_fast_period=fast, ema_slow_period=slow,
-        stricter_trend=stricter_trend,
-    )
+    if engine == 'fast':
+        df_sig = generate_signals_vectorized(
+            df.copy(), ema_fast_period=fast, ema_slow_period=slow,
+            stricter_trend=stricter_trend,
+        )
+    else:
+        df_sig = generate_signals(
+            df.copy(), ema_fast_period=fast, ema_slow_period=slow,
+            stricter_trend=stricter_trend,
+        )
     entry_start_index = 0
     if oos_fraction is not None and 0.0 < oos_fraction < 1.0:
         entry_start_index = int(len(df_sig) * (1.0 - oos_fraction))
-    trades, equity_df = backtest_symbol(
+    engine_fn = backtest_symbol_fast if engine == 'fast' else backtest_symbol
+    trades, equity_df = engine_fn(
         df_sig, symbol=symbol,
         taker_fee_bps=taker_fee_bps, slippage_bps=slippage_bps, rr=rr,
         min_risk_atr=min_risk_atr, atr_threshold=atr_threshold,
@@ -287,6 +329,11 @@ def main():
     parser.add_argument('--note', type=str, default=None,
                         help='Free-form note recorded in run_config.json (e.g. the universe '
                              'expansion that triggered this invocation)')
+    parser.add_argument('--engine', type=str, default='reference',
+                        choices=['reference', 'fast'],
+                        help="Backtest engine: 'reference' (bar-by-bar research path, "
+                             "default) or 'fast' (its proved-equivalent array twin, ~100x "
+                             "faster; use it for large pre-registered mutation grids)")
     args = parser.parse_args()
 
     config = dict(CONFIG_DEFAULTS)
@@ -342,6 +389,7 @@ def main():
         'resume': args.resume,
         'oos_fraction': args.oos_fraction,
         'note': args.note,
+        'engine': args.engine,
         'artifact_layout': ARTIFACT_LAYOUT,
         'history': prior_configs,
     }
@@ -381,6 +429,49 @@ def main():
     cells_processed = 0
     stopped = False
     stop_reason = None
+
+    def write_progress() -> None:
+        """Persist the progress file.
+
+        It is written after every symbol, not only at the end of the
+        invocation, so that a run that is interrupted (or a container that is
+        recycled) resumes from the cells that are already on disk instead of
+        from the start.
+        """
+        completed_list = [{'symbol': s, 'P_fast': f, 'P_slow': p}
+                          for (s, f, p) in sorted(completed)]
+        # Determine next unprocessed cell for handoff
+        unprocessed = None
+        for si in range(len(symbols)):
+            symbol = symbols[si]
+            sym_file = Path(args.fixture_base) / f'{symbol_dir_name(symbol)}.csv'
+            if not sym_file.exists():
+                continue
+            pair_iter = pairs
+            for (fast, slow) in pair_iter:
+                if (symbol, fast, slow) not in completed:
+                    unprocessed = [symbol, fast, slow]
+                    break
+            if unprocessed:
+                break
+
+        progress = {
+            'run_id': run_id,
+            'timestamp': timestamp,
+            'symbols': covered_symbols,
+            'invocation_symbols': symbols,
+            'n_pairs': len(pairs),
+            'n_symbols': len(covered_symbols),
+            'completed_cells': len(completed),
+            'completed': completed_list,
+            'next_cell': unprocessed,  # [symbol, P_fast, P_slow] or None
+            'stopped': stopped,
+            'stop_reason': stop_reason,
+            'all_symbols_processed': unprocessed is None,
+        }
+        with open(progress_path, 'w') as f:
+            json.dump(progress, f, indent=2, default=str)
+        return unprocessed
 
     # Determine iteration start: if resuming with a next_cell, skip to it.
     start_symbol_idx = 0
@@ -425,6 +516,7 @@ def main():
                     config['conservative_exit'], oos_fraction=args.oos_fraction,
                     sizing=config['sizing'], risk_fraction=config['risk_fraction'],
                     max_notional_multiple=config['max_notional_multiple'],
+                    engine=args.engine,
                 )
                 save_cell(results_dir, symbol, fast, slow, trades, equity_df, metrics, config)
                 completed.add(cell_key)
@@ -443,42 +535,12 @@ def main():
                 completed.add(cell_key)
                 cells_processed += 1
                 next_cell = cell_key
+        # Checkpoint after every symbol so an interrupted run resumes here.
+        write_progress()
         if stopped:
             break
 
-    # Write progress.json
-    completed_list = [{'symbol': s, 'P_fast': f, 'P_slow': p} for (s, f, p) in sorted(completed)]
-    # Determine next unprocessed cell for handoff
-    unprocessed = None
-    for si in range(len(symbols)):
-        symbol = symbols[si]
-        sym_file = Path(args.fixture_base) / f'{symbol_dir_name(symbol)}.csv'
-        if not sym_file.exists():
-            continue
-        pair_iter = pairs
-        for (fast, slow) in pair_iter:
-            if (symbol, fast, slow) not in completed:
-                unprocessed = [symbol, fast, slow]
-                break
-        if unprocessed:
-            break
-
-    progress = {
-        'run_id': run_id,
-        'timestamp': timestamp,
-        'symbols': covered_symbols,
-        'invocation_symbols': symbols,
-        'n_pairs': len(pairs),
-        'n_symbols': len(covered_symbols),
-        'completed_cells': len(completed),
-        'completed': completed_list,
-        'next_cell': unprocessed,  # [symbol, P_fast, P_slow] or None
-        'stopped': stopped,
-        'stop_reason': stop_reason,
-        'all_symbols_processed': unprocessed is None,
-    }
-    with open(progress_path, 'w') as f:
-        json.dump(progress, f, indent=2, default=str)
+    unprocessed = write_progress()
 
     print(f'\nGrid run {run_id} complete.')
     print(f'Results dir: {results_dir}')

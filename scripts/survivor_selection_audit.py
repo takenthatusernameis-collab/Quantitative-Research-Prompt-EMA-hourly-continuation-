@@ -49,7 +49,7 @@ import pandas as pd
 from data.data_loader import load_ohlcv_csv
 from scripts.oos_grid_scan import (describe_distribution, read_trades,
                                     stressed_pnl_net, verify_cell, win_loss_sums)
-from scripts.run_grid import CONFIG_DEFAULTS, symbol_dir_name
+from scripts.run_grid import CONFIG_DEFAULTS, symbol_dir_name, run_config
 
 # The six cells the out-of-sample audit re-ran through the real backtest and
 # that still clear the cost stress (`results/20261021_033523_oos_grid_scan`,
@@ -832,7 +832,10 @@ def main():
 
     run_dir = Path(args.run)
     audit_dir = Path(args.oos_audit)
-    config = dict(CONFIG_DEFAULTS)
+    # The cells have to be verified under the config of the run they come
+    # from: a pre-registered mutation run stores its own config, and
+    # re-verifying it with the default config would measure the parent rule.
+    config = run_config(run_dir)
     out_dir = Path(args.out) if args.out else Path(
         f"results/{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}"
         f"_survivor_selection_audit")

@@ -175,3 +175,33 @@ def test_load_cells_reports_blocked(tmp_path):
 def test_label_cell(pf, sharpe, trades, expected):
     assert label_cell({'net_profit_factor': pf, 'sharpe_ratio': sharpe,
                         'trade_count': trades}) == expected
+
+
+def test_fast_engine_reproduces_the_reference_engine():
+    """The `fast` engine has to be a drop-in twin of the reference engine.
+
+    The ATR minimum-risk mutation is run on the fast engine (the reference
+    engine needs ~44 h for the full grid), so the two have to agree on the
+    cells that the mutation actually changes: the trades the ATR filter
+    keeps, and the metrics that follow from them.
+    """
+    from pathlib import Path
+
+    from data.data_loader import load_ohlcv_csv
+    from scripts.run_grid import CONFIG_DEFAULTS, run_cell
+
+    fixture = Path('data/fixtures/1INCH_USDT.csv')
+    if not fixture.exists():
+        pytest.skip('fixture not available')
+    df = load_ohlcv_csv(str(fixture))
+    config = CONFIG_DEFAULTS
+    for min_risk_atr in (False, True):
+        args = ('1INCH/USDT', df, 8, 200, config['taker_fee_bps'],
+                config['slippage_bps'], config['rr'], config['stricter_trend'],
+                min_risk_atr, config['atr_threshold'], config['conservative_exit'])
+        _, _, reference = run_cell(*args, engine='reference')
+        _, _, fast = run_cell(*args, engine='fast')
+        assert reference['trade_count'] == fast['trade_count']
+        assert reference['net_profit_factor'] == fast['net_profit_factor']
+        assert reference['sharpe_ratio'] == fast['sharpe_ratio']
+        assert reference['max_drawdown'] == fast['max_drawdown']

@@ -60,8 +60,12 @@ def test_check_cell_reports_a_cell_that_reproduces(tmp_path):
         'net_profit_factor': metrics.get('net_profit_factor'),
         'sharpe_ratio': metrics.get('sharpe_ratio'),
     })
-    row = check_cell((str(run_dir), 'AAA/USDT', 8, 12, str(fixtures)))
+    row = check_cell((str(run_dir), 'AAA/USDT', 8, 12, str(fixtures), 'reference'))
     assert row['reproduces'] is True
+    # The fast engine has to reproduce the same cell.
+    fast_row = check_cell((str(run_dir), 'AAA/USDT', 8, 12, str(fixtures), 'fast'))
+    assert fast_row['reproduces'] is True
+    assert fast_row['trade_count_after'] == row['trade_count_after']
 
 
 def test_write_report_names_the_stale_cells(tmp_path):
