@@ -1,6 +1,6 @@
 # Final Decision — EMA Hourly Continuation
 
-## Program status — 2026-10-21T12:20Z (supersedes the 2026-10-21T11:45Z decision)
+## Program status — 2026-10-21T19:52Z (supersedes the 2026-10-21T12:20Z decision)
 
 Strategy: EMA hourly continuation (PROMPT.md). Universe: **266 symbols** ranked by
 market cap descending, full EMA period grid (**66 pairs** from
@@ -83,6 +83,49 @@ against a measured 26.4 %. **The cost of the rule is a function of the width of
 the stop, not of the number of trades.** Without any cost, 2 387 cells would
 show a PF above 1; under the registered cost model only 77 do, and 3 735 cells
 lose more than half of their gross P&L to fees and slippage.
+
+### The registered mutation: ATR minimum risk (PROMPT.md §5.2)
+
+The one registered mutation that moved the cost drag is running as a **full
+17 556-cell child grid** of the baseline: parent `results/20261019_135940_grid`
+-> child `results/20261021_172619_grid` (`min_risk_atr: false -> true`,
+`atr_threshold` 1.0, every other config key identical), recorded in
+`results/mutations.json`. At 2026-10-21T19:50Z the child grid is at 4 026 /
+17 556 cells (61 of 266 symbols).
+
+Partial evaluation (`results/20261021_194500_mutation_eval_partial/`, 57
+symbols, 3 762 cells per run):
+
+| Measure | Parent | Child |
+|---|---|---|
+| Trades | 3 097 113 | 1 349 555 (-56.4 %) |
+| Pooled net PF | 0.4864 | 0.7498 |
+| Cost share of gross profit | 67.8 % | 28.9 % |
+| Pooled out-of-sample net PF | 0.5207 | 0.7041 (0.3087 -> 0.5015 under 2x costs) |
+| Cells clearing the §3.4 gate | 0 | **19** |
+| Walk-forward pooled out-of-fold net PF | 0.6186 | 0.7509 (0.4177 -> 0.5705) |
+| Selected cells vs the grid's own null | 0.7713 percentile, p 8.5e-05 | 0.5249 percentile, p 0.1068 |
+
+**The mutation buys back the cost drag, and with it the possibility of
+clearing the gate — it does not create an edge.** The child's own null moves
+with it (null median PF 0.4139 -> 0.7274), so the walk-forward selection no
+longer ranks above the null of the grid it selects in.
+
+The child's first gate-clearing family
+(`results/20261021_200500_mutation_survivor_check/`, 61 symbols, 4 026 cells):
+**20 cells (0.50 %) on 7 symbols** (ENA 5, POL 5, APT 5, WLD 2, RENDER 1,
+AERO 1, PYTH 1), pooled out-of-sample net PF **1.2606** over 1 633
+out-of-sample trades, surviving leave-one-symbol-out (1.2177-1.2765), but
+only **3 of 20** keep a net PF above 1 in every out-of-sample sub-period
+(POL/USDT P8_200, P21_200, P34_200). A reproduction check
+(`results/20261021_193500_mutation_repro_check/`) shows that 12/12 child and
+12/12 parent cells re-run to their stored blotters exactly, and that the ATR
+filter changes the trading path rather than pruning the parent's trades.
+
+**Decision: not promoted.** A gate-clearing cell is a selection result, not a
+promotion. The family still has to beat its own randomizations (the randomized
+null on the child grid, still open) and the walk-forward has to hold up on the
+complete child grid. The baseline grid stays the program's grid.
 
 ### Robustness legs (PROMPT.md §3.3)
 

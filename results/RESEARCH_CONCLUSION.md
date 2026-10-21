@@ -1,6 +1,6 @@
 # Research Conclusion — EMA Hourly Continuation
 
-## Program status (2026-10-21T12:20Z)
+## Program status (2026-10-21T19:35Z)
 
 **The research program is NOT concluded.** It is in the waiting state
 `AWAITING_NEW_ELIGIBLE_CANDIDATES`: the current market-cap snapshot
@@ -62,6 +62,55 @@ What the evidence says so far:
   also unstable: a leave-one-symbol-out re-selection keeps only 4-7 of the
   original cells and **none of the newcomers clears the cost-stress gate**.
   Artifact: `results/20261021_121629_survivor_selection_audit/`.
+- **The selection is not an artefact of the selection granularity.**
+  `scripts/selection_granularity_leg.py` repeats the walk-forward with one
+  selection per *market-cap family* instead of one per symbol, and adds a
+  random control: the same walk-forward with a random eligible cell picked
+  at every step, 200 replicates. The per-symbol selection scores **0.6409**
+  pooled out-of-fold net PF, the whole-family selection (all 266 symbols)
+  **0.6649** (0.4818 under 2x costs) on 81 254 trades, and the random control
+  a median **0.5601** (p05 0.5529, p95 0.5688). The selection sits at the
+  100th percentile of that control, so it does rank better than a random
+  pick, and the result survives the coarser selection - but it stays below 1
+  out of fold at every granularity. Artifact:
+  `results/20261021_193200_selection_granularity/`.
+- **The one registered mutation that moves the cost drag moves the whole
+  distribution, not the edge.** The PROMPT.md §5.2 ATR minimum-risk mutation
+  is running as a full 17 556-cell child grid
+  (`results/20261021_172619_grid`, parent `results/20261019_135940_grid`,
+  recorded in `results/mutations.json`). On the 24 largest market caps that
+  are complete so far it trades 57.5 % fewer trades and lifts the pooled net
+  PF from 0.4561 to 0.7320, and the walk-forward moves from 0.5942 to 0.7239
+  (2x costs 0.3875 -> 0.5370) - but the child's *own* null moves with it
+  (null median PF 0.4139 -> 0.7067, the selected cells rank at the 0.5177
+  percentile of it, binomial p 0.71), **0 cells clear the §3.4 gate**, and the
+  cost share of the gross profit falls from 75.5 % to 31.3 %: the filter buys
+  back cost drag by trading less and wider, it does not create an edge.
+  Artifact: `results/20261021_194500_mutation_eval_partial/`.
+- **The mutation's first gate-clearing cells are a selection result, not an
+  edge.** The child grid produces cells that clear the §3.4 gate out of sample
+  (the parent grid never does): on the 61 symbols that were complete,
+  **20 of 4 026 child cells (0.50 %)** clear it, on 7 symbols (ENA 5, POL 5,
+  APT 5, WLD 2, RENDER 1, AERO 1, PYTH 1), pooling to an out-of-sample net PF
+  of **1.2606** over 1 633 out-of-sample trades. The family survives
+  leave-one-symbol-out (the pooled out-of-sample PF stays between 1.2177 and
+  1.2765 without any symbol), but only **3 of the 20** keep a net PF above 1
+  in every out-of-sample sub-period that carries trades (POL/USDT P8_200,
+  P21_200, P34_200), and the walk-forward selection on the child grid ranks
+  at the **0.5249 percentile of the child's own null** (one-sided binomial p
+  0.1068): the procedure cannot pick these cells out of the child grid. The
+  open leg is the randomized null on the child grid. Artifact:
+  `results/20261021_200500_mutation_survivor_check/`.
+- **Both grids are the artifacts of the same engine.**
+  `scripts/mutation_repro_check.py` re-runs sampled cells of both runs through
+  the real backtest on the same fixtures: 12/12 child cells and 12/12 parent
+  cells reproduce the stored blotter and summary **exactly** (max metric
+  delta 0). The same leg shows what the mutation does to the *path*: the
+  filter skips an entry, so the position state, the equity path and the size
+  of every later trade change with it - the child drops 788 of the parent's
+  entry bars per cell on average and enters at 21 bars the parent never
+  took, so it is a different trading path, not a pruned copy of the parent's
+  trades. Artifact: `results/20261021_193500_mutation_repro_check/`.
 - **The program continues by policy.** PROMPT.md §2.1.4 is explicit: a failed
   symbol, a failed pair, or a failed batch never stops the program. The
   universe expands with the next lower market-cap names, each through the full

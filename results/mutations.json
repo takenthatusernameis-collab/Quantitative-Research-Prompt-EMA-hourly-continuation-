@@ -18,12 +18,159 @@
     "C_min_risk_atr": {
       "run_id": "20261021_172619_grid",
       "config": {
+        "taker_fee_bps": 10.0,
+        "slippage_bps": 2.0,
+        "rr": 1.0,
+        "stricter_trend": false,
         "min_risk_atr": true,
-        "atr_threshold": 1.0
+        "atr_threshold": 1.0,
+        "conservative_exit": true,
+        "sizing": "risk",
+        "risk_fraction": 0.01,
+        "max_notional_multiple": 10.0
       },
-      "note": "PROMPT.md §5.2 ATR minimum-risk mutation (skip trades whose risk distance < ATR(14))",
+      "note": "PROMPT.md \u00a75.2 ATR minimum-risk mutation (skip trades whose risk distance < ATR(14) x threshold)",
       "status": "running",
-      "started_at": "2026-10-21T17:26:19Z"
+      "started_at": "2026-10-21T17:26:19Z",
+      "parent_run": "results/20261019_135940_grid",
+      "n_symbols": 57,
+      "n_cells": 3762,
+      "delta": {
+        "pooled_net_pf": 0.26346278162852854,
+        "mean_cell_net_pf": 0.28233763101266723,
+        "trades": -1747558,
+        "pooled_oos_net_pf": 0.1834566709564719,
+        "cells_clearing_gate": 19,
+        "walk_forward_pooled_oof_net_pf": 0.13234101574062618
+      },
+      "evaluations": [
+        {
+          "artifact": "results/20261021_194500_mutation_eval_partial",
+          "generated_at": "2026-10-21T19:35:31.930599+00:00",
+          "n_symbols": 56,
+          "n_cells": 3696,
+          "pooled_net_pf": {
+            "parent": 0.4850240101492043,
+            "child": 0.7488704029925457
+          },
+          "walk_forward_pooled_oof_net_pf": {
+            "parent": 0.6177657093047926,
+            "child": 0.7531418590262644
+          },
+          "cells_clearing_gate": {
+            "parent": 0,
+            "child": 19
+          }
+        },
+        {
+          "artifact": "results/20261021_194500_mutation_eval_partial",
+          "generated_at": "2026-10-21T19:36:44.898502+00:00",
+          "n_symbols": 57,
+          "n_cells": 3762,
+          "pooled_net_pf": {
+            "parent": 0.48636960988444977,
+            "child": 0.7498323915129783
+          },
+          "walk_forward_pooled_oof_net_pf": {
+            "parent": 0.6185778328841262,
+            "child": 0.7509188486247523
+          },
+          "cells_clearing_gate": {
+            "parent": 0,
+            "child": 19
+          }
+        }
+      ],
+      "progress": {
+        "checked_at": "2026-10-21T19:50:00Z",
+        "completed_cells": 4026,
+        "total_cells": 17556,
+        "symbols_complete": 61,
+        "next_cell": "STRK/USDT P8_12",
+        "runner": "scripts/run_mutation_grid.py --run results/20261021_172619_grid --min-risk-atr --workers 4",
+        "note": "the child grid is still running; the evaluations below are on the symbols that were complete when they ran"
+      },
+      "legs": [
+        {
+          "leg": "mutation evaluation (partial)",
+          "artifact": "results/20261021_194500_mutation_eval_partial",
+          "n_symbols": 57,
+          "n_cells": 3762,
+          "headline": {
+            "parent_pooled_net_pf": 0.4864,
+            "child_pooled_net_pf": 0.7498,
+            "trades": {
+              "parent": 3097113,
+              "child": 1349555
+            },
+            "cost_share_of_gross_profit": {
+              "parent": 0.678,
+              "child": 0.289
+            },
+            "pooled_oos_net_pf": {
+              "parent": 0.5207,
+              "child": 0.7041
+            },
+            "pooled_oos_stress_net_pf": {
+              "parent": 0.3087,
+              "child": 0.5015
+            },
+            "cells_clearing_gate": {
+              "parent": 0,
+              "child": 19
+            },
+            "walk_forward_pooled_oof_net_pf": {
+              "parent": 0.6186,
+              "child": 0.7509
+            },
+            "child_selection_median_percentile_of_own_null": 0.5249,
+            "child_selection_binomial_p": 0.1068
+          }
+        },
+        {
+          "leg": "reproduction check",
+          "artifact": "results/20261021_193500_mutation_repro_check",
+          "n_cells_checked": 12,
+          "headline": {
+            "child_cells_reproduced": 12,
+            "parent_cells_reproduced": 12,
+            "max_abs_metric_delta": 0.0,
+            "mean_parent_only_entry_bars": 788.2,
+            "mean_child_only_entry_bars": 21.4,
+            "note": "the ATR filter changes the trading path, it does not prune the parent trade list"
+          }
+        },
+        {
+          "leg": "survivor check of the gate-clearing cells",
+          "artifact": "results/20261021_200500_mutation_survivor_check",
+          "n_symbols": 61,
+          "n_cells": 4026,
+          "headline": {
+            "gate_clearing_cells": 20,
+            "gate_clearing_symbols": 7,
+            "family_pooled_oos_net_pf": 1.2606,
+            "family_oos_trades": 1633,
+            "child_cells_with_oos_pf_gt_1_share": 0.045,
+            "leave_one_symbol_out_min_pooled_oos_net_pf": 1.2177,
+            "subperiod_stable_cells": 3,
+            "subperiod_stable_cells_list": [
+              "POL/USDT P8_200",
+              "POL/USDT P21_200",
+              "POL/USDT P34_200"
+            ]
+          }
+        }
+      ],
+      "open_legs": [
+        "randomized null on the child grid: do the 20 gate-clearing cells beat their own randomizations (null_grid_scan.py --survivors-from on the child run), with a Bonferroni correction over the 17 556 cells the child grid tests?",
+        "walk-forward re-selection over the complete child grid: does the procedure find anything out of fold (survivor_selection_audit.py on the child run)?",
+        "the full child-grid evaluation, once the child grid is complete."
+      ],
+      "decision": {
+        "state": "NOT_PROMOTED",
+        "reason": "a gate-clearing cell is a selection result, not a promotion: the family has to beat its own randomizations and the walk-forward has to hold up on the complete child grid first",
+        "baseline_grid": "results/20261019_135940_grid stays the program grid"
+      }
     }
   }
 }

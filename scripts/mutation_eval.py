@@ -33,7 +33,7 @@ Usage:
 import argparse
 import json
 import math
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -190,6 +190,23 @@ def pooled_pf(win: float, loss: float):
     return None
 
 
+def count_pf_mismatches(stats: dict) -> int:
+    """How many cells' stored summary disagrees with its own blotter.
+
+    The stored profit factor of a cell and the profit factor recomputed from
+    the blotter it was written with have to be the same number; a cell where
+    they are not is a broken artifact, not a result.
+    """
+    mismatches = 0
+    for row in stats['rows']:
+        stored = row['stored_net_pf']
+        if stored is None or row['net_pf'] is None:
+            continue
+        if abs(float(stored) - float(row['net_pf'])) > 1e-9 * max(1.0, abs(float(stored))):
+            mismatches += 1
+    return mismatches
+
+
 def summarize_run(stats: dict, min_trades: int, n_folds: int = 5,
                   min_history_trades: int = 20) -> dict:
     """Pooled metrics of one run over the compared symbol set."""
@@ -243,6 +260,8 @@ def summarize_run(stats: dict, min_trades: int, n_folds: int = 5,
             1 for r in rows
             if (r['oos_net_pf'] or 0.0) > 1.0 and r['oos_trades'] >= min_trades),
         'cells_clearing_gate': sum(1 for r in rows if r['clears_gate']),
+        'gate_cells_by_symbol': dict(Counter(
+            r['symbol'] for r in rows if r['clears_gate']).most_common()),
         'walk_forward': walk,
         'selection_vs_null': vs_null,
         'walk_records': walk_records,
@@ -524,9 +543,8 @@ def build_verdict(payload: dict) -> list:
             f"has to beat that number on its own symbol set to be worth anything.")
     if (child['walk_forward']['pooled_oof_net_pf'] or 0.0) > (parent['walk_forward']['pooled_oof_net_pf'] or 0.0):
         lines.append(
-            "The mutation improves the walk-forward number, but the improvement is a "
-            "cost effect (fewer, wider trades) and not a new edge: the program still "
-            "has no cell that clears the gates out of sample.")
+            "The mutation improves the walk-forward number, but the improvement "
+            "is a cost effect (fewer, wider trades) and not a new edge.")
     else:
         lines.append(
             "The mutation does not improve the walk-forward number: it thins the "
@@ -536,6 +554,24 @@ def build_verdict(payload: dict) -> list:
         lines.append(
             "No child cell clears the PROMPT.md §3.4 gate, so the mutation cannot be "
             "promoted and the baseline grid stays the program's grid.")
+    else:
+        by_symbol = child.get('gate_cells_by_symbol') or {}
+        top = ', '.join(f'{symbol} {count}' for symbol, count in
+                        list(by_symbol.items())[:5])
+        null = child.get('selection_vs_null') or {}
+        lines.append(
+            f"{child['cells_clearing_gate']} child cells clear the PROMPT.md §3.4 "
+            f"gate ({child['cells_clearing_gate']} of {child['n_cells']} cells on "
+            f"{len(by_symbol)} symbols: {top}). A cell that clears the gate is a "
+            f"selection result, not a promotion: the child grid's own null puts "
+            f"{pct(null.get('null_pf_gt_1_share'))} of its folds above PF 1 with a "
+            f"median PF of {fmt(null.get('null_median_pf'))}, and the walk-forward "
+            f"selection ranks at the {fmt(null.get('median_percentile'))} "
+            f"percentile of that null (one-sided binomial p "
+            f"{fmt(null.get('binomial_p_value'))}). The gate-clearing cells have to "
+            f"survive the child's own null leg, the walk-forward and the sub-period "
+            f"leg before any of them can be promoted; until then the baseline grid "
+            f"stays the program's grid.")
     return lines
 
 
@@ -619,7 +655,30 @@ def main():
     parser.add_argument('--mutation-record', type=str, default='results/mutations.json',
                         help='parent -> child -> delta record to update '
                              '(empty string disables it)')
+    parser.add_argument('--render-only', type=str, default=None,
+                        help='re-render summary.md from an existing summary.json')
     args = parser.parse_args()
+
+    if args.render_only:
+        out_dir = Path(args.render_only)
+        payload = json.loads((out_dir / 'summary.json').read_text())
+        # An artifact written before the gate counter existed has to be
+        # rebuilt from the per-cell rows, so the verdict stays correct.
+        cells_path = out_dir / 'cells.jsonl'
+        if cells_path.exists():
+            counter = Counter()
+            with open(cells_path) as fh:
+                for line in fh:
+                    row = json.loads(line)
+                    if row.get('clears_gate'):
+                        counter[row['symbol']] += 1
+            payload.setdefault('child', {})['gate_cells_by_symbol'] = \
+                dict(counter.most_common())
+            payload['child']['cells_clearing_gate'] = sum(counter.values())
+        payload['verdict'] = build_verdict(payload)
+        write_report(out_dir, payload)
+        print(f'Rendered {out_dir}/summary.md')
+        return
 
     parent_dir = Path(args.parent)
     child_dir = Path(args.child)
@@ -664,15 +723,10 @@ def main():
                                   args.min_history_trades)
 
     # The stored summaries have to agree with the blotters they came with.
-    for label, stats in (('parent', parent_stats), ('child', child_stats)):
-        mismatches = 0
-        for row in stats['rows']:
-            stored = row['stored_net_pf']
-            if stored is None or row['net_pf'] is None:
-                continue
-            if abs(float(stored) - float(row['net_pf'])) > 1e-9 * max(1.0, abs(float(stored))):
-                mismatches += 1
-        parent_summary[f'{label}_pf_mismatches'] = mismatches
+    # Each run keeps its own counter: the child has to be checked against its
+    # own blotters, not only the parent.
+    parent_summary['parent_pf_mismatches'] = count_pf_mismatches(parent_stats)
+    child_summary['child_pf_mismatches'] = count_pf_mismatches(child_stats)
 
     yardstick = None
     if args.yardstick and Path(args.yardstick).exists():

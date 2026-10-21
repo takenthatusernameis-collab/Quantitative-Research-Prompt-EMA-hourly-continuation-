@@ -2676,3 +2676,104 @@ MERL 1/1 — and the sub-periods are thin, median 22 trades).
 
 Unchanged: wait until **2026-10-22T11:41:20Z**, then fetch a fresh market-cap
 snapshot. See `NEXT_AGENT_TASK.md`.
+
+## Offline verification session (2026-10-21T19:13Z - 19:52Z) — the mutation child grid, its reproduction and its first gate-clearing cells
+
+No ranking query was made: the 24 h refresh bound is closed until
+**2026-10-22T11:41:20Z**, and the universe and the baseline grid are unchanged
+(N = 266, floor AGLD/USDT $16 279 472, `eligible_unseen_below_floor_count=0`).
+The session monitored the running ATR minimum-risk mutation child grid and
+added the two legs that were missing for it.
+
+### 1. State re-verified against the artifacts
+
+`results/20261019_135940_grid/progress.json` is self-consistent: 266 symbols x
+66 pairs = 17 556 cells, `all_symbols_processed=true`, `next_cell=null`, 0
+blocked. A walk of the artifact tree finds 266 symbol dirs, 17 556 cell
+summaries, 17 226 gzip blotters and 330 legacy ones (the five largest market
+caps), 0 missing.
+
+### 2. The mutation child grid (running)
+
+`results/20261021_172619_grid` is the PROMPT.md §5.2 mutation of the baseline
+(`min_risk_atr: false -> true`, `atr_threshold` 1.0, every other config key
+identical), run with `scripts/run_mutation_grid.py` — the same engine as the
+baseline runner, driven by a process pool. Progress at 19:50Z: **4 026 / 17 556
+cells (61 of 266 symbols)**, ETA ~2026-10-22T01:00Z. The parent -> child ->
+delta record is `results/mutations.json`.
+
+### 3. Mutation evaluation (partial)
+
+`results/20261021_194500_mutation_eval_partial/` (57 symbols, 3 762 cells per
+run):
+
+| Measure | Parent | Child | Delta |
+|---|---|---|---|
+| Trades | 3 097 113 | 1 349 555 | -1 747 558 |
+| Pooled net PF | 0.4864 | 0.7498 | +0.2635 |
+| Cost share of gross profit | 67.8 % | 28.9 % | -38.9 pp |
+| Pooled OOS net PF | 0.5207 | 0.7041 | +0.1835 |
+| Pooled OOS net PF (2x costs) | 0.3087 | 0.5015 | +0.1927 |
+| Cells clearing the §3.4 gate | 0 | 19 | +19 |
+| Walk-forward pooled out-of-fold net PF | 0.6186 | 0.7509 | +0.1323 |
+
+The child's **own null moves with it**: the null median PF rises from 0.4139 to
+0.7274 and the walk-forward selection ranks at the 0.5249 percentile of that
+null (one-sided binomial p 0.1068), so the improvement is a cost effect (fewer,
+wider trades), not a new edge.
+
+### 4. Reproduction check (new)
+
+`scripts/mutation_repro_check.py` -> `results/20261021_193500_mutation_repro_check/`.
+12 sampled cells of the child and 12 of the parent were re-run through the real
+backtest on the same fixtures: **12/12 and 12/12 reproduce their stored blotters
+and summaries exactly** (max absolute metric delta 0). The same leg measures
+what the filter does to the path: it skips an entry, so the position state, the
+equity path and the size of every later trade change with it — per cell the
+child drops 86-1 862 of the parent's entry bars and enters at 5-49 bars the
+parent never took. **The child is a different trading path, not a pruned copy
+of the parent's trades**, so the parent -> child -> delta compares two strategy
+instances.
+
+### 5. Survivor check of the child's gate-clearing cells (new)
+
+`scripts/mutation_survivor_check.py` -> `results/20261021_200500_mutation_survivor_check/`
+(61 symbols, 4 026 cells):
+
+| Measure | Value |
+|---|---|
+| Cells clearing the §3.4 gate | **20 (0.50 %)** |
+| Symbols with a gate-clearing cell | 7 (ENA 5, POL 5, APT 5, WLD 2, RENDER 1, AERO 1, PYTH 1) |
+| Pooled OOS net PF of the family | 1.2606 (1 633 OOS trades) |
+| Leave-one-symbol-out pooled OOS net PF | 1.2177 - 1.2765 (no symbol carries the family) |
+| Child cells with OOS net PF > 1 | 180 (4.5 %) |
+| Gate-clearing cells stable in every OOS sub-period | **3 of 20** (POL/USDT P8_200, P21_200, P34_200) |
+
+This is the first family in the program that clears the gate out of sample, so
+it is read as a selection result and not as a promotion: it still has to beat
+its own randomizations (the randomized null on the child grid) and the
+walk-forward has to hold up on the complete child grid. The baseline grid stays
+the program's grid.
+
+### 6. Defect fixed
+
+`scripts/mutation_eval.py` wrote the summary-vs-blotter consistency counter of
+**both** runs into the parent's summary, so the child's own consistency check
+never ran. The counter is now a function (`count_pf_mismatches`) with a test.
+The verdict generator was also corrected: it claimed that no cell clears the
+gate even when the child produces 19, and it now names the gate-clearing
+symbols and compares them with the child's own null.
+
+### 7. Tests
+
+`python -m pytest tests/ -q` -> **193 passed** (174 + the 8 tests of
+`tests/test_mutation_repro_check.py`, the 4 tests added to
+`tests/test_mutation_eval.py` and the 7 tests of
+`tests/test_mutation_survivor_check.py`).
+
+### 8. Next action
+
+Monitor the mutation child grid, then run the full evaluation, the
+reproduction check, the survivor check and the randomized null on the complete
+child grid. From **2026-10-22T11:41:20Z**, fetch a fresh market-cap snapshot.
+See `NEXT_AGENT_TASK.md`.

@@ -1,14 +1,16 @@
 """Tests for the parent -> child -> delta evaluation of a grid mutation."""
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
 
-from scripts.mutation_eval import (MUTATION_KEYS, cell_statistics, complete_symbols,
-                                    config_delta, pooled_pf, restrict_to_common_cells,
-                                    verify_sample)
+from scripts.mutation_eval import (MUTATION_KEYS, build_verdict, cell_statistics,
+                                    complete_symbols, config_delta,
+                                    count_pf_mismatches, pooled_pf,
+                                    restrict_to_common_cells, verify_sample)
 from scripts.run_grid import CONFIG_DEFAULTS, period_pairs, run_cell, symbol_dir_name
 
 PAIRS = period_pairs()
@@ -118,6 +120,86 @@ def test_cell_statistics_and_verification_reproduce_the_stored_summary(tmp_path)
     verified = verify_sample(run_dir, child_cfg, ['TEST/USDT'], str(fixture_base), 1)
     assert len(verified) == 1
     assert verified[0]['max_abs_delta'] == 0.0
+
+
+def minimal_payload(gate_cells: int, by_symbol: dict) -> dict:
+    """A payload shaped like the one the evaluation writes."""
+    walk = {'pooled_oof_net_pf': 0.6, 'pooled_oof_stress_net_pf': 0.4,
+            'steps_scored': 4, 'pooled_oof_trades': 100, 'oof_pf_gt_1': 1,
+            'oof_pf_gt_1_share': 0.25, 'median_history_pf': 0.8,
+            'median_oof_pf': 0.5}
+    null = {'null_pf_gt_1_share': 0.09, 'null_median_pf': 0.7,
+            'median_percentile': 0.52, 'binomial_p_value': 0.11,
+            'above_p95': 1, 'scored': 4}
+    run = {'trades': 100, 'pooled_net_pf': 0.7, 'costs_per_trade': 10.0,
+           'cost_share_of_gross_profit': 0.3, 'pooled_oos_net_pf': 0.7,
+           'pooled_oos_stress_net_pf': 0.4, 'cells_clearing_gate': gate_cells,
+           'n_cells': 100, 'gate_cells_by_symbol': by_symbol,
+           'walk_forward': walk, 'selection_vs_null': null}
+    return {
+        'n_symbols': 2, 'n_cells': 100, 'n_cells_per_symbol': 66,
+        'oos_fraction': 0.35, 'stress_multiplier': 2.0,
+        'parent_run': 'results/parent', 'child_run': 'results/child',
+        'generated_at': '2026-10-21T00:00:00+00:00',
+        'config': {'parent': {'min_risk_atr': False}, 'child': {'min_risk_atr': True},
+                   'changed_keys': ['min_risk_atr'], 'single_variable': True},
+        'parent': dict(run), 'child': dict(run), 'delta': {},
+        'closest_child_cells': [], 'verification': [], 'yardstick': {},
+    }
+
+
+def test_the_verdict_does_not_claim_an_empty_gate_when_cells_clear_it():
+    """A child with gate-clearing cells must not be described as having none."""
+    payload = minimal_payload(3, {'A/USDT': 2, 'B/USDT': 1})
+    verdict = ' '.join(build_verdict(payload))
+    assert 'No child cell clears' not in verdict
+    assert 'A/USDT 2' in verdict
+    assert 'baseline grid stays' in verdict
+
+
+def test_the_verdict_says_so_when_no_cell_clears_the_gate():
+    payload = minimal_payload(0, {})
+    verdict = ' '.join(build_verdict(payload))
+    assert 'No child cell clears' in verdict
+
+
+def test_render_only_rebuilds_the_gate_counter_from_the_cell_rows(tmp_path):
+    """An artifact written before the counter existed still renders correctly."""
+    from scripts.mutation_eval import main
+    out_dir = tmp_path / 'eval'
+    out_dir.mkdir()
+    payload = minimal_payload(0, {})
+    payload['artifact'] = str(out_dir)
+    (out_dir / 'summary.json').write_text(json.dumps(payload))
+    with open(out_dir / 'cells.jsonl', 'w') as fh:
+        fh.write(json.dumps({'symbol': 'A/USDT', 'clears_gate': True}) + '\n')
+        fh.write(json.dumps({'symbol': 'A/USDT', 'clears_gate': False}) + '\n')
+
+    sys.argv = ['mutation_eval.py', '--render-only', str(out_dir)]
+    main()
+    rendered = (out_dir / 'summary.md').read_text()
+    assert 'A/USDT 1' in rendered
+    assert 'No child cell clears' not in rendered
+
+
+def test_count_pf_mismatches_finds_a_broken_cell(tmp_path):
+    fixture_base = tmp_path / 'fixtures'
+    write_fixture(fixture_base / 'TEST_USDT.csv')
+    cfg = dict(CONFIG_DEFAULTS)
+    run_dir = tmp_path / 'run'
+    build_run(run_dir, fixture_base, 'TEST/USDT', cfg)
+
+    stats = cell_statistics(run_dir, ['TEST/USDT'], str(fixture_base), 0.35, 2.0, 5, 30)
+    assert count_pf_mismatches(stats) == 0
+
+    fast, slow = PAIRS[0]
+    summary_path = run_dir / 'results' / symbol_dir_name('TEST/USDT') / f'P{fast}_{slow}' / 'summary.json'
+    summary = json.loads(summary_path.read_text())
+    summary['net_profit_factor'] = 9.99
+    summary_path.write_text(json.dumps(summary))
+
+    stats = cell_statistics(run_dir, ['TEST/USDT'], str(fixture_base), 0.35, 2.0, 5, 30)
+    assert count_pf_mismatches(stats) == 1
 
 
 def test_the_mutation_removes_trades(tmp_path):
