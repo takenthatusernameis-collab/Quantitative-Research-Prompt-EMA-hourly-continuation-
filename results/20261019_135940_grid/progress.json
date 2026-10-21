@@ -1,6 +1,6 @@
 {
   "run_id": "20261019_135940_grid",
-  "timestamp": "20261021_000202",
+  "timestamp": "20261021_000824",
   "symbols": [
     "BTC/USDT",
     "ETH/USDT",
@@ -530,12 +530,7 @@
     "POKT/USDT",
     "XAI/USDT",
     "ANYONE/USDT",
-    "ACE/USDT",
-    "MOVR/USDT",
-    "RIO/USDT",
-    "BICO/USDT",
-    "AGLD/USDT",
-    "TAIKO/USDT"
+    "ACE/USDT"
   ],
   "n_pairs": 66,
   "n_symbols": 266,
