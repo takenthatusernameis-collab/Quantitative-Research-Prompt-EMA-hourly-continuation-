@@ -1,6 +1,6 @@
 # Final Decision — EMA Hourly Continuation
 
-## Program status — 2026-10-20T23:47Z (supersedes the 2026-10-19 baseline decision)
+## Program status — 2026-10-21T01:05Z (supersedes the 2026-10-20T23:47Z decision)
 
 Strategy: EMA hourly continuation (PROMPT.md). Universe: **266 symbols** ranked by
 market cap descending, full EMA period grid (**66 pairs** from
@@ -16,8 +16,11 @@ and the program keeps expanding the universe until the expansion is impossible
 | Grid cells evaluated | **17 556 / 17 556** (266 symbols x 66 pairs), 0 blocked |
 | Labels | 17 530 rejected, 26 exploratory, **0 credible candidates** |
 | Cells with full-sample net PF > 1 | **36 / 17 556 = 0.21 %** against a ~50 % no-edge null (excess -49.8 %) |
+| Cells with out-of-sample net PF > 1 (all 17 556 cells evaluated out of sample) | **77 / 17 556 = 0.44 %** against the same null (excess -49.6 %) |
 | Mean / median net PF (per cell) | 0.4993 / 0.5205 |
+| Mean / median out-of-sample net PF (per cell) | 0.4320 / 0.4343 |
 | Pooled net PF (trade-level) | **0.5224** over 14 240 827 trades |
+| Pooled out-of-sample net PF (trade-level) | **0.5299**; 0.3267 under 2x costs |
 | Best cell | BABYDOGE/USDT P50_55, net PF 2.2274 — rejected, 0 out-of-sample trades |
 
 ### Robustness legs (PROMPT.md §3.3)
@@ -25,6 +28,18 @@ and the program keeps expanding the universe until the expansion is impossible
 - **Out-of-sample + 2x cost stress** (`scripts/candidate_check.py`): all 36
   net-PF > 1 cells rejected; 0 credible candidates. Artifact:
   `results/20261020_233737_candidate_check/summary.md`.
+- **Grid-wide out-of-sample audit** (`scripts/oos_grid_scan.py`, new): the OOS
+  window is applied to **all 17 556 cells**, not only to the 36 whose
+  in-sample net PF exceeded 1. Pooled out-of-sample net PF **0.5299** (0.3267
+  under 2x costs); 77 cells (0.44 %) reach an out-of-sample net PF > 1, 75
+  with >= 30 OOS trades, 10 still > 1 under 2x costs. The 180 screen
+  survivors were re-verified through the real backtest: **0 credible
+  candidates**, 76 exploratory, 104 rejected. Artifact:
+  `results/20261021_005234_oos_grid_scan/summary.md`.
+- **Out-of-sample window sensitivity** (same script): the 6 closest survivors
+  were re-verified at 20 %, 35 % and 50 % windows. None keeps a stressed
+  out-of-sample PF > 1 at all three lengths — the profitable window is an
+  artifact of the window choice.
 - **Drop the N largest market caps** (`scripts/robustness_pooled.py`): pooled net
   PF 0.5224 (all) -> 0.5248 (minus top 5) -> 0.5263 (top 10) -> 0.5280 (top 20)
   -> 0.5303 (top 50). The result does not depend on the largest names.
@@ -40,7 +55,9 @@ and the program keeps expanding the universe until the expansion is impossible
 ### Recommendation
 
 - No live trading, no promotion to production: nothing in 17 556 grid cells
-  survives the out-of-sample and cost-stress gates.
+  survives the out-of-sample and cost-stress gates, and the selection bias of
+  the original gate has now been removed — the out-of-sample window was
+  applied to every cell, not only to the in-sample winners.
 - Keep expanding the universe in market-cap descending order (§2.1) and keep
   running the full 66-pair grid per symbol. The next expansion is blocked only
   by the 24 h market-cap refresh bound, which opens **2026-10-21T11:30:04Z**.

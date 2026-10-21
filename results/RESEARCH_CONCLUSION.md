@@ -1,6 +1,6 @@
 # Research Conclusion — EMA Hourly Continuation
 
-## Program status (2026-10-20T23:47Z)
+## Program status (2026-10-21T01:05Z)
 
 **The research program is NOT concluded.** It is in the waiting state
 `AWAITING_NEW_ELIGIBLE_CANDIDATES`: the current market-cap snapshot
@@ -16,6 +16,16 @@ What the evidence says so far:
   **0.5224**; only **36 cells (0.21 %)** reach a full-sample net PF > 1 against a
   ~50 % no-edge null, and every one of them fails the out-of-sample and 2x-cost
   gates. **0 credible candidates.**
+- **The out-of-sample gate now covers the whole grid, not a selected subset.**
+  The pipeline used to test only the 36 in-sample winners out of sample, which
+  left 17 520 cells unexamined. `scripts/oos_grid_scan.py` applies the same
+  out-of-sample window to all 17 556 cells and re-verifies the survivors with
+  the real backtest: pooled out-of-sample net PF **0.5299** (0.3267 under 2x
+  costs), 77 cells (0.44 %) with an out-of-sample net PF > 1, and **0 credible
+  candidates** among the 180 verified survivors (76 exploratory, 104 rejected).
+  The 6 closest survivors all have a full-sample net PF below 1 (0.75-0.91)
+  and none keeps a stressed out-of-sample PF > 1 at 20 %, 35 % and 50 %
+  window lengths.
 - **The rejection is not an artefact of the sample.** Dropping the 5/10/20/50
   largest market caps does not change the sign or the magnitude of the result
   (pooled net PF 0.5224 -> 0.5303), every market-cap rank bucket is below 1.0,

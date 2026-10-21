@@ -2283,3 +2283,119 @@ No cell was recomputed (all 17 556 were already complete; the run took 6 s).
 
 ### Tests
 `python -m pytest tests/ -q` → **67 passed**.
+
+---
+
+## Offline verification session (2026-10-21T01:05Z) — grid-wide out-of-sample audit
+
+No universe change in this session: N stays **266**, floor stays **TAIKO/USDT**
+$15 436 339. The 24 h refresh bound from `universe/last_scan.json` opens
+**2026-10-21T11:30:04Z**, so no CoinGecko query and no data-layer call was
+made. PROMPT.md §2.1.5 leaves offline verification as the only work available
+in this window, and one gap in the evidence was worth closing.
+
+### 1. State re-verification (2026-10-21T00:30Z)
+
+| Artifact | Fact |
+|---|---|
+| `results/20261019_135940_grid/progress.json` | 266 symbols x 66 pairs = 17 556 completed cells, `all_symbols_processed=true`, `next_cell=null` — self-consistent |
+| `universe/last_scan.json` | `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=266`, `eligible_unseen_below_floor_count=0`, `next_eligible_refresh_at=2026-10-21T11:30:04.315667+00:00` |
+| `data/fixtures/fetch_manifest.json` | 267 entries; every fixture's current row count equals its manifest `rows` (no silent refetch) |
+| Determinism spot check | 12 of 12 sampled cells (random symbols x random pairs, across the 266) re-run through `scripts/run_grid.py:run_cell` reproduce the stored `summary.json` **exactly** (trade count, net PF and Sharpe) |
+
+### 2. Defect found: the artifact layout is not uniform across the run
+
+The grid runner writes gzip-compressed blotters (`trades.csv.gz`), but the five
+largest market-cap names (BTC, ETH, SOL, BNB, XRP — ranks 1-5) still carry the
+legacy baseline-study layout (`trades.csv`, uncompressed). Their
+`config.json` is identical to the grid config and their cells reproduce
+exactly, so the artifacts are valid; but **any tooling that assumes the gzip
+layout silently skips 330 cells — the whole top of the universe.** The new
+audit harness reads both layouts, and reports the count so the gap stays
+visible.
+
+### 3. New robustness leg — grid-wide out-of-sample audit
+
+`scripts/candidate_check.py` applies the §3.4 out-of-sample and 2x-cost gates
+only to the cells whose **in-sample** net PF exceeded 1 — 36 of 17 556. The
+other 17 520 cells were never evaluated out of sample, so the program decision
+rested on a selected subset and a cell with a real edge but an unlucky
+in-sample window could never have been found.
+
+`scripts/oos_grid_scan.py` (new, `tests/test_oos_grid_scan.py`) removes the
+selection:
+
+- **stage 1 (screen)** — every cell, computed from the trade blotters the run
+  already wrote. Trades are split at the same bar boundary the grid runner
+  uses (`entry_start_index = int(n_bars * (1 - oos_fraction))`), and the
+  out-of-sample net PF, trade count and 2x-cost net PF are recomputed. No
+  backtest is re-run and no market data is fetched, so the whole grid is
+  screened in about a minute. The 2x-cost restatement is exact: the engine
+  charges `(taker + slippage) / 10000` per side, so scaling the cost model
+  subtracts one more `entry_cost + exit_cost` per trade.
+- **stage 2 (verify)** — every cell the screen keeps is re-run through the real
+  backtest (`scripts/run_grid.run_cell`) with the out-of-sample window and with
+  2x costs; the §3.4 gates are applied to those authoritative numbers.
+
+Command:
+
+```
+PYTHONPATH=. python3 scripts/oos_grid_scan.py --run results/20261019_135940_grid \
+  --oos-fraction 0.35 --min-trades 30 --screen-pf 0.9 \
+  --compare-candidate-check results/20261020_233737_candidate_check \
+  --window-fractions 0.20 0.35 0.50
+```
+
+Artifact: `results/20261021_005234_oos_grid_scan/` (`summary.md`, `summary.json`,
+`cells.jsonl`, `config.json`).
+
+### 4. Result
+
+| Quantity | Value |
+|---|---|
+| Cells screened out of sample | **17 556 / 17 556** (the pipeline had only checked 36) |
+| Pooled out-of-sample net PF (trade level) | **0.5299** (0.3267 under 2x costs) |
+| Out-of-sample net PF per cell | mean 0.4320, median 0.4343, p95 0.7202, max 1.9955 |
+| Cells with out-of-sample net PF > 1 | **77 (0.44 %)** vs a ~50 % no-edge null (excess -49.6 %) |
+| ...with >= 30 out-of-sample trades | 75 |
+| ...and still > 1 under 2x costs | **10** |
+| Screen survivors re-verified with a real backtest | **180** |
+| Verdicts | **0 credible candidates**, 76 exploratory, 104 rejected |
+| Cells whose blotter net PF disagrees with the stored summary | **0** |
+
+**Selection bias closed.** The 36 in-sample winners contain 1 cell with an
+out-of-sample net PF > 1; the other 17 520 cells contain 76 more. None of the
+77 survives the §3.4 gate, in either population.
+
+**The 6 closest survivors** (BRETT P8_200, DEXE P50_200, DEXE P55_200,
+GRT P20_200, MERL P8_200, ZEN P12_200) all have a **full-sample** net PF below
+1 (0.7535-0.9087) and a full-sample stressed net PF far below 1
+(0.5577-0.7066): the profitable out-of-sample window is a lucky slice of a
+strategy that loses money over the whole sample. All 76 exploratory signals
+are blocked by the cost-stress gates (70 by the out-of-sample 2x-cost leg, 76 by
+the full-sample 2x-cost leg); none is blocked by the Sharpe gate.
+
+**Window sensitivity.** Re-verified at 20 %, 35 % and 50 % out-of-sample
+windows, none of the 6 keeps a stressed out-of-sample PF > 1 at all three
+lengths (GRT, MERL and ZEN only look good at the 35 % window; BRETT and DEXE
+P55_200 fail the cost gate at two of three; DEXE P50_200 falls below 1.0 at
+50 %). The verdict is not an artifact of the window choice.
+
+**Screen fidelity.** Against the authoritative `candidate_check` numbers: 32
+of the 36 cells have no out-of-sample trade in either run (agree by
+construction), and on the 4 comparable cells the mean absolute net PF
+difference is 0.0603 (max 0.2082) with a max trade-count difference of 6. The
+screen is optimistic in one direction (it reuses the full-sample blotter, so
+the window inherits the in-sample equity path and the position state at the
+boundary) — which is why the screen threshold is loose and every verdict is
+taken from the stage-2 numbers.
+
+### 5. Tests
+
+`python -m pytest tests/ -q` → **77 passed** (10 new in
+`tests/test_oos_grid_scan.py`).
+
+### 6. Next action (unchanged)
+
+Wait until **2026-10-21T11:30:04Z**, then fetch a fresh market-cap snapshot
+and resume the append-only expansion. See `NEXT_AGENT_TASK.md`.
