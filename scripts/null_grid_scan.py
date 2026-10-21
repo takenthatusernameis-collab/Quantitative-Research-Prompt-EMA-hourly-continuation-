@@ -829,7 +829,10 @@ def summarize_existing(out_dir: Path, args) -> None:
     grid_summary = build_grid_summary(rows, modes, args.min_trades)
     # The validation leg is not re-run when only the summary is rebuilt, so the
     # numbers of the previous run are carried over instead of being reported
-    # as zero.
+    # as zero. When no previous summary exists (a leg that was only ever
+    # checkpointed, like the interrupted 20261021_035000 pass), fall back to
+    # the grid-wide out-of-sample audit's Leg 0, which is the same "harness
+    # reproduces the grid run" check over the same 17 556 cells.
     validation = {'n_cells': 0, 'n_summary_matches': 0, 'n_window_matches': 0,
                   'n_signals_match': 0, 'cells': []}
     summary_path = out_dir / 'summary.json'
@@ -839,6 +842,15 @@ def summarize_existing(out_dir: Path, args) -> None:
             validation = previous.get('validation', validation)
         except Exception:
             pass
+    elif not validation['n_cells']:
+        for candidate in sorted(Path('results').glob('*_oos_grid_scan/summary.json')):
+            try:
+                prev = json.loads(candidate.read_text())
+            except Exception:
+                continue
+            if prev.get('n_cells') == len(rows):
+                validation = prev.get('validation', validation)
+                break
     payload = {
         'generated_at': datetime.now(timezone.utc).isoformat(),
         'source_run': args.run,
