@@ -1,0 +1,48 @@
+{
+  "preregistration_id": "atr_min_risk_1.0_full_grid_20261021",
+  "registered_at": "2026-10-21T12:50:00Z",
+  "registered_by": "Kilo research agent (session 2026-10-21T12:39Z)",
+  "mutation": "PROMPT.md §5.2, extension #2: ATR-based minimum-risk filter (skip trades whose stop distance is narrower than the ATR multiple)",
+  "why_this_mutation": "It is the only optional mutation that moved the cost drag materially: the cost-drag leg (results/20261021_102500_cost_drag_leg) measured, on 200 re-run cells, a mean net PF of 0.2281 on the parent and 0.5460 on the child, on 17 929 trades instead of 75 005. The mechanism is documented there: the cost of a trade as a share of its gross P&L is 2 * cost_per_side / risk_pct, and the median cell's stop distance is 0.912 % of the entry price, so a wider stop buys back the cost drag.",
+  "parent": {
+    "run": "results/20261019_135940_grid",
+    "description": "The baseline grid: 266 symbols x 66 EMA pairs = 17 556 cells, full sample, min_risk_atr false.",
+    "config": {
+      "taker_fee_bps": 10.0,
+      "slippage_bps": 2.0,
+      "rr": 1.0,
+      "stricter_trend": false,
+      "min_risk_atr": false,
+      "atr_threshold": 1.0,
+      "conservative_exit": true,
+      "sizing": "risk",
+      "risk_fraction": 0.01,
+      "max_notional_multiple": 10.0,
+      "oos_fraction": null
+    }
+  },
+  "child": {
+    "description": "The same grid with the ATR minimum-risk filter switched on. Everything else is held fixed: same symbols, same 66 pairs, same costs, same fill rule, same same-bar conflict rule, same sizing.",
+    "delta_from_parent": {
+      "min_risk_atr": true,
+      "atr_threshold": 1.0
+    },
+    "invocation": "PYTHONPATH=. python3 scripts/run_grid.py --n 266 --min-risk-atr --atr-threshold 1.0 --engine fast --note 'pre-registered PROMPT.md 5.2 ATR minimum-risk mutation (preregistration_id atr_min_risk_1.0_full_grid_20261021); the baseline grid is not replaced'"
+  },
+  "engine_note": "The child run uses --engine fast, the array twin of both the signal generator and the backtest engine. The twins are proved equivalent to the research path: results/signal_equivalence_check.json (268 symbols, 1 360 cells, no mismatch) and results/20261021_130000_grid_repro_fast (200 of 200 sampled baseline cells re-run through the fast path reproduce their stored summaries exactly).",
+  "measures_to_report": {
+    "primary": "pooled out-of-fold net PF of the selection procedure, computed with the walk-forward protocol of the survivor selection audit (results/20261021_121629_survivor_selection_audit, leg 3): the full sample of every symbol is cut into 5 sequential folds, at step k the best cell is chosen on the history (folds 1..k, at least 20 trades) and scored on fold k+1, which the selection never saw. The yardstick is the parent's pooled out-of-fold net PF of 0.6409 (0.4521 under 2x costs).",
+    "secondary": [
+      "pooled full-sample net PF, gross net PF and trade count of the child against the parent",
+      "share of out-of-fold windows with net PF above 1, and above 1 under 2x costs",
+      "the OOS gate of the grid-wide audit (out-of-sample net PF > 1, at least 30 out-of-sample trades, still > 1 under 2x costs): how many cells of the child clear it, against 10 of 17 556 for the parent",
+      "the cost share of the gross P&L, recomputed on the child"
+    ]
+  },
+  "decision_rule_fixed_in_advance": "The child is promoted to a credible candidate only if (a) its pooled out-of-fold net PF under the identical walk-forward protocol is above 1.0, (b) it is still above 1.0 under 2x costs, and (c) at least one cell clears the OOS + 2x-cost gate with at least 30 out-of-sample trades. If any of the three fails, the child is recorded as a rejected mutation, whatever its in-sample numbers look like. A child that only improves the gross-to-net gap without crossing those gates is a cost-drag repair, not an edge.",
+  "guardrails": [
+    "The child run writes to its own run directory and does not replace or modify the baseline grid.",
+    "No gate is relaxed to accommodate the child.",
+    "The result is recorded as parent -> child -> delta, and a negative result does not stop the program."
+  ]
+}

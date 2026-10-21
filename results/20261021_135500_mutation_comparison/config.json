@@ -1,0 +1,28 @@
+{
+  "args": {
+    "parent": "results/20261019_135940_grid",
+    "parent_oos": "results/20261021_033523_oos_grid_scan",
+    "child": "results/20261021_125403_grid",
+    "child_oos": "results/20261021_134900_child_oos_grid_scan",
+    "preregistration": "results/20261021_130500_atr_min_risk_prereg",
+    "fixture_base": "data/fixtures",
+    "mcap": "universe/mcap_rank.json",
+    "n_folds": 5,
+    "min_history_trades": 20,
+    "buckets": 5,
+    "stress_multiplier": 2.0,
+    "out": "results/20261021_135500_mutation_comparison"
+  },
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": false,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  }
+}

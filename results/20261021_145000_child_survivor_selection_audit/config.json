@@ -1,0 +1,93 @@
+{
+  "args": {
+    "run": "results/20261021_125403_grid",
+    "oos_audit": "results/20261021_134900_child_oos_grid_scan",
+    "fixture_base": "data/fixtures",
+    "stress_multiplier": 2.0,
+    "min_trades": 30,
+    "top_k": 10,
+    "n_folds": 5,
+    "min_history_trades": 20,
+    "oos_subperiods": 4,
+    "limit_symbols": 0,
+    "exact_verify": 1,
+    "out": "results/20261021_145000_child_survivor_selection_audit",
+    "closest_survivors": [
+      "AERO/USDT:12:200",
+      "BLUR/USDT:8:200",
+      "CETUS/USDT:8:200",
+      "CETUS/USDT:12:200",
+      "ENA/USDT:20:21",
+      "FLUX/USDT:8:200",
+      "IMX/USDT:8:200",
+      "PUFFER/USDT:20:200",
+      "WLD/USDT:20:200",
+      "ZEN/USDT:8:200"
+    ],
+    "render_only": null
+  },
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": true,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "closest_survivors": [
+    [
+      "AERO/USDT",
+      12,
+      200
+    ],
+    [
+      "BLUR/USDT",
+      8,
+      200
+    ],
+    [
+      "CETUS/USDT",
+      8,
+      200
+    ],
+    [
+      "CETUS/USDT",
+      12,
+      200
+    ],
+    [
+      "ENA/USDT",
+      20,
+      21
+    ],
+    [
+      "FLUX/USDT",
+      8,
+      200
+    ],
+    [
+      "IMX/USDT",
+      8,
+      200
+    ],
+    [
+      "PUFFER/USDT",
+      20,
+      200
+    ],
+    [
+      "WLD/USDT",
+      20,
+      200
+    ],
+    [
+      "ZEN/USDT",
+      8,
+      200
+    ]
+  ]
+}

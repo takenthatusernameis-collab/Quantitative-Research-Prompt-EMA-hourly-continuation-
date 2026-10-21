@@ -1,5 +1,154 @@
 # Final Decision — EMA Hourly Continuation
 
+## Program status — 2026-10-21T14:25Z (supersedes the 2026-10-21T12:20Z decision)
+
+Strategy: EMA hourly continuation (PROMPT.md). Universe: **266 symbols** ranked by
+market cap descending, full EMA period grid (**66 pairs** from
+`{8, 12, 20, 21, 26, 34, 50, 55, 89, 100, 144, 200}`), hourly KuCoin OHLCV, net of
+costs (10 bps taker + 2 bps slippage per side).
+
+**Decision: still no credible edge for the rule as it stands, and the strategy
+is rejected on the evidence to date. The program keeps expanding the universe
+until the expansion is impossible (PROMPT.md §2.1) — a negative result is never
+a program stop.**
+
+This status adds two things to the record: the **pre-registered ATR
+minimum-risk mutation** (PROMPT.md §5.2, extension #2) was run over the
+**whole grid** and compared with its parent, and the walk-forward selection
+audit was repeated at **several selection granularities**.
+
+| Gate | Baseline grid (parent) | ATR minimum-risk mutation (child) |
+|---|---|---|
+| Grid cells | 17 556 / 17 556 | 17 556 / 17 556 (own run dir, parent untouched) |
+| Trades | 14 241 237 | 6 913 033 (48.5 % of the parent's sample) |
+| Pooled net PF (full sample) | 0.5225 | **0.7347** |
+| Pooled net PF (2x costs) | 0.3198 | 0.5561 |
+| Pooled gross PF | 0.8872 | 0.9636 |
+| Median cell cost share of the gross move | 26.6 % | **13.2 %** |
+| Median cell stop distance (share of entry price) | 1.35 % | 2.08 % |
+| **Pooled out-of-fold net PF (walk-forward, the yardstick)** | 0.6409 | **0.7390** (0.5731 under 2x costs) |
+| Out-of-fold windows above PF 1 | 86 / 1060 (8.1 %) | 175 / 1060 (16.5 %) |
+| Cells with out-of-sample net PF > 1 | 77 (0.44 %) | 608 (3.46 %) |
+| Cells clearing the grid-wide OOS + 2x-cost gate | 10 | **106** |
+| Verified credible candidates (the full §3.4 gate) | **0** | **10** |
+
+Artifacts: pre-registration `results/20261021_130500_atr_min_risk_prereg/`,
+child grid `results/20261021_125403_grid/`, child out-of-sample audit
+`results/20261021_134900_child_oos_grid_scan/`, comparison
+`results/20261021_135500_mutation_comparison/`.
+
+### The ATR minimum-risk mutation (pre-registered, parent -> child -> delta)
+
+The pre-registration was written **before** the child run started
+(2026-10-21T12:50:00Z) and fixed the decision rule in advance: the child is
+promoted only if its pooled out-of-fold net PF under the identical walk-forward
+protocol is above 1.0, **and** still above 1.0 under 2x costs, **and** at least
+one cell clears the out-of-sample + 2x-cost gate with at least 30 out-of-sample
+trades.
+
+**The rule is NOT satisfied: the child's pooled out-of-fold net PF is 0.7390
+(0.5731 under 2x costs). The mutation is recorded as a rejected mutation as a
+program-level rule.** The mechanism is the one the cost-drag leg predicted: the
+filter skips trades whose stop is narrower than one ATR14, so the median stop
+widens from 1.35 % to 2.08 % of the entry price, the median cell's cost share
+of its gross move falls from 26.6 % to 13.2 %, and the pooled gross PF moves
+from 0.8872 to 0.9636. The filter buys back the cost drag and changes the
+gross result — but the procedure still loses money out of sample.
+
+**What the child does change, and what it does not.** The child's cells clear
+the grid-wide out-of-sample + 2x-cost gate 106 times against the parent's 10,
+and 10 cells pass the full §3.4 credible-candidate gate against the parent's
+0. That is *not* a promotion: 106 of 17 556 is 0.60 % of the grid, the
+parent's own randomized-entry null puts the false-positive rate of the same
+gate at 0.04-0.12 % of the grid, and the child's survivors have not been
+through the selection-bias machinery (null scan, survivor selection audit,
+leave-one-symbol-out, candidate check, sub-period stability) that the parent's
+survivors had to pass. **The next leg has to run that machinery on the child
+before the child's 10 cells can be called anything.** One early warning is
+already visible: only 32 of the child's 108 gate-clearing cells keep a stressed
+out-of-sample PF above 1 at all three window lengths (20 %, 35 %, 50 %),
+against 0 of 6 for the parent — the child's survivors are less window-fragile,
+but the majority of them still are.
+
+### Is the walk-forward result a property of the selection granularity?
+
+`scripts/selection_granularity.py`, artifact
+`results/20261021_140500_selection_granularity/`: the walk-forward of leg 3 is
+re-run with the selection unit changed — one selection per symbol (266
+selections per step), one per market-cap bucket (5), or one for the whole
+universe — and with 1, 3 or 10 cells selected per unit. The control (per
+symbol, one cell) reproduces the recorded leg-3 yardstick exactly: pooled
+out-of-fold net PF **0.6409** (0.4521 under 2x costs) over 95 786 out-of-fold
+trades, 8.1 % of the windows above PF 1, median percentile 0.7768 against the
+grid's own null, one-sided exact binomial p 1.9e-57.
+
+| Selection unit | Parent, pooled out-of-fold net PF | Child, pooled out-of-fold net PF |
+|---|---|---|
+| per symbol (K = 1) | 0.6409 | 0.7390 |
+| per market-cap bucket (K = 1) | 0.6609 | 0.8069 |
+| global, one pair for the universe (K = 1) | 0.6649 | 0.8030 |
+| global (K = 3) | 0.6613 | 0.8070 |
+
+**No granularity clears PF 1 out of sample, in either arm.** A coarser
+selection lifts the number by 0.02-0.07 and does not change the sign, so the
+negative result of the finest selection is a property of the rule, not of the
+selection granularity — the question the handoff asked has one answer for every
+level of the ladder.
+
+### Engine work that made the leg possible (no change to the baseline grid)
+
+The pre-registered mutation was a ~44 h run on the research engine
+(~10 min/symbol, 266 symbols x 66 pairs). It was finished in **55 minutes**
+with a proved-equivalent twin of the engine:
+
+- `backtest/backtest.py::backtest_symbol_fast` — the same state machine on
+  numpy arrays (~0.05 s against ~4.7 s per cell), plus
+  `signals.signals.generate_signals_vectorized` in the fast path.
+- Equivalence is proved, not assumed: `tests/test_backtest_fast.py` (15 tests
+  on synthetic frames and real fixtures, trade field by trade field and equity
+  curve row by row curve row), `results/signal_equivalence_check.json` (268
+  symbols, 1 360 cells, no mismatch), `results/20261021_130000_grid_repro_fast`
+  (**200 of 200** sampled baseline cells re-run through the fast path reproduce
+  their stored summaries exactly) and `results/20261021_141000_child_grid_repro`
+  (**150 of 150** sampled child cells reproduce exactly).
+- The research path is untouched: `engine='reference'` is still the default of
+  `scripts/run_grid.py`, and the baseline grid artifacts were not modified.
+- `scripts/run_grid.py` now writes `progress.json` after every symbol, so an
+  interrupted run resumes from the cells that are already on disk.
+- The legs that re-run the cells of a grid now read the config of *that* run
+  (`scripts/run_grid.py::run_config`), so a mutated grid is audited under the
+  mutation's config instead of the default one. Before this fix the child's
+  cells were audited as if they were the parent's.
+
+### Universe status (unchanged, 2026-10-21T11:41:20Z)
+
+A fresh ranking snapshot (`universe/mcap_snapshot_20261021_114120.json`, 10/10
+pages, 1 000 entries) was taken when the 24 h bound opened. The expansion floor
+is now `AGLD/USDT` $16 279 472 and the coverage reaches $15 931 465, below it:
+the band holds 10 names, all excluded (4 with less than two years of hourly
+history, 6 with no tradable KuCoin spot USDT pair). **0 eligible unseen names
+below the floor**, so no expansion is possible from this snapshot and the
+program stays in `AWAITING_NEW_ELIGIBLE_CANDIDATES` until
+**2026-10-22T11:41:20Z**.
+
+### Recommendation
+
+- No live trading, no promotion to production. The rule as registered still has
+  no out-of-sample edge, at any selection granularity, with or without the
+  ATR minimum-risk filter.
+- **Next, before the refresh bound opens: run the selection-bias machinery on
+  the child's 10 credible candidates** — a child-specific randomized-entry null
+  (the ATR filter *plus* randomized entries), the survivor selection audit
+  (family concentration, leave-one-symbol-out, walk-forward), the candidate
+  check and the sub-period stability. The child is the only thing in the
+  program that has produced a credible candidate, and it has not yet been
+  through the machinery that killed the parent's 10.
+- Keep expanding the universe in market-cap descending order (§2.1) and keep
+  running the full 66-pair grid per symbol. The next expansion is blocked only
+  by the 24 h market-cap refresh bound, which opens **2026-10-22T11:41:20Z**.
+
+---
+
 ## Program status — 2026-10-21T12:20Z (supersedes the 2026-10-21T11:45Z decision)
 
 Strategy: EMA hourly continuation (PROMPT.md). Universe: **266 symbols** ranked by

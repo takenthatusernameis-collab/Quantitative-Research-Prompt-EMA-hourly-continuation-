@@ -2676,3 +2676,127 @@ MERL 1/1 — and the sub-periods are thin, median 22 trades).
 
 Unchanged: wait until **2026-10-22T11:41:20Z**, then fetch a fresh market-cap
 snapshot. See `NEXT_AGENT_TASK.md`.
+
+---
+
+## Offline verification session (2026-10-21T12:39Z - 14:25Z) — pre-registered ATR minimum-risk mutation (full grid) + selection-granularity ladder
+
+No universe change in this session: the expansion floor is still
+`AGLD/USDT` $16 279 472, the coverage still reaches $15 931 465 below it, and
+the 24 h refresh bound stays closed until **2026-10-22T11:41:20Z**
+(`universe/last_scan.json`: `eligible_unseen_below_floor_count = 0`, state
+`AWAITING_NEW_ELIGIBLE_CANDIDATES`). No CoinGecko query was made.
+
+The session did the offline work the previous handoff named.
+
+### 1. Engine work — the 44 h mutation became a 55 min run
+
+The pre-registered mutation was estimated at ~44 h on the research engine
+(~10 min/symbol x 266 symbols x 66 pairs). It was finished in **55 minutes**
+with a proved-equivalent twin:
+
+- `backtest/backtest.py::backtest_symbol_fast` — the same state machine on
+  numpy arrays (~0.05 s against ~4.7 s per cell); the fast path also uses
+  `signals.signals.generate_signals_vectorized`.
+- Equivalence is proved, not assumed: `tests/test_backtest_fast.py` (15 tests),
+  `results/signal_equivalence_check.json` (268 symbols, 1 360 cells, no
+  mismatch), `results/20261021_130000_grid_repro_fast` (**200 of 200** sampled
+  baseline cells reproduce their stored summaries exactly) and
+  `results/20261021_141000_child_grid_repro` (**150 of 150** sampled child
+  cells reproduce exactly).
+- The research path is untouched: `engine='reference'` is still the default of
+  `scripts/run_grid.py`; the baseline grid artifacts were not modified.
+- `scripts/run_grid.py` now writes `progress.json` after every symbol, so an
+  interrupted run resumes from the cells already on disk.
+- The legs that re-run the cells of a grid now read the config of *that* run
+  (`scripts/run_grid.py::run_config`). Before this fix, a mutated grid was
+  audited as if it were the parent (the child's cells were re-run with
+  `min_risk_atr = false`, which is why the first child reproducibility check
+  reported 150 stale cells).
+
+### 2. Pre-registered ATR minimum-risk mutation — parent -> child -> delta
+
+Pre-registration written **before** the child run started
+(`results/20261021_130500_atr_min_risk_prereg/`, registered 2026-10-21T12:50Z):
+PROMPT.md §5.2 extension #2, `min_risk_atr = true`, `atr_threshold = 1.0`,
+everything else identical to the parent, and the decision rule fixed in
+advance (pooled out-of-fold net PF > 1.0 **and** > 1.0 under 2x costs **and**
+at least one cell clearing the out-of-sample + 2x-cost gate with >= 30
+out-of-sample trades).
+
+Child run: `results/20261021_125403_grid/` (17 556 / 17 556 cells,
+`all_symbols_processed = true`, 0 blocked). The baseline grid was not
+replaced.
+
+| Measure | Parent | Child | Delta |
+|---|---|---|---|
+| Trades | 14 241 237 | 6 913 033 | -7 328 204 |
+| Pooled net PF | 0.5225 | 0.7347 | +0.2123 |
+| Pooled net PF (2x costs) | 0.3198 | 0.5561 | +0.2363 |
+| Pooled gross PF | 0.8872 | 0.9636 | +0.0764 |
+| Median cell cost share of the gross move | 26.62 % | 13.21 % | -13.4 pp |
+| Median cell stop distance (entry price) | 1.35 % | 2.08 % | +0.73 pp |
+| Pooled out-of-fold net PF (walk-forward) | 0.6409 | 0.7390 | +0.0981 |
+| Pooled out-of-fold net PF (2x costs) | 0.4521 | 0.5731 | +0.1209 |
+| Out-of-fold windows above PF 1 | 86 (8.1 %) | 175 (16.5 %) | +89 |
+| Cells clearing the grid-wide OOS + 2x-cost gate | 10 | 106 | +96 |
+| Verified credible candidates (full §3.4 gate) | 0 | 10 | +10 |
+
+**The pre-registered decision rule is not satisfied** (the pooled out-of-fold
+net PF is 0.7390, not above 1.0): the mutation is recorded as a **rejected
+mutation as a program-level rule**. The mechanism is the one the cost-drag leg
+predicted — the filter skips trades whose stop is narrower than one ATR14, so
+the stop widens and the cost share of the gross move halves. The child also
+moves the *gross* result (0.8872 -> 0.9636), so the filter is not only a cost
+effect; it still does not make the procedure profitable out of sample.
+
+Artifacts: `results/20261021_125403_grid/` (child grid),
+`results/20261021_134900_child_oos_grid_scan/` (child out-of-sample audit,
+1 426 screen survivors verified: 10 credible, 587 exploratory),
+`results/20261021_135500_mutation_comparison/` (parent -> child -> delta).
+
+### 3. Selection granularity — is the walk-forward a property of the granularity?
+
+`scripts/selection_granularity.py`, artifact
+`results/20261021_140500_selection_granularity/`. The walk-forward of the
+survivor selection audit is re-run with the selection unit changed (per symbol
+/ per market-cap bucket / one pair for the whole universe) and with 1, 3 or 10
+cells per unit.
+
+| Selection unit | Parent | Child |
+|---|---|---|
+| per symbol (K = 1) | 0.6409 | 0.7390 |
+| per market-cap bucket (K = 1) | 0.6609 | 0.8069 |
+| global (K = 1) | 0.6649 | 0.8030 |
+| global (K = 3) | 0.6613 | 0.8070 |
+
+The control reproduces the recorded leg-3 yardstick exactly (0.6409, 0.4521
+under 2x costs, 95 786 out-of-fold trades, median percentile 0.7768, one-sided
+exact binomial p 1.9e-57). **No granularity clears PF 1 in either arm**, so
+the negative result of the finest selection is a property of the rule and not
+of the selection granularity.
+
+### 4. The open thread
+
+The child produces cells the parent does not: 106 cells clear the grid-wide
+out-of-sample + 2x-cost gate (parent 10), 10 cells pass the full §3.4 gate
+(parent 0), and 32 of the 108 gate-clearing cells keep a stressed
+out-of-sample PF above 1 at all three window lengths (parent: 0 of 6). None of
+that is a promotion: the child's survivors have not been through the
+selection-bias machinery (child-specific randomized-entry null, survivor
+selection audit, leave-one-symbol-out, candidate check, sub-period stability).
+That is the next leg.
+
+### 5. Tests
+
+`python -m pytest tests/ -q` -> **179 passed** (151 before this session, plus
+15 in `tests/test_backtest_fast.py`, 9 in
+`tests/test_selection_granularity.py`, 3 in
+`tests/test_mutation_comparison.py` and 1 new equivalence test in
+`tests/test_grid_runner.py`).
+
+### 6. Next action
+
+Unchanged for the universe: wait until **2026-10-22T11:41:20Z**, then fetch a
+fresh market-cap snapshot. Before that, run the selection-bias machinery on the
+child's 10 credible candidates. See `NEXT_AGENT_TASK.md`.

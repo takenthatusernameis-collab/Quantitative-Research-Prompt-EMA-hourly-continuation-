@@ -53,7 +53,8 @@ import numpy as np
 import pandas as pd
 
 from data.data_loader import load_ohlcv_csv
-from scripts.run_grid import CONFIG_DEFAULTS, read_artifact_csv, run_cell
+from scripts.run_grid import (CONFIG_DEFAULTS, read_artifact_csv, run_cell,
+                             run_config)
 
 # Trade blotter columns the screen needs. Reading only these keeps the
 # grid-wide pass cheap: the run holds 17 556 blotters.
@@ -201,10 +202,18 @@ def verdict(oos_metrics: dict, stress_oos_metrics: dict, full_stress_pf,
 
 
 def verify_cell(symbol: str, df: pd.DataFrame, fast: int, slow: int,
-                oos_fraction: float, stress_multiplier: float, config: dict) -> dict:
+                oos_fraction: float, stress_multiplier: float, config: dict,
+                engine: str = 'reference') -> dict:
     """Re-run one cell through the real backtest, in and out of sample.
 
     Returns the base-cost and stressed-cost out-of-sample metric sets.
+
+    `engine='fast'` selects the array twin of the signal generator and of the
+    backtest engine, which is proved to produce the same trades and the same
+    metrics (200 of 200 sampled baseline cells reproduce their stored
+    summaries exactly, and the ATR-filtered path is identical on real data).
+    It exists because the exact re-verification of a full grid's survivors is
+    ~30 min on the reference engine.
     """
     legs = {}
     for name, taker, slip in (
@@ -217,13 +226,15 @@ def verify_cell(symbol: str, df: pd.DataFrame, fast: int, slow: int,
             config['conservative_exit'], oos_fraction=oos_fraction,
             sizing=config['sizing'], risk_fraction=config['risk_fraction'],
             max_notional_multiple=config['max_notional_multiple'],
+            engine=engine,
         )
         legs[name] = metrics
     return legs
 
 
 def window_sensitivity(rows: list, fixture_base: str, fractions: list,
-                       stress_multiplier: float, config: dict, min_trades: int) -> list:
+                       stress_multiplier: float, config: dict, min_trades: int,
+                       engine: str = 'reference') -> list:
     """Re-verify a set of cells at several out-of-sample window sizes.
 
     The out-of-sample window is a single choice (the trailing 35 % of the
@@ -237,7 +248,7 @@ def window_sensitivity(rows: list, fixture_base: str, fractions: list,
         per_window = []
         for fraction in fractions:
             legs = verify_cell(symbol, df, row['P_fast'], row['P_slow'], fraction,
-                               stress_multiplier, config)
+                               stress_multiplier, config, engine)
             label = verdict(legs['oos'], legs['stress_oos'], row['stress_net_pf'], min_trades)
             per_window.append({
                 'oos_fraction': fraction,
@@ -413,7 +424,8 @@ def write_report(out_dir: Path, payload: dict) -> None:
                  f"symbol's bars, entries restricted to the window")
     lines.append(f"**Cost stress:** {payload['stress_multiplier']:g}x fees and slippage "
                  f"(base {payload['base_costs_bps']['taker']:g} bps taker + "
-                 f"{payload['base_costs_bps']['slippage']:g} bps slippage per side)\n")
+                 f"{payload['base_costs_bps']['slippage']:g} bps slippage per side)")
+    lines.append(f"**Exact re-verification engine:** {payload.get('engine', 'reference')}\n")
 
     lines.append('## Why this leg exists\n')
     lines.append(f"The pipeline's OOS gate was only ever applied to the "
@@ -634,6 +646,11 @@ def main():
                         default=[0.20, 0.35, 0.50],
                         help='Out-of-sample window lengths the closest survivors are '
                              're-verified at (empty list disables the leg)')
+    parser.add_argument('--engine', type=str, default='reference',
+                        choices=['reference', 'fast'],
+                        help="Engine used for the exact re-verification of the screen "
+                             "survivors: 'reference' (bar-by-bar research path, default) "
+                             "or 'fast' (its proved-equivalent array twin)")
     parser.add_argument('--out', type=str, default=None,
                         help='Output dir (default results/<TS>_oos_grid_scan)')
     args = parser.parse_args()
@@ -646,7 +663,7 @@ def main():
     out_dir = Path(args.out) if args.out else Path('results') / f'{timestamp}_oos_grid_scan'
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    config = dict(CONFIG_DEFAULTS)
+    config = run_config(run_dir)
     rows = screen_run(run_dir, args.fixture_base, args.oos_fraction,
                       args.stress_multiplier, args.screen_pf, args.min_trades)
     if not rows:
@@ -667,7 +684,7 @@ def main():
         symbol = row['symbol']
         df = load_ohlcv_csv(str(Path(args.fixture_base) / f"{symbol.replace('/', '_')}.csv"))
         legs = verify_cell(symbol, df, row['P_fast'], row['P_slow'], args.oos_fraction,
-                           args.stress_multiplier, config)
+                           args.stress_multiplier, config, args.engine)
         label = verdict(legs['oos'], legs['stress_oos'], row['stress_net_pf'], args.min_trades)
         verified.append({**row, 'legs': legs, 'decision_label': label})
         print(f"{symbol} P{row['P_fast']}_{row['P_slow']}: screen oosPF="
@@ -706,7 +723,7 @@ def main():
     if args.window_fractions:
         sensitivity = window_sensitivity(closest, args.fixture_base,
                                          args.window_fractions, args.stress_multiplier,
-                                         config, args.min_trades)
+                                         config, args.min_trades, args.engine)
 
     # Selection-bias comparison: the in-sample winners against the whole grid.
     in_sample_winners = [r for r in rows if r['in_sample_net_pf'] > 1.0]
@@ -736,6 +753,7 @@ def main():
         'base_costs_bps': {'taker': config['taker_fee_bps'],
                            'slippage': config['slippage_bps']},
         'config': config,
+        'engine': args.engine,
         'n_symbols': len({r['symbol'] for r in rows}),
         'n_cells': len(rows),
         'n_in_sample_winners': len(in_sample_winners),

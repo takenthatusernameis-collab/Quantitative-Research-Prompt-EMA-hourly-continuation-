@@ -35,6 +35,7 @@ from pathlib import Path
 
 from data.data_loader import load_ohlcv_csv
 from scripts.run_grid import CONFIG_DEFAULTS, run_cell
+from scripts.run_grid import run_config as grid_run_config
 
 MIN_TRADES_EXPLORATORY = 30
 MIN_TRADES_CREDIBLE = 30
@@ -145,7 +146,10 @@ def main():
     if done:
         print(f'Resuming from {rows_path}: {len(done)} cell(s) already computed.')
 
-    cfg = dict(CONFIG_DEFAULTS)
+    # The cells have to be checked under the config of the run they come from:
+    # a pre-registered mutation run stores its own config, and checking it
+    # with the default config would measure the parent rule.
+    cfg = grid_run_config(run_dir)
     taker = cfg['taker_fee_bps']
     slip = cfg['slippage_bps']
     stress_taker = taker * args.stress_multiplier

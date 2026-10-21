@@ -1,0 +1,3369 @@
+{
+  "generated_at": "2026-10-21T12:57:32.348793+00:00",
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": false,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "stress_multiplier": 2.0,
+  "n_folds": 5,
+  "min_history_trades": 20,
+  "buckets": 5,
+  "units": [
+    "symbol",
+    "bucket",
+    "global"
+  ],
+  "top_k": [
+    1,
+    3,
+    10
+  ],
+  "ladder": [
+    {
+      "arm": "parent",
+      "unit": "symbol",
+      "top_k": 1,
+      "units": 266,
+      "steps": 1064,
+      "steps_scored": 1060,
+      "oof_trades": 95786,
+      "pooled_oof_net_pf": 0.640939755402983,
+      "pooled_oof_stress_net_pf": 0.4521336087438694,
+      "pooled_oof_net_pnl": -1459544.744402709,
+      "oof_pf_gt_1": 86,
+      "oof_pf_gt_1_share": 0.08113207547169811,
+      "oof_stress_pf_gt_1": 31,
+      "oof_stress_pf_gt_1_share": 0.029245283018867925,
+      "median_history_pf": 0.8271757090002381,
+      "median_oof_pf": 0.6216590274850659,
+      "vs_null": {
+        "scored": 1057,
+        "median_percentile": 0.7768422855185798,
+        "mean_percentile": 0.7269122783187386,
+        "above_p95": 198,
+        "expected_above_p95": 52.85,
+        "binomial_p_value": 1.89316648220357e-57
+      }
+    },
+    {
+      "arm": "parent",
+      "unit": "symbol",
+      "top_k": 3,
+      "units": 266,
+      "steps": 1064,
+      "steps_scored": 1062,
+      "oof_trades": 295969,
+      "pooled_oof_net_pf": 0.6368235463829051,
+      "pooled_oof_stress_net_pf": 0.4479507258139473,
+      "pooled_oof_net_pnl": -4355315.557101116,
+      "oof_pf_gt_1": 44,
+      "oof_pf_gt_1_share": 0.04143126177024482,
+      "oof_stress_pf_gt_1": 6,
+      "oof_stress_pf_gt_1_share": 0.005649717514124294,
+      "median_history_pf": 0.8271757090002381,
+      "median_oof_pf": 0.625846938648601,
+      "vs_null": null
+    },
+    {
+      "arm": "parent",
+      "unit": "symbol",
+      "top_k": 10,
+      "units": 266,
+      "steps": 1064,
+      "steps_scored": 1063,
+      "oof_trades": 1067577,
+      "pooled_oof_net_pf": 0.6265565047901255,
+      "pooled_oof_stress_net_pf": 0.43676035176299666,
+      "pooled_oof_net_pnl": -14424338.845438693,
+      "oof_pf_gt_1": 14,
+      "oof_pf_gt_1_share": 0.01317027281279398,
+      "oof_stress_pf_gt_1": 3,
+      "oof_stress_pf_gt_1_share": 0.0028222013170272815,
+      "median_history_pf": 0.8271757090002381,
+      "median_oof_pf": 0.6222927553803375,
+      "vs_null": null
+    },
+    {
+      "arm": "parent",
+      "unit": "bucket",
+      "top_k": 1,
+      "units": 5,
+      "steps": 20,
+      "steps_scored": 20,
+      "oof_trades": 82188,
+      "pooled_oof_net_pf": 0.6608545957612918,
+      "pooled_oof_stress_net_pf": 0.47763207338537156,
+      "pooled_oof_net_pnl": -1095211.0953882243,
+      "oof_pf_gt_1": 0,
+      "oof_pf_gt_1_share": 0.0,
+      "oof_stress_pf_gt_1": 0,
+      "oof_stress_pf_gt_1_share": 0.0,
+      "median_history_pf": 0.7059075252033611,
+      "median_oof_pf": 0.6404309202678851,
+      "vs_null": null
+    },
+    {
+      "arm": "parent",
+      "unit": "bucket",
+      "top_k": 3,
+      "units": 5,
+      "steps": 20,
+      "steps_scored": 20,
+      "oof_trades": 254355,
+      "pooled_oof_net_pf": 0.6590038234849932,
+      "pooled_oof_stress_net_pf": 0.4752239352199389,
+      "pooled_oof_net_pnl": -3361988.0049390886,
+      "oof_pf_gt_1": 0,
+      "oof_pf_gt_1_share": 0.0,
+      "oof_stress_pf_gt_1": 0,
+      "oof_stress_pf_gt_1_share": 0.0,
+      "median_history_pf": 0.7059075252033611,
+      "median_oof_pf": 0.634875357081546,
+      "vs_null": null
+    },
+    {
+      "arm": "parent",
+      "unit": "bucket",
+      "top_k": 10,
+      "units": 5,
+      "steps": 20,
+      "steps_scored": 20,
+      "oof_trades": 952682,
+      "pooled_oof_net_pf": 0.6488818748117654,
+      "pooled_oof_stress_net_pf": 0.4631777202252174,
+      "pooled_oof_net_pnl": -12021102.730245955,
+      "oof_pf_gt_1": 0,
+      "oof_pf_gt_1_share": 0.0,
+      "oof_stress_pf_gt_1": 0,
+      "oof_stress_pf_gt_1_share": 0.0,
+      "median_history_pf": 0.7059075252033611,
+      "median_oof_pf": 0.6227662697480161,
+      "vs_null": null
+    },
+    {
+      "arm": "parent",
+      "unit": "global",
+      "top_k": 1,
+      "units": 1,
+      "steps": 4,
+      "steps_scored": 4,
+      "oof_trades": 81254,
+      "pooled_oof_net_pf": 0.6649371358428252,
+      "pooled_oof_stress_net_pf": 0.4818119330114953,
+      "pooled_oof_net_pnl": -1057862.2507693614,
+      "oof_pf_gt_1": 0,
+      "oof_pf_gt_1_share": 0.0,
+      "oof_stress_pf_gt_1": 0,
+      "oof_stress_pf_gt_1_share": 0.0,
+      "median_history_pf": 0.7004234971470131,
+      "median_oof_pf": 0.6358308241317989,
+      "vs_null": null
+    },
+    {
+      "arm": "parent",
+      "unit": "global",
+      "top_k": 3,
+      "units": 1,
+      "steps": 4,
+      "steps_scored": 4,
+      "oof_trades": 246168,
+      "pooled_oof_net_pf": 0.6613357923122123,
+      "pooled_oof_stress_net_pf": 0.47876786340294336,
+      "pooled_oof_net_pnl": -3237830.0700705973,
+      "oof_pf_gt_1": 0,
+      "oof_pf_gt_1_share": 0.0,
+      "oof_stress_pf_gt_1": 0,
+      "oof_stress_pf_gt_1_share": 0.0,
+      "median_history_pf": 0.7004234971470131,
+      "median_oof_pf": 0.6271616413698509,
+      "vs_null": null
+    },
+    {
+      "arm": "parent",
+      "unit": "global",
+      "top_k": 10,
+      "units": 1,
+      "steps": 4,
+      "steps_scored": 4,
+      "oof_trades": 938974,
+      "pooled_oof_net_pf": 0.6492755973655524,
+      "pooled_oof_stress_net_pf": 0.4639151033265982,
+      "pooled_oof_net_pnl": -11937095.367777199,
+      "oof_pf_gt_1": 0,
+      "oof_pf_gt_1_share": 0.0,
+      "oof_stress_pf_gt_1": 0,
+      "oof_stress_pf_gt_1_share": 0.0,
+      "median_history_pf": 0.7004234971470131,
+      "median_oof_pf": 0.6175323019912655,
+      "vs_null": null
+    }
+  ],
+  "arms": [
+    {
+      "label": "parent",
+      "source": "results/20261021_121629_survivor_selection_audit/cells.jsonl",
+      "n_cells": 17556,
+      "n_symbols": 266,
+      "selections": [
+        {
+          "unit": "bucket",
+          "step": 1,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.669803166039127,
+                  "history_stress_net_pf": 0.4513426862408302,
+                  "history_trades": 4164
+                }
+              ],
+              "history_net_pf": 0.669803166039127,
+              "oof_trades": 3864,
+              "oof_net_pf": 0.725631091825097
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7178176278534076,
+                  "history_stress_net_pf": 0.5154582931383541,
+                  "history_trades": 4217
+                }
+              ],
+              "history_net_pf": 0.7178176278534076,
+              "oof_trades": 3967,
+              "oof_net_pf": 0.7185863765523778
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7080092028940816,
+                  "history_stress_net_pf": 0.5246816770327712,
+                  "history_trades": 4194
+                }
+              ],
+              "history_net_pf": 0.7080092028940816,
+              "oof_trades": 3938,
+              "oof_net_pf": 0.7616740605812315
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7349060957583377,
+                  "history_stress_net_pf": 0.5460688861364289,
+                  "history_trades": 4212
+                }
+              ],
+              "history_net_pf": 0.7349060957583377,
+              "oof_trades": 3532,
+              "oof_net_pf": 0.7589252525063681
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7277166102184021,
+                  "history_stress_net_pf": 0.5420373558875089,
+                  "history_trades": 4416
+                }
+              ],
+              "history_net_pf": 0.7277166102184021,
+              "oof_trades": 3847,
+              "oof_net_pf": 0.7599108795447059
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 2,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7037369977307998,
+                  "history_stress_net_pf": 0.49681036452663047,
+                  "history_trades": 8191
+                }
+              ],
+              "history_net_pf": 0.7037369977307998,
+              "oof_trades": 4214,
+              "oof_net_pf": 0.595143098369566
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7250008474746299,
+                  "history_stress_net_pf": 0.5337033615748805,
+                  "history_trades": 8422
+                }
+              ],
+              "history_net_pf": 0.7250008474746299,
+              "oof_trades": 4525,
+              "oof_net_pf": 0.6544105601226574
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7437502955714204,
+                  "history_stress_net_pf": 0.5640134593956888,
+                  "history_trades": 8320
+                }
+              ],
+              "history_net_pf": 0.7437502955714204,
+              "oof_trades": 4241,
+              "oof_net_pf": 0.618332478768591
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7677282067950846,
+                  "history_stress_net_pf": 0.58274141359831,
+                  "history_trades": 7676
+                }
+              ],
+              "history_net_pf": 0.7677282067950846,
+              "oof_trades": 4328,
+              "oof_net_pf": 0.641204664181559
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7414405181856832,
+                  "history_stress_net_pf": 0.5651480832125086,
+                  "history_trades": 8263
+                }
+              ],
+              "history_net_pf": 0.7414405181856832,
+              "oof_trades": 4316,
+              "oof_net_pf": 0.6137512070750506
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 3,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6770904040096412,
+                  "history_stress_net_pf": 0.4702817985650118,
+                  "history_trades": 12413
+                }
+              ],
+              "history_net_pf": 0.6770904040096412,
+              "oof_trades": 3962,
+              "oof_net_pf": 0.6285108464700764
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7026095412906903,
+                  "history_stress_net_pf": 0.5126631903002002,
+                  "history_trades": 12947
+                }
+              ],
+              "history_net_pf": 0.7026095412906903,
+              "oof_trades": 3485,
+              "oof_net_pf": 0.6814649194359194
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.709770336370532,
+                  "history_stress_net_pf": 0.5305285027096845,
+                  "history_trades": 12435
+                }
+              ],
+              "history_net_pf": 0.709770336370532,
+              "oof_trades": 4193,
+              "oof_net_pf": 0.6310416889848278
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7250141362508592,
+                  "history_stress_net_pf": 0.5427841876710561,
+                  "history_trades": 12004
+                }
+              ],
+              "history_net_pf": 0.7250141362508592,
+              "oof_trades": 4195,
+              "oof_net_pf": 0.6249722426758534
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.701439987748438,
+                  "history_stress_net_pf": 0.5306617538891737,
+                  "history_trades": 12579
+                }
+              ],
+              "history_net_pf": 0.701439987748438,
+              "oof_trades": 4152,
+              "oof_net_pf": 0.6063562789412532
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 4,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6696790245956176,
+                  "history_stress_net_pf": 0.4685257798969855,
+                  "history_trades": 15870
+                }
+              ],
+              "history_net_pf": 0.6696790245956176,
+              "oof_trades": 3901,
+              "oof_net_pf": 0.5770840711747502
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6992860463932655,
+                  "history_stress_net_pf": 0.5081986956227403,
+                  "history_trades": 16432
+                }
+              ],
+              "history_net_pf": 0.6992860463932655,
+              "oof_trades": 4179,
+              "oof_net_pf": 0.6636742892483085
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6933910168424074,
+                  "history_stress_net_pf": 0.5119915577417545,
+                  "history_trades": 16628
+                }
+              ],
+              "history_net_pf": 0.6933910168424074,
+              "oof_trades": 4513,
+              "oof_net_pf": 0.6477293067772897
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7038058475126404,
+                  "history_stress_net_pf": 0.5222300778886748,
+                  "history_trades": 16199
+                }
+              ],
+              "history_net_pf": 0.7038058475126404,
+              "oof_trades": 4328,
+              "oof_net_pf": 0.639657176354211
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6826171034613447,
+                  "history_stress_net_pf": 0.5100919726234937,
+                  "history_trades": 16731
+                }
+              ],
+              "history_net_pf": 0.6826171034613447,
+              "oof_trades": 4508,
+              "oof_net_pf": 0.6149229732429544
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 1,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.669803166039127,
+                  "history_stress_net_pf": 0.4513426862408302,
+                  "history_trades": 4164
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6580906509042265,
+                  "history_stress_net_pf": 0.4410917977822588,
+                  "history_trades": 4152
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6544867687675436,
+                  "history_stress_net_pf": 0.4425751217162651,
+                  "history_trades": 4467
+                }
+              ],
+              "history_net_pf": 0.669803166039127,
+              "oof_trades": 11442,
+              "oof_net_pf": 0.7400293699778228
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7178176278534076,
+                  "history_stress_net_pf": 0.5154582931383541,
+                  "history_trades": 4217
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7126165584856745,
+                  "history_stress_net_pf": 0.5107647869623037,
+                  "history_trades": 4281
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6893962164298523,
+                  "history_stress_net_pf": 0.49365246355267706,
+                  "history_trades": 4472
+                }
+              ],
+              "history_net_pf": 0.7178176278534076,
+              "oof_trades": 11876,
+              "oof_net_pf": 0.7417203959248413
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7080092028940816,
+                  "history_stress_net_pf": 0.5246816770327712,
+                  "history_trades": 4194
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7042088629230636,
+                  "history_stress_net_pf": 0.5204380923097145,
+                  "history_trades": 4076
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7020158445501742,
+                  "history_stress_net_pf": 0.5172949517283081,
+                  "history_trades": 4182
+                }
+              ],
+              "history_net_pf": 0.7080092028940816,
+              "oof_trades": 11894,
+              "oof_net_pf": 0.7685633879785307
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7349060957583377,
+                  "history_stress_net_pf": 0.5460688861364289,
+                  "history_trades": 4212
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7274468340419178,
+                  "history_stress_net_pf": 0.5321011243616458,
+                  "history_trades": 5333
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.725978749784111,
+                  "history_stress_net_pf": 0.5262787832760389,
+                  "history_trades": 5078
+                }
+              ],
+              "history_net_pf": 0.7349060957583377,
+              "oof_trades": 12860,
+              "oof_net_pf": 0.7248237623281585
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7277166102184021,
+                  "history_stress_net_pf": 0.5420373558875089,
+                  "history_trades": 4416
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7135592718532319,
+                  "history_stress_net_pf": 0.5197052293708047,
+                  "history_trades": 5386
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7062451593588306,
+                  "history_stress_net_pf": 0.5230340796053277,
+                  "history_trades": 4186
+                }
+              ],
+              "history_net_pf": 0.7277166102184021,
+              "oof_trades": 12847,
+              "oof_net_pf": 0.7446912705821225
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 2,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7037369977307998,
+                  "history_stress_net_pf": 0.49681036452663047,
+                  "history_trades": 8191
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6943820104124269,
+                  "history_stress_net_pf": 0.487572008999999,
+                  "history_trades": 8028
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.689710450007153,
+                  "history_stress_net_pf": 0.48975137479744035,
+                  "history_trades": 8082
+                }
+              ],
+              "history_net_pf": 0.7037369977307998,
+              "oof_trades": 12722,
+              "oof_net_pf": 0.6261909579567678
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7250008474746299,
+                  "history_stress_net_pf": 0.5337033615748805,
+                  "history_trades": 8422
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7222457388785908,
+                  "history_stress_net_pf": 0.5314696717777397,
+                  "history_trades": 8240
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7181621689047007,
+                  "history_stress_net_pf": 0.5293585069785788,
+                  "history_trades": 8184
+                }
+              ],
+              "history_net_pf": 0.7250008474746299,
+              "oof_trades": 13324,
+              "oof_net_pf": 0.639622885950289
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7437502955714204,
+                  "history_stress_net_pf": 0.5640134593956888,
+                  "history_trades": 8320
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7381811112077395,
+                  "history_stress_net_pf": 0.5589927309733455,
+                  "history_trades": 8049
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7364611956424117,
+                  "history_stress_net_pf": 0.5596927496118518,
+                  "history_trades": 8298
+                }
+              ],
+              "history_net_pf": 0.7437502955714204,
+              "oof_trades": 12827,
+              "oof_net_pf": 0.624863471593582
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7677282067950846,
+                  "history_stress_net_pf": 0.58274141359831,
+                  "history_trades": 7676
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7451387702142848,
+                  "history_stress_net_pf": 0.5653381873370584,
+                  "history_trades": 7744
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7356930411753602,
+                  "history_stress_net_pf": 0.5606498892349941,
+                  "history_trades": 7691
+                }
+              ],
+              "history_net_pf": 0.7677282067950846,
+              "oof_trades": 12951,
+              "oof_net_pf": 0.6365370752571429
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7414405181856832,
+                  "history_stress_net_pf": 0.5651480832125086,
+                  "history_trades": 8263
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7238133917743992,
+                  "history_stress_net_pf": 0.5417306370877569,
+                  "history_trades": 10407
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7225869474085981,
+                  "history_stress_net_pf": 0.5477113521382913,
+                  "history_trades": 8483
+                }
+              ],
+              "history_net_pf": 0.7414405181856832,
+              "oof_trades": 13685,
+              "oof_net_pf": 0.6162006852486906
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 3,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6770904040096412,
+                  "history_stress_net_pf": 0.4702817985650118,
+                  "history_trades": 12413
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6764734970982009,
+                  "history_stress_net_pf": 0.4757938875489368,
+                  "history_trades": 12205
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6702427134831954,
+                  "history_stress_net_pf": 0.468533308965194,
+                  "history_trades": 12405
+                }
+              ],
+              "history_net_pf": 0.6770904040096412,
+              "oof_trades": 11097,
+              "oof_net_pf": 0.633213638905949
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7026095412906903,
+                  "history_stress_net_pf": 0.5126631903002002,
+                  "history_trades": 12947
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6947022492255152,
+                  "history_stress_net_pf": 0.5063599646774256,
+                  "history_trades": 12661
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6910526926609984,
+                  "history_stress_net_pf": 0.5046188087080463,
+                  "history_trades": 12562
+                }
+              ],
+              "history_net_pf": 0.7026095412906903,
+              "oof_trades": 11477,
+              "oof_net_pf": 0.6598266959181072
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.709770336370532,
+                  "history_stress_net_pf": 0.5305285027096845,
+                  "history_trades": 12435
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.705989010809133,
+                  "history_stress_net_pf": 0.5249531304119832,
+                  "history_trades": 12159
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7047068076164555,
+                  "history_stress_net_pf": 0.528461422840804,
+                  "history_trades": 12561
+                }
+              ],
+              "history_net_pf": 0.709770336370532,
+              "oof_trades": 12190,
+              "oof_net_pf": 0.6187726456452276
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7250141362508592,
+                  "history_stress_net_pf": 0.5427841876710561,
+                  "history_trades": 12004
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7082976528013792,
+                  "history_stress_net_pf": 0.5304096557462263,
+                  "history_trades": 12106
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7030794456601992,
+                  "history_stress_net_pf": 0.5271511713638597,
+                  "history_trades": 11952
+                }
+              ],
+              "history_net_pf": 0.7250141362508592,
+              "oof_trades": 13082,
+              "oof_net_pf": 0.6170933236900297
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.701439987748438,
+                  "history_stress_net_pf": 0.5306617538891737,
+                  "history_trades": 12579
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6958557444190939,
+                  "history_stress_net_pf": 0.5183436686759363,
+                  "history_trades": 15562
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6938940946848381,
+                  "history_stress_net_pf": 0.5161608838927799,
+                  "history_trades": 15708
+                }
+              ],
+              "history_net_pf": 0.701439987748438,
+              "oof_trades": 15332,
+              "oof_net_pf": 0.5733772029003356
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 4,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6696790245956176,
+                  "history_stress_net_pf": 0.4685257798969855,
+                  "history_trades": 15870
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6676669548510726,
+                  "history_stress_net_pf": 0.4616937934397084,
+                  "history_trades": 16375
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6636129085651479,
+                  "history_stress_net_pf": 0.46219947523122196,
+                  "history_trades": 15875
+                }
+              ],
+              "history_net_pf": 0.6696790245956176,
+              "oof_trades": 11784,
+              "oof_net_pf": 0.5884454062321054
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6992860463932655,
+                  "history_stress_net_pf": 0.5081986956227403,
+                  "history_trades": 16432
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6888069644412009,
+                  "history_stress_net_pf": 0.49923390535594525,
+                  "history_trades": 16625
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6814351432706851,
+                  "history_stress_net_pf": 0.49391440002728226,
+                  "history_trades": 16590
+                }
+              ],
+              "history_net_pf": 0.6992860463932655,
+              "oof_trades": 12951,
+              "oof_net_pf": 0.6560688569645788
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6933910168424074,
+                  "history_stress_net_pf": 0.5119915577417545,
+                  "history_trades": 16628
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6878493665840171,
+                  "history_stress_net_pf": 0.50468505706821,
+                  "history_trades": 16468
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6856712385066444,
+                  "history_stress_net_pf": 0.5102112955554677,
+                  "history_trades": 16249
+                }
+              ],
+              "history_net_pf": 0.6933910168424074,
+              "oof_trades": 13103,
+              "oof_net_pf": 0.6508574324880845
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7038058475126404,
+                  "history_stress_net_pf": 0.5222300778886748,
+                  "history_trades": 16199
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6868797710471195,
+                  "history_stress_net_pf": 0.5094286392564704,
+                  "history_trades": 16467
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.683822579484019,
+                  "history_stress_net_pf": 0.5064657548964414,
+                  "history_trades": 16478
+                }
+              ],
+              "history_net_pf": 0.7038058475126404,
+              "oof_trades": 13318,
+              "oof_net_pf": 0.6214000650655186
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6826171034613447,
+                  "history_stress_net_pf": 0.5100919726234937,
+                  "history_trades": 16731
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6697817731714294,
+                  "history_stress_net_pf": 0.49757795085656026,
+                  "history_trades": 16824
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6685879456623943,
+                  "history_stress_net_pf": 0.498819012526853,
+                  "history_trades": 16827
+                }
+              ],
+              "history_net_pf": 0.6826171034613447,
+              "oof_trades": 13593,
+              "oof_net_pf": 0.6185595246134913
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 1,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.669803166039127,
+                  "history_stress_net_pf": 0.4513426862408302,
+                  "history_trades": 4164
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6580906509042265,
+                  "history_stress_net_pf": 0.4410917977822588,
+                  "history_trades": 4152
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6544867687675436,
+                  "history_stress_net_pf": 0.4425751217162651,
+                  "history_trades": 4467
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6401426550533829,
+                  "history_stress_net_pf": 0.43771286194175907,
+                  "history_trades": 4371
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.633305266425102,
+                  "history_stress_net_pf": 0.42084516954382334,
+                  "history_trades": 4185
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6276165975607206,
+                  "history_stress_net_pf": 0.4134411371183449,
+                  "history_trades": 5874
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.626893285272105,
+                  "history_stress_net_pf": 0.41212179948156125,
+                  "history_trades": 5740
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6249397680245253,
+                  "history_stress_net_pf": 0.40330497644960006,
+                  "history_trades": 5587
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6214945227749448,
+                  "history_stress_net_pf": 0.39918549204212256,
+                  "history_trades": 5519
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 100,
+                  "history_net_pf": 0.617088571569471,
+                  "history_stress_net_pf": 0.3895647630170565,
+                  "history_trades": 7496
+                }
+              ],
+              "history_net_pf": 0.669803166039127,
+              "oof_trades": 45547,
+              "oof_net_pf": 0.7043072810619548
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7178176278534076,
+                  "history_stress_net_pf": 0.5154582931383541,
+                  "history_trades": 4217
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7126165584856745,
+                  "history_stress_net_pf": 0.5107647869623037,
+                  "history_trades": 4281
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6893962164298523,
+                  "history_stress_net_pf": 0.49365246355267706,
+                  "history_trades": 4472
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6865373251933917,
+                  "history_stress_net_pf": 0.4831591546794073,
+                  "history_trades": 5587
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.681713330065078,
+                  "history_stress_net_pf": 0.4917801478663299,
+                  "history_trades": 4401
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.680870831621073,
+                  "history_stress_net_pf": 0.4770395054055798,
+                  "history_trades": 5351
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6778864313527888,
+                  "history_stress_net_pf": 0.4754977462212802,
+                  "history_trades": 5393
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6740257055736385,
+                  "history_stress_net_pf": 0.4731992429713451,
+                  "history_trades": 5777
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6705955635683805,
+                  "history_stress_net_pf": 0.47726428511776636,
+                  "history_trades": 4168
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 100,
+                  "history_net_pf": 0.6412315005786396,
+                  "history_stress_net_pf": 0.4356429938097345,
+                  "history_trades": 7406
+                }
+              ],
+              "history_net_pf": 0.7178176278534076,
+              "oof_trades": 46992,
+              "oof_net_pf": 0.7109826933730409
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7080092028940816,
+                  "history_stress_net_pf": 0.5246816770327712,
+                  "history_trades": 4194
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7042088629230636,
+                  "history_stress_net_pf": 0.5204380923097145,
+                  "history_trades": 4076
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7020158445501742,
+                  "history_stress_net_pf": 0.5172949517283081,
+                  "history_trades": 4182
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6990080344519296,
+                  "history_stress_net_pf": 0.5188031478596038,
+                  "history_trades": 4366
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6985023432010624,
+                  "history_stress_net_pf": 0.5060967344672246,
+                  "history_trades": 5171
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6950219504043486,
+                  "history_stress_net_pf": 0.5047613846551214,
+                  "history_trades": 5240
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6893697459951212,
+                  "history_stress_net_pf": 0.5135378783912254,
+                  "history_trades": 4481
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6871302503021183,
+                  "history_stress_net_pf": 0.4981063047078808,
+                  "history_trades": 5710
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 144,
+                  "history_net_pf": 0.681383758239642,
+                  "history_stress_net_pf": 0.48691638618040217,
+                  "history_trades": 5117
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 89,
+                  "history_net_pf": 0.6791929438705511,
+                  "history_stress_net_pf": 0.4628069446864181,
+                  "history_trades": 7989
+                }
+              ],
+              "history_net_pf": 0.7080092028940816,
+              "oof_trades": 47267,
+              "oof_net_pf": 0.7445465200273892
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7349060957583377,
+                  "history_stress_net_pf": 0.5460688861364289,
+                  "history_trades": 4212
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7274468340419178,
+                  "history_stress_net_pf": 0.5321011243616458,
+                  "history_trades": 5333
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.725978749784111,
+                  "history_stress_net_pf": 0.5262787832760389,
+                  "history_trades": 5078
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7190975347435857,
+                  "history_stress_net_pf": 0.533404322301282,
+                  "history_trades": 4255
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7144456903047881,
+                  "history_stress_net_pf": 0.5157426575036408,
+                  "history_trades": 5104
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7120772682870131,
+                  "history_stress_net_pf": 0.5306953427515149,
+                  "history_trades": 4038
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7108990248464742,
+                  "history_stress_net_pf": 0.5268182620927887,
+                  "history_trades": 4081
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7019161155389753,
+                  "history_stress_net_pf": 0.5151297441029535,
+                  "history_trades": 5400
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6863965302075746,
+                  "history_stress_net_pf": 0.48930027763846057,
+                  "history_trades": 5009
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 100,
+                  "history_net_pf": 0.6815896270682227,
+                  "history_stress_net_pf": 0.48131088421555496,
+                  "history_trades": 7084
+                }
+              ],
+              "history_net_pf": 0.7349060957583377,
+              "oof_trades": 44058,
+              "oof_net_pf": 0.738345168950417
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7277166102184021,
+                  "history_stress_net_pf": 0.5420373558875089,
+                  "history_trades": 4416
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7135592718532319,
+                  "history_stress_net_pf": 0.5197052293708047,
+                  "history_trades": 5386
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7062451593588306,
+                  "history_stress_net_pf": 0.5230340796053277,
+                  "history_trades": 4186
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7032529377750566,
+                  "history_stress_net_pf": 0.5217148959554894,
+                  "history_trades": 4179
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 100,
+                  "history_net_pf": 0.7002126308401693,
+                  "history_stress_net_pf": 0.49674765699840734,
+                  "history_trades": 7142
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6986347688955474,
+                  "history_stress_net_pf": 0.5063377413704039,
+                  "history_trades": 5282
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6960949954832835,
+                  "history_stress_net_pf": 0.5084509841990871,
+                  "history_trades": 5495
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6868549756513895,
+                  "history_stress_net_pf": 0.4957888697090174,
+                  "history_trades": 5276
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6860213197659708,
+                  "history_stress_net_pf": 0.5073686699294885,
+                  "history_trades": 4540
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 100,
+                  "history_net_pf": 0.6835839002864181,
+                  "history_stress_net_pf": 0.47876591994628664,
+                  "history_trades": 7014
+                }
+              ],
+              "history_net_pf": 0.7277166102184021,
+              "oof_trades": 49559,
+              "oof_net_pf": 0.7304336858486944
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 2,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7037369977307998,
+                  "history_stress_net_pf": 0.49681036452663047,
+                  "history_trades": 8191
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6943820104124269,
+                  "history_stress_net_pf": 0.487572008999999,
+                  "history_trades": 8028
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.689710450007153,
+                  "history_stress_net_pf": 0.48975137479744035,
+                  "history_trades": 8082
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.685524738943826,
+                  "history_stress_net_pf": 0.48084549364489315,
+                  "history_trades": 8006
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6756760231572191,
+                  "history_stress_net_pf": 0.47129835589604463,
+                  "history_trades": 8032
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6603719307000439,
+                  "history_stress_net_pf": 0.4518705708024296,
+                  "history_trades": 10530
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6568204340977167,
+                  "history_stress_net_pf": 0.45019418702013003,
+                  "history_trades": 10684
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.645016049038408,
+                  "history_stress_net_pf": 0.43444230527326266,
+                  "history_trades": 10616
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6407665564704819,
+                  "history_stress_net_pf": 0.4432579038429565,
+                  "history_trades": 7951
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6401279707234712,
+                  "history_stress_net_pf": 0.4300894755200061,
+                  "history_trades": 10555
+                }
+              ],
+              "history_net_pf": 0.7037369977307998,
+              "oof_trades": 47627,
+              "oof_net_pf": 0.6186655128860723
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7250008474746299,
+                  "history_stress_net_pf": 0.5337033615748805,
+                  "history_trades": 8422
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7222457388785908,
+                  "history_stress_net_pf": 0.5314696717777397,
+                  "history_trades": 8240
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7181621689047007,
+                  "history_stress_net_pf": 0.5293585069785788,
+                  "history_trades": 8184
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7102033421491442,
+                  "history_stress_net_pf": 0.5251211670185163,
+                  "history_trades": 8265
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6982101815486257,
+                  "history_stress_net_pf": 0.5069178620513882,
+                  "history_trades": 10551
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.690327113213751,
+                  "history_stress_net_pf": 0.5066764379370425,
+                  "history_trades": 8221
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6851403847306241,
+                  "history_stress_net_pf": 0.49506635268989396,
+                  "history_trades": 10992
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6844113631978389,
+                  "history_stress_net_pf": 0.4946816567703977,
+                  "history_trades": 10513
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6821451730818431,
+                  "history_stress_net_pf": 0.4923797195341821,
+                  "history_trades": 10472
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6730201249283855,
+                  "history_stress_net_pf": 0.4895775650944814,
+                  "history_trades": 8074
+                }
+              ],
+              "history_net_pf": 0.7250008474746299,
+              "oof_trades": 47566,
+              "oof_net_pf": 0.6471674782164369
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7437502955714204,
+                  "history_stress_net_pf": 0.5640134593956888,
+                  "history_trades": 8320
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7381811112077395,
+                  "history_stress_net_pf": 0.5589927309733455,
+                  "history_trades": 8049
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7364611956424117,
+                  "history_stress_net_pf": 0.5596927496118518,
+                  "history_trades": 8298
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7319086552524156,
+                  "history_stress_net_pf": 0.5546541616953354,
+                  "history_trades": 8132
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7299260024171772,
+                  "history_stress_net_pf": 0.5512887742058783,
+                  "history_trades": 8165
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7262704858301062,
+                  "history_stress_net_pf": 0.5389243230901947,
+                  "history_trades": 10612
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7218859767967454,
+                  "history_stress_net_pf": 0.5426819167841103,
+                  "history_trades": 7944
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7140541172251355,
+                  "history_stress_net_pf": 0.5295467479539544,
+                  "history_trades": 10545
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7060961332644392,
+                  "history_stress_net_pf": 0.5209762676359073,
+                  "history_trades": 10303
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.700994270033484,
+                  "history_stress_net_pf": 0.5178586756743467,
+                  "history_trades": 10360
+                }
+              ],
+              "history_net_pf": 0.7437502955714204,
+              "oof_trades": 46998,
+              "oof_net_pf": 0.6216668242252743
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7677282067950846,
+                  "history_stress_net_pf": 0.58274141359831,
+                  "history_trades": 7676
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7451387702142848,
+                  "history_stress_net_pf": 0.5653381873370584,
+                  "history_trades": 7744
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7356930411753602,
+                  "history_stress_net_pf": 0.5606498892349941,
+                  "history_trades": 7691
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7342826749511188,
+                  "history_stress_net_pf": 0.5572070895602268,
+                  "history_trades": 7764
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7285381364782311,
+                  "history_stress_net_pf": 0.5449693484092435,
+                  "history_trades": 9897
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7251698600755174,
+                  "history_stress_net_pf": 0.5409207991032217,
+                  "history_trades": 9856
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.715111645710004,
+                  "history_stress_net_pf": 0.5287806713855124,
+                  "history_trades": 9883
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7096189733740982,
+                  "history_stress_net_pf": 0.5320494232907966,
+                  "history_trades": 7494
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7042308863296877,
+                  "history_stress_net_pf": 0.5189931546181693,
+                  "history_trades": 9912
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7019933091156073,
+                  "history_stress_net_pf": 0.5296812981386951,
+                  "history_trades": 7677
+                }
+              ],
+              "history_net_pf": 0.7677282067950846,
+              "oof_trades": 46592,
+              "oof_net_pf": 0.6280382787407024
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7414405181856832,
+                  "history_stress_net_pf": 0.5651480832125086,
+                  "history_trades": 8263
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7238133917743992,
+                  "history_stress_net_pf": 0.5417306370877569,
+                  "history_trades": 10407
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7225869474085981,
+                  "history_stress_net_pf": 0.5477113521382913,
+                  "history_trades": 8483
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7207849188637675,
+                  "history_stress_net_pf": 0.5483869629522007,
+                  "history_trades": 8165
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7206295201483789,
+                  "history_stress_net_pf": 0.5494494210075208,
+                  "history_trades": 8116
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7195244095604483,
+                  "history_stress_net_pf": 0.5390829379117554,
+                  "history_trades": 10541
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 100,
+                  "history_net_pf": 0.7083503968607958,
+                  "history_stress_net_pf": 0.5164352157614857,
+                  "history_trades": 13947
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7078931100808188,
+                  "history_stress_net_pf": 0.536900805449858,
+                  "history_trades": 8068
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7002600957490754,
+                  "history_stress_net_pf": 0.5258271528180817,
+                  "history_trades": 7905
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6991311889178871,
+                  "history_stress_net_pf": 0.5209978919704567,
+                  "history_trades": 10429
+                }
+              ],
+              "history_net_pf": 0.7414405181856832,
+              "oof_trades": 47408,
+              "oof_net_pf": 0.6096580190689613
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 3,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6770904040096412,
+                  "history_stress_net_pf": 0.4702817985650118,
+                  "history_trades": 12413
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6764734970982009,
+                  "history_stress_net_pf": 0.4757938875489368,
+                  "history_trades": 12205
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6702427134831954,
+                  "history_stress_net_pf": 0.468533308965194,
+                  "history_trades": 12405
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6681188302532917,
+                  "history_stress_net_pf": 0.4630630167375273,
+                  "history_trades": 12452
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6588870387054303,
+                  "history_stress_net_pf": 0.4558767938183554,
+                  "history_trades": 12472
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6485579258881501,
+                  "history_stress_net_pf": 0.4426807096588544,
+                  "history_trades": 15944
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6426847070502361,
+                  "history_stress_net_pf": 0.4367804455891044,
+                  "history_trades": 16102
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6356464651184724,
+                  "history_stress_net_pf": 0.4356624495898011,
+                  "history_trades": 12270
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6352877487071962,
+                  "history_stress_net_pf": 0.42550271793393674,
+                  "history_trades": 16036
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6304292179293011,
+                  "history_stress_net_pf": 0.42124965983016716,
+                  "history_trades": 16003
+                }
+              ],
+              "history_net_pf": 0.6770904040096412,
+              "oof_trades": 44033,
+              "oof_net_pf": 0.612606382559434
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7026095412906903,
+                  "history_stress_net_pf": 0.5126631903002002,
+                  "history_trades": 12947
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6947022492255152,
+                  "history_stress_net_pf": 0.5063599646774256,
+                  "history_trades": 12661
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6910526926609984,
+                  "history_stress_net_pf": 0.5046188087080463,
+                  "history_trades": 12562
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6850735529237448,
+                  "history_stress_net_pf": 0.4942917526178049,
+                  "history_trades": 15749
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.683158989917835,
+                  "history_stress_net_pf": 0.5008796816343707,
+                  "history_trades": 12676
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6806739750795343,
+                  "history_stress_net_pf": 0.48931944939249683,
+                  "history_trades": 16316
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6788859795127389,
+                  "history_stress_net_pf": 0.4860305185816972,
+                  "history_trades": 15868
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6768070354920905,
+                  "history_stress_net_pf": 0.48366017168229436,
+                  "history_trades": 15809
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6700508049574062,
+                  "history_stress_net_pf": 0.48399810391866127,
+                  "history_trades": 12343
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6687792418038105,
+                  "history_stress_net_pf": 0.48611397997078853,
+                  "history_trades": 12569
+                }
+              ],
+              "history_net_pf": 0.7026095412906903,
+              "oof_trades": 44775,
+              "oof_net_pf": 0.6355253887317569
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.709770336370532,
+                  "history_stress_net_pf": 0.5305285027096845,
+                  "history_trades": 12435
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.705989010809133,
+                  "history_stress_net_pf": 0.5249531304119832,
+                  "history_trades": 12159
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7047068076164555,
+                  "history_stress_net_pf": 0.528461422840804,
+                  "history_trades": 12561
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7008396532244037,
+                  "history_stress_net_pf": 0.5150280844960302,
+                  "history_trades": 15931
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.695999501044345,
+                  "history_stress_net_pf": 0.5212330346333548,
+                  "history_trades": 12498
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6956079720782397,
+                  "history_stress_net_pf": 0.5216880727578367,
+                  "history_trades": 12530
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6936359951047356,
+                  "history_stress_net_pf": 0.5200384128097124,
+                  "history_trades": 12571
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.684452311810511,
+                  "history_stress_net_pf": 0.5017039167779986,
+                  "history_trades": 15690
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6732090414940715,
+                  "history_stress_net_pf": 0.4903746159346542,
+                  "history_trades": 15665
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6719852674376687,
+                  "history_stress_net_pf": 0.4848450972557962,
+                  "history_trades": 15643
+                }
+              ],
+              "history_net_pf": 0.709770336370532,
+              "oof_trades": 46168,
+              "oof_net_pf": 0.6052448202698275
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7250141362508592,
+                  "history_stress_net_pf": 0.5427841876710561,
+                  "history_trades": 12004
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7082976528013792,
+                  "history_stress_net_pf": 0.5304096557462263,
+                  "history_trades": 12106
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7030794456601992,
+                  "history_stress_net_pf": 0.5271511713638597,
+                  "history_trades": 11952
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.701249346934128,
+                  "history_stress_net_pf": 0.5247696307707227,
+                  "history_trades": 12042
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6976320597629062,
+                  "history_stress_net_pf": 0.5172587213015207,
+                  "history_trades": 15002
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6951692099247253,
+                  "history_stress_net_pf": 0.5164158590400726,
+                  "history_trades": 11837
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6908512897921849,
+                  "history_stress_net_pf": 0.510276579872506,
+                  "history_trades": 15024
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6844624045680601,
+                  "history_stress_net_pf": 0.4994855187334509,
+                  "history_trades": 15152
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6792400770638903,
+                  "history_stress_net_pf": 0.5063120345468352,
+                  "history_trades": 11910
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 100,
+                  "history_net_pf": 0.6752629835534936,
+                  "history_stress_net_pf": 0.4852762768595338,
+                  "history_trades": 19874
+                }
+              ],
+              "history_net_pf": 0.7250141362508592,
+              "oof_trades": 50553,
+              "oof_net_pf": 0.6023832555882636
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.701439987748438,
+                  "history_stress_net_pf": 0.5306617538891737,
+                  "history_trades": 12579
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6958557444190939,
+                  "history_stress_net_pf": 0.5183436686759363,
+                  "history_trades": 15562
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6938940946848381,
+                  "history_stress_net_pf": 0.5161608838927799,
+                  "history_trades": 15708
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6886057205097827,
+                  "history_stress_net_pf": 0.517454776549557,
+                  "history_trades": 12697
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 100,
+                  "history_net_pf": 0.6848894118482072,
+                  "history_stress_net_pf": 0.4962040309445561,
+                  "history_trades": 20367
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6826478283244147,
+                  "history_stress_net_pf": 0.515763322686959,
+                  "history_trades": 12389
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6787471541427788,
+                  "history_stress_net_pf": 0.5125928269566736,
+                  "history_trades": 12297
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6777909098473206,
+                  "history_stress_net_pf": 0.5055610274422452,
+                  "history_trades": 12055
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6759103346073555,
+                  "history_stress_net_pf": 0.5087034937278565,
+                  "history_trades": 12268
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 89,
+                  "history_net_pf": 0.670927847941179,
+                  "history_stress_net_pf": 0.47982437808527495,
+                  "history_trades": 22333
+                }
+              ],
+              "history_net_pf": 0.701439987748438,
+              "oof_trades": 52028,
+              "oof_net_pf": 0.5912016218880962
+            }
+          ]
+        },
+        {
+          "unit": "bucket",
+          "step": 4,
+          "entries": [
+            {
+              "unit_name": "B00",
+              "symbols": 54,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6696790245956176,
+                  "history_stress_net_pf": 0.4685257798969855,
+                  "history_trades": 15870
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6676669548510726,
+                  "history_stress_net_pf": 0.4616937934397084,
+                  "history_trades": 16375
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6636129085651479,
+                  "history_stress_net_pf": 0.46219947523122196,
+                  "history_trades": 15875
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6591910113812725,
+                  "history_stress_net_pf": 0.4540716543349734,
+                  "history_trades": 16483
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6552868046028429,
+                  "history_stress_net_pf": 0.45132013325622394,
+                  "history_trades": 16535
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6363750329653837,
+                  "history_stress_net_pf": 0.43229484634876475,
+                  "history_trades": 20994
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6346099869868314,
+                  "history_stress_net_pf": 0.4322107475827075,
+                  "history_trades": 16354
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.631737453378222,
+                  "history_stress_net_pf": 0.42799636551469955,
+                  "history_trades": 21090
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6272557415347606,
+                  "history_stress_net_pf": 0.41840132650047357,
+                  "history_trades": 21326
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6245917688955881,
+                  "history_stress_net_pf": 0.4154014969327685,
+                  "history_trades": 21433
+                }
+              ],
+              "history_net_pf": 0.6696790245956176,
+              "oof_trades": 45821,
+              "oof_net_pf": 0.5781938556787438
+            },
+            {
+              "unit_name": "B01",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6992860463932655,
+                  "history_stress_net_pf": 0.5081986956227403,
+                  "history_trades": 16432
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6888069644412009,
+                  "history_stress_net_pf": 0.49923390535594525,
+                  "history_trades": 16625
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6814351432706851,
+                  "history_stress_net_pf": 0.49391440002728226,
+                  "history_trades": 16590
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6769321879670867,
+                  "history_stress_net_pf": 0.49370559227190125,
+                  "history_trades": 16249
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6711042006403082,
+                  "history_stress_net_pf": 0.479923810912159,
+                  "history_trades": 20805
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6683669357074692,
+                  "history_stress_net_pf": 0.48316493691794726,
+                  "history_trades": 16763
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6674149132394076,
+                  "history_stress_net_pf": 0.4761663810895748,
+                  "history_trades": 21269
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6667256594073462,
+                  "history_stress_net_pf": 0.47839953653637957,
+                  "history_trades": 16602
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6659593147823336,
+                  "history_stress_net_pf": 0.47233853357839267,
+                  "history_trades": 21492
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6646901440836891,
+                  "history_stress_net_pf": 0.47076831018983684,
+                  "history_trades": 21448
+                }
+              ],
+              "history_net_pf": 0.6992860463932655,
+              "oof_trades": 49075,
+              "oof_net_pf": 0.6238657152707577
+            },
+            {
+              "unit_name": "B02",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6933910168424074,
+                  "history_stress_net_pf": 0.5119915577417545,
+                  "history_trades": 16628
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6878493665840171,
+                  "history_stress_net_pf": 0.50468505706821,
+                  "history_trades": 16468
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6856712385066444,
+                  "history_stress_net_pf": 0.5102112955554677,
+                  "history_trades": 16249
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6834395353747661,
+                  "history_stress_net_pf": 0.5079377121949373,
+                  "history_trades": 16382
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6795893614997957,
+                  "history_stress_net_pf": 0.5033474563803747,
+                  "history_trades": 16891
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6785073824240535,
+                  "history_stress_net_pf": 0.5027067217543831,
+                  "history_trades": 16694
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6758301716984876,
+                  "history_stress_net_pf": 0.49126691592931954,
+                  "history_trades": 21112
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.665513771935036,
+                  "history_stress_net_pf": 0.4825705349239462,
+                  "history_trades": 20962
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 144,
+                  "history_net_pf": 0.658173186071318,
+                  "history_stress_net_pf": 0.4691424851833067,
+                  "history_trades": 21176
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6573712045454684,
+                  "history_stress_net_pf": 0.47347781894981705,
+                  "history_trades": 21289
+                }
+              ],
+              "history_net_pf": 0.6933910168424074,
+              "oof_trades": 48299,
+              "oof_net_pf": 0.6434188343603876
+            },
+            {
+              "unit_name": "B03",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7038058475126404,
+                  "history_stress_net_pf": 0.5222300778886748,
+                  "history_trades": 16199
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6868797710471195,
+                  "history_stress_net_pf": 0.5094286392564704,
+                  "history_trades": 16467
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.683822579484019,
+                  "history_stress_net_pf": 0.5064657548964414,
+                  "history_trades": 16478
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6836761356482464,
+                  "history_stress_net_pf": 0.5064371748488766,
+                  "history_trades": 16582
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6813386639445308,
+                  "history_stress_net_pf": 0.5000375057240182,
+                  "history_trades": 16325
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6722280124333483,
+                  "history_stress_net_pf": 0.49276789875671007,
+                  "history_trades": 20509
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6712039339559389,
+                  "history_stress_net_pf": 0.4952197211040117,
+                  "history_trades": 16431
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6692095637633979,
+                  "history_stress_net_pf": 0.48937745792935805,
+                  "history_trades": 20425
+                },
+                {
+                  "P_fast": 50,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6633951249165128,
+                  "history_stress_net_pf": 0.4800758300720812,
+                  "history_trades": 16227
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6629695947732159,
+                  "history_stress_net_pf": 0.4798515958977705,
+                  "history_trades": 20925
+                }
+              ],
+              "history_net_pf": 0.7038058475126404,
+              "oof_trades": 48113,
+              "oof_net_pf": 0.6030320152111315
+            },
+            {
+              "unit_name": "B04",
+              "symbols": 53,
+              "selected": [
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6826171034613447,
+                  "history_stress_net_pf": 0.5100919726234937,
+                  "history_trades": 16731
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6697817731714294,
+                  "history_stress_net_pf": 0.49757795085656026,
+                  "history_trades": 16824
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6685879456623943,
+                  "history_stress_net_pf": 0.498819012526853,
+                  "history_trades": 16827
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6681857477354298,
+                  "history_stress_net_pf": 0.492111775024286,
+                  "history_trades": 16448
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6674670106568087,
+                  "history_stress_net_pf": 0.4898156872238602,
+                  "history_trades": 21306
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6669418620114492,
+                  "history_stress_net_pf": 0.4891198124592232,
+                  "history_trades": 21144
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6660746592853464,
+                  "history_stress_net_pf": 0.49589292253583156,
+                  "history_trades": 16671
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6645425184707158,
+                  "history_stress_net_pf": 0.4949089962494173,
+                  "history_trades": 16763
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 100,
+                  "history_net_pf": 0.6628265567632163,
+                  "history_stress_net_pf": 0.47383380640851985,
+                  "history_trades": 27520
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 89,
+                  "history_net_pf": 0.6539885848122645,
+                  "history_stress_net_pf": 0.46203525601338796,
+                  "history_trades": 30049
+                }
+              ],
+              "history_net_pf": 0.6826171034613447,
+              "oof_trades": 54203,
+              "oof_net_pf": 0.5988110691479588
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 1,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7014619199617907,
+                  "history_stress_net_pf": 0.5065140554526147,
+                  "history_trades": 20906
+                }
+              ],
+              "history_net_pf": 0.7014619199617907,
+              "oof_trades": 19423,
+              "oof_net_pf": 0.7448328292785305
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 2,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7291725660966837,
+                  "history_stress_net_pf": 0.5425849924382994,
+                  "history_trades": 40983
+                }
+              ],
+              "history_net_pf": 0.7291725660966837,
+              "oof_trades": 21431,
+              "oof_net_pf": 0.6338124765551947
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 3,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6993850743322356,
+                  "history_stress_net_pf": 0.5150649769435227,
+                  "history_trades": 62414
+                }
+              ],
+              "history_net_pf": 0.6993850743322356,
+              "oof_trades": 19160,
+              "oof_net_pf": 0.6249933806969489
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 4,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6856095552735392,
+                  "history_stress_net_pf": 0.5011788179365504,
+                  "history_trades": 81574
+                }
+              ],
+              "history_net_pf": 0.6856095552735392,
+              "oof_trades": 21240,
+              "oof_net_pf": 0.637849171708403
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 1,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7014619199617907,
+                  "history_stress_net_pf": 0.5065140554526147,
+                  "history_trades": 20906
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6984477358013298,
+                  "history_stress_net_pf": 0.5041110952289442,
+                  "history_trades": 20768
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6968321024318725,
+                  "history_stress_net_pf": 0.5053751643378601,
+                  "history_trades": 21977
+                }
+              ],
+              "history_net_pf": 0.7014619199617907,
+              "oof_trades": 57601,
+              "oof_net_pf": 0.7518826321218491
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 2,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7291725660966837,
+                  "history_stress_net_pf": 0.5425849924382994,
+                  "history_trades": 40983
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.727186581983149,
+                  "history_stress_net_pf": 0.5416374099050096,
+                  "history_trades": 40761
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.72059971079945,
+                  "history_stress_net_pf": 0.53519240254429,
+                  "history_trades": 40329
+                }
+              ],
+              "history_net_pf": 0.7291725660966837,
+              "oof_trades": 64640,
+              "oof_net_pf": 0.6240881492407665
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 3,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6993850743322356,
+                  "history_stress_net_pf": 0.5150649769435227,
+                  "history_trades": 62414
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.69174121682955,
+                  "history_stress_net_pf": 0.509810121052709,
+                  "history_trades": 62264
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6902326399800645,
+                  "history_stress_net_pf": 0.5073585763074138,
+                  "history_trades": 62035
+                }
+              ],
+              "history_net_pf": 0.6993850743322356,
+              "oof_trades": 59668,
+              "oof_net_pf": 0.6248949386626879
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 4,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6856095552735392,
+                  "history_stress_net_pf": 0.5011788179365504,
+                  "history_trades": 81574
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6787934671475695,
+                  "history_stress_net_pf": 0.49658268782754844,
+                  "history_trades": 81704
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6774376833926736,
+                  "history_stress_net_pf": 0.49360247847708716,
+                  "history_trades": 83103
+                }
+              ],
+              "history_net_pf": 0.6856095552735392,
+              "oof_trades": 64259,
+              "oof_net_pf": 0.6294283440770139
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 1,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7014619199617907,
+                  "history_stress_net_pf": 0.5065140554526147,
+                  "history_trades": 20906
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6984477358013298,
+                  "history_stress_net_pf": 0.5041110952289442,
+                  "history_trades": 20768
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6968321024318725,
+                  "history_stress_net_pf": 0.5053751643378601,
+                  "history_trades": 21977
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6861803671391355,
+                  "history_stress_net_pf": 0.49692753929245487,
+                  "history_trades": 22004
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6850878945835261,
+                  "history_stress_net_pf": 0.4850773565826817,
+                  "history_trades": 27741
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6831165862365584,
+                  "history_stress_net_pf": 0.4803286073770122,
+                  "history_trades": 26580
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6792938028437152,
+                  "history_stress_net_pf": 0.4761658385624053,
+                  "history_trades": 26421
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.676398339658507,
+                  "history_stress_net_pf": 0.479482310156646,
+                  "history_trades": 28256
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6727057453725855,
+                  "history_stress_net_pf": 0.48227253067043446,
+                  "history_trades": 20522
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 100,
+                  "history_net_pf": 0.6565069905550874,
+                  "history_stress_net_pf": 0.44626572255549335,
+                  "history_trades": 36261
+                }
+              ],
+              "history_net_pf": 0.7014619199617907,
+              "oof_trades": 228667,
+              "oof_net_pf": 0.7278392371251334
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 2,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7291725660966837,
+                  "history_stress_net_pf": 0.5425849924382994,
+                  "history_trades": 40983
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.727186581983149,
+                  "history_stress_net_pf": 0.5416374099050096,
+                  "history_trades": 40761
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.72059971079945,
+                  "history_stress_net_pf": 0.53519240254429,
+                  "history_trades": 40329
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7177940800909572,
+                  "history_stress_net_pf": 0.5334714817311734,
+                  "history_trades": 40162
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7039680981965984,
+                  "history_stress_net_pf": 0.5130339928528379,
+                  "history_trades": 51889
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.7026586253032037,
+                  "history_stress_net_pf": 0.512198955450689,
+                  "history_trades": 52726
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.7025749650848735,
+                  "history_stress_net_pf": 0.5197743413791363,
+                  "history_trades": 40047
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6885508851871345,
+                  "history_stress_net_pf": 0.5053425668310747,
+                  "history_trades": 39368
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6885480881520326,
+                  "history_stress_net_pf": 0.49810331334246366,
+                  "history_trades": 51801
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6849025611672862,
+                  "history_stress_net_pf": 0.49430290160138624,
+                  "history_trades": 51606
+                }
+              ],
+              "history_net_pf": 0.7291725660966837,
+              "oof_trades": 235205,
+              "oof_net_pf": 0.6246764106945554
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 3,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6993850743322356,
+                  "history_stress_net_pf": 0.5150649769435227,
+                  "history_trades": 62414
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.69174121682955,
+                  "history_stress_net_pf": 0.509810121052709,
+                  "history_trades": 62264
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6902326399800645,
+                  "history_stress_net_pf": 0.5073585763074138,
+                  "history_trades": 62035
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6868489430090284,
+                  "history_stress_net_pf": 0.5049273081217576,
+                  "history_trades": 61834
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6842639477798094,
+                  "history_stress_net_pf": 0.4954347520366664,
+                  "history_trades": 78901
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6795820876036667,
+                  "history_stress_net_pf": 0.4913951817230553,
+                  "history_trades": 78127
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6784705729978281,
+                  "history_stress_net_pf": 0.4969046674101912,
+                  "history_trades": 61654
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6767833368020088,
+                  "history_stress_net_pf": 0.49255534412209373,
+                  "history_trades": 60664
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6678789963416613,
+                  "history_stress_net_pf": 0.4784178450522299,
+                  "history_trades": 78552
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6641293543214948,
+                  "history_stress_net_pf": 0.474668800064774,
+                  "history_trades": 78432
+                }
+              ],
+              "history_net_pf": 0.6993850743322356,
+              "oof_trades": 232823,
+              "oof_net_pf": 0.6092421532669695
+            }
+          ]
+        },
+        {
+          "unit": "global",
+          "step": 4,
+          "entries": [
+            {
+              "unit_name": "GLOBAL",
+              "symbols": 266,
+              "selected": [
+                {
+                  "P_fast": 8,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6856095552735392,
+                  "history_stress_net_pf": 0.5011788179365504,
+                  "history_trades": 81574
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6787934671475695,
+                  "history_stress_net_pf": 0.49658268782754844,
+                  "history_trades": 81704
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6774376833926736,
+                  "history_stress_net_pf": 0.49360247847708716,
+                  "history_trades": 83103
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6737211307225072,
+                  "history_stress_net_pf": 0.49028919043305813,
+                  "history_trades": 83205
+                },
+                {
+                  "P_fast": 26,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6709223208834911,
+                  "history_stress_net_pf": 0.48726580637826805,
+                  "history_trades": 83028
+                },
+                {
+                  "P_fast": 34,
+                  "P_slow": 200,
+                  "history_net_pf": 0.6678759149253118,
+                  "history_stress_net_pf": 0.4812587611172352,
+                  "history_trades": 82197
+                },
+                {
+                  "P_fast": 8,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6638585865279933,
+                  "history_stress_net_pf": 0.47610731782579446,
+                  "history_trades": 105028
+                },
+                {
+                  "P_fast": 12,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6610402749671926,
+                  "history_stress_net_pf": 0.4736403254484198,
+                  "history_trades": 104588
+                },
+                {
+                  "P_fast": 20,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6521065835435732,
+                  "history_stress_net_pf": 0.4627088316757931,
+                  "history_trades": 106591
+                },
+                {
+                  "P_fast": 21,
+                  "P_slow": 144,
+                  "history_net_pf": 0.6500026710443502,
+                  "history_stress_net_pf": 0.46022736784193613,
+                  "history_trades": 106682
+                }
+              ],
+              "history_net_pf": 0.6856095552735392,
+              "oof_trades": 242279,
+              "oof_net_pf": 0.6103881932879756
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "verdict": [
+    "The control (per-symbol selection, one cell per symbol) reproduces the recorded leg-3 yardstick: pooled out-of-fold net PF 0.6409 over 95786 out-of-fold trades.",
+    "The best granularity on this ladder is `global` with K = 1: pooled out-of-fold net PF 0.6649 (0.4818 under 2x costs) over 81254 out-of-fold trades.",
+    "No granularity clears PF 1 out of sample: the rule has no edge at the per-symbol, per-family or global selection granularity. The negative result of the finest selection is therefore a property of the rule, not of the selection granularity.",
+    "A coarser selection does not help: the per-family and global selections score 0.6649 against the per-symbol control's 0.6409."
+  ]
+}

@@ -32,7 +32,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from data.data_loader import load_ohlcv_csv
-from scripts.run_grid import CONFIG_DEFAULTS, run_cell
+from scripts.run_grid import run_cell, run_config
 
 
 def cell_metrics(run_dir: Path, symbol: str, fast: int, slow: int) -> dict:
@@ -47,19 +47,27 @@ def cell_metrics(run_dir: Path, symbol: str, fast: int, slow: int) -> dict:
 
 
 def check_cell(task) -> dict:
-    """Re-run one cell and compare it with the stored summary."""
-    run_dir, symbol, fast, slow, fixture_base = task
+    """Re-run one cell and compare it with the stored summary.
+
+    The re-run uses the config of the run being checked, not the default
+    config: a pre-registered mutation run (e.g. the ATR minimum-risk filter)
+    stores its own config, and re-running its cells with the default config
+    would measure the parent rule instead of the child.
+    """
+    run_dir, symbol, fast, slow, fixture_base, engine = task
     cell = Path(run_dir) / 'results' / symbol.replace('/', '_') / f'P{fast}_{slow}'
     stored = cell_metrics(run_dir, symbol, fast, slow)
+    config = run_config(run_dir)
     df = load_ohlcv_csv(str(Path(fixture_base) / f"{symbol.replace('/', '_')}.csv"))
     _, _, metrics = run_cell(
         symbol, df, fast, slow,
-        CONFIG_DEFAULTS['taker_fee_bps'], CONFIG_DEFAULTS['slippage_bps'],
-        CONFIG_DEFAULTS['rr'], CONFIG_DEFAULTS['stricter_trend'],
-        CONFIG_DEFAULTS['min_risk_atr'], CONFIG_DEFAULTS['atr_threshold'],
-        True, oos_fraction=None, sizing=CONFIG_DEFAULTS['sizing'],
-        risk_fraction=CONFIG_DEFAULTS['risk_fraction'],
-        max_notional_multiple=CONFIG_DEFAULTS['max_notional_multiple'],
+        config['taker_fee_bps'], config['slippage_bps'],
+        config['rr'], config['stricter_trend'],
+        config['min_risk_atr'], config['atr_threshold'],
+        config['conservative_exit'], oos_fraction=None, sizing=config['sizing'],
+        risk_fraction=config['risk_fraction'],
+        max_notional_multiple=config['max_notional_multiple'],
+        engine=engine,
     )
     same_trades = stored['stored_trade_count'] == metrics.get('trade_count')
     stored_pf = stored['stored_net_profit_factor']
@@ -101,6 +109,7 @@ def write_report(out_dir: Path, payload: dict) -> None:
     lines = []
     lines.append('# Grid Reproducibility Check — EMA Hourly Continuation\n')
     lines.append(f"**Grid run:** `{payload['source_run']}`")
+    lines.append(f"**Engine:** `{payload.get('engine', 'reference')}`")
     lines.append(f"**Generated:** {payload['generated_at']}")
     lines.append(f"**Fixture base:** `{payload['fixture_base']}`\n")
     lines.append('## Result\n')
@@ -138,6 +147,11 @@ def main():
                         help='Number of random cells to check when --symbols is not given')
     parser.add_argument('--seed', type=int, default=20261021)
     parser.add_argument('--workers', type=int, default=4)
+    parser.add_argument('--engine', type=str, default='reference',
+                        choices=['reference', 'fast'],
+                        help="Engine used for the re-run: 'reference' (bar-by-bar research "
+                             "path) or 'fast' (its array twin, used to prove that the twin "
+                             "reproduces the stored grid)")
     parser.add_argument('--out', type=str, default=None)
     args = parser.parse_args()
 
@@ -154,7 +168,7 @@ def main():
         size = min(args.sample, len(cells))
         selected = rng.sample(cells, size)
 
-    tasks = [(str(run_dir), symbol, fast, slow, args.fixture_base)
+    tasks = [(str(run_dir), symbol, fast, slow, args.fixture_base, args.engine)
              for symbol, fast, slow in selected]
     if args.workers > 1:
         with ProcessPoolExecutor(max_workers=args.workers) as pool:
@@ -167,6 +181,7 @@ def main():
         'generated_at': datetime.now(timezone.utc).isoformat(),
         'source_run': str(run_dir),
         'fixture_base': args.fixture_base,
+        'engine': args.engine,
         'n_cells': len(rows),
         'n_reproducing': len(rows) - len(stale),
         'n_stale': len(stale),

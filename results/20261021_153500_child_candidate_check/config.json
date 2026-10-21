@@ -1,0 +1,78 @@
+{
+  "timestamp": "20261021_144430",
+  "source_run": "results/20261021_125403_grid",
+  "oos_fraction": 0.35,
+  "stress_multiplier": 2.0,
+  "base_costs_bps": {
+    "taker": 10.0,
+    "slippage": 2.0
+  },
+  "stress_costs_bps": {
+    "taker": 20.0,
+    "slippage": 4.0
+  },
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": true,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "cells": [
+    {
+      "symbol": "AERO/USDT",
+      "P_fast": 12,
+      "P_slow": 200
+    },
+    {
+      "symbol": "BLUR/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    },
+    {
+      "symbol": "CETUS/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    },
+    {
+      "symbol": "CETUS/USDT",
+      "P_fast": 12,
+      "P_slow": 200
+    },
+    {
+      "symbol": "ENA/USDT",
+      "P_fast": 20,
+      "P_slow": 21
+    },
+    {
+      "symbol": "FLUX/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    },
+    {
+      "symbol": "IMX/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    },
+    {
+      "symbol": "PUFFER/USDT",
+      "P_fast": 20,
+      "P_slow": 200
+    },
+    {
+      "symbol": "WLD/USDT",
+      "P_fast": 20,
+      "P_slow": 200
+    },
+    {
+      "symbol": "ZEN/USDT",
+      "P_fast": 8,
+      "P_slow": 200
+    }
+  ]
+}

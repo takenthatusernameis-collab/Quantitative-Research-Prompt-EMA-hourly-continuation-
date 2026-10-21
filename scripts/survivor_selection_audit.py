@@ -49,7 +49,7 @@ import pandas as pd
 from data.data_loader import load_ohlcv_csv
 from scripts.oos_grid_scan import (describe_distribution, read_trades,
                                     stressed_pnl_net, verify_cell, win_loss_sums)
-from scripts.run_grid import CONFIG_DEFAULTS, symbol_dir_name
+from scripts.run_grid import CONFIG_DEFAULTS, symbol_dir_name, run_config
 
 # The six cells the out-of-sample audit re-ran through the real backtest and
 # that still clear the cost stress (`results/20261021_033523_oos_grid_scan`,
@@ -67,6 +67,26 @@ CLOSEST_SURVIVORS = [
 # least this many out-of-sample trades, and still above 1 under 2x costs.
 GATE_MIN_TRADES = 30
 GATE_MIN_PF = 1.0
+
+
+def parse_closest_survivors(specs) -> list:
+    """Cells the sub-period stability leg runs on.
+
+    `SYMBOL:P_fast:P_slow` entries, e.g. `AERO/USDT:12:200`. Without a
+    specification the baseline grid's closest survivors are used, so the
+    baseline leg is unchanged; a mutation run passes its own gate survivors,
+    because the baseline's cells are not the family that run audits.
+    """
+    if not specs:
+        return list(CLOSEST_SURVIVORS)
+    out = []
+    for spec in specs:
+        parts = spec.rsplit(':', 2)
+        if len(parts) != 3:
+            raise SystemExit(f'bad --closest-survivors entry: {spec!r}')
+        symbol, fast, slow = parts[0], int(parts[1]), int(parts[2])
+        out.append((symbol, fast, slow))
+    return out
 
 # How many cells the "family" holds. The gate family has exactly ten cells,
 # so the ranked family is drawn with the same size.
@@ -818,6 +838,12 @@ def main():
     parser.add_argument('--exact-verify', type=int, default=1,
                         help='re-run the family cells through the real backtest (1/0)')
     parser.add_argument('--out', type=str, default=None)
+    parser.add_argument('--closest-survivors', type=str, nargs='*', default=None,
+                        help='Cells the sub-period stability leg is run on, as '
+                             'SYMBOL:P_fast:P_slow. Defaults to the baseline '
+                             'grid\'s closest survivors; a mutation run passes '
+                             'its own gate survivors so the leg covers the '
+                             'family it actually audits.')
     parser.add_argument('--render-only', type=str, default=None,
                         help='re-render summary.md from an existing summary.json')
     args = parser.parse_args()
@@ -832,7 +858,10 @@ def main():
 
     run_dir = Path(args.run)
     audit_dir = Path(args.oos_audit)
-    config = dict(CONFIG_DEFAULTS)
+    # The cells have to be verified under the config of the run they come
+    # from: a pre-registered mutation run stores its own config, and
+    # re-verifying it with the default config would measure the parent rule.
+    config = run_config(run_dir)
     out_dir = Path(args.out) if args.out else Path(
         f"results/{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}"
         f"_survivor_selection_audit")
@@ -929,8 +958,9 @@ def main():
     # Sub-period stability of the closest survivors.
     bars = {r['symbol']: int(r.get('n_bars') or 0) for r in rows}
     entry_start = {r['symbol']: int(r.get('entry_start_index') or 0) for r in rows}
+    closest_targets = parse_closest_survivors(args.closest_survivors)
     closest = []
-    for symbol, fast, slow in CLOSEST_SURVIVORS:
+    for symbol, fast, slow in closest_targets:
         if symbol not in bars:
             continue
         split = oos_subperiods(run_dir, symbol, fast, slow, bars[symbol],
@@ -980,7 +1010,7 @@ def main():
 
     with open(out_dir / 'config.json', 'w') as fh:
         json.dump({'args': vars(args), 'config': config,
-                   'closest_survivors': CLOSEST_SURVIVORS}, fh, indent=2)
+                   'closest_survivors': closest_targets}, fh, indent=2)
     with open(out_dir / 'summary.json', 'w') as fh:
         json.dump(payload, fh, indent=2, default=str)
     with open(out_dir / 'cells.jsonl', 'w') as fh:

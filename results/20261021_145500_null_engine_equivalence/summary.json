@@ -1,0 +1,65 @@
+{
+  "source_run": "results/20261021_125403_grid",
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": true,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0,
+    "stress_multiplier": 2.0
+  },
+  "modes": [
+    "block",
+    "timing",
+    "sign"
+  ],
+  "n_cells": 4,
+  "n_mismatches": 0,
+  "cells": [
+    {
+      "symbol": "1INCH/USDT",
+      "P_fast": 100,
+      "P_slow": 144,
+      "fast_seconds": 0.11116790771484375,
+      "reference_seconds": 2.582031726837158,
+      "speedup": 23.226412909203212,
+      "n_mismatches": 0,
+      "mismatches": []
+    },
+    {
+      "symbol": "1INCH/USDT",
+      "P_fast": 100,
+      "P_slow": 200,
+      "fast_seconds": 0.0708918571472168,
+      "reference_seconds": 2.6658480167388916,
+      "speedup": 37.60443193359835,
+      "n_mismatches": 0,
+      "mismatches": []
+    },
+    {
+      "symbol": "1INCH/USDT",
+      "P_fast": 12,
+      "P_slow": 100,
+      "fast_seconds": 0.07340574264526367,
+      "reference_seconds": 3.445758581161499,
+      "speedup": 46.94126722228357,
+      "n_mismatches": 0,
+      "mismatches": []
+    },
+    {
+      "symbol": "1INCH/USDT",
+      "P_fast": 12,
+      "P_slow": 144,
+      "fast_seconds": 0.07075858116149902,
+      "reference_seconds": 3.7573447227478027,
+      "speedup": 53.10090537530788,
+      "n_mismatches": 0,
+      "mismatches": []
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Research Conclusion — EMA Hourly Continuation
 
-## Program status (2026-10-21T12:20Z)
+## Program status (2026-10-21T14:25Z)
 
 **The research program is NOT concluded.** It is in the waiting state
 `AWAITING_NEW_ELIGIBLE_CANDIDATES`: the current market-cap snapshot
@@ -16,6 +16,42 @@ What the evidence says so far:
   **0.5224**; only **36 cells (0.21 %)** reach a full-sample net PF > 1 against a
   ~50 % no-edge null, and every one of them fails the out-of-sample and 2x-cost
   gates. **0 credible candidates.**
+- **The pre-registered ATR minimum-risk mutation was run over the whole grid
+  and it is a cost-drag repair, not an edge.**
+  `results/20261021_125403_grid/` (17 556 cells, same universe, same 66 pairs,
+  same cost model; only `min_risk_atr = true, atr_threshold = 1.0` is added)
+  lifts the pooled net PF from 0.5225 to **0.7347** and the pooled gross PF
+  from 0.8872 to 0.9636, and it cuts the median cell's cost share of its gross
+  move from 26.6 % to 13.2 % by widening the median stop from 1.35 % to 2.08 %
+  of the entry price. But the yardstick that matters — the pooled **out-of-fold**
+  net PF of the selection procedure under the identical walk-forward protocol —
+  is **0.7390** (0.5731 under 2x costs) against the parent's 0.6409
+  (0.4521). The pre-registered decision rule required above 1.0 on that number,
+  so **the mutation is recorded as a rejected mutation**. Artifacts:
+  `results/20261021_130500_atr_min_risk_prereg/` (written before the child run
+  started), `results/20261021_135500_mutation_comparison/`.
+- **The negative result is not an artefact of the selection granularity.**
+  `scripts/selection_granularity.py` re-runs the walk-forward with the
+  selection unit changed — per symbol (266 selections per step), per
+  market-cap bucket (5) or one pair for the whole universe — and with 1, 3 or
+  10 cells per unit. The control reproduces the recorded yardstick exactly
+  (0.6409), the best granularity of the ladder is 0.6649 for the parent and
+  0.8070 for the child, and **no granularity clears PF 1 in either arm**. The
+  question "is there an edge at some selection granularity?" therefore has one
+  answer at every level of the ladder: no. Artifact:
+  `results/20261021_140500_selection_granularity/`.
+- **One open thread, and it is the interesting one.** The child does produce
+  cells the parent does not: 106 cells clear the grid-wide out-of-sample +
+  2x-cost gate (parent: 10) and **10 cells pass the full §3.4 credible-candidate
+  gate (parent: 0)**, and 32 of the 108 gate-clearing cells keep a stressed
+  out-of-sample PF above 1 at all three window lengths (parent: 0 of 6). That
+  is *not* a promotion — 106 of 17 556 is 0.60 % of the grid, the parent's own
+  randomized-entry null puts the false-positive rate of the same gate at
+  0.04-0.12 % of the grid, and **the child's survivors have not yet been
+  through the selection-bias machinery** (child-specific null, family
+  concentration, leave-one-symbol-out, walk-forward, candidate check,
+  sub-period stability) that the parent's 10 had to pass. That machinery is
+  the next leg.
 - **The out-of-sample gate now covers the whole grid, not a selected subset.**
   The pipeline used to test only the 36 in-sample winners out of sample, which
   left 17 520 cells unexamined. `scripts/oos_grid_scan.py` applies the same

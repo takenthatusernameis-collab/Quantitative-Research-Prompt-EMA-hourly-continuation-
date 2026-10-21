@@ -1,0 +1,29 @@
+{
+  "args": {
+    "arm": [
+      "parent:results/20261021_121629_survivor_selection_audit/cells.jsonl",
+      "child:results/20261021_135500_mutation_comparison/child_fold_stats.jsonl"
+    ],
+    "mcap": "universe/mcap_rank.json",
+    "fixture_base": "data/fixtures",
+    "n_folds": 5,
+    "min_history_trades": 20,
+    "buckets": 5,
+    "top_k": "1,3,10",
+    "units": "symbol,bucket,global",
+    "stress_multiplier": 2.0,
+    "out": "results/20261021_140500_selection_granularity"
+  },
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": false,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  }
+}

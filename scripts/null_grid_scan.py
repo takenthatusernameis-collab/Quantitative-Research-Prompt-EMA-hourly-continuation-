@@ -73,12 +73,12 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from backtest.backtest import backtest_symbol
+from backtest.backtest import backtest_symbol, backtest_symbol_fast
 from data.data_loader import load_ohlcv_csv
 from metrics.metrics import calculate_metrics
 from scripts.oos_grid_scan import (describe_distribution, entry_start_index,
                                     net_profit_factor, stressed_pnl_net)
-from scripts.run_grid import CONFIG_DEFAULTS, GRID_PAIRS
+from scripts.run_grid import CONFIG_DEFAULTS, GRID_PAIRS, run_config
 from signals.signals import generate_signals, generate_signals_vectorized
 
 NULL_MODES = ('block', 'timing', 'sign')
@@ -181,7 +181,7 @@ def apply_entries(frame: pd.DataFrame, positions: np.ndarray,
 
 
 def window_stats(frame: pd.DataFrame, entry_start: int, config: dict,
-                 symbol: str) -> dict:
+                 symbol: str, engine: str = 'reference') -> dict:
     """Out-of-sample statistics of one frame, on the trailing window only.
 
     The engine is given the window and asked for entries from its first bar.
@@ -192,7 +192,8 @@ def window_stats(frame: pd.DataFrame, entry_start: int, config: dict,
     claim on a sample of real cells.
     """
     window = frame.iloc[entry_start:].reset_index(drop=True)
-    trades, equity_df = backtest_symbol(
+    engine_fn = backtest_symbol_fast if engine == 'fast' else backtest_symbol
+    trades, equity_df = engine_fn(
         window, symbol=symbol,
         taker_fee_bps=config['taker_fee_bps'], slippage_bps=config['slippage_bps'],
         rr=config['rr'], min_risk_atr=config['min_risk_atr'],
@@ -279,7 +280,7 @@ def process_cell(symbol: str, df: pd.DataFrame, fast: int, slow: int,
     eligible = eligible_bars(len(frame), fast, slow)
     eligible = eligible[eligible >= entry_start]
 
-    real = window_stats(frame, entry_start, config, symbol)
+    real = window_stats(frame, entry_start, config, symbol, opts.get('engine', 'reference'))
     row = {
         'symbol': symbol,
         'P_fast': fast,
@@ -297,7 +298,8 @@ def process_cell(symbol: str, df: pd.DataFrame, fast: int, slow: int,
         positions, directions = null_entries(entry_idx, sides, eligible, rng, mode,
                                              opts.get('block_bars', DEFAULT_BLOCK_BARS))
         null_frame = apply_entries(frame, positions, directions)
-        row['null'][mode] = window_stats(null_frame, entry_start, config, symbol)
+        row['null'][mode] = window_stats(null_frame, entry_start, config, symbol,
+                                         opts.get('engine', 'reference'))
     return row
 
 
@@ -392,7 +394,7 @@ def survivor_replicates(symbol: str, df: pd.DataFrame, fast: int, slow: int,
     sides = signal[entry_idx]
     eligible = eligible_bars(len(frame), fast, slow)
     eligible = eligible[eligible >= entry_start]
-    real = window_stats(frame, entry_start, config, symbol)
+    real = window_stats(frame, entry_start, config, symbol, opts.get('engine', 'reference'))
 
     out = {'symbol': symbol, 'P_fast': fast, 'P_slow': slow, 'real': real,
            'n_bars': int(len(frame)), 'replicates': replicates, 'modes': {}}
@@ -406,7 +408,8 @@ def survivor_replicates(symbol: str, df: pd.DataFrame, fast: int, slow: int,
             positions, directions = null_entries(entry_idx, sides, eligible, rng, mode,
                                                  opts.get('block_bars', DEFAULT_BLOCK_BARS))
             null_frame = apply_entries(frame, positions, directions)
-            stats = window_stats(null_frame, entry_start, config, symbol)
+            stats = window_stats(null_frame, entry_start, config, symbol,
+                                 opts.get('engine', 'reference'))
             pfs.append(stats['net_pf'])
             stress_pfs.append(stats['stress_net_pf'])
             trades.append(stats['trades'])
@@ -632,7 +635,9 @@ def write_report(out_dir: Path, payload: dict) -> None:
     lines.append(f"**Universe:** {payload['n_symbols']} symbols, {payload['n_cells']} grid cells")
     lines.append(f"**Out-of-sample window:** trailing {payload['oos_fraction']:.0%} of each "
                  f"symbol's bars, entries restricted to the window")
-    lines.append(f"**Cost stress:** {payload['stress_multiplier']:g}x fees and slippage\n")
+    lines.append(f"**Cost stress:** {payload['stress_multiplier']:g}x fees and slippage")
+    lines.append(f"**Backtest engine:** {payload.get('engine', 'reference')}")
+    lines.append('')
 
     lines.append('## What the leg asks\n')
     lines.append('How many of the 17 556 cells would clear the out-of-sample gates if the '
@@ -963,6 +968,11 @@ def main():
                         help='Only the first N symbols (smoke test)')
     parser.add_argument('--workers', type=int, default=min(4, os.cpu_count() or 1))
     parser.add_argument('--seed', type=int, default=20261021)
+    parser.add_argument('--engine', type=str, default='reference',
+                        choices=['reference', 'fast'],
+                        help='Backtest engine for the null legs. `fast` is the '
+                             'proved-equivalent array twin of the research path; '
+                             'the research path stays the default.')
     parser.add_argument('--out', type=str, default=None)
     parser.add_argument('--summarize-only', type=str, default=None,
                         help='Rebuild the summary and the report from an existing '
@@ -1017,7 +1027,11 @@ def main():
         print(f'Checkpoint held {n_truncated} truncated line(s); they are re-run.',
               flush=True)
 
-    config = dict(CONFIG_DEFAULTS)
+    # The null has to be produced under the config of the run it nulls. A
+    # pre-registered mutation run stores its own `run_config.json`, and
+    # nulling it with the default config would measure the parent rule (the
+    # ATR filter would simply be absent from the null).
+    config = run_config(run_dir)
     config['stress_multiplier'] = args.stress_multiplier
     opts = {
         'run': str(run_dir),
@@ -1027,6 +1041,7 @@ def main():
         'min_trades': args.min_trades,
         'modes': list(args.modes),
         'block_bars': args.block_bars,
+        'engine': args.engine,
         'config': config,
     }
 
@@ -1193,6 +1208,7 @@ def main():
         'modes': list(args.modes),
         'survivor_modes': list(args.survivor_modes),
         'config': config,
+        'engine': args.engine,
         'n_symbols': len(symbols),
         'n_cells': n_cells,
         'grid': grid_summary,
@@ -1223,6 +1239,7 @@ def main():
             'validate_sample': args.validate_sample,
             'workers': args.workers,
             'seed': args.seed,
+            'engine': args.engine,
             'config': config,
             'command': (f'PYTHONPATH=. python3 scripts/null_grid_scan.py --run {run_dir} '
                         f'--modes {" ".join(args.modes)} '
