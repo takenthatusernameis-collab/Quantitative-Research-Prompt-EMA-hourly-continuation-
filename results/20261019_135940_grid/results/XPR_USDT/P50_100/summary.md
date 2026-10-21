@@ -23,7 +23,7 @@
 | max_drawdown | 0.9735 |
 | cagr | -0.7637 |
 | net_avg_win | 20.4122 |
-| net_avg_loss | -38.7571 |
+| net_avg_loss | -38.7570 |
 | avg_hold_time_bars | 5.5552 |
 | exposure | 0.1555 |
 

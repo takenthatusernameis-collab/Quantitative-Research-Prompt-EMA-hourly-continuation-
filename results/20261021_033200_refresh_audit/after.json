@@ -1,0 +1,2642 @@
+{
+  "RLC_USDT/P100_144": {
+    "trade_count": 533,
+    "net_profit_factor": 0.47662011069843807,
+    "gross_profit_factor": 0.8493596799233529,
+    "sharpe_ratio": -5.323421773264664,
+    "max_drawdown": 0.8816974622022336,
+    "net_win_rate": 0.4540337711069418
+  },
+  "RLC_USDT/P100_200": {
+    "trade_count": 426,
+    "net_profit_factor": 0.5728530668780304,
+    "gross_profit_factor": 0.8695501497408469,
+    "sharpe_ratio": -3.3925455450016644,
+    "max_drawdown": 0.6982527686902995,
+    "net_win_rate": 0.4694835680751174
+  },
+  "RLC_USDT/P12_100": {
+    "trade_count": 536,
+    "net_profit_factor": 0.7170012207456131,
+    "gross_profit_factor": 1.0475009923995449,
+    "sharpe_ratio": -2.5531810313687444,
+    "max_drawdown": 0.6561966045068098,
+    "net_win_rate": 0.5055970149253731
+  },
+  "RLC_USDT/P12_144": {
+    "trade_count": 479,
+    "net_profit_factor": 0.7069866638244912,
+    "gross_profit_factor": 0.9743482268795558,
+    "sharpe_ratio": -2.4762120690925857,
+    "max_drawdown": 0.6201775946260405,
+    "net_win_rate": 0.48851774530271397
+  },
+  "RLC_USDT/P12_20": {
+    "trade_count": 1394,
+    "net_profit_factor": 0.39122672142173204,
+    "gross_profit_factor": 0.9488142059962227,
+    "sharpe_ratio": -11.45517183234712,
+    "max_drawdown": 0.9995704164385674,
+    "net_win_rate": 0.4332855093256815
+  },
+  "RLC_USDT/P12_200": {
+    "trade_count": 336,
+    "net_profit_factor": 0.7201199876909283,
+    "gross_profit_factor": 0.9942001272825277,
+    "sharpe_ratio": -1.843264239841975,
+    "max_drawdown": 0.4734035501977198,
+    "net_win_rate": 0.49107142857142855
+  },
+  "RLC_USDT/P12_21": {
+    "trade_count": 1376,
+    "net_profit_factor": 0.4093082468216106,
+    "gross_profit_factor": 0.9492097475624928,
+    "sharpe_ratio": -11.027350646942423,
+    "max_drawdown": 0.9993544194706057,
+    "net_win_rate": 0.4316860465116279
+  },
+  "RLC_USDT/P12_26": {
+    "trade_count": 1288,
+    "net_profit_factor": 0.4743551927688618,
+    "gross_profit_factor": 0.9780028630752112,
+    "sharpe_ratio": -9.239570041250522,
+    "max_drawdown": 0.9971453457618972,
+    "net_win_rate": 0.4503105590062112
+  },
+  "RLC_USDT/P12_34": {
+    "trade_count": 1145,
+    "net_profit_factor": 0.6089329220228088,
+    "gross_profit_factor": 1.0620655796867449,
+    "sharpe_ratio": -6.5255696200552515,
+    "max_drawdown": 0.979000188015875,
+    "net_win_rate": 0.48384279475982533
+  },
+  "RLC_USDT/P12_50": {
+    "trade_count": 950,
+    "net_profit_factor": 0.5954234265784755,
+    "gross_profit_factor": 0.9621270362571953,
+    "sharpe_ratio": -5.698752163449037,
+    "max_drawdown": 0.9550598061958557,
+    "net_win_rate": 0.4726315789473684
+  },
+  "RLC_USDT/P12_55": {
+    "trade_count": 933,
+    "net_profit_factor": 0.5866908125145112,
+    "gross_profit_factor": 0.9277850070134855,
+    "sharpe_ratio": -5.338573972318019,
+    "max_drawdown": 0.9416281701363758,
+    "net_win_rate": 0.4737406216505895
+  },
+  "RLC_USDT/P12_89": {
+    "trade_count": 558,
+    "net_profit_factor": 0.7478076875320397,
+    "gross_profit_factor": 1.106057963985058,
+    "sharpe_ratio": -2.291227529057671,
+    "max_drawdown": 0.6409017588251009,
+    "net_win_rate": 0.5197132616487455
+  },
+  "RLC_USDT/P144_200": {
+    "trade_count": 406,
+    "net_profit_factor": 0.4841327360091198,
+    "gross_profit_factor": 0.864068653510687,
+    "sharpe_ratio": -4.277685427401912,
+    "max_drawdown": 0.7687301534750154,
+    "net_win_rate": 0.45566502463054187
+  },
+  "RLC_USDT/P20_100": {
+    "trade_count": 681,
+    "net_profit_factor": 0.6708554035995399,
+    "gross_profit_factor": 1.0091369207595997,
+    "sharpe_ratio": -3.4207316120586335,
+    "max_drawdown": 0.7943926717576346,
+    "net_win_rate": 0.4889867841409692
+  },
+  "RLC_USDT/P20_144": {
+    "trade_count": 565,
+    "net_profit_factor": 0.6685376510164242,
+    "gross_profit_factor": 0.9473243372483312,
+    "sharpe_ratio": -2.9835378159877712,
+    "max_drawdown": 0.7214414626861763,
+    "net_win_rate": 0.48672566371681414
+  },
+  "RLC_USDT/P20_200": {
+    "trade_count": 405,
+    "net_profit_factor": 0.7130608195552686,
+    "gross_profit_factor": 0.9692273205663565,
+    "sharpe_ratio": -2.1259860676521214,
+    "max_drawdown": 0.5606547497431026,
+    "net_win_rate": 0.48641975308641977
+  },
+  "RLC_USDT/P20_21": {
+    "trade_count": 1179,
+    "net_profit_factor": 0.18120775912635798,
+    "gross_profit_factor": 0.7905908842614906,
+    "sharpe_ratio": -16.3791814676054,
+    "max_drawdown": 0.9999912697706164,
+    "net_win_rate": 0.32145886344359625
+  },
+  "RLC_USDT/P20_26": {
+    "trade_count": 1153,
+    "net_profit_factor": 0.2929454631914611,
+    "gross_profit_factor": 0.8239279783033614,
+    "sharpe_ratio": -12.457749085215443,
+    "max_drawdown": 0.9996265426468488,
+    "net_win_rate": 0.39462272333044235
+  },
+  "RLC_USDT/P20_34": {
+    "trade_count": 1085,
+    "net_profit_factor": 0.4280008368691954,
+    "gross_profit_factor": 0.9139351116719718,
+    "sharpe_ratio": -9.216863722648082,
+    "max_drawdown": 0.9956753945534702,
+    "net_win_rate": 0.4423963133640553
+  },
+  "RLC_USDT/P20_50": {
+    "trade_count": 972,
+    "net_profit_factor": 0.5264207969555881,
+    "gross_profit_factor": 0.9570963021675115,
+    "sharpe_ratio": -6.548717522384564,
+    "max_drawdown": 0.9720830570543514,
+    "net_win_rate": 0.47016460905349794
+  },
+  "RLC_USDT/P20_55": {
+    "trade_count": 947,
+    "net_profit_factor": 0.5216775083645103,
+    "gross_profit_factor": 0.9110021582334805,
+    "sharpe_ratio": -6.144496679261101,
+    "max_drawdown": 0.9625894733243533,
+    "net_win_rate": 0.4699049630411827
+  },
+  "RLC_USDT/P20_89": {
+    "trade_count": 750,
+    "net_profit_factor": 0.6695185724898537,
+    "gross_profit_factor": 1.028284664975115,
+    "sharpe_ratio": -3.589461777803769,
+    "max_drawdown": 0.8260475676083648,
+    "net_win_rate": 0.5
+  },
+  "RLC_USDT/P21_100": {
+    "trade_count": 682,
+    "net_profit_factor": 0.6565606328885495,
+    "gross_profit_factor": 1.0095733439648262,
+    "sharpe_ratio": -3.669552429965001,
+    "max_drawdown": 0.81448986538301,
+    "net_win_rate": 0.4868035190615836
+  },
+  "RLC_USDT/P21_144": {
+    "trade_count": 580,
+    "net_profit_factor": 0.653154880592141,
+    "gross_profit_factor": 0.9350587401565577,
+    "sharpe_ratio": -3.2304630778429333,
+    "max_drawdown": 0.754447670243105,
+    "net_win_rate": 0.4810344827586207
+  },
+  "RLC_USDT/P21_200": {
+    "trade_count": 404,
+    "net_profit_factor": 0.6821008896607933,
+    "gross_profit_factor": 0.9588313997278626,
+    "sharpe_ratio": -2.3932666582290247,
+    "max_drawdown": 0.5947388226572149,
+    "net_win_rate": 0.48267326732673266
+  },
+  "RLC_USDT/P21_26": {
+    "trade_count": 1119,
+    "net_profit_factor": 0.2499006937286339,
+    "gross_profit_factor": 0.7628452291377249,
+    "sharpe_ratio": -13.008920899037484,
+    "max_drawdown": 0.9997299162209307,
+    "net_win_rate": 0.3762287756925827
+  },
+  "RLC_USDT/P21_34": {
+    "trade_count": 1049,
+    "net_profit_factor": 0.398887833110213,
+    "gross_profit_factor": 0.8845909507008327,
+    "sharpe_ratio": -9.24820782752213,
+    "max_drawdown": 0.9953649893571822,
+    "net_win_rate": 0.4413727359389895
+  },
+  "RLC_USDT/P21_50": {
+    "trade_count": 952,
+    "net_profit_factor": 0.5137014672856957,
+    "gross_profit_factor": 0.9465843129574859,
+    "sharpe_ratio": -6.519895121049277,
+    "max_drawdown": 0.9704551507314492,
+    "net_win_rate": 0.4737394957983193
+  },
+  "RLC_USDT/P21_55": {
+    "trade_count": 926,
+    "net_profit_factor": 0.49686753264639066,
+    "gross_profit_factor": 0.8821651361414402,
+    "sharpe_ratio": -6.322820077355341,
+    "max_drawdown": 0.9650469705742372,
+    "net_win_rate": 0.468682505399568
+  },
+  "RLC_USDT/P21_89": {
+    "trade_count": 754,
+    "net_profit_factor": 0.6616660446451077,
+    "gross_profit_factor": 1.027008154054313,
+    "sharpe_ratio": -3.819252952169326,
+    "max_drawdown": 0.8432542721648764,
+    "net_win_rate": 0.4946949602122016
+  },
+  "RLC_USDT/P26_100": {
+    "trade_count": 689,
+    "net_profit_factor": 0.6370465150051815,
+    "gross_profit_factor": 0.986810408894341,
+    "sharpe_ratio": -4.007863712255188,
+    "max_drawdown": 0.8447176685907054,
+    "net_win_rate": 0.4833091436865022
+  },
+  "RLC_USDT/P26_144": {
+    "trade_count": 587,
+    "net_profit_factor": 0.6765518401845234,
+    "gross_profit_factor": 0.9941040637754371,
+    "sharpe_ratio": -2.998818731600427,
+    "max_drawdown": 0.7247992301176958,
+    "net_win_rate": 0.49233390119250425
+  },
+  "RLC_USDT/P26_200": {
+    "trade_count": 422,
+    "net_profit_factor": 0.6534055419600131,
+    "gross_profit_factor": 0.9409228277750087,
+    "sharpe_ratio": -2.6394275732949053,
+    "max_drawdown": 0.6260749245306649,
+    "net_win_rate": 0.4834123222748815
+  },
+  "RLC_USDT/P26_34": {
+    "trade_count": 1004,
+    "net_profit_factor": 0.3009167694887885,
+    "gross_profit_factor": 0.800881870037087,
+    "sharpe_ratio": -10.883031295596922,
+    "max_drawdown": 0.9982287101333571,
+    "net_win_rate": 0.40537848605577687
+  },
+  "RLC_USDT/P26_50": {
+    "trade_count": 931,
+    "net_profit_factor": 0.48199028604521277,
+    "gross_profit_factor": 0.9344594329493338,
+    "sharpe_ratio": -7.042459453115869,
+    "max_drawdown": 0.9775487618615372,
+    "net_win_rate": 0.46509129967776586
+  },
+  "RLC_USDT/P26_55": {
+    "trade_count": 900,
+    "net_profit_factor": 0.4702047096271415,
+    "gross_profit_factor": 0.8671697809802713,
+    "sharpe_ratio": -6.824530982127555,
+    "max_drawdown": 0.9727414711721196,
+    "net_win_rate": 0.46111111111111114
+  },
+  "RLC_USDT/P26_89": {
+    "trade_count": 730,
+    "net_profit_factor": 0.6322050709354413,
+    "gross_profit_factor": 1.013041841499433,
+    "sharpe_ratio": -4.072767599562186,
+    "max_drawdown": 0.857772543914032,
+    "net_win_rate": 0.4876712328767123
+  },
+  "RLC_USDT/P34_100": {
+    "trade_count": 670,
+    "net_profit_factor": 0.5943071897918537,
+    "gross_profit_factor": 0.9230278321204873,
+    "sharpe_ratio": -4.4187710812626,
+    "max_drawdown": 0.8685449668290103,
+    "net_win_rate": 0.47313432835820896
+  },
+  "RLC_USDT/P34_144": {
+    "trade_count": 525,
+    "net_profit_factor": 0.5803724769875434,
+    "gross_profit_factor": 0.8560538847431357,
+    "sharpe_ratio": -3.940050398580733,
+    "max_drawdown": 0.7898330653093297,
+    "net_win_rate": 0.45714285714285713
+  },
+  "RLC_USDT/P34_200": {
+    "trade_count": 396,
+    "net_profit_factor": 0.6365206189036791,
+    "gross_profit_factor": 0.8587850873574281,
+    "sharpe_ratio": -2.793498445572084,
+    "max_drawdown": 0.6174567629009047,
+    "net_win_rate": 0.46464646464646464
+  },
+  "RLC_USDT/P34_50": {
+    "trade_count": 887,
+    "net_profit_factor": 0.38170637537768337,
+    "gross_profit_factor": 0.8428073828723371,
+    "sharpe_ratio": -8.531541237044635,
+    "max_drawdown": 0.9898902898027033,
+    "net_win_rate": 0.43968432919954903
+  },
+  "RLC_USDT/P34_55": {
+    "trade_count": 860,
+    "net_profit_factor": 0.4161758083633061,
+    "gross_profit_factor": 0.8350484052183437,
+    "sharpe_ratio": -7.842177888661408,
+    "max_drawdown": 0.9832819701308357,
+    "net_win_rate": 0.44302325581395346
+  },
+  "RLC_USDT/P34_89": {
+    "trade_count": 696,
+    "net_profit_factor": 0.5694258946268811,
+    "gross_profit_factor": 0.9181712652621742,
+    "sharpe_ratio": -4.686078066226674,
+    "max_drawdown": 0.8885867417947105,
+    "net_win_rate": 0.47413793103448276
+  },
+  "RLC_USDT/P50_100": {
+    "trade_count": 653,
+    "net_profit_factor": 0.5336707926674411,
+    "gross_profit_factor": 0.8982625049238135,
+    "sharpe_ratio": -4.84312890416369,
+    "max_drawdown": 0.8873726170109268,
+    "net_win_rate": 0.4670750382848392
+  },
+  "RLC_USDT/P50_144": {
+    "trade_count": 497,
+    "net_profit_factor": 0.567093980620797,
+    "gross_profit_factor": 0.880944522846988,
+    "sharpe_ratio": -3.862243419514658,
+    "max_drawdown": 0.7758597839354066,
+    "net_win_rate": 0.45875251509054327
+  },
+  "RLC_USDT/P50_200": {
+    "trade_count": 376,
+    "net_profit_factor": 0.6509761350753063,
+    "gross_profit_factor": 0.9012090722004559,
+    "sharpe_ratio": -2.4905787893014675,
+    "max_drawdown": 0.5631577269591242,
+    "net_win_rate": 0.4734042553191489
+  },
+  "RLC_USDT/P50_55": {
+    "trade_count": 821,
+    "net_profit_factor": 0.25504523024513515,
+    "gross_profit_factor": 0.8208379785355988,
+    "sharpe_ratio": -11.302963160505678,
+    "max_drawdown": 0.9983214182919511,
+    "net_win_rate": 0.38246041412911086
+  },
+  "RLC_USDT/P50_89": {
+    "trade_count": 687,
+    "net_profit_factor": 0.5099923155829831,
+    "gross_profit_factor": 0.9177127742336495,
+    "sharpe_ratio": -5.4710170869307255,
+    "max_drawdown": 0.924358993871614,
+    "net_win_rate": 0.47016011644832606
+  },
+  "RLC_USDT/P55_100": {
+    "trade_count": 648,
+    "net_profit_factor": 0.4923620794840726,
+    "gross_profit_factor": 0.8899971904989449,
+    "sharpe_ratio": -5.246425045033521,
+    "max_drawdown": 0.9023185065098107,
+    "net_win_rate": 0.4567901234567901
+  },
+  "RLC_USDT/P55_144": {
+    "trade_count": 518,
+    "net_profit_factor": 0.5594335408517237,
+    "gross_profit_factor": 0.8698578113995601,
+    "sharpe_ratio": -3.8552461630940082,
+    "max_drawdown": 0.7846402654208395,
+    "net_win_rate": 0.46525096525096526
+  },
+  "RLC_USDT/P55_200": {
+    "trade_count": 390,
+    "net_profit_factor": 0.609006019726021,
+    "gross_profit_factor": 0.8788742400563708,
+    "sharpe_ratio": -2.7390359799267485,
+    "max_drawdown": 0.6084807375055203,
+    "net_win_rate": 0.46923076923076923
+  },
+  "RLC_USDT/P55_89": {
+    "trade_count": 682,
+    "net_profit_factor": 0.46832771925583205,
+    "gross_profit_factor": 0.9058413508960371,
+    "sharpe_ratio": -5.884066088459286,
+    "max_drawdown": 0.9348700862008511,
+    "net_win_rate": 0.46187683284457476
+  },
+  "RLC_USDT/P89_100": {
+    "trade_count": 650,
+    "net_profit_factor": 0.27824529640483503,
+    "gross_profit_factor": 0.7718822305331284,
+    "sharpe_ratio": -9.392900256945493,
+    "max_drawdown": 0.9892807984498736,
+    "net_win_rate": 0.3861538461538462
+  },
+  "RLC_USDT/P89_144": {
+    "trade_count": 535,
+    "net_profit_factor": 0.4966612010191739,
+    "gross_profit_factor": 0.8407972442419095,
+    "sharpe_ratio": -4.7991595824665065,
+    "max_drawdown": 0.8523350919250959,
+    "net_win_rate": 0.45981308411214955
+  },
+  "RLC_USDT/P89_200": {
+    "trade_count": 428,
+    "net_profit_factor": 0.5480134509792004,
+    "gross_profit_factor": 0.8211196964547945,
+    "sharpe_ratio": -3.687262234829747,
+    "max_drawdown": 0.7303975117589336,
+    "net_win_rate": 0.4532710280373832
+  },
+  "RLC_USDT/P8_100": {
+    "trade_count": 551,
+    "net_profit_factor": 0.7690794667749913,
+    "gross_profit_factor": 1.1330212136959963,
+    "sharpe_ratio": -2.168048193724319,
+    "max_drawdown": 0.6562512866505625,
+    "net_win_rate": 0.5099818511796733
+  },
+  "RLC_USDT/P8_12": {
+    "trade_count": 1728,
+    "net_profit_factor": 0.29358442153467046,
+    "gross_profit_factor": 0.8922099055189452,
+    "sharpe_ratio": -15.378348295710156,
+    "max_drawdown": 0.9999937400598113,
+    "net_win_rate": 0.40046296296296297
+  },
+  "RLC_USDT/P8_144": {
+    "trade_count": 478,
+    "net_profit_factor": 0.7536303232564219,
+    "gross_profit_factor": 1.0274568178068482,
+    "sharpe_ratio": -2.1914227181285457,
+    "max_drawdown": 0.6363078049858265,
+    "net_win_rate": 0.49581589958158995
+  },
+  "RLC_USDT/P8_20": {
+    "trade_count": 1590,
+    "net_profit_factor": 0.4465545158020846,
+    "gross_profit_factor": 0.9693927894918967,
+    "sharpe_ratio": -10.638106313661444,
+    "max_drawdown": 0.9994815453621668,
+    "net_win_rate": 0.44842767295597485
+  },
+  "RLC_USDT/P8_200": {
+    "trade_count": 312,
+    "net_profit_factor": 0.8145137872127963,
+    "gross_profit_factor": 1.0731650636867855,
+    "sharpe_ratio": -1.1224020721068106,
+    "max_drawdown": 0.4053475604710682,
+    "net_win_rate": 0.5128205128205128
+  },
+  "RLC_USDT/P8_21": {
+    "trade_count": 1581,
+    "net_profit_factor": 0.4602375259510884,
+    "gross_profit_factor": 0.9779490223244476,
+    "sharpe_ratio": -10.482698067692075,
+    "max_drawdown": 0.9993727530303628,
+    "net_win_rate": 0.4433902593295383
+  },
+  "RLC_USDT/P8_26": {
+    "trade_count": 1466,
+    "net_profit_factor": 0.4936606225453442,
+    "gross_profit_factor": 0.9272764324436813,
+    "sharpe_ratio": -8.937061264360942,
+    "max_drawdown": 0.9974265379485605,
+    "net_win_rate": 0.45020463847203274
+  },
+  "RLC_USDT/P8_34": {
+    "trade_count": 1315,
+    "net_profit_factor": 0.6068125091162906,
+    "gross_profit_factor": 1.0265219794954,
+    "sharpe_ratio": -6.821750847689002,
+    "max_drawdown": 0.9864468145780624,
+    "net_win_rate": 0.47452471482889735
+  },
+  "RLC_USDT/P8_50": {
+    "trade_count": 1091,
+    "net_profit_factor": 0.6333724548291106,
+    "gross_profit_factor": 1.0057529340711753,
+    "sharpe_ratio": -5.981666916767462,
+    "max_drawdown": 0.968241488208022,
+    "net_win_rate": 0.4674610449129239
+  },
+  "RLC_USDT/P8_55": {
+    "trade_count": 1019,
+    "net_profit_factor": 0.6235707389463987,
+    "gross_profit_factor": 0.9854859672004725,
+    "sharpe_ratio": -5.468504274224967,
+    "max_drawdown": 0.9526037332718671,
+    "net_win_rate": 0.47203140333660454
+  },
+  "RLC_USDT/P8_89": {
+    "trade_count": 609,
+    "net_profit_factor": 0.785455360679163,
+    "gross_profit_factor": 1.1576748123962475,
+    "sharpe_ratio": -2.2502417619990758,
+    "max_drawdown": 0.6846292392075504,
+    "net_win_rate": 0.5205254515599343
+  },
+  "ROSE_USDT/P100_144": {
+    "trade_count": 477,
+    "net_profit_factor": 0.5680106269687377,
+    "gross_profit_factor": 0.9665056936994658,
+    "sharpe_ratio": -3.894372034565027,
+    "max_drawdown": 0.7743986722904076,
+    "net_win_rate": 0.48218029350104824
+  },
+  "ROSE_USDT/P100_200": {
+    "trade_count": 402,
+    "net_profit_factor": 0.6491107095324335,
+    "gross_profit_factor": 0.967867424163314,
+    "sharpe_ratio": -2.5651723098935406,
+    "max_drawdown": 0.5881392900967141,
+    "net_win_rate": 0.4925373134328358
+  },
+  "ROSE_USDT/P12_100": {
+    "trade_count": 574,
+    "net_profit_factor": 0.7246501117294565,
+    "gross_profit_factor": 1.0109885356305417,
+    "sharpe_ratio": -2.6591051509764396,
+    "max_drawdown": 0.6820036657874493,
+    "net_win_rate": 0.4930313588850174
+  },
+  "ROSE_USDT/P12_144": {
+    "trade_count": 391,
+    "net_profit_factor": 0.9544221124756372,
+    "gross_profit_factor": 1.232376052200459,
+    "sharpe_ratio": -0.24412852567247817,
+    "max_drawdown": 0.26264263156188034,
+    "net_win_rate": 0.5498721227621484
+  },
+  "ROSE_USDT/P12_20": {
+    "trade_count": 1565,
+    "net_profit_factor": 0.30894955620764575,
+    "gross_profit_factor": 0.7883638037170363,
+    "sharpe_ratio": -13.01945125005551,
+    "max_drawdown": 0.9999233786892253,
+    "net_win_rate": 0.41533546325878595
+  },
+  "ROSE_USDT/P12_200": {
+    "trade_count": 285,
+    "net_profit_factor": 0.8796057818475157,
+    "gross_profit_factor": 1.1249920977122736,
+    "sharpe_ratio": -0.6178099482784258,
+    "max_drawdown": 0.2053854536349424,
+    "net_win_rate": 0.5263157894736842
+  },
+  "ROSE_USDT/P12_21": {
+    "trade_count": 1558,
+    "net_profit_factor": 0.3281937369595526,
+    "gross_profit_factor": 0.8004236235182158,
+    "sharpe_ratio": -12.52315523417418,
+    "max_drawdown": 0.999875559156334,
+    "net_win_rate": 0.4184852374839538
+  },
+  "ROSE_USDT/P12_26": {
+    "trade_count": 1489,
+    "net_profit_factor": 0.40490341371286165,
+    "gross_profit_factor": 0.8429972356265362,
+    "sharpe_ratio": -10.337338490226623,
+    "max_drawdown": 0.9991314602968614,
+    "net_win_rate": 0.43854936198791133
+  },
+  "ROSE_USDT/P12_34": {
+    "trade_count": 1363,
+    "net_profit_factor": 0.44829596968525987,
+    "gross_profit_factor": 0.8059805797481926,
+    "sharpe_ratio": -9.034208594112785,
+    "max_drawdown": 0.9970190088135923,
+    "net_win_rate": 0.44093910491562727
+  },
+  "ROSE_USDT/P12_50": {
+    "trade_count": 1093,
+    "net_profit_factor": 0.6189918647257109,
+    "gross_profit_factor": 0.9694274752435038,
+    "sharpe_ratio": -6.1596976620597825,
+    "max_drawdown": 0.9707602098780459,
+    "net_win_rate": 0.46294602012808783
+  },
+  "ROSE_USDT/P12_55": {
+    "trade_count": 1044,
+    "net_profit_factor": 0.6342186348220878,
+    "gross_profit_factor": 0.9932618690621902,
+    "sharpe_ratio": -5.852658400924859,
+    "max_drawdown": 0.9636977219436746,
+    "net_win_rate": 0.4664750957854406
+  },
+  "ROSE_USDT/P12_89": {
+    "trade_count": 689,
+    "net_profit_factor": 0.704307056069775,
+    "gross_profit_factor": 1.0083652413748994,
+    "sharpe_ratio": -3.611032708031391,
+    "max_drawdown": 0.8148129571634083,
+    "net_win_rate": 0.48040638606676345
+  },
+  "ROSE_USDT/P144_200": {
+    "trade_count": 373,
+    "net_profit_factor": 0.5499756218721952,
+    "gross_profit_factor": 0.9320571368266286,
+    "sharpe_ratio": -3.4166342528059745,
+    "max_drawdown": 0.6737326075794681,
+    "net_win_rate": 0.48257372654155495
+  },
+  "ROSE_USDT/P20_100": {
+    "trade_count": 678,
+    "net_profit_factor": 0.6599102424391132,
+    "gross_profit_factor": 0.9323388102480875,
+    "sharpe_ratio": -3.9250539896180365,
+    "max_drawdown": 0.8340584298744212,
+    "net_win_rate": 0.46607669616519176
+  },
+  "ROSE_USDT/P20_144": {
+    "trade_count": 461,
+    "net_profit_factor": 0.7619150043226467,
+    "gross_profit_factor": 1.029328866156527,
+    "sharpe_ratio": -1.9513607353250322,
+    "max_drawdown": 0.5385294538687315,
+    "net_win_rate": 0.49891540130151846
+  },
+  "ROSE_USDT/P20_200": {
+    "trade_count": 355,
+    "net_profit_factor": 0.7251137597597103,
+    "gross_profit_factor": 0.9529418064790494,
+    "sharpe_ratio": -1.8336831338061208,
+    "max_drawdown": 0.4573389060962399,
+    "net_win_rate": 0.49014084507042255
+  },
+  "ROSE_USDT/P20_21": {
+    "trade_count": 1325,
+    "net_profit_factor": 0.13600805373825114,
+    "gross_profit_factor": 0.64125547656718,
+    "sharpe_ratio": -17.69625658459314,
+    "max_drawdown": 0.9999987751186303,
+    "net_win_rate": 0.3139622641509434
+  },
+  "ROSE_USDT/P20_26": {
+    "trade_count": 1313,
+    "net_profit_factor": 0.28004128489395474,
+    "gross_profit_factor": 0.8131605788258683,
+    "sharpe_ratio": -13.307786601225473,
+    "max_drawdown": 0.9998800851827334,
+    "net_win_rate": 0.3869002284843869
+  },
+  "ROSE_USDT/P20_34": {
+    "trade_count": 1236,
+    "net_profit_factor": 0.392972594530294,
+    "gross_profit_factor": 0.8283982649581069,
+    "sharpe_ratio": -10.60109340419616,
+    "max_drawdown": 0.9986531617460752,
+    "net_win_rate": 0.41504854368932037
+  },
+  "ROSE_USDT/P20_50": {
+    "trade_count": 1050,
+    "net_profit_factor": 0.6076750152328131,
+    "gross_profit_factor": 1.0039054511534904,
+    "sharpe_ratio": -6.674008971058876,
+    "max_drawdown": 0.9763852641734799,
+    "net_win_rate": 0.4561904761904762
+  },
+  "ROSE_USDT/P20_55": {
+    "trade_count": 990,
+    "net_profit_factor": 0.6264118801257047,
+    "gross_profit_factor": 1.02141383834506,
+    "sharpe_ratio": -5.975667074332153,
+    "max_drawdown": 0.9618067904386244,
+    "net_win_rate": 0.46464646464646464
+  },
+  "ROSE_USDT/P20_89": {
+    "trade_count": 745,
+    "net_profit_factor": 0.6505946303119522,
+    "gross_profit_factor": 0.9228583158481463,
+    "sharpe_ratio": -4.2866323622506535,
+    "max_drawdown": 0.8707667413722766,
+    "net_win_rate": 0.46308724832214765
+  },
+  "ROSE_USDT/P21_100": {
+    "trade_count": 677,
+    "net_profit_factor": 0.6905411031654354,
+    "gross_profit_factor": 0.9791679490321179,
+    "sharpe_ratio": -3.422848101787603,
+    "max_drawdown": 0.7919715982695501,
+    "net_win_rate": 0.4815361890694239
+  },
+  "ROSE_USDT/P21_144": {
+    "trade_count": 462,
+    "net_profit_factor": 0.7418992301358606,
+    "gross_profit_factor": 1.012885874632517,
+    "sharpe_ratio": -2.1379182055302595,
+    "max_drawdown": 0.574340323748388,
+    "net_win_rate": 0.4935064935064935
+  },
+  "ROSE_USDT/P21_200": {
+    "trade_count": 355,
+    "net_profit_factor": 0.7408765968769394,
+    "gross_profit_factor": 0.980505702859995,
+    "sharpe_ratio": -1.6707154192197156,
+    "max_drawdown": 0.4456643216818631,
+    "net_win_rate": 0.49859154929577465
+  },
+  "ROSE_USDT/P21_26": {
+    "trade_count": 1285,
+    "net_profit_factor": 0.262646166001047,
+    "gross_profit_factor": 0.8088761297086651,
+    "sharpe_ratio": -13.989068599885735,
+    "max_drawdown": 0.999927207047641,
+    "net_win_rate": 0.3719844357976654
+  },
+  "ROSE_USDT/P21_34": {
+    "trade_count": 1215,
+    "net_profit_factor": 0.3883884246700938,
+    "gross_profit_factor": 0.8382502407079558,
+    "sharpe_ratio": -10.905940146069762,
+    "max_drawdown": 0.998893239597337,
+    "net_win_rate": 0.41069958847736626
+  },
+  "ROSE_USDT/P21_50": {
+    "trade_count": 1045,
+    "net_profit_factor": 0.6107125560962002,
+    "gross_profit_factor": 1.0142700705575554,
+    "sharpe_ratio": -6.582528862562146,
+    "max_drawdown": 0.9749149259477374,
+    "net_win_rate": 0.45933014354066987
+  },
+  "ROSE_USDT/P21_55": {
+    "trade_count": 989,
+    "net_profit_factor": 0.6286853737953335,
+    "gross_profit_factor": 1.0287291441039024,
+    "sharpe_ratio": -5.803794090629532,
+    "max_drawdown": 0.9581610600344339,
+    "net_win_rate": 0.47017189079878663
+  },
+  "ROSE_USDT/P21_89": {
+    "trade_count": 745,
+    "net_profit_factor": 0.667176492886299,
+    "gross_profit_factor": 0.9557293301762159,
+    "sharpe_ratio": -3.978383495394743,
+    "max_drawdown": 0.8508838070343373,
+    "net_win_rate": 0.4738255033557047
+  },
+  "ROSE_USDT/P26_100": {
+    "trade_count": 683,
+    "net_profit_factor": 0.7067326937666681,
+    "gross_profit_factor": 1.0199860857003618,
+    "sharpe_ratio": -3.149138908542144,
+    "max_drawdown": 0.7658651677243592,
+    "net_win_rate": 0.49633967789165445
+  },
+  "ROSE_USDT/P26_144": {
+    "trade_count": 493,
+    "net_profit_factor": 0.7738506549714391,
+    "gross_profit_factor": 1.0680614774642208,
+    "sharpe_ratio": -2.009844167761543,
+    "max_drawdown": 0.6025902111826622,
+    "net_win_rate": 0.5030425963488844
+  },
+  "ROSE_USDT/P26_200": {
+    "trade_count": 376,
+    "net_profit_factor": 0.8551888227929249,
+    "gross_profit_factor": 1.1120814695071761,
+    "sharpe_ratio": -0.9350848801408463,
+    "max_drawdown": 0.3215141548006732,
+    "net_win_rate": 0.5292553191489362
+  },
+  "ROSE_USDT/P26_34": {
+    "trade_count": 1152,
+    "net_profit_factor": 0.33846154491057295,
+    "gross_profit_factor": 0.8356212209210517,
+    "sharpe_ratio": -11.787680779011787,
+    "max_drawdown": 0.9993988802844298,
+    "net_win_rate": 0.4053819444444444
+  },
+  "ROSE_USDT/P26_50": {
+    "trade_count": 1026,
+    "net_profit_factor": 0.592694536539768,
+    "gross_profit_factor": 1.017385985015336,
+    "sharpe_ratio": -6.8252747512658125,
+    "max_drawdown": 0.9776165148875247,
+    "net_win_rate": 0.4649122807017544
+  },
+  "ROSE_USDT/P26_55": {
+    "trade_count": 976,
+    "net_profit_factor": 0.6268503088590767,
+    "gross_profit_factor": 1.0405134503056022,
+    "sharpe_ratio": -5.937129302156395,
+    "max_drawdown": 0.9617350107360157,
+    "net_win_rate": 0.47540983606557374
+  },
+  "ROSE_USDT/P26_89": {
+    "trade_count": 737,
+    "net_profit_factor": 0.6775284932026538,
+    "gross_profit_factor": 0.9767062320297181,
+    "sharpe_ratio": -3.8819421089601875,
+    "max_drawdown": 0.8400075237056011,
+    "net_win_rate": 0.4789687924016282
+  },
+  "ROSE_USDT/P34_100": {
+    "trade_count": 648,
+    "net_profit_factor": 0.6863311978239902,
+    "gross_profit_factor": 1.040962932614159,
+    "sharpe_ratio": -3.296181216081934,
+    "max_drawdown": 0.7706961785614513,
+    "net_win_rate": 0.4984567901234568
+  },
+  "ROSE_USDT/P34_144": {
+    "trade_count": 474,
+    "net_profit_factor": 0.7347952249217644,
+    "gross_profit_factor": 1.0268545201115076,
+    "sharpe_ratio": -2.223458794024113,
+    "max_drawdown": 0.5947897474679408,
+    "net_win_rate": 0.5
+  },
+  "ROSE_USDT/P34_200": {
+    "trade_count": 336,
+    "net_profit_factor": 0.8640201283456047,
+    "gross_profit_factor": 1.141161334470573,
+    "sharpe_ratio": -0.7473794552567091,
+    "max_drawdown": 0.2895546082789507,
+    "net_win_rate": 0.5386904761904762
+  },
+  "ROSE_USDT/P34_50": {
+    "trade_count": 951,
+    "net_profit_factor": 0.4707157527665944,
+    "gross_profit_factor": 0.9518438783245132,
+    "sharpe_ratio": -8.232965807481,
+    "max_drawdown": 0.9892874790684469,
+    "net_win_rate": 0.4437434279705573
+  },
+  "ROSE_USDT/P34_55": {
+    "trade_count": 914,
+    "net_profit_factor": 0.5253781080553483,
+    "gross_profit_factor": 0.9856259777560996,
+    "sharpe_ratio": -7.146603250694303,
+    "max_drawdown": 0.9774852404797866,
+    "net_win_rate": 0.4562363238512035
+  },
+  "ROSE_USDT/P34_89": {
+    "trade_count": 704,
+    "net_profit_factor": 0.687848624852941,
+    "gross_profit_factor": 1.059004662744283,
+    "sharpe_ratio": -3.6407049123746655,
+    "max_drawdown": 0.8081740671006828,
+    "net_win_rate": 0.4914772727272727
+  },
+  "ROSE_USDT/P50_100": {
+    "trade_count": 629,
+    "net_profit_factor": 0.6427068887147127,
+    "gross_profit_factor": 0.9879717465427954,
+    "sharpe_ratio": -3.7741364246493734,
+    "max_drawdown": 0.8090366167625811,
+    "net_win_rate": 0.4864864864864865
+  },
+  "ROSE_USDT/P50_144": {
+    "trade_count": 490,
+    "net_profit_factor": 0.6924717226499567,
+    "gross_profit_factor": 0.9929088637809184,
+    "sharpe_ratio": -2.5236753189495893,
+    "max_drawdown": 0.6187038749130856,
+    "net_win_rate": 0.49795918367346936
+  },
+  "ROSE_USDT/P50_200": {
+    "trade_count": 361,
+    "net_profit_factor": 0.70657978273865,
+    "gross_profit_factor": 1.000000647868931,
+    "sharpe_ratio": -1.9599593823305936,
+    "max_drawdown": 0.4766868035548087,
+    "net_win_rate": 0.5013850415512465
+  },
+  "ROSE_USDT/P50_55": {
+    "trade_count": 858,
+    "net_profit_factor": 0.2723843698989888,
+    "gross_profit_factor": 0.7913420730729587,
+    "sharpe_ratio": -11.919666119870994,
+    "max_drawdown": 0.9989423792437283,
+    "net_win_rate": 0.36713286713286714
+  },
+  "ROSE_USDT/P50_89": {
+    "trade_count": 683,
+    "net_profit_factor": 0.5818096899717446,
+    "gross_profit_factor": 0.9489010050855108,
+    "sharpe_ratio": -5.017682416599173,
+    "max_drawdown": 0.8962451044986659,
+    "net_win_rate": 0.46412884333821375
+  },
+  "ROSE_USDT/P55_100": {
+    "trade_count": 645,
+    "net_profit_factor": 0.5726225125063233,
+    "gross_profit_factor": 0.9177836891906808,
+    "sharpe_ratio": -4.572974984336316,
+    "max_drawdown": 0.8667983381536083,
+    "net_win_rate": 0.4682170542635659
+  },
+  "ROSE_USDT/P55_144": {
+    "trade_count": 498,
+    "net_profit_factor": 0.6707077916755707,
+    "gross_profit_factor": 0.9708212792404928,
+    "sharpe_ratio": -2.7543069596874026,
+    "max_drawdown": 0.65370407516907,
+    "net_win_rate": 0.4879518072289157
+  },
+  "ROSE_USDT/P55_200": {
+    "trade_count": 375,
+    "net_profit_factor": 0.7331175649409585,
+    "gross_profit_factor": 1.0521216770612107,
+    "sharpe_ratio": -1.6849945705346883,
+    "max_drawdown": 0.46617665882507814,
+    "net_win_rate": 0.512
+  },
+  "ROSE_USDT/P55_89": {
+    "trade_count": 693,
+    "net_profit_factor": 0.5112609595269836,
+    "gross_profit_factor": 0.8695509092214232,
+    "sharpe_ratio": -5.7702557411742434,
+    "max_drawdown": 0.9308655768015273,
+    "net_win_rate": 0.45165945165945165
+  },
+  "ROSE_USDT/P89_100": {
+    "trade_count": 595,
+    "net_profit_factor": 0.30768125705309873,
+    "gross_profit_factor": 0.7055191065108882,
+    "sharpe_ratio": -8.380740774515273,
+    "max_drawdown": 0.9778879019284972,
+    "net_win_rate": 0.4050420168067227
+  },
+  "ROSE_USDT/P89_144": {
+    "trade_count": 484,
+    "net_profit_factor": 0.5847214049437152,
+    "gross_profit_factor": 0.9511317482886068,
+    "sharpe_ratio": -3.452556948689352,
+    "max_drawdown": 0.7339930049523257,
+    "net_win_rate": 0.4896694214876033
+  },
+  "ROSE_USDT/P89_200": {
+    "trade_count": 392,
+    "net_profit_factor": 0.6510256244925203,
+    "gross_profit_factor": 0.9626021426437301,
+    "sharpe_ratio": -2.459957881090104,
+    "max_drawdown": 0.5698271177996814,
+    "net_win_rate": 0.49744897959183676
+  },
+  "ROSE_USDT/P8_100": {
+    "trade_count": 631,
+    "net_profit_factor": 0.7060918693509486,
+    "gross_profit_factor": 1.0084315182912285,
+    "sharpe_ratio": -2.766586364302601,
+    "max_drawdown": 0.7043033882002839,
+    "net_win_rate": 0.49445324881141045
+  },
+  "ROSE_USDT/P8_12": {
+    "trade_count": 1921,
+    "net_profit_factor": 0.16535335883174723,
+    "gross_profit_factor": 0.576489641176931,
+    "sharpe_ratio": -16.954732094876277,
+    "max_drawdown": 0.9999993436212568,
+    "net_win_rate": 0.38209266007287873
+  },
+  "ROSE_USDT/P8_144": {
+    "trade_count": 422,
+    "net_profit_factor": 0.8956302524979369,
+    "gross_profit_factor": 1.1712877696736113,
+    "sharpe_ratio": -0.6505995004161603,
+    "max_drawdown": 0.306782204020387,
+    "net_win_rate": 0.5379146919431279
+  },
+  "ROSE_USDT/P8_20": {
+    "trade_count": 1762,
+    "net_profit_factor": 0.3514234892223047,
+    "gross_profit_factor": 0.772433397958351,
+    "sharpe_ratio": -11.599747826029668,
+    "max_drawdown": 0.999832612243518,
+    "net_win_rate": 0.4370034052213394
+  },
+  "ROSE_USDT/P8_200": {
+    "trade_count": 289,
+    "net_profit_factor": 0.801864697097085,
+    "gross_profit_factor": 1.0571394186992982,
+    "sharpe_ratio": -1.1827079323599876,
+    "max_drawdown": 0.3224241177864607,
+    "net_win_rate": 0.5086505190311419
+  },
+  "ROSE_USDT/P8_21": {
+    "trade_count": 1744,
+    "net_profit_factor": 0.36938191608412096,
+    "gross_profit_factor": 0.7902593546922682,
+    "sharpe_ratio": -11.16101033272421,
+    "max_drawdown": 0.999735300000596,
+    "net_win_rate": 0.4380733944954128
+  },
+  "ROSE_USDT/P8_26": {
+    "trade_count": 1641,
+    "net_profit_factor": 0.4439804807108458,
+    "gross_profit_factor": 0.8334085272048037,
+    "sharpe_ratio": -9.331769578652837,
+    "max_drawdown": 0.9984900198963916,
+    "net_win_rate": 0.44972577696526506
+  },
+  "ROSE_USDT/P8_34": {
+    "trade_count": 1427,
+    "net_profit_factor": 0.5030442499341101,
+    "gross_profit_factor": 0.8520080293331733,
+    "sharpe_ratio": -7.583610727094037,
+    "max_drawdown": 0.9926727101882614,
+    "net_win_rate": 0.4611072179397337
+  },
+  "ROSE_USDT/P8_50": {
+    "trade_count": 1152,
+    "net_profit_factor": 0.64032764365006,
+    "gross_profit_factor": 1.0233097830862723,
+    "sharpe_ratio": -5.510140652301343,
+    "max_drawdown": 0.960682597310062,
+    "net_win_rate": 0.4791666666666667
+  },
+  "ROSE_USDT/P8_55": {
+    "trade_count": 1085,
+    "net_profit_factor": 0.6703909425278382,
+    "gross_profit_factor": 1.03610097860353,
+    "sharpe_ratio": -5.1882503810657195,
+    "max_drawdown": 0.9488715133219056,
+    "net_win_rate": 0.4783410138248848
+  },
+  "ROSE_USDT/P8_89": {
+    "trade_count": 747,
+    "net_profit_factor": 0.7274058742878631,
+    "gross_profit_factor": 1.053633459746283,
+    "sharpe_ratio": -3.1818618593855508,
+    "max_drawdown": 0.7823334030149294,
+    "net_win_rate": 0.4979919678714859
+  },
+  "TURBO_USDT/P100_144": {
+    "trade_count": 426,
+    "net_profit_factor": 0.5742932807290468,
+    "gross_profit_factor": 0.9162725477535696,
+    "sharpe_ratio": -4.239384991123742,
+    "max_drawdown": 0.7582813068103353,
+    "net_win_rate": 0.4624413145539906
+  },
+  "TURBO_USDT/P100_200": {
+    "trade_count": 332,
+    "net_profit_factor": 0.6991919476013805,
+    "gross_profit_factor": 1.024116794261451,
+    "sharpe_ratio": -2.2105080999963285,
+    "max_drawdown": 0.4848223016098607,
+    "net_win_rate": 0.5090361445783133
+  },
+  "TURBO_USDT/P12_100": {
+    "trade_count": 602,
+    "net_profit_factor": 0.6915118502164389,
+    "gross_profit_factor": 0.9486273178730449,
+    "sharpe_ratio": -3.709257950588449,
+    "max_drawdown": 0.7714010847552262,
+    "net_win_rate": 0.4717607973421927
+  },
+  "TURBO_USDT/P12_144": {
+    "trade_count": 452,
+    "net_profit_factor": 0.7481321534018145,
+    "gross_profit_factor": 1.0050497508715779,
+    "sharpe_ratio": -2.5277922262066435,
+    "max_drawdown": 0.6100510061017768,
+    "net_win_rate": 0.4889380530973451
+  },
+  "TURBO_USDT/P12_20": {
+    "trade_count": 1285,
+    "net_profit_factor": 0.37331051665258774,
+    "gross_profit_factor": 0.6945727038648088,
+    "sharpe_ratio": -13.014006959175404,
+    "max_drawdown": 0.99954270313255,
+    "net_win_rate": 0.3922178988326848
+  },
+  "TURBO_USDT/P12_200": {
+    "trade_count": 386,
+    "net_profit_factor": 0.7047474756201497,
+    "gross_profit_factor": 0.9504145267322304,
+    "sharpe_ratio": -2.6449038545837578,
+    "max_drawdown": 0.5740348462278106,
+    "net_win_rate": 0.4740932642487047
+  },
+  "TURBO_USDT/P12_21": {
+    "trade_count": 1268,
+    "net_profit_factor": 0.4056851976841827,
+    "gross_profit_factor": 0.737112418100278,
+    "sharpe_ratio": -12.061160811484545,
+    "max_drawdown": 0.9990995467907137,
+    "net_win_rate": 0.4085173501577287
+  },
+  "TURBO_USDT/P12_26": {
+    "trade_count": 1197,
+    "net_profit_factor": 0.4938518328618936,
+    "gross_profit_factor": 0.8277145683007069,
+    "sharpe_ratio": -9.651355311464615,
+    "max_drawdown": 0.9951801695605258,
+    "net_win_rate": 0.43609022556390975
+  },
+  "TURBO_USDT/P12_34": {
+    "trade_count": 1122,
+    "net_profit_factor": 0.5726707956650904,
+    "gross_profit_factor": 0.9101229371180581,
+    "sharpe_ratio": -7.727832335803726,
+    "max_drawdown": 0.9834381132291574,
+    "net_win_rate": 0.45989304812834225
+  },
+  "TURBO_USDT/P12_50": {
+    "trade_count": 940,
+    "net_profit_factor": 0.6875562014965425,
+    "gross_profit_factor": 1.0184142021061349,
+    "sharpe_ratio": -4.948570100932338,
+    "max_drawdown": 0.9092034664975257,
+    "net_win_rate": 0.4851063829787234
+  },
+  "TURBO_USDT/P12_55": {
+    "trade_count": 883,
+    "net_profit_factor": 0.6729264950145308,
+    "gross_profit_factor": 0.9747376291806132,
+    "sharpe_ratio": -5.063042561066994,
+    "max_drawdown": 0.9051383846213188,
+    "net_win_rate": 0.4722536806342016
+  },
+  "TURBO_USDT/P12_89": {
+    "trade_count": 643,
+    "net_profit_factor": 0.6872008624581847,
+    "gross_profit_factor": 0.9618807292793918,
+    "sharpe_ratio": -3.8326556904416087,
+    "max_drawdown": 0.7916709769225089,
+    "net_win_rate": 0.4758942457231726
+  },
+  "TURBO_USDT/P144_200": {
+    "trade_count": 333,
+    "net_profit_factor": 0.5535072252375867,
+    "gross_profit_factor": 0.9110955575240893,
+    "sharpe_ratio": -3.688117592512853,
+    "max_drawdown": 0.6547278544954551,
+    "net_win_rate": 0.4744744744744745
+  },
+  "TURBO_USDT/P20_100": {
+    "trade_count": 581,
+    "net_profit_factor": 0.66198402385094,
+    "gross_profit_factor": 0.9085747918153503,
+    "sharpe_ratio": -4.068134631292702,
+    "max_drawdown": 0.7938665914203672,
+    "net_win_rate": 0.459552495697074
+  },
+  "TURBO_USDT/P20_144": {
+    "trade_count": 443,
+    "net_profit_factor": 0.718468155770614,
+    "gross_profit_factor": 0.9654024013863174,
+    "sharpe_ratio": -2.7753791163429904,
+    "max_drawdown": 0.6430584790373087,
+    "net_win_rate": 0.4785553047404063
+  },
+  "TURBO_USDT/P20_200": {
+    "trade_count": 328,
+    "net_profit_factor": 0.6855972408266079,
+    "gross_profit_factor": 0.9177173302493546,
+    "sharpe_ratio": -2.5727492551317517,
+    "max_drawdown": 0.5400864318934618,
+    "net_win_rate": 0.4725609756097561
+  },
+  "TURBO_USDT/P20_21": {
+    "trade_count": 1060,
+    "net_profit_factor": 0.24804163822996694,
+    "gross_profit_factor": 0.6440042172273499,
+    "sharpe_ratio": -17.000489430341137,
+    "max_drawdown": 0.9999701135733765,
+    "net_win_rate": 0.30471698113207546
+  },
+  "TURBO_USDT/P20_26": {
+    "trade_count": 1059,
+    "net_profit_factor": 0.3750547496078727,
+    "gross_profit_factor": 0.7540586524454668,
+    "sharpe_ratio": -12.698906061020427,
+    "max_drawdown": 0.9991021680557717,
+    "net_win_rate": 0.3881019830028329
+  },
+  "TURBO_USDT/P20_34": {
+    "trade_count": 1005,
+    "net_profit_factor": 0.5228023654785012,
+    "gross_profit_factor": 0.9028442390279511,
+    "sharpe_ratio": -9.170303945225575,
+    "max_drawdown": 0.9910891870425815,
+    "net_win_rate": 0.43781094527363185
+  },
+  "TURBO_USDT/P20_50": {
+    "trade_count": 857,
+    "net_profit_factor": 0.6303826706777633,
+    "gross_profit_factor": 0.9773838809720309,
+    "sharpe_ratio": -6.147191716773444,
+    "max_drawdown": 0.9426621573957733,
+    "net_win_rate": 0.4632438739789965
+  },
+  "TURBO_USDT/P20_55": {
+    "trade_count": 807,
+    "net_profit_factor": 0.6358695481967171,
+    "gross_profit_factor": 0.965646521695488,
+    "sharpe_ratio": -5.455649735626319,
+    "max_drawdown": 0.9133947884499535,
+    "net_win_rate": 0.47335811648079307
+  },
+  "TURBO_USDT/P20_89": {
+    "trade_count": 641,
+    "net_profit_factor": 0.6443607780550495,
+    "gross_profit_factor": 0.908791477110873,
+    "sharpe_ratio": -4.3194320456163835,
+    "max_drawdown": 0.8220658329533957,
+    "net_win_rate": 0.46957878315132606
+  },
+  "TURBO_USDT/P21_100": {
+    "trade_count": 576,
+    "net_profit_factor": 0.6527884237688494,
+    "gross_profit_factor": 0.9010634591157167,
+    "sharpe_ratio": -4.141117042692471,
+    "max_drawdown": 0.794532507642413,
+    "net_win_rate": 0.4565972222222222
+  },
+  "TURBO_USDT/P21_144": {
+    "trade_count": 444,
+    "net_profit_factor": 0.7067279710397069,
+    "gross_profit_factor": 0.9531811746808415,
+    "sharpe_ratio": -2.9027616038158577,
+    "max_drawdown": 0.6515108328621116,
+    "net_win_rate": 0.4774774774774775
+  },
+  "TURBO_USDT/P21_200": {
+    "trade_count": 333,
+    "net_profit_factor": 0.6336069622105143,
+    "gross_profit_factor": 0.8515782280870852,
+    "sharpe_ratio": -3.109441783816584,
+    "max_drawdown": 0.5938188597743157,
+    "net_win_rate": 0.45345345345345345
+  },
+  "TURBO_USDT/P21_26": {
+    "trade_count": 1058,
+    "net_profit_factor": 0.32770593365266365,
+    "gross_profit_factor": 0.6795293324094495,
+    "sharpe_ratio": -13.37124727184486,
+    "max_drawdown": 0.9994358475822861,
+    "net_win_rate": 0.3780718336483932
+  },
+  "TURBO_USDT/P21_34": {
+    "trade_count": 1000,
+    "net_profit_factor": 0.4789033836848889,
+    "gross_profit_factor": 0.8281961827605115,
+    "sharpe_ratio": -9.605743113287476,
+    "max_drawdown": 0.9926370349297184,
+    "net_win_rate": 0.428
+  },
+  "TURBO_USDT/P21_50": {
+    "trade_count": 847,
+    "net_profit_factor": 0.6225322506201408,
+    "gross_profit_factor": 0.9786506888159636,
+    "sharpe_ratio": -6.075398553012692,
+    "max_drawdown": 0.9390353992328452,
+    "net_win_rate": 0.46635182998819363
+  },
+  "TURBO_USDT/P21_55": {
+    "trade_count": 807,
+    "net_profit_factor": 0.6364092687509499,
+    "gross_profit_factor": 0.9830042345675762,
+    "sharpe_ratio": -5.329119277694634,
+    "max_drawdown": 0.909017136450832,
+    "net_win_rate": 0.4795539033457249
+  },
+  "TURBO_USDT/P21_89": {
+    "trade_count": 640,
+    "net_profit_factor": 0.645640592017614,
+    "gross_profit_factor": 0.9268174918416849,
+    "sharpe_ratio": -4.3142167469446555,
+    "max_drawdown": 0.822017649356164,
+    "net_win_rate": 0.4703125
+  },
+  "TURBO_USDT/P26_100": {
+    "trade_count": 571,
+    "net_profit_factor": 0.6568147548622789,
+    "gross_profit_factor": 0.9175708359135006,
+    "sharpe_ratio": -3.9796803145419006,
+    "max_drawdown": 0.7820676844473481,
+    "net_win_rate": 0.46760070052539404
+  },
+  "TURBO_USDT/P26_144": {
+    "trade_count": 440,
+    "net_profit_factor": 0.7602980308079883,
+    "gross_profit_factor": 1.028658744518129,
+    "sharpe_ratio": -2.109906019230243,
+    "max_drawdown": 0.5422771509982929,
+    "net_win_rate": 0.5045454545454545
+  },
+  "TURBO_USDT/P26_200": {
+    "trade_count": 355,
+    "net_profit_factor": 0.7324501245430829,
+    "gross_profit_factor": 1.0087509415671323,
+    "sharpe_ratio": -2.0788899801381384,
+    "max_drawdown": 0.46935446915830753,
+    "net_win_rate": 0.49859154929577465
+  },
+  "TURBO_USDT/P26_34": {
+    "trade_count": 919,
+    "net_profit_factor": 0.38684564818812023,
+    "gross_profit_factor": 0.7410495100879719,
+    "sharpe_ratio": -10.987715627796538,
+    "max_drawdown": 0.9963417239203496,
+    "net_win_rate": 0.4058759521218716
+  },
+  "TURBO_USDT/P26_50": {
+    "trade_count": 814,
+    "net_profit_factor": 0.588532695788066,
+    "gross_profit_factor": 0.9819793631432517,
+    "sharpe_ratio": -6.157538120659405,
+    "max_drawdown": 0.940908903507023,
+    "net_win_rate": 0.47297297297297297
+  },
+  "TURBO_USDT/P26_55": {
+    "trade_count": 783,
+    "net_profit_factor": 0.6156275345708244,
+    "gross_profit_factor": 1.005733419251419,
+    "sharpe_ratio": -5.373735591003422,
+    "max_drawdown": 0.9088418967428809,
+    "net_win_rate": 0.48659003831417624
+  },
+  "TURBO_USDT/P26_89": {
+    "trade_count": 631,
+    "net_profit_factor": 0.6442412769531587,
+    "gross_profit_factor": 0.9421606300388268,
+    "sharpe_ratio": -4.042608742447202,
+    "max_drawdown": 0.7970493396259861,
+    "net_win_rate": 0.47702060221870046
+  },
+  "TURBO_USDT/P34_100": {
+    "trade_count": 573,
+    "net_profit_factor": 0.7105754158828965,
+    "gross_profit_factor": 1.0110399579116929,
+    "sharpe_ratio": -3.282234073642782,
+    "max_drawdown": 0.7241768557925891,
+    "net_win_rate": 0.49040139616055844
+  },
+  "TURBO_USDT/P34_144": {
+    "trade_count": 431,
+    "net_profit_factor": 0.776269661113603,
+    "gross_profit_factor": 1.0460637342169201,
+    "sharpe_ratio": -1.9277319642918265,
+    "max_drawdown": 0.4961395872041297,
+    "net_win_rate": 0.505800464037123
+  },
+  "TURBO_USDT/P34_200": {
+    "trade_count": 366,
+    "net_profit_factor": 0.7423240048809138,
+    "gross_profit_factor": 1.0116157020892151,
+    "sharpe_ratio": -1.8909443485031578,
+    "max_drawdown": 0.44630836860318385,
+    "net_win_rate": 0.4972677595628415
+  },
+  "TURBO_USDT/P34_50": {
+    "trade_count": 791,
+    "net_profit_factor": 0.49937479637520027,
+    "gross_profit_factor": 0.9156654005266719,
+    "sharpe_ratio": -8.17345015575892,
+    "max_drawdown": 0.9779281237225257,
+    "net_win_rate": 0.44627054361567636
+  },
+  "TURBO_USDT/P34_55": {
+    "trade_count": 760,
+    "net_profit_factor": 0.5553519074748815,
+    "gross_profit_factor": 0.9653892113350583,
+    "sharpe_ratio": -6.828389275443611,
+    "max_drawdown": 0.9527826974876075,
+    "net_win_rate": 0.4644736842105263
+  },
+  "TURBO_USDT/P34_89": {
+    "trade_count": 610,
+    "net_profit_factor": 0.6514577155853958,
+    "gross_profit_factor": 0.9581820954284966,
+    "sharpe_ratio": -4.003186193861568,
+    "max_drawdown": 0.7875547479830445,
+    "net_win_rate": 0.4786885245901639
+  },
+  "TURBO_USDT/P50_100": {
+    "trade_count": 545,
+    "net_profit_factor": 0.6587508231733301,
+    "gross_profit_factor": 1.0170780675294842,
+    "sharpe_ratio": -3.9770042349407677,
+    "max_drawdown": 0.7816469761022027,
+    "net_win_rate": 0.47706422018348627
+  },
+  "TURBO_USDT/P50_144": {
+    "trade_count": 423,
+    "net_profit_factor": 0.7411789498597067,
+    "gross_profit_factor": 1.0679050649369584,
+    "sharpe_ratio": -2.291296197800846,
+    "max_drawdown": 0.5413199769942536,
+    "net_win_rate": 0.508274231678487
+  },
+  "TURBO_USDT/P50_200": {
+    "trade_count": 363,
+    "net_profit_factor": 0.7734630764920225,
+    "gross_profit_factor": 1.0546397081846568,
+    "sharpe_ratio": -1.7500316007432073,
+    "max_drawdown": 0.4176995860900651,
+    "net_win_rate": 0.5041322314049587
+  },
+  "TURBO_USDT/P50_55": {
+    "trade_count": 682,
+    "net_profit_factor": 0.3481481897089533,
+    "gross_profit_factor": 0.8360368056611507,
+    "sharpe_ratio": -9.793769268964498,
+    "max_drawdown": 0.9883545059095827,
+    "net_win_rate": 0.41348973607038125
+  },
+  "TURBO_USDT/P50_89": {
+    "trade_count": 586,
+    "net_profit_factor": 0.62752768952626,
+    "gross_profit_factor": 1.0138311437643392,
+    "sharpe_ratio": -4.413172964878395,
+    "max_drawdown": 0.8180451621383089,
+    "net_win_rate": 0.48464163822525597
+  },
+  "TURBO_USDT/P55_100": {
+    "trade_count": 555,
+    "net_profit_factor": 0.6442900879559516,
+    "gross_profit_factor": 1.0123940015547326,
+    "sharpe_ratio": -4.205913310834349,
+    "max_drawdown": 0.802180813342853,
+    "net_win_rate": 0.47927927927927927
+  },
+  "TURBO_USDT/P55_144": {
+    "trade_count": 425,
+    "net_profit_factor": 0.7362140679909919,
+    "gross_profit_factor": 1.0677175883801406,
+    "sharpe_ratio": -2.407978818860136,
+    "max_drawdown": 0.5574473363761436,
+    "net_win_rate": 0.5035294117647059
+  },
+  "TURBO_USDT/P55_200": {
+    "trade_count": 353,
+    "net_profit_factor": 0.7985850924803272,
+    "gross_profit_factor": 1.0958495861012356,
+    "sharpe_ratio": -1.524738287399243,
+    "max_drawdown": 0.37891389945246556,
+    "net_win_rate": 0.5155807365439093
+  },
+  "TURBO_USDT/P55_89": {
+    "trade_count": 583,
+    "net_profit_factor": 0.610311726069007,
+    "gross_profit_factor": 1.0121357066803638,
+    "sharpe_ratio": -4.654350378836439,
+    "max_drawdown": 0.8331494427398798,
+    "net_win_rate": 0.48198970840480276
+  },
+  "TURBO_USDT/P89_100": {
+    "trade_count": 532,
+    "net_profit_factor": 0.3572685414602374,
+    "gross_profit_factor": 0.7004028121542597,
+    "sharpe_ratio": -8.527875762327795,
+    "max_drawdown": 0.9637852498428346,
+    "net_win_rate": 0.3890977443609023
+  },
+  "TURBO_USDT/P89_144": {
+    "trade_count": 443,
+    "net_profit_factor": 0.5769711770768831,
+    "gross_profit_factor": 0.8684607538285606,
+    "sharpe_ratio": -4.078389143060979,
+    "max_drawdown": 0.7512900235633527,
+    "net_win_rate": 0.4604966139954853
+  },
+  "TURBO_USDT/P89_200": {
+    "trade_count": 343,
+    "net_profit_factor": 0.6689121700873263,
+    "gross_profit_factor": 0.9403742299990338,
+    "sharpe_ratio": -2.478245305557794,
+    "max_drawdown": 0.5206334443268643,
+    "net_win_rate": 0.49271137026239065
+  },
+  "TURBO_USDT/P8_100": {
+    "trade_count": 622,
+    "net_profit_factor": 0.6509035626451097,
+    "gross_profit_factor": 0.8889055062118432,
+    "sharpe_ratio": -4.199472730467679,
+    "max_drawdown": 0.8117111833678852,
+    "net_win_rate": 0.4646302250803859
+  },
+  "TURBO_USDT/P8_12": {
+    "trade_count": 1528,
+    "net_profit_factor": 0.3030576172308007,
+    "gross_profit_factor": 0.630440074445567,
+    "sharpe_ratio": -16.757883011843333,
+    "max_drawdown": 0.9999890630386682,
+    "net_win_rate": 0.3704188481675393
+  },
+  "TURBO_USDT/P8_144": {
+    "trade_count": 412,
+    "net_profit_factor": 0.6173108436670751,
+    "gross_profit_factor": 0.8377784087424867,
+    "sharpe_ratio": -3.7323164157342137,
+    "max_drawdown": 0.7034788517582387,
+    "net_win_rate": 0.44660194174757284
+  },
+  "TURBO_USDT/P8_20": {
+    "trade_count": 1430,
+    "net_profit_factor": 0.4670481118186249,
+    "gross_profit_factor": 0.7968453508000932,
+    "sharpe_ratio": -11.94727787887117,
+    "max_drawdown": 0.9993368558763713,
+    "net_win_rate": 0.4111888111888112
+  },
+  "TURBO_USDT/P8_200": {
+    "trade_count": 371,
+    "net_profit_factor": 0.6034297872759751,
+    "gross_profit_factor": 0.819277129553302,
+    "sharpe_ratio": -3.6812241056551374,
+    "max_drawdown": 0.6789340053829566,
+    "net_win_rate": 0.4366576819407008
+  },
+  "TURBO_USDT/P8_21": {
+    "trade_count": 1402,
+    "net_profit_factor": 0.462934630178285,
+    "gross_profit_factor": 0.7773284513032459,
+    "sharpe_ratio": -11.617693426877516,
+    "max_drawdown": 0.9991147179956114,
+    "net_win_rate": 0.4115549215406562
+  },
+  "TURBO_USDT/P8_26": {
+    "trade_count": 1331,
+    "net_profit_factor": 0.528079056205468,
+    "gross_profit_factor": 0.8397008255084979,
+    "sharpe_ratio": -9.71628223689249,
+    "max_drawdown": 0.9963924244078158,
+    "net_win_rate": 0.43425995492111197
+  },
+  "TURBO_USDT/P8_34": {
+    "trade_count": 1147,
+    "net_profit_factor": 0.6005519718291773,
+    "gross_profit_factor": 0.8941559844116989,
+    "sharpe_ratio": -7.228519134975094,
+    "max_drawdown": 0.978723707564103,
+    "net_win_rate": 0.45684394071490847
+  },
+  "TURBO_USDT/P8_50": {
+    "trade_count": 940,
+    "net_profit_factor": 0.6558563948246867,
+    "gross_profit_factor": 0.9792204514372191,
+    "sharpe_ratio": -5.080664853216868,
+    "max_drawdown": 0.9175255293725608,
+    "net_win_rate": 0.4819148936170213
+  },
+  "TURBO_USDT/P8_55": {
+    "trade_count": 912,
+    "net_profit_factor": 0.6576960062290588,
+    "gross_profit_factor": 0.9670334485519589,
+    "sharpe_ratio": -5.016752776701108,
+    "max_drawdown": 0.9098620266619923,
+    "net_win_rate": 0.4769736842105263
+  },
+  "TURBO_USDT/P8_89": {
+    "trade_count": 642,
+    "net_profit_factor": 0.6371823854814365,
+    "gross_profit_factor": 0.8882801465160334,
+    "sharpe_ratio": -4.434116227842524,
+    "max_drawdown": 0.8279416852625556,
+    "net_win_rate": 0.45950155763239875
+  },
+  "XPR_USDT/P100_144": {
+    "trade_count": 494,
+    "net_profit_factor": 0.3452182788952489,
+    "gross_profit_factor": 0.7238572780534335,
+    "sharpe_ratio": -6.8624707464306605,
+    "max_drawdown": 0.9378939697091476,
+    "net_win_rate": 0.42105263157894735
+  },
+  "XPR_USDT/P100_200": {
+    "trade_count": 391,
+    "net_profit_factor": 0.43853569021455346,
+    "gross_profit_factor": 0.7978460227315339,
+    "sharpe_ratio": -4.388545703546969,
+    "max_drawdown": 0.80211016113388,
+    "net_win_rate": 0.4578005115089514
+  },
+  "XPR_USDT/P12_100": {
+    "trade_count": 812,
+    "net_profit_factor": 0.4763074796084458,
+    "gross_profit_factor": 0.7808329732177798,
+    "sharpe_ratio": -6.734161384733681,
+    "max_drawdown": 0.9672522253895061,
+    "net_win_rate": 0.43226600985221675
+  },
+  "XPR_USDT/P12_144": {
+    "trade_count": 605,
+    "net_profit_factor": 0.5279965593092663,
+    "gross_profit_factor": 0.8195680248497635,
+    "sharpe_ratio": -4.995044590555851,
+    "max_drawdown": 0.8937152823256309,
+    "net_win_rate": 0.4479338842975207
+  },
+  "XPR_USDT/P12_20": {
+    "trade_count": 1355,
+    "net_profit_factor": 0.21791770960970908,
+    "gross_profit_factor": 0.6147208001001712,
+    "sharpe_ratio": -17.824163961142407,
+    "max_drawdown": 0.9999986278296855,
+    "net_win_rate": 0.3070110701107011
+  },
+  "XPR_USDT/P12_200": {
+    "trade_count": 497,
+    "net_profit_factor": 0.5674357492180991,
+    "gross_profit_factor": 0.8362791566773392,
+    "sharpe_ratio": -3.4780830727064016,
+    "max_drawdown": 0.7434233563842505,
+    "net_win_rate": 0.4688128772635815
+  },
+  "XPR_USDT/P12_21": {
+    "trade_count": 1343,
+    "net_profit_factor": 0.24646321255962061,
+    "gross_profit_factor": 0.6634523240817369,
+    "sharpe_ratio": -16.861409244835414,
+    "max_drawdown": 0.9999964059642774,
+    "net_win_rate": 0.3298585256887565
+  },
+  "XPR_USDT/P12_26": {
+    "trade_count": 1299,
+    "net_profit_factor": 0.29482518044991335,
+    "gross_profit_factor": 0.7058675248201326,
+    "sharpe_ratio": -14.613530525754122,
+    "max_drawdown": 0.9999659273670394,
+    "net_win_rate": 0.36335642802155504
+  },
+  "XPR_USDT/P12_34": {
+    "trade_count": 1209,
+    "net_profit_factor": 0.3438442678376162,
+    "gross_profit_factor": 0.706388559253556,
+    "sharpe_ratio": -12.197043696354463,
+    "max_drawdown": 0.9996549462368324,
+    "net_win_rate": 0.39288668320926384
+  },
+  "XPR_USDT/P12_50": {
+    "trade_count": 1054,
+    "net_profit_factor": 0.45929983354231285,
+    "gross_profit_factor": 0.8626682066157467,
+    "sharpe_ratio": -9.38698649473212,
+    "max_drawdown": 0.9961954898933953,
+    "net_win_rate": 0.41650853889943074
+  },
+  "XPR_USDT/P12_55": {
+    "trade_count": 1026,
+    "net_profit_factor": 0.47459552145193595,
+    "gross_profit_factor": 0.8691380386124042,
+    "sharpe_ratio": -9.237090800065875,
+    "max_drawdown": 0.9953257099043741,
+    "net_win_rate": 0.4161793372319688
+  },
+  "XPR_USDT/P12_89": {
+    "trade_count": 878,
+    "net_profit_factor": 0.4870699568959775,
+    "gross_profit_factor": 0.8096213310037268,
+    "sharpe_ratio": -7.457854891249291,
+    "max_drawdown": 0.9805378405746986,
+    "net_win_rate": 0.42255125284738043
+  },
+  "XPR_USDT/P144_200": {
+    "trade_count": 379,
+    "net_profit_factor": 0.33140477846073235,
+    "gross_profit_factor": 0.7293231825989112,
+    "sharpe_ratio": -5.477754113367065,
+    "max_drawdown": 0.8633975219658596,
+    "net_win_rate": 0.43535620052770446
+  },
+  "XPR_USDT/P20_100": {
+    "trade_count": 743,
+    "net_profit_factor": 0.448407742513643,
+    "gross_profit_factor": 0.7895635107794848,
+    "sharpe_ratio": -7.44513544629287,
+    "max_drawdown": 0.9748528662815701,
+    "net_win_rate": 0.4158815612382234
+  },
+  "XPR_USDT/P20_144": {
+    "trade_count": 545,
+    "net_profit_factor": 0.5066160520940476,
+    "gross_profit_factor": 0.7807184342891809,
+    "sharpe_ratio": -4.334088325582853,
+    "max_drawdown": 0.8254120208168071,
+    "net_win_rate": 0.45321100917431195
+  },
+  "XPR_USDT/P20_200": {
+    "trade_count": 405,
+    "net_profit_factor": 0.5945196024954872,
+    "gross_profit_factor": 0.8747208488978696,
+    "sharpe_ratio": -3.009923271198335,
+    "max_drawdown": 0.651701843398288,
+    "net_win_rate": 0.4691358024691358
+  },
+  "XPR_USDT/P20_21": {
+    "trade_count": 1053,
+    "net_profit_factor": 0.12807468864532615,
+    "gross_profit_factor": 0.5789906176404587,
+    "sharpe_ratio": -19.700097118946772,
+    "max_drawdown": 0.9999997688478974,
+    "net_win_rate": 0.2355175688509022
+  },
+  "XPR_USDT/P20_26": {
+    "trade_count": 1059,
+    "net_profit_factor": 0.18372432719785822,
+    "gross_profit_factor": 0.5963208264946921,
+    "sharpe_ratio": -16.670151449419127,
+    "max_drawdown": 0.9999916439433945,
+    "net_win_rate": 0.29178470254957506
+  },
+  "XPR_USDT/P20_34": {
+    "trade_count": 982,
+    "net_profit_factor": 0.24263050323647087,
+    "gross_profit_factor": 0.599613541570683,
+    "sharpe_ratio": -13.054530618766574,
+    "max_drawdown": 0.999720693593559,
+    "net_win_rate": 0.3635437881873727
+  },
+  "XPR_USDT/P20_50": {
+    "trade_count": 897,
+    "net_profit_factor": 0.35428428772131704,
+    "gross_profit_factor": 0.7280956894588407,
+    "sharpe_ratio": -9.697396795706718,
+    "max_drawdown": 0.9957839262787193,
+    "net_win_rate": 0.4069119286510591
+  },
+  "XPR_USDT/P20_55": {
+    "trade_count": 873,
+    "net_profit_factor": 0.3947554701911647,
+    "gross_profit_factor": 0.7878136643960634,
+    "sharpe_ratio": -9.115958847788088,
+    "max_drawdown": 0.9930688822706655,
+    "net_win_rate": 0.41237113402061853
+  },
+  "XPR_USDT/P20_89": {
+    "trade_count": 740,
+    "net_profit_factor": 0.4230323366572449,
+    "gross_profit_factor": 0.7772999144833308,
+    "sharpe_ratio": -7.583173916379795,
+    "max_drawdown": 0.9772025553361416,
+    "net_win_rate": 0.41621621621621624
+  },
+  "XPR_USDT/P21_100": {
+    "trade_count": 721,
+    "net_profit_factor": 0.4609699306684288,
+    "gross_profit_factor": 0.8008429396390915,
+    "sharpe_ratio": -7.087605704668959,
+    "max_drawdown": 0.9671778137992603,
+    "net_win_rate": 0.4188626907073509
+  },
+  "XPR_USDT/P21_144": {
+    "trade_count": 531,
+    "net_profit_factor": 0.5087458171625802,
+    "gross_profit_factor": 0.792829587550841,
+    "sharpe_ratio": -4.25261521056586,
+    "max_drawdown": 0.8174482190849045,
+    "net_win_rate": 0.4595103578154426
+  },
+  "XPR_USDT/P21_200": {
+    "trade_count": 432,
+    "net_profit_factor": 0.5304960486021743,
+    "gross_profit_factor": 0.8138063569461327,
+    "sharpe_ratio": -3.623486557043114,
+    "max_drawdown": 0.7357242087235308,
+    "net_win_rate": 0.4583333333333333
+  },
+  "XPR_USDT/P21_26": {
+    "trade_count": 1043,
+    "net_profit_factor": 0.17659385312366827,
+    "gross_profit_factor": 0.5966563894377179,
+    "sharpe_ratio": -17.059932057613473,
+    "max_drawdown": 0.9999948331913836,
+    "net_win_rate": 0.2837967401725791
+  },
+  "XPR_USDT/P21_34": {
+    "trade_count": 969,
+    "net_profit_factor": 0.2391386598976185,
+    "gross_profit_factor": 0.6202874643909381,
+    "sharpe_ratio": -13.418448320150604,
+    "max_drawdown": 0.999785077727258,
+    "net_win_rate": 0.35294117647058826
+  },
+  "XPR_USDT/P21_50": {
+    "trade_count": 871,
+    "net_profit_factor": 0.35817734871575696,
+    "gross_profit_factor": 0.7376674919221583,
+    "sharpe_ratio": -9.688211218908476,
+    "max_drawdown": 0.9953089794313975,
+    "net_win_rate": 0.40298507462686567
+  },
+  "XPR_USDT/P21_55": {
+    "trade_count": 856,
+    "net_profit_factor": 0.4052780060272582,
+    "gross_profit_factor": 0.8116027245690931,
+    "sharpe_ratio": -8.978311857281597,
+    "max_drawdown": 0.9920753126812509,
+    "net_win_rate": 0.4147196261682243
+  },
+  "XPR_USDT/P21_89": {
+    "trade_count": 712,
+    "net_profit_factor": 0.4322877706550126,
+    "gross_profit_factor": 0.7912453413641358,
+    "sharpe_ratio": -7.182175928296755,
+    "max_drawdown": 0.9698973060184397,
+    "net_win_rate": 0.4241573033707865
+  },
+  "XPR_USDT/P26_100": {
+    "trade_count": 682,
+    "net_profit_factor": 0.4199573470434849,
+    "gross_profit_factor": 0.7706822313840261,
+    "sharpe_ratio": -7.247358541677088,
+    "max_drawdown": 0.9685624452726892,
+    "net_win_rate": 0.4222873900293255
+  },
+  "XPR_USDT/P26_144": {
+    "trade_count": 500,
+    "net_profit_factor": 0.45517490774022895,
+    "gross_profit_factor": 0.7253809063156977,
+    "sharpe_ratio": -4.769207382261993,
+    "max_drawdown": 0.8446992900449559,
+    "net_win_rate": 0.44
+  },
+  "XPR_USDT/P26_200": {
+    "trade_count": 423,
+    "net_profit_factor": 0.5123827419470387,
+    "gross_profit_factor": 0.7864351029762596,
+    "sharpe_ratio": -3.7059812673757695,
+    "max_drawdown": 0.7373880973850842,
+    "net_win_rate": 0.45390070921985815
+  },
+  "XPR_USDT/P26_34": {
+    "trade_count": 900,
+    "net_profit_factor": 0.16468076968642598,
+    "gross_profit_factor": 0.5099782922777087,
+    "sharpe_ratio": -14.808533439813292,
+    "max_drawdown": 0.9999316581522868,
+    "net_win_rate": 0.31333333333333335
+  },
+  "XPR_USDT/P26_50": {
+    "trade_count": 833,
+    "net_profit_factor": 0.3112708348927905,
+    "gross_profit_factor": 0.67353512098931,
+    "sharpe_ratio": -10.648498164185536,
+    "max_drawdown": 0.9973824532857204,
+    "net_win_rate": 0.38055222088835533
+  },
+  "XPR_USDT/P26_55": {
+    "trade_count": 818,
+    "net_profit_factor": 0.34439247253643823,
+    "gross_profit_factor": 0.7115248104606541,
+    "sharpe_ratio": -9.854340534124331,
+    "max_drawdown": 0.995299263650595,
+    "net_win_rate": 0.39486552567237165
+  },
+  "XPR_USDT/P26_89": {
+    "trade_count": 691,
+    "net_profit_factor": 0.42149024802259233,
+    "gross_profit_factor": 0.7897958579484432,
+    "sharpe_ratio": -7.331593406514462,
+    "max_drawdown": 0.9702235868469427,
+    "net_win_rate": 0.4211287988422576
+  },
+  "XPR_USDT/P34_100": {
+    "trade_count": 656,
+    "net_profit_factor": 0.38007520782448606,
+    "gross_profit_factor": 0.7012711092904699,
+    "sharpe_ratio": -7.5994139819703586,
+    "max_drawdown": 0.9698978670786177,
+    "net_win_rate": 0.4054878048780488
+  },
+  "XPR_USDT/P34_144": {
+    "trade_count": 549,
+    "net_profit_factor": 0.4559965627787828,
+    "gross_profit_factor": 0.7473662270113495,
+    "sharpe_ratio": -5.198405404957076,
+    "max_drawdown": 0.8801990971326088,
+    "net_win_rate": 0.4408014571948998
+  },
+  "XPR_USDT/P34_200": {
+    "trade_count": 429,
+    "net_profit_factor": 0.5270632293045029,
+    "gross_profit_factor": 0.831256577967546,
+    "sharpe_ratio": -3.7086396061573446,
+    "max_drawdown": 0.7499119097157101,
+    "net_win_rate": 0.46386946386946387
+  },
+  "XPR_USDT/P34_50": {
+    "trade_count": 794,
+    "net_profit_factor": 0.2249893705429471,
+    "gross_profit_factor": 0.578720593778178,
+    "sharpe_ratio": -12.506694748478697,
+    "max_drawdown": 0.9992238549935409,
+    "net_win_rate": 0.3350125944584383
+  },
+  "XPR_USDT/P34_55": {
+    "trade_count": 775,
+    "net_profit_factor": 0.2699454854057343,
+    "gross_profit_factor": 0.645843662774793,
+    "sharpe_ratio": -11.271565977489592,
+    "max_drawdown": 0.9980395188097407,
+    "net_win_rate": 0.36129032258064514
+  },
+  "XPR_USDT/P34_89": {
+    "trade_count": 696,
+    "net_profit_factor": 0.37032285182260327,
+    "gross_profit_factor": 0.7418366021291931,
+    "sharpe_ratio": -8.173305211278105,
+    "max_drawdown": 0.9807711168204732,
+    "net_win_rate": 0.40229885057471265
+  },
+  "XPR_USDT/P50_100": {
+    "trade_count": 616,
+    "net_profit_factor": 0.33388350654080634,
+    "gross_profit_factor": 0.6519617651212122,
+    "sharpe_ratio": -8.149502648312065,
+    "max_drawdown": 0.9734718345775837,
+    "net_win_rate": 0.387987012987013
+  },
+  "XPR_USDT/P50_144": {
+    "trade_count": 534,
+    "net_profit_factor": 0.437700179101061,
+    "gross_profit_factor": 0.729259208812161,
+    "sharpe_ratio": -5.554978407739808,
+    "max_drawdown": 0.8921435700963897,
+    "net_win_rate": 0.4288389513108614
+  },
+  "XPR_USDT/P50_200": {
+    "trade_count": 447,
+    "net_profit_factor": 0.4961431853122425,
+    "gross_profit_factor": 0.8095057194455879,
+    "sharpe_ratio": -4.220858580194767,
+    "max_drawdown": 0.7980083181306825,
+    "net_win_rate": 0.44742729306487694
+  },
+  "XPR_USDT/P50_55": {
+    "trade_count": 738,
+    "net_profit_factor": 0.10729226502259376,
+    "gross_profit_factor": 0.41549620836734363,
+    "sharpe_ratio": -15.573110525588783,
+    "max_drawdown": 0.9999453783222343,
+    "net_win_rate": 0.25203252032520324
+  },
+  "XPR_USDT/P50_89": {
+    "trade_count": 658,
+    "net_profit_factor": 0.33147981409732447,
+    "gross_profit_factor": 0.6944899683267121,
+    "sharpe_ratio": -9.287847761576783,
+    "max_drawdown": 0.9884165979140438,
+    "net_win_rate": 0.3723404255319149
+  },
+  "XPR_USDT/P55_100": {
+    "trade_count": 591,
+    "net_profit_factor": 0.3068971551662484,
+    "gross_profit_factor": 0.6509132527569301,
+    "sharpe_ratio": -8.462382603215374,
+    "max_drawdown": 0.9769214869242675,
+    "net_win_rate": 0.38071065989847713
+  },
+  "XPR_USDT/P55_144": {
+    "trade_count": 504,
+    "net_profit_factor": 0.3937910330263927,
+    "gross_profit_factor": 0.6962509525334656,
+    "sharpe_ratio": -5.8914013215867405,
+    "max_drawdown": 0.9032124874354235,
+    "net_win_rate": 0.42063492063492064
+  },
+  "XPR_USDT/P55_200": {
+    "trade_count": 433,
+    "net_profit_factor": 0.457904203537647,
+    "gross_profit_factor": 0.7946440180988625,
+    "sharpe_ratio": -4.574873685426539,
+    "max_drawdown": 0.8245089258533107,
+    "net_win_rate": 0.44803695150115475
+  },
+  "XPR_USDT/P55_89": {
+    "trade_count": 635,
+    "net_profit_factor": 0.2814126590787437,
+    "gross_profit_factor": 0.6428518342876064,
+    "sharpe_ratio": -9.752568589387222,
+    "max_drawdown": 0.9905342343815714,
+    "net_win_rate": 0.3606299212598425
+  },
+  "XPR_USDT/P89_100": {
+    "trade_count": 572,
+    "net_profit_factor": 0.1785357313630752,
+    "gross_profit_factor": 0.5673361946958175,
+    "sharpe_ratio": -12.001743512682843,
+    "max_drawdown": 0.9977930312069035,
+    "net_win_rate": 0.29545454545454547
+  },
+  "XPR_USDT/P89_144": {
+    "trade_count": 475,
+    "net_profit_factor": 0.3785124798593522,
+    "gross_profit_factor": 0.7681023600681947,
+    "sharpe_ratio": -5.7844516897873035,
+    "max_drawdown": 0.8954081493023364,
+    "net_win_rate": 0.4442105263157895
+  },
+  "XPR_USDT/P89_200": {
+    "trade_count": 401,
+    "net_profit_factor": 0.4536406482473642,
+    "gross_profit_factor": 0.820691247438118,
+    "sharpe_ratio": -3.9928842038166326,
+    "max_drawdown": 0.774525133217867,
+    "net_win_rate": 0.47381546134663344
+  },
+  "XPR_USDT/P8_100": {
+    "trade_count": 814,
+    "net_profit_factor": 0.49716362244529655,
+    "gross_profit_factor": 0.8057786731563736,
+    "sharpe_ratio": -6.3854767406153075,
+    "max_drawdown": 0.9631901334139227,
+    "net_win_rate": 0.44103194103194104
+  },
+  "XPR_USDT/P8_12": {
+    "trade_count": 1686,
+    "net_profit_factor": 0.18381925836625693,
+    "gross_profit_factor": 0.6247983091619348,
+    "sharpe_ratio": -22.909072788004227,
+    "max_drawdown": 0.9999999988058672,
+    "net_win_rate": 0.2568208778173191
+  },
+  "XPR_USDT/P8_144": {
+    "trade_count": 620,
+    "net_profit_factor": 0.5661723120908325,
+    "gross_profit_factor": 0.868709990836941,
+    "sharpe_ratio": -3.9836109456411735,
+    "max_drawdown": 0.8308121491692124,
+    "net_win_rate": 0.47580645161290325
+  },
+  "XPR_USDT/P8_20": {
+    "trade_count": 1563,
+    "net_profit_factor": 0.2506474856720675,
+    "gross_profit_factor": 0.6114194374803198,
+    "sharpe_ratio": -16.669979696874506,
+    "max_drawdown": 0.9999975066246832,
+    "net_win_rate": 0.345489443378119
+  },
+  "XPR_USDT/P8_200": {
+    "trade_count": 432,
+    "net_profit_factor": 0.5478792655360658,
+    "gross_profit_factor": 0.8161728187621422,
+    "sharpe_ratio": -3.098612795091255,
+    "max_drawdown": 0.6960613561899228,
+    "net_win_rate": 0.4722222222222222
+  },
+  "XPR_USDT/P8_21": {
+    "trade_count": 1537,
+    "net_profit_factor": 0.2624847568316107,
+    "gross_profit_factor": 0.6224597420607231,
+    "sharpe_ratio": -15.915292096336513,
+    "max_drawdown": 0.9999944603471199,
+    "net_win_rate": 0.3571893298633702
+  },
+  "XPR_USDT/P8_26": {
+    "trade_count": 1479,
+    "net_profit_factor": 0.3194839336916916,
+    "gross_profit_factor": 0.6743736441120037,
+    "sharpe_ratio": -14.061891218270139,
+    "max_drawdown": 0.9999631305848772,
+    "net_win_rate": 0.38336713995943206
+  },
+  "XPR_USDT/P8_34": {
+    "trade_count": 1356,
+    "net_profit_factor": 0.3832986814110152,
+    "gross_profit_factor": 0.742843263135093,
+    "sharpe_ratio": -11.968835227902446,
+    "max_drawdown": 0.9997111570086411,
+    "net_win_rate": 0.4033923303834808
+  },
+  "XPR_USDT/P8_50": {
+    "trade_count": 1155,
+    "net_profit_factor": 0.487690780234449,
+    "gross_profit_factor": 0.8733763866489906,
+    "sharpe_ratio": -9.030398224989126,
+    "max_drawdown": 0.9961603231296965,
+    "net_win_rate": 0.43116883116883115
+  },
+  "XPR_USDT/P8_55": {
+    "trade_count": 1105,
+    "net_profit_factor": 0.4790529995756812,
+    "gross_profit_factor": 0.8659938603288672,
+    "sharpe_ratio": -8.748116607816382,
+    "max_drawdown": 0.99466861668103,
+    "net_win_rate": 0.4316742081447964
+  },
+  "XPR_USDT/P8_89": {
+    "trade_count": 869,
+    "net_profit_factor": 0.4907050467643535,
+    "gross_profit_factor": 0.8005413746335139,
+    "sharpe_ratio": -6.872077219768908,
+    "max_drawdown": 0.9722210218086479,
+    "net_win_rate": 0.43383199079401613
+  },
+  "ENJ_USDT/P100_144": {
+    "trade_count": 476,
+    "net_profit_factor": 0.49348020896593864,
+    "gross_profit_factor": 0.911884050401319,
+    "sharpe_ratio": -4.9796301144301,
+    "max_drawdown": 0.8508066344145517,
+    "net_win_rate": 0.4579831932773109
+  },
+  "ENJ_USDT/P100_200": {
+    "trade_count": 338,
+    "net_profit_factor": 0.6524327444188597,
+    "gross_profit_factor": 1.0145749313955668,
+    "sharpe_ratio": -2.3483932224917914,
+    "max_drawdown": 0.5249207729975378,
+    "net_win_rate": 0.5
+  },
+  "ENJ_USDT/P12_100": {
+    "trade_count": 642,
+    "net_profit_factor": 0.6828140866313326,
+    "gross_profit_factor": 1.0342881138802038,
+    "sharpe_ratio": -3.209431893538611,
+    "max_drawdown": 0.7688641258629363,
+    "net_win_rate": 0.4984423676012461
+  },
+  "ENJ_USDT/P12_144": {
+    "trade_count": 417,
+    "net_profit_factor": 0.6743728193163637,
+    "gross_profit_factor": 0.9332496065824896,
+    "sharpe_ratio": -2.4938815669013557,
+    "max_drawdown": 0.6125841361796236,
+    "net_win_rate": 0.4844124700239808
+  },
+  "ENJ_USDT/P12_20": {
+    "trade_count": 1472,
+    "net_profit_factor": 0.24696860701392132,
+    "gross_profit_factor": 0.7192671158624725,
+    "sharpe_ratio": -14.0816186915169,
+    "max_drawdown": 0.9999578052453129,
+    "net_win_rate": 0.38722826086956524
+  },
+  "ENJ_USDT/P12_200": {
+    "trade_count": 332,
+    "net_profit_factor": 0.7103578795017103,
+    "gross_profit_factor": 0.95936988090751,
+    "sharpe_ratio": -1.9196449609629644,
+    "max_drawdown": 0.506016670466451,
+    "net_win_rate": 0.4879518072289157
+  },
+  "ENJ_USDT/P12_21": {
+    "trade_count": 1470,
+    "net_profit_factor": 0.24907941990246757,
+    "gross_profit_factor": 0.6963572996063109,
+    "sharpe_ratio": -13.789235133021476,
+    "max_drawdown": 0.9999461544723349,
+    "net_win_rate": 0.38979591836734695
+  },
+  "ENJ_USDT/P12_26": {
+    "trade_count": 1385,
+    "net_profit_factor": 0.33129757169195356,
+    "gross_profit_factor": 0.8170074859694318,
+    "sharpe_ratio": -11.42051664386041,
+    "max_drawdown": 0.9995568221491301,
+    "net_win_rate": 0.42310469314079424
+  },
+  "ENJ_USDT/P12_34": {
+    "trade_count": 1271,
+    "net_profit_factor": 0.4246942759244035,
+    "gross_profit_factor": 0.8478687885890451,
+    "sharpe_ratio": -8.99596612191409,
+    "max_drawdown": 0.9965031274492614,
+    "net_win_rate": 0.44689221085759245
+  },
+  "ENJ_USDT/P12_50": {
+    "trade_count": 1085,
+    "net_profit_factor": 0.5179953235871391,
+    "gross_profit_factor": 0.9130539792840692,
+    "sharpe_ratio": -6.924972296807072,
+    "max_drawdown": 0.981689080649189,
+    "net_win_rate": 0.46175115207373274
+  },
+  "ENJ_USDT/P12_55": {
+    "trade_count": 1022,
+    "net_profit_factor": 0.5427779831502108,
+    "gross_profit_factor": 0.9214310295343552,
+    "sharpe_ratio": -6.516346587792093,
+    "max_drawdown": 0.9728145339333745,
+    "net_win_rate": 0.4520547945205479
+  },
+  "ENJ_USDT/P12_89": {
+    "trade_count": 683,
+    "net_profit_factor": 0.6634752003760345,
+    "gross_profit_factor": 0.9966957710757549,
+    "sharpe_ratio": -3.7968114353713074,
+    "max_drawdown": 0.8259056008391136,
+    "net_win_rate": 0.48462664714494874
+  },
+  "ENJ_USDT/P144_200": {
+    "trade_count": 379,
+    "net_profit_factor": 0.5654097818596849,
+    "gross_profit_factor": 0.9999851899309298,
+    "sharpe_ratio": -3.150643802712625,
+    "max_drawdown": 0.6503580885308942,
+    "net_win_rate": 0.49340369393139843
+  },
+  "ENJ_USDT/P20_100": {
+    "trade_count": 663,
+    "net_profit_factor": 0.6340012799801479,
+    "gross_profit_factor": 0.9835855816014353,
+    "sharpe_ratio": -3.989147618097837,
+    "max_drawdown": 0.839603115007308,
+    "net_win_rate": 0.4796380090497738
+  },
+  "ENJ_USDT/P20_144": {
+    "trade_count": 473,
+    "net_profit_factor": 0.7275727780653798,
+    "gross_profit_factor": 1.0483228653190015,
+    "sharpe_ratio": -2.276271399179917,
+    "max_drawdown": 0.6142064449572812,
+    "net_win_rate": 0.492600422832981
+  },
+  "ENJ_USDT/P20_200": {
+    "trade_count": 367,
+    "net_profit_factor": 0.678475301970256,
+    "gross_profit_factor": 0.9357724630961297,
+    "sharpe_ratio": -2.2545767481919134,
+    "max_drawdown": 0.5438137309979919,
+    "net_win_rate": 0.4822888283378747
+  },
+  "ENJ_USDT/P20_21": {
+    "trade_count": 1213,
+    "net_profit_factor": 0.11605396372978964,
+    "gross_profit_factor": 0.5508141465265395,
+    "sharpe_ratio": -17.979254662755345,
+    "max_drawdown": 0.9999983765612181,
+    "net_win_rate": 0.2901896125309151
+  },
+  "ENJ_USDT/P20_26": {
+    "trade_count": 1206,
+    "net_profit_factor": 0.2449564526857788,
+    "gross_profit_factor": 0.7219420654547378,
+    "sharpe_ratio": -13.68637057603973,
+    "max_drawdown": 0.9998824318947884,
+    "net_win_rate": 0.3747927031509121
+  },
+  "ENJ_USDT/P20_34": {
+    "trade_count": 1137,
+    "net_profit_factor": 0.34961016504180487,
+    "gross_profit_factor": 0.7775812944515694,
+    "sharpe_ratio": -10.239169315522245,
+    "max_drawdown": 0.998026779997964,
+    "net_win_rate": 0.4239226033421284
+  },
+  "ENJ_USDT/P20_50": {
+    "trade_count": 1018,
+    "net_profit_factor": 0.5058497475488984,
+    "gross_profit_factor": 0.9471724888601037,
+    "sharpe_ratio": -7.480384417193986,
+    "max_drawdown": 0.9847304408778069,
+    "net_win_rate": 0.4538310412573674
+  },
+  "ENJ_USDT/P20_55": {
+    "trade_count": 974,
+    "net_profit_factor": 0.5206490671121956,
+    "gross_profit_factor": 0.9360490575339975,
+    "sharpe_ratio": -7.257968662883633,
+    "max_drawdown": 0.9813538679408196,
+    "net_win_rate": 0.44455852156057496
+  },
+  "ENJ_USDT/P20_89": {
+    "trade_count": 721,
+    "net_profit_factor": 0.605995506301782,
+    "gross_profit_factor": 0.9537123519049981,
+    "sharpe_ratio": -4.885129491904326,
+    "max_drawdown": 0.8987712329069906,
+    "net_win_rate": 0.4576976421636616
+  },
+  "ENJ_USDT/P21_100": {
+    "trade_count": 685,
+    "net_profit_factor": 0.6349324797375373,
+    "gross_profit_factor": 0.9957874276473503,
+    "sharpe_ratio": -4.090551922490317,
+    "max_drawdown": 0.8503778846807692,
+    "net_win_rate": 0.47883211678832116
+  },
+  "ENJ_USDT/P21_144": {
+    "trade_count": 483,
+    "net_profit_factor": 0.7380894858226078,
+    "gross_profit_factor": 1.0708580094806424,
+    "sharpe_ratio": -2.2512313828655826,
+    "max_drawdown": 0.6208251823813011,
+    "net_win_rate": 0.494824016563147
+  },
+  "ENJ_USDT/P21_200": {
+    "trade_count": 369,
+    "net_profit_factor": 0.6804336804332001,
+    "gross_profit_factor": 0.9531032835097729,
+    "sharpe_ratio": -2.27593831069573,
+    "max_drawdown": 0.5536444393109712,
+    "net_win_rate": 0.48509485094850946
+  },
+  "ENJ_USDT/P21_26": {
+    "trade_count": 1199,
+    "net_profit_factor": 0.21534411854364396,
+    "gross_profit_factor": 0.6944319321068386,
+    "sharpe_ratio": -14.260952527356801,
+    "max_drawdown": 0.9999297840019269,
+    "net_win_rate": 0.36447039199332776
+  },
+  "ENJ_USDT/P21_34": {
+    "trade_count": 1132,
+    "net_profit_factor": 0.3343194112551271,
+    "gross_profit_factor": 0.7631151266417232,
+    "sharpe_ratio": -10.579903182507238,
+    "max_drawdown": 0.9984837172389698,
+    "net_win_rate": 0.4213780918727915
+  },
+  "ENJ_USDT/P21_50": {
+    "trade_count": 1003,
+    "net_profit_factor": 0.49323532031774076,
+    "gross_profit_factor": 0.9225572757425459,
+    "sharpe_ratio": -7.6281122916719,
+    "max_drawdown": 0.985530923594742,
+    "net_win_rate": 0.44965104685942175
+  },
+  "ENJ_USDT/P21_55": {
+    "trade_count": 970,
+    "net_profit_factor": 0.5049688822224416,
+    "gross_profit_factor": 0.9135613139390037,
+    "sharpe_ratio": -7.376265499654446,
+    "max_drawdown": 0.9819820650730863,
+    "net_win_rate": 0.44329896907216493
+  },
+  "ENJ_USDT/P21_89": {
+    "trade_count": 723,
+    "net_profit_factor": 0.6232322104498931,
+    "gross_profit_factor": 0.988198379722923,
+    "sharpe_ratio": -4.699901345628495,
+    "max_drawdown": 0.8904025548325527,
+    "net_win_rate": 0.46473029045643155
+  },
+  "ENJ_USDT/P26_100": {
+    "trade_count": 652,
+    "net_profit_factor": 0.6475330091721214,
+    "gross_profit_factor": 1.0145500546808595,
+    "sharpe_ratio": -3.7944424830884627,
+    "max_drawdown": 0.81958906593736,
+    "net_win_rate": 0.48466257668711654
+  },
+  "ENJ_USDT/P26_144": {
+    "trade_count": 488,
+    "net_profit_factor": 0.696391226559565,
+    "gross_profit_factor": 1.00491810159423,
+    "sharpe_ratio": -2.6002755517075795,
+    "max_drawdown": 0.6586058037606387,
+    "net_win_rate": 0.49385245901639346
+  },
+  "ENJ_USDT/P26_200": {
+    "trade_count": 373,
+    "net_profit_factor": 0.7504128202741035,
+    "gross_profit_factor": 1.0692486108279615,
+    "sharpe_ratio": -1.8501502896672115,
+    "max_drawdown": 0.4979874171208908,
+    "net_win_rate": 0.5067024128686327
+  },
+  "ENJ_USDT/P26_34": {
+    "trade_count": 1087,
+    "net_profit_factor": 0.2938853184630005,
+    "gross_profit_factor": 0.8419018976589304,
+    "sharpe_ratio": -12.258147330873385,
+    "max_drawdown": 0.9995438264804182,
+    "net_win_rate": 0.39742410303587855
+  },
+  "ENJ_USDT/P26_50": {
+    "trade_count": 995,
+    "net_profit_factor": 0.5191313622132061,
+    "gross_profit_factor": 1.037814795882909,
+    "sharpe_ratio": -7.490314703940022,
+    "max_drawdown": 0.9845957249971251,
+    "net_win_rate": 0.464321608040201
+  },
+  "ENJ_USDT/P26_55": {
+    "trade_count": 969,
+    "net_profit_factor": 0.5545417817494199,
+    "gross_profit_factor": 1.0478615248038061,
+    "sharpe_ratio": -7.050203636788194,
+    "max_drawdown": 0.979377528628212,
+    "net_win_rate": 0.4613003095975232
+  },
+  "ENJ_USDT/P26_89": {
+    "trade_count": 701,
+    "net_profit_factor": 0.6543255673272418,
+    "gross_profit_factor": 1.0180307460166442,
+    "sharpe_ratio": -4.243796054090212,
+    "max_drawdown": 0.8629505365382755,
+    "net_win_rate": 0.4764621968616263
+  },
+  "ENJ_USDT/P34_100": {
+    "trade_count": 645,
+    "net_profit_factor": 0.6565338699344211,
+    "gross_profit_factor": 1.0634826726071482,
+    "sharpe_ratio": -3.4661942840228495,
+    "max_drawdown": 0.7900994686874281,
+    "net_win_rate": 0.4945736434108527
+  },
+  "ENJ_USDT/P34_144": {
+    "trade_count": 479,
+    "net_profit_factor": 0.6751474541056629,
+    "gross_profit_factor": 0.9997328627765826,
+    "sharpe_ratio": -2.7273924204040116,
+    "max_drawdown": 0.6602204755740151,
+    "net_win_rate": 0.49269311064718163
+  },
+  "ENJ_USDT/P34_200": {
+    "trade_count": 387,
+    "net_profit_factor": 0.7333656266983987,
+    "gross_profit_factor": 1.0877799072721341,
+    "sharpe_ratio": -1.8295260423870114,
+    "max_drawdown": 0.489082948915052,
+    "net_win_rate": 0.5193798449612403
+  },
+  "ENJ_USDT/P34_50": {
+    "trade_count": 960,
+    "net_profit_factor": 0.4335289537785121,
+    "gross_profit_factor": 1.0134246607889947,
+    "sharpe_ratio": -8.604506044655341,
+    "max_drawdown": 0.992091687643115,
+    "net_win_rate": 0.4479166666666667
+  },
+  "ENJ_USDT/P34_55": {
+    "trade_count": 932,
+    "net_profit_factor": 0.503756351979553,
+    "gross_profit_factor": 1.0620773605961527,
+    "sharpe_ratio": -7.59810926308177,
+    "max_drawdown": 0.9841319066478351,
+    "net_win_rate": 0.4592274678111588
+  },
+  "ENJ_USDT/P34_89": {
+    "trade_count": 710,
+    "net_profit_factor": 0.6607736776885067,
+    "gross_profit_factor": 1.096749104198413,
+    "sharpe_ratio": -3.9492603853832833,
+    "max_drawdown": 0.8444365022504595,
+    "net_win_rate": 0.4943661971830986
+  },
+  "ENJ_USDT/P50_100": {
+    "trade_count": 626,
+    "net_profit_factor": 0.5594402495347501,
+    "gross_profit_factor": 0.9668591478614289,
+    "sharpe_ratio": -4.600234251417182,
+    "max_drawdown": 0.8663314981634285,
+    "net_win_rate": 0.476038338658147
+  },
+  "ENJ_USDT/P50_144": {
+    "trade_count": 465,
+    "net_profit_factor": 0.5829256155954325,
+    "gross_profit_factor": 0.9222435261173235,
+    "sharpe_ratio": -3.6978906917804006,
+    "max_drawdown": 0.7492335529914871,
+    "net_win_rate": 0.46881720430107526
+  },
+  "ENJ_USDT/P50_200": {
+    "trade_count": 346,
+    "net_profit_factor": 0.6603423020231863,
+    "gross_profit_factor": 0.9381781025092198,
+    "sharpe_ratio": -2.4862011619647495,
+    "max_drawdown": 0.566382022669842,
+    "net_win_rate": 0.476878612716763
+  },
+  "ENJ_USDT/P50_55": {
+    "trade_count": 845,
+    "net_profit_factor": 0.18389874195303896,
+    "gross_profit_factor": 0.7036846091105752,
+    "sharpe_ratio": -12.961350039896347,
+    "max_drawdown": 0.9995332639189268,
+    "net_win_rate": 0.3301775147928994
+  },
+  "ENJ_USDT/P50_89": {
+    "trade_count": 662,
+    "net_profit_factor": 0.551176377849729,
+    "gross_profit_factor": 1.0047738118028966,
+    "sharpe_ratio": -5.1169098461200875,
+    "max_drawdown": 0.899582581033053,
+    "net_win_rate": 0.4773413897280967
+  },
+  "ENJ_USDT/P55_100": {
+    "trade_count": 613,
+    "net_profit_factor": 0.5464563689800614,
+    "gross_profit_factor": 0.9196150104427526,
+    "sharpe_ratio": -4.7345730469339715,
+    "max_drawdown": 0.8686574778214514,
+    "net_win_rate": 0.47471451876019577
+  },
+  "ENJ_USDT/P55_144": {
+    "trade_count": 461,
+    "net_profit_factor": 0.5878156427956698,
+    "gross_profit_factor": 0.9187647197802986,
+    "sharpe_ratio": -3.520792599589738,
+    "max_drawdown": 0.7266210753474621,
+    "net_win_rate": 0.47288503253796094
+  },
+  "ENJ_USDT/P55_200": {
+    "trade_count": 347,
+    "net_profit_factor": 0.6505119203860358,
+    "gross_profit_factor": 0.9040015276013835,
+    "sharpe_ratio": -2.4581071456333246,
+    "max_drawdown": 0.5500214130154742,
+    "net_win_rate": 0.47262247838616717
+  },
+  "ENJ_USDT/P55_89": {
+    "trade_count": 660,
+    "net_profit_factor": 0.567940316259164,
+    "gross_profit_factor": 1.0143820165818949,
+    "sharpe_ratio": -5.178753363482185,
+    "max_drawdown": 0.9023567685373493,
+    "net_win_rate": 0.47575757575757577
+  },
+  "ENJ_USDT/P89_100": {
+    "trade_count": 607,
+    "net_profit_factor": 0.3332932987207715,
+    "gross_profit_factor": 0.8559805303721615,
+    "sharpe_ratio": -8.834650456640468,
+    "max_drawdown": 0.9832894800537691,
+    "net_win_rate": 0.39373970345963755
+  },
+  "ENJ_USDT/P89_144": {
+    "trade_count": 485,
+    "net_profit_factor": 0.5492703139415075,
+    "gross_profit_factor": 0.9652091325416258,
+    "sharpe_ratio": -4.491095548762761,
+    "max_drawdown": 0.8192590431278817,
+    "net_win_rate": 0.45979381443298967
+  },
+  "ENJ_USDT/P89_200": {
+    "trade_count": 347,
+    "net_profit_factor": 0.6670627784357599,
+    "gross_profit_factor": 1.0130309535671573,
+    "sharpe_ratio": -2.3242267071334095,
+    "max_drawdown": 0.5243597758098856,
+    "net_win_rate": 0.49279538904899134
+  },
+  "ENJ_USDT/P8_100": {
+    "trade_count": 662,
+    "net_profit_factor": 0.6409468924615226,
+    "gross_profit_factor": 0.9572822536508496,
+    "sharpe_ratio": -3.797019367882827,
+    "max_drawdown": 0.8180626812051267,
+    "net_win_rate": 0.47583081570996977
+  },
+  "ENJ_USDT/P8_12": {
+    "trade_count": 1817,
+    "net_profit_factor": 0.2168948214183099,
+    "gross_profit_factor": 0.7220274691420914,
+    "sharpe_ratio": -16.66286131143891,
+    "max_drawdown": 0.9999989166327676,
+    "net_win_rate": 0.3907539900935608
+  },
+  "ENJ_USDT/P8_144": {
+    "trade_count": 418,
+    "net_profit_factor": 0.7293631491494657,
+    "gross_profit_factor": 0.9689340129072648,
+    "sharpe_ratio": -1.9742481788951345,
+    "max_drawdown": 0.5287832074735718,
+    "net_win_rate": 0.49521531100478466
+  },
+  "ENJ_USDT/P8_20": {
+    "trade_count": 1671,
+    "net_profit_factor": 0.34557227931044204,
+    "gross_profit_factor": 0.7920229964400527,
+    "sharpe_ratio": -11.996929028361565,
+    "max_drawdown": 0.9998557228350807,
+    "net_win_rate": 0.4272890484739677
+  },
+  "ENJ_USDT/P8_200": {
+    "trade_count": 309,
+    "net_profit_factor": 0.7263309677016372,
+    "gross_profit_factor": 0.933596249987751,
+    "sharpe_ratio": -1.6763613410818572,
+    "max_drawdown": 0.4374708238201076,
+    "net_win_rate": 0.4886731391585761
+  },
+  "ENJ_USDT/P8_21": {
+    "trade_count": 1654,
+    "net_profit_factor": 0.35754400511857165,
+    "gross_profit_factor": 0.7912293572251612,
+    "sharpe_ratio": -11.65732449939293,
+    "max_drawdown": 0.99980310698337,
+    "net_win_rate": 0.42926239419588874
+  },
+  "ENJ_USDT/P8_26": {
+    "trade_count": 1553,
+    "net_profit_factor": 0.41828730133486436,
+    "gross_profit_factor": 0.8473536088607704,
+    "sharpe_ratio": -10.418621047255325,
+    "max_drawdown": 0.9993347604304272,
+    "net_win_rate": 0.4385061171925306
+  },
+  "ENJ_USDT/P8_34": {
+    "trade_count": 1367,
+    "net_profit_factor": 0.48710603037539263,
+    "gross_profit_factor": 0.8655655346074087,
+    "sharpe_ratio": -8.273879452682428,
+    "max_drawdown": 0.995186224754469,
+    "net_win_rate": 0.4520848573518654
+  },
+  "ENJ_USDT/P8_50": {
+    "trade_count": 1137,
+    "net_profit_factor": 0.6006695237819666,
+    "gross_profit_factor": 0.9701758752518512,
+    "sharpe_ratio": -5.999238217344903,
+    "max_drawdown": 0.968968420730517,
+    "net_win_rate": 0.47405452946350046
+  },
+  "ENJ_USDT/P8_55": {
+    "trade_count": 1079,
+    "net_profit_factor": 0.5824688637996268,
+    "gross_profit_factor": 0.9314269286268461,
+    "sharpe_ratio": -6.0916983492029075,
+    "max_drawdown": 0.9679801861872753,
+    "net_win_rate": 0.46246524559777574
+  },
+  "ENJ_USDT/P8_89": {
+    "trade_count": 732,
+    "net_profit_factor": 0.6382800956216714,
+    "gross_profit_factor": 0.9671088359869887,
+    "sharpe_ratio": -4.122535320457971,
+    "max_drawdown": 0.8536971031927787,
+    "net_win_rate": 0.476775956284153
+  }
+}

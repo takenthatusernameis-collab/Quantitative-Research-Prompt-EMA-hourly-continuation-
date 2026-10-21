@@ -22,9 +22,9 @@
 | sortino_ratio | -4.2886 |
 | max_drawdown | 0.9962 |
 | cagr | -0.8881 |
-| net_avg_win | 19.0366 |
-| net_avg_loss | -29.5881 |
-| avg_hold_time_bars | 7.9498 |
+| net_avg_win | 19.0373 |
+| net_avg_loss | -29.5887 |
+| avg_hold_time_bars | 7.9506 |
 | exposure | 0.4174 |
 
 Decision label: rejected

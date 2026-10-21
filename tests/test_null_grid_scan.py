@@ -1,5 +1,6 @@
 """Tests for the randomized-entry null harness (scripts/null_grid_scan.py)."""
 import json
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -8,9 +9,11 @@ import pytest
 
 from backtest.backtest import backtest_symbol
 from signals.signals import generate_signals, generate_signals_vectorized
-from scripts.null_grid_scan import (apply_entries, binomial_tail, cell_seed,
-                                    eligible_bars, null_entries, passes_gate,
-                                    pooled_ratio, survivor_cells, window_stats)
+from scripts.null_grid_scan import (apply_entries, binomial_tail, build_grid_summary,
+                                    build_verdict, cell_seed, eligible_bars,
+                                    fmt_probability, null_entries, passes_gate,
+                                    pooled_ratio, process_cell, survivor_cells,
+                                    window_stats)
 
 FIXTURES = Path('data/fixtures')
 
@@ -229,6 +232,104 @@ def test_pooled_ratio_uses_trade_pnl_not_a_mean_of_ratios():
     assert pooled_ratio(rows, 'real') == pytest.approx(1.0)
 
 
+def test_pooled_ratio_uses_the_trade_level_sums_when_the_cell_has_them():
+    """The pooled PF is built from trade-level wins and losses.
+
+    The cell-level net P&L is a coarse stand-in for the same ratio: a cell
+    that ends the window with a net loss but with many more winning trades
+    than losing ones would be pooled as a loss under the coarse version.
+    """
+    rows = [
+        {'real': {'net_win_sum': 300.0, 'net_loss_abs': 100.0, 'net_pnl': 200.0}},
+        {'real': {'net_win_sum': 100.0, 'net_loss_abs': 300.0, 'net_pnl': -200.0}},
+    ]
+    assert pooled_ratio(rows, 'real') == pytest.approx(400.0 / 400.0)
+
+
+def test_grid_summary_reports_a_pooled_pf_that_is_not_zero():
+    """The pooled PF of the leg must resolve the stats dict it is pointed at.
+
+    A path that resolved to a number instead of to the stats dict made the
+    pooled PF of every cell zero, and the report printed 0.0000 for the real
+    rule and for the null.
+    """
+    rows = [
+        {'real': {'net_pf': 1.2, 'net_win_sum': 120.0, 'net_loss_abs': 100.0,
+                  'net_pnl': 20.0, 'gross_pf': 1.4, 'trades': 50},
+         'null': {'block': {'net_pf': 0.8, 'net_win_sum': 80.0, 'net_loss_abs': 100.0,
+                            'net_pnl': -20.0, 'gross_pf': 0.9, 'trades': 50}}},
+        {'real': {'net_pf': 0.6, 'net_win_sum': 60.0, 'net_loss_abs': 100.0,
+                  'net_pnl': -40.0, 'gross_pf': 0.7, 'trades': 50},
+         'null': {'block': {'net_pf': 0.7, 'net_win_sum': 70.0, 'net_loss_abs': 100.0,
+                            'net_pnl': -30.0, 'gross_pf': 0.8, 'trades': 50}}},
+    ]
+    summary = build_grid_summary(rows, ['block'], 30)
+    assert summary['real_pooled_pf'] == pytest.approx(180.0 / 200.0)
+    assert summary['block_null_pooled_pf'] == pytest.approx(150.0 / 200.0)
+    assert summary['primary_null_mode'] == 'block'
+
+
+def test_verdict_names_the_null_mode_that_was_actually_run():
+    """The verdict must not read a mode the leg did not run.
+
+    The verdict used to read the 'timing' keys whatever mode was run, so a
+    leg that ran the block null reported "against None timing-null cells".
+    """
+    rows = [
+        {'real': {'net_pf': 1.2, 'net_win_sum': 120.0, 'net_loss_abs': 100.0,
+                  'net_pnl': 20.0, 'gross_pf': 1.4, 'trades': 50, 'sharpe': 0.2,
+                  'stress_net_pf': 1.05},
+         'null': {'block': {'net_pf': 0.8, 'net_win_sum': 80.0, 'net_loss_abs': 100.0,
+                            'net_pnl': -20.0, 'gross_pf': 0.9, 'trades': 50,
+                            'sharpe': -0.1, 'stress_net_pf': 0.6}}},
+    ]
+    grid = build_grid_summary(rows, ['block'], 30)
+    payload = {'n_cells': len(rows), 'grid': grid, 'survivors': []}
+    lines = build_verdict(payload)
+    text = ' '.join(lines)
+    assert 'block' in text
+    assert 'timing' not in text
+    assert 'None' not in text
+
+
+def test_fmt_probability_shows_the_distance_from_one():
+    """A probability of essentially 1 is unreadable as '1.0000'."""
+    assert fmt_probability(0.5) == '0.5000'
+    assert fmt_probability(None) == 'n/a'
+    close = fmt_probability(1.0 - 1.1e-7)
+    assert close.startswith('1 - ')
+    assert 'e-07' in close
+
+
+def test_the_null_is_matched_to_the_out_of_sample_window():
+    """The null randomizes the entries of the window, not of the whole history.
+
+    A null that kept the whole history's entries would drop every entry
+    before the window and would be scored on a thinner sample than the rule it
+    is compared against.
+    """
+    df = _frame(1200, seed=11)
+    config = {
+        'taker_fee_bps': 10.0, 'slippage_bps': 2.0, 'rr': 1.0,
+        'stricter_trend': False, 'min_risk_atr': False, 'atr_threshold': 1.0,
+        'conservative_exit': True, 'sizing': 'risk', 'risk_fraction': 0.01,
+        'max_notional_multiple': 10.0, 'stress_multiplier': 2.0,
+    }
+    opts = {'config': config, 'oos_fraction': 0.35, 'modes': ['block', 'sign'],
+            'min_trades': 30, 'block_bars': 240, 'existing': {}}
+    row = process_cell('T/USDT', df, 8, 20, opts)
+
+    entry_start = row['entry_start_index']
+    frame = generate_signals_vectorized(df, 8, 20)
+    signal = frame['signal'].to_numpy()
+    entries_in_window = int(np.count_nonzero(signal[entry_start:] != 0))
+    entries_in_history = int(np.count_nonzero(signal != 0))
+    assert entries_in_history > entries_in_window
+    assert row['n_signals'] == entries_in_window
+    # The sign null keeps the entry bars, so it is scored on the same sample.
+    assert row['null']['sign']['trades'] == row['real']['trades']
+
+
 def test_survivor_cells_reads_the_audit_artifact(tmp_path):
     """The survivor list comes from the out-of-sample audit, not from a guess."""
     rows = [
@@ -241,3 +342,48 @@ def test_survivor_cells_reads_the_audit_artifact(tmp_path):
         for row in rows:
             fh.write(json.dumps(row) + '\n')
     assert survivor_cells(tmp_path, min_trades=30, min_pf=1.0) == [('A/USDT', 8, 20)]
+
+
+def _fake_grid_run(tmp_path: Path, symbol: str = 'ADA/USDT') -> Path:
+    """A one-cell grid run directory the leg can read."""
+    run_dir = tmp_path / 'grid'
+    cell_dir = run_dir / 'results' / symbol.replace('/', '_') / 'P8_12'
+    cell_dir.mkdir(parents=True)
+    (cell_dir / 'summary.json').write_text(json.dumps({
+        'symbol': symbol, 'P_fast': 8, 'P_slow': 12, 'trade_count': 0,
+        'net_profit_factor': 0.0,
+    }))
+    return run_dir
+
+
+def test_a_resumed_pass_keeps_the_rows_the_first_pass_wrote(tmp_path, monkeypatch):
+    """A second pass must add its mode to the checkpoint, not replace it.
+
+    The checkpoint used to be truncated when the second pass opened it, so an
+    interrupted run lost everything the first pass had computed, and a cell
+    that gained a mode was written back without the mode it already had.
+    """
+    from scripts import null_grid_scan
+
+    run_dir = _fake_grid_run(tmp_path)
+    out_dir = tmp_path / 'leg'
+
+    def _run(modes):
+        monkeypatch.setattr(sys, 'argv', [
+            'null_grid_scan.py', '--run', str(run_dir), '--out', str(out_dir),
+            '--modes', *modes, '--workers', '1', '--validate-sample', '0',
+            '--survivor-replicates', '2',
+        ])
+        null_grid_scan.main()
+
+    _run(['block'])
+    rows = [json.loads(line) for line in
+            (out_dir / 'cells.jsonl').read_text().splitlines() if line.strip()]
+    assert len(rows) == 1
+    assert 'block' in rows[0]['null']
+
+    _run(['sign'])
+    rows = [json.loads(line) for line in
+            (out_dir / 'cells.jsonl').read_text().splitlines() if line.strip()]
+    assert len(rows) == 1
+    assert set(rows[0]['null']) == {'block', 'sign'}

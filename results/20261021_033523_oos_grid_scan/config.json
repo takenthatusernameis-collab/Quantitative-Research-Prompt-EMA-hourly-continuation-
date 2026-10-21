@@ -1,0 +1,24 @@
+{
+  "timestamp": "20261021_033523",
+  "source_run": "results/20261019_135940_grid",
+  "fixture_base": "data/fixtures",
+  "oos_fraction": 0.35,
+  "stress_multiplier": 2.0,
+  "min_trades": 30,
+  "screen_pf": 0.9,
+  "max_verify": 0,
+  "cells": null,
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": false,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "command": "PYTHONPATH=. python3 scripts/oos_grid_scan.py --run results/20261019_135940_grid --oos-fraction 0.35 --min-trades 30 --screen-pf 0.9"
+}

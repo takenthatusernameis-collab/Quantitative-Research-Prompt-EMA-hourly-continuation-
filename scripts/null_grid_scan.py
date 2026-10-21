@@ -34,6 +34,12 @@ the program uses as its final holdout, with entries restricted to the window.
 A cell whose entry timing carries no information is exactly a cell that would
 have been found by luck, and 17 556 lucky draws do not stay lucky.
 
+The null is *matched* to the rule inside that window: the entries the rule
+fires on inside the window are the entries the null randomizes, and the null
+draws its replacement bars from the window as well. A null that kept the
+whole history's entries would lose every entry before the window and would
+then be scored on a thinner sample than the rule it is compared against.
+
 What the leg reports
 --------------------
 1. The null distribution of the per-cell out-of-sample net PF, grid-wide, and
@@ -118,12 +124,13 @@ def null_entries(entry_idx: np.ndarray, sides: np.ndarray, eligible: np.ndarray,
     """Entry bars and directions of one null realization.
 
     `timing` keeps the number of entries and the multiset of directions but
-    places them at uniformly random bars over the whole series. `sign` keeps
-    the entry bars and redraws every direction from a fair coin. `block`
-    keeps the number of entries, the direction mix and the local market
-    context, and moves every entry to a random bar inside its own block: the
-    entry stops being a cross but stays in the same stretch of the market,
-    which is what makes its risk distance comparable to the real rule's.
+    places them at uniformly random bars over the eligible bars it is given
+    (the out-of-sample window). `sign` keeps the entry bars and redraws every
+    direction from a fair coin. `block` keeps the number of entries, the
+    direction mix and the local market context, and moves every entry to a
+    random bar inside its own block: the entry stops being a cross but stays
+    in the same stretch of the market, which is what makes its risk distance
+    comparable to the real rule's.
     """
     if mode == 'timing':
         k = int(entry_idx.size)
@@ -216,6 +223,12 @@ def summarize_trades(trades: list, metrics: dict, stress_multiplier: float) -> d
         'stress_net_pf': net_profit_factor(stress),
         'net_pnl': float(pnl_net.sum()) if len(trades) else 0.0,
         'stress_net_pnl': float(stress.sum()) if len(trades) else 0.0,
+        # Trade-level win and loss sums: the pooled profit factor of a set of
+        # cells is built from these, so a thin cell does not get the same
+        # weight as a thick one and the number is comparable with the
+        # trade-level pooled PF the out-of-sample audit reports.
+        'net_win_sum': float(pnl_net[pnl_net > 0].sum()) if len(trades) else 0.0,
+        'net_loss_abs': float(-pnl_net[pnl_net < 0].sum()) if len(trades) else 0.0,
         'sharpe': metrics.get('sharpe_ratio'),
         'net_win_rate': metrics.get('net_win_rate'),
         # The risk distance as a share of the entry price. The cost drag of a
@@ -241,19 +254,30 @@ def process_cell(symbol: str, df: pd.DataFrame, fast: int, slow: int,
                  opts: dict) -> dict:
     """Real cell plus the null realizations that are not already checkpointed.
 
-    A resumed pass may have already written the `block` null for this cell; the
-    modes it still needs are the ones in `opts['modes']` minus the ones the
-    checkpoint already holds. The real leg is always recomputed - it is cheap
-    and it keeps the row self-contained.
+    A resumed pass may have already written one of the null modes for this
+    cell; the modes it still needs are the ones in `opts['modes']` minus the
+    ones the checkpoint already holds. The real leg is always recomputed - it
+    is cheap and it keeps the row self-contained.
+
+    The null is matched to the real rule inside the out-of-sample window: the
+    entries the rule fires on *inside the window* are the entries the null
+    randomizes, and the null draws its replacement bars from the window as
+    well. Without that the null loses every entry that falls before the
+    window, and it is then scored on a thinner sample than the rule it is
+    compared against.
     """
     config = opts['config']
     existing = opts.get('existing', {})
     frame = generate_signals_vectorized(df, fast, slow, config['stricter_trend'])
     signal = frame['signal'].to_numpy()
-    entry_idx = np.flatnonzero(signal != 0)
-    sides = signal[entry_idx]
     entry_start = entry_start_index(len(frame), opts['oos_fraction'])
+    # The entries of the window only: these are the ones the null replaces.
+    entry_idx = np.flatnonzero(signal != 0)
+    window_mask = entry_idx >= entry_start
+    entry_idx = entry_idx[window_mask]
+    sides = signal[entry_idx]
     eligible = eligible_bars(len(frame), fast, slow)
+    eligible = eligible[eligible >= entry_start]
 
     real = window_stats(frame, entry_start, config, symbol)
     row = {
@@ -359,10 +383,15 @@ def survivor_replicates(symbol: str, df: pd.DataFrame, fast: int, slow: int,
     config = opts['config']
     frame = generate_signals_vectorized(df, fast, slow, config['stricter_trend'])
     signal = frame['signal'].to_numpy()
-    entry_idx = np.flatnonzero(signal != 0)
-    sides = signal[entry_idx]
     entry_start = entry_start_index(len(frame), opts['oos_fraction'])
+    # The window's entries only, exactly as in the grid-wide leg, so the
+    # per-cell null distribution is drawn from the same sample the real leg
+    # is scored on.
+    entry_idx = np.flatnonzero(signal != 0)
+    entry_idx = entry_idx[entry_idx >= entry_start]
+    sides = signal[entry_idx]
     eligible = eligible_bars(len(frame), fast, slow)
+    eligible = eligible[eligible >= entry_start]
     real = window_stats(frame, entry_start, config, symbol)
 
     out = {'symbol': symbol, 'P_fast': fast, 'P_slow': slow, 'real': real,
@@ -443,7 +472,12 @@ def _worker(task):
     df = load_ohlcv_csv(path)
     rows = []
     for fast, slow in pairs:
-        rows.append(process_cell(symbol, df, fast, slow, opts))
+        cell_opts = dict(opts)
+        # A resumed pass keeps the null modes the checkpoint already holds, so
+        # the row that is written back holds every mode, not only the ones
+        # this pass computed.
+        cell_opts['existing'] = opts.get('existing', {}).get((fast, slow), {})
+        rows.append(process_cell(symbol, df, fast, slow, cell_opts))
     return rows
 
 
@@ -508,7 +542,7 @@ def build_grid_summary(rows: list, modes: list, min_trades: int) -> dict:
         'real_max_pf': max((r['real']['net_pf'] for r in rows
                             if r['real']['net_pf'] is not None
                             and math.isfinite(r['real']['net_pf'])), default=None),
-        'real_pooled_pf': pooled_ratio(rows, 'real', 'net_pf'),
+        'real_pooled_pf': pooled_ratio(rows, 'real'),
         'real_gross_pf_distribution': describe_distribution(
             [r['real'].get('gross_pf') for r in rows]),
         'real_gross_pf_gt_1': sum(
@@ -536,11 +570,15 @@ def build_grid_summary(rows: list, modes: list, min_trades: int) -> dict:
             (r['null'][mode]['net_pf'] for r in rows
              if r['null'][mode]['net_pf'] is not None
              and math.isfinite(r['null'][mode]['net_pf'])), default=None)
-        grid_summary[f'{mode}_null_pooled_pf'] = pooled_ratio(rows, 'null', mode, 'net_pf')
+        grid_summary[f'{mode}_null_pooled_pf'] = pooled_ratio(rows, 'null', mode)
 
     # Family-wise reading of the observed best cell, against the primary null.
-    primary_mode = modes[0]
+    # The primary null is the first mode of the leg, so the verdict and the
+    # report always talk about the null that was actually run.
+    primary_mode = modes[0] if modes else None
     grid_summary['primary_null_mode'] = primary_mode
+    if primary_mode is None:
+        return grid_summary
     real_max = grid_summary['real_max_pf']
     primary_null = [r['null'][primary_mode]['net_pf'] for r in rows]
     finite_null = [p for p in primary_null if p is not None and math.isfinite(p)]
@@ -553,11 +591,15 @@ def build_grid_summary(rows: list, modes: list, min_trades: int) -> dict:
     beats = sum(1 for r in rows
                 if (r['real']['net_pf'] or 0.0) > (r['null'][primary_mode]['net_pf'] or 0.0))
     grid_summary['n_real_beats_timing_null'] = beats
+    # The other side of the same comparison, so the report can say which side
+    # wins instead of leaving the reader to infer it from a count.
+    grid_summary['n_null_beats_real'] = n_cells - beats
     grid_summary['sign_test_p_value'] = binomial_tail(beats, n_cells)
     gross_beats = sum(
         1 for r in rows
         if (r['real'].get('gross_pf') or 0.0) > (r['null'][primary_mode].get('gross_pf') or 0.0))
     grid_summary['n_real_beats_null_on_gross_pf'] = gross_beats
+    grid_summary['n_null_beats_real_on_gross_pf'] = n_cells - gross_beats
     grid_summary['gross_sign_test_p_value'] = binomial_tail(gross_beats, n_cells)
     return grid_summary
 
@@ -583,11 +625,14 @@ def write_report(out_dir: Path, payload: dict) -> None:
                  f"block. The entry stops being a cross but stays in the same stretch of "
                  f"the market, so the risk distance and the cost drag stay comparable.")
     lines.append('- **timing** - the same number of entries, at uniformly random bars over the '
-                 'whole series, with the same multiset of directions.')
+                 'out-of-sample window, with the same multiset of directions.')
     lines.append('- **sign** - the same entry bars, with every direction redrawn from a '
                  'fair coin.\n')
     lines.append('Both are run through the untouched backtest engine, so the null is produced '
-                 'by the same code that produced the real numbers.\n')
+                 'by the same code that produced the real numbers. The null is matched to the '
+                 'rule inside the window: the entries the rule fires on inside the window are '
+                 'the entries the null randomizes, so both sides are scored on the same '
+                 'sample.\n')
 
     validation = payload['validation']
     lines.append('## Leg 0 — The harness reproduces the grid run\n')
@@ -656,15 +701,20 @@ def write_report(out_dir: Path, payload: dict) -> None:
         lines.append(f"| Best cell of the {mode} null | {fmt(grid[f'{mode}_null_max_pf'])} |")
     lines.append(f"| Null cells at or above the real best | {grid['timing_null_at_or_above_best']} |")
     lines.append(f"| Family-wise probability of a null cell reaching the real best | "
-                 f"{fmt_pf(grid['family_wise_p_value'])} |")
+                 f"{fmt_probability(grid['family_wise_p_value'])} |")
     lines.append(f"| Cells where the real rule beats its own {grid['primary_null_mode']} null | "
                  f"{grid['n_real_beats_timing_null']} of {payload['n_cells']} |")
+    lines.append(f"| Cells where the null beats the real rule | "
+                 f"{grid.get('n_null_beats_real')} of {payload['n_cells']} |")
     lines.append(f"| Two-sided sign test on that comparison | {fmt_pf(grid['sign_test_p_value'])} |")
     lines.append(f"| Same comparison on the gross profit factor (no cost drag) | "
                  f"{grid['n_real_beats_null_on_gross_pf']} of {payload['n_cells']} |")
     lines.append(f"| Two-sided sign test on the gross comparison | "
                  f"{fmt_pf(grid['gross_sign_test_p_value'])} |")
     lines.append('')
+    lines.append('A sign test p-value this small means the two sides of the comparison are '
+                 'not exchangeable. The direction is the point: the counts above say which '
+                 'side of the comparison the rule is on.\n')
 
     survivors = payload.get('survivors') or []
     if survivors:
@@ -680,13 +730,14 @@ def write_report(out_dir: Path, payload: dict) -> None:
         lines.append('|---|---|---|---|---|---|---|---|---|')
         for row in survivors:
             mode = row['modes'].get('timing') or next(iter(row['modes'].values()))
+            gate_rate = mode.get('null_gate_pass_rate')
             lines.append(
                 f"| {row['symbol']} | P{row['P_fast']}_{row['P_slow']} | "
                 f"{row.get('group', 'survivor')} | "
                 f"{fmt(row['real']['net_pf'])} | {fmt(mode['null_pf_mean'])} | "
                 f"{fmt(mode['null_pf_max'])} | {fmt_pf(mode['p_value'])} | "
                 f"{fmt_pf(min(1.0, mode['p_value'] * payload['n_cells']))} | "
-                f"{mode['null_gate_pass_rate']:.1%} |")
+                f"{'n/a' if gate_rate is None else f'{gate_rate:.1%}'} |")
         lines.append('')
         lines.append(f'With {payload.get("survivor_replicates")} randomizations the smallest '
                      f'attainable p-value is 1/({payload.get("survivor_replicates")} + 1). '
@@ -743,6 +794,23 @@ def fmt_pf(value) -> str:
     return f'{value:.4f}'
 
 
+def fmt_probability(value) -> str:
+    """Format a probability that is read as "how likely is this".
+
+    A probability that is essentially 1 is the informative case: the family
+    wise reading "a null cell reaches the real best with probability 1" is
+    only readable when the distance from 1 is shown, so the complement is
+    printed instead of a rounded 1.0000.
+    """
+    if value is None:
+        return 'n/a'
+    if not math.isfinite(value):
+        return 'n/a'
+    if value > 0.99:
+        return f'1 - {1.0 - value:.2e}'
+    return fmt_pf(value)
+
+
 def summarize_existing(out_dir: Path, args) -> None:
     """Rebuild the leg summary from a checkpointed cells.jsonl."""
     path = out_dir / 'cells.jsonl'
@@ -759,6 +827,18 @@ def summarize_existing(out_dir: Path, args) -> None:
     modes = [m for m in args.modes
              if all(m in r.get('null', {}) for r in rows)]
     grid_summary = build_grid_summary(rows, modes, args.min_trades)
+    # The validation leg is not re-run when only the summary is rebuilt, so the
+    # numbers of the previous run are carried over instead of being reported
+    # as zero.
+    validation = {'n_cells': 0, 'n_summary_matches': 0, 'n_window_matches': 0,
+                  'n_signals_match': 0, 'cells': []}
+    summary_path = out_dir / 'summary.json'
+    if summary_path.exists():
+        try:
+            previous = json.loads(summary_path.read_text())
+            validation = previous.get('validation', validation)
+        except Exception:
+            pass
     payload = {
         'generated_at': datetime.now(timezone.utc).isoformat(),
         'source_run': args.run,
@@ -771,8 +851,7 @@ def summarize_existing(out_dir: Path, args) -> None:
         'n_symbols': len({r['symbol'] for r in rows}),
         'n_cells': len(rows),
         'grid': grid_summary,
-        'validation': {'n_cells': 0, 'n_summary_matches': 0, 'n_window_matches': 0,
-                       'n_signals_match': 0, 'cells': []},
+        'validation': validation,
         'survivors': [],
         'n_survivor_cells': 0,
         'n_control_cells': 0,
@@ -890,21 +969,20 @@ def main():
             if any(m not in existing for m in args.modes):
                 missing.append((fast, slow))
         if missing:
-            tasks.append((symbol, missing, opts))
+            symbol_opts = dict(opts)
+            symbol_opts['existing'] = {
+                (fast, slow): by_key.get((symbol, fast, slow), {}).get('null', {})
+                for fast, slow in missing}
+            tasks.append((symbol, missing, symbol_opts))
     if by_key:
         print(f'Resuming: {len(by_key)} cells already checkpointed, '
               f'{sum(len(t[1]) for t in tasks)} cells still to run', flush=True)
 
-    # Rewrite the checkpoint from scratch so a row that gained a mode replaces
-    # the stale row that lacked it. The merge happens by cell key, so the file
-    # stays exactly one row per cell.
-    rows = []
-    # The checkpoint is rewritten from scratch so a row that gained a mode
-    # replaces the stale row that lacked it. Every cell - the ones a prior pass
-    # already wrote AND the ones this pass just computed - must be emitted, or
-    # the rewrite silently drops the prior pass: the first timing/sign run
-    # wrote 264 rows over a file that held 17 556.
-    with open(checkpoint_path, 'w') as checkpoint:
+    # The checkpoint is appended to, never truncated: a pass that is
+    # interrupted must not drop the rows a prior pass wrote. The file is
+    # rewritten at the end of the run, when every cell holds every requested
+    # mode, so the artifact ends up with exactly one row per cell.
+    with open(checkpoint_path, 'a') as checkpoint:
         def _emit(result_rows):
             for row in result_rows:
                 key = (row['symbol'], row['P_fast'], row['P_slow'])
@@ -931,9 +1009,15 @@ def main():
                     _emit(_worker(task))
                     if i % 25 == 0:
                         print(f'  {i}/{len(tasks)} symbols done', flush=True)
-        # Re-emit every merged row, including the cells this pass did not touch,
-        # so the file holds exactly one row per cell and no prior data is lost.
-        _emit(list(by_key.values()))
+
+    # One row per cell: the merged set is written back, so a cell that gained
+    # a mode replaces the stale row that lacked it and the file holds no
+    # duplicates.
+    tmp_path = checkpoint_path.with_name(checkpoint_path.name + '.tmp')
+    with open(tmp_path, 'w') as fh:
+        fh.write(''.join(json.dumps(r, default=str) + '\n'
+                         for r in by_key.values()))
+    tmp_path.replace(checkpoint_path)
 
     # Re-read the full checkpoint so the summary covers every cell, including
     # the ones a prior pass wrote.
@@ -1085,9 +1169,15 @@ def median_of(values: list):
 def pooled_ratio(rows: list, *path) -> float:
     """Pooled net PF over the trade P&L of a set of cells.
 
-    The per-cell profit factors are not averaged: pooling uses the trade-level
-    wins and losses, so a thin cell does not get the same weight as a thick
-    one.
+    `path` resolves to the statistics dict of a cell (for example
+    ``('real',)`` or ``('null', 'block')``). The per-cell profit factors are
+    not averaged: pooling uses the trade-level wins and losses, so a thin cell
+    does not get the same weight as a thick one.
+
+    The trade-level sums are used when the cell carries them. A cell that only
+    has a net P&L (a re-summarized checkpoint from an older run) falls back to
+    splitting that P&L by sign, which is the coarser cell-level version of the
+    same ratio.
     """
     win = 0.0
     loss = 0.0
@@ -1097,10 +1187,14 @@ def pooled_ratio(rows: list, *path) -> float:
             stats = stats.get(key) if isinstance(stats, dict) else None
         if not isinstance(stats, dict):
             continue
-        pf = stats.get('net_pf')
-        if pf is None or not math.isfinite(pf):
+        if 'net_win_sum' in stats and 'net_loss_abs' in stats:
+            win += float(stats.get('net_win_sum') or 0.0)
+            loss += float(stats.get('net_loss_abs') or 0.0)
             continue
-        pnl = stats.get('net_pnl', 0.0)
+        pnl = stats.get('net_pnl')
+        if pnl is None:
+            continue
+        pnl = float(pnl)
         if pnl > 0:
             win += pnl
         else:
@@ -1114,32 +1208,42 @@ def build_verdict(payload: dict) -> list:
     """The decision lines of the leg."""
     grid = payload['grid']
     lines = []
+    # The primary null is the mode the leg was actually run with. Reading the
+    # mode out of the summary instead of hard-coding 'timing' is what keeps the
+    # verdict correct when the leg runs the block or the sign null.
+    mode = grid.get('primary_null_mode')
     n_cells = grid['real_pf_gt_1']
-    null_cells = grid.get('timing_null_pf_gt_1')
+    null_cells = grid.get(f'{mode}_null_pf_gt_1') if mode else None
     if null_cells is not None:
         lines.append(
             f"{n_cells} of {payload['n_cells']} cells show an out-of-sample net PF above 1; "
-            f"the timing null produces {null_cells}. The observed tail is "
-            f"{'larger' if n_cells > null_cells else 'no larger'} than what random entry "
-            f"timing delivers.")
-    if grid['real_gate'] or grid.get('timing_null_gate'):
+            f"the {mode} null produces {null_cells}. The observed tail is "
+            f"{'larger' if n_cells > null_cells else 'no larger'} than what the {mode} "
+            f"null delivers.")
+    null_gate = grid.get(f'{mode}_null_gate') if mode else None
+    if grid['real_gate'] or null_gate:
         lines.append(
             f"{grid['real_gate']} real cells clear the §3.4 out-of-sample gate against "
-            f"{grid.get('timing_null_gate')} timing-null cells: the gate's false-positive "
+            f"{null_gate} {mode}-null cells: the gate's false-positive "
             f"rate under no information is "
-            f"{(grid.get('timing_null_gate') or 0) / max(1, payload['n_cells']):.2%} of the grid.")
+            f"{(null_gate or 0) / max(1, payload['n_cells']):.2%} of the grid.")
+    null_max = grid.get(f'{mode}_null_max_pf') if mode else None
     lines.append(
-        f"The best real cell (net PF {fmt(grid['real_max_pf'])}) sits against a best null "
-        f"cell of {fmt(grid.get('timing_null_max_pf'))}; the family-wise probability that a "
-        f"null cell reaches the real best is {fmt_pf(grid['family_wise_p_value'])}.")
-    lines.append(
-        f"The real rule beats its own timing null in {grid['n_real_beats_timing_null']} of "
-        f"{payload['n_cells']} cells (sign test p = {fmt_pf(grid['sign_test_p_value'])}).")
+        f"The best real cell (net PF {fmt(grid['real_max_pf'])}) sits against a best "
+        f"{mode or 'null'} cell of {fmt(null_max)}; the family-wise probability that a "
+        f"null cell reaches the real best is {fmt_probability(grid['family_wise_p_value'])}.")
+    beats = grid.get('n_real_beats_timing_null')
+    if beats is not None:
+        lines.append(
+            f"The real rule beats its own {mode} null in {beats} of "
+            f"{payload['n_cells']} cells and loses to it in "
+            f"{grid.get('n_null_beats_real')} (sign test p = "
+            f"{fmt_pf(grid['sign_test_p_value'])}).")
     survivors = payload.get('survivors') or []
     tested = [s for s in survivors if s.get('group') == 'survivor']
     if tested:
         significant = [s for s in tested
-                       if (s['modes'].get('timing', {}).get('p_value') or 1.0) * payload['n_cells'] <= 1.0]
+                       if (s['modes'].get(mode, {}).get('p_value') or 1.0) * payload['n_cells'] <= 1.0]
         lines.append(
             f"{len(tested)} surviving cells were re-randomized; {len(significant)} keep an "
             f"out-of-sample net PF above the real one at a Bonferroni-corrected level over "

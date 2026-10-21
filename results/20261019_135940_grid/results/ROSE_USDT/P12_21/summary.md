@@ -13,18 +13,18 @@
 
 | Metric | Value |
 |---|---|
-| trade_count | 1557 |
+| trade_count | 1558 |
 | net_profit_factor | 0.3282 |
-| net_win_rate | 0.4188 |
+| net_win_rate | 0.4185 |
 | gross_profit_factor | 0.8004 |
-| gross_win_rate | 0.4425 |
-| sharpe_ratio | -12.5180 |
-| sortino_ratio | -7.0001 |
+| gross_win_rate | 0.4422 |
+| sharpe_ratio | -12.5232 |
+| sortino_ratio | -7.0044 |
 | max_drawdown | 0.9999 |
 | cagr | -0.9721 |
-| net_avg_win | 7.4911 |
-| net_avg_loss | -16.4453 |
-| avg_hold_time_bars | 2.2974 |
+| net_avg_win | 7.4918 |
+| net_avg_loss | -16.4276 |
+| avg_hold_time_bars | 2.2965 |
 | exposure | 0.1626 |
 
 Decision label: rejected

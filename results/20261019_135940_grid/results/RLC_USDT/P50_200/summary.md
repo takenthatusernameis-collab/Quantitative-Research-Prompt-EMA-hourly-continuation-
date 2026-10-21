@@ -14,16 +14,16 @@
 | Metric | Value |
 |---|---|
 | trade_count | 376 |
-| net_profit_factor | 0.6505 |
+| net_profit_factor | 0.6510 |
 | net_win_rate | 0.4734 |
 | gross_profit_factor | 0.9012 |
 | gross_win_rate | 0.4787 |
-| sharpe_ratio | -2.4928 |
-| sortino_ratio | -0.6844 |
+| sharpe_ratio | -2.4906 |
+| sortino_ratio | -0.6838 |
 | max_drawdown | 0.5632 |
-| cagr | -0.2729 |
-| net_avg_win | 57.6061 |
-| net_avg_loss | -79.6060 |
+| cagr | -0.2727 |
+| net_avg_win | 57.6833 |
+| net_avg_loss | -79.6599 |
 | avg_hold_time_bars | 24.8963 |
 | exposure | 0.4255 |
 

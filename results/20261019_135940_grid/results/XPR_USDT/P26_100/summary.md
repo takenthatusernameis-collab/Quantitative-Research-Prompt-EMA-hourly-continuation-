@@ -18,13 +18,13 @@
 | net_win_rate | 0.4223 |
 | gross_profit_factor | 0.7707 |
 | gross_win_rate | 0.4267 |
-| sharpe_ratio | -7.2470 |
-| sortino_ratio | -2.6330 |
+| sharpe_ratio | -7.2474 |
+| sortino_ratio | -2.6331 |
 | max_drawdown | 0.9686 |
 | cagr | -0.7459 |
 | net_avg_win | 24.3335 |
-| net_avg_loss | -42.3540 |
-| avg_hold_time_bars | 9.4575 |
+| net_avg_loss | -42.3542 |
+| avg_hold_time_bars | 9.4589 |
 | exposure | 0.2932 |
 
 Decision label: rejected

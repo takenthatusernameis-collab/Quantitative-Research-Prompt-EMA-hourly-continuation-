@@ -16,15 +16,15 @@
 | trade_count | 423 |
 | net_profit_factor | 0.5124 |
 | net_win_rate | 0.4539 |
-| gross_profit_factor | 0.7865 |
+| gross_profit_factor | 0.7864 |
 | gross_win_rate | 0.4610 |
-| sharpe_ratio | -3.7059 |
+| sharpe_ratio | -3.7060 |
 | sortino_ratio | -1.0639 |
 | max_drawdown | 0.7374 |
 | cagr | -0.4065 |
-| net_avg_win | 39.9663 |
-| net_avg_loss | -64.8318 |
-| avg_hold_time_bars | 27.5910 |
+| net_avg_win | 39.9666 |
+| net_avg_loss | -64.8325 |
+| avg_hold_time_bars | 27.5934 |
 | exposure | 0.5305 |
 
 Decision label: rejected

@@ -16,14 +16,14 @@
 | trade_count | 693 |
 | net_profit_factor | 0.5113 |
 | net_win_rate | 0.4517 |
-| gross_profit_factor | 0.8695 |
+| gross_profit_factor | 0.8696 |
 | gross_win_rate | 0.4603 |
-| sharpe_ratio | -5.7694 |
-| sortino_ratio | -2.1464 |
+| sharpe_ratio | -5.7703 |
+| sortino_ratio | -2.1467 |
 | max_drawdown | 0.9309 |
-| cagr | -0.6477 |
-| net_avg_win | 30.9962 |
-| net_avg_loss | -49.9311 |
+| cagr | -0.6478 |
+| net_avg_win | 30.9891 |
+| net_avg_loss | -49.9260 |
 | avg_hold_time_bars | 3.9394 |
 | exposure | 0.1241 |
 

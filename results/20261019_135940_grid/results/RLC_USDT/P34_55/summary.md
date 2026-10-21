@@ -18,12 +18,12 @@
 | net_win_rate | 0.4430 |
 | gross_profit_factor | 0.8350 |
 | gross_win_rate | 0.4663 |
-| sharpe_ratio | -7.8423 |
+| sharpe_ratio | -7.8422 |
 | sortino_ratio | -3.2571 |
 | max_drawdown | 0.9833 |
 | cagr | -0.8018 |
-| net_avg_win | 18.3871 |
-| net_avg_loss | -35.1435 |
+| net_avg_win | 18.3885 |
+| net_avg_loss | -35.1446 |
 | avg_hold_time_bars | 3.5651 |
 | exposure | 0.1394 |
 

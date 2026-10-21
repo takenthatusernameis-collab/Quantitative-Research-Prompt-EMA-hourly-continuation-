@@ -1,0 +1,14 @@
+{
+  "timestamp": "20261021_033519",
+  "source_run": "results/20261019_135940_grid",
+  "mcap": "universe/mcap_rank.json",
+  "drop_top": [
+    5,
+    10,
+    20,
+    50
+  ],
+  "subperiods": 4,
+  "min_trades_per_subperiod": 5,
+  "command": "PYTHONPATH=. python3 scripts/robustness_pooled.py --run results/20261019_135940_grid --drop-top 5 10 20 50 --subperiods 4"
+}

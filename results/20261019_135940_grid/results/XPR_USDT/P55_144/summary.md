@@ -22,8 +22,8 @@
 | sortino_ratio | -1.8605 |
 | max_drawdown | 0.9032 |
 | cagr | -0.6041 |
-| net_avg_win | 27.6514 |
-| net_avg_loss | -50.9801 |
+| net_avg_win | 27.6511 |
+| net_avg_loss | -50.9799 |
 | avg_hold_time_bars | 9.0833 |
 | exposure | 0.2081 |
 
