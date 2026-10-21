@@ -2573,3 +2573,106 @@ existing universe. The exclusion is genuine and not a transient API error.
 The other six names in the band (PIPPIN, M87, ARARA, STKRI, DRB) answer
 `code=400100` (no such symbol) on the candles API, which confirms the
 `no_tradable_kucoin_spot_usdt_pair` exclusion.
+
+## Offline verification session (2026-10-21T12:00Z - 12:20Z) — survivor selection audit
+
+### 1. State re-verification (2026-10-21T12:03Z)
+
+Grid `results/20261019_135940_grid/progress.json` is self-consistent:
+266 symbols x 66 pairs = **17 556 cells**, `all_symbols_processed=true`,
+`next_cell=null`. A direct walk of the artifact tree confirms 266 symbol
+directories, 17 556 cell summaries, 0 missing, 0 blocked, and the known layout
+split (17 226 gzip blotters + 330 legacy uncompressed blotters for the five
+largest names). `universe/last_scan.json`: state
+`AWAITING_NEW_ELIGIBLE_CANDIDATES`, universe N = 266, floor
+`AGLD/USDT` $16 279 472, `eligible_unseen_below_floor_count = 0`, next
+eligible refresh **2026-10-22T11:41:20Z**.
+
+The 24 h refresh bound was closed for the whole session, so **no CoinGecko
+query was made** and the universe, the baseline grid and the floor were left
+untouched.
+
+### 2. New leg — the survivor selection audit (2026-10-21T12:16Z)
+
+`scripts/survivor_selection_audit.py` (new) closes the two selection-bias
+questions that were still open about the 10 cells that clear the out-of-sample
+gate. Artifact: `results/20261021_121629_survivor_selection_audit/`.
+
+```
+PYTHONPATH=. python3 scripts/survivor_selection_audit.py \
+  --run results/20261019_135940_grid \
+  --oos-audit results/20261021_033523_oos_grid_scan
+```
+
+#### Leg 1 — the family
+
+The 10 gate survivors sit on 4 symbols: DEXE/USDT (6 cells, 66.5 % of the
+family net P&L), GRT/USDT (2), BRETT/USDT (1), MERL/USDT (1). Pooled over the
+family: out-of-sample net PF **1.3353**, **1.1183** under 2x costs, net P&L
+6 831. The exact backtest re-run of every family cell reproduces the numbers
+of the out-of-sample audit exactly (BRETT 1.3323/1.0489, DEXE P50_200
+1.3819/1.1322, DEXE P55_200 1.3647/1.0975, GRT P20_200 1.3413/1.0976, MERL
+1.2518/1.0101).
+
+#### Leg 2 — leave-one-symbol-out
+
+| Dropped symbol | Cells dropped | Family cells left | Pooled net PF without it | Pooled net PF (2x) | Ranked family: original cells kept | Newcomers | Newcomers clearing the gate | Ranked family net PF | Ranked family net PF (2x) | Clears the gates |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BRETT/USDT | 1 | 9 | 1.3377 | 1.1297 | 7 | 3 | 0 | 1.3413 | 1.0846 | yes |
+| DEXE/USDT | 6 | 4 | 1.3463 | 1.0914 | 4 | 6 | 0 | 1.2478 | 0.9680 | no |
+| GRT/USDT | 2 | 8 | 1.3230 | 1.1106 | 6 | 4 | 0 | 1.3133 | 1.0377 | yes |
+| MERL/USDT | 1 | 9 | 1.3397 | 1.1236 | 7 | 3 | 0 | 1.3429 | 1.0813 | yes |
+
+Two readings: the gate family survives dropping any single symbol as a
+*pooled number* (every leave-one-out family still has a pooled net PF above 1),
+but the family is **not stable**: re-selecting the family from the remaining
+cells keeps only 4-7 of the original cells, and **none of the newcomers clears
+the cost-stress gate** (the replacements are W/USDT P12_200, GMT/USDT P8_200,
+DEXE/USDT P100_200, IMX/USDT P26_200 and P34_200, PUFFER/USDT P21_144,
+SYN/USDT P20_200 — every one of them below 1 under 2x costs). Without DEXE the
+re-selected family even fails the pooled 2x-cost gate (0.9680).
+
+#### Leg 3 — walk-forward re-selection over the whole grid
+
+The full sample of every symbol is cut into 5 sequential folds. At step k the
+best cell of the symbol is chosen on the history (folds 1..k, at least 20
+trades) and scored on fold k+1, which the selection never saw. All 17 556
+cells take part; nothing is selected in advance.
+
+| Step | Symbols scored | Out-of-fold windows with net PF > 1 | Pooled out-of-fold net PF | Pooled out-of-fold net PF (2x) | Median in-fold net PF |
+|---|---|---|---|---|---|
+| 1 -> 2 | 266 | 37 (13.9 %) | 0.7192 | 0.5384 | 0.9090 |
+| 2 -> 3 | 266 | 12 (4.5 %) | 0.6226 | 0.4361 | 0.8666 |
+| 3 -> 4 | 266 | 17 (6.4 %) | 0.6026 | 0.4120 | 0.8127 |
+| 4 -> 5 | 266 | 20 (7.6 %) | 0.5979 | 0.4016 | 0.7703 |
+
+Pooled over every step: **1060 walk-forward steps scored, 95 786 out-of-fold
+trades, pooled out-of-fold net PF 0.6409** (0.4521 under 2x costs); 8.1 % of
+the out-of-fold windows land above PF 1 and 2.9 % under 2x costs. The median
+in-fold net PF of the selected cell is 0.8272; the same cell nets a median
+out-of-fold PF of **0.6217**.
+
+The null needs no randomization: the grid itself holds 17 556 draws of what a
+cell scores on a fold it was not selected on. That null's share of folds above
+PF 1 is 1.2-3.3 %, its median PF is 0.41-0.55, and the selected cells rank at
+a median of the **0.7768 percentile** of it, with 198 of 1057 above its 95th
+percentile (one-sided exact binomial p 1.9e-57). The selection therefore
+*ranks* the cells — it is not noise — but it never ranks one into a
+net-profitable window.
+
+#### Leg 4 — sub-period stability of the closest survivors
+
+The out-of-sample window of the 6 closest survivors is cut into 4 sequential
+sub-periods. **0 of 6** keep a net PF above 1 in every sub-period that carries
+trades (BRETT 3/4, GRT 3/4, ZEN 2/4, DEXE P50_200 2/3, DEXE P55_200 2/3,
+MERL 1/1 — and the sub-periods are thin, median 22 trades).
+
+### 3. Tests
+
+`python -m pytest tests/ -q` -> **151 passed** (131 + the 20 tests in
+`tests/test_survivor_selection_audit.py` that came with this leg).
+
+### 4. Next action
+
+Unchanged: wait until **2026-10-22T11:41:20Z**, then fetch a fresh market-cap
+snapshot. See `NEXT_AGENT_TASK.md`.

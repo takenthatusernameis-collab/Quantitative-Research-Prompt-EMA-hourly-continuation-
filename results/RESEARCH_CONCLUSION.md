@@ -1,6 +1,6 @@
 # Research Conclusion — EMA Hourly Continuation
 
-## Program status (2026-10-21T11:45Z)
+## Program status (2026-10-21T12:20Z)
 
 **The research program is NOT concluded.** It is in the waiting state
 `AWAITING_NEW_ELIGIBLE_CANDIDATES`: the current market-cap snapshot
@@ -49,6 +49,19 @@ What the evidence says so far:
   (pooled net PF 0.5224 -> 0.5303), every market-cap rank bucket is below 1.0,
   and 31 of the 36 above-PF cells are fragile across time slices
   (`results/20261020_235449_robustness/`).
+- **The selection procedure does not survive a walk-forward.**
+  `scripts/survivor_selection_audit.py` re-runs the *selection* honestly: the
+  full sample of every symbol is cut into 5 sequential folds, the best cell is
+  chosen on the history and scored on the next, unseen, fold. Over **1060
+  walk-forward steps and 95 786 out-of-fold trades the pooled out-of-fold net
+  PF is 0.6409** (0.4521 under 2x costs); only 8.1 % of the out-of-fold
+  windows land above PF 1, against the 1.2-3.3 % the grid's own null produces
+  on the same folds. The selected cells do rank above that null (median
+  percentile 0.78), so the selection is not noise - it simply never selects
+  anything that is net-profitable out of fold. The 10-cell survivor family is
+  also unstable: a leave-one-symbol-out re-selection keeps only 4-7 of the
+  original cells and **none of the newcomers clears the cost-stress gate**.
+  Artifact: `results/20261021_121629_survivor_selection_audit/`.
 - **The program continues by policy.** PROMPT.md §2.1.4 is explicit: a failed
   symbol, a failed pair, or a failed batch never stops the program. The
   universe expands with the next lower market-cap names, each through the full
