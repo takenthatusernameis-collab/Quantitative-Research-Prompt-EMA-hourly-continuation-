@@ -65,3 +65,11 @@ Use `PYTHONPATH=. python3 scripts/...` from repo root. Checkpoint durably after 
 - Added regression tests `test_merge_symbol_lists_keeps_prior_coverage` and `test_canonical_grid_progress_is_internally_consistent` in `tests/test_grid_runner.py`; the latter fails if the shipped run's symbol count ever stops matching its cell count.
 - Tests: `python -m pytest tests/ -q` -> **67 passed**.
 - No market-cap query (the 24h bound is still closed). Program state unchanged: N = 266, AWAITING_NEW_ELIGIBLE_CANDIDATES, next eligible refresh 2026-10-21T11:30:04Z, 0 credible candidates.
+
+## Session update (2026-10-21T00:03:20Z)
+- Read handoffs (NEXT_AGENT_TASK.md, INITIAL_TASK_FOR_NEXT_AGENT.md) and verified durable state against artifacts.
+- Grid: 266 symbols x 66 pairs = 17 556/17 556 complete, `all_symbols_processed=true`, `next_cell=null`; repaired earlier in this chain and internally consistent.
+- Universe: N=266, floor TAIKO/USDT $15 436 339, snapshot band exhausted (0 eligible below floor), state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next refresh 2026-10-21T11:30:04Z. Wakeup `wku_15bbe446b001KXX7NeqAYoB78u` scheduled for 2026-10-21T11:31:00Z.
+- Results: 36 cells above full-sample PF>1 all rejected by OOS + 2x-cost; robustness (drop-top-N, rank buckets, subperiod) shows no credible survivors (0 credible candidates). Mean net PF 0.4993, median 0.5205.
+- Tests: `python -m pytest tests/ -q` -> **67 passed**. No changes made to code/data; no CoinGecko fetch (bound closed).
+- Prior agent task complete as specified. Ready for next agent to wait until refresh window and expand if new eligible names appear.
