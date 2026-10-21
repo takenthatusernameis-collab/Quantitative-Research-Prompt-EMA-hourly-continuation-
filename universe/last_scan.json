@@ -1,28 +1,90 @@
 {
-  "recorded_at": "2026-10-20T22:57:13.355789+00:00",
+  "recorded_at": "2026-10-21T11:41:20.385248+00:00",
   "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
-  "snapshot_id": "mcap_snapshot_20261020_113004",
-  "snapshot_path": "universe/mcap_snapshot_20261020_113004.json",
+  "snapshot_id": "mcap_snapshot_20261021_114120",
+  "snapshot_path": "universe/mcap_snapshot_20261021_114120.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-10-20T11:30:04.315667+00:00",
+  "scanned_at": "2026-10-21T11:41:20.375553+00:00",
   "coverage": {
     "pages_requested": 10,
     "pages_fetched": 10,
     "all_requested_pages_returned": true,
     "entries_count": 1000,
     "lowest_rank_covered": 1000,
-    "lowest_market_cap_usd": 15174185
+    "lowest_market_cap_usd": 15931465
   },
   "coverage_reaches_below_floor": true,
   "universe_n": 266,
   "expansion_floor": {
-    "symbol": "TAIKO/USDT",
-    "market_cap_usd": 15436339
+    "symbol": "AGLD/USDT",
+    "market_cap_usd": 16279472
   },
   "eligible_unseen_below_floor_count": 0,
   "eligible_unseen_below_floor": [],
   "batch_selected": [],
-  "next_eligible_refresh_at": "2026-10-21T11:30:04.315667+00:00",
-  "last_verified_at": "2026-10-21T04:49:16+00:00",
-  "last_verification_note": "State re-verified against saved artifacts on 2026-10-21T04:49Z: grid progress.json self-consistent (266 x 66 = 17556 cells, all_symbols_processed=true, next_cell=null), refresh bound still closed (2026-10-21T11:30:04Z), no CoinGecko query, no code/data changes. Tests: 110 passed."
+  "next_eligible_refresh_at": "2026-10-22T11:41:20.375553+00:00",
+  "last_verified_at": "2026-10-21T11:42:23.408422+00:00",
+  "last_verification_note": "State re-verified against saved artifacts on 2026-10-21T11:45Z after the fresh snapshot mcap_snapshot_20261021_114120: grid progress.json self-consistent (266 x 66 = 17556 cells, all_symbols_processed=true, next_cell=null, 0 blocked; 266 symbol dirs, 17556 cell summaries, 17226 gzip + 330 legacy blotters), coverage reaches below the floor ($15 931 465 < $16 279 472 AGLD), the 10 names in the below-floor band are all excluded (4 insufficient_hourly_history_for_grid, 6 no_tradable_kucoin_spot_usdt_pair), so eligible_unseen_below_floor_count=0 and no expansion is possible. Baseline grid and universe unchanged (N=266). Tests: python -m pytest tests/ -q -> 131 passed.",
+  "below_floor_band": [
+    {
+      "rank": 991,
+      "symbol": "ELSA",
+      "market_cap_usd": 16263994,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 992,
+      "symbol": "MIRA",
+      "market_cap_usd": 16222651,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 993,
+      "symbol": "USDM",
+      "market_cap_usd": 16162246,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 994,
+      "symbol": "TUT",
+      "market_cap_usd": 16133721,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 995,
+      "symbol": "PIPPIN",
+      "market_cap_usd": 16080969,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 996,
+      "symbol": "M87",
+      "market_cap_usd": 16042864,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 997,
+      "symbol": "ARARA",
+      "market_cap_usd": 16034209,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 998,
+      "symbol": "US",
+      "market_cap_usd": 16031793,
+      "exclusion_reason": "insufficient_hourly_history_for_grid"
+    },
+    {
+      "rank": 999,
+      "symbol": "STKRI",
+      "market_cap_usd": 15940938,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    },
+    {
+      "rank": 1000,
+      "symbol": "DRB",
+      "market_cap_usd": 15931465,
+      "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
+    }
+  ]
 }

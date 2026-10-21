@@ -2399,3 +2399,177 @@ taken from the stage-2 numbers.
 
 Wait until **2026-10-21T11:30:04Z**, then fetch a fresh market-cap snapshot
 and resume the append-only expansion. See `NEXT_AGENT_TASK.md`.
+
+---
+
+## Refresh + offline verification session (2026-10-21T10:35Z - 11:45Z) — fresh snapshot, cost-drag decomposition, survivor null
+
+### 1. State re-verification (2026-10-21T10:40Z)
+
+Grid `results/20261019_135940_grid/progress.json` is self-consistent:
+266 symbols x 66 pairs = **17 556 cells**, `all_symbols_processed=true`,
+`next_cell=null`, 0 blocked. A direct walk of the artifact tree confirms
+266 symbol directories, 17 556 cell summaries, 0 missing, 0 blocked, and the
+known layout split (17 226 gzip blotters + 330 legacy uncompressed blotters
+for the five largest names). Fixtures on disk: 268 CSV files, manifest 267 rows.
+
+The 24h refresh bound (`2026-10-21T11:30:04Z`) was closed at the start of the
+session, so no CoinGecko query was made before it opened.
+
+### 2. Fresh market-cap snapshot (2026-10-21T11:41:20Z)
+
+```
+PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 10 --batch-size 10
+```
+
+Snapshot `universe/mcap_snapshot_20261021_114120.json` (CoinGecko
+`/api/v3/coins/markets`, `vs_currency=usd`, `order=market_cap_desc`).
+Page 6 answered 429 four times and was recovered by the bounded backoff
+(5s/10s/20s/40s) — the fetch completed with all 10 pages.
+
+| Quantity | Value |
+|---|---|
+| Coverage | 10 / 10 pages, 1 000 entries, lowest covered rank 1 000 ($15 931 465) |
+| Coverage reaches below the floor | **yes** ($15 931 465 < $16 279 472) |
+| Universe | N = 266 (unchanged) |
+| Expansion floor | `AGLD/USDT` $16 279 472 (AGLD $16 279 472 < TAIKO $16 445 039) |
+| Eligible unseen names below the floor | **0** |
+| New state | `AWAITING_NEW_ELIGIBLE_CANDIDATES` |
+| Next eligible refresh | **2026-10-22T11:41:20Z** |
+
+The floor moved up because AGLD and TAIKO gained market cap in the last 24 h.
+The band between the floor and the bottom of the coverage is 10 names and every
+one of them is excluded:
+
+| Rank | Symbol | Market cap (USD) | Exclusion reason |
+|---|---|---|---|
+| 991 | ELSA | 16 263 994 | `insufficient_hourly_history_for_grid` |
+| 992 | MIRA | 16 222 651 | `insufficient_hourly_history_for_grid` |
+| 993 | USDM | 16 162 246 | `no_tradable_kucoin_spot_usdt_pair` |
+| 994 | TUT | 16 133 721 | `insufficient_hourly_history_for_grid` |
+| 995 | PIPPIN | 16 080 969 | `no_tradable_kucoin_spot_usdt_pair` |
+| 996 | M87 | 16 042 864 | `no_tradable_kucoin_spot_usdt_pair` |
+| 997 | ARARA | 16 034 209 | `no_tradable_kucoin_spot_usdt_pair` |
+| 998 | US | 16 031 793 | `insufficient_hourly_history_for_grid` |
+| 999 | STKRI | 15 940 938 | `no_tradable_kucoin_spot_usdt_pair` |
+| 1000 | DRB | 15 931 465 | `no_tradable_kucoin_spot_usdt_pair` |
+
+Four names (ELSA, MIRA, TUT, US) have a KuCoin pair but do not carry the two
+years of hourly history the grid needs (2 years = 17 520 hourly bars); the
+other six have no tradable KuCoin spot USDT pair at all. **No expansion is
+possible from this snapshot** and the program stays in the waiting state
+(PROMPT.md §2.1.5). The baseline grid was not touched.
+
+### 3. New leg — the cost drag decomposition (2026-10-21T10:31Z)
+
+`scripts/cost_drag_leg.py` (new) answers *why* the grid loses money.
+Artifact: `results/20261021_102500_cost_drag_leg/`.
+
+| Metric | Value |
+|---|---|
+| Cells decomposed (out-of-sample window) | 17 491 |
+| Pooled gross profit factor | 0.8877 |
+| Pooled net profit factor | 0.5298 |
+| Costs paid | 17 840 159 |
+| Gross P&L / net P&L | -3 997 685 / -21 837 844 |
+| Cost share of the gross P&L | 26.6 % |
+| Median risk distance | 0.912 % |
+| Cells with gross PF > 1 (no cost at all) | **2 387** |
+| Cells with net PF > 1 (registered cost model) | **77** |
+| Cells where costs take more than half the gross P&L | 3 735 |
+
+The mechanism is explicit: with risk-based sizing the gross P&L of a trade is
+a fixed fraction of equity, so the cost as a share of the gross P&L is
+`2 * cost_per_side / risk_pct`. The median cell trades at a 0.912 % stop
+distance, which predicts a cost of 26.3 % of the gross P&L against a measured
+26.4 %. The cost of the rule is set by the width of the stop, not by the
+number of trades.
+
+The sizing legs (200 cells re-run, 200/200 reproduce the stored grid summary
+exactly): `base` mean net PF 0.2281, `uncapped` 0.2091 (the notional cap binds
+on 2.6 % of the trades), `atr_min_risk` 0.5460 on 17 929 trades instead of
+75 005. The PROMPT.md §5.2 ATR minimum-risk mutation buys back the cost drag;
+it does not create an edge and it thins the sample.
+
+### 4. New leg — the surviving cells against their own randomizations (2026-10-21T11:11Z)
+
+`scripts/null_grid_scan.py` with `--survivors-from` re-randomizes individual
+cells many times, which is the one question the grid-wide null leg cannot
+answer: is a surviving cell distinguishable from noise *on its own*?
+
+```
+PYTHONPATH=. python3 scripts/null_grid_scan.py \
+  --run results/20261019_135940_grid \
+  --out results/20261021_104104_null_survivor_scan \
+  --modes block timing sign \
+  --survivors-from results/20261021_104104_null_survivor_scan/survivor_source \
+  --survivor-modes timing block sign \
+  --survivor-replicates 60 --control-sample 12 --validate-sample 24 --workers 4
+```
+
+The survivor set is the 10 cells of `results/20261021_033523_oos_grid_scan`
+with an out-of-sample net PF above 1 **and** still above 1 under 2x costs
+(BRETT P8_200, GRT P8_200/P20_200, MERL P8_200, DEXE P12_200/P20_200/P21_200/
+P26_200/P50_200/P55_200); 12 ordinary cells are re-randomized as controls.
+The grid leg was not recomputed: the three null modes of
+`results/20261021_073300_null_grid_scan/cells.jsonl` (17 556 cells) were
+copied into the new artifact and the run resumed on them.
+
+| Statistic | Real rule | block null | timing null | sign null |
+|---|---|---|---|---|
+| Cells with out-of-sample net PF > 1 | 77 | 313 | 83 | 37 |
+| Cells clearing the §3.4 out-of-sample gate | 6 | 21 | 7 | 0 |
+
+Per-cell p-values after 60 randomizations of each cell's own entry timing
+(share of randomizations that reach the observed out-of-sample net PF):
+
+| Cell | OOS PF | Null mean PF | Null max PF | p-value | p x 17 556 |
+|---|---|---|---|---|---|
+| BRETT/USDT P8_200 | 1.3323 | 0.6790 | 1.4531 | 0.0328 | 1.0000 |
+| MERL/USDT P8_200 | 1.2518 | 0.6489 | 1.0318 | 0.0164 | 1.0000 |
+| GRT/USDT P20_200 | 1.3413 | 0.6818 | 1.5706 | 0.0328 | 1.0000 |
+| GRT/USDT P8_200 | 1.1224 | 0.6374 | 0.9973 | 0.0164 | 1.0000 |
+| DEXE/USDT P12_200 | 1.1885 | 0.6893 | 1.1631 | 0.0164 | 1.0000 |
+| DEXE/USDT P20_200 | 1.1492 | 0.7367 | 1.1361 | 0.0164 | 1.0000 |
+| DEXE/USDT P21_200 | 1.1552 | 0.7307 | 1.2601 | 0.0492 | 1.0000 |
+| DEXE/USDT P26_200 | 1.0253 | 0.7244 | 1.0324 | 0.0328 | 1.0000 |
+| DEXE/USDT P50_200 | 1.3819 | 0.7749 | 1.3315 | 0.0164 | 1.0000 |
+| DEXE/USDT P55_200 | 1.3647 | 0.7339 | 1.2777 | 0.0164 | 1.0000 |
+
+**Result: 0 of 10 surviving cells keep an out-of-sample net PF above the real
+one at a Bonferroni-corrected level over the 17 556 tests the program ran.**
+The uncorrected p-values (0.016-0.049) are exactly what 10 cells picked out of
+17 556 by chance look like. The harness re-run on 24 random cells reproduced
+the stored grid summary 24/24 and matched the windowed run 24/24.
+
+### 5. Tests
+
+`python -m pytest tests/ -q` -> **131 passed** (no code change in this
+session; the count is 121 + the 10 tests in `tests/test_cost_drag_leg.py`
+that came with the cost-drag leg).
+
+### 6. Next action
+
+Wait until **2026-10-22T11:41:20Z**, then fetch a fresh market-cap snapshot.
+See `NEXT_AGENT_TASK.md`.
+
+### 7. Audit of the four history-based exclusions (2026-10-21T11:44Z)
+
+PROMPT.md §2.1.5: an API failure is not proof that a symbol is ineligible, so
+the four names excluded for `insufficient_hourly_history_for_grid` were
+probed directly against the KuCoin candles API (one call each, not a ranking
+refresh):
+
+| Symbol | Probe at 2024-10-20T23:42Z | Last 1h candle | Verdict |
+|---|---|---|---|
+| ELSA | code 200000, no candle at/ before the probe | 2026-10-21T11:00Z | live pair, listed after 2024-10-20 |
+| MIRA | code 200000, no candle at/ before the probe | 2026-10-21T10:00Z | live pair, listed after 2024-10-20 |
+| TUT | code 200000, no candle at/ before the probe | 2026-10-21T11:00Z | live pair, listed after 2024-10-20 |
+| US | code 200000, no candle at/ before the probe | 2026-10-21T11:00Z | live pair, listed after 2024-10-20 |
+
+The pairs are tradable and live; they simply do not carry the two years of
+hourly bars (17 520 bars) the grid requires for comparability with the
+existing universe. The exclusion is genuine and not a transient API error.
+The other six names in the band (PIPPIN, M87, ARARA, STKRI, DRB) answer
+`code=400100` (no such symbol) on the candles API, which confirms the
+`no_tradable_kucoin_spot_usdt_pair` exclusion.

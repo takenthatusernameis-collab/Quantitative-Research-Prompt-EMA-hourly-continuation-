@@ -1,13 +1,13 @@
 # Research Conclusion — EMA Hourly Continuation
 
-## Program status (2026-10-21T01:05Z)
+## Program status (2026-10-21T11:45Z)
 
 **The research program is NOT concluded.** It is in the waiting state
 `AWAITING_NEW_ELIGIBLE_CANDIDATES`: the current market-cap snapshot
-(`mcap_snapshot_20261020_113004`, CoinGecko, 2026-10-20T11:30:04Z) has no
-eligible unseen name below the expansion floor (TAIKO/USDT, $15 436 339), and
+(`mcap_snapshot_20261021_114120`, CoinGecko, 2026-10-21T11:41:20Z) has no
+eligible unseen name below the expansion floor (AGLD/USDT, $16 279 472), and
 PROMPT.md §2.1.5 forbids a fresh ranking query before
-**2026-10-21T11:30:04Z** (24 h refresh bound).
+**2026-10-22T11:41:20Z** (24 h refresh bound).
 
 What the evidence says so far:
 
@@ -26,6 +26,24 @@ What the evidence says so far:
   The 6 closest survivors all have a full-sample net PF below 1 (0.75-0.91)
   and none keeps a stressed out-of-sample PF > 1 at 20 %, 35 % and 50 %
   window lengths.
+- **The survivors are indistinguishable from noise.** A randomized-entry null
+  (`scripts/null_grid_scan.py`, all 17 556 cells, three null modes run through
+  the untouched backtest engine) produces 313 / 83 / 37 cells with an
+  out-of-sample net PF above 1 and 21 / 7 / 0 cells clearing the §3.4 gate —
+  the same order of magnitude as the rule's own 77 and 6. Re-randomizing the 10
+  cells that survive the out-of-sample and 2x-cost legs, 60 times each, gives
+  uncorrected p-values of 0.0164-0.0492 and **0 of 10 survive the Bonferroni
+  correction over the 17 556 tests the program ran**. Artifacts:
+  `results/20261021_104104_null_survivor_scan/`,
+  `results/20261021_073300_null_grid_scan/`.
+- **The loss is a cost story, and the cost is a stop-width story.**
+  `scripts/cost_drag_leg.py` decomposes 17 491 cells: pooled gross PF 0.8877
+  against pooled net PF 0.5298, costs taking 26.6 % of the gross P&L. The
+  cost of a trade as a share of its gross P&L is `2 * cost_per_side /
+  risk_pct`; the median cell trades at a 0.912 % stop distance, which predicts
+  26.3 % against a measured 26.4 %. Without any cost 2 387 cells would show a
+  PF above 1; under the registered cost model only 77 do. Artifact:
+  `results/20261021_102500_cost_drag_leg/`.
 - **The rejection is not an artefact of the sample.** Dropping the 5/10/20/50
   largest market caps does not change the sign or the magnitude of the result
   (pooled net PF 0.5224 -> 0.5303), every market-cap rank bucket is below 1.0,
