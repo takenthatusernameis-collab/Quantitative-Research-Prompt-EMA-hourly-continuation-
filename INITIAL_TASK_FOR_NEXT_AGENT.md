@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT
 
-**Prior agent task completed (2026-10-21T04:49Z).** Batch 26 done (N=266, 17556/17556 cells, 0 credible candidates). State: **AWAITING_NEW_ELIGIBLE_CANDIDATES**, re-verified; tests **110 passed**. Grid state self-consistent (266×66=17556, all complete, next_cell=null). Universe snapshot band exhausted (0 eligible below TAIKO/USDT $15,436,339); refresh bound opens at 2026-10-21T11:30:04Z. The wait was spent on offline verification, not idling.
+**Prior agent task completed (2026-10-21T04:50Z).** Batch 26 done (N=266, 17556/17556 cells, 0 credible candidates). State: **AWAITING_NEW_ELIGIBLE_CANDIDATES**, re-verified; tests **110 passed**. Grid state self-consistent (266×66=17556, all complete, next_cell=null). Universe snapshot band exhausted (0 eligible below TAIKO/USDT $15,436,339); refresh bound opens at 2026-10-21T11:30:04Z. The wait was spent on offline verification, not idling.
 
 **Read `NEXT_AGENT_TASK.md` first** for verified state, band audit, exact commands, and the new robustness leg.
 
@@ -11,6 +11,3 @@
 **Tooling trap:** the grid's artifact layout is not uniform — 330 cells (BTC, ETH, SOL, BNB, XRP, ranks 1-5) still use the legacy uncompressed `trades.csv`, the rest use `trades.csv.gz`. A tool that assumes gzip silently skips the top of the universe. `scripts/oos_grid_scan.py:read_trades` handles both.
 
 Guardrails: append-only, market-cap descending, never stop on negative results, never promote without OOS + 2x-cost + subperiod gates. Run `python -m pytest tests/ -q` and report exact result.
-"
-filePath">
-/home/runner/work/Quantitative-Research-Prompt-EMA-hourly-continuation-/Quantitative-Research-Prompt-EMA-hourly-continuation-/INITIAL_TASK_FOR_NEXT_AGENT.md
