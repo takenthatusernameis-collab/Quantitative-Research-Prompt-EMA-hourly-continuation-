@@ -403,6 +403,24 @@ def write_report(out_dir: Path, payload: dict) -> None:
                          f'{fmt((c or 0.0) - (p or 0.0))} |')
     lines.append('')
 
+    lines.append('### Leg 3b — the closest child cells\n')
+    lines.append('The cells the mutation brings closest to the gate: the out-of-sample '
+                 'net PF at the registered costs, the same under 2x costs, and the '
+                 'full-sample result a promotion would also have to survive.\n')
+    lines.append('| Symbol | Cell | OOS trades | OOS net PF | OOS net PF (2x costs) | '
+                 'Full-sample net PF | Clears the gate |')
+    lines.append('|---|---|---|---|---|---|---|')
+    closest = payload.get('closest_child_cells') or []
+    for row in closest:
+        lines.append(
+            f"| {row['symbol']} | P{row['P_fast']}_{row['P_slow']} | "
+            f"{row['oos_trades']} | {fmt(row['oos_net_pf'])} | "
+            f"{fmt(row['oos_stress_net_pf'])} | {fmt(row['net_pf'])} | "
+            f"{'yes' if row['clears_gate'] else 'no'} |")
+    if not closest:
+        lines.append('| (none) | | | | | | |')
+    lines.append('')
+
     lines.append('## Leg 4 — the walk-forward selection, parent vs child\n')
     lines.append('The full sample of every symbol is cut into 5 sequential folds. At '
                  'step k the best cell of the symbol is chosen on the history and '
@@ -521,6 +539,60 @@ def build_verdict(payload: dict) -> list:
     return lines
 
 
+def update_mutation_record(record_path: Path, payload: dict, child_cfg: dict) -> None:
+    """Write the parent -> child -> delta record into `results/mutations.json`.
+
+    The record is the durable place where a mutation lives: which parent it
+    was run against, what the child config is, and what the delta is. It is
+    append-only - the children of earlier mutations stay in the file.
+    """
+    record = {}
+    if record_path.exists():
+        try:
+            record = json.loads(record_path.read_text())
+        except Exception:
+            record = {}
+    record.setdefault('parent', {})
+    record.setdefault('children', {})
+    child_entry = record['children'].setdefault('C_min_risk_atr', {})
+    child_entry.update({
+        'run_id': Path(payload['child_run']).name,
+        'config': child_cfg,
+        'note': 'PROMPT.md §5.2 ATR minimum-risk mutation '
+                '(skip trades whose risk distance < ATR(14) x threshold)',
+        'status': 'partial' if payload['n_symbols'] < 266 else 'complete',
+        'parent_run': payload['parent_run'],
+        'n_symbols': payload['n_symbols'],
+        'n_cells': payload['n_cells'],
+        'delta': {
+            'pooled_net_pf': payload['delta'].get('pooled_net_pf'),
+            'mean_cell_net_pf': payload['delta'].get('mean_cell_net_pf'),
+            'trades': payload['delta'].get('trades'),
+            'pooled_oos_net_pf': payload['delta'].get('pooled_oos_net_pf'),
+            'cells_clearing_gate': payload['delta'].get('cells_clearing_gate'),
+            'walk_forward_pooled_oof_net_pf': payload['delta'].get(
+                'walk_forward', {}).get('pooled_oof_net_pf'),
+        },
+        'evaluations': record['children'].get('C_min_risk_atr', {}).get(
+            'evaluations', []) + [{
+                'artifact': payload['artifact'],
+                'generated_at': payload['generated_at'],
+                'n_symbols': payload['n_symbols'],
+                'n_cells': payload['n_cells'],
+                'pooled_net_pf': {'parent': payload['parent'].get('pooled_net_pf'),
+                                  'child': payload['child'].get('pooled_net_pf')},
+                'walk_forward_pooled_oof_net_pf': {
+                    'parent': payload['parent']['walk_forward'].get('pooled_oof_net_pf'),
+                    'child': payload['child']['walk_forward'].get('pooled_oof_net_pf')},
+                'cells_clearing_gate': {
+                    'parent': payload['parent'].get('cells_clearing_gate'),
+                    'child': payload['child'].get('cells_clearing_gate')},
+            }],
+    })
+    with open(record_path, 'w') as fh:
+        json.dump(record, fh, indent=2, default=str)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='Parent -> child -> delta evaluation of a grid mutation')
@@ -544,6 +616,9 @@ def main():
     parser.add_argument('--yardstick', type=str, default=None,
                         help='JSON file with the reference walk-forward numbers')
     parser.add_argument('--out', type=str, default=None)
+    parser.add_argument('--mutation-record', type=str, default='results/mutations.json',
+                        help='parent -> child -> delta record to update '
+                             '(empty string disables it)')
     args = parser.parse_args()
 
     parent_dir = Path(args.parent)
@@ -601,7 +676,23 @@ def main():
 
     yardstick = None
     if args.yardstick and Path(args.yardstick).exists():
-        yardstick = json.loads(Path(args.yardstick).read_text())
+        raw = json.loads(Path(args.yardstick).read_text())
+        if 'part_b' in raw:
+            # a survivor selection audit artifact: the walk-forward leg of it
+            # is the reference the child grid is measured against
+            walk = raw.get('part_b', {}).get('walk_forward', {})
+            yardstick = {
+                'source': str(args.yardstick),
+                'n_symbols': raw.get('n_symbols'),
+                'n_cells': raw.get('n_cells'),
+                'pooled_oof_net_pf': walk.get('pooled_oof_net_pf'),
+                'pooled_oof_stress_net_pf': walk.get('pooled_oof_stress_net_pf'),
+                'pooled_oof_trades': walk.get('pooled_oof_trades'),
+                'steps_scored': walk.get('steps_scored'),
+            }
+        else:
+            yardstick = raw
+            yardstick['source'] = str(args.yardstick)
 
     verification = verify_sample(child_dir, child_cfg, symbols,
                                   args.fixture_base, args.verify_sample)
@@ -619,6 +710,10 @@ def main():
         and isinstance(child_summary['walk_forward'].get(key), (int, float))
     }
 
+    closest = sorted(
+        (r for r in child_stats['rows'] if r['oos_trades'] >= args.min_trades),
+        key=lambda r: -(r['oos_net_pf'] or 0.0))[:10]
+
     payload = {
         'generated_at': datetime.now(timezone.utc).isoformat(),
         'parent_run': str(parent_dir),
@@ -634,10 +729,12 @@ def main():
         'parent': parent_summary,
         'child': child_summary,
         'delta': delta,
+        'closest_child_cells': closest,
         'verification': verification,
         'yardstick': yardstick,
     }
     payload['verdict'] = build_verdict(payload)
+    payload['artifact'] = str(out_dir)
 
     with open(out_dir / 'config.json', 'w') as fh:
         json.dump({'args': vars(args), 'parent_config': parent_cfg,
@@ -648,6 +745,8 @@ def main():
         for row in child_stats['rows']:
             fh.write(json.dumps(row) + '\n')
     write_report(out_dir, payload)
+    if args.mutation_record:
+        update_mutation_record(Path(args.mutation_record), payload, child_cfg)
     print(f'Wrote {out_dir}/summary.md')
 
 
