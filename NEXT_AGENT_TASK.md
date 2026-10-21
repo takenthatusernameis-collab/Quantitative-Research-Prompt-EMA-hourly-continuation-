@@ -1,4 +1,21 @@
-# NEXT AGENT TASK
+# AUTHORIZED MAINTENANCE UPDATE — 2026-10-21
+
+This update was authorized by the user after three refinements of the execution prompt and a completed 120-second terminal wait. The full, versioned instructions are in MAINTENANCE_EXECUTION_BRIEF_20261021.md. Refresh live state before acting; the values here are a saved baseline only.
+
+## Highest-priority task after safely reconciling the current worker
+
+1. Inspect the live status of Actions runs #21 and #22, current job logs if available, results/mutations.json, and the child run results/20261021_172619_grid. Do not cancel, rerun, dispatch, or start a competing writer.
+2. The last saved child checkpoint at 2026-10-21 19:11:47 UTC contained 2,999 of 17,556 expected cells and pointed to INJ/USDT (P_fast=34, P_slow=89); stopped=true, stop_reason=in_progress, all_symbols_processed=false. Resume the same child only if ownership and idempotent resume are verified.
+3. The saved mutation report is a 24-symbol partial comparison; it has 0 candidates passing the full gates. Do not treat it as the completed 266-symbol validation or alter the baseline.
+4. Complete and validate the existing 266 × 66 child grid, compare parent and child on the same full universe, and run the exact acceptance gates, walk-forward, cost stress, selection/null, concentration, and reproducibility checks in the maintenance brief. Keep negative findings negative.
+5. Do not refresh market-cap rankings before 2026-10-22 11:41:20 UTC unless a later permitted time is verified from current state. No new candle fetches, no new Actions runs, and no workflow edits.
+6. Update the task handoff only with exact evidence: current HEAD, run URLs/status, completed/expected cell counts, missing/duplicate artifacts, test commands/exit codes, report hashes, conclusions, and blockers. Distinguish execution state from economic results.
+
+## Wait-state policy
+
+When waiting for an eligibility timestamp or an external gate, do no repeated provider polling and do not burn sessions retrying a known failure. Perform independent offline validation from already saved artifacts, or stop with an exact wait state and next permitted time. Never claim a task is complete from a commit, checkpoint counter, or workflow badge alone.
+
+---
 
 ## Current state (verified against saved artifacts, 2026-10-21T12:21Z)
 
