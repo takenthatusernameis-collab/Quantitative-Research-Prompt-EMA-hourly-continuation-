@@ -23,6 +23,6 @@
   "eligible_unseen_below_floor": [],
   "batch_selected": [],
   "next_eligible_refresh_at": "2026-10-21T11:30:04.315667+00:00",
-  "last_verified_at": "2026-10-21T01:05:00+00:00",
-  "last_verification_note": "State re-verified against the saved artifacts on 2026-10-21T01:05Z: grid progress.json is self-consistent (266 x 66 = 17556 cells, all_symbols_processed=true, next_cell=null), the 24h refresh bound above is unchanged, and the band below the floor is still empty. No CoinGecko query was made. Offline verification leg added in this window: results/20261021_005234_oos_grid_scan (grid-wide out-of-sample audit, 0 credible candidates)."
+  "last_verified_at": "2026-10-21T04:49:16+00:00",
+  "last_verification_note": "State re-verified against saved artifacts on 2026-10-21T04:49Z: grid progress.json self-consistent (266 x 66 = 17556 cells, all_symbols_processed=true, next_cell=null), refresh bound still closed (2026-10-21T11:30:04Z), no CoinGecko query, no code/data changes. Tests: 110 passed."
 }
