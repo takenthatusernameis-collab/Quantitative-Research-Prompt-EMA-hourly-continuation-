@@ -1,0 +1,33 @@
+# EMA Hourly Continuation — VELO/USDT P50_89
+
+**Symbol:** VELO/USDT  |  **P_fast:** 50  |  **P_slow:** 89
+
+**Costs:** 10.0 bps taker + 2.0 bps slippage per side
+
+**RR:** 1.0  |  **Fill:** signal-bar close  |  **SL/TP:** 1:1 to EMA_slow
+
+**Sizing:** risk-based, 1.00% of equity per trade (notional cap 10.0x equity)
+
+
+## Metrics (net of costs)
+
+| Metric | Value |
+|---|---|
+| trade_count | 331 |
+| net_profit_factor | 0.7623 |
+| net_win_rate | 0.4894 |
+| gross_profit_factor | 0.9465 |
+| gross_win_rate | 0.4894 |
+| sharpe_ratio | -1.5264 |
+| sortino_ratio | -0.3966 |
+| max_drawdown | 0.4132 |
+| cagr | -0.1670 |
+| net_avg_win | 72.8813 |
+| net_avg_loss | -91.6417 |
+| avg_hold_time_bars | 8.2387 |
+| exposure | 0.1240 |
+
+Decision label: rejected
+
+
+Bulk artifacts: `trades.csv.gz`, `equity.csv.gz` (gzip-compressed CSV). Read with `gzip -dc <file>` or `pandas.read_csv(file, compression="gzip")`.
