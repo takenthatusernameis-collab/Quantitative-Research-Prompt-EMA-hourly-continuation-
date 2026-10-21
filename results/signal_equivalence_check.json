@@ -1,0 +1,31 @@
+{
+  "symbols": 268,
+  "cells_compared": 1360,
+  "signals_compared": 281874,
+  "pairs": [
+    [
+      8,
+      12
+    ],
+    [
+      20,
+      26
+    ],
+    [
+      50,
+      100
+    ],
+    [
+      89,
+      144
+    ],
+    [
+      144,
+      200
+    ]
+  ],
+  "bars_used": 4000,
+  "full_series_cells_compared": 20,
+  "mismatches": [],
+  "identical": true
+}

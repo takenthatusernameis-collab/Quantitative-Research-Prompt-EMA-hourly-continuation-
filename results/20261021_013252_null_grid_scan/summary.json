@@ -1,0 +1,101 @@
+{
+  "generated_at": "2026-10-21T01:35:24.910266+00:00",
+  "source_run": "results/20261019_135940_grid",
+  "oos_fraction": 0.35,
+  "stress_multiplier": 2.0,
+  "min_trades": 30,
+  "modes": [
+    "block"
+  ],
+  "survivor_modes": [
+    "block",
+    "timing",
+    "sign"
+  ],
+  "block_bars": 240,
+  "n_symbols": 8,
+  "n_cells": 528,
+  "grid": {
+    "real_pf_distribution": {
+      "n": 528,
+      "mean": 0.45410587154899407,
+      "median": 0.46156494981708207,
+      "p05": 0.1984879797511849,
+      "p25": 0.3585604615161995,
+      "p75": 0.5539081573009794,
+      "p95": 0.6961705011586501,
+      "max": 0.932828443984592,
+      "min": 0.10109766147654303
+    },
+    "real_pf_gt_1": 0,
+    "real_gate": 0,
+    "real_max_pf": 0.932828443984592,
+    "real_pooled_pf": 0.0,
+    "real_gross_pf_distribution": {
+      "n": 528,
+      "mean": 0.8493428755399395,
+      "median": 0.8459424683252237,
+      "p05": 0.650780609681184,
+      "p25": 0.7521553745050017,
+      "p75": 0.9407996328379464,
+      "p95": 1.063813892148174,
+      "max": 1.3192039764165104,
+      "min": 0.5124587851494313
+    },
+    "real_gross_pf_gt_1": 66,
+    "real_median_risk_pct": 0.011758458164039576,
+    "real_median_trades": 263.0,
+    "block_null_gross_pf_distribution": {
+      "n": 528,
+      "mean": 1.0203102946017804,
+      "median": 0.9923110077980295,
+      "p05": 0.7716093923072598,
+      "p25": 0.8967991640162712,
+      "p75": 1.11610963414414,
+      "p95": 1.3343784388822473,
+      "max": 2.3322476243862926,
+      "min": 0.6072595367907992
+    },
+    "block_null_gross_pf_gt_1": 248,
+    "block_null_median_risk_pct": 0.018501007203907238,
+    "block_null_median_trades": 205.0,
+    "block_null_pf_distribution": {
+      "n": 528,
+      "mean": 0.5541472597443423,
+      "median": 0.5417202214743774,
+      "p05": 0.3239638161202656,
+      "p25": 0.4477886951119514,
+      "p75": 0.643158190517087,
+      "p95": 0.8113941810140913,
+      "max": 1.624270550124324,
+      "min": 0.24455075314208394
+    },
+    "block_null_pf_gt_1": 9,
+    "block_null_gate": 1,
+    "block_null_max_pf": 1.624270550124324,
+    "block_null_pooled_pf": 0.0,
+    "primary_null_mode": "block",
+    "timing_null_at_or_above_best": 12,
+    "family_wise_p_value": 0.9999946502761897,
+    "n_real_beats_timing_null": 115,
+    "sign_test_p_value": 2.0159361790498153e-40,
+    "n_real_beats_null_on_gross_pf": 98,
+    "gross_sign_test_p_value": 1.3720666398855665e-50
+  },
+  "validation": {
+    "n_cells": 0,
+    "n_summary_matches": 0,
+    "n_window_matches": 0,
+    "n_signals_match": 0,
+    "cells": []
+  },
+  "survivors": [],
+  "n_survivor_cells": 0,
+  "n_control_cells": 0,
+  "survivor_replicates": 50,
+  "partial": true,
+  "verdict_lines": [
+    "The best real cell (net PF 0.9328) sits against a best null cell of n/a; the family-wise probability that a null cell reaches the real best is 1.0000.",
+    "The real rule beats its own timing null in 115 of 528 cells (sign test p = 2.02e-40)."
+  ]
+}

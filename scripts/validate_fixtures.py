@@ -11,6 +11,7 @@ Checks (PROMPT.md validation recipe):
 
 Usage:
     python scripts/validate_fixtures.py --symbols SATS/USDT OGN/USDT ...
+    python scripts/validate_fixtures.py --all --out results/fixture_validation.json
 """
 import argparse
 import json
@@ -20,6 +21,8 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+from data.data_loader import load_ohlcv_csv
 
 COSTS_BPS_PER_SIDE = 12.0  # 10 bps taker + 2 bps slippage
 
@@ -94,34 +97,97 @@ def validate(path: Path) -> dict:
     return out
 
 
+def loader_rows(path: Path) -> dict:
+    """How many rows the data loader keeps, and how many it drops.
+
+    The loader removes duplicate timestamps, NaN rows and rows whose OHLC
+    geometry is impossible. Every grid result is computed on the *loaded*
+    series, so the number of dropped rows is part of the data-layer record.
+    """
+    raw = pd.read_csv(path)
+    loaded = load_ohlcv_csv(path)
+    return {
+        'raw_rows': int(len(raw)),
+        'loaded_rows': int(len(loaded)),
+        'dropped_rows': int(len(raw) - len(loaded)),
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description='Validate hourly fixtures')
-    parser.add_argument('--symbols', nargs='+', required=True)
+    parser.add_argument('--symbols', nargs='+', default=None)
+    parser.add_argument('--all', action='store_true',
+                        help='Validate every fixture in the fixtures directory')
     parser.add_argument('--fixtures-dir', default='data/fixtures')
     parser.add_argument('--cg-prices', default=None,
                         help='JSON mapping symbol -> CoinGecko price_usd')
+    parser.add_argument('--out', default=None,
+                        help='Write the JSON result to this path')
     args = parser.parse_args()
+
+    if not args.symbols and not args.all:
+        raise SystemExit('pass --symbols or --all')
 
     cg = {}
     if args.cg_prices:
         cg = json.loads(Path(args.cg_prices).read_text())
 
     results = []
-    for sym in args.symbols:
-        path = Path(args.fixtures_dir) / f'{sym.replace("/", "_")}.csv'
-        r = validate(path)
-        if sym in cg:
-            cg_price = float(cg[sym])
-            r['cg_price'] = cg_price
-            if r.get('last_close'):
-                r['log_price_ratio'] = round(math.log(r['last_close'] / cg_price), 4)
-                r['price_identity_ok'] = bool(abs(r['log_price_ratio']) <= 0.20)
-        results.append(r)
+    if args.all:
+        for path in sorted(Path(args.fixtures_dir).glob('*.csv')):
+            r = validate(path)
+            r.update(loader_rows(path))
+            results.append(r)
+    else:
+        for sym in args.symbols:
+            path = Path(args.fixtures_dir) / f'{sym.replace("/", "_")}.csv'
+            r = validate(path)
+            r.update(loader_rows(path))
+            if sym in cg:
+                cg_price = float(cg[sym])
+                r['cg_price'] = cg_price
+                if r.get('last_close'):
+                    r['log_price_ratio'] = round(math.log(r['last_close'] / cg_price), 4)
+                    r['price_identity_ok'] = bool(abs(r['log_price_ratio']) <= 0.20)
+            results.append(r)
 
-    print(json.dumps(results, indent=2))
-    bad = [r for r in results if not r.get('valid')]
-    print(f'\n{len(results) - len(bad)}/{len(results)} fixtures valid')
-    if bad:
+    if args.all:
+        summary = {
+            'fixtures': len(results),
+            'valid': sum(1 for r in results if r.get('valid')),
+            'invalid': sum(1 for r in results if not r.get('valid')),
+            'with_gaps': sum(1 for r in results if r.get('gap_count')),
+            'max_gap_hours': max((r.get('max_gap_hours') or 0.0) for r in results),
+            'duplicate_timestamps': sum(r.get('dup_timestamps') or 0 for r in results),
+            'nan_rows': sum(r.get('nan_rows') or 0 for r in results),
+            'invalid_ohlc_rows': sum(r.get('invalid_ohlc_rows') or 0 for r in results),
+            'raw_rows': sum(r.get('raw_rows') or 0 for r in results),
+            'loaded_rows': sum(r.get('loaded_rows') or 0 for r in results),
+            'dropped_rows': sum(r.get('dropped_rows') or 0 for r in results),
+            'median_cost_to_move_multiple': float(np.median(
+                [r['cost_to_move_multiple'] for r in results
+                 if r.get('cost_to_move_multiple')])),
+        }
+        print(json.dumps(summary, indent=2))
+        invalid = [r for r in results if not r.get('valid')]
+        if invalid:
+            print(f'\n{len(invalid)} invalid fixture(s): '
+                  f'{[r["symbol"] for r in invalid][:20]}')
+        results = {'summary': summary, 'fixtures': results}
+    else:
+        print(json.dumps(results, indent=2))
+
+    if args.out:
+        Path(args.out).write_text(json.dumps(results, indent=2))
+        print(f'\nWrote {args.out}')
+
+    bad = [r for r in (results if isinstance(results, list) else results['fixtures'])
+           if not r.get('valid')]
+    checked = len(results) if isinstance(results, list) else len(results['fixtures'])
+    print(f'{checked} fixtures checked, {len(bad)} invalid')
+    if bad and not args.all:
+        # The single-symbol path keeps its original contract: an invalid
+        # fixture is a non-zero exit.
         sys.exit(1)
 
 
