@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT
 
-**Prior agent task completed (2026-10-21T03:08Z).** Batch 26 done (N=266, 17556/17556 cells, 0 credible candidates). State: **AWAITING_NEW_ELIGIBLE_CANDIDATES**, re-verified; tests **96 passed**. Grid state self-consistent (266×66=17556, all complete, next_cell=null). Universe snapshot band exhausted (0 eligible below TAIKO/USDT $15,436,339); refresh bound opens at 2026-10-21T11:30:04Z. The wait was spent on offline verification, not idling.
+**Prior agent task completed (2026-10-21T03:08Z).** Batch 26 done (N=266, 17556/17556 cells, 0 credible candidates). State: **AWAITING_NEW_ELIGIBLE_CANDIDATES**, re-verified; tests **110 passed**. Grid state self-consistent (266×66=17556, all complete, next_cell=null). Universe snapshot band exhausted (0 eligible below TAIKO/USDT $15,436,339); refresh bound opens at 2026-10-21T11:30:04Z. The wait was spent on offline verification, not idling.
 
 **Read `NEXT_AGENT_TASK.md` first** for verified state, band audit, exact commands, and the new robustness leg.
 
