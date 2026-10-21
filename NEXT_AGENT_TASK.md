@@ -1,18 +1,78 @@
 # NEXT AGENT TASK
 
-## Current state (verified against saved artifacts, 2026-10-21T12:21Z)
+## Current state (verified against saved artifacts, 2026-10-21T14:30Z)
 
 **Program status: `AWAITING_NEW_ELIGIBLE_CANDIDATES`.** The 24 h market-cap refresh bound is still closed: the last snapshot was taken at **2026-10-21T11:41:20Z** (`universe/mcap_snapshot_20261021_114120.json`, CoinGecko `/api/v3/coins/markets`, 10/10 pages, 1 000 entries) and **no ranking query may be made before 2026-10-22T11:41:20Z**. The universe is unchanged at **N = 266** and the baseline grid is untouched.
 
 - Universe: **N = 266**, floor **AGLD/USDT** $16 279 472. Coverage: 10/10 pages, 1 000 entries, lowest covered rank 1 000 ($15 931 465) - the pass does reach below the floor.
 - The below-floor band holds 10 names and **all 10 are excluded**: ELSA, MIRA, TUT, US -> `insufficient_hourly_history_for_grid` (probed directly on KuCoin: live pairs, listed after 2024-10-20); USDM, PIPPIN, M87, ARARA, STKRI, DRB -> `no_tradable_kucoin_spot_usdt_pair`.
-- Grid: **17 556 / 17 556 cells complete** in `results/20261019_135940_grid/` (266 symbols x 66 EMA pairs); 0 blocked. `progress.json` reports `next_cell: null`, `all_symbols_processed: true`, `n_symbols x n_pairs == completed_cells` (266 x 66 = 17 556). A direct walk of the artifact tree (2026-10-21T12:03Z) confirms 266 symbol dirs, 17 556 cell summaries, 17 226 gzip + 330 legacy blotters, 0 missing, 0 blocked.
-- Decision count: **17 530 rejected**, 26 exploratory at aggregate scan, **0 credible candidates** after OOS + 2x-cost check.
+- Baseline grid: **17 556 / 17 556 cells complete** in `results/20261019_135940_grid/` (266 symbols x 66 EMA pairs); 0 blocked. `progress.json` reports `next_cell: null`, `all_symbols_processed: true`, `n_symbols x n_pairs == completed_cells` (266 x 66 = 17 556). Re-verified this session: **200 of 200** sampled cells reproduce their stored summaries exactly (`results/20261021_130000_grid_repro_fast`).
+- Decision count on the baseline grid: **17 530 rejected**, 26 exploratory at aggregate scan, **0 credible candidates** after OOS + 2x-cost check.
 - Pooled, full-sample net of costs (10 bps taker + 2 bps slippage per side): mean net PF **0.4993**, median **0.5205**, best in-sample PF **2.2274** (BABYDOGE/USDT P50_55; rejected, zero OOS trades).
 - Cells with full-sample net PF > 1: **36 / 17 556 (0.2%)**. All 36 failed OOS + 2x-cost checks.
-- Latest candidate-check artifact: `results/20261021_033219_candidate_check/summary.md` (36 cells, 36 rejected). Latest grid-wide OOS audit: `results/20261021_033523_oos_grid_scan/summary.md` (0 credible candidates out of 17 556 cells).
+- **Second grid in the repo now: the pre-registered ATR minimum-risk mutation** in `results/20261021_125403_grid/` (266 x 66 = 17 556 cells, `all_symbols_processed: true`, 0 blocked, 150 of 150 sampled cells reproduce exactly - `results/20261021_141000_child_grid_repro`). It is a *child* run: the baseline grid was not replaced and must not be.
+- **The open thread is the child.** It has **10 verified credible candidates** where the baseline grid has 0, and 106 cells clearing the grid-wide out-of-sample + 2x-cost gate against the baseline's 10. The machinery that decides whether those 10 are real has **not been run on the child yet**.
 
 **Machine-readable state:** `universe/last_scan.json` - `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=266`, floor `AGLD/USDT` $16 279 472, `eligible_unseen_below_floor_count=0`, `next_eligible_refresh_at=2026-10-22T11:41:20.375553+00:00`. **Do not refresh before 2026-10-22T11:41:20Z** - the 24h refresh bound applies.
+
+## Leg 4 (2026-10-21T13:55Z, new) - the pre-registered ATR minimum-risk mutation, full grid, parent -> child -> delta
+
+The PROMPT.md §5.2 ATR minimum-risk mutation was **pre-registered before the child run started** (`results/20261021_130500_atr_min_risk_prereg/`, registered 2026-10-21T12:50Z) and then run over the **whole grid**:
+
+```
+PYTHONPATH=. python3 scripts/run_grid.py --n 266 --min-risk-atr --atr-threshold 1.0 --engine fast \
+  --note 'pre-registered PROMPT.md 5.2 ATR minimum-risk mutation (preregistration_id atr_min_risk_1.0_full_grid_20261021); the baseline grid is not replaced'
+```
+
+Child run: `results/20261021_125403_grid/`. Comparison: `results/20261021_135500_mutation_comparison/` (`scripts/mutation_comparison.py`). Child out-of-sample audit: `results/20261021_134900_child_oos_grid_scan/`.
+
+| Measure | Parent (baseline grid) | Child (ATR min-risk 1.0) | Delta |
+|---|---|---|---|
+| Trades | 14 241 237 | 6 913 033 | -7 328 204 |
+| Pooled net PF | 0.5225 | 0.7347 | +0.2123 |
+| Pooled net PF (2x costs) | 0.3198 | 0.5561 | +0.2363 |
+| Pooled gross PF | 0.8872 | 0.9636 | +0.0764 |
+| Median cell cost share of the gross move | 26.62 % | 13.21 % | -13.4 pp |
+| Median cell stop distance (entry price) | 1.35 % | 2.08 % | +0.73 pp |
+| **Pooled out-of-fold net PF (walk-forward)** | 0.6409 | **0.7390** | +0.0981 |
+| Pooled out-of-fold net PF (2x costs) | 0.4521 | 0.5731 | +0.1209 |
+| Out-of-fold windows above PF 1 | 86 / 1060 (8.1 %) | 175 / 1060 (16.5 %) | +89 |
+| Cells with OOS net PF > 1 | 77 (0.44 %) | 608 (3.46 %) | +531 |
+| Cells clearing the grid-wide OOS + 2x-cost gate | 10 | **106** | +96 |
+| Verified credible candidates (full §3.4 gate) | **0** | **10** | +10 |
+| Cells keeping a stressed OOS PF > 1 at 20 %/35 %/50 % windows | 0 of 6 | **32 of 108** | +32 |
+
+- **The pre-registered decision rule is NOT satisfied** (it required a pooled out-of-fold net PF above 1.0, and it is 0.7390). The mutation is recorded as a **rejected mutation as a program-level rule**: the filter repairs the cost drag (the stop widens, the cost share of the gross move halves) and it also moves the gross result (0.8872 -> 0.9636), but the procedure still loses money out of sample.
+- **The child's 10 credible candidates are the first thing the program has produced that passes the full §3.4 gate**, and they are *not* a promotion: 106 of 17 556 is 0.60 % of the grid, the baseline grid's own randomized-entry null puts the false-positive rate of the same gate at 0.04-0.12 % of the grid, and the child's survivors have not been through the null scan, the survivor selection audit, the leave-one-symbol-out, the candidate check or the sub-period stability leg. **That machinery is the next leg.**
+- The child's 10: AERO P12_200, BLUR P8_200, CETUS P12_200, CETUS P8_200, ENA P20_21, FLUX P8_200, IMX P8_200, PUFFER P20_200, WLD P20_200, ZEN P8_200. Six of them (BLUR, CETUS, FLUX, IMX, PUFFER, WLD) stay "credible candidate" at all three out-of-sample window lengths; AERO, ENA P20_21 and ZEN P8_200 do not.
+
+## Leg 5 (2026-10-21T14:05Z, new) - is the walk-forward result a property of the selection granularity?
+
+`scripts/selection_granularity.py` (new) re-runs the Leg-3 walk-forward with the **selection unit** changed - one selection per symbol (266 per step), one per market-cap bucket (5), or one pair for the whole universe - and with 1, 3 or 10 cells per unit. Artifact: `results/20261021_140500_selection_granularity/`.
+
+```
+PYTHONPATH=. python3 scripts/selection_granularity.py \
+  --arm parent:results/20261021_121629_survivor_selection_audit/cells.jsonl \
+  --arm child:results/20261021_135500_mutation_comparison/child_fold_stats.jsonl \
+  --out results/<TS>_selection_granularity
+```
+
+| Selection unit | Parent | Child |
+|---|---|---|
+| per symbol (K = 1) | 0.6409 | 0.7390 |
+| per market-cap bucket (K = 1) | 0.6609 | 0.8069 |
+| global, one pair for the universe (K = 1) | 0.6649 | 0.8030 |
+| global (K = 3) | 0.6613 | 0.8070 |
+
+- The control (per symbol, K = 1) **reproduces the recorded Leg-3 yardstick exactly**: pooled out-of-fold net PF 0.6409, 0.4521 under 2x costs, 95 786 out-of-fold trades, 8.1 % of the windows above PF 1, median percentile 0.7768 against the grid's own null, one-sided exact binomial p 1.9e-57. The script is therefore proved against the recorded leg.
+- **No granularity clears PF 1 out of sample, in either arm.** A coarser selection lifts the number by 0.02-0.07 and does not change the sign, so the negative result of the finest selection is a property of the rule, not of the selection granularity.
+
+## Engine work (2026-10-21T13:00Z, new) - the 44 h mutation became a 55 min run
+
+- `backtest/backtest.py::backtest_symbol_fast` - the same state machine on numpy arrays (~0.05 s against ~4.7 s per cell); the fast path also uses the already-verified `signals.signals.generate_signals_vectorized`. `scripts/run_grid.py --engine {reference,fast}`; **the default is still `reference`**, so the baseline grid keeps being produced by the research path.
+- Equivalence is proved, not assumed: `tests/test_backtest_fast.py` (15 tests: synthetic frames and real fixtures, trade field by trade field and equity curve row by row row), `results/signal_equivalence_check.json` (268 symbols, 1 360 cells, no mismatch), `results/20261021_130000_grid_repro_fast` (**200 of 200** sampled baseline cells reproduce their stored summaries exactly) and `results/20261021_141000_child_grid_repro` (**150 of 150** sampled child cells reproduce exactly).
+- `scripts/run_grid.py` now writes `progress.json` after every symbol, so an interrupted run resumes from the cells already on disk instead of from the start.
+- The legs that re-run the cells of a grid now read the config of *that* run (`scripts/run_grid.py::run_config`), so a mutated grid is audited under the mutation's config. **This was a real defect**: before the fix, the child's cells were re-run with `min_risk_atr = false`, i.e. the parent rule (the first child reproducibility check reported 150 stale cells because of it). `scripts/oos_grid_scan.py` and `scripts/survivor_selection_audit.py` were fixed the same way.
 
 ## Leg 1 (2026-10-21T10:31Z) - cost-drag decomposition
 
@@ -21,7 +81,7 @@
 - 17 491 cells decomposed on the out-of-sample window: pooled **gross** PF 0.8877 vs pooled **net** PF 0.5298; costs 17 840 159 against a gross P&L of -3 997 685 (cost share 26.6 %).
 - Mechanism: the cost of a trade as a share of its gross P&L is `2 * cost_per_side / risk_pct`. The median cell's stop distance is 0.912 % of the entry price, which predicts 26.3 % of the gross P&L in costs against a measured 26.4 %. **The cost of the rule is set by the width of the stop, not by the number of trades.**
 - **2 387 cells** would show PF > 1 with no cost at all; only **77** do under the registered cost model. 3 735 cells lose more than half their gross P&L to fees and slippage.
-- Sizing legs on 200 re-run cells (200/200 reproduce the stored grid summary exactly): `base` mean net PF 0.2281, `uncapped` 0.2091 (the notional cap binds on 2.6 % of trades), `atr_min_risk` 0.5460 on 17 929 trades instead of 75 005. The PROMPT.md §5.2 ATR minimum-risk mutation buys back the cost drag, it does not create an edge, and it thins the sample.
+- Sizing legs on 200 re-run cells (200/200 reproduce the stored grid summary exactly): `base` mean net PF 0.2281, `uncapped` 0.2091 (the notional cap binds on 2.6 % of trades), `atr_min_risk` 0.5460 on 17 929 trades instead of 75 005. The PROMPT.md §5.2 ATR minimum-risk mutation buys back the cost drag, it does not create an edge, and it thins the sample. **The full-grid run of that mutation is now done - see Leg 4.**
 
 ## Leg 2 (2026-10-21T11:11Z) - the surviving cells against their own randomizations
 
@@ -31,9 +91,9 @@
 - **Result: 0 of 10 survivors keep their out-of-sample net PF at a Bonferroni-corrected level over the 17 556 tests the program ran.** Uncorrected p-values are 0.0164-0.0492 - exactly what 10 cells picked out of 17 556 by chance look like. The null's own gate pass rate (block 21 cells, timing 7) is as large as the real rule's 6.
 - The grid leg was not recomputed: the three null modes already in `results/20261021_073300_null_grid_scan/cells.jsonl` were copied into the new artifact and the run resumed on them.
 
-## Leg 3 (2026-10-21T12:16Z, new) - survivor selection audit
+## Leg 3 (2026-10-21T12:16Z) - survivor selection audit
 
-`scripts/survivor_selection_audit.py` (new) closes the two selection-bias questions that were still open about the 10 gate survivors. Artifact: `results/20261021_121629_survivor_selection_audit/` (`summary.md`, `summary.json`, `config.json`, `cells.jsonl` = per-cell fold statistics for all 17 556 cells).
+`scripts/survivor_selection_audit.py` (new) closes the two selection-bias questions that were still open about the 10 gate survivors of the **baseline** grid. Artifact: `results/20261021_121629_survivor_selection_audit/` (`summary.md`, `summary.json`, `config.json`, `cells.jsonl` = per-cell fold statistics for all 17 556 cells).
 
 ```
 PYTHONPATH=. python3 scripts/survivor_selection_audit.py \
@@ -50,36 +110,41 @@ PYTHONPATH=. python3 scripts/survivor_selection_audit.py \
 
 ## Defect note for whoever writes the next tooling
 
-The artifact layout is **not uniform**: the grid runner writes `trades.csv.gz`, but the five largest market-cap names (BTC, ETH, SOL, BNB, XRP - ranks 1-5) still carry the legacy baseline-study layout `trades.csv` (uncompressed). Their configs are identical and their cells reproduce exactly, but **any tool that assumes the gzip layout silently skips 330 cells - the whole top of the universe.** `scripts/oos_grid_scan.py:read_trades` handles both; reuse it (the new leg does).
+The artifact layout is **not uniform**: the grid runner writes `trades.csv.gz`, but the five largest market-cap names (BTC, ETH, SOL, BNB, XRP - ranks 1-5) still carry the legacy baseline-study layout `trades.csv` (uncompressed). Their configs are identical and their cells reproduce exactly, but **any tool that assumes the gzip layout silently skips 330 cells - the whole top of the universe.** `scripts/oos_grid_scan.py:read_trades` handles both; reuse it (the new legs do). The same applies to the *config* of a grid: a leg that re-runs the cells of a grid must use that run's `run_config.json` (`scripts/run_grid.py::run_config`), not the default config, or it measures the parent rule instead of the child.
 
 ## Required next action
 
-1. **Reconcile state first.** Read this handoff, `PROMPT.md` §2.1, `universe/mcap_rank.json`, `universe/last_scan.json`, grid `progress.json` and the latest candidate-check / OOS-audit / null / selection-audit artifacts. Do not repeat completed scans/cells. Verify grid state is self-consistent (`n_symbols x n_pairs == completed_cells`, `all_symbols_processed=true`, `next_cell=null`).
+1. **Reconcile state first.** Read this handoff, `PROMPT.md` §2.1, `universe/mcap_rank.json`, `universe/last_scan.json`, the two grid `progress.json` files and the latest candidate-check / OOS-audit / null / selection-audit artifacts. Do not repeat completed scans/cells. Verify both grids are self-consistent (`n_symbols x n_pairs == completed_cells`, `all_symbols_processed=true`, `next_cell=null`).
 
 2. **Before 2026-10-22T11:41:20Z:** State is `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Do not force expansion, do not query CoinGecko, and do not relax the gates. Use the wait for offline verification work only.
 
-3. **From 2026-10-22T11:41:20Z, fetch a fresh snapshot.** Use `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 10 --batch-size 10` (dry run). The script prints a WARNING when the coverage band stops above the floor - if that happens, extend the page count until the coverage reaches below AGLD/USDT $16 279 472, then re-run. Inspect the timestamped snapshot and the per-name exclusion reasons, then apply eligible names strictly below the floor in descending market-cap order.
+3. **The highest-value offline work now: run the selection-bias machinery on the CHILD grid.** The child has 10 credible candidates and the baseline has 0; the child's candidates have not been tested against their own nulls. In this order:
+   - a **child-specific randomized-entry null** (the ATR filter *plus* the same three null modes) over the child's grid, to measure the false-positive rate of the gate the child uses. `scripts/null_grid_scan.py` is the harness; the child's `run_config.json` already carries `min_risk_atr: true` - check that the harness reads the run's config and not the default one before trusting its numbers;
+   - the **survivor selection audit on the child**: `PYTHONPATH=. python3 scripts/survivor_selection_audit.py --run results/20261021_125403_grid --oos-audit results/20261021_134900_child_oos_grid_scan` (family concentration, leave-one-symbol-out, walk-forward). Expect the walk-forward to be read against the child's own yardstick, not the parent's 0.6409;
+   - the **candidate check** and the **sub-period stability** leg on the child's 10 cells.
+   A child that survives all of it would be the program's first credible candidate; a child that does not is a documented negative result. Either way, record it parent -> child -> delta and do not promote without the gates.
 
-4. **For any newly eligible names:** fetch/validate hourly OHLCV (`scripts/fetch_kucoin.py`), run the full 66-pair grid per symbol resuming from `results/20261019_135940_grid`, re-run `scripts/aggregate_grid.py`, `scripts/candidate_check.py` and `scripts/robustness_pooled.py`, re-run `scripts/oos_grid_scan.py` over the whole grid (it must be re-run after every expansion, not just once), update `universe/mcap_expansion_log.md`, `universe/last_scan.json` and this handoff.
+4. **From 2026-10-22T11:41:20Z, fetch a fresh snapshot.** Use `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 10 --batch-size 10` (dry run). The script prints a WARNING when the coverage band stops above the floor - if that happens, extend the page count until the coverage reaches below AGLD/USDT $16 279 472, then re-run. Inspect the timestamped snapshot and the per-name exclusion reasons, then apply eligible names strictly below the floor in descending market-cap order.
 
-5. **After an expansion, re-run the new selection audit too** - it is the leg that says whether the *procedure* still finds anything:
+5. **For any newly eligible names:** fetch/validate hourly OHLCV (`scripts/fetch_kucoin.py`), run the full 66-pair grid per symbol resuming from `results/20261019_135940_grid`, re-run `scripts/aggregate_grid.py`, `scripts/candidate_check.py` and `scripts/robustness_pooled.py`, re-run `scripts/oos_grid_scan.py` over the whole grid (it must be re-run after every expansion, not just once), update `universe/mcap_expansion_log.md`, `universe/last_scan.json` and this handoff.
+
+6. **After an expansion, re-run the selection audit too** - it is the leg that says whether the *procedure* still finds anything:
    `PYTHONPATH=. python3 scripts/survivor_selection_audit.py --run results/20261019_135940_grid --oos-audit <new oos audit dir>`
-   (the family of gate survivors is read from the OOS audit artifact, so the OOS audit must be re-run first).
-
-6. **Candidate offline work if the refresh is still closed:** the walk-forward leg now answers the selection-bias question for the *current* grid, so the remaining open item is the **PROMPT.md §5.2 ATR minimum-risk mutation as a pre-registered full-grid mutation run** (the only mutation that moved the cost drag materially: mean net PF 0.2281 -> 0.5460 on 200 re-run cells, on 17 929 trades instead of 75 005). It must be recorded parent -> child -> delta and must not replace the baseline grid; the walk-forward of Leg 3 gives the yardstick to compare the mutated grid against (pooled out-of-fold net PF 0.6409). A second candidate: repeat Leg 3 with a stricter selection rule (e.g. select the best cell of the *symbol family* rather than per symbol) to see whether the out-of-fold result is a property of the selection granularity.
+   (the family of gate survivors is read from the OOS audit artifact, so the OOS audit must be re-run first). The child grid does **not** grow with the universe until the child's own promotion question is settled; if it is promoted, it needs its own expansion.
 
 ## Guardrails
 - Append-only, market-cap descending, only below current floor.
 - No stopping on negative results.
 - Never promote without OOS + 2x-cost gates (plus subperiod leg).
-- Keep baseline/grid unchanged unless preregistered mutation.
+- Keep baseline/grid unchanged unless preregistered mutation. The child grid `results/20261021_125403_grid/` is a pre-registered mutation with its own pre-registration; it does not replace the baseline and the baseline must not be overwritten by it.
 - Run `python -m pytest tests/ -q` after changes; report exact results.
 
 ## Environment
-Use `PYTHONPATH=. python3 scripts/...` from repo root. Checkpoint durably after each symbol. ~10 min/symbol budget.
+Use `PYTHONPATH=. python3 scripts/...` from repo root. Checkpoint durably after each symbol. ~10 min/symbol budget on the research engine, **~12 s/symbol with `--engine fast`** (a full 266-symbol grid in ~55 min).
 
 **Python environment note:** the runner image ships no scientific stack. `python3 -m pip install --disable-pip-version-check --no-input numpy pandas pytest requests` is needed before the scripts or the test suite will import. CoinGecko page 6 reliably answers 429; the built-in backoff (5s/10s/20s/40s) recovers it, so budget ~5 minutes for a 10-page ranking pass and run it in the background rather than under a 5-minute timeout.
 
+- 2026-10-21T14:30Z - Prior agent task completed by current session (started 2026-10-21T12:39Z). The two offline work items the previous handoff named are **done**. (1) The pre-registered PROMPT.md §5.2 ATR minimum-risk mutation was run over the **full grid** (child run `results/20261021_125403_grid/`, 17 556/17 556 cells, 55 min with the proved-equivalent fast engine instead of the ~44 h estimate on the research engine) and compared with its parent (`results/20261021_135500_mutation_comparison/`): pooled net PF 0.5225 -> 0.7347, gross PF 0.8872 -> 0.9636, median cell cost share of the gross move 26.6 % -> 13.2 %, **pooled out-of-fold net PF 0.6409 -> 0.7390 (0.5731 under 2x costs)**, cells clearing the grid-wide OOS+2x-cost gate 10 -> 106, verified credible candidates 0 -> **10**. The pre-registered decision rule (pooled out-of-fold net PF > 1.0) is **not** satisfied, so the mutation is recorded as a rejected mutation as a program-level rule - but its 10 credible candidates are the first thing the program has produced that passes the full §3.4 gate, and they still have to pass the selection-bias machinery (child null, survivor selection audit, candidate check, sub-period stability). (2) The walk-forward was repeated at several selection granularities (`results/20261021_140500_selection_granularity/`): per symbol 0.6409, per market-cap bucket 0.6609, global 0.6649 (parent) and 0.7390 / 0.8069 / 0.8030 (child) - **no granularity clears PF 1 in either arm**, so the negative result is a property of the rule, not of the selection granularity. Engine work: `backtest_symbol_fast` (array twin of the backtest engine, ~100x per cell) with the equivalence proved by 15 unit tests, 200/200 sampled baseline cells and 150/150 sampled child cells reproducing their stored summaries exactly; the research path stays the default; `run_grid.py` now checkpoints `progress.json` after every symbol; and the legs that re-run a grid's cells now read that grid's own `run_config.json` (a real defect: the child's cells were being audited as if they were the parent's). No CoinGecko query, no change to the universe (N=266) and none to the baseline grid. Tests: `python -m pytest tests/ -q` -> 179 passed. State remains AWAITING_NEW_ELIGIBLE_CANDIDATES; next refresh 2026-10-22T11:41:20Z. Handoffs updated for next agent.
 - 2026-10-21T12:23Z - Prior agent task completed by current session. Reconciled state against saved artifacts (grid self-consistent 266 x 66 = 17 556 cells, all_symbols_processed=true, next_cell=null, 0 blocked; universe unchanged N=266, floor AGLD/USDT $16 279 472, eligible_unseen_below_floor_count=0; refresh bound closed until 2026-10-22T11:41:20Z; no CoinGecko query, no code/data change). Tests: `python -m pytest tests/ -q` -> 151 passed. State remains AWAITING_NEW_ELIGIBLE_CANDIDATES. The PROMPT.md §5.2 ATR minimum-risk full-grid mutation remains the candidate offline work item (recorded parent -> child -> delta, compared against the walk-forward yardstick pooled out-of-fold net PF 0.6409); not started this session due to its ~44 h runtime. Handoffs updated for next agent.
 - 2026-10-21T12:21Z - Prior agent task completed by current session. Reconciled state (grid progress.json self-consistent: 266 x 66 = 17 556 cells, all_symbols_processed=true, next_cell=null, 0 blocked; 266 symbol dirs, 17 556 cell summaries, 17 226 gzip + 330 legacy blotters, 0 missing; universe exhausted, floor AGLD/USDT $16 279 472, eligible_unseen_below_floor_count=0). The 24 h refresh bound was closed for the whole session: **no CoinGecko query, no code or data change to the baseline grid or the universe**. Added the survivor selection audit (`scripts/survivor_selection_audit.py` + `tests/test_survivor_selection_audit.py`, artifact `results/20261021_121629_survivor_selection_audit/`): the leave-one-symbol-out read of the 10 gate survivors (the family keeps a pooled net PF above 1 without any single symbol, but a re-selection keeps only 4-7 of the original cells and 0 newcomers clear the cost-stress gate) and the walk-forward re-selection over all 17 556 cells (1060 steps, 95 786 out-of-fold trades, pooled out-of-fold net PF 0.6409 / 0.4521 under 2x costs; the selection ranks the cells at a median 0.7768 percentile of the grid's own null but never into a net-profitable window; 0 of 6 closest survivors keep PF > 1 in every out-of-sample sub-period). Standing documents updated: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md`, `universe/mcap_expansion_log.md`, `universe/last_scan.json`. Tests: `python -m pytest tests/ -q` -> 151 passed. State remains AWAITING_NEW_ELIGIBLE_CANDIDATES; next refresh 2026-10-22T11:41:20Z. Handoffs updated for next agent.
 - 2026-10-21T11:45Z - Prior agent task completed by current session. Took the **fresh** ranking snapshot `mcap_snapshot_20261021_114120` (2026-10-21T11:41:20Z, 10/10 pages, 1 000 entries, lowest covered rank 1 000 at $15 931 465, below the $16 279 472 AGLD floor): **0 eligible unseen names below the floor** - the band holds 10 names, 4 excluded for insufficient hourly history (probed directly on KuCoin: live pairs, listed after 2024-10-20) and 6 for no tradable KuCoin spot USDT pair. No expansion, universe stays N=266, grid untouched. Added the cost-drag decomposition (17 491 cells; 2 387 cells with PF > 1 gross vs 77 net; cost = 26.6 % of the gross P&L and a function of the stop width) and the survivor null leg (10 survivors + 12 controls, 60 replicates; **0 of 10 survive the Bonferroni correction over the 17 556 cells the program tested**). State remains AWAITING_NEW_ELIGIBLE_CANDIDATES; next refresh 2026-10-22T11:41:20Z. Tests: `python -m pytest tests/ -q` -> 131 passed. Handoffs updated for next agent.
