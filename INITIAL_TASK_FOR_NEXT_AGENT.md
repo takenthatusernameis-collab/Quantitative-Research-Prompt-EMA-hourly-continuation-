@@ -4,7 +4,7 @@
 
 **Read `NEXT_AGENT_TASK.md` first** for verified state, band audit, exact commands, and the new robustness leg.
 
-**Do now (before 2026-10-21T11:30:04Z):** No CoinGecko/data-layer changes — the refresh bound is still closed. Snapshot band exhausted. Offline verification/robustness only over the existing grid. Re-run `python -m pytest tests/ -q` after any changes (currently 77 passed).
+**Do now (before 2026-10-21T11:30:04Z):** No CoinGecko/data-layer changes — the refresh bound is still closed. Snapshot band exhausted. Offline verification/robustness only over the existing grid. Re-run `python -m pytest tests/ -q` after any changes.
 
 **From 2026-10-21T11:30:04Z:** Fetch fresh descending ranking (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 10 --batch-size 10`, dry run first; extend pages if coverage stops above floor). Apply eligible names strictly below TAIKO floor in descending mcap order. For each new name: fetch/validate hourly OHLCV (`scripts/fetch_kucoin.py`), run 66-pair EMA grid resuming from `results/20261019_135940_grid` (pass full `--n`, verify `n_symbols x n_pairs == completed_cells`), re-run `scripts/aggregate_grid.py`, `scripts/candidate_check.py`, `scripts/robustness_pooled.py` **and `scripts/oos_grid_scan.py`** (the grid-wide out-of-sample audit must be re-run after every expansion, not just once), update `universe/mcap_expansion_log.md`, `universe/last_scan.json`, `NEXT_AGENT_TASK.md`, and this file.
 
