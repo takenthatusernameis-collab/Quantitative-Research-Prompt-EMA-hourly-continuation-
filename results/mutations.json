@@ -1,28 +1,29 @@
 {
   "parent": {
-    "trade_count": 15,
-    "net_profit_factor": Infinity,
-    "net_win_rate": 1.0,
-    "sharpe_ratio": -6.246393719864085
+    "run_id": "20261019_135940_grid",
+    "pooled": {
+      "mean_net_pf": 0.4993133981270111,
+      "median_net_pf": 0.5205347614193546,
+      "n_cells": 17556,
+      "n_symbols": 266,
+      "n_pairs": 66
+    },
+    "walk_forward_out_of_fold": {
+      "pooled_net_pf": 0.6409,
+      "pooled_net_pf_2x_cost": 0.4521,
+      "note": "yardstick from survivor_selection_audit Leg 3"
+    }
   },
   "children": {
-    "A_stricter_trend": {
-      "trade_count": 15,
-      "net_profit_factor": Infinity,
-      "net_win_rate": 1.0,
-      "sharpe_ratio": -6.246393719864085
-    },
-    "B_rr1.5": {
-      "trade_count": 15,
-      "net_profit_factor": Infinity,
-      "net_win_rate": 1.0,
-      "sharpe_ratio": 5.663826775050059
-    },
     "C_min_risk_atr": {
-      "trade_count": 0,
-      "net_profit_factor": 0.0,
-      "net_win_rate": 0.0,
-      "sharpe_ratio": 0.0
+      "run_id": "20261021_172619_grid",
+      "config": {
+        "min_risk_atr": true,
+        "atr_threshold": 1.0
+      },
+      "note": "PROMPT.md §5.2 ATR minimum-risk mutation (skip trades whose risk distance < ATR(14))",
+      "status": "running",
+      "started_at": "2026-10-21T17:26:19Z"
     }
   }
 }
