@@ -12,12 +12,43 @@ from scripts.run_grid import (
     GRID_PAIRS,
     PERIOD_GRID,
     TRADES_FILENAME,
+    merge_symbol_lists,
     period_pairs,
     read_artifact_csv,
     symbol_dir_name,
     write_csv_gz,
 )
 from scripts.aggregate_grid import label_cell, load_cells, per_pair_table, per_symbol_table
+
+
+def test_merge_symbol_lists_keeps_prior_coverage():
+    """A narrower resume must not shrink the recorded coverage of a run.
+
+    A resume with a smaller `--n` used to overwrite progress.json with the
+    narrower symbol list while the completed-cell set stayed at the full grid,
+    so the state file contradicted itself and the handoff lost symbols.
+    """
+    assert merge_symbol_lists(['A/USDT', 'B/USDT'], ['A/USDT']) == ['A/USDT', 'B/USDT']
+    assert merge_symbol_lists(['A/USDT'], ['A/USDT', 'C/USDT']) == ['A/USDT', 'C/USDT']
+    assert merge_symbol_lists([], ['A/USDT']) == ['A/USDT']
+    assert merge_symbol_lists(None, None) == []
+
+
+def test_canonical_grid_progress_is_internally_consistent():
+    """The durable progress record of the shipped grid run stays consistent.
+
+    Every recorded symbol must be covered by the completed cells, and the cell
+    count must match symbols x pairs.
+    """
+    progress_path = Path('results/20261019_135940_grid/progress.json')
+    if not progress_path.exists():
+        pytest.skip('canonical grid run not present')
+    progress = json.loads(progress_path.read_text())
+    symbols = progress['symbols']
+    assert progress['n_symbols'] == len(symbols)
+    assert progress['completed_cells'] == len(progress['completed'])
+    assert progress['n_symbols'] * progress['n_pairs'] == progress['completed_cells']
+    assert {c['symbol'] for c in progress['completed']} <= set(symbols)
 
 
 def test_period_grid_matches_prompt_spec():

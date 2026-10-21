@@ -1,0 +1,2424 @@
+{
+  "generated_at": "2026-10-20T23:54:49.875981+00:00",
+  "source_run": "results/20261019_135940_grid",
+  "n_symbols": 266,
+  "n_cells": 17556,
+  "subperiods": 4,
+  "min_trades_per_subperiod": 5,
+  "pooled_full": {
+    "n_cells": 17556,
+    "trades": 14240827,
+    "net_win_sum": 163242077.2406507,
+    "net_loss_abs": 312456840.05793023,
+    "net_pnl": -149214762.81727952,
+    "net_profit_factor": 0.5224468032461227,
+    "net_win_rate": 11.462963298455259
+  },
+  "drop_top_n": [
+    {
+      "n_cells": 17226,
+      "trades": 13970589,
+      "net_win_sum": 161405965.41200897,
+      "net_loss_abs": 307562401.02485245,
+      "net_pnl": -146156435.61284348,
+      "net_profit_factor": 0.5247909525812507,
+      "net_win_rate": 11.553268470785946,
+      "dropped_n": 5,
+      "dropped_symbols": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "SOL/USDT",
+        "BNB/USDT",
+        "XRP/USDT"
+      ]
+    },
+    {
+      "n_cells": 16896,
+      "trades": 13690642,
+      "net_win_sum": 159087806.35122657,
+      "net_loss_abs": 302281435.4901302,
+      "net_pnl": -143193629.13890362,
+      "net_profit_factor": 0.526290362798085,
+      "net_win_rate": 11.620185989176152,
+      "dropped_n": 10,
+      "dropped_symbols": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "SOL/USDT",
+        "BNB/USDT",
+        "XRP/USDT",
+        "TRX/USDT",
+        "ZEC/USDT",
+        "DOGE/USDT",
+        "XMR/USDT",
+        "LINK/USDT"
+      ]
+    },
+    {
+      "n_cells": 16236,
+      "trades": 13146469,
+      "net_win_sum": 153694599.13557515,
+      "net_loss_abs": 291074370.8373249,
+      "net_pnl": -137379771.70174977,
+      "net_profit_factor": 0.5280251871487225,
+      "net_win_rate": 11.69094143344309,
+      "dropped_n": 20,
+      "dropped_symbols": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "SOL/USDT",
+        "BNB/USDT",
+        "XRP/USDT",
+        "TRX/USDT",
+        "ZEC/USDT",
+        "DOGE/USDT",
+        "XMR/USDT",
+        "LINK/USDT",
+        "ADA/USDT",
+        "NEAR/USDT",
+        "XLM/USDT",
+        "BCH/USDT",
+        "LTC/USDT",
+        "UNI/USDT",
+        "AVAX/USDT",
+        "SUI/USDT",
+        "GRAM/USDT",
+        "HBAR/USDT"
+      ]
+    },
+    {
+      "n_cells": 14256,
+      "trades": 11560475,
+      "net_win_sum": 136200976.96124807,
+      "net_loss_abs": 256840557.56745598,
+      "net_pnl": -120639580.6062079,
+      "net_profit_factor": 0.5302938844675128,
+      "net_win_rate": 11.781607326796527,
+      "dropped_n": 50,
+      "dropped_symbols": [
+        "BTC/USDT",
+        "ETH/USDT",
+        "SOL/USDT",
+        "BNB/USDT",
+        "XRP/USDT",
+        "TRX/USDT",
+        "ZEC/USDT",
+        "DOGE/USDT",
+        "XMR/USDT",
+        "LINK/USDT",
+        "ADA/USDT",
+        "NEAR/USDT",
+        "XLM/USDT",
+        "BCH/USDT",
+        "LTC/USDT",
+        "UNI/USDT",
+        "AVAX/USDT",
+        "SUI/USDT",
+        "GRAM/USDT",
+        "HBAR/USDT",
+        "TAO/USDT",
+        "SHIB/USDT",
+        "CRO/USDT",
+        "QNT/USDT",
+        "ENA/USDT",
+        "AAVE/USDT",
+        "ONDO/USDT",
+        "DOT/USDT",
+        "WLD/USDT",
+        "MNT/USDT",
+        "PEPE/USDT",
+        "SKY/USDT",
+        "ICP/USDT",
+        "HTX/USDT",
+        "ARB/USDT",
+        "ETC/USDT",
+        "JST/USDT",
+        "KCS/USDT",
+        "ALGO/USDT",
+        "POL/USDT",
+        "KAS/USDT",
+        "JUP/USDT",
+        "ATOM/USDT",
+        "RENDER/USDT",
+        "INJ/USDT",
+        "FIL/USDT",
+        "AERO/USDT",
+        "ZRO/USDT",
+        "CAKE/USDT",
+        "STX/USDT"
+      ]
+    }
+  ],
+  "buckets": [
+    {
+      "n_cells": 6600,
+      "trades": 5316976,
+      "net_win_sum": 63988974.91556892,
+      "net_loss_abs": 119385545.08419836,
+      "net_pnl": -55396570.16862944,
+      "net_profit_factor": 0.535985950982925,
+      "net_win_rate": 12.034843662181082,
+      "bucket": "101-200",
+      "n_symbols": 100
+    },
+    {
+      "n_cells": 2640,
+      "trades": 2130167,
+      "net_win_sum": 22886829.389978506,
+      "net_loss_abs": 45440877.92267424,
+      "net_pnl": -22554048.532695733,
+      "net_profit_factor": 0.5036616904480703,
+      "net_win_rate": 10.74414794238128,
+      "bucket": "11-50",
+      "n_symbols": 40
+    },
+    {
+      "n_cells": 4356,
+      "trades": 3469665,
+      "net_win_sum": 41879942.959519655,
+      "net_loss_abs": 78991280.04630455,
+      "net_pnl": -37111337.0867849,
+      "net_profit_factor": 0.5301843815541374,
+      "net_win_rate": 12.070313116545734,
+      "bucket": "201+",
+      "n_symbols": 66
+    },
+    {
+      "n_cells": 3300,
+      "trades": 2773834,
+      "net_win_sum": 30332059.086159497,
+      "net_loss_abs": 58463732.436953045,
+      "net_pnl": -28131673.350793548,
+      "net_profit_factor": 0.5188183822999911,
+      "net_win_rate": 10.935066440947619,
+      "bucket": "51-100",
+      "n_symbols": 50
+    },
+    {
+      "n_cells": 660,
+      "trades": 550185,
+      "net_win_sum": 4154270.88942414,
+      "net_loss_abs": 10175404.56780005,
+      "net_pnl": -6021133.678375911,
+      "net_profit_factor": 0.4082659182486249,
+      "net_win_rate": 7.550680024762834,
+      "bucket": "1-10",
+      "n_symbols": 10
+    },
+    {
+      "n_cells": 266,
+      "trades": 133190,
+      "net_win_sum": 1893899.9390194307,
+      "net_loss_abs": 4193968.78003929,
+      "net_pnl": -2300068.8410198595,
+      "net_profit_factor": 0.4515770236615086,
+      "net_win_rate": 14.219535543354837,
+      "pair": "P100_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 106698,
+      "net_win_sum": 2310377.8732522754,
+      "net_loss_abs": 4157073.6642734767,
+      "net_pnl": -1846695.7910212013,
+      "net_profit_factor": 0.55577025086373,
+      "net_win_rate": 21.653431866129406,
+      "pair": "P100_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 175742,
+      "net_win_sum": 3581483.08591914,
+      "net_loss_abs": 5708394.488596467,
+      "net_pnl": -2126911.4026773274,
+      "net_profit_factor": 0.6274063737314912,
+      "net_win_rate": 20.379209784338062,
+      "pair": "P12_100",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 132173,
+      "net_win_sum": 3306045.0331878224,
+      "net_loss_abs": 5054153.377308933,
+      "net_pnl": -1748108.3441211106,
+      "net_profit_factor": 0.6541243975757844,
+      "net_win_rate": 25.013013498882696,
+      "pair": "P12_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 385464,
+      "net_win_sum": 1197163.316562362,
+      "net_loss_abs": 3846505.900826578,
+      "net_pnl": -2649342.584264216,
+      "net_profit_factor": 0.3112339737487736,
+      "net_win_rate": 3.1057720476162807,
+      "pair": "P12_20",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 102819,
+      "net_win_sum": 2911734.9845506456,
+      "net_loss_abs": 4333537.606098306,
+      "net_pnl": -1421802.6215476608,
+      "net_profit_factor": 0.6719071689727926,
+      "net_win_rate": 28.319036214616418,
+      "pair": "P12_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 382359,
+      "net_win_sum": 1298553.523854664,
+      "net_loss_abs": 3947656.068749448,
+      "net_pnl": -2649102.5448947838,
+      "net_profit_factor": 0.32894292239243234,
+      "net_win_rate": 3.3961630924201183,
+      "pair": "P12_21",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 364500,
+      "net_win_sum": 1760476.3734801644,
+      "net_loss_abs": 4405717.209250522,
+      "net_pnl": -2645240.8357703574,
+      "net_profit_factor": 0.39958905437320336,
+      "net_win_rate": 4.829839159067666,
+      "pair": "P12_26",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 334883,
+      "net_win_sum": 2338668.1723272153,
+      "net_loss_abs": 4971468.353114908,
+      "net_pnl": -2632800.1807876923,
+      "net_profit_factor": 0.47041799448686156,
+      "net_win_rate": 6.983538048593734,
+      "pair": "P12_34",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 279951,
+      "net_win_sum": 3106275.11745266,
+      "net_loss_abs": 5669803.915824388,
+      "net_pnl": -2563528.798371728,
+      "net_profit_factor": 0.5478628826621438,
+      "net_win_rate": 11.095781466944787,
+      "pair": "P12_50",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 265162,
+      "net_win_sum": 3254262.0699358955,
+      "net_loss_abs": 5784030.566110388,
+      "net_pnl": -2529768.496174493,
+      "net_profit_factor": 0.5626287815633559,
+      "net_win_rate": 12.272731650598107,
+      "pair": "P12_55",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 191785,
+      "net_win_sum": 3578076.1650253963,
+      "net_loss_abs": 5819332.9862818485,
+      "net_pnl": -2241256.8212564522,
+      "net_profit_factor": 0.6148601864612562,
+      "net_win_rate": 18.65670498227388,
+      "pair": "P12_89",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 108161,
+      "net_win_sum": 1793031.3803116197,
+      "net_loss_abs": 3915681.7566716555,
+      "net_pnl": -2122650.3763600355,
+      "net_profit_factor": 0.457910395107212,
+      "net_win_rate": 16.57742976037222,
+      "pair": "P144_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 176609,
+      "net_win_sum": 3417403.9929571217,
+      "net_loss_abs": 5605768.79522551,
+      "net_pnl": -2188364.8022683887,
+      "net_profit_factor": 0.6096227150623406,
+      "net_win_rate": 19.350112355299682,
+      "pair": "P20_100",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 134914,
+      "net_win_sum": 3282686.9964385647,
+      "net_loss_abs": 5100186.936945461,
+      "net_pnl": -1817499.940506896,
+      "net_profit_factor": 0.6436405247539004,
+      "net_win_rate": 24.331700167799966,
+      "pair": "P20_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 104997,
+      "net_win_sum": 2969483.169853084,
+      "net_loss_abs": 4437794.722531339,
+      "net_pnl": -1468311.5526782554,
+      "net_profit_factor": 0.6691348643903197,
+      "net_win_rate": 28.281600139557167,
+      "pair": "P20_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 318884,
+      "net_win_sum": 469636.4897243416,
+      "net_loss_abs": 3119781.0169402556,
+      "net_pnl": -2650144.527215914,
+      "net_profit_factor": 0.1505350815247092,
+      "net_win_rate": 1.4727502468745426,
+      "pair": "P20_21",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 316244,
+      "net_win_sum": 909251.8231185103,
+      "net_loss_abs": 3558116.1679634517,
+      "net_pnl": -2648864.3448449415,
+      "net_profit_factor": 0.25554304024844027,
+      "net_win_rate": 2.875159127504428,
+      "pair": "P20_26",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 300657,
+      "net_win_sum": 1586089.6065169615,
+      "net_loss_abs": 4227287.176322826,
+      "net_pnl": -2641197.5698058647,
+      "net_profit_factor": 0.3752027104760474,
+      "net_win_rate": 5.2754122023334284,
+      "pair": "P20_34",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 261903,
+      "net_win_sum": 2522607.8338562786,
+      "net_loss_abs": 5106695.568081648,
+      "net_pnl": -2584087.7342253695,
+      "net_profit_factor": 0.49398046157740844,
+      "net_win_rate": 9.631840161648697,
+      "pair": "P20_50",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 250996,
+      "net_win_sum": 2710227.207795082,
+      "net_loss_abs": 5267059.828860284,
+      "net_pnl": -2556832.6210652017,
+      "net_profit_factor": 0.5145616901757382,
+      "net_win_rate": 10.797890037271838,
+      "pair": "P20_55",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 191152,
+      "net_win_sum": 3362710.5195427784,
+      "net_loss_abs": 5652943.637340707,
+      "net_pnl": -2290233.1177979284,
+      "net_profit_factor": 0.5948600826886513,
+      "net_win_rate": 17.59181446986052,
+      "pair": "P20_89",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 176348,
+      "net_win_sum": 3384265.573315411,
+      "net_loss_abs": 5578482.4466405455,
+      "net_pnl": -2194216.8733251346,
+      "net_profit_factor": 0.6066641968826973,
+      "net_win_rate": 19.190836149632606,
+      "pair": "P21_100",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 135032,
+      "net_win_sum": 3264776.95081646,
+      "net_loss_abs": 5092474.732133717,
+      "net_pnl": -1827697.7813172573,
+      "net_profit_factor": 0.6410983112425847,
+      "net_win_rate": 24.177801934478197,
+      "pair": "P21_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 105050,
+      "net_win_sum": 2953202.629040489,
+      "net_loss_abs": 4436371.357056339,
+      "net_pnl": -1483168.7280158503,
+      "net_profit_factor": 0.6656797619845838,
+      "net_win_rate": 28.11235248967624,
+      "pair": "P21_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 311069,
+      "net_win_sum": 811779.7950478498,
+      "net_loss_abs": 3460871.121388586,
+      "net_pnl": -2649091.326340736,
+      "net_profit_factor": 0.23455938304982127,
+      "net_win_rate": 2.6096454325177043,
+      "pair": "P21_26",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 297138,
+      "net_win_sum": 1497461.09708181,
+      "net_loss_abs": 4139789.7723330203,
+      "net_pnl": -2642328.67525121,
+      "net_profit_factor": 0.36172394721336315,
+      "net_win_rate": 5.039614916576843,
+      "pair": "P21_34",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 259821,
+      "net_win_sum": 2462511.2086205473,
+      "net_loss_abs": 5048377.6073669605,
+      "net_pnl": -2585866.398746413,
+      "net_profit_factor": 0.48778268983426903,
+      "net_win_rate": 9.47772200330438,
+      "pair": "P21_50",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 249323,
+      "net_win_sum": 2652097.721070557,
+      "net_loss_abs": 5211238.711350724,
+      "net_pnl": -2559140.990280167,
+      "net_profit_factor": 0.5089188709191078,
+      "net_win_rate": 10.637196412166373,
+      "pair": "P21_55",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 190871,
+      "net_win_sum": 3334165.0478150276,
+      "net_loss_abs": 5629986.071769942,
+      "net_pnl": -2295821.023954914,
+      "net_profit_factor": 0.592215505564624,
+      "net_win_rate": 17.468159373687087,
+      "pair": "P21_89",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 175033,
+      "net_win_sum": 3249328.447846602,
+      "net_loss_abs": 5470093.957916364,
+      "net_pnl": -2220765.510069762,
+      "net_profit_factor": 0.5940169351468173,
+      "net_win_rate": 18.564090473491298,
+      "pair": "P26_100",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 134948,
+      "net_win_sum": 3191035.752444753,
+      "net_loss_abs": 5036724.072149149,
+      "net_pnl": -1845688.3197043962,
+      "net_profit_factor": 0.6335538152843762,
+      "net_win_rate": 23.646410116820945,
+      "pair": "P26_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 105157,
+      "net_win_sum": 2921657.848177041,
+      "net_loss_abs": 4409985.638517833,
+      "net_pnl": -1488327.7903407924,
+      "net_profit_factor": 0.6625096060764022,
+      "net_win_rate": 27.78376948921176,
+      "pair": "P26_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 281697,
+      "net_win_sum": 1045650.8100881857,
+      "net_loss_abs": 3692364.0446360637,
+      "net_pnl": -2646713.234547878,
+      "net_profit_factor": 0.2831927722856076,
+      "net_win_rate": 3.7119699893438187,
+      "pair": "P26_34",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 251535,
+      "net_win_sum": 2135048.940967187,
+      "net_loss_abs": 4733458.882463612,
+      "net_pnl": -2598409.941496425,
+      "net_profit_factor": 0.4510547136845442,
+      "net_win_rate": 8.488078959060118,
+      "pair": "P26_50",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 242093,
+      "net_win_sum": 2376271.806125304,
+      "net_loss_abs": 4949127.318348667,
+      "net_pnl": -2572855.5122233625,
+      "net_profit_factor": 0.48013955860771323,
+      "net_win_rate": 9.815532899031794,
+      "pair": "P26_55",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 188267,
+      "net_win_sum": 3189806.3898224495,
+      "net_loss_abs": 5502047.288450678,
+      "net_pnl": -2312240.8986282283,
+      "net_profit_factor": 0.5797489957089532,
+      "net_win_rate": 16.942992610613913,
+      "pair": "P26_89",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 172245,
+      "net_win_sum": 3009700.1762534967,
+      "net_loss_abs": 5262257.511486299,
+      "net_pnl": -2252557.3352328027,
+      "net_profit_factor": 0.5719408770254996,
+      "net_win_rate": 17.473367449002854,
+      "pair": "P34_100",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 134081,
+      "net_win_sum": 3056731.7002140703,
+      "net_loss_abs": 4942075.213422612,
+      "net_pnl": -1885343.513208542,
+      "net_profit_factor": 0.6185117725266557,
+      "net_win_rate": 22.797649929625155,
+      "pair": "P34_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 104419,
+      "net_win_sum": 2880245.1908298694,
+      "net_loss_abs": 4375750.7876314735,
+      "net_pnl": -1495505.5968016041,
+      "net_profit_factor": 0.6582288001801176,
+      "net_win_rate": 27.58353547563058,
+      "pair": "P34_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 241647,
+      "net_win_sum": 1574592.6634841,
+      "net_loss_abs": 4196838.945861918,
+      "net_pnl": -2622246.2823778177,
+      "net_profit_factor": 0.3751853916235332,
+      "net_win_rate": 6.516086123494602,
+      "pair": "P34_50",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 233627,
+      "net_win_sum": 1864260.6752747165,
+      "net_loss_abs": 4464589.216377885,
+      "net_pnl": -2600328.5411031684,
+      "net_profit_factor": 0.4175660032586802,
+      "net_win_rate": 7.9796456542896,
+      "pair": "P34_55",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 184644,
+      "net_win_sum": 2895624.253744546,
+      "net_loss_abs": 5245540.474796125,
+      "net_pnl": -2349916.221051579,
+      "net_profit_factor": 0.5520163780372104,
+      "net_win_rate": 15.682200633351455,
+      "pair": "P34_89",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 168751,
+      "net_win_sum": 2476944.1478032796,
+      "net_loss_abs": 4822738.179293007,
+      "net_pnl": -2345794.031489727,
+      "net_profit_factor": 0.5135970595373248,
+      "net_win_rate": 14.678100561201294,
+      "pair": "P50_100",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 133348,
+      "net_win_sum": 2769147.9656522023,
+      "net_loss_abs": 4744625.5084314,
+      "net_pnl": -1975477.542779198,
+      "net_profit_factor": 0.5836388900939198,
+      "net_win_rate": 20.766325446592393,
+      "pair": "P50_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 105061,
+      "net_win_sum": 2739887.875231875,
+      "net_loss_abs": 4326320.060769514,
+      "net_pnl": -1586432.185537639,
+      "net_profit_factor": 0.6333067911634205,
+      "net_win_rate": 26.079019571790436,
+      "pair": "P50_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 216355,
+      "net_win_sum": 731363.8783311326,
+      "net_loss_abs": 3375790.3366871006,
+      "net_pnl": -2644426.458355968,
+      "net_profit_factor": 0.21664967470961813,
+      "net_win_rate": 3.3803881506372977,
+      "pair": "P50_55",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 179970,
+      "net_win_sum": 2285817.8715428854,
+      "net_loss_abs": 4725029.21705044,
+      "net_pnl": -2439211.3455075542,
+      "net_profit_factor": 0.48376798672364363,
+      "net_win_rate": 12.701105026075933,
+      "pair": "P50_89",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 167817,
+      "net_win_sum": 2326168.3986321976,
+      "net_loss_abs": 4700906.717555268,
+      "net_pnl": -2374738.31892307,
+      "net_profit_factor": 0.4948339838238556,
+      "net_win_rate": 13.861339427067566,
+      "pair": "P55_100",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 133468,
+      "net_win_sum": 2697294.5578160975,
+      "net_loss_abs": 4704066.539709061,
+      "net_pnl": -2006771.9818929639,
+      "net_profit_factor": 0.5733963444281808,
+      "net_win_rate": 20.209297792849952,
+      "pair": "P55_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 105214,
+      "net_win_sum": 2709086.0732111107,
+      "net_loss_abs": 4313459.906486096,
+      "net_pnl": -1604373.8332749852,
+      "net_profit_factor": 0.6280540753694016,
+      "net_win_rate": 25.748342171299548,
+      "pair": "P55_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 178830,
+      "net_win_sum": 2087908.759322293,
+      "net_loss_abs": 4556701.133111376,
+      "net_pnl": -2468792.373789083,
+      "net_profit_factor": 0.4582062106620192,
+      "net_win_rate": 11.67538309747969,
+      "pair": "P55_89",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 161093,
+      "net_win_sum": 950819.1836863207,
+      "net_loss_abs": 3553323.904718245,
+      "net_pnl": -2602504.7210319242,
+      "net_profit_factor": 0.2675858461492309,
+      "net_win_rate": 5.902299812445734,
+      "pair": "P89_100",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 133365,
+      "net_win_sum": 2122934.7778337146,
+      "net_loss_abs": 4342933.986119704,
+      "net_pnl": -2219999.2082859897,
+      "net_profit_factor": 0.48882501659448435,
+      "net_win_rate": 15.918230254067518,
+      "pair": "P89_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 106655,
+      "net_win_sum": 2401236.146287457,
+      "net_loss_abs": 4200230.705095889,
+      "net_pnl": -1798994.558808432,
+      "net_profit_factor": 0.5716914890827737,
+      "net_win_rate": 22.51405134581086,
+      "pair": "P89_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 176168,
+      "net_win_sum": 3653208.0265618567,
+      "net_loss_abs": 5751130.135098808,
+      "net_pnl": -2097922.1085369517,
+      "net_profit_factor": 0.6352156777441956,
+      "net_win_rate": 20.737069312030883,
+      "pair": "P8_100",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 470273,
+      "net_win_sum": 780334.3560127281,
+      "net_loss_abs": 3430369.482473854,
+      "net_pnl": -2650035.126461126,
+      "net_profit_factor": 0.22747822355566788,
+      "net_win_rate": 1.6593220448818624,
+      "pair": "P8_12",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 132559,
+      "net_win_sum": 3312936.902788244,
+      "net_loss_abs": 5038991.5675794175,
+      "net_pnl": -1726054.6647911733,
+      "net_profit_factor": 0.6574602990216316,
+      "net_win_rate": 24.99216879116653,
+      "pair": "P8_144",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 433203,
+      "net_win_sum": 1661793.7792398431,
+      "net_loss_abs": 4309852.143932102,
+      "net_pnl": -2648058.364692259,
+      "net_profit_factor": 0.3855802296093857,
+      "net_win_rate": 3.8360624908872816,
+      "pair": "P8_20",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 102813,
+      "net_win_sum": 2921666.6556925303,
+      "net_loss_abs": 4304657.716547093,
+      "net_pnl": -1382991.060854563,
+      "net_profit_factor": 0.6787221767857758,
+      "net_win_rate": 28.417288238768737,
+      "pair": "P8_200",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 427710,
+      "net_win_sum": 1758715.0930983496,
+      "net_loss_abs": 4406173.429651082,
+      "net_pnl": -2647458.3365527317,
+      "net_profit_factor": 0.399147950297004,
+      "net_win_rate": 4.1119335369721295,
+      "pair": "P8_21",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 399838,
+      "net_win_sum": 2184192.500290919,
+      "net_loss_abs": 4827683.122931841,
+      "net_pnl": -2643490.6226409217,
+      "net_profit_factor": 0.45243079230197364,
+      "net_win_rate": 5.462693641652167,
+      "pair": "P8_26",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 358771,
+      "net_win_sum": 2720451.5785122267,
+      "net_loss_abs": 5348277.083450548,
+      "net_pnl": -2627825.5049383217,
+      "net_profit_factor": 0.5086594310773953,
+      "net_win_rate": 7.582696423379333,
+      "pair": "P8_34",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 290471,
+      "net_win_sum": 3407706.289150456,
+      "net_loss_abs": 5960281.701584486,
+      "net_pnl": -2552575.4124340303,
+      "net_profit_factor": 0.5717357768919795,
+      "net_win_rate": 11.731657511939078,
+      "pair": "P8_50",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 273293,
+      "net_win_sum": 3495420.7586443904,
+      "net_loss_abs": 6011645.367820323,
+      "net_pnl": -2516224.609175933,
+      "net_profit_factor": 0.5814416095392109,
+      "net_win_rate": 12.79001203340148,
+      "pair": "P8_55",
+      "n_symbols": 266
+    },
+    {
+      "n_cells": 266,
+      "trades": 192513,
+      "net_win_sum": 3736682.312546124,
+      "net_loss_abs": 5940248.416377391,
+      "net_pnl": -2203566.1038312665,
+      "net_profit_factor": 0.6290447891445098,
+      "net_win_rate": 19.41002588160864,
+      "pair": "P8_89",
+      "n_symbols": 266
+    }
+  ],
+  "n_cells_pf_gt_1": 36,
+  "frac_cells_pf_gt_1": 0.002050580997949419,
+  "subperiod_cells": [
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 100,
+      "P_slow": 144,
+      "trades": 13,
+      "full_sample_net_pf": 1.4323833316669075,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 98.11691746888778,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 0,
+          "net_profit_factor": null,
+          "net_pnl": 0.0,
+          "class": "empty"
+        },
+        {
+          "subperiod": 2,
+          "trades": 4,
+          "net_profit_factor": 0.9189288989444947,
+          "net_pnl": -17.10981553516268,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 8,
+          "net_profit_factor": 1.4632235459927811,
+          "net_pnl": 153.89786971777693,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 1,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "insufficient"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 12,
+      "P_slow": 200,
+      "trades": 71,
+      "full_sample_net_pf": 1.2043840590372297,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 13,
+          "net_profit_factor": 1.5046242387691873,
+          "net_pnl": 262.8441424164896,
+          "class": "win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 36,
+          "net_profit_factor": 1.8859045116145872,
+          "net_pnl": 1166.5449039026373,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 11,
+          "net_profit_factor": 0.7930003513573082,
+          "net_pnl": -144.27708779594377,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 11,
+          "net_profit_factor": 0.3533111212592293,
+          "net_pnl": -582.8595318009786,
+          "class": "loss"
+        }
+      ],
+      "n_subperiods_evaluated": 4,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 12,
+      "P_slow": 26,
+      "trades": 28,
+      "full_sample_net_pf": 1.2031941100145183,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 2,
+          "net_profit_factor": 0.0,
+          "net_pnl": -206.46650418070348,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 1,
+          "net_profit_factor": 0.0,
+          "net_pnl": -98.98828600470344,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 2,
+          "trades": 12,
+          "net_profit_factor": 2.720930261524057,
+          "net_pnl": 537.5846280245078,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 13,
+          "net_profit_factor": 1.0389357466096503,
+          "net_pnl": 25.265914278339665,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 12,
+      "P_slow": 50,
+      "trades": 63,
+      "full_sample_net_pf": 1.001310632931597,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 6,
+          "net_profit_factor": 0.18703531452669192,
+          "net_pnl": -414.7403714771388,
+          "class": "loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 46,
+          "net_profit_factor": 1.2774039145872529,
+          "net_pnl": 558.6220870160846,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 8,
+          "net_profit_factor": 1.5509756693305254,
+          "net_pnl": 175.586470202601,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 3,
+          "net_profit_factor": 0.0,
+          "net_pnl": -315.3293119691908,
+          "class": "thin_loss"
+        }
+      ],
+      "n_subperiods_evaluated": 3,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 20,
+      "P_slow": 100,
+      "trades": 54,
+      "full_sample_net_pf": 1.0785449481155611,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 6,
+          "net_profit_factor": 0.19258227798776106,
+          "net_pnl": -411.11767636942557,
+          "class": "loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 33,
+          "net_profit_factor": 1.2489493165706036,
+          "net_pnl": 356.7364429210447,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 11,
+          "net_profit_factor": 1.1277007389814682,
+          "net_pnl": 66.25858643951005,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 4,
+          "net_profit_factor": 2.798724896380638,
+          "net_pnl": 189.7058390046504,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 3,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 20,
+      "P_slow": 200,
+      "trades": 57,
+      "full_sample_net_pf": 1.2920969249544185,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 10,
+          "net_profit_factor": 1.4111473681878939,
+          "net_pnl": 170.87104651495952,
+          "class": "win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 28,
+          "net_profit_factor": 1.7032788584103193,
+          "net_pnl": 747.0130133292698,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 12,
+          "net_profit_factor": 0.9516508659070474,
+          "net_pnl": -32.47498500825907,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 7,
+          "net_profit_factor": 0.7117449559250183,
+          "net_pnl": -127.92693911076998,
+          "class": "loss"
+        }
+      ],
+      "n_subperiods_evaluated": 4,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 20,
+      "P_slow": 26,
+      "trades": 14,
+      "full_sample_net_pf": 1.2053243964104632,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 98.01796089378064,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 1,
+          "net_profit_factor": 0.0,
+          "net_pnl": -102.06586728072078,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 2,
+          "trades": 5,
+          "net_profit_factor": 3.6575460340425363,
+          "net_pnl": 283.39349296931243,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 7,
+          "net_profit_factor": 0.6634097274465411,
+          "net_pnl": -146.8893466968895,
+          "class": "loss"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 20,
+      "P_slow": 50,
+      "trades": 35,
+      "full_sample_net_pf": 1.366603956652433,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 3,
+          "net_profit_factor": 0.4671862628489843,
+          "net_pnl": -111.78134311720868,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 25,
+          "net_profit_factor": 1.607153552578082,
+          "net_pnl": 590.0655401020273,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 6,
+          "net_profit_factor": 1.8414851141282278,
+          "net_pnl": 185.0246262231319,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 1,
+          "net_profit_factor": 0.0,
+          "net_pnl": -109.39737749392285,
+          "class": "thin_loss"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 20,
+      "P_slow": 55,
+      "trades": 39,
+      "full_sample_net_pf": 1.1768563133970882,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 3,
+          "net_profit_factor": 0.46837715934698426,
+          "net_pnl": -111.2475726395563,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 29,
+          "net_profit_factor": 1.1095464718060521,
+          "net_pnl": 152.16922738939456,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 6,
+          "net_profit_factor": 4.658193566499489,
+          "net_pnl": 386.05425026061187,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 1,
+          "net_profit_factor": 0.0,
+          "net_pnl": -106.75454881240655,
+          "class": "thin_loss"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 21,
+      "P_slow": 100,
+      "trades": 49,
+      "full_sample_net_pf": 1.053505924340568,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 7,
+          "net_profit_factor": 0.37753806713910876,
+          "net_pnl": -318.14330889571374,
+          "class": "loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 28,
+          "net_profit_factor": 1.2331567474782257,
+          "net_pnl": 285.69329325250374,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 11,
+          "net_profit_factor": 1.1277007389814682,
+          "net_pnl": 66.40469414027518,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 3,
+          "net_profit_factor": 1.8824183742003562,
+          "net_pnl": 92.37940721183291,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 3,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 21,
+      "P_slow": 200,
+      "trades": 59,
+      "full_sample_net_pf": 1.1936352384824704,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 10,
+          "net_profit_factor": 1.4117953596437036,
+          "net_pnl": 171.14264173073548,
+          "class": "win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 29,
+          "net_profit_factor": 1.3326229666884817,
+          "net_pnl": 417.47955367404893,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 12,
+          "net_profit_factor": 0.9516066718820594,
+          "net_pnl": -31.525796332532764,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 8,
+          "net_profit_factor": 0.9456167305346982,
+          "net_pnl": -23.559277418673616,
+          "class": "loss"
+        }
+      ],
+      "n_subperiods_evaluated": 4,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 21,
+      "P_slow": 26,
+      "trades": 12,
+      "full_sample_net_pf": 1.2754132806151695,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 98.01796089378064,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 1,
+          "net_profit_factor": 0.0,
+          "net_pnl": -102.06586728072078,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 2,
+          "trades": 4,
+          "net_profit_factor": 2.7686452741038274,
+          "net_pnl": 186.8318341463124,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 6,
+          "net_profit_factor": 0.8889657183816884,
+          "net_pnl": -36.08175659387069,
+          "class": "loss"
+        }
+      ],
+      "n_subperiods_evaluated": 1,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "insufficient"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 21,
+      "P_slow": 50,
+      "trades": 32,
+      "full_sample_net_pf": 1.3325706764998029,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 3,
+          "net_profit_factor": 0.45225642028767943,
+          "net_pnl": -114.87755869432422,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 22,
+          "net_profit_factor": 1.5895406235876823,
+          "net_pnl": 500.6135005225051,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 6,
+          "net_profit_factor": 1.8414851141282274,
+          "net_pnl": 183.39041722516558,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 1,
+          "net_profit_factor": 0.0,
+          "net_pnl": -108.43113758141044,
+          "class": "thin_loss"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 21,
+      "P_slow": 55,
+      "trades": 37,
+      "full_sample_net_pf": 1.1914438393123825,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 4,
+          "net_profit_factor": 0.9058512336689041,
+          "net_pnl": -19.88362879884366,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 26,
+          "net_profit_factor": 1.0517592057353107,
+          "net_pnl": 66.13089403186427,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 6,
+          "net_profit_factor": 4.658193566499489,
+          "net_pnl": 386.2590098068924,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 1,
+          "net_profit_factor": 0.0,
+          "net_pnl": -106.81117042183956,
+          "class": "thin_loss"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 21,
+      "P_slow": 89,
+      "trades": 53,
+      "full_sample_net_pf": 1.0379905694596374,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 7,
+          "net_profit_factor": 0.3734158189225507,
+          "net_pnl": -319.88315070106626,
+          "class": "loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 34,
+          "net_profit_factor": 1.1633701200473792,
+          "net_pnl": 253.82443087210459,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 10,
+          "net_profit_factor": 0.9391805293591676,
+          "net_pnl": -31.210311311031433,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 2,
+          "net_profit_factor": Infinity,
+          "net_pnl": 195.18438198631958,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 3,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 26,
+      "P_slow": 100,
+      "trades": 51,
+      "full_sample_net_pf": 1.209538560545974,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 4,
+          "net_profit_factor": 0.31639407371682055,
+          "net_pnl": -211.86619688535487,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 19,
+          "net_profit_factor": 1.586323551901988,
+          "net_pnl": 429.5377063061843,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 24,
+          "net_profit_factor": 1.0694111631974885,
+          "net_pnl": 84.58390281235847,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 4,
+          "net_profit_factor": 2.7801719363258743,
+          "net_pnl": 194.41915397803214,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 26,
+      "P_slow": 200,
+      "trades": 62,
+      "full_sample_net_pf": 1.1331509040985908,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 8,
+          "net_profit_factor": 1.5697347704162572,
+          "net_pnl": 178.28681124869598,
+          "class": "win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 37,
+          "net_profit_factor": 0.9791866602449215,
+          "net_pnl": -40.041956240371746,
+          "class": "loss"
+        },
+        {
+          "subperiod": 2,
+          "trades": 10,
+          "net_profit_factor": 1.4169463054040283,
+          "net_pnl": 175.36311837454565,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 7,
+          "net_profit_factor": 1.2594883346553505,
+          "net_pnl": 82.61819759010086,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 4,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 26,
+      "P_slow": 50,
+      "trades": 27,
+      "full_sample_net_pf": 1.7954844871455957,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 1,
+          "net_profit_factor": 0.0,
+          "net_pnl": -104.0940507499374,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 13,
+          "net_profit_factor": 2.032699971427764,
+          "net_pnl": 445.8201031493344,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 12,
+          "net_profit_factor": 1.7544727544004521,
+          "net_pnl": 343.0640993351199,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 103.14084398071095,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 26,
+      "P_slow": 55,
+      "trades": 30,
+      "full_sample_net_pf": 1.166744548068547,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 2,
+          "net_profit_factor": 0.9052963640544607,
+          "net_pnl": -9.943687699533214,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 12,
+          "net_profit_factor": 0.9108164318608767,
+          "net_pnl": -57.66464180081448,
+          "class": "loss"
+        },
+        {
+          "subperiod": 2,
+          "trades": 15,
+          "net_profit_factor": 1.3108947192889142,
+          "net_pnl": 204.24077170345527,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 98.23171987370417,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 26,
+      "P_slow": 89,
+      "trades": 46,
+      "full_sample_net_pf": 1.2988581445762493,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 5,
+          "net_profit_factor": 0.2365102537924399,
+          "net_pnl": -313.2322766822233,
+          "class": "loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 17,
+          "net_profit_factor": 2.2056270262848545,
+          "net_pnl": 633.5193183741422,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 22,
+          "net_profit_factor": 1.0804752754742044,
+          "net_pnl": 90.285475721289,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 2,
+          "net_profit_factor": Infinity,
+          "net_pnl": 204.36873595887613,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 3,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 34,
+      "P_slow": 200,
+      "trades": 50,
+      "full_sample_net_pf": 1.0099153463064157,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 6,
+          "net_profit_factor": 0.9446767543672517,
+          "net_pnl": -17.173705290981616,
+          "class": "loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 17,
+          "net_profit_factor": 1.043670114262136,
+          "net_pnl": 36.750003567348585,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 16,
+          "net_profit_factor": 0.9291461424780766,
+          "net_pnl": -58.35266004962068,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 11,
+          "net_profit_factor": 1.1224586026292895,
+          "net_pnl": 63.50642675877077,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 4,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 34,
+      "P_slow": 89,
+      "trades": 41,
+      "full_sample_net_pf": 1.1612945780630914,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 4,
+          "net_profit_factor": 0.3132540838162399,
+          "net_pnl": -212.7221023213192,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 13,
+          "net_profit_factor": 1.4604123286107142,
+          "net_pnl": 242.07733913755146,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 21,
+          "net_profit_factor": 0.9850145967569693,
+          "net_pnl": -16.141952380257408,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 3,
+          "net_profit_factor": Infinity,
+          "net_pnl": 295.2974179363992,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 50,
+      "P_slow": 100,
+      "trades": 34,
+      "full_sample_net_pf": 1.1492938661072265,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 98.05826213343752,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 13,
+          "net_profit_factor": 1.061869441195538,
+          "net_pnl": 39.531920907690164,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 18,
+          "net_profit_factor": 1.1280848955396339,
+          "net_pnl": 109.1097395732429,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 2,
+          "net_profit_factor": 0.9244746519487566,
+          "net_pnl": -8.106468630313543,
+          "class": "thin_loss"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 50,
+      "P_slow": 200,
+      "trades": 46,
+      "full_sample_net_pf": 1.4459941674718202,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 4,
+          "net_profit_factor": 0.9308617067409586,
+          "net_pnl": -14.393937132429357,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 20,
+          "net_profit_factor": 1.7152243542848487,
+          "net_pnl": 538.6904711644256,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 16,
+          "net_profit_factor": 0.9280277842559335,
+          "net_pnl": -62.99201848091775,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 6,
+          "net_profit_factor": 4.737233550404348,
+          "net_pnl": 406.2919259323827,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 3,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 50,
+      "P_slow": 55,
+      "trades": 7,
+      "full_sample_net_pf": 2.227366213741068,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 95.05426301538418,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 0,
+          "net_profit_factor": null,
+          "net_pnl": 0.0,
+          "class": "empty"
+        },
+        {
+          "subperiod": 2,
+          "trades": 3,
+          "net_profit_factor": 1.9141100660707213,
+          "net_pnl": 93.21261617628063,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 3,
+          "net_profit_factor": 1.6718234496808886,
+          "net_pnl": 76.32107530048386,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 0,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 0,
+      "verdict": "insufficient"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 50,
+      "P_slow": 89,
+      "trades": 28,
+      "full_sample_net_pf": 1.6156754819650394,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 98.04220242350476,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 11,
+          "net_profit_factor": 1.5658491316483645,
+          "net_pnl": 247.44730248570733,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 14,
+          "net_profit_factor": 1.1869184199155702,
+          "net_pnl": 121.57905443388029,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 2,
+          "net_profit_factor": Infinity,
+          "net_pnl": 202.62736107528448,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 4,
+      "n_subperiods_pf_le_1": 0,
+      "verdict": "stable"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 55,
+      "P_slow": 200,
+      "trades": 43,
+      "full_sample_net_pf": 1.292444070202912,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 4,
+          "net_profit_factor": 0.9308617067409586,
+          "net_pnl": -14.393937132429357,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 18,
+          "net_profit_factor": 1.446882607934592,
+          "net_pnl": 331.66506948852077,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 16,
+          "net_profit_factor": 0.9353152727600998,
+          "net_pnl": -55.04485781929054,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 5,
+          "net_profit_factor": 3.772545022103282,
+          "net_pnl": 295.76041219042025,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 3,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 89,
+      "P_slow": 100,
+      "trades": 8,
+      "full_sample_net_pf": 1.4778827045682452,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 98.05826213343752,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 0,
+          "net_profit_factor": null,
+          "net_pnl": 0.0,
+          "class": "empty"
+        },
+        {
+          "subperiod": 2,
+          "trades": 2,
+          "net_profit_factor": 0.924412033824555,
+          "net_pnl": -7.706845665881346,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 5,
+          "net_profit_factor": 1.2880771250490568,
+          "net_pnl": 63.17954169479847,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 1,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "insufficient"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 89,
+      "P_slow": 144,
+      "trades": 21,
+      "full_sample_net_pf": 1.2179597781437945,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 98.11691746888778,
+          "class": "thin_win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 6,
+          "net_profit_factor": 0.923701804089264,
+          "net_pnl": -23.61459208369655,
+          "class": "loss"
+        },
+        {
+          "subperiod": 2,
+          "trades": 13,
+          "net_profit_factor": 1.0531329754842729,
+          "net_pnl": 33.83276871455871,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 1,
+          "net_profit_factor": Infinity,
+          "net_pnl": 97.91162596202422,
+          "class": "thin_win"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 8,
+      "P_slow": 20,
+      "trades": 28,
+      "full_sample_net_pf": 1.4020795386945752,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 2,
+          "net_profit_factor": 0.9262702575168904,
+          "net_pnl": -7.667523377773492,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 0,
+          "net_profit_factor": null,
+          "net_pnl": 0.0,
+          "class": "empty"
+        },
+        {
+          "subperiod": 2,
+          "trades": 8,
+          "net_profit_factor": 0.9260504198038111,
+          "net_pnl": -30.73057390583648,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 18,
+          "net_profit_factor": 1.7930102293142078,
+          "net_pnl": 501.65470123608543,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 1,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 8,
+      "P_slow": 21,
+      "trades": 33,
+      "full_sample_net_pf": 1.3894271069801523,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 2,
+          "net_profit_factor": 0.9277847772240915,
+          "net_pnl": -7.4969711560890175,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 5,
+          "net_profit_factor": 1.3997459539547497,
+          "net_pnl": 83.01201922220986,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 8,
+          "net_profit_factor": 1.497195341197047,
+          "net_pnl": 158.40606669284347,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 18,
+          "net_profit_factor": 1.4045519487358915,
+          "net_pnl": 306.18827507289336,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 3,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "BABYDOGE/USDT",
+      "P_fast": 8,
+      "P_slow": 26,
+      "trades": 45,
+      "full_sample_net_pf": 1.0298435874793477,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 2,
+          "net_profit_factor": 0.0,
+          "net_pnl": -206.46650418070348,
+          "class": "thin_loss"
+        },
+        {
+          "subperiod": 1,
+          "trades": 36,
+          "net_profit_factor": 1.2576576831016175,
+          "net_pnl": 406.4760313644549,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 6,
+          "net_profit_factor": 0.9067702772653875,
+          "net_pnl": -30.073543807038277,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 1,
+          "net_profit_factor": 0.0,
+          "net_pnl": -103.96413916326,
+          "class": "thin_loss"
+        }
+      ],
+      "n_subperiods_evaluated": 2,
+      "n_subperiods_pf_gt_1": 1,
+      "n_subperiods_pf_le_1": 3,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "JASMY/USDT",
+      "P_fast": 20,
+      "P_slow": 200,
+      "trades": 353,
+      "full_sample_net_pf": 1.009685534505985,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 54,
+          "net_profit_factor": 1.3374992498022735,
+          "net_pnl": 799.4026167621478,
+          "class": "win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 85,
+          "net_profit_factor": 1.0186667480398082,
+          "net_pnl": 84.04513826291259,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 84,
+          "net_profit_factor": 1.1078732856309805,
+          "net_pnl": 460.19505890252094,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 130,
+          "net_profit_factor": 0.8414525676029686,
+          "net_pnl": -1164.6281024699756,
+          "class": "loss"
+        }
+      ],
+      "n_subperiods_evaluated": 4,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "JASMY/USDT",
+      "P_fast": 21,
+      "P_slow": 200,
+      "trades": 362,
+      "full_sample_net_pf": 1.0340847916744456,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 56,
+          "net_profit_factor": 1.209934080642486,
+          "net_pnl": 557.9328681639149,
+          "class": "win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 95,
+          "net_profit_factor": 1.1530682090508135,
+          "net_pnl": 710.4332538118979,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 84,
+          "net_profit_factor": 1.1020162733319083,
+          "net_pnl": 454.12633699249454,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 127,
+          "net_profit_factor": 0.855328450906251,
+          "net_pnl": -1069.9089264280829,
+          "class": "loss"
+        }
+      ],
+      "n_subperiods_evaluated": 4,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "MOODENG/USDT",
+      "P_fast": 8,
+      "P_slow": 200,
+      "trades": 213,
+      "full_sample_net_pf": 1.0567226808215833,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 40,
+          "net_profit_factor": 1.579005985868899,
+          "net_pnl": 949.8697110762721,
+          "class": "win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 20,
+          "net_profit_factor": 1.3157219479929092,
+          "net_pnl": 302.6221688650335,
+          "class": "win"
+        },
+        {
+          "subperiod": 2,
+          "trades": 81,
+          "net_profit_factor": 0.9409207344251007,
+          "net_pnl": -285.0726559604054,
+          "class": "loss"
+        },
+        {
+          "subperiod": 3,
+          "trades": 72,
+          "net_profit_factor": 0.922225114547326,
+          "net_pnl": -315.90124970586703,
+          "class": "loss"
+        }
+      ],
+      "n_subperiods_evaluated": 4,
+      "n_subperiods_pf_gt_1": 2,
+      "n_subperiods_pf_le_1": 2,
+      "verdict": "fragile"
+    },
+    {
+      "symbol": "SUPER/USDT",
+      "P_fast": 8,
+      "P_slow": 200,
+      "trades": 307,
+      "full_sample_net_pf": 1.037739919717168,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 100,
+          "net_profit_factor": 1.1334725665440766,
+          "net_pnl": 647.8832441740878,
+          "class": "win"
+        },
+        {
+          "subperiod": 1,
+          "trades": 83,
+          "net_profit_factor": 0.9220317179186851,
+          "net_pnl": -370.09288141777324,
+          "class": "loss"
+        },
+        {
+          "subperiod": 2,
+          "trades": 88,
+          "net_profit_factor": 1.0374382254717784,
+          "net_pnl": 163.32988640919575,
+          "class": "win"
+        },
+        {
+          "subperiod": 3,
+          "trades": 36,
+          "net_profit_factor": 1.0872972631141493,
+          "net_pnl": 151.24228416327787,
+          "class": "win"
+        }
+      ],
+      "n_subperiods_evaluated": 4,
+      "n_subperiods_pf_gt_1": 3,
+      "n_subperiods_pf_le_1": 1,
+      "verdict": "fragile"
+    }
+  ],
+  "subperiod_verdict_counts": {
+    "insufficient": 4,
+    "fragile": 31,
+    "stable": 1
+  },
+  "n_stable_cells": 1,
+  "n_fragile_cells": 31,
+  "n_insufficient_cells": 4,
+  "n_loss_only_cells": 0
+}

@@ -238,6 +238,23 @@ def save_cell(results_dir, symbol, fast, slow, trades, equity_df, metrics,
     return cell_dir
 
 
+def merge_symbol_lists(prior, current):
+    """Union of the symbols a run already covers and the ones it selects now.
+
+    A resumed run may be invoked with a narrower `--n` than the run it resumes
+    (a stale limit, a smoke test, a partial continuation). The completed cells
+    of the symbols that are no longer selected still exist in the run
+    directory, so the durable record of the run must keep them: writing the
+    narrower list would leave a progress file whose symbol count contradicts
+    its own completed-cell count.
+    """
+    merged = list(prior or [])
+    for symbol in current or []:
+        if symbol not in merged:
+            merged.append(symbol)
+    return merged
+
+
 def main():
     parser = argparse.ArgumentParser(description='Run full EMA period grid per symbol')
     parser.add_argument('--mcap', type=str, default='universe/mcap_rank.json')
@@ -335,18 +352,24 @@ def main():
     progress_path = results_dir / 'progress.json'
     completed = set()
     next_cell = None
+    prior_symbols = []
     if progress_path.exists():
         try:
             with open(progress_path) as f:
                 prev = json.load(f)
             completed = {(c['symbol'], c['P_fast'], c['P_slow']) for c in prev.get('completed', [])}
             next_cell = tuple(prev.get('next_cell')) if prev.get('next_cell') else None
+            prior_symbols = list(prev.get('symbols', []))
         except Exception:
             completed = set()
 
     symbols = load_mcap_ranking(args.mcap)[:args.n]
+    # The run covers the symbols it already covered plus the ones it selects now.
+    covered_symbols = merge_symbol_lists(prior_symbols, symbols)
     run_config['symbols'] = symbols
     run_config['n_symbols'] = len(symbols)
+    run_config['covered_symbols'] = covered_symbols
+    run_config['n_covered_symbols'] = len(covered_symbols)
     # Log the universe expansion in the experiment config (PROMPT.md §2.1):
     # previous N -> new N, ranks added, ranking source and timestamp.
     mcap_snapshot = load_mcap_snapshot(args.mcap)
@@ -443,9 +466,10 @@ def main():
     progress = {
         'run_id': run_id,
         'timestamp': timestamp,
-        'symbols': symbols,
+        'symbols': covered_symbols,
+        'invocation_symbols': symbols,
         'n_pairs': len(pairs),
-        'n_symbols': len(symbols),
+        'n_symbols': len(covered_symbols),
         'completed_cells': len(completed),
         'completed': completed_list,
         'next_cell': unprocessed,  # [symbol, P_fast, P_slow] or None

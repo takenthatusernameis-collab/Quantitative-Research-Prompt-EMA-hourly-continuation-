@@ -2154,3 +2154,132 @@ Re-ran `scripts/aggregate_grid.py` and `scripts/candidate_check.py` on `results/
 
 ### Tests
 `python -m pytest tests/ -q` → **56 passed** (no code changes).
+
+---
+
+## Batch 26 post-checks (2026-10-20T23:47Z) — band audit + pooled robustness legs
+
+No universe change in this session: N stays **266**, floor stays **TAIKO/USDT**
+$15 436 339. The work below is verification of the exhausted band and the two
+robustness legs of PROMPT.md §3.3 that the grid pipeline did not yet cover over
+the expanded universe. No market-cap query was made (the 24h refresh bound from
+`universe/last_scan.json` opens 2026-10-21T11:30:04Z).
+
+### 1. State re-verification against the saved artifacts
+
+| Artifact | Fact |
+|---|---|
+| `universe/last_scan.json` | `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=266`, `eligible_unseen_below_floor_count=0`, `next_eligible_refresh_at=2026-10-21T11:30:04.315667+00:00` |
+| snapshot `mcap_snapshot_20261020_113004` | fetched 2026-10-20T11:30:04Z, pages 10/10 returned, 1 000 entries, lowest covered rank 1 000 ($15 174 185) — coverage does reach below the floor |
+| `universe/mcap_rank.json` | 266 unique symbols, market-cap descending, batch 26 = POKT…TAIKO |
+| fixtures | 266/266 present, every fixture >= 17 520 hourly bars; `fetch_manifest.json` 267 rows |
+| `results/20261019_135940_grid/progress.json` | 17 556/17 556 cells, `next_cell=null`, `all_symbols_processed=true` |
+| aggregate re-run (`scripts/aggregate_grid.py`, offline) | reproduced mean net PF **0.4993**, median **0.5205**, best **2.2274**, 36 cells net PF > 1, 26 exploratory, 17 530 rejected, 0 blocked |
+| `results/20261020_233737_candidate_check/summary.md` | 36 cells, 36 rejected, 0 credible candidates |
+
+### 2. Below-floor band audit (why the band is exhausted)
+
+The snapshot covers 1 000 entries, so the names between the floor and the
+bottom of the coverage band are known exactly. All 8 of them are excluded, and
+none of the exclusions is an API failure:
+
+| Rank | Symbol | Name | Market cap | Exclusion reason |
+|---|---|---|---|---|
+| 993 | PIPPIN | pippin | $15 375 570 | `no_tradable_kucoin_spot_usdt_pair` |
+| 994 | ULT | Shardus | $15 373 856 | `no_tradable_kucoin_spot_usdt_pair` |
+| 995 | CAW | A Hunters Dream | $15 339 977 | `no_tradable_kucoin_spot_usdt_pair` |
+| 996 | PPC | Peercoin | $15 287 854 | `no_tradable_kucoin_spot_usdt_pair` |
+| 997 | USDO | OpenEden OpenDollar | $15 204 076 | `no_tradable_kucoin_spot_usdt_pair` |
+| 998 | IXS | IXS | $15 198 511 | `no_tradable_kucoin_spot_usdt_pair` |
+| 999 | SGB | Songbird | $15 174 780 | `no_tradable_kucoin_spot_usdt_pair` |
+| 1000 | BTY | Bityuan | $15 174 185 | `no_tradable_kucoin_spot_usdt_pair` |
+
+Two names just above the floor are excluded for `insufficient_hourly_history_for_grid`
+(TUT rank 989, MIRA rank 991); they rank **above** the floor, so they do not
+belong to the expansion band. The band is genuinely exhausted: the next
+expansion needs a new (or deeper) ranking, which the 24h refresh bound defers
+to 2026-10-21T11:30:04Z.
+
+### 3. New robustness legs over the full grid (PROMPT.md §3.3)
+
+`scripts/robustness_pooled.py` (new, with `tests/test_robustness_pooled.py`)
+adds the two legs the grid pipeline was missing, pooled from the artifacts the
+grid run already wrote — no backtest was re-run and no market data fetched.
+Artifact: `results/20261020_235449_robustness/summary.md` (+ `summary.json`).
+
+**Leg 1 — drop the N largest market caps** (trade-level pooling: summed net
+wins over summed net losses, never a mean of per-cell profit factors):
+
+| Universe | Symbols | Trades | Pooled net PF | Pooled net P&L |
+|---|---|---|---|---|
+| all | 266 | 14 240 827 | 0.5224 | -149 214 763 |
+| minus top 5 | 261 | 13 970 589 | 0.5248 | -146 156 436 |
+| minus top 10 | 256 | 13 690 642 | 0.5263 | -143 193 629 |
+| minus top 20 | 246 | 13 146 469 | 0.5280 | -137 379 772 |
+| minus top 50 | 216 | 11 560 475 | 0.5303 | -120 639 581 |
+
+The negative result does not hinge on the largest names: removing them makes
+the pooled net PF marginally *better*, never worse.
+
+**Leg 2 — pooled result by market-cap rank bucket** (§2.1.6 reporting):
+
+| Rank bucket | Symbols | Trades | Pooled net PF |
+|---|---|---|---|
+| 1-10 | 10 | 550 185 | 0.4083 |
+| 11-50 | 40 | 2 130 167 | 0.5037 |
+| 51-100 | 50 | 2 773 834 | 0.5188 |
+| 101-200 | 100 | 5 316 976 | 0.5360 |
+| 201+ | 66 | 3 469 665 | 0.5302 |
+
+Every bucket is below 1.0; the result is not a large-cap artifact.
+
+**Leg 3 — subperiod stability of the 36 net-PF > 1 cells** (4 equal-time slices
+of each cell's own trade timeline, minimum 5 trades per evaluated slice):
+
+- **31 fragile** (the slices disagree on the sign of the profit factor),
+- **4 insufficient** (too few trades per slice to judge),
+- **1 stable** — BABYDOGE/USDT P50_89 (28 trades, slices PF inf/1.566/1.187/inf),
+  which already has **0 out-of-sample trades** and is rejected by the OOS gate.
+
+Combined with the OOS and 2x-cost legs of `scripts/candidate_check.py`, **no
+cell survives**: 0 credible candidates, unchanged from batch 20.
+
+### Tests
+`python -m pytest tests/ -q` → **65 passed** (7 new tests in
+`tests/test_robustness_pooled.py`).
+
+---
+
+## Defect fix (2026-10-20T00:02Z) — a narrow `--n` resume truncated the coverage record
+
+**Symptom.** `results/20261019_135940_grid/progress.json` recorded only 259-260
+symbols (ending at XAI/USDT) while `completed_cells` stayed at 17 556
+(= 266 x 66). The seven batch-26 symbols (ANYONE, ACE, MOVR, RIO, BICO, AGLD,
+TAIKO) had dropped out of the run's symbol list, so the durable record
+contradicted the artifacts on disk. `run_config.json` history shows the
+responsible invocations: three `scripts/run_grid.py --resume` runs with a
+narrower `--n` (258, 259, 260) and no note, the last one at 23:57:53Z.
+
+**Cause.** The resume path in `scripts/run_grid.py` overwrote `progress.json`
+with the *invocation's* symbol selection (`load_mcap_ranking(...)[:args.n]`)
+while keeping the full completed-cell set of the previous run. A resume with a
+stale or narrower `--n` therefore shrank the recorded coverage of a run whose
+cells were all still present.
+
+**Fix.** `scripts/run_grid.py` now merges the previously recorded symbols with
+the current selection (`merge_symbol_lists`) and writes the union as the
+durable coverage, with the invocation's own selection kept separately in
+`progress.json:invocation_symbols` and `run_config.json:covered_symbols`. A
+narrower resume can no longer shrink the record. Regression test:
+`tests/test_grid_runner.py::test_merge_symbol_lists_keeps_prior_coverage`, plus
+`test_canonical_grid_progress_is_internally_consistent`, which fails if the
+shipped run's `n_symbols x n_pairs` ever stops matching `completed_cells`.
+
+**Repair.** Re-ran
+`PYTHONPATH=. python3 scripts/run_grid.py --resume results/20261019_135940_grid --n 266 --note "state repair: restore symbol coverage record ..."`.
+No cell was recomputed (all 17 556 were already complete; the run took 6 s).
+`progress.json` now records 266 symbols, 17 556 completed cells,
+`all_symbols_processed=true`, `next_cell=null` - internally consistent again.
+
+### Tests
+`python -m pytest tests/ -q` → **67 passed**.
