@@ -1,0 +1,43 @@
+{
+  "args": {
+    "parent": "results/20261019_135940_grid",
+    "child": "results/20261021_172619_grid",
+    "mcap": "universe/mcap_rank.json",
+    "fixture_base": "data/fixtures",
+    "oos_fraction": 0.35,
+    "stress_multiplier": 2.0,
+    "min_trades": 30,
+    "n_folds": 5,
+    "min_history_trades": 20,
+    "min_symbols": 1,
+    "symbols": null,
+    "verify_sample": 5,
+    "yardstick": "results/20261021_121629_survivor_selection_audit/summary.json",
+    "out": "results/20261021_184500_mutation_eval_partial",
+    "mutation_record": ""
+  },
+  "parent_config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": false,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "child_config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": true,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  }
+}

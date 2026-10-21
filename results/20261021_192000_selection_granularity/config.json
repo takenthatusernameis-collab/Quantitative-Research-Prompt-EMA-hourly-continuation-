@@ -1,0 +1,22 @@
+{
+  "args": {
+    "run": "results/20261019_135940_grid",
+    "mcap": "universe/mcap_rank.json",
+    "fixture_base": "data/fixtures",
+    "n_folds": 5,
+    "stress_multiplier": 2.0,
+    "min_history_trades": 20,
+    "buckets": [
+      5,
+      10,
+      25,
+      50,
+      100
+    ],
+    "random_replicates": 200,
+    "seed": 20261021,
+    "limit_symbols": 0,
+    "out": "results/20261021_192000_selection_granularity",
+    "render_only": null
+  }
+}

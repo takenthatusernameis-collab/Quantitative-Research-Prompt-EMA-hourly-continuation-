@@ -1,0 +1,33 @@
+# EMA Hourly Continuation — JST/USDT P21_55
+
+**Symbol:** JST/USDT  |  **P_fast:** 21  |  **P_slow:** 55
+
+**Costs:** 10.0 bps taker + 2.0 bps slippage per side
+
+**RR:** 1.0  |  **Fill:** signal-bar close  |  **SL/TP:** 1:1 to EMA_slow
+
+**Sizing:** risk-based, 1.00% of equity per trade (notional cap 10.0x equity)
+
+
+## Metrics (net of costs)
+
+| Metric | Value |
+|---|---|
+| trade_count | 530 |
+| net_profit_factor | 0.5381 |
+| net_win_rate | 0.5000 |
+| gross_profit_factor | 1.0661 |
+| gross_win_rate | 0.5057 |
+| sharpe_ratio | -4.2660 |
+| sortino_ratio | -1.4048 |
+| max_drawdown | 0.8151 |
+| cagr | -0.4812 |
+| net_avg_win | 35.5673 |
+| net_avg_loss | -66.0943 |
+| avg_hold_time_bars | 8.4264 |
+| exposure | 0.2021 |
+
+Decision label: rejected
+
+
+Bulk artifacts: `trades.csv.gz`, `equity.csv.gz` (gzip-compressed CSV). Read with `gzip -dc <file>` or `pandas.read_csv(file, compression="gzip")`.
