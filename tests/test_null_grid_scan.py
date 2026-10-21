@@ -200,6 +200,25 @@ def test_binomial_tail_is_two_sided_and_symmetric():
     assert binomial_tail(10, 100) < 0.05
 
 
+def test_binomial_tail_survives_trials_where_the_direct_sum_overflows():
+    """math.comb(9900, i) overflows, so the log-space path must still run.
+
+    The grid-wide leg scores 9900 cells, and the direct implementation of
+    this p-value raised OverflowError on it. The values below are the exact
+    two-sided binomial tail computed in 60-digit Decimal arithmetic.
+    """
+    # Median of a fair coin over 9900 trials: indistinguishable from 1.
+    assert binomial_tail(4950, 9900) == 1.0
+    # A small deviation from the median is still not significant (exact 0.8486).
+    assert binomial_tail(4960, 9900) == pytest.approx(0.8485603509, rel=1e-6)
+    # A strong minority: astronomically small. It is not exactly zero, but it
+    # underflows to 0 in float, which is what the grid leg consumes.
+    assert binomial_tail(1759, 9900) == 0.0
+    # Zero successes: 2 * 0.5**9900 underflows to 0.
+    assert binomial_tail(0, 9900) == 0.0
+    assert binomial_tail(9900, 9900) == 0.0
+
+
 def test_pooled_ratio_uses_trade_pnl_not_a_mean_of_ratios():
     """A thin cell must not get the same weight as a thick one."""
     rows = [

@@ -1,8 +1,8 @@
 # Randomized-Entry Null — EMA Hourly Continuation Grid
 
 **Source run:** `results/20261019_135940_grid`
-**Generated:** 2026-10-21T01:35:24.910266+00:00
-**Universe:** 8 symbols, 528 grid cells
+**Generated:** 2026-10-21T02:52:25.167585+00:00
+**Universe:** 266 symbols, 17556 grid cells
 **Out-of-sample window:** trailing 35% of each symbol's bars, entries restricted to the window
 **Cost stress:** 2x fees and slippage
 
@@ -20,29 +20,29 @@ Both are run through the untouched backtest engine, so the null is produced by t
 
 | Check | Result |
 |---|---|
-| Cells re-run on the full history | 0 |
-| Recomputed full-sample net PF equals the stored grid summary | 0 of 0 |
-| Windowed run equals the full-history in-window trades | 0 of 0 |
-| Vectorized signal generator equals the reference generator | 0 of 0 |
+| Cells re-run on the full history | 200 |
+| Recomputed full-sample net PF equals the stored grid summary | 192 of 200 |
+| Windowed run equals the full-history in-window trades | 200 of 200 |
+| Vectorized signal generator equals the reference generator | 200 of 200 |
 
 ## Leg 1 — The null grid
 
 | Statistic | Real rule | block null |
 |---|---|---|
-| mean out-of-sample net PF | 0.4541 | 0.5541 |
-| median out-of-sample net PF | 0.4616 | 0.5417 |
-| p95 out-of-sample net PF | 0.6962 | 0.8114 |
-| max out-of-sample net PF | 0.9328 | 1.6243 |
+| mean out-of-sample net PF | 0.4321 | 0.5443 |
+| median out-of-sample net PF | 0.4342 | 0.5308 |
+| p95 out-of-sample net PF | 0.7200 | 0.8548 |
+| max out-of-sample net PF | 1.4697 | 9.6992 |
 
 | Gate (out-of-sample leg) | Real rule | block null |
 |---|---|---|
-| Cells with out-of-sample net PF > 1 | 0 | 9 |
-| Cells clearing the §3.4 out-of-sample gate | 0 | 1 |
+| Cells with out-of-sample net PF > 1 | 77 | 276 |
+| Cells clearing the §3.4 out-of-sample gate | 6 | 35 |
 | Pooled out-of-sample net PF | 0.0000 | 0.0000 |
-| Cells with gross out-of-sample PF > 1 | 66 | 248 |
-| Median gross out-of-sample net PF | 0.8459 | 0.9923 |
-| Median out-of-sample trades per cell | 263.0000 | 205.0000 |
-| Median risk distance (share of entry price) | 1.1758% | 1.8501% |
+| Cells with gross out-of-sample PF > 1 | 2384 | 9259 |
+| Median gross out-of-sample net PF | 0.8326 | 1.0122 |
+| Median out-of-sample trades per cell | 262.0000 | 205.0000 |
+| Median risk distance (share of entry price) | 1.1191% | 1.7194% |
 
 Gate: out-of-sample net PF > 1, out-of-sample Sharpe > 0, at least min_trades out-of-sample trades, and out-of-sample net PF still > 1 under the cost stress.
 
@@ -52,16 +52,17 @@ The timing, sign null was not run over the whole grid in this leg (compute budge
 
 | Quantity | Value |
 |---|---|
-| Best cell of the grid (real) | 0.9328 |
-| Best cell of the block null | 1.6243 |
-| Null cells at or above the real best | 12 |
+| Best cell of the grid (real) | 1.4697 |
+| Best cell of the block null | 9.6992 |
+| Null cells at or above the real best | 16 |
 | Family-wise probability of a null cell reaching the real best | 1.0000 |
-| Cells where the real rule beats its own block null | 115 of 528 |
-| Two-sided sign test on that comparison | 2.02e-40 |
-| Same comparison on the gross profit factor (no cost drag) | 98 of 528 |
-| Two-sided sign test on the gross comparison | 1.37e-50 |
+| Cells where the real rule beats its own block null | 3000 of 17556 |
+| Two-sided sign test on that comparison | 0.00e+00 |
+| Same comparison on the gross profit factor (no cost drag) | 2678 of 17556 |
+| Two-sided sign test on the gross comparison | 0.00e+00 |
 
 ## Verdict
 
-- The best real cell (net PF 0.9328) sits against a best null cell of n/a; the family-wise probability that a null cell reaches the real best is 1.0000.
-- The real rule beats its own timing null in 115 of 528 cells (sign test p = 2.02e-40).
+- 6 real cells clear the §3.4 out-of-sample gate against None timing-null cells: the gate's false-positive rate under no information is 0.00% of the grid.
+- The best real cell (net PF 1.4697) sits against a best null cell of n/a; the family-wise probability that a null cell reaches the real best is 1.0000.
+- The real rule beats its own timing null in 3000 of 17556 cells (sign test p = 0.00e+00).

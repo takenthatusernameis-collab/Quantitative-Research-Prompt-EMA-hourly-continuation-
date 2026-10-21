@@ -239,8 +239,15 @@ def passes_gate(stats: dict, min_trades: int) -> bool:
 
 def process_cell(symbol: str, df: pd.DataFrame, fast: int, slow: int,
                  opts: dict) -> dict:
-    """Real cell plus one null realization per mode."""
+    """Real cell plus the null realizations that are not already checkpointed.
+
+    A resumed pass may have already written the `block` null for this cell; the
+    modes it still needs are the ones in `opts['modes']` minus the ones the
+    checkpoint already holds. The real leg is always recomputed - it is cheap
+    and it keeps the row self-contained.
+    """
     config = opts['config']
+    existing = opts.get('existing', {})
     frame = generate_signals_vectorized(df, fast, slow, config['stricter_trend'])
     signal = frame['signal'].to_numpy()
     entry_idx = np.flatnonzero(signal != 0)
@@ -257,9 +264,11 @@ def process_cell(symbol: str, df: pd.DataFrame, fast: int, slow: int,
         'entry_start_index': entry_start,
         'n_signals': int(entry_idx.size),
         'real': real,
-        'null': {},
+        'null': dict(existing),
     }
     for mode in opts['modes']:
+        if mode in row['null']:
+            continue
         rng = np.random.default_rng(cell_seed(symbol, fast, slow, mode, 0))
         positions, directions = null_entries(entry_idx, sides, eligible, rng, mode,
                                              opts.get('block_bars', DEFAULT_BLOCK_BARS))
@@ -402,14 +411,28 @@ def survivor_replicates(symbol: str, df: pd.DataFrame, fast: int, slow: int,
 def binomial_tail(successes: int, trials: int, p: float = 0.5) -> float:
     """Two-sided exact binomial p-value against a fair coin.
 
-    Implemented here because scipy is not available in this environment.
+    Implemented here because scipy is not available in this environment. For
+    large `trials` the exact sum over `math.comb` overflows (9900 choose 4950
+    is a ~3000-digit integer), so the tail is computed in log space with a
+    running recurrence and converted back only at the end. The result is the
+    same two-sided exact p-value the direct sum would give.
     """
     if trials == 0:
         return 1.0
     k = min(successes, trials - successes)
+    if k < 0:
+        return 1.0
+    logp = math.log(p)
+    logq = math.log(1.0 - p)
+    # log C(trials, i) for i = 0, updated by the recurrence
+    # C(n, i+1) = C(n, i) * (n - i) / (i + 1).
+    log_comb = 0.0
     tail = 0.0
     for i in range(k + 1):
-        tail += math.comb(trials, i) * (0.5 ** trials)
+        tail += math.exp(log_comb + i * logp + (trials - i) * logq)
+        if i == k:
+            break
+        log_comb += math.log(trials - i) - math.log(i + 1)
     return min(1.0, 2.0 * tail)
 
 
@@ -767,7 +790,7 @@ def summarize_existing(out_dir: Path, args) -> None:
 def main():
     parser = argparse.ArgumentParser(
         description='Randomized-entry null for the EMA hourly continuation grid')
-    parser.add_argument('--run', type=str, required=True, help='results/<RUNID>_grid')
+    parser.add_argument('--run', type=str, required=False, help='results/<RUNID>_grid')
     parser.add_argument('--fixture-base', type=str, default='data/fixtures')
     parser.add_argument('--oos-fraction', type=float, default=0.35)
     parser.add_argument('--stress-multiplier', type=float, default=2.0)
@@ -819,6 +842,20 @@ def main():
     out_dir = Path(args.out) if args.out else Path('results') / f'{timestamp}_null_grid_scan'
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    # Resume: keep the cells a prior pass already checkpointed and only run the
+    # ones that are missing. A pass that was interrupted (or that only ran one
+    # null mode) can therefore be completed instead of restarted from scratch.
+    checkpoint_path = out_dir / 'cells.jsonl'
+    by_key = {}
+    if checkpoint_path.exists():
+        with open(checkpoint_path) as fh:
+            for line in fh:
+                line = line.strip()
+                if not line:
+                    continue
+                r = json.loads(line)
+                by_key[(r['symbol'], r['P_fast'], r['P_slow'])] = r
+
     config = dict(CONFIG_DEFAULTS)
     config['stress_multiplier'] = args.stress_multiplier
     opts = {
@@ -841,34 +878,72 @@ def main():
     by_symbol = {}
     for symbol, fast, slow in cells:
         by_symbol.setdefault(symbol, []).append((fast, slow))
-    tasks = [(symbol, pairs, opts) for symbol, pairs in sorted(by_symbol.items())]
 
-    print(f'Screening {len(cells)} cells over {len(symbols)} symbols '
-          f'(modes: {", ".join(args.modes)}) on {args.workers} workers', flush=True)
+    # A cell is still to run when it lacks any of the requested null modes. The
+    # tasks are grouped by symbol so the fixture is loaded once per symbol.
+    tasks = []
+    for symbol, pairs in sorted(by_symbol.items()):
+        missing = []
+        for fast, slow in pairs:
+            key = (symbol, fast, slow)
+            existing = by_key.get(key, {}).get('null', {})
+            if any(m not in existing for m in args.modes):
+                missing.append((fast, slow))
+        if missing:
+            tasks.append((symbol, missing, opts))
+    if by_key:
+        print(f'Resuming: {len(by_key)} cells already checkpointed, '
+              f'{sum(len(t[1]) for t in tasks)} cells still to run', flush=True)
 
+    # Rewrite the checkpoint from scratch so a row that gained a mode replaces
+    # the stale row that lacked it. The merge happens by cell key, so the file
+    # stays exactly one row per cell.
     rows = []
-    # The per-cell results are checkpointed as they arrive, so a long grid
-    # pass that is interrupted still leaves a usable artifact on disk.
-    with open(out_dir / 'cells.jsonl', 'w') as checkpoint:
-        if args.workers > 1:
-            import multiprocessing as mp
-            with mp.Pool(processes=args.workers) as pool:
-                for i, result in enumerate(pool.imap_unordered(_worker, tasks), 1):
-                    rows.extend(result)
-                    for row in result:
-                        checkpoint.write(json.dumps(row, default=str) + '\n')
-                    checkpoint.flush()
+    # The checkpoint is rewritten from scratch so a row that gained a mode
+    # replaces the stale row that lacked it. Every cell - the ones a prior pass
+    # already wrote AND the ones this pass just computed - must be emitted, or
+    # the rewrite silently drops the prior pass: the first timing/sign run
+    # wrote 264 rows over a file that held 17 556.
+    with open(checkpoint_path, 'w') as checkpoint:
+        def _emit(result_rows):
+            for row in result_rows:
+                key = (row['symbol'], row['P_fast'], row['P_slow'])
+                by_key[key] = row
+            checkpoint.write(''.join(json.dumps(r, default=str) + '\n'
+                                     for r in result_rows))
+            checkpoint.flush()
+
+        if tasks:
+            if args.workers > 1:
+                import multiprocessing as mp
+                with mp.Pool(processes=args.workers) as pool:
+                    batch = []
+                    for result in pool.imap_unordered(_worker, tasks):
+                        batch.extend(result)
+                        if len(batch) >= 50:
+                            _emit(batch)
+                            batch = []
+                            print(f'  {len(by_key)} cells checkpointed', flush=True)
+                    if batch:
+                        _emit(batch)
+            else:
+                for i, task in enumerate(tasks, 1):
+                    _emit(_worker(task))
                     if i % 25 == 0:
-                        print(f'  {i}/{len(tasks)} symbols done ({len(rows)} cells)', flush=True)
-        else:
-            for i, task in enumerate(tasks, 1):
-                result = _worker(task)
-                rows.extend(result)
-                for row in result:
-                    checkpoint.write(json.dumps(row, default=str) + '\n')
-                checkpoint.flush()
-                if i % 25 == 0:
-                    print(f'  {i}/{len(tasks)} symbols done ({len(rows)} cells)', flush=True)
+                        print(f'  {i}/{len(tasks)} symbols done', flush=True)
+        # Re-emit every merged row, including the cells this pass did not touch,
+        # so the file holds exactly one row per cell and no prior data is lost.
+        _emit(list(by_key.values()))
+
+    # Re-read the full checkpoint so the summary covers every cell, including
+    # the ones a prior pass wrote.
+    all_rows = []
+    with open(checkpoint_path) as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                all_rows.append(json.loads(line))
+    rows = all_rows
 
     grid_summary = build_grid_summary(rows, args.modes, args.min_trades)
     n_cells = len(rows)
