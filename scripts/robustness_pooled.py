@@ -26,7 +26,6 @@ Usage:
         --drop-top 5 10 20 50 --subperiods 4
 """
 import argparse
-import gzip
 import json
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -35,10 +34,17 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from scripts.run_grid import read_artifact_csv
+
 # A subperiod with fewer trades than this cannot say anything about the sign of
 # its profit factor, so it is reported but not counted towards the stability
 # verdict.
 MIN_TRADES_PER_SUBPERIOD = 5
+
+# The grid runner writes gzip-compressed blotters, but the five largest
+# market-cap names (ranks 1-5) still carry the legacy baseline-study layout.
+TRADES_FILENAME = 'trades.csv.gz'
+LEGACY_TRADES_FILENAME = 'trades.csv'
 
 # Market-cap rank buckets used for the §2.1.6 reporting requirement. The last
 # bucket is open-ended and covers every remaining rank.
@@ -223,10 +229,18 @@ def stability_verdict(subperiods: list) -> str:
 
 
 def read_trades(cell_dir: Path) -> pd.DataFrame:
-    """Read one cell's trade blotter."""
-    path = Path(cell_dir) / 'trades.csv.gz'
-    with gzip.open(path, 'rt') as fh:
-        df = pd.read_csv(fh)
+    """Read one cell's trade blotter.
+
+    The run is not uniform: the five largest market-cap names carry the
+    legacy baseline-study layout (`trades.csv`), the rest carry the
+    gzip-compressed layout (`trades.csv.gz`). `read_artifact_csv` handles
+    both, so the subperiod leg does not skip - or crash on - the top of the
+    universe.
+    """
+    path = Path(cell_dir) / TRADES_FILENAME
+    if not path.exists():
+        path = Path(cell_dir) / LEGACY_TRADES_FILENAME
+    df = read_artifact_csv(path)
     df['entry_time'] = pd.to_datetime(df['entry_time'], utc=True)
     return df
 

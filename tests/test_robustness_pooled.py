@@ -1,10 +1,13 @@
 """Tests for the pooled robustness legs (scripts/robustness_pooled.py)."""
+import gzip
+
 import pandas as pd
 import pytest
 
 from scripts.robustness_pooled import (bucket_label, cell_net_totals, drop_top_n_legs,
-                                        pool, rank_of, split_subperiods,
-                                        stability_verdict, subperiod_stats)
+                                        pool, rank_of, read_trades,
+                                        split_subperiods, stability_verdict,
+                                        subperiod_stats)
 
 
 def test_cell_net_totals_recover_win_and_loss_sums():
@@ -121,3 +124,29 @@ def test_stability_verdict_stable_and_loss_only():
     assert stability_verdict(thin) == 'insufficient'
     assert stability_verdict([{'trades': 0, 'net_profit_factor': None, 'class': 'empty'}]) \
         == 'no_trades'
+
+
+def test_read_trades_handles_both_blotter_layouts(tmp_path):
+    """The run mixes the gzip and the legacy layout; both must be readable.
+
+    The five largest market-cap names still carry the legacy uncompressed
+    `trades.csv`, the rest carry `trades.csv.gz`. A reader that only knows
+    the gzip layout skips - or crashes on - the top of the universe.
+    """
+    columns = ['symbol', 'entry_time', 'pnl_net']
+    gz_dir = tmp_path / 'P50_100'
+    gz_dir.mkdir()
+    with gzip.open(gz_dir / 'trades.csv.gz', 'wt', encoding='utf-8') as fh:
+        fh.write('symbol,entry_time,pnl_net\nBTC/USDT,2024-01-01 00:00:00+00:00,1.5\n')
+    legacy_dir = tmp_path / 'legacy'
+    legacy_dir.mkdir()
+    (legacy_dir / 'trades.csv').write_text(
+        'symbol,entry_time,pnl_net\nBTC/USDT,2024-01-01 00:00:00+00:00,2.5\n')
+
+    gz = read_trades(gz_dir)
+    legacy = read_trades(legacy_dir)
+
+    assert len(gz) == 1 and len(legacy) == 1
+    assert gz['pnl_net'].iloc[0] == pytest.approx(1.5)
+    assert legacy['pnl_net'].iloc[0] == pytest.approx(2.5)
+    assert str(gz['entry_time'].dtype) == str(legacy['entry_time'].dtype)
