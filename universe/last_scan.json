@@ -1,6 +1,6 @@
 {
   "recorded_at": "2026-10-22T12:15:59.303435+00:00",
-  "state": "EXPANSION_AVAILABLE",
+  "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
   "snapshot_id": "mcap_snapshot_20261022_121558",
   "snapshot_path": "universe/mcap_snapshot_20261022_121558.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
@@ -16,66 +16,11 @@
   "coverage_reaches_below_floor": true,
   "universe_n": 275,
   "expansion_floor": {
-    "symbol": "ALT/USDT",
-    "market_cap_usd": 4657662
+    "symbol": "ALPINE/USDT",
+    "market_cap_usd": 3614141
   },
-  "eligible_unseen_below_floor_count": 9,
-  "eligible_unseen_below_floor": [
-    {
-      "rank": 1825,
-      "symbol": "BLZ",
-      "name": "Bluzelle",
-      "market_cap_usd": 4426543
-    },
-    {
-      "rank": 1905,
-      "symbol": "PIXEL",
-      "name": "Pixels",
-      "market_cap_usd": 3946380
-    },
-    {
-      "rank": 1909,
-      "symbol": "ALEX",
-      "name": "ALEX Lab",
-      "market_cap_usd": 3926041
-    },
-    {
-      "rank": 1912,
-      "symbol": "CWEB",
-      "name": "Coinweb",
-      "market_cap_usd": 3898532
-    },
-    {
-      "rank": 1924,
-      "symbol": "TRADE",
-      "name": "Polytrade",
-      "market_cap_usd": 3829622
-    },
-    {
-      "rank": 1942,
-      "symbol": "ZPAY",
-      "name": "ZoidPay",
-      "market_cap_usd": 3761991
-    },
-    {
-      "rank": 1956,
-      "symbol": "ZKJ",
-      "name": "Polyhedra Network",
-      "market_cap_usd": 3686819
-    },
-    {
-      "rank": 1970,
-      "symbol": "BOSON",
-      "name": "Boson",
-      "market_cap_usd": 3633288
-    },
-    {
-      "rank": 1977,
-      "symbol": "ALPINE",
-      "name": "Alpine F1 Team Fan Token",
-      "market_cap_usd": 3614141
-    }
-  ],
+  "eligible_unseen_below_floor_count": 0,
+  "eligible_unseen_below_floor": [],
   "batch_selected": [
     "BLZ/USDT",
     "PIXEL/USDT",
@@ -254,5 +199,69 @@
     ],
     "excluded": [],
     "conflicts": []
+  },
+  "history_probe_failure_count": 0,
+  "coverage_reaches_below_current_floor": true,
+  "grid_verification": {
+    "run": "results/20261019_135940_grid",
+    "verified_at": "2026-10-22T13:22:51.220649+00:00",
+    "symbols": 275,
+    "cells_complete": 18124,
+    "cells_expected": 18150,
+    "cells_blocked": 0,
+    "incomplete_symbols": [
+      {
+        "symbol": "ALPINE/USDT",
+        "missing": [
+          "P26_55",
+          "P26_89",
+          "P26_100",
+          "P26_144",
+          "P26_200",
+          "P34_50",
+          "P34_55",
+          "P34_89",
+          "P34_100",
+          "P34_144",
+          "P34_200",
+          "P50_55",
+          "P50_89",
+          "P50_100",
+          "P50_144",
+          "P50_200",
+          "P55_89",
+          "P55_100",
+          "P55_144",
+          "P55_200",
+          "P89_100",
+          "P89_144",
+          "P89_200",
+          "P100_144",
+          "P100_200",
+          "P144_200"
+        ]
+      }
+    ],
+    "symbols_without_fixture": []
+  },
+  "last_verified_at": "2026-10-22T13:22:51.220649+00:00",
+  "last_verification_note": "",
+  "grid_expansion": {
+    "run": "results/20261019_135940_grid",
+    "expanded_at": "2026-10-22T13:31:46.363020+00:00",
+    "previous_n": 274,
+    "new_n": 275,
+    "symbols": [
+      "ALPINE/USDT"
+    ],
+    "outcomes": [
+      {
+        "symbol": "ALPINE/USDT",
+        "cells": 66,
+        "blocked": 0,
+        "missing": [],
+        "expected": 66
+      }
+    ]
   }
 }

@@ -97,4 +97,4 @@ Update `universe/mcap_expansion_log.md` and this handoff. Pooled report replaced
 
 ---
 
-**Session 2026-10-22T11:15Z (this session).** Offline only — bound not yet elapsed (11:15 < 11:41:20). `plan` → `refresh_allowed_now: false` ("the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 has not elapsed yet"); `state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`; `scripts/validate_fixtures.py --all` → 268 fixtures, 0 invalid; `PYTHONPATH=. python3 -m pytest tests/ -q` → **249 passed**. No provider contact this session. Session stopped cleanly; nothing was fetched. The single gated ranking pass + expansion belongs to the first session after 2026-10-22T11:41:20Z.
+**Session 2026-10-22T13:20Z.** Grid completed for ALPINE/USDT (66 cells); 18150/18150, 0 blocked. Aggregate: 18150 cells, mean net PF 0.4987, 37 net PF>1, candidate_check rejected all. Tests 249 passed. N=275, floor ALPINE/USDT $3 614 141. Next refresh 2026-10-23T12:15:58Z. Next agent: single-variable mutation of expanded baseline.
