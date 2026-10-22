@@ -100,7 +100,7 @@ def repo_root() -> Path:
 
 def read_json(path):
     path = Path(path)
-    if not path.exists():
+    if not path.is_file():
         return {}
     return json.loads(path.read_text())
 
@@ -112,6 +112,24 @@ def write_json(path, payload) -> None:
     tmp = path.with_name(path.name + '.tmp')
     tmp.write_text(json.dumps(payload, indent=2))
     tmp.replace(path)
+
+
+def snapshot_of(state: dict) -> dict:
+    """The frozen snapshot of the recorded pass.
+
+    The scan record stores the path of the snapshot relative to the
+    repository root, so it is resolved against that root and not against the
+    working directory of the session: a phase that ran from somewhere else
+    would otherwise read no snapshot at all - and a phase that reads no
+    snapshot cannot see the band below the expansion floor.
+    """
+    path = state.get('snapshot_path')
+    if not path:
+        return {}
+    resolved = Path(path)
+    if not resolved.is_absolute():
+        resolved = repo_root() / resolved
+    return read_json(resolved)
 
 
 # --------------------------------------------------------------------------
@@ -421,7 +439,7 @@ def phase_fixtures(args) -> dict:
     symbols = list(ranking.get('symbols', []))
     pending = symbols_without_fixture(symbols, args.fixture_dir)
     state = read_json(args.scan)
-    snapshot = read_json(state.get('snapshot_path') or '')
+    snapshot = snapshot_of(state)
 
     print(f'Symbols without a fixture: {len(pending)}')
     results = []
@@ -548,7 +566,7 @@ def phase_state(args) -> dict:
     ranking = read_json(args.ranking)
     symbols = list(ranking.get('symbols', []))
     state = read_json(args.scan)
-    snapshot = read_json(state.get('snapshot_path') or '')
+    snapshot = snapshot_of(state)
 
     total_cells = 0
     blocked = 0
@@ -560,9 +578,24 @@ def phase_state(args) -> dict:
         if status['missing']:
             incomplete.append({'symbol': symbol, 'missing': status['missing']})
 
-    included = fms.included_market_caps(snapshot, symbols, Path(args.fixture_dir))
-    floor_mcap, floor_symbol = fms.expansion_floor(included)
-    remaining = fms.select_expansion_candidates(snapshot, symbols, floor_mcap)
+    if snapshot:
+        included = fms.included_market_caps(snapshot, symbols, Path(args.fixture_dir))
+        floor_mcap, floor_symbol = fms.expansion_floor(included)
+        remaining = fms.select_expansion_candidates(snapshot, symbols, floor_mcap)
+        probe_failures = int(snapshot.get('history_probe_failure_count') or 0)
+    else:
+        # Without the frozen snapshot the band below the floor cannot be seen
+        # at all, and the recorded floor is the only floor the program has: it
+        # must not be overwritten with a degenerate value (a floor of $0 would
+        # turn every name of the ranking into a candidate below the floor).
+        recorded = state.get('expansion_floor') or {}
+        floor_mcap = recorded.get('market_cap_usd')
+        floor_symbol = recorded.get('symbol')
+        remaining = []
+        probe_failures = int(state.get('history_probe_failure_count') or 0)
+        print(f'WARNING: the frozen snapshot of the recorded pass could not be '
+              f'read ({state.get("snapshot_path")}); the expansion floor is left '
+              f'unchanged and the band below it was not observed.')
 
     # An empty band is only an exhausted band when the pass actually looked at
     # it (PROMPT.md §2.1.5: an empty-but-complete ranking is not the same
@@ -592,8 +625,6 @@ def phase_state(args) -> dict:
     # the floor is exhausted: a name whose probe failed may well be eligible
     # (PROMPT.md §2.1.5 - an API failure is not proof of ineligibility). Such
     # a pass is an incomplete scan, not an exhausted band.
-    probe_failures = int(snapshot.get('history_probe_failure_count') or 0)
-
     now = args.now or datetime.now(timezone.utc)
     state['universe_n'] = len(symbols)
     state['expansion_floor'] = {'symbol': floor_symbol, 'market_cap_usd': floor_mcap}
@@ -719,17 +750,57 @@ def expansion_key(snapshot_id, added) -> str:
     return f"{snapshot_id}|{','.join(sorted(added))}"
 
 
+def cycle_batch(state: dict, ranking: dict) -> list:
+    """The names the current refresh cycle added to the universe.
+
+    The scan record is the authority: `batch_selected` is what the ranking
+    pass of this cycle selected, and the fixtures phase drops from it the
+    names whose bars did not pass the integrity checks.
+
+    The ranking file's `added_in_this_expansion` only names the *last*
+    expansion. A cycle that adds nothing - the band below the floor is
+    exhausted, so the ranking pass selects no name - leaves that field
+    untouched, and a log phase that read it would append a second section for
+    the batch of the cycle before it (and consume the next batch number).
+    The fallback to the ranking is therefore only allowed when the record and
+    the ranking describe the same snapshot; that is the case for a record
+    written before the field existed.
+    """
+    batch = list(state.get('batch_selected') or [])
+    if batch:
+        return batch
+    if state.get('snapshot_id') and state.get('snapshot_id') == ranking.get('snapshot_id'):
+        return list(ranking.get('added_in_this_expansion') or [])
+    return []
+
+
 def phase_log(args) -> str:
     """Append the expansion to the universe expansion log (PROMPT.md §2.1.6)."""
     ranking = read_json(args.ranking)
     symbols = list(ranking.get('symbols', []))
     state = read_json(args.scan)
-    snapshot = read_json(state.get('snapshot_path') or '')
+    snapshot = snapshot_of(state)
     expansion = state.get('grid_expansion') or {}
-    added = list(ranking.get('added_in_this_expansion') or [])
+    added = cycle_batch(state, ranking)
     market_caps = ranking.get('added_market_caps_usd') or {}
 
     log_path = Path(args.log)
+    if not added:
+        # A cycle that adds no name is not an expansion: the scan itself is
+        # recorded in universe/last_scan.json (PROMPT.md §2.1.5), and the
+        # expansion log keeps its sections for the universe changes only.
+        print(f'{args.log}: this refresh cycle added no name to the universe, '
+              f'so no expansion section was appended (the scan itself is '
+              f'recorded in {args.scan}).')
+        return ''
+    missing = [s for s in added if s not in symbols]
+    if missing:
+        print(f'WARNING: {missing} are recorded as added by this cycle but are '
+              f'not in the ranking; they are left out of the log section.')
+        added = [s for s in added if s in symbols]
+        if not added:
+            return ''
+
     key = expansion_key(state.get('snapshot_id'), added)
     marker = f'<!-- expansion-key: {key} -->'
     if log_path.exists() and marker in log_path.read_text():
@@ -773,6 +844,8 @@ def phase_log(args) -> str:
         ticker = symbol.split('/')[0]
         entry = entries_by_symbol.get(ticker, {})
         mcap = market_caps.get(ticker)
+        if not isinstance(mcap, int):
+            mcap = entry.get('market_cap_usd')
         mcap_text = f'{mcap:,}' if isinstance(mcap, int) else 'n/a'
         lines.append(f"| {entry.get('rank', 'n/a')} | {symbols.index(symbol) + 1} | {symbol} | "
                      f"{entry.get('name', 'n/a')} | {mcap_text} | "

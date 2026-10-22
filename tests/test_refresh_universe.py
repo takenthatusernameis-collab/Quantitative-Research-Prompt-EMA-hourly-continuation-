@@ -544,6 +544,38 @@ def test_state_phase_restores_a_lost_refresh_bound(workspace):
     assert updated['next_eligible_refresh_at'] == '2026-10-23T12:00:00+00:00'
 
 
+def test_state_phase_keeps_the_floor_when_the_snapshot_cannot_be_read(workspace):
+    """An unreadable snapshot must not wipe the recorded expansion floor.
+
+    The record stores the path of the frozen snapshot relative to the
+    repository root. A phase that resolves it against the working directory
+    of the session reads no snapshot at all, computes a floor of $0 - which
+    turns every name of the ranking into a candidate below the floor - and
+    reports a band that was never observed as exhausted or not.
+    """
+    state = json.loads(Path(workspace.scan).read_text())
+    state['snapshot_path'] = 'universe/mcap_snapshot_that_is_not_there.json'
+    state['expansion_floor'] = {'symbol': 'BBB/USDT', 'market_cap_usd': 1000}
+    Path(workspace.scan).write_text(json.dumps(state))
+
+    ru.phase_state(workspace)
+
+    updated = json.loads(Path(workspace.scan).read_text())
+    assert updated['expansion_floor'] == {'symbol': 'BBB/USDT', 'market_cap_usd': 1000}
+    assert updated['state'] == 'INCOMPLETE_SCAN', 'the band was not observed'
+
+
+def test_the_snapshot_path_is_resolved_against_the_repository_root():
+    """The path of the frozen snapshot is relative to the repository root.
+
+    A phase that resolved it against the working directory of the session
+    would read no snapshot whenever the command is not run from the root.
+    """
+    snapshot = ru.snapshot_of({'snapshot_path': 'universe/mcap_rank.json'})
+    assert snapshot, 'the snapshot path must be resolved against the repository root'
+    assert 'symbols' in snapshot
+
+
 def test_state_phase_does_not_call_the_band_exhausted_when_a_probe_failed(workspace):
     """A failed history probe leaves the eligibility of that name unknown."""
     snapshot = _snapshot([_entry(1, 'AAA', 5000), _entry(2, 'BBB', 1000)])
@@ -671,6 +703,76 @@ def test_log_phase_continues_the_batch_numbering(workspace):
     assert '## Batch 2 ' in log
     assert '## Batch 1 - expansion to N = 17' in log, 'the older sections stay'
     assert 'N 1 -> 2' in log
+
+
+def test_log_phase_does_not_repeat_the_previous_batch_when_nothing_was_added(workspace):
+    """A cycle that adds no name must not log the batch of the cycle before it.
+
+    The ranking file's `added_in_this_expansion` names the last expansion, not
+    the current one: a ranking pass that finds no eligible name below the
+    floor leaves it untouched, and the scan record of that pass carries an
+    empty `batch_selected`. A log phase that read the ranking would append a
+    second section for the previous batch and consume the next batch number.
+    """
+    scan = json.loads(Path(workspace.scan).read_text())
+    scan['snapshot_id'] = 'mcap_snapshot_new'
+    scan['batch_selected'] = []
+    Path(workspace.scan).write_text(json.dumps(scan))
+
+    ru.phase_log(workspace)
+
+    assert not Path(workspace.log).exists(), (
+        'a cycle that added no name is not an expansion and must not get a '
+        'section of the expansion log')
+
+
+def test_an_exhausted_refresh_cycle_leaves_the_expansion_log_untouched(workspace, monkeypatch):
+    """The whole chain of a refresh that finds no eligible name.
+
+    The pass is made, the band below the floor is exhausted, the universe
+    keeps its names, and the log keeps its sections: the next expansion is
+    still `## Batch 27`.
+    """
+    snapshot = _snapshot([_entry(1, 'AAA', 5000), _entry(2, 'BBB', 1000),
+                          _entry(3, 'CCC', 900, reason='no_tradable_kucoin_spot_usdt_pair')])
+    _install_snapshot(monkeypatch, snapshot)
+    Path(workspace.log).write_text(
+        '# Market-Cap Universe Expansion Log\n\n'
+        '## Batch 1 - expansion to N = 17\n\n')
+
+    ru.phase_fetch(workspace)
+    ru.phase_fixtures(workspace)
+    ru.phase_grid(workspace)
+    ru.phase_state(workspace)
+    ru.phase_log(workspace)
+
+    ranking = json.loads(Path(workspace.ranking).read_text())
+    assert ranking['symbols'] == ['AAA/USDT', 'BBB/USDT']
+    state = json.loads(Path(workspace.scan).read_text())
+    assert state['state'] == 'AWAITING_NEW_ELIGIBLE_CANDIDATES'
+    assert state['batch_selected'] == []
+    log = Path(workspace.log).read_text()
+    assert log.count('## Batch ') == 1, 'no section for a cycle that added no name'
+    assert '## Batch 1 - expansion to N = 17' in log, 'the older sections stay'
+
+
+def test_log_phase_logs_the_names_of_the_current_cycle(workspace):
+    """The section names the batch of the cycle that is logged."""
+    scan = json.loads(Path(workspace.scan).read_text())
+    scan['snapshot_id'] = 'mcap_snapshot_new'
+    scan['batch_selected'] = ['CCC/USDT']
+    Path(workspace.scan).write_text(json.dumps(scan))
+    ranking = json.loads(Path(workspace.ranking).read_text())
+    ranking['symbols'].append('CCC/USDT')
+    ranking['added_in_this_expansion'] = ['CCC/USDT']
+    ranking['added_market_caps_usd'] = {'CCC': 900}
+    Path(workspace.ranking).write_text(json.dumps(ranking))
+
+    ru.phase_log(workspace)
+
+    log = Path(workspace.log).read_text()
+    assert 'CCC/USDT' in log
+    assert 'BBB/USDT' not in log.split('### Selection')[1].split('### Grid outcome')[0]
 
 
 # --------------------------------------------------------------------------

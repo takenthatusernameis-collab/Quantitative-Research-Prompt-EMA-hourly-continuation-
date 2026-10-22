@@ -3100,3 +3100,79 @@ continues the batch numbering.
 
 From **2026-10-22T11:41:20Z**: exactly one universe fetch (20 pages), then the
 expansion of the new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.
+
+---
+
+## Offline session 2026-10-22T06:55Z - no universe change; two defects fixed in the expansion path
+
+No market-cap query was made: the 24 h refresh bound from `universe/last_scan.json`
+opens **2026-10-22T11:41:20Z** and this session ran before it. N stays **266**, the
+floor stays `AGLD/USDT` $16 279 472, `eligible_unseen_below_floor_count = 0`, and the
+next section of this log is still **Batch 27**.
+
+### 1. State re-verified against the artifacts
+
+`PYTHONPATH=. python3 scripts/refresh_universe.py plan` -> `refresh_allowed_now: false`
+("the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 has not elapsed yet"),
+`symbols_without_fixture: []`, `symbols_without_grid_cells: []`, grid run
+`results/20261019_135940_grid`. The `state` phase was re-run offline with a
+verification note: **17 556 / 17 556 cells**, 0 blocked, 0 incomplete symbols,
+floor and bound unchanged. `results/20261019_135940_grid/progress.json` is in sync
+with the artifact tree (17 556 cells, 0 stale, `next_cell = null`), and
+`scripts/validate_fixtures.py --all` reports 268 fixtures, 0 invalid, 0 gaps, 0
+duplicate timestamps, 0 NaN rows.
+
+### 2. Defect fixed - the log phase wrote the previous batch again
+
+`phase_log` took the names it was about to log from the ranking file's
+`added_in_this_expansion`. That field names the **last expansion**, not the
+current cycle: a ranking pass that finds no eligible name below the floor leaves
+it untouched (the fetch phase returns before it writes the ranking), and the scan
+record of that pass carries an empty `batch_selected`.
+
+So the very first `log` run of a cycle that adds nothing appended a **second
+section for batch 26** - `## Batch 27 (applied 2026-10-21T11:41:20Z) - POKT, XAI,
+ANYONE, ACE, MOVR, RIO, BICO, AGLD, TAIKO (N 257 -> 266)` - and consumed the
+number 27 that the next real expansion needs. The log was reproduced offline
+before the fix; the expansion log is the program's ordered record of every
+universe change (PROMPT.md §2.1.6), and a duplicated section makes it ambiguous.
+
+The phase now takes the names of the current cycle from the scan record
+(`batch_selected`, which the fixtures phase also keeps in step when it drops a
+name whose bars failed the integrity checks) and writes **nothing** when the
+cycle added no name - a cycle that adds nothing is not an expansion, and the
+scan itself stays recorded in `universe/last_scan.json` (PROMPT.md §2.1.5). The
+fallback to the ranking file is only allowed when the record and the ranking
+describe the same snapshot.
+
+### 3. Defect fixed - the state phase destroyed the expansion floor
+
+The scan record stores the path of the frozen snapshot **relative to the
+repository root** (`universe/mcap_snapshot_20261021_114120.json`), and the phases
+resolved it against the working directory of the session. A phase that was not
+run from the repository root therefore read **no snapshot at all**, and the state
+phase computed the floor from an empty ranking: `expansion_floor` became
+`{"symbol": null, "market_cap_usd": 0}`, the state flipped from
+`AWAITING_NEW_ELIGIBLE_CANDIDATES` to `INCOMPLETE_SCAN`, and a floor of $0 would
+have turned every name of the ranking into a candidate below the floor. The
+reproduction ran the phase from another working directory with the record and the
+ranking copied to a scratch directory.
+
+The snapshot path is now resolved against the repository root
+(`scripts/refresh_universe.py:snapshot_of`), and when the snapshot cannot be
+read at all the phase keeps the recorded floor, reports `INCOMPLETE_SCAN` and
+prints a warning instead of overwriting the floor with a degenerate value.
+
+### 4. Tests
+
+`PYTHONPATH=. python3 -m pytest tests/ -q` -> **249 passed** (244 + 5 new in
+`tests/test_refresh_universe.py`): a cycle that adds no name does not log the
+batch of the cycle before it; the whole chain of an exhausted refresh leaves the
+log untouched; the log names the batch of the current cycle; an unreadable
+snapshot keeps the recorded floor; the snapshot path is resolved against the
+repository root.
+
+### 5. Next action
+
+From **2026-10-22T11:41:20Z**: exactly one universe fetch (20 pages), then the
+expansion of the new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.
