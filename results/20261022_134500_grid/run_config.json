@@ -1,6 +1,6 @@
 {
   "run_id": "20261022_134500_grid",
-  "timestamp": "20261022_141747",
+  "timestamp": "20261022_173040",
   "strategy": "ema_hourly_continuation",
   "mode": "full_ema_grid_mutation",
   "runner": "scripts/run_mutation_grid.py",
