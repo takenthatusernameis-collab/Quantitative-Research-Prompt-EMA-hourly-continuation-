@@ -10,8 +10,8 @@
 |---|---|
 | Program state | `MUTATION_RUNNING` |
 | Stricter-trend mutation | **running** — `results/20261022_134500_grid`, `stricter_trend: true` (single-variable; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed). |
-| Background writer | `bgp_165bbf72a001u6gVCWaugW1ZE3` (pid 3056 + 4 workers), **persistent**, sole writer on this run directory. Resumed this session after provisioning `pandas`/`pytest`. |
-| Progress | 5 280 / 18 150 cells on disk (275 symbols × 66 pairs); next cell `CAKE/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Writer restarted this session: `bgp_165bbf72a001u6gVCWaugW1ZE3` (pid 3056), persistent. The grid runs across sessions — **do not start a second writer**. |
+| Background writer | `bgp_165bcd2e9001EGNNNecrYS0WMP` (pid 4300 + 4 workers), **persistent**, sole writer on this run directory. Restarted this session (no prior writer alive). |
+| Progress | 5 280 / 18 150 cells on disk (275 symbols × 66 pairs); next cell `JASMY/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Writer restarted this session: `bgp_165bcd2e9001EGNNNecrYS0WMP` (pid 4300), persistent. The grid runs across sessions — **do not start a second writer**. |
 | Baseline grid | `results/20261019_135940_grid` — complete, 0 blocked |
 | Universe | N = 275, floor `ALPINE/USDT` $3 614 141 |
 | Frozen snapshot | `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z) |
@@ -39,7 +39,7 @@ The grid is durable and resumable: cells whose `summary.json` already exist are 
 PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
 ```
 
-A persistent writer is already running (`bgp_164aa38ce001fhigdy8up6I6wE`, pid 14923). Check `background_process status` / `logs` before re-invoking; only re-invoke if the writer is not running. Record `next_cell` from `progress.json` at each stop. Mutate **one variable at a time** (`stricter_trend` only).
+A persistent writer is now running (`bgp_165bcd2e9001EGNNNecrYS0WMP`, pid 4300). Check `background_process status` / `logs` before re-invoking; only re-invoke if the writer is not running. Record `next_cell` from `progress.json` at each stop. Mutate **one variable at a time** (`stricter_trend` only).
 
 ### 2.2 After the mutation grid completes (`next_cell = null`)
 
