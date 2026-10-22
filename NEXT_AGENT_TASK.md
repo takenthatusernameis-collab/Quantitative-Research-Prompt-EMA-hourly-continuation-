@@ -39,7 +39,7 @@ The grid is durable and resumable: cells whose `summary.json` already exist are 
 PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
 ```
 
-Progress as of 2026-10-22T16:22Z: **4 752 / 18 150 cells**, next cell `CFX/USDT P8_12`. Background process `bgp_1646bf9550014GL600cGaM45kv` (pid 3190) running, persistent. Full grid needs ~4.5+ more hours; spans sessions; record `next_cell` from `progress.json` at each stop. Re-running the same command resumes from `progress.json` — do not start a second writer on this run directory.
+Progress as of 2026-10-22T16:37Z: **4 752 / 18 150 cells**, next cell `CFX/USDT P8_12`. Background process from prior session not attached to this session; grid durable/resumable. Full grid needs ~4.5+ more hours; spans sessions; record `next_cell` from `progress.json` at each stop. Re-running the same command resumes from `progress.json` — do not start a second writer on this run directory.
 ### 2.2 After the mutation grid completes
 
 ```bash
