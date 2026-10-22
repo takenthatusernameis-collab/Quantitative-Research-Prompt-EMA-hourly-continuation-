@@ -1,10 +1,10 @@
 # Initial task for the next agent — stricter-trend single-variable mutation of the expanded baseline
 
-## Situation (verified 2026-10-22T14:36Z)
+## Situation (verified 2026-10-22T15:33Z)
 
 - Expansion complete: N = 275, floor `ALPINE/USDT` $3 614 141, snapshot `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z).
 - Baseline grid `results/20261019_135940_grid`: 275 symbols × 66 pairs = 18 150 cells, complete, 0 blocked. Aggregate mean net PF 0.4993; candidate_check rejected all; tests **249 passed**.
-- State `AWAITING_NEW_ELIGIBLE_CANDIDATES`; next eligible universe refresh **2026-10-23T12:15:58Z** — **no provider contact before then**.
+- State `MUTATION_RUNNING`; next eligible universe refresh **2026-10-23T12:15:58Z` — **no provider contact before then**.
 - ATR min-risk mutation is closed (`NOT_PROMOTED`, see `results/mutations.json`).
 
 ## Task in progress (resume this first)
@@ -13,7 +13,7 @@ A stricter-trend single-variable mutation of the expanded baseline is running as
 
 `results/20261022_134500_grid` (`stricter_trend: true`; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed).
 
-Progress: **2376 / 18 150 cells complete**, next cell `JUP/USDT P8_12`. `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Full grid needs ~7+ more hours at current rate (~2 min/symbol) and spans sessions.
+Progress: **3 432 / 18 150 cells complete** (3 580 summary.json on disk), next cell `XDC/USDT P8_12`. `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Rate ~35 cells/min → ~7 h remaining. Full grid spans sessions.
 
 Resume command (run from the repository root; it is resumable — skips cells whose `summary.json` already exists — do NOT start a second writer on this run directory):
 
@@ -45,3 +45,5 @@ Then record a `NOT_PROMOTED`/promoted `decision` for child `C_stricter_trend` in
 - No re-run of the baseline grid; no second writer on `results/20261022_134500_grid`; no promotion from a partial child grid.
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates.
 - Do not combine variables in this run (`--min-risk-atr`, `--rr`, `--aggressive-exit` stay out).
+
+(End of file - total 47 lines)
