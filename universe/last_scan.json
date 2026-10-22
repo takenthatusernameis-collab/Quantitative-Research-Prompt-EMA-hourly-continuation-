@@ -23,7 +23,7 @@
   "eligible_unseen_below_floor": [],
   "batch_selected": [],
   "next_eligible_refresh_at": "2026-10-22T11:41:20.375553+00:00",
-  "last_verified_at": "2026-10-22T11:15:32.240835+00:00",
+  "last_verified_at": "2026-10-22T11:16:04.487211+00:00",
   "last_verification_note": "Re-verified offline on 2026-10-22T10:50Z: the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 had not elapsed (10:50 < 11:41:20), so no market-data provider was contacted. The universe, the frozen snapshot and the expansion floor are unchanged (N=266, floor AGLD/USDT $16 279 472, snapshot universe/mcap_snapshot_20261021_114120.json). Independent checks in this session: refresh_universe.py plan -> refresh_allowed_now false (bound not elapsed); refresh_universe.py state -> 17 556/17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without a fixture or a grid cell; scripts/validate_fixtures.py --all -> 268 fixtures, 0 invalid, 0 gaps, 0 duplicate timestamps, 0 NaN rows; PYTHONPATH=. python3 -m pytest tests/ -q -> 249 passed. Outbound HTTPS works (checked against a non-provider host only); api.coingecko.com and api.kucoin.com were NOT contacted this session. The single gated ranking pass plus expansion belongs to the first session after 2026-10-22T11:41:20Z.",
   "below_floor_band": [
     {
@@ -89,7 +89,7 @@
   ],
   "grid_verification": {
     "run": "results/20261019_135940_grid",
-    "verified_at": "2026-10-22T11:15:32.240835+00:00",
+    "verified_at": "2026-10-22T11:16:04.487211+00:00",
     "symbols": 266,
     "cells_complete": 17556,
     "cells_expected": 17556,

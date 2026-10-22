@@ -94,3 +94,7 @@ Update `universe/mcap_expansion_log.md` and this handoff. Pooled report replaced
 - No re-fetch of fixture the grid already ran (invalidates stored cells). Missing fixture of gridded symbol is conflict to restore, not download.
 - No change to registered grid, cost model, fill rule, folds, or §3.4 gates.
 - Use `start` + `logs`/`status` for background processes (not `monitor` action to follow running processes).
+
+---
+
+**Session 2026-10-22T11:15Z (this session).** Offline only — bound not yet elapsed (11:15 < 11:41:20). `plan` → `refresh_allowed_now: false` ("the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 has not elapsed yet"); `state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`; `scripts/validate_fixtures.py --all` → 268 fixtures, 0 invalid; `PYTHONPATH=. python3 -m pytest tests/ -q` → **249 passed**. No provider contact this session. Session stopped cleanly; nothing was fetched. The single gated ranking pass + expansion belongs to the first session after 2026-10-22T11:41:20Z.

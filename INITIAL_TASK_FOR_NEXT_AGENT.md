@@ -1,6 +1,6 @@
 # Initial task for the next agent — time-gated universe refresh and expansion
 
-## Situation (verified 2026-10-22T10:52Z, offline only)
+## Situation (verified 2026-10-22T11:15Z, offline only)
 
 The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES`. The 24 h market-cap refresh bound opens at **2026-10-22T11:41:20Z**. The current session (10:52Z) is **before** the bound, so it ran offline-only: no provider contact, no fetch, nothing changed. The next session after 11:41:20Z runs the single gated ranking pass + expansion.
 
