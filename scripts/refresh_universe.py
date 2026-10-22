@@ -41,6 +41,7 @@ import argparse
 import json
 import math
 import os
+import re
 import subprocess
 import sys
 from datetime import datetime, timedelta, timezone
@@ -424,7 +425,21 @@ def phase_fixtures(args) -> dict:
 
     print(f'Symbols without a fixture: {len(pending)}')
     results = []
+    conflicts = []
     for symbol in pending:
+        # The grid already ran this symbol: its 66 cells are stored and were
+        # computed from the bars this universe holds. Re-fetching them would
+        # move the bar sequence and make every one of those cells stale
+        # (scripts/verify_grid_repro.py). A missing fixture of a gridded
+        # symbol is a data incident, not a download: the file has to be
+        # restored from the repository, or the symbol has to be re-gridded.
+        if symbol_cell_status(args.grid_run, symbol)['cells']:
+            conflicts.append(symbol)
+            print(f'  SKIP {symbol}: the grid already ran it, but its fixture '
+                  f'file is missing - re-fetching it would invalidate the '
+                  f'stored cells. Restore {fixture_path(args.fixture_dir, symbol)} '
+                  f'from the repository instead.')
+            continue
         price = snapshot_price(snapshot, symbol)
         print(f'Fetching {symbol} (KuCoin {symbol.replace("/", "-")}) '
               f'target={args.target_bars} bars ...')
@@ -464,17 +479,24 @@ def phase_fixtures(args) -> dict:
         'target_bars': args.target_bars,
         'results': results,
         'excluded': excluded,
+        'conflicts': conflicts,
     }
     if excluded:
         state['excluded_symbols'] = excluded
         batch = [s for s in (state.get('batch_selected') or [])
                  if s not in {e['symbol'] for e in excluded}]
         state['batch_selected'] = batch
+    if conflicts:
+        state['fixture_conflicts'] = conflicts
     write_json(args.scan, state)
     failed = [r['symbol'] for r in results if not r['ok']]
     if failed:
         print(f'FAILED symbols (re-query before treating them as ineligible): {failed}')
-    return {'results': results, 'failed': failed, 'excluded': excluded}
+    if conflicts:
+        print(f'CONFLICT symbols (the grid ran them, their fixture file is '
+              f'missing - restore the file, do not re-fetch it): {conflicts}')
+    return {'results': results, 'failed': failed, 'excluded': excluded,
+            'conflicts': conflicts}
 
 
 def phase_grid(args) -> dict:
@@ -551,6 +573,13 @@ def phase_state(args) -> dict:
     band_observed = state.get('coverage_reaches_below_floor')
     if band_observed is None and pass_floor:
         band_observed = fms.coverage_reaches_below_floor(snapshot, pass_floor)
+    # The pass floor is the floor *before* the batch; the floor of the universe
+    # now is the floor of the pass lowered by the names the batch added. The
+    # band that matters is the one below the current floor, and a pass that
+    # stopped at the old floor never looked at it: the names between the two
+    # floors are exactly the ones the expansion just consumed. A pass that
+    # never saw the band below the current floor cannot call it exhausted.
+    reaches_current_floor = fms.coverage_reaches_below_floor(snapshot, floor_mcap)
     coverage = state.get('coverage') or {}
     pass_complete = coverage.get('all_requested_pages_returned')
     if pass_complete is None:
@@ -574,7 +603,8 @@ def phase_state(args) -> dict:
          'market_cap_usd': e['market_cap_usd']} for e in remaining]
     if remaining:
         state['state'] = 'EXPANSION_AVAILABLE'
-    elif band_observed and pass_complete and not probe_failures:
+    elif (band_observed and reaches_current_floor and pass_complete
+          and not probe_failures):
         state['state'] = 'AWAITING_NEW_ELIGIBLE_CANDIDATES'
     else:
         state['state'] = 'INCOMPLETE_SCAN'
@@ -582,8 +612,7 @@ def phase_state(args) -> dict:
     state['history_probe_failure_count'] = probe_failures
     # The floor the universe has now: the next pass has to reach below it to
     # be able to say that the band is exhausted.
-    state['coverage_reaches_below_current_floor'] = fms.coverage_reaches_below_floor(
-        snapshot, floor_mcap)
+    state['coverage_reaches_below_current_floor'] = reaches_current_floor
     # The 24 h bound of the refresh cycle is an invariant of the record: it is
     # always the time of the last pass plus 24 h, never the end of the
     # expansion. A record that lost it would allow a second ranking pass
@@ -615,16 +644,19 @@ def phase_state(args) -> dict:
     print(f'Eligible unseen names below the floor: {len(remaining)}')
     print(f'State: {state["state"]}')
     if state['state'] == 'INCOMPLETE_SCAN':
-        print('  The pass did not observe the band below the floor (the ranking '
-              'pass was incomplete), so the band is NOT exhausted: the next '
-              'refresh has to cover it before the program may wait again.')
+        print('  The pass is incomplete, so the band below the floor is NOT '
+              'exhausted: the next refresh has to cover it before the program '
+              'may wait again.')
     if probe_failures:
         print(f'  {probe_failures} hourly-history probe(s) failed on this pass, '
               f'so the eligibility of those names is unknown (not negative): '
               f'the band is not exhausted either.')
-    if not state['coverage_reaches_below_current_floor']:
-        print('  The pass did not reach below the current floor: the next pass '
-              'needs more pages to be able to exhaust the band.')
+    if not reaches_current_floor:
+        print('  The pass did not reach below the current floor '
+              f'(${floor_mcap:,}): the names between the floor of the pass and '
+              'the current floor are the ones the batch consumed, and the band '
+              'below the current floor was never observed. The next pass needs '
+              'more pages to be able to exhaust the band.')
     print(f'Next eligible refresh: {state.get("next_eligible_refresh_at")}')
     return state
 
@@ -657,6 +689,36 @@ def symbol_outcome(grid_run, symbol: str) -> dict:
     }
 
 
+BATCH_HEADING_RE = re.compile(r'^## Batch (\d+)\b', re.MULTILINE)
+
+
+def next_batch_number(log_path) -> int:
+    """The next batch number of the expansion log.
+
+    The log is the program's ordered record of every universe change
+    (PROMPT.md §2.1.6), and its sections are numbered `## Batch N`. A new
+    section continues that sequence, so a reader can count the expansions
+    without reconstructing the order from the timestamps.
+    """
+    path = Path(log_path)
+    if not path.exists():
+        return 1
+    numbers = [int(m) for m in BATCH_HEADING_RE.findall(path.read_text())]
+    return max(numbers) + 1 if numbers else 1
+
+
+def expansion_key(snapshot_id, added) -> str:
+    """The identity of one expansion: the ranking pass and the names it added.
+
+    Two expansions from the same frozen snapshot are different batches (the
+    second one adds the remainder of the band), so the key carries the names as
+    well as the snapshot. The key is written into the log as a marker, so a
+    repeated `log` run recognises the batch it already recorded instead of
+    appending the same expansion twice.
+    """
+    return f"{snapshot_id}|{','.join(sorted(added))}"
+
+
 def phase_log(args) -> str:
     """Append the expansion to the universe expansion log (PROMPT.md §2.1.6)."""
     ranking = read_json(args.ranking)
@@ -667,17 +729,32 @@ def phase_log(args) -> str:
     added = list(ranking.get('added_in_this_expansion') or [])
     market_caps = ranking.get('added_market_caps_usd') or {}
 
+    log_path = Path(args.log)
+    key = expansion_key(state.get('snapshot_id'), added)
+    marker = f'<!-- expansion-key: {key} -->'
+    if log_path.exists() and marker in log_path.read_text():
+        print(f'{args.log} already records this batch ({key}): nothing appended.')
+        return ''
+
     entries_by_symbol = {e['symbol']: e for e in (snapshot.get('entries') or [])}
     manifest = read_json(Path(args.fixture_dir) / 'fetch_manifest.json')
     rows_by_symbol = {row.get('symbol'): row.get('rows')
                       for row in (manifest if isinstance(manifest, list) else [])
                       if isinstance(row, dict)}
+    previous_n = expansion.get('previous_n', len(symbols) - len(added))
+    batch_number = next_batch_number(args.log)
     lines = ['']
     lines.append('---')
     lines.append('')
     title = ', '.join(s.split('/')[0] for s in added) if added else '(no new names)'
-    lines.append(f"## Expansion {state.get('snapshot_id')} - {title} "
-                 f"(N {expansion.get('previous_n', len(symbols) - len(added))} -> {len(symbols)})")
+    lines.append(f"## Batch {batch_number} (applied {state.get('scanned_at')}) "
+                 f"- {title} (N {previous_n} -> {len(symbols)})")
+    lines.append('')
+    lines.append(marker)
+    lines.append('')
+    lines.append(f"**Universe ranks added:** "
+                 f"{previous_n + 1 if added else previous_n}-{len(symbols)} "
+                 f"(of {len(symbols)}).")
     lines.append('')
     lines.append(f"**Source snapshot:** `{state.get('snapshot_path')}` "
                  f"({state.get('snapshot_source')}, fetched {state.get('scanned_at')}).")
@@ -738,6 +815,11 @@ def phase_log(args) -> str:
                  f"{verification.get('cells_blocked', 0)} blocked.")
     lines.append(f"- Eligible unseen names below the floor: "
                  f"**{state.get('eligible_unseen_below_floor_count')}**.")
+    lines.append(f"- Program state: **{state.get('state')}**.")
+    if not state.get('coverage_reaches_below_current_floor', True):
+        lines.append('- The pass did not reach below the new floor, so the band '
+                     'below it was never observed: it is not an exhausted band, '
+                     'and the next refresh has to cover it.')
     lines.append(f"- Next eligible refresh: **{state.get('next_eligible_refresh_at')}**.")
     lines.append('- The pooled report over the whole universe is produced with '
                  '`PYTHONPATH=. python3 scripts/aggregate_grid.py --run '
@@ -745,7 +827,6 @@ def phase_log(args) -> str:
     lines.append('')
 
     section = '\n'.join(lines)
-    log_path = Path(args.log)
     log_path.parent.mkdir(parents=True, exist_ok=True)
     with open(log_path, 'a') as fh:
         fh.write(section)

@@ -1,4 +1,4 @@
-# NEXT TASK — gated universe refresh and expansion (from 2026-10-22T06:05Z)
+# NEXT TASK — gated universe refresh and expansion (from 2026-10-22T06:12Z)
 
 **Read this file first.** It supersedes the task descriptions of 2026-10-21 and
 2026-10-22; the durable record of the closed mutation is `results/mutations.json`.
@@ -13,11 +13,11 @@
 | Baseline grid (the program's grid) | `results/20261019_135940_grid` — 266 symbols × 66 pairs = 17 556 cells, complete, 0 blocked |
 | Universe | N = 266, floor `AGLD/USDT` $16 279 472 |
 | Frozen universe snapshot | `universe/mcap_snapshot_20261021_114120.json` (fetched 2026-10-21T11:41:20Z, 10/10 pages, 1 000 entries, lowest covered $15 931 465) |
-| Last offline verification | 2026-10-22T06:05Z — `refresh_universe.py plan` → `refresh_allowed_now: false`; the `state` phase was re-run offline: N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without fixture/grid cells, bound unchanged. **No provider call.** |
+| Last offline verification | 2026-10-22T06:12Z — `refresh_universe.py plan` → `refresh_allowed_now: false`; the `state` phase was re-run offline: N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without fixture/grid cells, bound unchanged. **No provider call.** |
 | **Next eligible universe refresh** | **2026-10-22T11:41:20Z** (24 h after the snapshot) |
 | ATR min-risk mutation | **closed: `NOT_PROMOTED`** (see §6) |
-| Tests | `240 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`, 2026-10-22T06:05Z) |
-| Tooling | `scripts/refresh_universe.py` (gated refresh, one command sequence) — the ranking pass now covers **20 pages** and a failed hourly-history probe no longer rejects a name; `scripts/refresh_gate.py` (new) holds the 24 h bound that **both** refresh tools enforce |
+| Tests | `244 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`, 2026-10-22T06:12Z) |
+| Tooling | `scripts/refresh_universe.py` (gated refresh, one command sequence) — the ranking pass covers **20 pages** and a failed hourly-history probe no longer rejects a name; `scripts/refresh_gate.py` holds the 24 h bound that **both** refresh tools enforce |
 
 **Provider discipline.** Until 2026-10-22T11:41:20Z the market-data provider must
 not be contacted at all — no polling, no "quick check", no partial refresh. After
@@ -57,10 +57,10 @@ PYTHONPATH=. python3 scripts/refresh_universe.py log
 | Phase | Effect | Guard |
 |---|---|---|
 | `fetch` | one CoinGecko pass (`/api/v3/coins/markets`, `order=market_cap_desc`, **20 pages** = 2 000 entries), snapshot frozen to `universe/mcap_snapshot_<TS>.json`, batch appended to `universe/mcap_rank.json` (append-only, descending market cap), scan record written | refuses to run before `next_eligible_refresh_at`; a second pass in the same window is refused before any provider call; an override needs `--override-gate --override-reason "<reason>"` |
-| `fixtures` | hourly KuCoin bars for the **new** symbols only (target 22 000 bars), integrity-checked (bar count, duplicate timestamps, contiguous hourly grid, valid OHLC, price identity), provenance written to `data/fixtures/fetch_manifest.json` | never re-fetches a symbol the grid already ran — that would move the bar sequence and make the stored cells stale (`scripts/verify_grid_repro.py`) |
+| `fixtures` | hourly KuCoin bars for the **new** symbols only (target 22 000 bars), integrity-checked (bar count, duplicate timestamps, contiguous hourly grid, valid OHLC, price identity), provenance written to `data/fixtures/fetch_manifest.json` | never re-fetches a symbol the grid already ran — that would move the bar sequence and make the stored cells stale (`scripts/verify_grid_repro.py`). **Since 2026-10-22T06:12Z this is enforced:** a symbol whose 66 cells exist but whose fixture file is missing is skipped and reported as a *conflict* (`fixture_conflicts` in `universe/last_scan.json`) — restore the file from git, do not download it again |
 | `grid` | expands the baseline grid with the new symbols through the repository's own resume path (`scripts/run_grid.py --resume`), one symbol at a time, in descending market-cap order | existing cells are skipped, never recomputed; the run config keeps the history of every invocation |
-| `state` | verifies the grid (cells complete, blocked cells, incomplete symbols), recomputes the floor and the names still eligible below it, rewrites `universe/last_scan.json` | writes `state`, `universe_n`, `expansion_floor`, `eligible_unseen_below_floor_count`, `next_eligible_refresh_at`; a pass with failed history probes is `INCOMPLETE_SCAN`, never an exhausted band |
-| `log` | appends the batch to `universe/mcap_expansion_log.md` (PROMPT.md §2.1.6) | **appends** — run it once per batch, never twice |
+| `state` | verifies the grid (cells complete, blocked cells, incomplete symbols), recomputes the floor and the names still eligible below it, rewrites `universe/last_scan.json` | writes `state`, `universe_n`, `expansion_floor`, `eligible_unseen_below_floor_count`, `next_eligible_refresh_at`; a pass with failed history probes is `INCOMPLETE_SCAN`, never an exhausted band — and, **since 2026-10-22T06:12Z**, neither is a pass that never reached below the *current* floor (§5.1) |
+| `log` | appends the batch to `universe/mcap_expansion_log.md` (PROMPT.md §2.1.6) | **idempotent since 2026-10-22T06:12Z** (a repeated run recognises its own batch instead of appending it twice) and the section continues the numbering: the next section is **Batch 27** |
 
 **Time budget** (measured on this repository, 266-symbol baseline):
 
@@ -71,11 +71,13 @@ PYTHONPATH=. python3 scripts/refresh_universe.py log
 | `fixtures` (10 names) | ~25 min | ~2.5 min per symbol (220 candle requests, 0.4 s apart) |
 | `grid` (10 symbols) | ~20 min | 66 cells × ~1.6 s per symbol, plus ~4 s of skipped-prefix loading per invocation |
 | `aggregate_grid` + `candidate_check` | ~6 min | offline, reads the cells the grid wrote |
-| `pytest tests/ -q` | ~1.5 min | 240 tests |
+| `pytest tests/ -q` | ~1.5 min | 244 tests |
 
 **If a session dies between two phases**, continue with the remaining phases
 (`fixtures` → `grid` → `state` → `log`) — never with `fetch` again: the gate will
 refuse it, and the snapshot of the first pass is the one the expansion works on.
+The `log` phase can be re-run safely (it is idempotent); the `fetch` phase must
+not be.
 
 ### 2.3 The classic path (only if the new tool misbehaves)
 
@@ -153,10 +155,10 @@ fixture download and ~1.7 min of grid. The names must be strictly below the
 * [ ] `universe/mcap_rank.json` grew by exactly the batch, in descending market-cap order, with the old 266 symbols untouched and in place.
 * [ ] A fixture exists for every new symbol, with ≥ 17 520 hourly bars and a contiguous hourly grid, and `data/fixtures/fetch_manifest.json` has a provenance row for it.
 * [ ] The grid holds 66 cells per new symbol: `results/20261019_135940_grid/progress.json` shows `completed_cells = (266 + n) × 66`, `next_cell = null`, 0 blocked.
-* [ ] The fixtures of the 266 existing symbols were **not** re-fetched (their row counts and spans in `fetch_manifest.json` are unchanged).
+* [ ] The fixtures of the 266 existing symbols were **not** re-fetched (their row counts and spans in `fetch_manifest.json` are unchanged) and `universe/last_scan.json` has no `fixture_conflicts`.
 * [ ] `universe/last_scan.json` reports the new `universe_n`, the new floor, the remaining eligible count and `next_eligible_refresh_at = scanned_at + 24 h`.
-* [ ] `universe/mcap_expansion_log.md` records previous N → new N, the rank range added and the ranking source/date — **once**, not twice.
-* [ ] `PYTHONPATH=. python3 -m pytest tests/ -q` passes (240 at the time of writing).
+* [ ] `universe/mcap_expansion_log.md` records previous N → new N, the rank range added and the ranking source/date — **once**, as `## Batch 27`.
+* [ ] `PYTHONPATH=. python3 -m pytest tests/ -q` passes (244 at the time of writing).
 
 ---
 
@@ -164,7 +166,7 @@ fixture download and ~1.7 min of grid. The names must be strictly below the
 
 * No provider call before 2026-10-22T11:41:20Z, and no second pass inside the 24 h window afterwards.
 * No re-run of the baseline grid, no re-opening of the child grid, no second worker on any run directory, no promotion from the child grid.
-* No re-fetch of a fixture the grid already ran (it invalidates the stored cells).
+* No re-fetch of a fixture the grid already ran (it invalidates the stored cells). A missing fixture of a gridded symbol is a conflict to restore, not a download to repeat.
 * No change to the registered grid, the cost model, the fill rule, the folds or the §3.4 gates.
 * Operational: the `background_process` **monitor** action *starts* the command it is given
   instead of following it. A second copy of the verification run was started by mistake in
@@ -174,7 +176,60 @@ fixture download and ~1.7 min of grid. The names must be strictly below the
 
 ---
 
-## 5. Useful facts about the current universe
+## 5. What this session changed (offline, no provider call)
+
+Three defects in the path the expansion runs, all found by reading the code
+against the artifacts; none of them changes the registered strategy, the cost
+model, the grid or the universe.
+
+### 5.1 The state could call an unobserved band exhausted
+
+`phase_state` decided "the band below the floor is exhausted" from
+`coverage_reaches_below_floor`, the flag the **ranking pass** wrote against the
+floor it started from. A batch **lowers** the floor of the universe (the names
+between the pass floor and the new floor are exactly the ones the batch
+consumed), so a pass that stopped at the old floor never saw the band below the
+new one. The record then said `AWAITING_NEW_ELIGIBLE_CANDIDATES` — the band is
+exhausted, the program may wait 24 h — while the same record carried
+`coverage_reaches_below_current_floor: false` and the phase printed the opposite
+in its diagnostics. The exhausted state now requires the pass to have reached
+below the **current** floor as well; otherwise the state is `INCOMPLETE_SCAN`
+(PROMPT.md §2.1.5: an empty-but-complete ranking is not an incomplete scan, and
+the other way round).
+
+Consequence for the session that runs the expansion: **the state after the batch
+is expected to be `EXPANSION_AVAILABLE`**, not `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
+A 20-page pass reaches far below the new floor, so the band below it is observed
+and the eligible names in it are listed in `eligible_unseen_below_floor` — take
+them from the same frozen snapshot (§2.6) instead of waiting 24 h. Only when the
+record says `AWAITING_NEW_ELIGIBLE_CANDIDATES` (or `INCOMPLETE_SCAN` **with**
+`coverage_reaches_below_current_floor: true`) is the band really exhausted.
+
+### 5.2 The fixtures phase could re-fetch a symbol the grid already ran
+
+The phase selected the ranking symbols whose fixture **file** was missing. A
+symbol whose file is gone but whose 66 grid cells exist was therefore downloaded
+again — which moves the bar sequence and makes all 66 stored cells stale. Such a
+symbol is now skipped and reported as a conflict (`fixture_conflicts` in
+`universe/last_scan.json`); the file has to be restored from the repository (the
+fixtures are tracked in git) or the symbol re-gridded. It is never dropped from
+the universe.
+
+### 5.3 The expansion log could be written twice
+
+`phase_log` appended unconditionally, so a session that died after the `log`
+phase and re-ran it produced two sections for one batch, and the generated
+heading did not continue the `## Batch N` sequence. The phase is now idempotent
+(each section carries `<!-- expansion-key: <snapshot_id>|<names> -->`) and
+numbers its section `## Batch <next N> (applied <pass time>) - <names>
+(N old -> new)`. The next section of `universe/mcap_expansion_log.md` is
+**Batch 27**.
+
+Tests: `244 passed` (240 + 4 new in `tests/test_refresh_universe.py`).
+
+---
+
+## 6. Useful facts about the current universe
 
 * The band below the floor was **ten names wide** with 10 pages (the pass stopped at
   $15 931 465 against a floor of $16 279 472) and all ten are excluded: 4 without
@@ -213,7 +268,7 @@ fixture download and ~1.7 min of grid. The names must be strictly below the
 
 ---
 
-## 6. The closed mutation (context only — do not re-open it)
+## 7. The closed mutation (context only — do not re-open it)
 
 `results/mutations.json` → `children.C_min_risk_atr`: the PROMPT.md §5.2 ATR
 minimum-risk mutation (`min_risk_atr: false → true`, every other config field

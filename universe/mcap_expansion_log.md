@@ -3014,3 +3014,89 @@ applying a frozen snapshot is not gated.
 
 From **2026-10-22T11:41:20Z**: exactly one universe fetch (20 pages), then the
 expansion of the new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.
+
+---
+
+## Offline session 2026-10-22T06:12Z - no universe change; three defects fixed in the expansion path
+
+No market-cap query was made: the 24 h refresh bound from `universe/last_scan.json`
+opens **2026-10-22T11:41:20Z** and this session ran before it. N stays **266**, the
+floor stays `AGLD/USDT` $16 279 472, `eligible_unseen_below_floor_count = 0`.
+
+### 1. State re-verified against the artifacts
+
+`PYTHONPATH=. python3 scripts/refresh_universe.py plan` -> `refresh_allowed_now: false`
+("the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 has not elapsed yet"),
+`symbols_without_fixture: []`, `symbols_without_grid_cells: []`, grid run
+`results/20261019_135940_grid`. The `state` phase was re-run offline with a
+verification note: **17 556 / 17 556 cells**, 0 blocked, 0 incomplete symbols,
+floor and bound unchanged.
+
+### 2. Defect fixed - the state could call an unobserved band exhausted
+
+`scripts/refresh_universe.py:phase_state` decided "the band below the floor is
+exhausted" from the flag the *ranking pass* wrote (`coverage_reaches_below_floor`,
+measured against the floor the pass started from). A batch **lowers** the floor of
+the universe: the names between the pass floor and the new floor are exactly the
+ones the batch consumed, and the band below the new floor was never observed. The
+record therefore said `AWAITING_NEW_ELIGIBLE_CANDIDATES` (the band is exhausted,
+the program may wait 24 h) while the very same record carried
+`coverage_reaches_below_current_floor: false` and the phase printed "the pass did
+not reach below the current floor". The two statements contradicted each other,
+and the wrong one wins in an automated reading: the program would wait a day for a
+name it never looked for.
+
+The exhausted state now requires the pass to have reached below the **current**
+floor as well. PROMPT.md §2.1.5 asks for exactly that distinction ("an
+empty-but-complete ranking" is not "an incomplete scan"), and the band of a
+universe is the band below the floor the universe has *now*.
+
+| Situation | State |
+|---|---|
+| eligible unseen names below the current floor | `EXPANSION_AVAILABLE` |
+| none, and the pass reached below the current floor | `AWAITING_NEW_ELIGIBLE_CANDIDATES` |
+| none, but the pass stopped above the current floor | `INCOMPLETE_SCAN` |
+| none, and a hourly-history probe failed | `INCOMPLETE_SCAN` (eligibility unknown, not negative) |
+
+### 3. Defect fixed - the fixtures phase could re-fetch a gridded symbol
+
+The `fixtures` phase selected the ranking symbols whose fixture file was missing.
+A symbol whose fixture file is gone **but whose 66 grid cells exist** was
+therefore downloaded again. A fresh download moves the bar sequence, and every
+one of those 66 stored cells was computed from the old bars - the cells go stale
+(`scripts/verify_grid_repro.py`). The rule ("never re-fetch a symbol the grid
+already ran") was documented in the phase docstring but not enforced in the code.
+
+Such a symbol is now skipped and reported as a **conflict** (`fixture_conflicts`
+in `universe/last_scan.json`): the file has to be restored from the repository
+(the fixtures are tracked in git) or the symbol has to be re-gridded - it is not a
+download to repeat. Such a symbol is never dropped from the universe either.
+
+### 4. Defect fixed - the expansion log could be written twice
+
+`phase_log` appended unconditionally, so a session that died after the `log`
+phase and re-ran it produced two sections for one batch, and the generated
+heading (`## Expansion <snapshot_id> - ...`) did not continue the `## Batch N`
+sequence of the 27 sections the log already held (PROMPT.md §2.1.6 wants the
+expansions as an ordered record).
+
+The phase is now idempotent - each section carries a machine-readable marker
+`<!-- expansion-key: <snapshot_id>|<the names it added> -->`, and a re-run
+recognises its own batch instead of appending it again - and it numbers the
+section `## Batch <next N> (applied <the pass time>) - <names> (N old -> new)`.
+The next section of this log is **Batch 27**. Two expansions from the same frozen
+snapshot are different batches, so the key carries the names as well as the
+snapshot id.
+
+### 5. Tests
+
+`PYTHONPATH=. python3 -m pytest tests/ -q` -> **244 passed** (240 + 4 new in
+`tests/test_refresh_universe.py`): a pass that stopped above the new floor is
+not an exhausted band, a pass that reached below it is; a gridded symbol whose
+fixture file is missing is not downloaded again; the log phase is idempotent and
+continues the batch numbering.
+
+### 6. Next action
+
+From **2026-10-22T11:41:20Z**: exactly one universe fetch (20 pages), then the
+expansion of the new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.

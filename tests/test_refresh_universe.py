@@ -303,6 +303,37 @@ def test_fixture_phase_never_refetches_a_symbol_the_universe_already_holds(works
     assert {row['symbol'] for row in manifest} == {'AAA/USDT', 'BBB/USDT', 'CCC/USDT'}
 
 
+def test_fixture_phase_never_refetches_a_symbol_the_grid_already_ran(workspace, monkeypatch):
+    """The bars of a gridded symbol must not be downloaded again.
+
+    The 66 stored cells of that symbol were computed from the bars the
+    universe holds; a fresh download moves the bar sequence and makes every
+    one of them stale. A missing fixture of a gridded symbol is a data
+    incident to restore, not a download to repeat.
+    """
+    requested = []
+
+    def _fetch(symbol, target_bars):
+        requested.append(symbol)
+        return _bars(n=200)
+
+    monkeypatch.setattr(ru.fk, 'fetch_full_history', _fetch)
+
+    # AAA has its 66 cells in the workspace, but its fixture file is gone.
+    (Path(workspace.fixture_dir) / 'AAA_USDT.csv').unlink()
+
+    result = ru.phase_fixtures(workspace)
+
+    assert requested == [], 'the bars of a gridded symbol must not be downloaded again'
+    assert result['conflicts'] == ['AAA/USDT']
+    assert result['failed'] == []
+    # The symbol stays in the universe: it was never dropped from it.
+    ranking = json.loads(Path(workspace.ranking).read_text())
+    assert 'AAA/USDT' in ranking['symbols']
+    state = json.loads(Path(workspace.scan).read_text())
+    assert state['fixture_conflicts'] == ['AAA/USDT']
+
+
 def test_fixture_validation_rejects_a_short_history():
     checks = ru.validate_fixture(_bars(n=100), snapshot_price=1.0, min_bars=17520)
     assert checks['ok'] is False
@@ -409,6 +440,9 @@ def test_state_phase_records_the_expansion_and_the_next_refresh(workspace, monke
         _entry(1, 'AAA', 5000),
         _entry(2, 'BBB', 1000),
         _entry(3, 'CCC', 900),
+        # The pass reaches below the floor the batch leaves behind (900), so the
+        # band below it was observed - and it is empty.
+        _entry(4, 'DDD', 800, reason='no_tradable_kucoin_spot_usdt_pair'),
     ])
     snapshot_path = Path(workspace.snapshot_dir) / 'mcap_snapshot_20261022_120000.json'
     snapshot_path.write_text(json.dumps(snapshot))
@@ -430,7 +464,42 @@ def test_state_phase_records_the_expansion_and_the_next_refresh(workspace, monke
     assert updated['state'] == 'AWAITING_NEW_ELIGIBLE_CANDIDATES'
     assert updated['eligible_unseen_below_floor_count'] == 0
     assert updated['next_eligible_refresh_at'] == '2026-10-23T12:00:00+00:00'
+    assert updated['coverage_reaches_below_current_floor'] is True
     assert updated['grid_verification']['cells_expected'] == 3 * len(ru.GRID_PAIRS)
+
+
+def test_state_phase_does_not_call_the_band_exhausted_when_the_pass_missed_the_new_floor(workspace):
+    """A batch lowers the floor of the universe.
+
+    A pass that stopped at the old floor never saw the band below the new one:
+    the names between the two floors are exactly the ones the batch consumed.
+    Such a band is not an exhausted band, and the state must not say it is.
+    """
+    snapshot = _snapshot([
+        _entry(1, 'AAA', 5000),
+        _entry(2, 'BBB', 1000),
+        _entry(3, 'CCC', 900),
+    ])
+    snapshot_path = Path(workspace.snapshot_dir) / 'mcap_snapshot_20261022_120000.json'
+    snapshot_path.write_text(json.dumps(snapshot))
+    state = json.loads(Path(workspace.scan).read_text())
+    state['snapshot_path'] = str(snapshot_path)
+    state['scanned_at'] = snapshot['fetched_at']
+    state['next_eligible_refresh_at'] = '2026-10-23T12:00:00+00:00'
+    Path(workspace.scan).write_text(json.dumps(state))
+
+    ranking = json.loads(Path(workspace.ranking).read_text())
+    ranking['symbols'].append('CCC/USDT')
+    Path(workspace.ranking).write_text(json.dumps(ranking))
+
+    ru.phase_state(workspace)
+
+    updated = json.loads(Path(workspace.scan).read_text())
+    assert updated['expansion_floor']['market_cap_usd'] == 900
+    assert updated['coverage_reaches_below_current_floor'] is False
+    assert updated['state'] == 'INCOMPLETE_SCAN'
+    # The bound of the pass is untouched: the next refresh is still due.
+    assert updated['next_eligible_refresh_at'] == '2026-10-23T12:00:00+00:00'
 
 
 def test_state_phase_keeps_the_expansion_state_while_names_remain(workspace):
@@ -511,6 +580,9 @@ def test_one_full_cycle_expands_the_universe(workspace, monkeypatch):
         _entry(2, 'BBB', 1000),
         _entry(3, 'CCC', 900),
         _entry(4, 'DDD', 800),
+        # The pass reaches below the floor the batch leaves behind (800): the
+        # band below it was observed and it is empty.
+        _entry(5, 'EEE', 700, reason='no_tradable_kucoin_spot_usdt_pair'),
     ])
     _install_snapshot(monkeypatch, snapshot)
     monkeypatch.setattr(ru.fk, 'fetch_full_history',
@@ -564,6 +636,41 @@ def test_one_full_cycle_expands_the_universe(workspace, monkeypatch):
     log = Path(workspace.log).read_text()
     assert 'N 2 -> 4' in log
     assert 'CCC/USDT' in log and 'DDD/USDT' in log
+
+
+# --------------------------------------------------------------------------
+# the expansion log
+# --------------------------------------------------------------------------
+
+def test_log_phase_records_a_batch_once(workspace):
+    """A repeated log run must not append the same expansion twice.
+
+    The log is the program's ordered record of every universe change
+    (PROMPT.md §2.1.6); a duplicated section would make it ambiguous, and a
+    session that dies between two phases has to be able to re-run the phase.
+    """
+    ru.phase_log(workspace)
+    first = Path(workspace.log).read_text()
+    ru.phase_log(workspace)
+    second = Path(workspace.log).read_text()
+
+    assert first == second, 'the log phase must be idempotent'
+    assert second.count('## Batch 1 ') == 1
+
+
+def test_log_phase_continues_the_batch_numbering(workspace):
+    """The log numbers its sections; a new expansion continues the sequence."""
+    Path(workspace.log).write_text(
+        '# Market-Cap Universe Expansion Log\n\n'
+        '## Batch 0 - initial program snapshot: N = 5\n\n'
+        '## Batch 1 - expansion to N = 17\n\n')
+
+    ru.phase_log(workspace)
+
+    log = Path(workspace.log).read_text()
+    assert '## Batch 2 ' in log
+    assert '## Batch 1 - expansion to N = 17' in log, 'the older sections stay'
+    assert 'N 1 -> 2' in log
 
 
 # --------------------------------------------------------------------------

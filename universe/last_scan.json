@@ -23,8 +23,8 @@
   "eligible_unseen_below_floor": [],
   "batch_selected": [],
   "next_eligible_refresh_at": "2026-10-22T11:41:20.375553+00:00",
-  "last_verified_at": "2026-10-22T06:03:01.300880+00:00",
-  "last_verification_note": "Re-verified offline on 2026-10-22T06:05Z: no market-data provider was contacted (the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 is still closed), so the universe, the frozen snapshot and the expansion floor are unchanged (N=266, floor AGLD/USDT $16 279 472, snapshot universe/mcap_snapshot_20261021_114120.json). Baseline grid results/20261019_135940_grid: 266 symbols x 66 pairs = 17 556 cells, all_symbols_processed=true, next_cell=null, 0 blocked; 266/266 ranking symbols have a contiguous hourly fixture (>= 17 585 bars, 0 non-hourly steps) and a complete 66-cell grid. Offline work of this session: (1) defect fix - scripts/fetch_mcap_snapshot.py (the classic path) dropped the 24 h bound from the scan record whenever the band still held eligible names (build_scan_record leaves it empty in the EXPANSION_AVAILABLE state), and an empty bound reads as 'the gate is open', so a second provider pass inside the window was possible; the bound now always belongs to the ranking pass (pass time + 24 h) in both tools, and the classic path also refuses a live pass before the bound and accepts a written override (--override-gate --override-reason); the shared logic lives in the new scripts/refresh_gate.py; (2) the classic path now also records the new universe_n in the scan record when it applies a batch, so the record cannot contradict the ranking; (3) an offline review of the 2026-10-22T11:41:20Z expansion path (refresh_universe.py fetch -> fixtures -> grid -> state -> log, run_grid.py --resume --n <rank>, run_grid.py CLI flags, fetch_kucoin.py pagination, fixture integrity rules) found no further defect. Tests: 240 passed.",
+  "last_verified_at": "2026-10-22T06:17:47.536293+00:00",
+  "last_verification_note": "Re-verified offline on 2026-10-22T06:12Z: no market-data provider was contacted (the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 is still closed), so the universe, the frozen snapshot and the expansion floor are unchanged (N=266, floor AGLD/USDT $16 279 472, snapshot universe/mcap_snapshot_20261021_114120.json). Baseline grid results/20261019_135940_grid: 266 symbols x 66 pairs = 17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without a fixture or a grid cell. Offline work of this session (no provider call): three defect fixes in scripts/refresh_universe.py, all in the path the 2026-10-22T11:41:20Z expansion runs: (1) phase_state could report the band below the floor as exhausted (AWAITING_NEW_ELIGIBLE_CANDIDATES) although the pass never reached below the CURRENT floor - a batch lowers the floor of the universe, and the names between the pass floor and the new floor are exactly the ones the batch consumed, so the band below the new floor is unobserved; the exhausted state now requires coverage_reaches_below_current_floor as well, otherwise the state is INCOMPLETE_SCAN; (2) phase_fixtures re-fetched the bars of a symbol whose fixture file was missing even when the grid had already run that symbol - a fresh download moves the bar sequence and makes the 66 stored cells stale; such a symbol is now skipped and reported as a conflict (restore the file, do not re-fetch it); (3) phase_log appended a duplicate section when it was re-run and broke the Batch N numbering of the log; it is now idempotent (a machine-readable expansion key) and continues the sequence (next number 27). Tests: 244 passed.",
   "below_floor_band": [
     {
       "rank": 991,
@@ -89,7 +89,7 @@
   ],
   "grid_verification": {
     "run": "results/20261019_135940_grid",
-    "verified_at": "2026-10-22T06:03:01.300880+00:00",
+    "verified_at": "2026-10-22T06:17:47.536293+00:00",
     "symbols": 266,
     "cells_complete": 17556,
     "cells_expected": 17556,
