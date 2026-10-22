@@ -1,4 +1,4 @@
-# NEXT TASK — gated universe refresh and expansion (updated 2026-10-22T10:08Z)
+# NEXT TASK — gated universe refresh and expansion (updated 2026-10-22T10:22Z)
 
 **Read this file first.** It supersedes prior task descriptions; the durable record of closed mutations is `results/mutations.json`.
 
