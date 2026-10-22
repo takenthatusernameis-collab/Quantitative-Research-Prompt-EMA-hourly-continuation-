@@ -19,16 +19,27 @@ order. Prior names are never reordered or dropped.
 Usage:
     python scripts/fetch_mcap_snapshot.py --pages 4 --batch-size 10
     python scripts/fetch_mcap_snapshot.py --pages 4 --batch-size 10 --apply
+
+The ranking may be refreshed at most once per 24 h (PROMPT.md §2.1.5): a live
+pass is refused before the bound in `universe/last_scan.json` has elapsed, and
+`--apply-from` (which makes no provider call) is never gated.
 """
 import argparse
 import csv
 import json
 import math
+import sys
 import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
+
+try:
+    from scripts.refresh_gate import bound_after, override_reason, require_open_gate
+except ModuleNotFoundError:  # direct execution: sys.path[0] is scripts/, not the root
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from scripts.refresh_gate import bound_after, override_reason, require_open_gate
 
 COINGECKO_URL = 'https://api.coingecko.com/api/v3/coins/markets'
 KUCOIN_SYMBOLS_URL = 'https://api.kucoin.com/api/v1/symbols'
@@ -482,16 +493,28 @@ def main():
                         help='Check that each eligible candidate\'s KuCoin pair trades the same '
                              'asset the ranking describes (ticker collisions) and mark the '
                              'mismatches in the snapshot before selecting the batch')
+    parser.add_argument('--override-gate', action='store_true', default=False,
+                        help='Refresh before the recorded 24 h bound has elapsed.')
+    parser.add_argument('--override-reason', type=str, default=None,
+                        help='Why the 24 h bound is overridden; required with --override-gate.')
     args = parser.parse_args()
+
+    out_dir = Path(args.out_dir)
+    record_path = out_dir / 'last_scan.json'
 
     if args.apply_from:
         snapshot_path = Path(args.apply_from)
         snapshot = json.loads(snapshot_path.read_text())
         ts = snapshot_path.stem.replace('mcap_snapshot_', '')
     else:
+        # PROMPT.md §2.1.5: the ranking is refreshed at most once per 24 h. The
+        # bound is read from the scan record, so the refusal is decided by the
+        # state on disk and not by the memory of an agent. Applying an existing
+        # snapshot makes no provider call and is therefore not gated.
+        state = json.loads(record_path.read_text()) if record_path.exists() else {}
+        require_open_gate(state, None, override_reason(args))
         snapshot = build_snapshot(args.pages)
         ts = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
-        out_dir = Path(args.out_dir)
         out_dir.mkdir(parents=True, exist_ok=True)
         snapshot_path = out_dir / f'mcap_snapshot_{ts}.json'
         with open(snapshot_path, 'w') as f:
@@ -560,11 +583,19 @@ def main():
     record = build_scan_record(
         snapshot, snapshot_path, current_symbols, floor_mcap, floor_symbol,
         eligible_below, added, snapshot['fetched_at'])
-    record_path = Path(args.out_dir) / 'last_scan.json'
+    # The 24 h bound is an invariant of the record: it is the time of the
+    # ranking pass plus 24 h, never the end of the expansion. build_scan_record
+    # leaves it empty while the band still holds names, and an empty bound
+    # reads as "the gate is open" - which would allow a second provider pass
+    # inside the window. Applying a frozen snapshot does not refresh the
+    # ranking, so the bound of the pass that produced the snapshot applies.
+    record['next_eligible_refresh_at'] = bound_after(
+        record.get('scanned_at') or snapshot.get('fetched_at'))
     record_path.parent.mkdir(parents=True, exist_ok=True)
     with open(record_path, 'w') as f:
         json.dump(record, f, indent=2)
-    print(f'Scan record: {record_path} (state={record["state"]})')
+    print(f'Scan record: {record_path} (state={record["state"]}, '
+          f'next eligible refresh {record["next_eligible_refresh_at"]})')
 
     if args.apply and added:
         expanded = current_symbols + [f"{e['symbol']}/USDT" for e in added]
@@ -580,6 +611,11 @@ def main():
         }
         with open(mcap_path, 'w') as f:
             json.dump(payload, f, indent=2)
+        # The record must not contradict the ranking it describes: the names of
+        # the batch are in the universe from now on.
+        record['universe_n'] = len(expanded)
+        with open(record_path, 'w') as f:
+            json.dump(record, f, indent=2)
         print(f'\nUpdated {mcap_path}: {len(current_symbols)} -> {len(expanded)} symbols')
     elif not args.apply:
         print('\n(dry run: pass --apply to write the expanded ranking)')

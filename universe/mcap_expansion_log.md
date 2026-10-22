@@ -2948,3 +2948,69 @@ new symbol, the waiting state with its 24 h bound and the expansion log entry.
 
 From **2026-10-22T11:41:20Z**: exactly one universe fetch (20 pages), then the
 expansion of the new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.
+
+---
+
+## Offline session 2026-10-22T05:51Z - no universe change; the classic path lost the 24 h bound
+
+No market-cap query was made: the 24 h refresh bound from `universe/last_scan.json`
+opens **2026-10-22T11:41:20Z** and this session ran before it. N stays **266**,
+the floor stays `AGLD/USDT` $16 279 472, `eligible_unseen_below_floor_count = 0`.
+
+### 1. State re-verified against the artifacts
+
+`PYTHONPATH=. python3 scripts/refresh_universe.py plan` -> `refresh_allowed_now: false`
+("the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 has not elapsed yet"),
+`symbols_without_fixture: []`, `symbols_without_grid_cells: []`, grid run
+`results/20261019_135940_grid`. The `state` phase was re-run offline with a
+verification note: 17 556 / 17 556 cells, 0 blocked, 0 incomplete symbols, floor and
+bound unchanged.
+
+Additional offline facts gathered for the next session:
+
+| Fact | Value |
+|---|---|
+| fixtures of the 266 universe symbols | 266 / 266 present, all contiguous hourly (0 non-hourly steps), 17 585 - 25 000 bars |
+| `universe/mcap_rank.json` | 266 unique symbols, market-cap descending, last batch 26 = POKT ... TAIKO |
+| `results/20261019_135940_grid/progress.json` | 266 symbols x 66 pairs = 17 556 cells, `all_symbols_processed=true`, `next_cell=null` |
+| cost of the 20-page ranking pass | 20 CoinGecko pages (9 s apart) + 2 KuCoin probes per name with a tradable pair; the 10-page pass of 2026-10-21 reached 485 tradable names of 1 000 entries, so 20 pages probe ~1 940 endpoints |
+| cost of one `run_grid.py --resume` invocation | the whole ranking prefix is loaded and skipped (0.014 s per fixture), only the new symbol's 66 cells are computed |
+
+### 2. Defect fixed - the classic path dropped the 24 h bound
+
+`scripts/fetch_mcap_snapshot.py` (the classic path, kept as the fallback for
+`scripts/refresh_universe.py`) had no gate of its own, and the record it wrote
+could lose the bound:
+
+* `build_scan_record` leaves `next_eligible_refresh_at` **empty** while the band
+  still holds eligible names (the state `EXPANSION_AVAILABLE`);
+* an empty bound is read as "the gate is open" (`gate_status`: "no refresh bound
+  recorded"), so a pass that found candidates **opened the gate** for an
+  unlimited number of further provider passes inside the 24 h window;
+* the record also kept the *pre-expansion* `universe_n` after `--apply`, so it
+  could contradict the ranking it described.
+
+The bound is now an invariant of the record in both tools: it is the time of the
+**ranking pass** plus 24 h, never the end of the expansion and never the moment a
+frozen snapshot is applied. The classic path additionally refuses a live pass
+before the bound and accepts a written override (`--override-gate
+--override-reason "<reason>"`); applying an existing snapshot (`--apply-from`)
+makes no provider call and is therefore not gated.
+
+The shared logic moved to the new `scripts/refresh_gate.py`
+(`parse_iso`, `iso`, `bound_after`, `gate_status`, `require_open_gate`,
+`override_reason`), so the two tools that can query the provider cannot drift
+apart. `scripts/refresh_universe.py` imports it and keeps its public names.
+
+### 3. Tests
+
+`PYTHONPATH=. python3 -m pytest tests/ -q` -> **240 passed** (232 + 8 new in
+`tests/test_refresh_gate.py`): the classic path refuses a pass before the bound
+without contacting the provider, a written override opens it, a reason alone does
+not, the record keeps the bound of its pass even when the band holds names, and
+applying a frozen snapshot is not gated.
+
+### 4. Next action
+
+From **2026-10-22T11:41:20Z**: exactly one universe fetch (20 pages), then the
+expansion of the new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.
