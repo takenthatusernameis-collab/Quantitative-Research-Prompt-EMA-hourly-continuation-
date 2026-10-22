@@ -105,3 +105,87 @@ def test_build_snapshot_records_the_pages_that_actually_returned(monkeypatch):
     assert snap['all_requested_pages_returned'] is False
     assert snap['entries_count'] == 1
     assert snap['lowest_market_cap_usd'] == 1000
+
+
+# --------------------------------------------------------------------------
+# a failed probe is unknown, not a rejection
+# --------------------------------------------------------------------------
+
+def test_history_probe_failure_does_not_exclude_a_name(monkeypatch):
+    """PROMPT.md §2.1.5: an API failure is not proof of ineligibility."""
+    rows = [{'symbol': 'aaa', 'name': 'AAA', 'market_cap': 1000,
+             'current_price': 1.0, 'total_volume': 0}]
+    monkeypatch.setattr(fms, 'fetch_markets', lambda pages: (rows, 1))
+    monkeypatch.setattr(fms, 'fetch_kucoin_usdt_pairs', lambda: {'AAA'})
+    monkeypatch.setattr(fms, 'price_identity_ok', lambda entry: True)
+    monkeypatch.setattr(fms, 'has_min_history', lambda symbol: None)
+
+    snap = fms.build_snapshot(10)
+
+    assert snap['entries'][0]['exclusion_reason'] is None
+    assert snap['entries'][0]['history_probe_failed'] is True
+    assert snap['history_probe_failures'] == ['AAA']
+    assert snap['history_probe_failure_count'] == 1
+
+
+def test_history_probe_failure_keeps_the_name_a_candidate(monkeypatch):
+    """The name stays selectable; the fixture download is the real gate."""
+    rows = [{'symbol': 'aaa', 'name': 'AAA', 'market_cap': 1000,
+             'current_price': 1.0, 'total_volume': 0}]
+    monkeypatch.setattr(fms, 'fetch_markets', lambda pages: (rows, 1))
+    monkeypatch.setattr(fms, 'fetch_kucoin_usdt_pairs', lambda: {'AAA'})
+    monkeypatch.setattr(fms, 'price_identity_ok', lambda entry: True)
+    monkeypatch.setattr(fms, 'has_min_history', lambda symbol: None)
+
+    snap = fms.build_snapshot(10)
+
+    candidates = fms.select_expansion_candidates(snap, ['BBB/USDT'], 2000)
+    assert [c['symbol'] for c in candidates] == ['AAA']
+
+
+def test_a_name_without_history_is_still_excluded(monkeypatch):
+    rows = [{'symbol': 'aaa', 'name': 'AAA', 'market_cap': 1000,
+             'current_price': 1.0, 'total_volume': 0}]
+    monkeypatch.setattr(fms, 'fetch_markets', lambda pages: (rows, 1))
+    monkeypatch.setattr(fms, 'fetch_kucoin_usdt_pairs', lambda: {'AAA'})
+    monkeypatch.setattr(fms, 'price_identity_ok', lambda entry: True)
+    monkeypatch.setattr(fms, 'has_min_history', lambda symbol: False)
+
+    snap = fms.build_snapshot(10)
+
+    assert snap['entries'][0]['exclusion_reason'] == 'insufficient_hourly_history_for_grid'
+    assert snap['history_probe_failure_count'] == 0
+
+
+def test_has_min_history_reports_a_failed_probe_as_unknown(monkeypatch):
+    """The probe answers True/False/None - a failed call is not "no history"."""
+
+    class _Boom:
+        @staticmethod
+        def json():
+            raise ValueError('no json')
+
+    monkeypatch.setattr(fms, 'get_with_retry', lambda *a, **kw: _Boom())
+    assert fms.has_min_history('AAA') is None
+
+
+def test_has_min_history_reports_an_error_answer_as_unknown(monkeypatch):
+    """KuCoin's transient 400100 (batch 12) says nothing about the listing."""
+
+    class _Err:
+        @staticmethod
+        def json():
+            return {'code': '400100', 'data': []}
+
+    monkeypatch.setattr(fms, 'get_with_retry', lambda *a, **kw: _Err())
+    assert fms.has_min_history('AAA') is None
+
+
+def test_has_min_history_reports_a_missing_bar_series_as_no_history(monkeypatch):
+    class _Empty:
+        @staticmethod
+        def json():
+            return {'code': '200000', 'data': []}
+
+    monkeypatch.setattr(fms, 'get_with_retry', lambda *a, **kw: _Empty())
+    assert fms.has_min_history('AAA') is False

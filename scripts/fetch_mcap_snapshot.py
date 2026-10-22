@@ -144,11 +144,19 @@ def fetch_kucoin_usdt_pairs() -> set:
     return pairs
 
 
-def has_min_history(symbol: str, min_years: float = MIN_HISTORY_YEARS) -> bool:
+def has_min_history(symbol: str, min_years: float = MIN_HISTORY_YEARS):
     """Check that the KuCoin pair has at least `min_years` of hourly bars.
 
     A single probe far enough in the past is enough: if a candle exists at or
     before (now - min_years), the listing is old enough.
+
+    Returns True (old enough), False (the pair demonstrably has no history that
+    far back) or None when the probe itself failed. The third answer is the
+    point of this signature: PROMPT.md §2.1.5 says an API failure is not proof
+    that a symbol is ineligible, so a failed probe must not be reported as
+    "no history" - that would silently drop a tradable name from the universe.
+    The caller keeps such a name as a candidate and lets the fixture download
+    (which reads the real bar series) be the authoritative gate.
     """
     probe_ts = int((datetime.now(timezone.utc) - timedelta(days=365.25 * min_years)).timestamp())
     params = {'symbol': f'{symbol}-USDT', 'type': '1hour', 'limit': 1, 'endAt': probe_ts}
@@ -156,9 +164,11 @@ def has_min_history(symbol: str, min_years: float = MIN_HISTORY_YEARS) -> bool:
         resp = get_with_retry(KUCOIN_CANDLES_URL, params)
         payload = resp.json()
     except Exception:
-        return False
+        return None
     if payload.get('code') != '200000':
-        return False
+        # An error answer (e.g. the transient 400100 of batch 12) is not
+        # evidence about the listing date.
+        return None
     rows = payload.get('data') or []
     if not rows:
         return False
@@ -205,6 +215,7 @@ def build_snapshot(pages: int) -> dict:
 
     entries = []
     rank = 0
+    probe_failures = []
     for row in rows:
         sym = (row.get('symbol') or '').upper()
         mcap = row.get('market_cap') or 0
@@ -229,10 +240,21 @@ def build_snapshot(pages: int) -> dict:
             reason = 'no_tradable_kucoin_spot_usdt_pair'
         elif not price_identity_ok(entry):
             reason = 'kucoin_pair_trades_a_different_asset'
-        elif not has_min_history(sym):
-            reason = 'insufficient_hourly_history_for_grid'
         else:
-            reason = None
+            history_ok = has_min_history(sym)
+            if history_ok is None:
+                # The probe failed, so the listing date is unknown - not known
+                # to be too recent. Such a name stays a candidate and the
+                # fixture download (which reads the real bar series) is the
+                # authoritative gate; dropping it here would turn a transient
+                # API failure into a permanent exclusion.
+                probe_failures.append(sym)
+                entry['history_probe_failed'] = True
+                reason = None
+            elif not history_ok:
+                reason = 'insufficient_hourly_history_for_grid'
+            else:
+                reason = None
         entry['exclusion_reason'] = reason
         entries.append(entry)
     snapshot = {
@@ -241,6 +263,8 @@ def build_snapshot(pages: int) -> dict:
         'pages_fetched': pages_fetched,
         'all_requested_pages_returned': pages_fetched == pages,
         'entries_count': len(entries),
+        'history_probe_failures': probe_failures,
+        'history_probe_failure_count': len(probe_failures),
         'fetched_at': datetime.now(timezone.utc).isoformat(),
         'entries': entries,
     }

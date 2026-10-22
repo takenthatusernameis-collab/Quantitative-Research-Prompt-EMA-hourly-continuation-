@@ -2877,3 +2877,74 @@ baseline grid stay valid and the expansion only adds cells.
 
 From **2026-10-22T11:41:20Z**: exactly one universe fetch, then the expansion of the
 new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.
+
+---
+
+## Offline session 2026-10-22T05:33Z - no universe change; a failed probe no longer excludes a name, and the next pass reaches twice the depth
+
+No market-cap query was made: the 24 h refresh bound from `universe/last_scan.json`
+opens **2026-10-22T11:41:20Z**, and this session started before it. N stays **266**,
+the floor stays `AGLD/USDT` $16 279 472, `eligible_unseen_below_floor_count = 0`.
+
+### 1. State re-verified against the artifacts
+
+`PYTHONPATH=. python3 scripts/refresh_universe.py plan` -> `refresh_allowed_now: false`
+("the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 has not elapsed yet"),
+`symbols_without_fixture: []`, `symbols_without_grid_cells: []`, grid run
+`results/20261019_135940_grid`. The `state` phase was re-run offline with a
+verification note: 17 556 / 17 556 cells, 0 blocked, 0 incomplete symbols, floor
+and bound unchanged.
+
+### 2. Defect fixed - a failed probe was a silent rejection
+
+`scripts/fetch_mcap_snapshot.py:has_min_history` answered a failed probe the same
+way as a proven absence of history: both returned `False`, so `build_snapshot`
+wrote `exclusion_reason = 'insufficient_hourly_history_for_grid'` and the name
+left the eligible set for good. PROMPT.md §2.1.5 says the opposite - an API
+failure is not proof that a symbol is ineligible - and batch 12 of this program
+already recorded a transient KuCoin `400100` on six names that were all tradable.
+
+The probe now answers three ways:
+
+| Answer | Meaning | Effect on the snapshot |
+|---|---|---|
+| `True` | a bar exists at/older than the 2-year probe | eligible |
+| `False` | the pair demonstrably has no history that far back | `insufficient_hourly_history_for_grid` |
+| `None` | the probe itself failed (exception or a non-`200000` answer) | **unknown**: the name stays a candidate, `history_probe_failed` is recorded, and the fixture download (which reads the real bar series) is the authoritative gate |
+
+A pass whose probes failed also cannot claim that the band below the floor is
+exhausted: `scripts/refresh_universe.py` counts the failures and writes the state
+`INCOMPLETE_SCAN` instead of `AWAITING_NEW_ELIGIBLE_CANDIDATES`, and prints the
+names whose eligibility is unknown. The snapshot records the failures as
+`history_probe_failures` / `history_probe_failure_count`, and the scan record
+carries the list.
+
+### 3. The next pass reaches twice the depth
+
+The 10-page pass of 2026-10-21T11:41:20Z covered 1 000 ranked entries down to
+$15 931 465 and stopped just 2.2 % below the floor ($16 279 472): a band of
+**ten** names, and all ten are ineligible (ELSA, MIRA, TUT, US without two years
+of hourly history; USDM, PIPPIN, M87, ARARA, STKRI, DRB without a tradable KuCoin
+spot USDT pair). The band was empty, so the expansion had nothing to select.
+
+`scripts/refresh_universe.py` therefore fetches **20 pages** (2 000 entries) by
+default. The selection still takes the highest-cap eligible names below the
+floor, so the batch stays close to the floor; what changes is that the band is
+wide enough to hold candidates instead of a coin flip. Cost: one CoinGecko page
+every 9 s plus two KuCoin probes per name with a tradable pair - the 10-page
+pass took under four minutes, so a 20-page pass is roughly ten minutes.
+
+### 4. Tests
+
+`PYTHONPATH=. python3 -m pytest tests/ -q` -> **232 passed** (224 + 8 new).
+
+The new tests cover the tri-state probe, the "unknown is not ineligible"
+selection, the `INCOMPLETE_SCAN` state on a failed probe, and an **end-to-end
+cycle** (`fetch -> fixtures -> grid -> state -> log`, providers mocked) that
+checks the append-only ranking, the fixture + manifest rows, the 66 cells per
+new symbol, the waiting state with its 24 h bound and the expansion log entry.
+
+### 5. Next action
+
+From **2026-10-22T11:41:20Z**: exactly one universe fetch (20 pages), then the
+expansion of the new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.

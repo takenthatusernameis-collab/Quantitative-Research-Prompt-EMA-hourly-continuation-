@@ -63,7 +63,15 @@ DEFAULT_LOG_PATH = 'universe/mcap_expansion_log.md'
 # every agent activation.
 REFRESH_INTERVAL_HOURS = 24
 
-DEFAULT_PAGES = 10
+# Coverage of one ranking pass. The band below the expansion floor has to be
+# wide enough to hold eligible names: at 10 pages (1 000 entries) the pass of
+# 2026-10-21T11:41Z stopped at $15.93M against a floor of $16.28M - a band of
+# ten names, all of them ineligible - so the band was empty and the program
+# had nothing to add. 20 pages reach roughly twice the depth and give the
+# selection a supply of candidates instead of a coin flip. The pass costs one
+# CoinGecko page every 9 s plus two KuCoin probes per name with a tradable
+# pair; the 10-page pass took under four minutes.
+DEFAULT_PAGES = 20
 DEFAULT_BATCH_SIZE = 10
 
 # The hourly history a new symbol needs: the same depth as the existing
@@ -146,7 +154,12 @@ def gate_status(state: dict, now=None) -> dict:
 
 
 def require_open_gate(state: dict, now=None, override_reason=None) -> dict:
-    """Raise SystemExit unless a refresh is allowed right now."""
+    """Raise SystemExit unless a refresh is allowed right now.
+
+    An override needs a written reason: it is the documented way to run one
+    extra pass (for example after a pass that came back incomplete), never a
+    way to poll the provider.
+    """
     gate = gate_status(state, now)
     if gate['eligible']:
         return gate
@@ -154,8 +167,21 @@ def require_open_gate(state: dict, now=None, override_reason=None) -> dict:
         raise SystemExit(
             f'refresh refused: {gate["reason"]}. The ranking must not be queried '
             f'more than once per 24 h (PROMPT.md §2.1.5). Use --override-gate '
-            f'"<reason>" to override this deliberately.')
+            f'--override-reason "<reason>" to override this deliberately.')
     return gate
+
+
+def override_reason(args) -> str:
+    """The documented reason for overriding the 24 h bound, or None.
+
+    Both flags are needed: `--override-gate` alone is a typo, and a reason
+    without the flag is not a deliberate override. The gate is the only thing
+    that keeps the provider from being queried on every agent activation, so
+    an override has to be an explicit, written decision.
+    """
+    if not getattr(args, 'override_gate', False):
+        return None
+    return getattr(args, 'override_reason', None)
 
 
 # --------------------------------------------------------------------------
@@ -293,6 +319,7 @@ def update_manifest(fixture_dir, symbol: str, df, path) -> dict:
 # phases
 # --------------------------------------------------------------------------
 
+
 def phase_plan(args) -> dict:
     state = read_json(args.scan)
     ranking = read_json(args.ranking)
@@ -319,7 +346,7 @@ def phase_plan(args) -> dict:
 def phase_fetch(args) -> dict:
     """One ranking pass, one frozen snapshot, one append-only expansion."""
     state = read_json(args.scan)
-    gate = require_open_gate(state, args.now, args.override_reason)
+    gate = require_open_gate(state, args.now, override_reason(args))
 
     ranking = read_json(args.ranking)
     current_symbols = list(ranking.get('symbols', []))
@@ -337,13 +364,14 @@ def phase_fetch(args) -> dict:
 
     record = fms.build_scan_record(snapshot, snapshot_path, current_symbols, floor_mcap,
                                    floor_symbol, eligible, batch, snapshot['fetched_at'])
+    record['history_probe_failures'] = list(snapshot.get('history_probe_failures') or [])
     scanned_at = parse_iso(snapshot['fetched_at'])
     # One pass per refresh cycle: the bound is recorded even when the band
     # still holds names, because the batch below is expanded from this frozen
     # snapshot and not from a second ranking pass.
     record['next_eligible_refresh_at'] = iso(scanned_at + timedelta(hours=REFRESH_INTERVAL_HOURS))
     record['refresh_gate'] = {'eligible': gate['eligible'], 'reason': gate['reason'],
-                               'override_reason': args.override_reason}
+                               'override_reason': override_reason(args)}
     write_json(args.scan, record)
 
     print(f'Snapshot: {snapshot_path}')
@@ -357,6 +385,13 @@ def phase_fetch(args) -> dict:
     for e in batch:
         print(f"  #{e['rank']:>4} {e['symbol']:<8} mcap=${e['market_cap_usd']:,} "
               f"px={e['price_usd']} name={e['name']}")
+    probe_failures = list(snapshot.get('history_probe_failures') or [])
+    if probe_failures:
+        print(f'WARNING: the hourly-history probe failed for {len(probe_failures)} name(s) '
+              f'({", ".join(probe_failures[:10])}{" ..." if len(probe_failures) > 10 else ""}). '
+              f'Their eligibility is unknown, not negative; they stay candidates and the '
+              f'fixture download decides. The band below the floor cannot be called '
+              f'exhausted on this pass.')
     print(f'Next eligible refresh: {record["next_eligible_refresh_at"]}')
 
     if not batch:
@@ -382,6 +417,63 @@ def phase_fetch(args) -> dict:
     write_json(args.scan, record)
     print(f'Ranking updated: {len(current_symbols)} -> {len(current_symbols) + len(added)} symbols')
     return record
+
+
+def drop_ineligible_batch_symbols(args, results) -> list:
+    """Remove a symbol of the current batch whose fixture was rejected.
+
+    A name that was appended to the ranking but whose hourly bars do not pass
+    the integrity checks was never part of the working universe: it has no
+    bars and no grid cells. Leaving it in the ranking would make `universe_n`
+    count a symbol that was never processed and would leave the grid
+    permanently incomplete (the acceptance criterion of a cycle is
+    `completed_cells == universe_n * 66`).
+
+    Only a symbol that was added in this cycle and that has neither a fixture
+    nor a grid cell is removed. A name the grid already ran is never touched -
+    the universe is append-only for everything that was actually processed.
+    """
+    ranking = read_json(args.ranking)
+    symbols = list(ranking.get('symbols', []))
+    added = list(ranking.get('added_in_this_expansion') or [])
+    market_caps = dict(ranking.get('added_market_caps_usd') or {})
+
+    excluded = []
+    for result in results:
+        if result.get('ok'):
+            continue
+        symbol = result['symbol']
+        if symbol not in added or symbol not in symbols:
+            continue
+        if fixture_path(args.fixture_dir, symbol).exists():
+            continue
+        if symbol_cell_status(args.grid_run, symbol)['cells']:
+            continue
+        symbols.remove(symbol)
+        added.remove(symbol)
+        market_caps.pop(symbol.split('/')[0], None)
+        reason = result.get('error')
+        if not reason:
+            checks = result.get('checks') or {}
+            failed = [k for k, v in checks.items()
+                      if k in ('enough_bars', 'duplicate_timestamps', 'non_hourly_steps',
+                               'invalid_ohlc_rows', 'price_identity_ok') and v is False]
+            reason = 'fixture_integrity_check_failed: ' + ', '.join(failed or ['unknown'])
+        excluded.append({'symbol': symbol, 'reason': reason})
+
+    if not excluded:
+        return excluded
+
+    payload = dict(ranking)
+    payload.update({
+        'updated_at': iso(datetime.now(timezone.utc)),
+        'n_symbols': len(symbols),
+        'symbols': symbols,
+        'added_in_this_expansion': added,
+        'added_market_caps_usd': market_caps,
+    })
+    write_json(args.ranking, payload)
+    return excluded
 
 
 def phase_fixtures(args) -> dict:
@@ -424,16 +516,27 @@ def phase_fixtures(args) -> dict:
         results.append({'symbol': symbol, 'ok': True, 'checks': checks,
                         'rows': int(len(df))})
 
+    excluded = drop_ineligible_batch_symbols(args, results)
+    if excluded:
+        print('Excluded from the universe (the hourly bars did not pass the '
+              f'integrity checks): {[e["symbol"] for e in excluded]}')
+
     state['fixtures'] = {
         'fetched_at': iso(args.now or datetime.now(timezone.utc)),
         'target_bars': args.target_bars,
         'results': results,
+        'excluded': excluded,
     }
+    if excluded:
+        state['excluded_symbols'] = excluded
+        batch = [s for s in (state.get('batch_selected') or [])
+                 if s not in {e['symbol'] for e in excluded}]
+        state['batch_selected'] = batch
     write_json(args.scan, state)
     failed = [r['symbol'] for r in results if not r['ok']]
     if failed:
         print(f'FAILED symbols (re-query before treating them as ineligible): {failed}')
-    return {'results': results, 'failed': failed}
+    return {'results': results, 'failed': failed, 'excluded': excluded}
 
 
 def phase_grid(args) -> dict:
@@ -501,6 +604,29 @@ def phase_state(args) -> dict:
     floor_mcap, floor_symbol = fms.expansion_floor(included)
     remaining = fms.select_expansion_candidates(snapshot, symbols, floor_mcap)
 
+    # An empty band is only an exhausted band when the pass actually looked at
+    # it (PROMPT.md §2.1.5: an empty-but-complete ranking is not the same
+    # thing as an incomplete scan). The yardstick is the floor of the pass -
+    # the record carries it - because the floor of the universe moves with the
+    # market and drops again when a batch is appended.
+    pass_floor = (state.get('expansion_floor') or {}).get('market_cap_usd')
+    band_observed = state.get('coverage_reaches_below_floor')
+    if band_observed is None and pass_floor:
+        band_observed = fms.coverage_reaches_below_floor(snapshot, pass_floor)
+    coverage = state.get('coverage') or {}
+    pass_complete = coverage.get('all_requested_pages_returned')
+    if pass_complete is None:
+        requested = coverage.get('pages_requested')
+        fetched = coverage.get('pages_fetched')
+        pass_complete = (True if requested is None
+                         else (fetched is not None and fetched >= requested))
+
+    # A pass whose hourly-history probes failed cannot say that the band below
+    # the floor is exhausted: a name whose probe failed may well be eligible
+    # (PROMPT.md §2.1.5 - an API failure is not proof of ineligibility). Such
+    # a pass is an incomplete scan, not an exhausted band.
+    probe_failures = int(snapshot.get('history_probe_failure_count') or 0)
+
     now = args.now or datetime.now(timezone.utc)
     state['universe_n'] = len(symbols)
     state['expansion_floor'] = {'symbol': floor_symbol, 'market_cap_usd': floor_mcap}
@@ -508,8 +634,18 @@ def phase_state(args) -> dict:
     state['eligible_unseen_below_floor'] = [
         {'rank': e['rank'], 'symbol': e['symbol'], 'name': e.get('name'),
          'market_cap_usd': e['market_cap_usd']} for e in remaining]
-    state['state'] = ('EXPANSION_AVAILABLE' if remaining
-                      else 'AWAITING_NEW_ELIGIBLE_CANDIDATES')
+    if remaining:
+        state['state'] = 'EXPANSION_AVAILABLE'
+    elif band_observed and pass_complete and not probe_failures:
+        state['state'] = 'AWAITING_NEW_ELIGIBLE_CANDIDATES'
+    else:
+        state['state'] = 'INCOMPLETE_SCAN'
+    state['coverage_reaches_below_floor'] = bool(band_observed)
+    state['history_probe_failure_count'] = probe_failures
+    # The floor the universe has now: the next pass has to reach below it to
+    # be able to say that the band is exhausted.
+    state['coverage_reaches_below_current_floor'] = fms.coverage_reaches_below_floor(
+        snapshot, floor_mcap)
     # The 24 h bound of the refresh cycle is an invariant of the record: it is
     # always the time of the last pass plus 24 h, never the end of the
     # expansion. A record that lost it would allow a second ranking pass
@@ -535,9 +671,23 @@ def phase_state(args) -> dict:
     print(f'Grid cells: {total_cells}/{len(symbols) * len(GRID_PAIRS)}, blocked: {blocked}')
     if incomplete:
         print(f'Incomplete symbols: {[i["symbol"] for i in incomplete]}')
+    if state.get('excluded_symbols'):
+        print(f'Excluded from the universe: '
+              f'{[e["symbol"] for e in state["excluded_symbols"]]}')
     print(f'Expansion floor: ${floor_mcap:,} ({floor_symbol})')
     print(f'Eligible unseen names below the floor: {len(remaining)}')
     print(f'State: {state["state"]}')
+    if state['state'] == 'INCOMPLETE_SCAN':
+        print('  The pass did not observe the band below the floor (the ranking '
+              'pass was incomplete), so the band is NOT exhausted: the next '
+              'refresh has to cover it before the program may wait again.')
+    if probe_failures:
+        print(f'  {probe_failures} hourly-history probe(s) failed on this pass, '
+              f'so the eligibility of those names is unknown (not negative): '
+              f'the band is not exhausted either.')
+    if not state['coverage_reaches_below_current_floor']:
+        print('  The pass did not reach below the current floor: the next pass '
+              'needs more pages to be able to exhaust the band.')
     print(f'Next eligible refresh: {state.get("next_eligible_refresh_at")}')
     return state
 
@@ -628,6 +778,20 @@ def phase_log(args) -> str:
         lines.append(f"| {symbol} | {outcome['cells']} | {outcome['trades']} | "
                      f"{mean_pf} | {best_pf} | {outcome['cells_net_pf_above_1']} |")
     lines.append('')
+    excluded = state.get('excluded_symbols') or []
+    if excluded:
+        lines.append('### Names excluded in this cycle')
+        lines.append('')
+        lines.append('| Symbol | Reason |')
+        lines.append('|---|---|')
+        for entry in excluded:
+            lines.append(f"| {entry.get('symbol')} | {entry.get('reason')} |")
+        lines.append('')
+        lines.append('These names were appended to the ranking by the fetch phase '
+                     'but their hourly bars did not pass the integrity checks, so '
+                     'they were removed from the universe again and never entered '
+                     'the grid.')
+        lines.append('')
     verification = state.get('grid_verification') or {}
     lines.append('### Cumulative state after the batch')
     lines.append('')

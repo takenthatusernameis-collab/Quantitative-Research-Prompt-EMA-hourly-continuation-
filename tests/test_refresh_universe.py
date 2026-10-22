@@ -170,6 +170,16 @@ def test_fetch_override_requires_a_reason(workspace, monkeypatch):
         ru.phase_fetch(workspace)
 
 
+def test_a_reason_alone_does_not_override_the_gate(workspace, monkeypatch):
+    """The override needs both flags, so it is always a deliberate decision."""
+    monkeypatch.setattr(fms, 'build_snapshot', lambda pages: pytest.fail('no provider call'))
+    workspace.now = ru.parse_iso('2026-10-22T11:00:00+00:00')
+    workspace.override_gate = False
+    workspace.override_reason = 'because'
+    with pytest.raises(SystemExit):
+        ru.phase_fetch(workspace)
+
+
 # --------------------------------------------------------------------------
 # one pass, one snapshot, one append-only expansion
 # --------------------------------------------------------------------------
@@ -465,10 +475,100 @@ def test_state_phase_restores_a_lost_refresh_bound(workspace):
     assert updated['next_eligible_refresh_at'] == '2026-10-23T12:00:00+00:00'
 
 
+def test_state_phase_does_not_call_the_band_exhausted_when_a_probe_failed(workspace):
+    """A failed history probe leaves the eligibility of that name unknown."""
+    snapshot = _snapshot([_entry(1, 'AAA', 5000), _entry(2, 'BBB', 1000)])
+    snapshot['history_probe_failure_count'] = 1
+    snapshot['history_probe_failures'] = ['ZZZ']
+    snapshot_path = Path(workspace.snapshot_dir) / 'mcap_snapshot_20261022_120000.json'
+    snapshot_path.write_text(json.dumps(snapshot))
+    state = json.loads(Path(workspace.scan).read_text())
+    state['snapshot_path'] = str(snapshot_path)
+    state['coverage_reaches_below_floor'] = True
+    Path(workspace.scan).write_text(json.dumps(state))
+
+    ru.phase_state(workspace)
+
+    updated = json.loads(Path(workspace.scan).read_text())
+    assert updated['state'] == 'INCOMPLETE_SCAN'
+    assert updated['history_probe_failure_count'] == 1
+
+
+# --------------------------------------------------------------------------
+# one full cycle, end to end
+# --------------------------------------------------------------------------
+
+def test_one_full_cycle_expands_the_universe(workspace, monkeypatch):
+    """fetch -> fixtures -> grid -> state -> log, with the providers mocked.
+
+    The chain is what the 24 h refresh actually runs, so it is tested as a
+    chain: the ranking grows append-only, every new name gets bars and 66
+    cells, the scan record ends in the waiting state with a 24 h bound, and
+    the expansion log carries the batch.
+    """
+    snapshot = _snapshot([
+        _entry(1, 'AAA', 5000),
+        _entry(2, 'BBB', 1000),
+        _entry(3, 'CCC', 900),
+        _entry(4, 'DDD', 800),
+    ])
+    _install_snapshot(monkeypatch, snapshot)
+    monkeypatch.setattr(ru.fk, 'fetch_full_history',
+                        lambda symbol, target_bars: _bars(n=200))
+
+    commands = []
+
+    def _run(cmd, check=False, cwd=None, env=None):
+        """Stand in for scripts/run_grid.py --resume: write the cells."""
+        commands.append(cmd)
+        ranking = json.loads(Path(workspace.ranking).read_text())
+        n = int(cmd[cmd.index('--n') + 1])
+        symbol = ranking['symbols'][n - 1]
+        for (fast, slow) in ru.GRID_PAIRS:
+            cell = (Path(workspace.grid_run) / 'results'
+                    / symbol.replace('/', '_') / f'P{fast}_{slow}')
+            cell.mkdir(parents=True, exist_ok=True)
+            (cell / 'summary.json').write_text(json.dumps(
+                {'symbol': symbol, 'P_fast': fast, 'P_slow': slow,
+                 'trade_count': 10, 'net_profit_factor': 0.5}))
+        return None
+
+    monkeypatch.setattr(ru.subprocess, 'run', _run)
+
+    ru.phase_fetch(workspace)
+    ru.phase_fixtures(workspace)
+    ru.phase_grid(workspace)
+    ru.phase_state(workspace)
+    ru.phase_log(workspace)
+
+    ranking = json.loads(Path(workspace.ranking).read_text())
+    assert ranking['symbols'] == ['AAA/USDT', 'BBB/USDT', 'CCC/USDT', 'DDD/USDT']
+
+    manifest = json.loads((Path(workspace.fixture_dir) / 'fetch_manifest.json').read_text())
+    assert {row['symbol'] for row in manifest} == {
+        'AAA/USDT', 'BBB/USDT', 'CCC/USDT', 'DDD/USDT'}
+
+    assert [cmd[cmd.index('--n') + 1] for cmd in commands] == ['3', '4']
+
+    state = json.loads(Path(workspace.scan).read_text())
+    assert state['universe_n'] == 4
+    assert state['state'] == 'AWAITING_NEW_ELIGIBLE_CANDIDATES'
+    assert state['next_eligible_refresh_at'] == '2026-10-23T12:00:00+00:00'
+    verification = state['grid_verification']
+    assert verification['cells_complete'] == 4 * len(ru.GRID_PAIRS)
+    assert verification['cells_expected'] == 4 * len(ru.GRID_PAIRS)
+    assert verification['cells_blocked'] == 0
+    assert verification['incomplete_symbols'] == []
+    assert verification['symbols_without_fixture'] == []
+
+    log = Path(workspace.log).read_text()
+    assert 'N 2 -> 4' in log
+    assert 'CCC/USDT' in log and 'DDD/USDT' in log
+
+
 # --------------------------------------------------------------------------
 # the shared selection helpers
 # --------------------------------------------------------------------------
-
 def test_expansion_candidates_are_unseen_eligible_and_below_the_floor(tmp_path):
     snapshot = _snapshot([
         _entry(1, 'AAA', 5000),

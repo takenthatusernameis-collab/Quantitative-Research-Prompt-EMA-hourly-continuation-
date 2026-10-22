@@ -1,4 +1,4 @@
-# NEXT TASK — gated universe refresh and expansion (from 2026-10-22T11:41:20Z)
+# NEXT TASK — gated universe refresh and expansion (from 2026-10-22T05:47:25Z)
 
 **Read this file first.** It supersedes the task descriptions of 2026-10-21 and
 2026-10-22; the durable record of the closed mutation is `results/mutations.json`.
@@ -13,11 +13,11 @@
 | Baseline grid (the program's grid) | `results/20261019_135940_grid` — 266 symbols × 66 pairs = 17 556 cells, complete, 0 blocked |
 | Universe | N = 266, floor `AGLD/USDT` $16 279 472 |
 | Frozen universe snapshot | `universe/mcap_snapshot_20261021_114120.json` (fetched 2026-10-21T11:41:20Z, 10/10 pages, 1 000 entries, lowest covered $15 931 465) |
-| Last offline verification | 2026-10-22T05:21:50Z — `refresh_universe.py plan` → `refresh_allowed_now: false`, state unchanged (N=266, floor AGLD/USDT $16 279 472, 0 symbols without fixture/grid cells). No provider call. |
+| Last offline verification | 2026-10-22T05:47:25Z — `refresh_universe.py plan` → `refresh_allowed_now: false`; the `state` phase was re-run offline: N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without fixture/grid cells, bound unchanged. **No provider call.** |
 | **Next eligible universe refresh** | **2026-10-22T11:41:20Z** (24 h after the snapshot) |
 | ATR min-risk mutation | **closed: `NOT_PROMOTED`** (see §6) |
-| Tests | `223 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`, 2026-10-22T05:20Z) |
-| New tooling | `scripts/refresh_universe.py` (gated refresh, one command sequence) |
+| Tests | `232 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`, 2026-10-22T05:47Z) |
+| Tooling | `scripts/refresh_universe.py` (gated refresh, one command sequence) — the ranking pass now covers **20 pages** and a failed hourly-history probe no longer rejects a name |
 
 **Provider discipline.** Until 2026-10-22T11:41:20Z the market-data provider must
 not be contacted at all — no polling, no "quick check", no partial refresh. After
@@ -25,10 +25,9 @@ that timestamp exactly **one** ranking pass is allowed; the new snapshot is then
 frozen for the following 24 h. Repeated provider polling is not a way to make
 progress here and it is not a task.
 
-**Timing note.** The workflow run that produced this handoff ends at ~10:26Z
-(355-minute safety cutoff), i.e. before the bound opens. A session that starts
-before 11:41:20Z must not fetch: verify the state offline and stop cleanly. The
-expansion belongs to the first session that runs after the bound.
+**Timing note.** A session that starts before 11:41:20Z must not fetch: verify the
+state offline and stop cleanly. The expansion belongs to the first session that
+runs after the bound.
 
 ---
 
@@ -46,7 +45,7 @@ symbols still need a fixture or a grid. It never touches the network.
 ### 2.2 One ranking pass, then the expansion
 
 ```
-PYTHONPATH=. python3 scripts/refresh_universe.py fetch --pages 10 --batch-size 10
+PYTHONPATH=. python3 scripts/refresh_universe.py fetch --pages 20 --batch-size 10
 PYTHONPATH=. python3 scripts/refresh_universe.py fixtures
 PYTHONPATH=. python3 scripts/refresh_universe.py grid
 PYTHONPATH=. python3 scripts/refresh_universe.py state
@@ -57,11 +56,22 @@ PYTHONPATH=. python3 scripts/refresh_universe.py log
 
 | Phase | Effect | Guard |
 |---|---|---|
-| `fetch` | one CoinGecko pass (`/api/v3/coins/markets`, `order=market_cap_desc`, 10 pages), snapshot frozen to `universe/mcap_snapshot_<TS>.json`, batch appended to `universe/mcap_rank.json` (append-only, descending market cap), scan record written | refuses to run before `next_eligible_refresh_at`; a second pass in the same window is refused before any provider call |
+| `fetch` | one CoinGecko pass (`/api/v3/coins/markets`, `order=market_cap_desc`, **20 pages** = 2 000 entries), snapshot frozen to `universe/mcap_snapshot_<TS>.json`, batch appended to `universe/mcap_rank.json` (append-only, descending market cap), scan record written | refuses to run before `next_eligible_refresh_at`; a second pass in the same window is refused before any provider call; an override needs `--override-gate --override-reason "<reason>"` |
 | `fixtures` | hourly KuCoin bars for the **new** symbols only (target 22 000 bars), integrity-checked (bar count, duplicate timestamps, contiguous hourly grid, valid OHLC, price identity), provenance written to `data/fixtures/fetch_manifest.json` | never re-fetches a symbol the grid already ran — that would move the bar sequence and make the stored cells stale (`scripts/verify_grid_repro.py`) |
 | `grid` | expands the baseline grid with the new symbols through the repository's own resume path (`scripts/run_grid.py --resume`), one symbol at a time, in descending market-cap order | existing cells are skipped, never recomputed; the run config keeps the history of every invocation |
-| `state` | verifies the grid (cells complete, blocked cells, incomplete symbols), recomputes the floor and the names still eligible below it, rewrites `universe/last_scan.json` | writes `state`, `universe_n`, `expansion_floor`, `eligible_unseen_below_floor_count`, `next_eligible_refresh_at` |
+| `state` | verifies the grid (cells complete, blocked cells, incomplete symbols), recomputes the floor and the names still eligible below it, rewrites `universe/last_scan.json` | writes `state`, `universe_n`, `expansion_floor`, `eligible_unseen_below_floor_count`, `next_eligible_refresh_at`; a pass with failed history probes is `INCOMPLETE_SCAN`, never an exhausted band |
 | `log` | appends the batch to `universe/mcap_expansion_log.md` (PROMPT.md §2.1.6) | — |
+
+**Time budget** (measured on this repository, 266-symbol baseline):
+
+| Phase | Wall time | Note |
+|---|---|---|
+| `plan` / `state` / `log` | seconds | offline |
+| `fetch` (20 pages) | ~10 min | 20 CoinGecko pages 9 s apart + two KuCoin probes per name with a tradable pair (the 10-page pass took under 4 min) |
+| `fixtures` (10 names) | ~25 min | ~2.5 min per symbol (220 candle requests, 0.4 s apart) |
+| `grid` (10 symbols) | ~20 min | 66 cells × ~1.6 s per symbol |
+| `aggregate_grid` + `candidate_check` | ~6 min | offline, reads the cells the grid wrote |
+| `pytest tests/ -q` | ~1.5 min | 232 tests |
 
 ### 2.3 The classic path (only if the new tool misbehaves)
 
@@ -69,7 +79,7 @@ The same work with the older, tested commands — one provider pass, then the
 append-only expansion:
 
 ```
-PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 10 --batch-size 10
+PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20 --batch-size 10
 PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --apply-from universe/mcap_snapshot_<TS>.json --batch-size 10 --apply
 PYTHONPATH=. python3 scripts/fetch_kucoin.py --symbols <NEW/USDT> [...] --target-bars 22000
 PYTHONPATH=. python3 scripts/run_grid.py --resume results/20261019_135940_grid --n <rank> --note "universe expansion: N 266 -> <new N> (<SYMBOL>/USDT, 66-pair EMA grid); snapshot <TS>"
@@ -100,18 +110,25 @@ set `next_eligible_refresh_at = scanned_at + 24 h`. That is a waiting state, not
 program stop (PROMPT.md §2.1.5): the ranking is refreshed again after 24 h and the
 program continues when a new name appears below the floor.
 
+**If the pass reports failed history probes** (`history_probe_failure_count > 0`,
+state `INCOMPLETE_SCAN`): the eligibility of those names is *unknown*, not
+negative. The band cannot be called exhausted on that pass. An early re-pass is
+allowed for exactly this reason:
+`refresh_universe.py fetch --override-gate --override-reason "history probes failed on the previous pass"`.
+
 ---
 
 ## 3. Acceptance checklist for the session that runs the expansion
 
 * [ ] Exactly one ranking pass; the snapshot file is committed and linked from `universe/last_scan.json`.
+* [ ] The pass covered **20 pages** and the snapshot records `pages_fetched == pages_requested` (a truncated pass is `INCOMPLETE_SCAN`, not an exhausted band).
 * [ ] `universe/mcap_rank.json` grew by exactly the batch, in descending market-cap order, with the old 266 symbols untouched and in place.
 * [ ] A fixture exists for every new symbol, with ≥ 17 520 hourly bars, and `data/fixtures/fetch_manifest.json` has a provenance row for it.
 * [ ] The grid holds 66 cells per new symbol: `results/20261019_135940_grid/progress.json` shows `completed_cells = (266 + n) × 66`, `next_cell = null`, 0 blocked.
 * [ ] The fixtures of the 266 existing symbols were **not** re-fetched (their row counts and spans in `fetch_manifest.json` are unchanged).
 * [ ] `universe/last_scan.json` reports the new `universe_n`, the new floor, the remaining eligible count and `next_eligible_refresh_at = scanned_at + 24 h`.
 * [ ] `universe/mcap_expansion_log.md` records previous N → new N, the rank range added and the ranking source/date.
-* [ ] `PYTHONPATH=. python3 -m pytest tests/ -q` passes (223 at the time of writing).
+* [ ] `PYTHONPATH=. python3 -m pytest tests/ -q` passes (232 at the time of writing).
 
 ---
 
@@ -131,14 +148,20 @@ program continues when a new name appears below the floor.
 
 ## 5. Useful facts about the current universe
 
-* The 10 names between the floor and the bottom of the coverage band of the
-  current snapshot are all excluded: 4 without two years of hourly history
-  (ELSA, MIRA, TUT, US) and 6 without a tradable KuCoin spot USDT pair
-  (USDM, PIPPIN, M87, ARARA, STKRI, DRB). The exclusions were probed directly
-  against the KuCoin candles API on 2026-10-21T11:44Z, so they are genuine and
-  not transient API errors.
+* The band below the floor was **ten names wide** with 10 pages (the pass stopped at
+  $15 931 465 against a floor of $16 279 472) and all ten are excluded: 4 without
+  two years of hourly history (ELSA, MIRA, TUT, US) and 6 without a tradable KuCoin
+  spot USDT pair (USDM, PIPPIN, M87, ARARA, STKRI, DRB). The exclusions were probed
+  directly against the KuCoin candles API on 2026-10-21T11:44Z, so they are genuine
+  and not transient API errors. **That narrow band is why the pass now covers 20
+  pages**: the selection needs a supply of candidates below the floor, and a band
+  of ten names that are all ineligible is no supply at all.
+* A failed hourly-history probe is **unknown, not negative**
+  (`scripts/fetch_mcap_snapshot.py:has_min_history` answers `True` / `False` /
+  `None`). A name with a failed probe stays a candidate, the fixture download is
+  the authoritative gate, and such a pass is recorded as `INCOMPLETE_SCAN`.
 * Six included symbols have an ambiguous ticker in the ranking (SAFE, VELO, MEME,
-  MASK, ONE, XAI). `scripts/fetch_mcap_snapshot.py` now resolves those against the
+  MASK, ONE, XAI). `scripts/fetch_mcap_snapshot.py` resolves those against the
   fixture the universe holds (the fix of 2026-10-22T05:05Z); the recorded floor
   is unaffected.
 * `data/fixtures/` holds 267 CSV files for 266 ranking symbols (CCD/USDT is a
@@ -147,11 +170,11 @@ program continues when a new name appears below the floor.
   2026-10-22T05:18Z (`results/20261022_052000_baseline_grid_repro`): 300 sampled
   cells reproduce their stored summary exactly, 0 stale. No fixture of an
   existing symbol has drifted, so the expansion only adds cells.
-* The `plan` and `state` phases of `scripts/refresh_universe.py` were exercised
-  against the real repository on 2026-10-22T05:20Z: the record now carries a
-  `grid_verification` block (17 556/17 556 cells, 0 blocked, 0 incomplete
-  symbols, 0 symbols without a fixture) and the refresh bound, the floor and the
-  state are unchanged.
+* A fixture whose hourly series has a gap (or fewer than 17 520 bars) is
+  rejected by the `fixtures` phase and the name is removed from the ranking again
+  and documented in the expansion log. That is deliberate: a partially gridded
+  symbol would leave the grid permanently incomplete. The name is not "proven
+  ineligible" — it can be re-examined in a later cycle.
 
 ---
 
@@ -172,4 +195,5 @@ A new mutation, if one is started, has to be a new single-variable change of the
 **baseline** rule and has to run through the corrected legs — `run_mutation_grid.py
 --resume` → `mutation_eval` (full + repro) → `mutation_survivor_check` →
 `oos_grid_scan` → `survivor_selection_audit` → `null_grid_scan` — with the child's
-own null as the yardstick, not the parent's.
+own null as the yardstick, not the parent's. Run it **after** the expansion, so
+the child is a child of the expanded baseline.
