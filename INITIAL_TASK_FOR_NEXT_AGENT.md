@@ -1,13 +1,13 @@
 # Initial task for the next agent — time-gated universe refresh and expansion
 
-## Situation (verified 2026-10-22T10:08Z, offline only)
+## Situation (verified 2026-10-22T10:28Z, offline only)
 
-The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES`. The 24 h market-cap refresh bound opens at **2026-10-22T11:41:20Z**. The current session (10:08Z) is **before** the bound, so it ran offline-only: no provider contact, no fetch, nothing changed. A wakeup is scheduled for **2026-10-22T11:42:00Z** to run the single gated ranking pass + expansion.
+The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES`. The 24 h market-cap refresh bound opens at **2026-10-22T11:41:20Z**. The current session (10:28Z) is **before** the bound, so it ran offline-only: no provider contact, no fetch, nothing changed. The next session after 11:41:20Z runs the single gated ranking pass + expansion.
 
 Verified offline state:
 - `PYTHONPATH=. python3 scripts/refresh_universe.py plan` → `refresh_allowed_now: false`
 - `PYTHONPATH=. python3 scripts/refresh_universe.py state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked
-- `PYTHONPATH=. python3 scripts/validate_fixtures.py --all` → 268 fixtures, 0 invalid, 0 gaps, 0 duplicates, 0 NaN rows
+- `scripts/validate_fixtures.py --all` → 268 fixtures, 0 invalid, 0 gaps, 0 duplicates, 0 NaN rows
 - `PYTHONPATH=. python3 -m pytest tests/ -q` → **249 passed**
 
 Frozen snapshot: `universe/mcap_snapshot_20261021_114120.json` (fetched 2026-10-21T11:41:20Z, 10/10 pages, 1 000 entries). Coverage reaches $15 931 465, below the floor $16 279 472; the band below the floor holds 10 names, all excluded (insufficient history or no KuCoin spot USDT pair). **0 eligible unseen names below the floor** from this snapshot.
