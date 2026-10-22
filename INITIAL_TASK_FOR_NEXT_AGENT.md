@@ -1,8 +1,8 @@
 # Initial task for the next agent — time-gated universe refresh and expansion
 
-## Situation (verified 2026-10-22T09:45Z, offline only)
+## Situation (verified 2026-10-22T09:52Z, offline only)
 
-The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES`. The 24 h market-cap refresh bound opens at **2026-10-22T11:41:20Z**. The current session (09:45Z) is **before** the bound, so it ran offline-only: no provider contact, no fetch, nothing changed.
+The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES`. The 24 h market-cap refresh bound opens at **2026-10-22T11:41:20Z**. The current session (09:52Z) is **before** the bound, so it ran offline-only: no provider contact, no fetch, nothing changed. A wakeup is scheduled for **2026-10-22T11:42:00Z** to run the single gated ranking pass + expansion.
 
 Verified offline state:
 - `PYTHONPATH=. python3 scripts/refresh_universe.py plan` → `refresh_allowed_now: false`
