@@ -1,30 +1,30 @@
 {
-  "updated_at": "2026-10-20T22:48:58.960399Z",
-  "snapshot_id": "mcap_snapshot_20261020_113004",
+  "updated_at": "2026-10-22T12:15:58.878331+00:00",
+  "snapshot_id": "mcap_snapshot_20261022_121558",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "snapshot_fetched_at": "2026-10-20T11:30:04.315667+00:00",
-  "n_symbols": 266,
+  "snapshot_fetched_at": "2026-10-22T12:15:58.876534+00:00",
+  "n_symbols": 275,
   "added_in_this_expansion": [
-    "POKT/USDT",
-    "XAI/USDT",
-    "ANYONE/USDT",
-    "ACE/USDT",
-    "MOVR/USDT",
-    "RIO/USDT",
-    "BICO/USDT",
-    "AGLD/USDT",
-    "TAIKO/USDT"
+    "BLZ/USDT",
+    "PIXEL/USDT",
+    "ALEX/USDT",
+    "CWEB/USDT",
+    "TRADE/USDT",
+    "ZPAY/USDT",
+    "ZKJ/USDT",
+    "BOSON/USDT",
+    "ALPINE/USDT"
   ],
   "added_market_caps_usd": {
-    "POKT": 17067402,
-    "XAI": 17056252,
-    "ANYONE": 16944562,
-    "ACE": 16766208,
-    "MOVR": 16632333,
-    "RIO": 16469905,
-    "BICO": 16006036,
-    "AGLD": 15735984,
-    "TAIKO": 15436339
+    "BLZ": 4426543,
+    "PIXEL": 3946380,
+    "ALEX": 3926041,
+    "CWEB": 3898532,
+    "TRADE": 3829622,
+    "ZPAY": 3761991,
+    "ZKJ": 3686819,
+    "BOSON": 3633288,
+    "ALPINE": 3614141
   },
   "symbols": [
     "BTC/USDT",
@@ -292,6 +292,15 @@
     "RIO/USDT",
     "BICO/USDT",
     "AGLD/USDT",
-    "TAIKO/USDT"
+    "TAIKO/USDT",
+    "BLZ/USDT",
+    "PIXEL/USDT",
+    "ALEX/USDT",
+    "CWEB/USDT",
+    "TRADE/USDT",
+    "ZPAY/USDT",
+    "ZKJ/USDT",
+    "BOSON/USDT",
+    "ALPINE/USDT"
   ]
 }

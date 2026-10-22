@@ -90,6 +90,16 @@
     "file": "data/fixtures/AKT_USDT.csv"
   },
   {
+    "symbol": "ALEX/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-04-18 21:00:00+00:00",
+    "end": "2026-10-22 12:00:00+00:00",
+    "file": "data/fixtures/ALEX_USDT.csv"
+  },
+  {
     "symbol": "ALGO/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -98,6 +108,16 @@
     "start": "2024-04-16 03:00:00+00:00",
     "end": "2026-10-19 18:00:00+00:00",
     "file": "data/fixtures/ALGO_USDT.csv"
+  },
+  {
+    "symbol": "ALPINE/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-04-18 21:00:00+00:00",
+    "end": "2026-10-22 12:00:00+00:00",
+    "file": "data/fixtures/ALPINE_USDT.csv"
   },
   {
     "symbol": "ALT/USDT",
@@ -380,6 +400,16 @@
     "file": "data/fixtures/BLUR_USDT.csv"
   },
   {
+    "symbol": "BLZ/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22097,
+    "start": "2024-04-14 17:00:00+00:00",
+    "end": "2026-10-22 09:00:00+00:00",
+    "file": "data/fixtures/BLZ_USDT.csv"
+  },
+  {
     "symbol": "BNB/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -408,6 +438,16 @@
     "start": "2024-04-16 06:00:00+00:00",
     "end": "2026-10-19 21:00:00+00:00",
     "file": "data/fixtures/BONK_USDT.csv"
+  },
+  {
+    "symbol": "BOSON/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-04-18 21:00:00+00:00",
+    "end": "2026-10-22 12:00:00+00:00",
+    "file": "data/fixtures/BOSON_USDT.csv"
   },
   {
     "symbol": "BRETT/USDT",
@@ -668,6 +708,16 @@
     "start": "2024-04-16 07:00:00+00:00",
     "end": "2026-10-19 22:00:00+00:00",
     "file": "data/fixtures/CVX_USDT.csv"
+  },
+  {
+    "symbol": "CWEB/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-04-18 21:00:00+00:00",
+    "end": "2026-10-22 12:00:00+00:00",
+    "file": "data/fixtures/CWEB_USDT.csv"
   },
   {
     "symbol": "CYBER/USDT",
@@ -1790,6 +1840,16 @@
     "file": "data/fixtures/PHA_USDT.csv"
   },
   {
+    "symbol": "PIXEL/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-14 17:00:00+00:00",
+    "end": "2026-10-22 11:00:00+00:00",
+    "file": "data/fixtures/PIXEL_USDT.csv"
+  },
+  {
     "symbol": "POKT/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -2280,6 +2340,16 @@
     "file": "data/fixtures/TRAC_USDT.csv"
   },
   {
+    "symbol": "TRADE/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-04-18 21:00:00+00:00",
+    "end": "2026-10-22 12:00:00+00:00",
+    "file": "data/fixtures/TRADE_USDT.csv"
+  },
+  {
     "symbol": "TRB/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -2648,6 +2718,26 @@
     "start": "2024-06-17 08:00:00+00:00",
     "end": "2026-10-19 22:00:00+00:00",
     "file": "data/fixtures/ZK_USDT.csv"
+  },
+  {
+    "symbol": "ZKJ/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-04-18 21:00:00+00:00",
+    "end": "2026-10-22 12:00:00+00:00",
+    "file": "data/fixtures/ZKJ_USDT.csv"
+  },
+  {
+    "symbol": "ZPAY/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22099,
+    "start": "2024-04-14 17:00:00+00:00",
+    "end": "2026-10-22 11:00:00+00:00",
+    "file": "data/fixtures/ZPAY_USDT.csv"
   },
   {
     "symbol": "ZRO/USDT",
