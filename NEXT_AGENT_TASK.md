@@ -15,7 +15,7 @@
 | Last offline verification (this session) | `scripts/validate_fixtures.py --all` → 268 fixtures, 0 invalid; `PYTHONPATH=. python3 -m pytest tests/ -q` → **249 passed**. No provider contact this session. |
 | **Next eligible universe refresh** | **2026-10-23T12:15:58Z** (24 h after the 12:15:58Z snapshot) |
 | ATR min-risk mutation | **closed: `NOT_PROMOTED`** (see `results/mutations.json`) |
-| Stricter-trend mutation | **running** — `results/20261022_134500_grid`, `stricter_trend: true` (single-variable, everything else registered), 2376/18 150 cells complete, next cell `JUP/USDT P8_12`. `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. |
+| Stricter-trend mutation | **running** — `results/20261022_134500_grid`, `stricter_trend: true` (single-variable, everything else registered), 4356/18 150 cells complete, next cell `BTT/USDT P8_12`. `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Background process `bgp_163dac260001iUtpf1UG3qqleM` (pid 19110) still running, persistent. |
 | Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) |
 | Tooling | `scripts/run_mutation_grid.py` (resumable parallel mutation runner), `scripts/aggregate_grid.py`, `scripts/candidate_check.py`, `scripts/mutation_eval.py`, `scripts/null_grid_scan.py`; `scripts/refresh_gate.py` enforces the 24 h bound |
 
@@ -39,7 +39,7 @@ The grid is durable and resumable: cells whose `summary.json` already exist are 
 PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
 ```
 
-Progress as of 2026-10-22T15:58Z: **4 224 / 18 150 cells**, next cell `PENDLE/USDT P8_12`. Background process `bgp_163dac260001iUtpf1UG3qqleM` (pid 19110) still running, persistent. Full grid needs ~5+ more hours; spans sessions; record `next_cell` from `progress.json` at each stop. Re-running the same command resumes from `progress.json` — do not start a second writer on this run directory.
+Progress as of 2026-10-22T16:04Z: **4 356 / 18 150 cells**, next cell `BTT/USDT P8_12`. Background process `bgp_163dac260001iUtpf1UG3qqleM` (pid 19110) still running, persistent. Full grid needs ~5+ more hours; spans sessions; record `next_cell` from `progress.json` at each stop. Re-running the same command resumes from `progress.json` — do not start a second writer on this run directory.
 ### 2.2 After the mutation grid completes
 
 ```bash
