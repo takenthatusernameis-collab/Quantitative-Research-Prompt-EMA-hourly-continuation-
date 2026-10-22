@@ -1,4 +1,4 @@
-# NEXT TASK — gated universe refresh and expansion (updated 2026-10-22T09:52Z)
+# NEXT TASK — gated universe refresh and expansion (updated 2026-10-22T10:08Z)
 
 **Read this file first.** It supersedes prior task descriptions; the durable record of closed mutations is `results/mutations.json`.
 
@@ -12,7 +12,7 @@
 | Baseline grid (program grid) | `results/20261019_135940_grid` — 266 symbols × 66 pairs = 17 556 cells, complete, 0 blocked |
 | Universe | N = 266, floor `AGLD/USDT` $16 279 472 |
 | Frozen universe snapshot | `universe/mcap_snapshot_20261021_114120.json` (fetched 2026-10-21T11:41:20Z, 10/10 pages, 1 000 entries, lowest covered $15 931 465) |
-| Last offline verification (this session) | 2026-10-22T09:52Z — `refresh_universe.py plan` → `refresh_allowed_now: false` (bound 2026-10-22T11:41:20Z not elapsed); `refresh_universe.py state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without fixture/grid cells, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, bound unchanged. `scripts/validate_fixtures.py --all`: 268 fixtures, 0 invalid, 0 gaps, 0 duplicate timestamps, 0 NaN rows. Tests: `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`). Outbound HTTPS verified against a non-provider host. **No provider call.** A wakeup is scheduled for 2026-10-22T11:42:00Z to run the single gated ranking pass + expansion. |
+| Last offline verification (this session) | 2026-10-22T10:08Z — `refresh_universe.py plan` → `refresh_allowed_now: false` (bound 2026-10-22T11:41:20Z not elapsed); `refresh_universe.py state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Tests: `249 passed`. No provider call. Wakeup scheduled for 2026-10-22T11:42:00Z to run the single gated ranking pass + expansion. |
 | **Next eligible universe refresh** | **2026-10-22T11:41:20Z** (24 h after the snapshot) |
 | ATR min-risk mutation | **closed: `NOT_PROMOTED`** (see `results/mutations.json`) |
 | Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) |
