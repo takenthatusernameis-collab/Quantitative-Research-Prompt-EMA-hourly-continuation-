@@ -1,19 +1,19 @@
 # Initial task for the next agent — stricter-trend single-variable mutation of the expanded baseline
 
-## Situation (verified 2026-10-22T14:18Z)
+## Situation (verified 2026-10-22T14:36Z)
 
-- Expansion complete: N = 275, floor `ALPINE/USDT` $3 614 141, snapshot `universe/mcap_snapshot_20261022_121558.json`.
-- Baseline grid `results/20261019_135940_grid`: 275 symbols × 66 pairs = 18 150 cells, complete, 0 blocked. Aggregate mean net PF 0.4987; candidate_check rejected all; tests **249 passed**.
+- Expansion complete: N = 275, floor `ALPINE/USDT` $3 614 141, snapshot `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z).
+- Baseline grid `results/20261019_135940_grid`: 275 symbols × 66 pairs = 18 150 cells, complete, 0 blocked. Aggregate mean net PF 0.4993; candidate_check rejected all; tests **249 passed**.
 - State `AWAITING_NEW_ELIGIBLE_CANDIDATES`; next eligible universe refresh **2026-10-23T12:15:58Z** — **no provider contact before then**.
 - ATR min-risk mutation is closed (`NOT_PROMOTED`, see `results/mutations.json`).
 
 ## Task in progress (resume this first)
 
-A stricter-trend single-variable mutation of the expanded baseline is running as a persistent background process:
+A stricter-trend single-variable mutation of the expanded baseline is running as a persistent background process (`bgp_163dac260001iUtpf1UG3qqleM`, pid 19110):
 
 `results/20261022_134500_grid` (`stricter_trend: true`; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed).
 
-Progress: **1056 / 18 150 cells complete** (16 symbols done: BTC/USDT, ETH/USDT, SOL/USDT, BNB/USDT, XRP/USDT, TRX/USDT, ZEC/USDT, DOGE/USDT, XMR/USDT, ADA/USDT, LINK/USDT, NEAR/USDT, XLM/USDT, BCH/USDT, LTC/USDT, UNI/USDT), next cell advancing past UNI/USDT.
+Progress: **1782 / 18 150 cells complete** (27 symbols done: BTC/USDT ... ONDO/USDT), next cell `WLD/USDT P8_12`. `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Full grid needs ~7+ more hours at current rate (~2 min/symbol) and spans sessions.
 
 Resume command (run from the repository root; it is resumable — skips cells whose `summary.json` already exists — do NOT start a second writer on this run directory):
 
@@ -21,9 +21,7 @@ Resume command (run from the repository root; it is resumable — skips cells wh
 PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
 ```
 
-The full grid needs ~9+ hours at the current rate (~2 min/symbol) and spans sessions. Record `next_cell` from `progress.json` at each stop. Mutate **one variable at a time** (`stricter_trend` only).
-
-A wakeup is scheduled for 2026-10-22T15:22:38Z to check completion.
+The background process is persistent and will keep running; check `background_process status` / `logs` before re-invoking. Record `next_cell` from `progress.json` at each stop. Mutate **one variable at a time** (`stricter_trend` only).
 
 ## Once the mutation grid completes (next_cell = null)
 
