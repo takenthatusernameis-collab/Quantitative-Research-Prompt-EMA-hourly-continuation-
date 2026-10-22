@@ -13,6 +13,7 @@
 | Baseline grid (the program's grid) | `results/20261019_135940_grid` — 266 symbols × 66 pairs = 17 556 cells, complete, 0 blocked |
 | Universe | N = 266, floor `AGLD/USDT` $16 279 472 |
 | Frozen universe snapshot | `universe/mcap_snapshot_20261021_114120.json` (fetched 2026-10-21T11:41:20Z, 10/10 pages, 1 000 entries, lowest covered $15 931 465) |
+| Last offline verification | 2026-10-22T05:21:50Z — `refresh_universe.py plan` → `refresh_allowed_now: false`, state unchanged (N=266, floor AGLD/USDT $16 279 472, 0 symbols without fixture/grid cells). No provider call. |
 | **Next eligible universe refresh** | **2026-10-22T11:41:20Z** (24 h after the snapshot) |
 | ATR min-risk mutation | **closed: `NOT_PROMOTED`** (see §6) |
 | Tests | `223 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`, 2026-10-22T05:20Z) |
