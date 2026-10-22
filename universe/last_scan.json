@@ -23,8 +23,8 @@
   "eligible_unseen_below_floor": [],
   "batch_selected": [],
   "next_eligible_refresh_at": "2026-10-22T11:41:20.375553+00:00",
-  "last_verified_at": "2026-10-22T06:55:38.693479+00:00",
-  "last_verification_note": "Re-verified offline on 2026-10-22T06:52Z: no market-data provider was contacted (the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 is still closed), so the universe, the frozen snapshot and the expansion floor are unchanged (N=266, floor AGLD/USDT $16 279 472, snapshot universe/mcap_snapshot_20261021_114120.json). Baseline grid results/20261019_135940_grid: 266 symbols x 66 pairs = 17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without a fixture or a grid cell; progress.json is in sync with the artifact tree (17 556 cells, 0 stale). All 268 fixtures on disk pass scripts/validate_fixtures.py --all (0 invalid, 0 gaps, 0 duplicate timestamps, 0 NaN rows). Offline work of this session (no provider call): two defect fixes in scripts/refresh_universe.py, both in the path the 2026-10-22T11:41:20Z expansion runs: (1) the log phase wrote the batch of the PREVIOUS expansion again when a refresh cycle added no name - a ranking pass that finds no eligible name leaves the ranking file's added_in_this_expansion untouched, so the log phase appended a second section for batch 26 and consumed the batch number 27; the phase now takes the names of the current cycle from the scan record (batch_selected) and writes nothing when the cycle added no name; (2) the state phase destroyed the expansion floor when the frozen snapshot could not be read from the working directory of the session - the record stores the snapshot path relative to the repository root, and an unreadable snapshot produced a floor of $0 and flipped the state to INCOMPLETE_SCAN; the snapshot path is now resolved against the repository root and the recorded floor is kept when the snapshot cannot be read. Tests: 244 -> 249 passed (5 new regression tests in tests/test_refresh_universe.py).",
+  "last_verified_at": "2026-10-22T07:06:27.000544+00:00",
+  "last_verification_note": "Re-verified offline on 2026-10-22T07:06Z: no market-data provider was contacted (the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 is still closed), so the universe, the frozen snapshot and the expansion floor are unchanged (N=266, floor AGLD/USDT $16 279 472, snapshot universe/mcap_snapshot_20261021_114120.json). Baseline grid results/20261019_135940_grid: 266 symbols x 66 pairs = 17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without a fixture or a grid cell; progress.json is in sync with the artifact tree (17 556 cells, 0 stale). All 268 fixtures on disk pass scripts/validate_fixtures.py --all (0 invalid, 0 gaps, 0 duplicate timestamps, 0 NaN rows). The state phase was re-run offline to refresh the record's timestamps; it reproduced the recorded floor and state exactly (the two defect fixes of 2026-10-22T06:55Z are in place: the log phase writes nothing when a cycle adds no name, and the snapshot path is resolved against the repository root). Tests: 249 passed.",
   "below_floor_band": [
     {
       "rank": 991,
@@ -89,7 +89,7 @@
   ],
   "grid_verification": {
     "run": "results/20261019_135940_grid",
-    "verified_at": "2026-10-22T06:55:38.693479+00:00",
+    "verified_at": "2026-10-22T07:06:27.000544+00:00",
     "symbols": 266,
     "cells_complete": 17556,
     "cells_expected": 17556,
