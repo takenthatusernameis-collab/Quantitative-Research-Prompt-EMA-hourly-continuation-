@@ -11,7 +11,7 @@
 | Program state | `MUTATION_RUNNING` |
 | Stricter-trend mutation | **running** — `results/20261022_134500_grid`, `stricter_trend: true` (single-variable; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed). |
 | Background writer | `bgp_165c26e18001HrFOj1yrcSOD6T` (pid 6252 + 4 workers), **persistent**, sole writer on this run directory. Do **not** start a second writer. |
-| Progress | 5 445 / 18 150 cells on disk; next cell `ENS/USDT P12_100`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. The grid runs across sessions — several hours of wall clock remaining. |
+| Progress | 6 402 / 18 150 cells on disk; next cell `MANA/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. The grid runs across sessions — several hours of wall clock remaining. |
 | Baseline grid | `results/20261019_135940_grid` — complete, 0 blocked |
 | Universe | N = 275, floor `ALPINE/USDT` $3 614 141 |
 | Frozen snapshot | `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z) |
