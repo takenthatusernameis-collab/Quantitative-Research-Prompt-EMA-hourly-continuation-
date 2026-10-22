@@ -1,6 +1,6 @@
 # Initial task for the next agent — stricter-trend single-variable mutation of the expanded baseline
 
-## Situation (verified 2026-10-22T15:33Z)
+## Situation (verified 2026-10-22T15:58Z)
 
 - Expansion complete: N = 275, floor `ALPINE/USDT` $3 614 141, snapshot `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z).
 - Baseline grid `results/20261019_135940_grid`: 275 symbols × 66 pairs = 18 150 cells, complete, 0 blocked. Aggregate mean net PF 0.4993; candidate_check rejected all; tests **249 passed**.
@@ -13,7 +13,7 @@ A stricter-trend single-variable mutation of the expanded baseline is running as
 
 `results/20261022_134500_grid` (`stricter_trend: true`; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed).
 
-Progress: **3 960 / 18 150 cells complete** (3 960 summary.json on disk), next cell `RAY/USDT P8_12`. `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Rate ~35 cells/min → ~6 h remaining. Full grid spans sessions.
+Progress: **4 224 / 18 150 cells complete** (4 224 summary.json on disk), next cell `PENDLE/USDT P8_12`. `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Rate ~35 cells/min → ~5 h remaining. Full grid spans sessions.
 Resume command (run from the repository root; it is resumable — skips cells whose `summary.json` already exists — do NOT start a second writer on this run directory):
 
 ```bash
