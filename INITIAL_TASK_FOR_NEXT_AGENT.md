@@ -13,7 +13,7 @@ A stricter-trend single-variable mutation of the expanded baseline is running as
 
 `results/20261022_134500_grid` (`stricter_trend: true`; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed).
 
-Progress: **2409 / 18 150 cells complete**, next cell `JST/USDT P8_12`. `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Full grid needs ~7+ more hours at current rate (~2 min/symbol) and spans sessions.
+Progress: **2376 / 18 150 cells complete**, next cell `JUP/USDT P8_12`. `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Full grid needs ~7+ more hours at current rate (~2 min/symbol) and spans sessions.
 
 Resume command (run from the repository root; it is resumable — skips cells whose `summary.json` already exists — do NOT start a second writer on this run directory):
 
