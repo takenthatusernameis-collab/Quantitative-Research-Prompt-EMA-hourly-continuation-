@@ -23,7 +23,7 @@
   "eligible_unseen_below_floor": [],
   "batch_selected": [],
   "next_eligible_refresh_at": "2026-10-22T11:41:20.375553+00:00",
-  "last_verified_at": "2026-10-22T05:10:58+00:00",
+  "last_verified_at": "2026-10-22T05:20:52.639121+00:00",
   "last_verification_note": "State re-verified against the saved artifacts on 2026-10-22T05:10Z: no market-data provider was contacted (the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 is still closed), so the universe, the frozen snapshot and the expansion floor are unchanged (N=266, floor AGLD/USDT $16 279 472, snapshot universe/mcap_snapshot_20261021_114120.json). Baseline grid results/20261019_135940_grid: 266 symbols x 66 pairs = 17 556 cells, all_symbols_processed=true, next_cell=null, 0 blocked, 17 556 cell summaries on disk, 266/266 ranking symbols have a fixture and a complete 66-cell grid. Offline work of this session: (1) scripts/refresh_universe.py (new, 25 tests in tests/test_refresh_universe.py) makes the gated refresh a single reproducible command - plan/fetch/fixtures/grid/state/log - and enforces the 24 h bound in code, so exactly one ranking pass per cycle is possible and a second pass inside the window is refused; the fetch phase writes the frozen snapshot, appends the batch to universe/mcap_rank.json append-only in descending market-cap order, the fixtures phase never re-fetches a symbol the grid already ran, and the grid phase expands through the repository's own resume path (scripts/run_grid.py --resume) one symbol at a time; (2) defect fix in scripts/fetch_mcap_snapshot.py: the ticker-collision resolution looked for the fixture under the base ticker ('ONE.csv') while the fixture is named after the whole symbol ('ONE_USDT.csv'), so match_entry never found a fixture and fell back to the first ranking entry - the market cap of a different asset. Six included symbols are ambiguous in the current snapshot (SAFE, VELO, MEME, MASK, ONE, XAI); with the fix the entry that matches our own fixture wins (e.g. ONE/USDT -> Harmony $21 364 132 instead of ONEchain $55 344 003). The recorded floor does not change (AGLD/USDT $16 279 472), so no stored state was invalidated. Pre-flight for the expansion: scripts/verify_grid_repro.py re-ran 300 sampled baseline cells through the real backtest on the fixtures on disk (results/20261022_052000_baseline_grid_repro): 300/300 reproduce their stored summary exactly, 0 stale, so no fixture of the 266 existing symbols has drifted and the expansion only adds cells. Tests: PYTHONPATH=. python3 -m pytest tests/ -q -> 223 passed (198 + 25 new).",
   "below_floor_band": [
     {
@@ -86,5 +86,15 @@
       "market_cap_usd": 15931465,
       "exclusion_reason": "no_tradable_kucoin_spot_usdt_pair"
     }
-  ]
+  ],
+  "grid_verification": {
+    "run": "results/20261019_135940_grid",
+    "verified_at": "2026-10-22T05:20:52.639121+00:00",
+    "symbols": 266,
+    "cells_complete": 17556,
+    "cells_expected": 17556,
+    "cells_blocked": 0,
+    "incomplete_symbols": [],
+    "symbols_without_fixture": []
+  }
 }

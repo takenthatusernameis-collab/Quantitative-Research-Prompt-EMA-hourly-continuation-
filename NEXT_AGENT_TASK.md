@@ -146,6 +146,11 @@ program continues when a new name appears below the floor.
   2026-10-22T05:18Z (`results/20261022_052000_baseline_grid_repro`): 300 sampled
   cells reproduce their stored summary exactly, 0 stale. No fixture of an
   existing symbol has drifted, so the expansion only adds cells.
+* The `plan` and `state` phases of `scripts/refresh_universe.py` were exercised
+  against the real repository on 2026-10-22T05:20Z: the record now carries a
+  `grid_verification` block (17 556/17 556 cells, 0 blocked, 0 incomplete
+  symbols, 0 symbols without a fixture) and the refresh bound, the floor and the
+  state are unchanged.
 
 ---
 
