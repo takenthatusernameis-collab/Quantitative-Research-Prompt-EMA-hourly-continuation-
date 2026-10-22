@@ -8,14 +8,14 @@
 
 | Item | Value |
 |---|---|
-| Program state | `MUTATION_RUNNING` (stricter-trend child `results/20261022_134500_grid`, 264/18 150 cells, next cell `XRP/USDT P8_12`; persistent background process) |
+| Program state | `MUTATION_RUNNING` (stricter-trend child `results/20261022_134500_grid`, 1056/18 150 cells, 16 symbols complete, next cell advancing past UNI/USDT; persistent background process bgp_163dac260001iUtpf1UG3qqleM) |
 | Baseline grid (program grid) | `results/20261019_135940_grid` — 275 symbols × 66 pairs = 18 150 cells, complete, 0 blocked |
 | Universe | N = 275, floor `ALPINE/USDT` $3 614 141 |
 | Frozen universe snapshot | `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z, 20/20 pages, 2 000 entries, lowest covered $3 490 223) |
 | Last offline verification (this session) | 2026-10-22T13:54Z — expansion complete (ALPINE/USDT 66/66 cells); `scripts/validate_fixtures.py --all` → 268 fixtures, 0 invalid; `PYTHONPATH=. python3 -m pytest tests/ -q` → **249 passed**. Stricter-trend mutation grid launched (see below). No provider contact this session. |
 | **Next eligible universe refresh** | **2026-10-23T12:15:58Z** (24 h after the 12:15:58Z snapshot) |
 | ATR min-risk mutation | **closed: `NOT_PROMOTED`** (see `results/mutations.json`) |
-| Stricter-trend mutation | **running** — `results/20261022_134500_grid`, `stricter_trend: true` (single-variable, everything else registered), 264/18 150 cells complete, next cell `XRP/USDT P8_12`, resume command below |
+| Stricter-trend mutation | **running** — `results/20261022_134500_grid`, `stricter_trend: true` (single-variable, everything else registered), 1056/18 150 cells complete (16 symbols), next cell advancing past UNI/USDT, resume command below |
 | Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) |
 | Tooling | `scripts/run_mutation_grid.py` (resumable parallel mutation runner), `scripts/aggregate_grid.py`, `scripts/candidate_check.py`, `scripts/mutation_eval.py`, `scripts/null_grid_scan.py`; `scripts/refresh_gate.py` enforces the 24 h bound |
 
@@ -47,7 +47,7 @@ The grid is durable and resumable: cells whose `summary.json` already exist are 
 ```bash
 PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
 ```
-Progress as of 2026-10-22T13:54Z: 264 / 18 150 cells (4 symbols complete), next cell `XRP/USDT P8_12`. Re-running the same command resumes from `progress.json` — do not start a second writer on this run directory. Full grid needs ~2+ hours, so it spans sessions; record `next_cell` in this handoff at each stop.
+Progress as of 2026-10-22T14:18Z: 1056 / 18 150 cells (16 symbols complete: BTC, ETH, SOL, BNB, XRP, TRX, ZEC, DOGE, XMR, ADA, LINK, NEAR, XLM, BCH, LTC, UNI), next cell advancing past UNI/USDT. Re-running the same command resumes from `progress.json` — do not start a second writer on this run directory. Full grid needs ~9+ hours at current rate (~2 min/symbol), so it spans sessions; record `next_cell` from `progress.json` at each stop.
 
 ### 2.2 After the mutation grid completes
 
@@ -97,4 +97,4 @@ Then record a `NOT_PROMOTED` or promoted decision in `results/mutations.json` (c
 
 **Session 2026-10-22T13:20Z.** Grid completed for ALPINE/USDT (66 cells); 18150/18150, 0 blocked. Aggregate: 18150 cells, mean net PF 0.4987, 37 net PF>1, candidate_check rejected all. Tests 249 passed. N=275, floor ALPINE/USDT $3 614 141. Next refresh 2026-10-23T12:15:58Z. Next agent: single-variable mutation of expanded baseline.
 
-**Session 2026-10-22T14:14Z.** Resumed stricter-trend mutation grid in background (bgp_163f9a14c001BKjvZQ9MyCg1jQ); 1036/18150 cells on disk, running 4 workers, next cell advancing. No provider contact. Next agent: let grid finish, then run §2.2 evaluation legs and record decision.
+**Session 2026-10-22T14:18Z.** Stricter-trend mutation grid in background (bgp_163dac260001iUtpf1UG3qqleM, pid 19110); 1056/18150 cells on disk, running 4 workers, next cell advancing past UNI/USDT. No provider contact. Wakeup scheduled for 2026-10-22T15:22:38Z to check completion. Next agent: let grid finish, then run §2.2 evaluation legs and record decision.
