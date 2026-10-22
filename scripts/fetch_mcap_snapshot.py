@@ -323,22 +323,34 @@ def build_scan_record(snapshot: dict, snapshot_path: Path, current_symbols: list
 
 
 def fixture_last_close(ticker: str, fixtures_dir: Path):
-    """Last close of the hourly fixture we hold for `ticker`, or None."""
-    path = fixtures_dir / f'{ticker.replace("/", "_")}.csv'
-    if not path.exists():
-        return None
-    try:
-        with open(path) as f:
-            rows = list(csv.DictReader(f))
-    except Exception:
-        return None
-    if not rows:
-        return None
-    try:
-        value = float(rows[-1]['close'])
-    except (KeyError, TypeError, ValueError):
-        return None
-    return value if value > 0 else None
+    """Last close of the hourly fixture we hold for `ticker`, or None.
+
+    The fixture of a symbol is named after the whole symbol (`BTC/USDT` ->
+    `BTC_USDT.csv`), so a caller that only knows the base ticker is served by
+    the second candidate. Without it the collision check below silently never
+    finds a fixture and falls back to the wrong asset.
+    """
+    base = Path(fixtures_dir)
+    candidates = [base / f'{ticker.replace("/", "_")}.csv']
+    stem = ticker.split('/')[0]
+    if f'{stem}.csv' != candidates[0].name:
+        candidates.append(base / f'{stem}.csv')
+    for path in candidates:
+        if not path.exists():
+            continue
+        try:
+            with open(path) as f:
+                rows = list(csv.DictReader(f))
+        except Exception:
+            return None
+        if not rows:
+            return None
+        try:
+            value = float(rows[-1]['close'])
+        except (KeyError, TypeError, ValueError):
+            return None
+        return value if value > 0 else None
+    return None
 
 
 def match_entry(entries: list, ticker: str, fixtures_dir: Path):
@@ -348,6 +360,9 @@ def match_entry(entries: list, ticker: str, fixtures_dir: Path):
     single entry is used. For an ambiguous ticker the entry whose quoted price is
     closest to the last close of our own fixture wins - that is the asset the
     grid actually traded.
+
+    `ticker` is the symbol the universe holds (`ONE/USDT`), because the fixture
+    that identifies the asset is named after it.
     """
     if not entries:
         return None
@@ -362,6 +377,67 @@ def match_entry(entries: list, ticker: str, fixtures_dir: Path):
             return abs(math.log(price / close))
         return min(entries, key=price_distance)
     return entries[0]
+
+
+def included_market_caps(snapshot: dict, current_symbols: list, fixtures_dir: Path) -> dict:
+    """Market cap of every name the working universe already contains.
+
+    The market caps are read from the fresh snapshot, not from the snapshot the
+    universe was built from, because the expansion floor is defined by what
+    the ranking says *now*: the floor is the lowest market cap among the
+    included names, and it moves with the market.
+
+    A ticker can map to several different assets in the CoinGecko ranking, so
+    an ambiguous ticker is resolved against the last close of the fixture the
+    universe actually holds.
+    """
+    by_sym = {}
+    for e in snapshot.get('entries') or []:
+        by_sym.setdefault(e['symbol'], []).append(e)
+
+    included = {}
+    for s in current_symbols:
+        ticker = s.split('/')[0].upper()
+        entry = match_entry(by_sym.get(ticker, []), s, fixtures_dir)
+        included[s] = entry.get('market_cap_usd') if entry else None
+    return included
+
+
+def expansion_floor(included_mcaps: dict) -> tuple:
+    """(floor_mcap, floor_symbol) of the working universe.
+
+    The floor is the lowest market cap the universe already contains; every
+    name added by an expansion has to rank strictly below it.
+    """
+    known = [m for m in included_mcaps.values() if m]
+    if not known:
+        return 0, None
+    floor_mcap = min(known)
+    floor_symbol = min(((m, s) for s, m in included_mcaps.items() if m))[1]
+    return floor_mcap, floor_symbol
+
+
+def select_expansion_candidates(snapshot: dict, current_symbols: list,
+                                 floor_mcap: float) -> list:
+    """Eligible, unseen names strictly below the floor, in ranking order.
+
+    The snapshot entries are ordered by market cap descending, so the returned
+    list is descending too and a batch taken from its head keeps the global
+    order of the working universe (PROMPT.md §2.1.2).
+    """
+    current_set = {s.split('/')[0].upper() for s in current_symbols}
+    candidates = []
+    seen = set()
+    for e in snapshot.get('entries') or []:
+        if e.get('exclusion_reason') is not None:
+            continue
+        if e['symbol'] in current_set or e['symbol'] in seen:
+            continue
+        if e['market_cap_usd'] >= floor_mcap:
+            continue
+        candidates.append(e)
+        seen.add(e['symbol'])
+    return candidates
 
 
 def main():
@@ -419,7 +495,6 @@ def main():
     with open(mcap_path) as f:
         current = json.load(f)
     current_symbols = list(current.get('symbols', []))
-    current_set = {s.split('/')[0].upper() for s in current_symbols}
 
     # Market cap of each already-included name, from the fresh snapshot.
     # A ticker can map to several different assets in the CoinGecko ranking (e.g.
@@ -427,33 +502,11 @@ def main():
     # safe key: matching the wrong asset moves the expansion floor and silently
     # skips eligible names. Every ambiguous ticker is resolved against the last
     # close of the fixture we actually hold for that symbol.
-    by_sym = {}
-    for e in snapshot['entries']:
-        by_sym.setdefault(e['symbol'], []).append(e)
-
     fixtures_dir = Path(args.fixtures_dir)
-    included_mcaps = {}
-    for s in current_symbols:
-        ticker = s.split('/')[0].upper()
-        entry = match_entry(by_sym.get(ticker, []), ticker, fixtures_dir)
-        included_mcaps[s] = entry.get('market_cap_usd') if entry else None
-    known = [m for m in included_mcaps.values() if m]
-    floor_mcap = min(known) if known else 0
-    floor_symbol = None
-    if known:
-        floor_symbol = min(((m, s) for s, m in included_mcaps.items() if m))[1]
+    included_mcaps = included_market_caps(snapshot, current_symbols, fixtures_dir)
+    floor_mcap, floor_symbol = expansion_floor(included_mcaps)
 
-    eligible_below = []
-    seen_tickers = set()
-    for e in snapshot['entries']:
-        if e['exclusion_reason'] is not None:
-            continue
-        if e['symbol'] in current_set or e['symbol'] in seen_tickers:
-            continue
-        if e['market_cap_usd'] >= floor_mcap:
-            continue
-        eligible_below.append(e)
-        seen_tickers.add(e['symbol'])
+    eligible_below = select_expansion_candidates(snapshot, current_symbols, floor_mcap)
 
     added = eligible_below[:args.batch_size]
 

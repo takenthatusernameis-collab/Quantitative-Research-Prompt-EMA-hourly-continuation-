@@ -2777,3 +2777,82 @@ Monitor the mutation child grid, then run the full evaluation, the
 reproduction check, the survivor check and the randomized null on the complete
 child grid. From **2026-10-22T11:41:20Z**, fetch a fresh market-cap snapshot.
 See `NEXT_AGENT_TASK.md`.
+
+---
+
+## Offline session 2026-10-22T05:05Z - no universe change; gated refresh tooling and a ticker-collision fix
+
+No market-cap query was made: the 24 h refresh bound from `universe/last_scan.json`
+opens **2026-10-22T11:41:20Z**, and the workflow run this session belongs to ends
+before that timestamp. N stays **266**, the floor stays `AGLD/USDT` $16 279 472 and
+`eligible_unseen_below_floor_count = 0`.
+
+### 1. State re-verified against the artifacts
+
+| Artifact | Fact |
+|---|---|
+| `results/20261019_135940_grid/progress.json` | 266 symbols x 66 pairs = 17 556 cells, `all_symbols_processed=true`, `next_cell=null`, 0 blocked |
+| artifact tree | 266 symbol directories, 17 556 cell summaries, 0 missing |
+| `universe/mcap_rank.json` | 266 unique symbols, market-cap descending, batch 26 = POKT...TAIKO |
+| fixtures | 266/266 ranking symbols have a fixture (267 CSV files, manifest 267 rows) |
+| `universe/last_scan.json` | state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=266`, floor `AGLD/USDT` $16 279 472, next eligible refresh **2026-10-22T11:41:20.375553+00:00** |
+| `results/mutations.json` | `C_min_risk_atr` closed as `NOT_PROMOTED`; the baseline grid stays the program's grid |
+
+### 2. Defect fixed - the ticker-collision check never found a fixture
+
+`scripts/fetch_mcap_snapshot.py:match_entry` resolves an ambiguous CoinGecko ticker
+against the last close of the fixture the universe holds, but it looked for the
+fixture under the base ticker (`ONE.csv`) while a fixture is named after the whole
+symbol (`ONE_USDT.csv`). The lookup therefore always failed and the function fell
+back to the *first* ranking entry - the market cap of a **different asset**.
+
+Six names of the current universe are ambiguous in the snapshot
+`universe/mcap_snapshot_20261021_114120.json`:
+
+| Symbol | Entry used before the fix | Entry used after the fix | Fixture close |
+|---|---|---|---|
+| ONE/USDT | ONEchain $55 344 003 | **Harmony $21 364 132** | 0.001447 |
+| XAI/USDT | SideShift $28 687 911 | **Xai $17 889 722** | 0.00833 |
+| MEME/USDT | MEMETOON $51 673 755 | **Memecoin $33 012 645** | 0.000491 |
+| MASK/USDT | Mask Network $42 419 741 | Mask Network $42 419 741 | 0.4169 |
+| SAFE/USDT | Safe $84 846 391 | Safe $84 846 391 | 0.1016 |
+| VELO/USDT | Velo $74 192 743 | Velo $74 192 743 | 0.004024 |
+
+The floor is the *minimum* market cap over the included names, so the wrong market
+cap of an ambiguous name moves the floor as soon as that name approaches the bottom
+of the universe - and the floor decides which names are eligible for the expansion.
+The recorded floor does not change with the fix (`AGLD/USDT` $16 279 472, none of the
+six ambiguous names is the minimum), so no stored state was invalidated and no cell
+has to be re-run. Regression test:
+`tests/test_refresh_universe.py::test_included_market_caps_resolves_an_ambiguous_ticker`.
+
+### 3. New tool - the gated refresh as one reproducible command
+
+`scripts/refresh_universe.py` (new, 24 tests in `tests/test_refresh_universe.py`)
+turns the pending expansion into one command sequence and enforces the 24 h bound in
+code instead of in memory:
+
+| Phase | What it does |
+|---|---|
+| `plan` | Offline only. Reports the recorded state, whether a refresh is allowed now, and which symbols still need a fixture or a grid. |
+| `fetch` | **One** CoinGecko ranking pass, the frozen snapshot `universe/mcap_snapshot_<TS>.json`, the append-only batch in `universe/mcap_rank.json`, and the scan record. Refuses to run before the recorded bound has elapsed. |
+| `fixtures` | Hourly KuCoin fixtures for the **new** symbols only, with the integrity checks the log records (bar count, duplicate timestamps, contiguous hourly grid, valid OHLC rows, price identity). |
+| `grid` | Expands the grid through the repository's own resume path (`scripts/run_grid.py --resume`), one symbol at a time, in descending market-cap order. Existing cells are skipped, never recomputed. |
+| `state` | Verifies the grid (cells complete, blocked cells, incomplete symbols) and rewrites `universe/last_scan.json`. |
+| `log` | Appends the expansion to this file (PROMPT.md §2.1.6). |
+
+The bound is what makes a second pass impossible: the `fetch` phase records
+`next_eligible_refresh_at = scanned_at + 24 h` in the scan record, so a second
+`fetch` inside the window is refused by the gate before any provider call
+(`test_a_second_fetch_in_the_same_cycle_is_refused`). The fixture phase never
+re-fetches a symbol the grid already ran, because a re-fetch moves the bar
+sequence and makes the stored cells stale (`scripts/verify_grid_repro.py`).
+
+### 4. Tests
+
+`PYTHONPATH=. python3 -m pytest tests/ -q` -> **222 passed** (198 + 24 new).
+
+### 5. Next action
+
+From **2026-10-22T11:41:20Z**: exactly one universe fetch, then the expansion of the
+new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.
