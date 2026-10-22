@@ -9,7 +9,7 @@
 
 ## Task in progress (resume this first)
 
-A stricter-trend single-variable mutation of the expanded baseline is running as a persistent background process (`bgp_1646bf9550014GL600cGaM45kv`, pid 3190):
+A stricter-trend single-variable mutation of the expanded baseline is running as a persistent background process (`bgp_16494c0b6001ybcq87fTq48OYY`, pid 8695) (resumed this session):
 
 `results/20261022_134500_grid` (`stricter_trend: true`; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed).
 
