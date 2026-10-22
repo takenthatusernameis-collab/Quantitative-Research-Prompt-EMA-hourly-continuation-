@@ -1,6 +1,6 @@
 {
   "run_id": "20261022_134500_grid",
-  "timestamp": "20261022_134405",
+  "timestamp": "20261022_141747",
   "strategy": "ema_hourly_continuation",
   "mode": "full_ema_grid_mutation",
   "runner": "scripts/run_mutation_grid.py",
@@ -312,7 +312,7 @@
   ],
   "n_symbols": 275,
   "workers": 4,
-  "note": "single-variable stricter-trend mutation of expanded 275-symbol baseline (stricter_trend False->True); ATR min-risk filter stays closed; registered costs 10/2 bps, rr 1.0, conservative exit, risk sizing unchanged",
+  "note": null,
   "parent_run": "results/20261019_135940_grid",
   "mcap_snapshot": {
     "updated_at": "2026-10-22T12:15:58.878331+00:00",

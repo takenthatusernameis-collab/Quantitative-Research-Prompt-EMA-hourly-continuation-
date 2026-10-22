@@ -96,3 +96,5 @@ Then record a `NOT_PROMOTED` or promoted decision in `results/mutations.json` (c
 ---
 
 **Session 2026-10-22T13:20Z.** Grid completed for ALPINE/USDT (66 cells); 18150/18150, 0 blocked. Aggregate: 18150 cells, mean net PF 0.4987, 37 net PF>1, candidate_check rejected all. Tests 249 passed. N=275, floor ALPINE/USDT $3 614 141. Next refresh 2026-10-23T12:15:58Z. Next agent: single-variable mutation of expanded baseline.
+
+**Session 2026-10-22T14:14Z.** Resumed stricter-trend mutation grid in background (bgp_163f9a14c001BKjvZQ9MyCg1jQ); 1036/18150 cells on disk, running 4 workers, next cell advancing. No provider contact. Next agent: let grid finish, then run §2.2 evaluation legs and record decision.
