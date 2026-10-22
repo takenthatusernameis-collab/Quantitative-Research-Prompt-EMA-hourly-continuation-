@@ -39,7 +39,7 @@ The grid is durable and resumable: cells whose `summary.json` already exist are 
 PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
 ```
 
-Progress as of 2026-10-22T14:36Z: **1782 / 18 150 cells** (27 symbols complete: BTC/USDT through ONDO/USDT), next cell `WLD/USDT P8_12`. Full grid needs ~7+ more hours at current rate (~2 min/symbol), so it spans sessions; record `next_cell` from `progress.json` at each stop. Re-running the same command resumes from `progress.json` — do not start a second writer on this run directory.
+Progress as of 2026-10-22T14:44Z: **2409 / 18 150 cells**, next cell `JST/USDT P8_12`. Background process `bgp_163dac260001iUtpf1UG3qqleM` (pid 19110) still running, persistent. Full grid needs ~7+ more hours; spans sessions; record `next_cell` from `progress.json` at each stop. Re-running the same command resumes from `progress.json` — do not start a second writer on this run directory.
 
 ### 2.2 After the mutation grid completes
 
