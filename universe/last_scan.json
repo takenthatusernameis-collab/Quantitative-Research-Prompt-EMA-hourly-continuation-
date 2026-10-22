@@ -23,7 +23,7 @@
   "eligible_unseen_below_floor": [],
   "batch_selected": [],
   "next_eligible_refresh_at": "2026-10-22T11:41:20.375553+00:00",
-  "last_verified_at": "2026-10-22T08:31:44.475213+00:00",
+  "last_verified_at": "2026-10-22T08:39:16.696054+00:00",
   "last_verification_note": "Re-verified offline on 2026-10-22T08:31Z: the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 had not elapsed, so no market-data provider was contacted. The universe, the frozen snapshot and the expansion floor are unchanged (N=266, floor AGLD/USDT $16 279 472, snapshot universe/mcap_snapshot_20261021_114120.json).",
   "below_floor_band": [
     {
@@ -89,7 +89,7 @@
   ],
   "grid_verification": {
     "run": "results/20261019_135940_grid",
-    "verified_at": "2026-10-22T08:31:44.475213+00:00",
+    "verified_at": "2026-10-22T08:39:16.696054+00:00",
     "symbols": 266,
     "cells_complete": 17556,
     "cells_expected": 17556,
