@@ -1,4 +1,4 @@
-# NEXT TASK — gated universe refresh and expansion (updated 2026-10-22T08:23Z)
+# NEXT TASK — gated universe refresh and expansion (updated 2026-10-22T08:31Z)
 
 **Read this file first.** It supersedes prior task descriptions; the durable record of closed mutations is `results/mutations.json`.
 
@@ -12,7 +12,7 @@
 | Baseline grid (program grid) | `results/20261019_135940_grid` — 266 symbols × 66 pairs = 17 556 cells, complete, 0 blocked |
 | Universe | N = 266, floor `AGLD/USDT` $16 279 472 |
 | Frozen universe snapshot | `universe/mcap_snapshot_20261021_114120.json` (fetched 2026-10-21T11:41:20Z, 10/10 pages, 1 000 entries, lowest covered $15 931 465) |
-| Last offline verification (this session) | 2026-10-22T08:28Z — `refresh_universe.py plan` → `refresh_allowed_now: false` (bound 2026-10-22T11:41:20Z not elapsed); `refresh_universe.py state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without fixture/grid cells, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`. `scripts/validate_fixtures.py --all`: 268 fixtures, 0 invalid, 0 gaps, 0 duplicate timestamps, 0 NaN rows. Tests: 249 passed. **No provider call.** Session stopped cleanly (offline only). |
+| Last offline verification (this session) | 2026-10-22T08:31Z — `refresh_universe.py plan` → `refresh_allowed_now: false` (bound 2026-10-22T11:41:20Z not elapsed); `refresh_universe.py state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, 0 incomplete symbols, 0 symbols without fixture/grid cells, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, bound unchanged. Independent artifact check: 266 symbol dirs × 66 `summary.json` = 17 556, 0 `blocked.json`; ranking ↔ grid ↔ fixtures consistent in both directions; 268 fixtures on disk (266 universe + `CCD/USDT` + `sample_hourly`, see the fixture count note); `fetch_manifest.json` has 267 rows. `scripts/validate_fixtures.py --all`: 268 fixtures, 0 invalid, 0 gaps, 0 duplicate timestamps, 0 NaN rows. Tests: `249 passed`. **No provider call.** Session stopped cleanly (offline only). |
 | **Next eligible universe refresh** | **2026-10-22T11:41:20Z** (24 h after the snapshot) |
 | ATR min-risk mutation | **closed: `NOT_PROMOTED`** (see `results/mutations.json`) |
 | Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) |
@@ -21,6 +21,8 @@
 **Provider discipline.** Until 2026-10-22T11:41:20Z the market-data provider must not be contacted at all — no polling, no "quick check", no partial refresh. After that timestamp exactly **one** ranking pass is allowed; the new snapshot is then frozen for the following 24 h.
 
 **Timing note.** A session that starts before 11:41:20Z must not fetch: verify the state offline and stop cleanly. The expansion belongs to the first session that runs after the bound.
+
+**Fixture count note.** 268 fixture files on disk vs. N=266: the two extras are `CCD/USDT` and `sample_hourly`. `sample_hourly` is the synthetic template used by `scripts/run_baseline.py` / `scripts/cost_stress.py` (no manifest row). `CCD/USDT` (Concordium) is **eligible but above the expansion floor** — snapshot rank 552, $41 673 734, tradable KuCoin pair, its fixture is pre-fetched and valid (22 099 rows) — and it was deliberately kept out of the universe by the strict append-only rule of PROMPT.md §2.1.2 (documented in `universe/mcap_expansion_log.md`, "Names deliberately skipped", together with `GAS`, rank 322, $82 731 692). Both have no grid cells and enter the universe only if a later snapshot puts them below the floor. Neither is in `universe/mcap_rank.json`, so neither is ever re-fetched or re-gridded. `data/fixtures/fetch_manifest.json` has 267 rows (266 universe symbols + CCD; the template has none).
 
 **Working directory.** Run commands from the repository root.
 
