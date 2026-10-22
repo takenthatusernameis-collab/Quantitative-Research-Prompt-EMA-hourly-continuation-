@@ -2848,11 +2848,32 @@ The bound is what makes a second pass impossible: the `fetch` phase records
 re-fetches a symbol the grid already ran, because a re-fetch moves the bar
 sequence and makes the stored cells stale (`scripts/verify_grid_repro.py`).
 
-### 4. Tests
+### 4. Pre-flight for the expansion - the baseline grid still reproduces
 
-`PYTHONPATH=. python3 -m pytest tests/ -q` -> **222 passed** (198 + 24 new).
+`scripts/verify_grid_repro.py` re-runs sampled cells through the real backtest on
+the fixtures that are on disk right now. This is the check that has to pass
+before the expansion, because the expansion adds cells to the same run and must
+not invalidate the cells that are already there.
 
-### 5. Next action
+```
+PYTHONPATH=. python3 scripts/verify_grid_repro.py --run results/20261019_135940_grid \
+  --sample 300 --workers 4 --out results/20261022_052000_baseline_grid_repro
+```
+
+| Quantity | Value |
+|---|---|
+| Cells re-run | 300 (random sample of the 17 556, seed 20261021) |
+| Cells that reproduce the stored summary exactly | **300 / 300** |
+| Stale cells (fixture drift) | **0** |
+
+No fixture of the 266 existing symbols has drifted, so the stored cells of the
+baseline grid stay valid and the expansion only adds cells.
+
+### 5. Tests
+
+`PYTHONPATH=. python3 -m pytest tests/ -q` -> **223 passed** (198 + 25 new).
+
+### 6. Next action
 
 From **2026-10-22T11:41:20Z**: exactly one universe fetch, then the expansion of the
 new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.

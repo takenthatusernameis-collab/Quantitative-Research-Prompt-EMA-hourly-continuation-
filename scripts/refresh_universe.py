@@ -449,11 +449,18 @@ def phase_grid(args) -> dict:
     env['PYTHONPATH'] = str(repo_root())
     outcomes = []
     for symbol in pending:
+        if not fixture_path(args.fixture_dir, symbol).exists():
+            print(f'  SKIP {symbol}: no fixture {fixture_path(args.fixture_dir, symbol)} '
+                  f'- run the fixtures phase first')
+            outcomes.append({'symbol': symbol, 'cells': 0, 'blocked': 0,
+                             'missing': ['<no fixture>'], 'expected': len(GRID_PAIRS)})
+            continue
         index = symbols.index(symbol)
         note = (f'universe expansion: N {previous_n} -> {len(symbols)} '
                 f'({symbol}, 66-pair EMA grid); snapshot {state.get("snapshot_id")}')
         cmd = [sys.executable, 'scripts/run_grid.py', '--resume', str(args.grid_run),
-               '--n', str(index + 1), '--note', note]
+               '--n', str(index + 1), '--mcap', str(args.ranking),
+               '--fixture-base', str(args.fixture_dir), '--note', note]
         print(f'Running: {" ".join(cmd)}')
         subprocess.run(cmd, check=True, cwd=str(repo_root()), env=env)
         status = symbol_cell_status(args.grid_run, symbol)
@@ -518,6 +525,7 @@ def phase_state(args) -> dict:
         'cells_expected': len(symbols) * len(GRID_PAIRS),
         'cells_blocked': blocked,
         'incomplete_symbols': incomplete,
+        'symbols_without_fixture': symbols_without_fixture(symbols, args.fixture_dir),
     }
     state['last_verified_at'] = iso(now)
     state['last_verification_note'] = args.verification_note or state.get('last_verification_note', '')

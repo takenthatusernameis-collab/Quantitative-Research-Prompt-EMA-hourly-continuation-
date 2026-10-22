@@ -15,7 +15,7 @@
 | Frozen universe snapshot | `universe/mcap_snapshot_20261021_114120.json` (fetched 2026-10-21T11:41:20Z, 10/10 pages, 1 000 entries, lowest covered $15 931 465) |
 | **Next eligible universe refresh** | **2026-10-22T11:41:20Z** (24 h after the snapshot) |
 | ATR min-risk mutation | **closed: `NOT_PROMOTED`** (see §6) |
-| Tests | `222 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`, 2026-10-22T05:10Z) |
+| Tests | `223 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`, 2026-10-22T05:20Z) |
 | New tooling | `scripts/refresh_universe.py` (gated refresh, one command sequence) |
 
 **Provider discipline.** Until 2026-10-22T11:41:20Z the market-data provider must
@@ -110,7 +110,7 @@ program continues when a new name appears below the floor.
 * [ ] The fixtures of the 266 existing symbols were **not** re-fetched (their row counts and spans in `fetch_manifest.json` are unchanged).
 * [ ] `universe/last_scan.json` reports the new `universe_n`, the new floor, the remaining eligible count and `next_eligible_refresh_at = scanned_at + 24 h`.
 * [ ] `universe/mcap_expansion_log.md` records previous N → new N, the rank range added and the ranking source/date.
-* [ ] `PYTHONPATH=. python3 -m pytest tests/ -q` passes (222 at the time of writing).
+* [ ] `PYTHONPATH=. python3 -m pytest tests/ -q` passes (223 at the time of writing).
 
 ---
 
@@ -120,6 +120,11 @@ program continues when a new name appears below the floor.
 * No re-run of the baseline grid, no re-opening of the child grid, no second worker on any run directory, no promotion from the child grid.
 * No re-fetch of a fixture the grid already ran (it invalidates the stored cells).
 * No change to the registered grid, the cost model, the fill rule, the folds or the §3.4 gates.
+* Operational: the `background_process` **monitor** action *starts* the command it is given
+  instead of following it. A second copy of the verification run was started by mistake in
+  the 2026-10-22 session and stopped within seconds; the check is read-only with respect
+  to the grid, so nothing was affected. Use `start` + `logs`/`status` to follow a running
+  process, and never two writers on one run directory.
 
 ---
 
@@ -137,6 +142,10 @@ program continues when a new name appears below the floor.
   is unaffected.
 * `data/fixtures/` holds 267 CSV files for 266 ranking symbols (CCD/USDT is a
   pre-fetched file that is not part of the universe).
+* The baseline grid was re-verified against the fixtures on disk on
+  2026-10-22T05:18Z (`results/20261022_052000_baseline_grid_repro`): 300 sampled
+  cells reproduce their stored summary exactly, 0 stale. No fixture of an
+  existing symbol has drifted, so the expansion only adds cells.
 
 ---
 

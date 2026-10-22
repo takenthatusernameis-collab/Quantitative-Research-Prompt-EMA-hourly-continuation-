@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-10-22T05:18:11.416738+00:00",
+  "source_run": "results/20261019_135940_grid",
+  "fixture_base": "data/fixtures",
+  "n_cells": 300,
+  "n_reproducing": 300,
+  "n_stale": 0,
+  "stale": []
+}

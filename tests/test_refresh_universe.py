@@ -339,6 +339,9 @@ def test_grid_phase_uses_the_resume_path_once_per_new_symbol(workspace, monkeypa
     ranking = json.loads(Path(workspace.ranking).read_text())
     ranking['symbols'] += ['CCC/USDT', 'DDD/USDT']
     Path(workspace.ranking).write_text(json.dumps(ranking))
+    for symbol in ('CCC/USDT', 'DDD/USDT'):
+        _bars(n=200).to_csv(Path(workspace.fixture_dir) / f"{symbol.replace('/', '_')}.csv",
+                             index=False)
 
     commands = []
 
@@ -359,6 +362,22 @@ def test_grid_phase_uses_the_resume_path_once_per_new_symbol(workspace, monkeypa
         assert cmd[cmd.index('--resume') + 1] == str(workspace.grid_run)
         assert cmd[cmd.index('--n') + 1] == expected_n
         assert cmd[0].endswith('python3') or cmd[0].endswith('python')
+
+
+def test_grid_phase_skips_a_symbol_whose_fixture_is_missing(workspace, monkeypatch):
+    """A symbol without bars cannot be gridded; it must not be run silently."""
+    ranking = json.loads(Path(workspace.ranking).read_text())
+    ranking['symbols'].append('CCC/USDT')
+    Path(workspace.ranking).write_text(json.dumps(ranking))
+
+    commands = []
+    monkeypatch.setattr(ru.subprocess, 'run', lambda cmd, **kw: commands.append(cmd))
+
+    result = ru.phase_grid(workspace)
+
+    assert commands == []
+    assert result['outcomes'][0]['symbol'] == 'CCC/USDT'
+    assert result['outcomes'][0]['cells'] == 0
 
 
 def test_grid_phase_does_not_recompute_a_symbol_that_is_already_complete(workspace, monkeypatch):
