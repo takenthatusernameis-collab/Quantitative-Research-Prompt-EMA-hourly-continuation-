@@ -78,7 +78,7 @@ from data.data_loader import load_ohlcv_csv
 from metrics.metrics import calculate_metrics
 from scripts.oos_grid_scan import (describe_distribution, entry_start_index,
                                     net_profit_factor, stressed_pnl_net)
-from scripts.run_grid import CONFIG_DEFAULTS, GRID_PAIRS
+from scripts.run_grid import CONFIG_DEFAULTS, GRID_PAIRS, load_run_config
 from signals.signals import generate_signals, generate_signals_vectorized
 
 NULL_MODES = ('block', 'timing', 'sign')
@@ -238,6 +238,20 @@ def summarize_trades(trades: list, metrics: dict, stress_multiplier: float) -> d
                             if risk_pct.size and np.isfinite(risk_pct).any()
                             else None),
     }
+
+
+def run_config(run_dir: Path) -> dict:
+    """The trading config of the grid run the null leg is compared against.
+
+    The null has to randomize the *same* rule the grid run uses. A mutation
+    run (PROMPT.md §5.2) changes the rule - the ATR minimum-risk child filters
+    entries the baseline rule takes - and a null built on the baseline rule
+    would score the child against the wrong reference: both the "real" leg and
+    the null would describe the parent. The run's own `run_config.json` is
+    therefore the source of the config; a run without one falls back to the
+    engine defaults.
+    """
+    return load_run_config(run_dir)
 
 
 def passes_gate(stats: dict, min_trades: int) -> bool:
@@ -1017,7 +1031,7 @@ def main():
         print(f'Checkpoint held {n_truncated} truncated line(s); they are re-run.',
               flush=True)
 
-    config = dict(CONFIG_DEFAULTS)
+    config = run_config(run_dir)
     config['stress_multiplier'] = args.stress_multiplier
     opts = {
         'run': str(run_dir),

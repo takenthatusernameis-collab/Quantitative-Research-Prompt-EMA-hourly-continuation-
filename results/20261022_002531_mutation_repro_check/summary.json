@@ -1,0 +1,1393 @@
+{
+  "generated_at": "2026-10-22T00:31:51.444419+00:00",
+  "parent_run": "results/20261019_135940_grid",
+  "child_run": "results/20261021_172619_grid",
+  "parent_config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": false,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "child_config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": true,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "n_symbols_complete": 266,
+  "n_cells_checked": 24,
+  "child_cells_reproduced": 24,
+  "parent_cells_reproduced": 24,
+  "mean_parent_trades": 1112.6666666666667,
+  "mean_child_trades": 469.6666666666667,
+  "mean_shared_entry_bars": 444.875,
+  "mean_parent_only_entry_bars": 667.7916666666666,
+  "mean_child_only_entry_bars": 24.791666666666668,
+  "mean_child_trade_share": 0.5015086415358685,
+  "n_violations": 0,
+  "violations": [],
+  "cells": [
+    {
+      "symbol": "BTC/USDT",
+      "P_fast": 8,
+      "P_slow": 12,
+      "child": {
+        "symbol": "BTC/USDT",
+        "P_fast": 8,
+        "P_slow": 12,
+        "stored_trades": 237,
+        "rerun_trades": 237,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "BTC/USDT",
+        "P_fast": 8,
+        "P_slow": 12,
+        "stored_trades": 2075,
+        "rerun_trades": 2075,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 2075,
+        "child_trades": 237,
+        "shared_entry_bars": 213,
+        "parent_only_entry_bars": 1862,
+        "child_only_entry_bars": 24,
+        "first_divergent_bar": 21,
+        "child_trade_share": 0.11421686746987952
+      }
+    },
+    {
+      "symbol": "NEAR/USDT",
+      "P_fast": 8,
+      "P_slow": 20,
+      "child": {
+        "symbol": "NEAR/USDT",
+        "P_fast": 8,
+        "P_slow": 20,
+        "stored_trades": 432,
+        "rerun_trades": 432,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "NEAR/USDT",
+        "P_fast": 8,
+        "P_slow": 20,
+        "stored_trades": 1729,
+        "rerun_trades": 1729,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1729,
+        "child_trades": 432,
+        "shared_entry_bars": 397,
+        "parent_only_entry_bars": 1332,
+        "child_only_entry_bars": 35,
+        "first_divergent_bar": 30,
+        "child_trade_share": 0.2498554077501446
+      }
+    },
+    {
+      "symbol": "CRO/USDT",
+      "P_fast": 8,
+      "P_slow": 21,
+      "child": {
+        "symbol": "CRO/USDT",
+        "P_fast": 8,
+        "P_slow": 21,
+        "stored_trades": 548,
+        "rerun_trades": 548,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "CRO/USDT",
+        "P_fast": 8,
+        "P_slow": 21,
+        "stored_trades": 1701,
+        "rerun_trades": 1701,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1701,
+        "child_trades": 548,
+        "shared_entry_bars": 499,
+        "parent_only_entry_bars": 1202,
+        "child_only_entry_bars": 49,
+        "first_divergent_bar": 53,
+        "child_trade_share": 0.3221634332745444
+      }
+    },
+    {
+      "symbol": "HTX/USDT",
+      "P_fast": 8,
+      "P_slow": 26,
+      "child": {
+        "symbol": "HTX/USDT",
+        "P_fast": 8,
+        "P_slow": 26,
+        "stored_trades": 696,
+        "rerun_trades": 696,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "HTX/USDT",
+        "P_fast": 8,
+        "P_slow": 26,
+        "stored_trades": 1643,
+        "rerun_trades": 1643,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1643,
+        "child_trades": 696,
+        "shared_entry_bars": 632,
+        "parent_only_entry_bars": 1011,
+        "child_only_entry_bars": 64,
+        "first_divergent_bar": 59,
+        "child_trade_share": 0.42361533779671334
+      }
+    },
+    {
+      "symbol": "INJ/USDT",
+      "P_fast": 8,
+      "P_slow": 34,
+      "child": {
+        "symbol": "INJ/USDT",
+        "P_fast": 8,
+        "P_slow": 34,
+        "stored_trades": 680,
+        "rerun_trades": 680,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "INJ/USDT",
+        "P_fast": 8,
+        "P_slow": 34,
+        "stored_trades": 1379,
+        "rerun_trades": 1379,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1379,
+        "child_trades": 680,
+        "shared_entry_bars": 653,
+        "parent_only_entry_bars": 726,
+        "child_only_entry_bars": 27,
+        "first_divergent_bar": 34,
+        "child_trade_share": 0.49311094996374183
+      }
+    },
+    {
+      "symbol": "BDX/USDT",
+      "P_fast": 8,
+      "P_slow": 50,
+      "child": {
+        "symbol": "BDX/USDT",
+        "P_fast": 8,
+        "P_slow": 50,
+        "stored_trades": 557,
+        "rerun_trades": 557,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "BDX/USDT",
+        "P_fast": 8,
+        "P_slow": 50,
+        "stored_trades": 1720,
+        "rerun_trades": 1720,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1720,
+        "child_trades": 557,
+        "shared_entry_bars": 510,
+        "parent_only_entry_bars": 1210,
+        "child_only_entry_bars": 47,
+        "first_divergent_bar": 65,
+        "child_trade_share": 0.32383720930232557
+      }
+    },
+    {
+      "symbol": "BTT/USDT",
+      "P_fast": 8,
+      "P_slow": 55,
+      "child": {
+        "symbol": "BTT/USDT",
+        "P_fast": 8,
+        "P_slow": 55,
+        "stored_trades": 580,
+        "rerun_trades": 580,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "BTT/USDT",
+        "P_fast": 8,
+        "P_slow": 55,
+        "stored_trades": 926,
+        "rerun_trades": 926,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 926,
+        "child_trades": 580,
+        "shared_entry_bars": 564,
+        "parent_only_entry_bars": 362,
+        "child_only_entry_bars": 16,
+        "first_divergent_bar": 84,
+        "child_trade_share": 0.6263498920086393
+      }
+    },
+    {
+      "symbol": "AR/USDT",
+      "P_fast": 8,
+      "P_slow": 89,
+      "child": {
+        "symbol": "AR/USDT",
+        "P_fast": 8,
+        "P_slow": 89,
+        "stored_trades": 446,
+        "rerun_trades": 446,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "AR/USDT",
+        "P_fast": 8,
+        "P_slow": 89,
+        "stored_trades": 624,
+        "rerun_trades": 624,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 624,
+        "child_trades": 446,
+        "shared_entry_bars": 432,
+        "parent_only_entry_bars": 192,
+        "child_only_entry_bars": 14,
+        "first_divergent_bar": 614,
+        "child_trade_share": 0.7147435897435898
+      }
+    },
+    {
+      "symbol": "ZBCN/USDT",
+      "P_fast": 8,
+      "P_slow": 100,
+      "child": {
+        "symbol": "ZBCN/USDT",
+        "P_fast": 8,
+        "P_slow": 100,
+        "stored_trades": 549,
+        "rerun_trades": 549,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "ZBCN/USDT",
+        "P_fast": 8,
+        "P_slow": 100,
+        "stored_trades": 871,
+        "rerun_trades": 871,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 871,
+        "child_trades": 549,
+        "shared_entry_bars": 536,
+        "parent_only_entry_bars": 335,
+        "child_only_entry_bars": 13,
+        "first_divergent_bar": 114,
+        "child_trade_share": 0.6303099885189437
+      }
+    },
+    {
+      "symbol": "ZK/USDT",
+      "P_fast": 8,
+      "P_slow": 144,
+      "child": {
+        "symbol": "ZK/USDT",
+        "P_fast": 8,
+        "P_slow": 144,
+        "stored_trades": 439,
+        "rerun_trades": 439,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "ZK/USDT",
+        "P_fast": 8,
+        "P_slow": 144,
+        "stored_trades": 574,
+        "rerun_trades": 574,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 574,
+        "child_trades": 439,
+        "shared_entry_bars": 428,
+        "parent_only_entry_bars": 146,
+        "child_only_entry_bars": 11,
+        "first_divergent_bar": 470,
+        "child_trade_share": 0.764808362369338
+      }
+    },
+    {
+      "symbol": "RSR/USDT",
+      "P_fast": 8,
+      "P_slow": 200,
+      "child": {
+        "symbol": "RSR/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "stored_trades": 228,
+        "rerun_trades": 228,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "RSR/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "stored_trades": 288,
+        "rerun_trades": 288,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 288,
+        "child_trades": 228,
+        "shared_entry_bars": 222,
+        "parent_only_entry_bars": 66,
+        "child_only_entry_bars": 6,
+        "first_divergent_bar": 293,
+        "child_trade_share": 0.7916666666666666
+      }
+    },
+    {
+      "symbol": "GMX/USDT",
+      "P_fast": 12,
+      "P_slow": 20,
+      "child": {
+        "symbol": "GMX/USDT",
+        "P_fast": 12,
+        "P_slow": 20,
+        "stored_trades": 501,
+        "rerun_trades": 501,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "GMX/USDT",
+        "P_fast": 12,
+        "P_slow": 20,
+        "stored_trades": 1384,
+        "rerun_trades": 1384,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1384,
+        "child_trades": 501,
+        "shared_entry_bars": 455,
+        "parent_only_entry_bars": 929,
+        "child_only_entry_bars": 46,
+        "first_divergent_bar": 21,
+        "child_trade_share": 0.3619942196531792
+      }
+    },
+    {
+      "symbol": "KAVA/USDT",
+      "P_fast": 12,
+      "P_slow": 21,
+      "child": {
+        "symbol": "KAVA/USDT",
+        "P_fast": 12,
+        "P_slow": 21,
+        "stored_trades": 456,
+        "rerun_trades": 456,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "KAVA/USDT",
+        "P_fast": 12,
+        "P_slow": 21,
+        "stored_trades": 1500,
+        "rerun_trades": 1500,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1500,
+        "child_trades": 456,
+        "shared_entry_bars": 416,
+        "parent_only_entry_bars": 1084,
+        "child_only_entry_bars": 40,
+        "first_divergent_bar": 22,
+        "child_trade_share": 0.304
+      }
+    },
+    {
+      "symbol": "SUSHI/USDT",
+      "P_fast": 12,
+      "P_slow": 26,
+      "child": {
+        "symbol": "SUSHI/USDT",
+        "P_fast": 12,
+        "P_slow": 26,
+        "stored_trades": 504,
+        "rerun_trades": 504,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "SUSHI/USDT",
+        "P_fast": 12,
+        "P_slow": 26,
+        "stored_trades": 1423,
+        "rerun_trades": 1423,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1423,
+        "child_trades": 504,
+        "shared_entry_bars": 470,
+        "parent_only_entry_bars": 953,
+        "child_only_entry_bars": 34,
+        "first_divergent_bar": 66,
+        "child_trade_share": 0.354181307097681
+      }
+    },
+    {
+      "symbol": "ASTR/USDT",
+      "P_fast": 12,
+      "P_slow": 34,
+      "child": {
+        "symbol": "ASTR/USDT",
+        "P_fast": 12,
+        "P_slow": 34,
+        "stored_trades": 708,
+        "rerun_trades": 708,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "ASTR/USDT",
+        "P_fast": 12,
+        "P_slow": 34,
+        "stored_trades": 1177,
+        "rerun_trades": 1177,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1177,
+        "child_trades": 708,
+        "shared_entry_bars": 679,
+        "parent_only_entry_bars": 498,
+        "child_only_entry_bars": 29,
+        "first_divergent_bar": 65,
+        "child_trade_share": 0.6015293118096856
+      }
+    },
+    {
+      "symbol": "CFG/USDT",
+      "P_fast": 12,
+      "P_slow": 50,
+      "child": {
+        "symbol": "CFG/USDT",
+        "P_fast": 12,
+        "P_slow": 50,
+        "stored_trades": 490,
+        "rerun_trades": 490,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "CFG/USDT",
+        "P_fast": 12,
+        "P_slow": 50,
+        "stored_trades": 870,
+        "rerun_trades": 870,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 870,
+        "child_trades": 490,
+        "shared_entry_bars": 464,
+        "parent_only_entry_bars": 406,
+        "child_only_entry_bars": 26,
+        "first_divergent_bar": 69,
+        "child_trade_share": 0.5632183908045977
+      }
+    },
+    {
+      "symbol": "BOME/USDT",
+      "P_fast": 12,
+      "P_slow": 55,
+      "child": {
+        "symbol": "BOME/USDT",
+        "P_fast": 12,
+        "P_slow": 55,
+        "stored_trades": 619,
+        "rerun_trades": 619,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "BOME/USDT",
+        "P_fast": 12,
+        "P_slow": 55,
+        "stored_trades": 1032,
+        "rerun_trades": 1032,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1032,
+        "child_trades": 619,
+        "shared_entry_bars": 601,
+        "parent_only_entry_bars": 431,
+        "child_only_entry_bars": 18,
+        "first_divergent_bar": 126,
+        "child_trade_share": 0.5998062015503876
+      }
+    },
+    {
+      "symbol": "OSMO/USDT",
+      "P_fast": 12,
+      "P_slow": 89,
+      "child": {
+        "symbol": "OSMO/USDT",
+        "P_fast": 12,
+        "P_slow": 89,
+        "stored_trades": 553,
+        "rerun_trades": 553,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "OSMO/USDT",
+        "P_fast": 12,
+        "P_slow": 89,
+        "stored_trades": 740,
+        "rerun_trades": 740,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 740,
+        "child_trades": 553,
+        "shared_entry_bars": 528,
+        "parent_only_entry_bars": 212,
+        "child_only_entry_bars": 25,
+        "first_divergent_bar": 496,
+        "child_trade_share": 0.7472972972972973
+      }
+    },
+    {
+      "symbol": "REZ/USDT",
+      "P_fast": 12,
+      "P_slow": 100,
+      "child": {
+        "symbol": "REZ/USDT",
+        "P_fast": 12,
+        "P_slow": 100,
+        "stored_trades": 451,
+        "rerun_trades": 451,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "REZ/USDT",
+        "P_fast": 12,
+        "P_slow": 100,
+        "stored_trades": 590,
+        "rerun_trades": 590,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 590,
+        "child_trades": 451,
+        "shared_entry_bars": 438,
+        "parent_only_entry_bars": 152,
+        "child_only_entry_bars": 13,
+        "first_divergent_bar": 133,
+        "child_trade_share": 0.764406779661017
+      }
+    },
+    {
+      "symbol": "IOST/USDT",
+      "P_fast": 12,
+      "P_slow": 144,
+      "child": {
+        "symbol": "IOST/USDT",
+        "P_fast": 12,
+        "P_slow": 144,
+        "stored_trades": 355,
+        "rerun_trades": 355,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "IOST/USDT",
+        "P_fast": 12,
+        "P_slow": 144,
+        "stored_trades": 439,
+        "rerun_trades": 439,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 439,
+        "child_trades": 355,
+        "shared_entry_bars": 348,
+        "parent_only_entry_bars": 91,
+        "child_only_entry_bars": 7,
+        "first_divergent_bar": 476,
+        "child_trade_share": 0.8086560364464692
+      }
+    },
+    {
+      "symbol": "ERG/USDT",
+      "P_fast": 12,
+      "P_slow": 200,
+      "child": {
+        "symbol": "ERG/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "stored_trades": 375,
+        "rerun_trades": 375,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "ERG/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "stored_trades": 524,
+        "rerun_trades": 524,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 524,
+        "child_trades": 375,
+        "shared_entry_bars": 363,
+        "parent_only_entry_bars": 161,
+        "child_only_entry_bars": 12,
+        "first_divergent_bar": 288,
+        "child_trade_share": 0.7156488549618321
+      }
+    },
+    {
+      "symbol": "SQD/USDT",
+      "P_fast": 20,
+      "P_slow": 21,
+      "child": {
+        "symbol": "SQD/USDT",
+        "P_fast": 20,
+        "P_slow": 21,
+        "stored_trades": 187,
+        "rerun_trades": 187,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "SQD/USDT",
+        "P_fast": 20,
+        "P_slow": 21,
+        "stored_trades": 1128,
+        "rerun_trades": 1128,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1128,
+        "child_trades": 187,
+        "shared_entry_bars": 176,
+        "parent_only_entry_bars": 952,
+        "child_only_entry_bars": 11,
+        "first_divergent_bar": 23,
+        "child_trade_share": 0.16578014184397163
+      }
+    },
+    {
+      "symbol": "ONE/USDT",
+      "P_fast": 20,
+      "P_slow": 26,
+      "child": {
+        "symbol": "ONE/USDT",
+        "P_fast": 20,
+        "P_slow": 26,
+        "stored_trades": 189,
+        "rerun_trades": 189,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "ONE/USDT",
+        "P_fast": 20,
+        "P_slow": 26,
+        "stored_trades": 1262,
+        "rerun_trades": 1262,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1262,
+        "child_trades": 189,
+        "shared_entry_bars": 180,
+        "parent_only_entry_bars": 1082,
+        "child_only_entry_bars": 9,
+        "first_divergent_bar": 112,
+        "child_trade_share": 0.14976228209191758
+      }
+    },
+    {
+      "symbol": "FIDA/USDT",
+      "P_fast": 20,
+      "P_slow": 34,
+      "child": {
+        "symbol": "FIDA/USDT",
+        "P_fast": 20,
+        "P_slow": 34,
+        "stored_trades": 492,
+        "rerun_trades": 492,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "parent": {
+        "symbol": "FIDA/USDT",
+        "P_fast": 20,
+        "P_slow": 34,
+        "stored_trades": 1105,
+        "rerun_trades": 1105,
+        "trade_diffs": [],
+        "metric_deltas": {
+          "trade_count": 0.0,
+          "net_profit_factor": 0.0,
+          "gross_profit_factor": 0.0,
+          "win_rate": 0.0,
+          "max_drawdown": 0.0,
+          "sharpe_ratio": 0.0,
+          "sortino_ratio": 0.0,
+          "cagr": 0.0,
+          "equity_reconciles": 0.0
+        },
+        "max_abs_metric_delta": 0.0,
+        "reproduced": true
+      },
+      "path": {
+        "parent_trades": 1105,
+        "child_trades": 492,
+        "shared_entry_bars": 473,
+        "parent_only_entry_bars": 632,
+        "child_only_entry_bars": 19,
+        "first_divergent_bar": 95,
+        "child_trade_share": 0.4452488687782805
+      }
+    }
+  ],
+  "verdict": [
+    "24/24 re-run child cells reproduce the stored child blotter and summary exactly, and 24/24 re-run parent cells reproduce the stored parent artifacts: both grids are artifacts of the same engine.",
+    "The mutation removes 667.8 of the parent's entry bars on average and adds 24.8 entries the parent never took: the ATR minimum-risk filter does not prune the parent's trade list, it changes the path, so the child is a different strategy instance and not a filtered view of the parent.",
+    "No violation found: the child run is a faithful re-run of the parent engine with the ATR minimum-risk filter applied."
+  ],
+  "artifact": "results/20261022_002531_mutation_repro_check"
+}

@@ -30,18 +30,18 @@
         "max_notional_multiple": 10.0
       },
       "note": "PROMPT.md \u00a75.2 ATR minimum-risk mutation (skip trades whose risk distance < ATR(14) x threshold)",
-      "status": "running",
+      "status": "complete",
       "started_at": "2026-10-21T17:26:19Z",
       "parent_run": "results/20261019_135940_grid",
-      "n_symbols": 57,
-      "n_cells": 3762,
+      "n_symbols": 266,
+      "n_cells": 17556,
       "delta": {
-        "pooled_net_pf": 0.26346278162852854,
-        "mean_cell_net_pf": 0.28233763101266723,
-        "trades": -1747558,
-        "pooled_oos_net_pf": 0.1834566709564719,
-        "cells_clearing_gate": 19,
-        "walk_forward_pooled_oof_net_pf": 0.13234101574062618
+        "pooled_net_pf": 0.2122859452179997,
+        "mean_cell_net_pf": 0.22705484418486505,
+        "trades": -7328204,
+        "pooled_oos_net_pf": 0.13776211571276908,
+        "cells_clearing_gate": 96,
+        "walk_forward_pooled_oof_net_pf": 0.09805931960996284
       },
       "evaluations": [
         {
@@ -79,16 +79,34 @@
             "parent": 0,
             "child": 19
           }
+        },
+        {
+          "artifact": "results/20261022_002531_mutation_eval_full",
+          "generated_at": "2026-10-22T00:29:13.449958+00:00",
+          "n_symbols": 266,
+          "n_cells": 17556,
+          "pooled_net_pf": {
+            "parent": 0.5224569734915895,
+            "child": 0.7347429187095892
+          },
+          "walk_forward_pooled_oof_net_pf": {
+            "parent": 0.640939755402983,
+            "child": 0.7389990750129458
+          },
+          "cells_clearing_gate": {
+            "parent": 10,
+            "child": 106
+          }
         }
       ],
       "progress": {
-        "checked_at": "2026-10-21T19:50:00Z",
-        "completed_cells": 4026,
+        "checked_at": "2026-10-22T02:37:31.115164+00:00",
+        "completed_cells": 17556,
         "total_cells": 17556,
-        "symbols_complete": 61,
-        "next_cell": "STRK/USDT P8_12",
-        "runner": "scripts/run_mutation_grid.py --run results/20261021_172619_grid --min-risk-atr --workers 4",
-        "note": "the child grid is still running; the evaluations below are on the symbols that were complete when they ran"
+        "symbols_complete": 266,
+        "next_cell": null,
+        "runner": "scripts/run_mutation_grid.py --run results/20261021_172619_grid --min-risk-atr --workers 4 --taker-fee-bps 10 --slippage-bps 2 --rr 1.0 --atr-threshold 1.0 --sizing risk --risk-fraction 0.01 --max-notional-multiple 10 --parent-run results/20261019_135940_grid",
+        "note": "the child grid is complete: 17 556/17 556 cells over 266 symbols, no blocked cell, no missing cell, every stored summary reproduced from the fixture on disk"
       },
       "legs": [
         {
@@ -159,17 +177,162 @@
               "POL/USDT P34_200"
             ]
           }
+        },
+        {
+          "leg": "mutation evaluation (full universe)",
+          "artifact": "results/20261022_002531_mutation_eval_full",
+          "n_symbols": 266,
+          "n_cells": 17556,
+          "headline": {
+            "pooled_net_pf": {
+              "parent": 0.5224569734915895,
+              "child": 0.7347429187095892
+            },
+            "mean_cell_net_pf": {
+              "parent": 0.4993133981270112,
+              "child": 0.7263682423118762
+            },
+            "trades": {
+              "parent": 14241237,
+              "child": 6913033
+            },
+            "costs_per_trade": {
+              "parent": 8.60787422937166,
+              "child": 10.142575446617522
+            },
+            "pooled_oos_net_pf": {
+              "parent": 0.5297980096096812,
+              "child": 0.6675601253224502
+            },
+            "pooled_oos_stress_net_pf": {
+              "parent": 0.32659898657239805,
+              "child": 0.47808519813843475
+            },
+            "cells_clearing_gate": {
+              "parent": 10,
+              "child": 106
+            },
+            "walk_forward_pooled_oof_net_pf": {
+              "parent": 0.640939755402983,
+              "child": 0.7389990750129458
+            },
+            "walk_forward_pooled_oof_stress_net_pf": {
+              "parent": 0.4521336087438694,
+              "child": 0.5730648239337698
+            },
+            "pf_mismatches": {
+              "parent": 0,
+              "child": 0
+            },
+            "note": "the ATR filter halves the trade count and lifts the whole distribution; the pooled out-of-sample net PF stays below 1 both at registered costs (0.6676) and at 2x costs (0.4781)"
+          }
+        },
+        {
+          "leg": "reproduction check (full universe sample)",
+          "artifact": "results/20261022_002531_mutation_repro_check",
+          "n_cells_checked": 24,
+          "headline": {
+            "child_cells_reproduced": 24,
+            "parent_cells_reproduced": 24,
+            "note": "every sampled cell of both runs re-runs to the stored summary, blotter and equity curve"
+          }
+        },
+        {
+          "leg": "survivor check of the gate-clearing cells (full universe)",
+          "artifact": "results/20261022_002531_mutation_survivor_check",
+          "n_symbols": 266,
+          "n_cells": 17556,
+          "headline": {
+            "gate_clearing_cells": 106,
+            "gate_clearing_symbols": 39,
+            "family_pooled_oos_net_pf": 1.3109829115294354,
+            "family_oos_trades": 8854,
+            "leave_one_symbol_out_min_pooled_oos_net_pf": 1.3124250297331732,
+            "subperiod_stable_cells": 18,
+            "subperiod_stable_cells_of": 106,
+            "note": "88 of the 106 cells work in one stretch of time only"
+          }
+        },
+        {
+          "leg": "out-of-sample audit of the child grid",
+          "artifact": "results/20261022_013800_child_oos_grid_scan",
+          "n_symbols": 266,
+          "n_cells": 17556,
+          "headline": {
+            "pooled_oos_net_pf": 0.6675601253224502,
+            "pooled_oos_stress_net_pf": 0.47808519813843475,
+            "cells_oos_pf_gt_1": 608,
+            "cells_oos_pf_gt_1_with_trades": 591,
+            "exactly_verified_cells": 120,
+            "credible_candidates_in_that_sample": 9,
+            "exploratory_signals_in_that_sample": 111,
+            "full_sample_pf_mismatches": 0
+          }
+        },
+        {
+          "leg": "walk-forward re-selection on the child grid",
+          "artifact": "results/20261022_021500_child_survivor_selection_audit",
+          "n_symbols": 266,
+          "n_cells": 17556,
+          "headline": {
+            "family_cells": 106,
+            "family_symbols": 39,
+            "family_pooled_oos_net_pf": 1.3109829115294354,
+            "family_pooled_stress_net_pf": 1.112267965194243,
+            "leave_one_symbol_out_retained": "10-10 of 106",
+            "pooled_oof_net_pf": 0.7389990750129458,
+            "pooled_oof_stress_net_pf": 0.5730648239337698,
+            "pooled_oof_trades": 60853,
+            "median_history_pf": 1.0905618494761282,
+            "median_oof_pf": 0.7347217461418631,
+            "oof_pf_gt_1_share": 0.1649387370405278,
+            "own_null_pf_gt_1_share": 0.10637385874923203,
+            "selection_median_percentile_of_own_null": 0.5565469359651136,
+            "selection_binomial_p": 2.2412935158002297e-11,
+            "parent_yardstick_pooled_oof_net_pf": 0.640939755402983,
+            "parent_yardstick_pooled_oof_stress_net_pf": 0.4521336087438694,
+            "note": "the procedure beats the parent yardstick on the pooled out-of-fold PF, but the pooled out-of-fold PF is still below 1 and the selection ranks at the 55.7th percentile of the child grid's own null"
+          }
+        },
+        {
+          "leg": "randomized null on the child grid (Bonferroni over 17 556 cells)",
+          "artifact": "results/20261021_230500_child_null_grid_scan",
+          "n_symbols": 266,
+          "n_cells": 17556,
+          "headline": {
+            "real_cells_oos_pf_gt_1": 613,
+            "real_cells_clearing_gate": 103,
+            "timing_null_cells_oos_pf_gt_1": 1611,
+            "timing_null_cells_clearing_gate": 329,
+            "block_null_cells_oos_pf_gt_1": 4286,
+            "block_null_cells_clearing_gate": 1195,
+            "sign_null_cells_oos_pf_gt_1": 773,
+            "sign_null_cells_clearing_gate": 68,
+            "family_wise_p_value_best_cell": 0.9932668496712307,
+            "real_beats_timing_null_in_cells": 4521,
+            "real_loses_to_timing_null_in_cells": 13035,
+            "validation_summary_matches": "200/200",
+            "validation_signal_matches": "200/200",
+            "validation_window_matches": "139/200",
+            "note": "the child rule's own randomizations produce 329 gate-clearing cells against 103 real ones, and none of the 106 re-randomized survivor cells keeps an out-of-sample net PF above the real one at a Bonferroni-corrected level over 17 556 tests; the 139/200 window matches are the ATR caveat: the ATR(14) of a window is not the ATR(14) of the full history, so the window-restricted run and the entry-gated full-history run differ on the ATR rule (the baseline rule matches 12/12)",
+            "survivor_cells_re_randomized": 106,
+            "survivor_replicates": 20,
+            "survivors_beating_own_null_bonferroni": 0,
+            "control_cells": 12,
+            "validation_of_the_survivor_pass": "24/24 summary matches"
+          }
         }
       ],
       "open_legs": [
-        "randomized null on the child grid: do the 20 gate-clearing cells beat their own randomizations (null_grid_scan.py --survivors-from on the child run), with a Bonferroni correction over the 17 556 cells the child grid tests?",
-        "walk-forward re-selection over the complete child grid: does the procedure find anything out of fold (survivor_selection_audit.py on the child run)?",
-        "the full child-grid evaluation, once the child grid is complete."
+        "the universe refresh of 2026-10-22T11:41:20Z: the snapshot in universe/mcap_snapshot_20261021_114120.json is then 24 h old and may be refetched once (one fetch, then the new snapshot is frozen for the next 24 h). Do not poll the provider before that time.",
+        "the decision legs on the child grid are closed: full-universe evaluation, reproduction check, survivor check, out-of-sample audit, walk-forward re-selection and the randomized null leg all ran on the complete 17 556-cell child grid."
       ],
       "decision": {
         "state": "NOT_PROMOTED",
-        "reason": "a gate-clearing cell is a selection result, not a promotion: the family has to beat its own randomizations and the walk-forward has to hold up on the complete child grid first",
-        "baseline_grid": "results/20261019_135940_grid stays the program grid"
+        "reason": "the ATR minimum-risk filter is a real improvement of the baseline but not an edge: the pooled out-of-sample net PF of the child grid is 0.6676 (0.4781 under 2x costs), so the grid as a whole still loses money out of sample, and the 103 cells that clear the out-of-sample gate are fewer than the 329 cells the child's own randomized timing null produces on the same 17 556 cells (family-wise p 0.9933). The walk-forward re-selection beats the parent yardstick (pooled out-of-fold net PF 0.7390 against 0.6409) but never reaches a net-profitable out-of-fold window, and the selection ranks at the 55.7th percentile of the child's own null. 88 of the 106 gate-clearing cells work in one stretch of time only.",
+        "baseline_grid": "results/20261019_135940_grid stays the program grid",
+        "child_grid": "results/20261021_172619_grid stays a documented, reproducible negative result: the single-variable ATR mutation is kept as the reference point for the next mutation, not as a candidate",
+        "decided_at": "2026-10-22T02:55:00+00:00"
       }
     }
   }

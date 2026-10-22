@@ -1,5 +1,7 @@
 """Tests for the survivor selection audit leg."""
+import json
 import math
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -268,3 +270,24 @@ def test_oos_subperiods_splits_the_out_of_sample_window(tmp_path):
     assert [s['trades'] for s in split['subperiods']] == [2, 2]
     assert split['subperiods'][0]['net_pf'] == pytest.approx(2.0)
     assert split['subperiods'][1]['net_pf'] == pytest.approx(3.0 / 2.0)
+
+
+def test_the_selection_audit_re_runs_the_family_with_the_runs_own_config(tmp_path):
+    """The exact re-runs of the family have to use the audited run's config.
+
+    The family cells of a mutation run are re-run through the real backtest
+    to confirm their numbers; with the baseline config the audit would
+    confirm the baseline rule and not the child it is auditing.
+    """
+    from scripts.run_grid import CONFIG_DEFAULTS, load_run_config
+
+    run_dir = tmp_path / 'grid'
+    run_dir.mkdir()
+    (run_dir / 'run_config.json').write_text(json.dumps({
+        'config': dict(CONFIG_DEFAULTS, min_risk_atr=True, atr_threshold=1.0),
+    }))
+    assert load_run_config(run_dir)['min_risk_atr'] is True
+
+    baseline = Path('results/20261019_135940_grid')
+    if (baseline / 'run_config.json').exists():
+        assert load_run_config(baseline) == CONFIG_DEFAULTS

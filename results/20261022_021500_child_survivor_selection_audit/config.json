@@ -1,0 +1,61 @@
+{
+  "args": {
+    "run": "results/20261021_172619_grid",
+    "oos_audit": "results/20261022_013800_child_oos_grid_scan",
+    "fixture_base": "data/fixtures",
+    "stress_multiplier": 2.0,
+    "min_trades": 30,
+    "top_k": 10,
+    "n_folds": 5,
+    "min_history_trades": 20,
+    "oos_subperiods": 4,
+    "limit_symbols": 0,
+    "exact_verify": 1,
+    "out": "results/20261022_021500_child_survivor_selection_audit",
+    "render_only": null
+  },
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": true,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "closest_survivors": [
+    [
+      "BRETT/USDT",
+      8,
+      200
+    ],
+    [
+      "DEXE/USDT",
+      50,
+      200
+    ],
+    [
+      "DEXE/USDT",
+      55,
+      200
+    ],
+    [
+      "GRT/USDT",
+      20,
+      200
+    ],
+    [
+      "MERL/USDT",
+      8,
+      200
+    ],
+    [
+      "ZEN/USDT",
+      12,
+      200
+    ]
+  ]
+}

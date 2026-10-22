@@ -103,6 +103,32 @@ def symbol_dir_name(symbol: str) -> str:
     return symbol.replace('/', '_')
 
 
+def load_run_config(run_dir) -> dict:
+    """The trading config of the grid run in `run_dir`.
+
+    A grid run writes its own config into `run_config.json`, and a mutation
+    run changes it (PROMPT.md §5.2: the ATR minimum-risk child turns
+    `min_risk_atr` on). Every leg that *re-runs* a cell of a run - the
+    out-of-sample audit, the selection audit, the randomized null - has to
+    use the run's own config, otherwise it re-runs the baseline rule and
+    compares the child against a reference that is not the child.
+
+    A run without a config file falls back to the engine defaults, which is
+    what the baseline grid uses, so the baseline legs are unchanged.
+    """
+    config = dict(CONFIG_DEFAULTS)
+    path = Path(run_dir) / 'run_config.json'
+    if path.exists():
+        try:
+            stored = json.loads(path.read_text()).get('config') or {}
+        except (OSError, ValueError):
+            stored = {}
+        for key in CONFIG_DEFAULTS:
+            if key in stored:
+                config[key] = stored[key]
+    return config
+
+
 def write_csv_gz(df: pd.DataFrame, path: Path) -> Path:
     """Write a DataFrame as a deterministic gzip-compressed CSV.
 

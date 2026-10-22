@@ -1,0 +1,39 @@
+{
+  "timestamp": "20261022_023705",
+  "source_run": "results/20261021_172619_grid",
+  "fixture_base": "data/fixtures",
+  "oos_fraction": 0.35,
+  "stress_multiplier": 2.0,
+  "min_trades": 30,
+  "modes": [
+    "timing",
+    "block",
+    "sign"
+  ],
+  "survivor_modes": [
+    "timing",
+    "block",
+    "sign"
+  ],
+  "block_bars": 240,
+  "survivors_from": "results/20261022_021500_child_survivor_source",
+  "survivor_replicates": 20,
+  "control_sample": 12,
+  "validate_sample": 24,
+  "workers": 3,
+  "seed": 20261021,
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": true,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0,
+    "stress_multiplier": 2.0
+  },
+  "command": "PYTHONPATH=. python3 scripts/null_grid_scan.py --run results/20261021_172619_grid --modes timing block sign --survivor-replicates 20"
+}

@@ -1,0 +1,5102 @@
+{
+  "generated_at": "2026-10-22T02:24:26.382717+00:00",
+  "source_run": "results/20261021_172619_grid",
+  "oos_audit": "results/20261022_013800_child_oos_grid_scan",
+  "n_symbols": 266,
+  "n_cells": 17556,
+  "config": {
+    "taker_fee_bps": 10.0,
+    "slippage_bps": 2.0,
+    "rr": 1.0,
+    "stricter_trend": false,
+    "min_risk_atr": true,
+    "atr_threshold": 1.0,
+    "conservative_exit": true,
+    "sizing": "risk",
+    "risk_fraction": 0.01,
+    "max_notional_multiple": 10.0
+  },
+  "stress_multiplier": 2.0,
+  "min_trades": 30,
+  "part_a": {
+    "family": {
+      "cells": 106,
+      "trades": 8854,
+      "net_pf": 1.3109829115294354,
+      "stress_net_pf": 1.112267965194243,
+      "net_pnl": 108188.9380724671,
+      "stress_net_pnl": 42027.89380251034,
+      "win_sum": 456082.4526723096,
+      "loss_abs": 347893.5145998425
+    },
+    "family_cells": [
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 55,
+        "P_slow": 200,
+        "oos_trades": 63,
+        "oos_net_pf": 1.8907159240134586,
+        "oos_stress_net_pf": 1.6782766418216837,
+        "net_pf": 0.9677010943469109,
+        "stress_net_pf": 0.7986291835938805,
+        "exact_oos_net_pf": 1.9333054950266828,
+        "exact_oos_stress_net_pf": 1.7084740309974915,
+        "exact_oos_trades": 64,
+        "exact_oos_sharpe": 2.6318649644566854
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 50,
+        "P_slow": 200,
+        "oos_trades": 70,
+        "oos_net_pf": 1.7874827313733803,
+        "oos_stress_net_pf": 1.5833346299034718,
+        "net_pf": 1.0693718922415985,
+        "stress_net_pf": 0.8885310254500127,
+        "exact_oos_net_pf": 1.823948785615815,
+        "exact_oos_stress_net_pf": 1.60913179755034,
+        "exact_oos_trades": 71,
+        "exact_oos_sharpe": 2.5632094876344733
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 89,
+        "P_slow": 200,
+        "oos_trades": 56,
+        "oos_net_pf": 1.7874821756672488,
+        "oos_stress_net_pf": 1.526728445629174,
+        "net_pf": 0.8903921764255043,
+        "stress_net_pf": 0.7210374496546965,
+        "exact_oos_net_pf": 1.7447762314092634,
+        "exact_oos_stress_net_pf": 1.479936448855529,
+        "exact_oos_trades": 58,
+        "exact_oos_sharpe": 2.128092737650691
+      },
+      {
+        "symbol": "BRETT/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 42,
+        "oos_net_pf": 1.6802015230555147,
+        "oos_stress_net_pf": 1.516825905639563,
+        "net_pf": 1.0448686766891735,
+        "stress_net_pf": 0.9494793208723774,
+        "exact_oos_net_pf": 1.6888304868454624,
+        "exact_oos_stress_net_pf": 1.5322171717379682,
+        "exact_oos_trades": 45,
+        "exact_oos_sharpe": 1.9492824372572615
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 64,
+        "oos_net_pf": 1.6712908700273317,
+        "oos_stress_net_pf": 1.5218760446568036,
+        "net_pf": 0.996970720652354,
+        "stress_net_pf": 0.8482203868331931,
+        "exact_oos_net_pf": 1.350627260904195,
+        "exact_oos_stress_net_pf": 1.1946040865796657,
+        "exact_oos_trades": 87,
+        "exact_oos_sharpe": 1.4994214926686038
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 66,
+        "oos_net_pf": 1.6403617573600313,
+        "oos_stress_net_pf": 1.4925936564068587,
+        "net_pf": 0.9864110151437556,
+        "stress_net_pf": 0.8408465832469948,
+        "exact_oos_net_pf": 1.3381005735690987,
+        "exact_oos_stress_net_pf": 1.183044997073175,
+        "exact_oos_trades": 89,
+        "exact_oos_sharpe": 1.4680378867523791
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 100,
+        "P_slow": 200,
+        "oos_trades": 61,
+        "oos_net_pf": 1.6139800320811397,
+        "oos_stress_net_pf": 1.3739879138825124,
+        "net_pf": 0.806222427221227,
+        "stress_net_pf": 0.6470044965276757,
+        "exact_oos_net_pf": 1.6139800320811397,
+        "exact_oos_stress_net_pf": 1.3616620079586716,
+        "exact_oos_trades": 61,
+        "exact_oos_sharpe": 1.8954512861281823
+      },
+      {
+        "symbol": "POL/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 52,
+        "oos_net_pf": 1.6085766079226345,
+        "oos_stress_net_pf": 1.3856787255889613,
+        "net_pf": 1.1216236628563334,
+        "stress_net_pf": 0.9604201762919216,
+        "exact_oos_net_pf": 1.6085766079226345,
+        "exact_oos_stress_net_pf": 1.3923815526098866,
+        "exact_oos_trades": 52,
+        "exact_oos_sharpe": 1.8687720000116144
+      },
+      {
+        "symbol": "XPR/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 44,
+        "oos_net_pf": 1.5710001626950403,
+        "oos_stress_net_pf": 1.3538071420165574,
+        "net_pf": 0.9178438695614454,
+        "stress_net_pf": 0.7836996501784106,
+        "exact_oos_net_pf": 1.5260640641231475,
+        "exact_oos_stress_net_pf": 1.3105934407242226,
+        "exact_oos_trades": 46,
+        "exact_oos_sharpe": 1.5083737541618423
+      },
+      {
+        "symbol": "FET/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 36,
+        "oos_net_pf": 1.5616191108737363,
+        "oos_stress_net_pf": 1.4434733777712048,
+        "net_pf": 1.034131546370323,
+        "stress_net_pf": 0.9161272915243862,
+        "exact_oos_net_pf": 1.561619110873736,
+        "exact_oos_stress_net_pf": 1.4403992118840387,
+        "exact_oos_trades": 36,
+        "exact_oos_sharpe": 1.3738251363437595
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 8,
+        "P_slow": 144,
+        "oos_trades": 83,
+        "oos_net_pf": 1.5517523060241407,
+        "oos_stress_net_pf": 1.4011872582645635,
+        "net_pf": 0.9213711131860013,
+        "stress_net_pf": 0.7766827682540692,
+        "exact_oos_net_pf": 1.6285986598490736,
+        "exact_oos_stress_net_pf": 1.4580976957203045,
+        "exact_oos_trades": 92,
+        "exact_oos_sharpe": 2.4761838244081877
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 55,
+        "P_slow": 144,
+        "oos_trades": 76,
+        "oos_net_pf": 1.5373158128126803,
+        "oos_stress_net_pf": 1.3362592867279377,
+        "net_pf": 0.8847431950957272,
+        "stress_net_pf": 0.7059063064931123,
+        "exact_oos_net_pf": 1.4671467192082879,
+        "exact_oos_stress_net_pf": 1.2659980556029984,
+        "exact_oos_trades": 82,
+        "exact_oos_sharpe": 1.8373420830380902
+      },
+      {
+        "symbol": "RUNE/USDT",
+        "P_fast": 50,
+        "P_slow": 144,
+        "oos_trades": 120,
+        "oos_net_pf": 1.522967830964761,
+        "oos_stress_net_pf": 1.0963268363136607,
+        "net_pf": 0.9328006535877178,
+        "stress_net_pf": 0.7285848032019182,
+        "exact_oos_net_pf": 1.5229678309647612,
+        "exact_oos_stress_net_pf": 1.1018443747437792,
+        "exact_oos_trades": 120,
+        "exact_oos_sharpe": 2.4239244186674958
+      },
+      {
+        "symbol": "FLUX/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 93,
+        "oos_net_pf": 1.5169626921226593,
+        "oos_stress_net_pf": 1.2910335798631871,
+        "net_pf": 1.2228225383798899,
+        "stress_net_pf": 1.0591344696285496,
+        "exact_oos_net_pf": 1.2426917142153115,
+        "exact_oos_stress_net_pf": 1.027181986283424,
+        "exact_oos_trades": 125,
+        "exact_oos_sharpe": 1.2437645810367797
+      },
+      {
+        "symbol": "JASMY/USDT",
+        "P_fast": 144,
+        "P_slow": 200,
+        "oos_trades": 56,
+        "oos_net_pf": 1.492752774916359,
+        "oos_stress_net_pf": 1.0550171955411645,
+        "net_pf": 1.0245180697607439,
+        "stress_net_pf": 0.780910821610343,
+        "exact_oos_net_pf": 1.4927527749163594,
+        "exact_oos_stress_net_pf": 1.0619138966207466,
+        "exact_oos_trades": 56,
+        "exact_oos_sharpe": 1.5876212053603422
+      },
+      {
+        "symbol": "ZEN/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 33,
+        "oos_net_pf": 1.4808111664084085,
+        "oos_stress_net_pf": 1.3581874879661677,
+        "net_pf": 1.2569332335905172,
+        "stress_net_pf": 1.1295358908045094,
+        "exact_oos_net_pf": 1.6713371466753661,
+        "exact_oos_stress_net_pf": 1.4974073778878214,
+        "exact_oos_trades": 42,
+        "exact_oos_sharpe": 1.7540817676916793
+      },
+      {
+        "symbol": "IMX/USDT",
+        "P_fast": 26,
+        "P_slow": 200,
+        "oos_trades": 114,
+        "oos_net_pf": 1.4800757400230595,
+        "oos_stress_net_pf": 1.216692661685613,
+        "net_pf": 1.118505529852461,
+        "stress_net_pf": 0.9501046255048468,
+        "exact_oos_net_pf": 1.4800757400230597,
+        "exact_oos_stress_net_pf": 1.2245560754543057,
+        "exact_oos_trades": 114,
+        "exact_oos_sharpe": 2.256413070695807
+      },
+      {
+        "symbol": "GMT/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 88,
+        "oos_net_pf": 1.473662188200608,
+        "oos_stress_net_pf": 1.2727268469328095,
+        "net_pf": 0.986562299469738,
+        "stress_net_pf": 0.8398507906340851,
+        "exact_oos_net_pf": 1.4742593318377346,
+        "exact_oos_stress_net_pf": 1.2696523856382407,
+        "exact_oos_trades": 91,
+        "exact_oos_sharpe": 1.9895399535657274
+      },
+      {
+        "symbol": "CETUS/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 85,
+        "oos_net_pf": 1.456528011107758,
+        "oos_stress_net_pf": 1.2715434936754821,
+        "net_pf": 1.2740122439115833,
+        "stress_net_pf": 1.1314529168215062,
+        "exact_oos_net_pf": 1.417365590308449,
+        "exact_oos_stress_net_pf": 1.2400526719547493,
+        "exact_oos_trades": 86,
+        "exact_oos_sharpe": 1.750838682017062
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 50,
+        "P_slow": 144,
+        "oos_trades": 89,
+        "oos_net_pf": 1.4465310402696154,
+        "oos_stress_net_pf": 1.260467440596678,
+        "net_pf": 0.8698862341077088,
+        "stress_net_pf": 0.7085140106533108,
+        "exact_oos_net_pf": 1.4465310402696152,
+        "exact_oos_stress_net_pf": 1.2581478475827719,
+        "exact_oos_trades": 89,
+        "exact_oos_sharpe": 1.8546607208670438
+      },
+      {
+        "symbol": "GRT/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 57,
+        "oos_net_pf": 1.4433065852681353,
+        "oos_stress_net_pf": 1.262332690543389,
+        "net_pf": 1.1087116423479877,
+        "stress_net_pf": 0.9679017414391744,
+        "exact_oos_net_pf": 1.3953155645485225,
+        "exact_oos_stress_net_pf": 1.2069573577430917,
+        "exact_oos_trades": 64,
+        "exact_oos_sharpe": 1.4235755733965847
+      },
+      {
+        "symbol": "POL/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 71,
+        "oos_net_pf": 1.4245556872460594,
+        "oos_stress_net_pf": 1.2154543268654685,
+        "net_pf": 1.0354255064041156,
+        "stress_net_pf": 0.8695950122262424,
+        "exact_oos_net_pf": 1.4245556872460594,
+        "exact_oos_stress_net_pf": 1.2175491780532155,
+        "exact_oos_trades": 71,
+        "exact_oos_sharpe": 1.6027178798950195
+      },
+      {
+        "symbol": "DIA/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 84,
+        "oos_net_pf": 1.4204225390871956,
+        "oos_stress_net_pf": 1.183594476400244,
+        "net_pf": 1.1315183834273148,
+        "stress_net_pf": 0.9533561006490386,
+        "exact_oos_net_pf": 1.5029002559830396,
+        "exact_oos_stress_net_pf": 1.2510072925794429,
+        "exact_oos_trades": 90,
+        "exact_oos_sharpe": 2.0307670932172868
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 65,
+        "oos_net_pf": 1.3967608571652164,
+        "oos_stress_net_pf": 1.2667350728421323,
+        "net_pf": 1.01653545720228,
+        "stress_net_pf": 0.8606509185410683,
+        "exact_oos_net_pf": 1.323459665013853,
+        "exact_oos_stress_net_pf": 1.1782138480194686,
+        "exact_oos_trades": 86,
+        "exact_oos_sharpe": 1.4204016363566316
+      },
+      {
+        "symbol": "POL/USDT",
+        "P_fast": 34,
+        "P_slow": 200,
+        "oos_trades": 95,
+        "oos_net_pf": 1.3950852835852015,
+        "oos_stress_net_pf": 1.1150983928456766,
+        "net_pf": 1.0277910031550093,
+        "stress_net_pf": 0.83889769636367,
+        "exact_oos_net_pf": 1.395085283585202,
+        "exact_oos_stress_net_pf": 1.1219687301467574,
+        "exact_oos_trades": 95,
+        "exact_oos_sharpe": 1.760035648240046
+      },
+      {
+        "symbol": "ENA/USDT",
+        "P_fast": 20,
+        "P_slow": 21,
+        "oos_trades": 46,
+        "oos_net_pf": 1.39020560538663,
+        "oos_stress_net_pf": 1.031496919327734,
+        "net_pf": 1.325348239123,
+        "stress_net_pf": 1.0288731777966034,
+        "exact_oos_net_pf": 1.39020560538663,
+        "exact_oos_stress_net_pf": 1.032368797676316,
+        "exact_oos_trades": 46,
+        "exact_oos_sharpe": 1.1878964093462114
+      },
+      {
+        "symbol": "POL/USDT",
+        "P_fast": 26,
+        "P_slow": 200,
+        "oos_trades": 71,
+        "oos_net_pf": 1.3899900723230176,
+        "oos_stress_net_pf": 1.1646793356846221,
+        "net_pf": 0.9931637798525738,
+        "stress_net_pf": 0.82859631224789,
+        "exact_oos_net_pf": 1.3899900723230174,
+        "exact_oos_stress_net_pf": 1.1701052985982883,
+        "exact_oos_trades": 71,
+        "exact_oos_sharpe": 1.5209955091447627
+      },
+      {
+        "symbol": "IMX/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 94,
+        "oos_net_pf": 1.3886478442136894,
+        "oos_stress_net_pf": 1.1733572572619622,
+        "net_pf": 0.9999217248692391,
+        "stress_net_pf": 0.8682226829415469,
+        "exact_oos_net_pf": 1.402526931599995,
+        "exact_oos_stress_net_pf": 1.1843409970593084,
+        "exact_oos_trades": 100,
+        "exact_oos_sharpe": 1.8016955591272954
+      },
+      {
+        "symbol": "AVA/USDT",
+        "P_fast": 50,
+        "P_slow": 200,
+        "oos_trades": 88,
+        "oos_net_pf": 1.3796304082841644,
+        "oos_stress_net_pf": 1.0973867162342732,
+        "net_pf": 0.9482722253157562,
+        "stress_net_pf": 0.7721391731170588,
+        "exact_oos_net_pf": 1.3796304082841644,
+        "exact_oos_stress_net_pf": 1.094694438602343,
+        "exact_oos_trades": 88,
+        "exact_oos_sharpe": 1.6156593482162482
+      },
+      {
+        "symbol": "PUFFER/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 81,
+        "oos_net_pf": 1.3767762016650051,
+        "oos_stress_net_pf": 1.224472807904887,
+        "net_pf": 1.188371487608949,
+        "stress_net_pf": 1.050588050246261,
+        "exact_oos_net_pf": 1.4038444925508822,
+        "exact_oos_stress_net_pf": 1.251426463216326,
+        "exact_oos_trades": 82,
+        "exact_oos_sharpe": 1.8699401812185794
+      },
+      {
+        "symbol": "IMX/USDT",
+        "P_fast": 34,
+        "P_slow": 200,
+        "oos_trades": 101,
+        "oos_net_pf": 1.372914438222133,
+        "oos_stress_net_pf": 1.121726555497684,
+        "net_pf": 1.1546981947784214,
+        "stress_net_pf": 0.9774013272422813,
+        "exact_oos_net_pf": 1.3871060004540388,
+        "exact_oos_stress_net_pf": 1.1430256403449763,
+        "exact_oos_trades": 107,
+        "exact_oos_sharpe": 1.8507194327355614
+      },
+      {
+        "symbol": "GRT/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 57,
+        "oos_net_pf": 1.360177020910651,
+        "oos_stress_net_pf": 1.2002281263887613,
+        "net_pf": 0.9519921750311152,
+        "stress_net_pf": 0.8433150626677143,
+        "exact_oos_net_pf": 1.2528767427124365,
+        "exact_oos_stress_net_pf": 1.0879748697718885,
+        "exact_oos_trades": 62,
+        "exact_oos_sharpe": 0.9464873829907393
+      },
+      {
+        "symbol": "POL/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 69,
+        "oos_net_pf": 1.3597379034617452,
+        "oos_stress_net_pf": 1.1616805955497214,
+        "net_pf": 1.0428882574011382,
+        "stress_net_pf": 0.8650980554687193,
+        "exact_oos_net_pf": 1.3597379034617454,
+        "exact_oos_stress_net_pf": 1.1649130252791797,
+        "exact_oos_trades": 69,
+        "exact_oos_sharpe": 1.390413384469246
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 56,
+        "oos_net_pf": 1.3519894142407998,
+        "oos_stress_net_pf": 1.2415487993472978,
+        "net_pf": 0.9058974046377507,
+        "stress_net_pf": 0.7682227368363183,
+        "exact_oos_net_pf": 1.2720906857211691,
+        "exact_oos_stress_net_pf": 1.140919691157012,
+        "exact_oos_trades": 79,
+        "exact_oos_sharpe": 1.1853765727459868
+      },
+      {
+        "symbol": "PUFFER/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 75,
+        "oos_net_pf": 1.3496568164142595,
+        "oos_stress_net_pf": 1.197424420030533,
+        "net_pf": 1.1333069062610295,
+        "stress_net_pf": 0.9964443121850287,
+        "exact_oos_net_pf": 1.3789264706479702,
+        "exact_oos_stress_net_pf": 1.2252850618850333,
+        "exact_oos_trades": 76,
+        "exact_oos_sharpe": 1.7012090032580285
+      },
+      {
+        "symbol": "APT/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 36,
+        "oos_net_pf": 1.3366605926522872,
+        "oos_stress_net_pf": 1.1822878446990066,
+        "net_pf": 1.0655906376080615,
+        "stress_net_pf": 0.9139436340096385,
+        "exact_oos_net_pf": 1.4641285598468168,
+        "exact_oos_stress_net_pf": 1.2961802315716975,
+        "exact_oos_trades": 38,
+        "exact_oos_sharpe": 1.235372830156957
+      },
+      {
+        "symbol": "ROSE/USDT",
+        "P_fast": 34,
+        "P_slow": 200,
+        "oos_trades": 88,
+        "oos_net_pf": 1.3328395108771767,
+        "oos_stress_net_pf": 1.1079719766385783,
+        "net_pf": 1.0394052972662386,
+        "stress_net_pf": 0.888230023507823,
+        "exact_oos_net_pf": 1.332839510877177,
+        "exact_oos_stress_net_pf": 1.1197480132064106,
+        "exact_oos_trades": 88,
+        "exact_oos_sharpe": 1.5328632420601194
+      },
+      {
+        "symbol": "T/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 52,
+        "oos_net_pf": 1.3271681827958808,
+        "oos_stress_net_pf": 1.0711346341775436,
+        "net_pf": 0.9175016968458752,
+        "stress_net_pf": 0.7290903537810141,
+        "exact_oos_net_pf": 1.327168182795881,
+        "exact_oos_stress_net_pf": 1.0558787015522064,
+        "exact_oos_trades": 52,
+        "exact_oos_sharpe": 1.0563699932266963
+      },
+      {
+        "symbol": "ROSE/USDT",
+        "P_fast": 55,
+        "P_slow": 200,
+        "oos_trades": 112,
+        "oos_net_pf": 1.32644599187426,
+        "oos_stress_net_pf": 1.0650618823219298,
+        "net_pf": 1.0226703104986916,
+        "stress_net_pf": 0.8554704488081248,
+        "exact_oos_net_pf": 1.3264459918742604,
+        "exact_oos_stress_net_pf": 1.0699261701554659,
+        "exact_oos_trades": 112,
+        "exact_oos_sharpe": 1.6361335293026391
+      },
+      {
+        "symbol": "RUNE/USDT",
+        "P_fast": 50,
+        "P_slow": 200,
+        "oos_trades": 89,
+        "oos_net_pf": 1.3238962552254532,
+        "oos_stress_net_pf": 1.0047553013518429,
+        "net_pf": 1.0682272077207997,
+        "stress_net_pf": 0.8698123370141979,
+        "exact_oos_net_pf": 1.3238962552254532,
+        "exact_oos_stress_net_pf": 1.008523810834756,
+        "exact_oos_trades": 89,
+        "exact_oos_sharpe": 1.425428695346841
+      },
+      {
+        "symbol": "EGLD/USDT",
+        "P_fast": 55,
+        "P_slow": 200,
+        "oos_trades": 99,
+        "oos_net_pf": 1.323315668394139,
+        "oos_stress_net_pf": 1.0262271974953217,
+        "net_pf": 0.895275962246787,
+        "stress_net_pf": 0.7049227598504091,
+        "exact_oos_net_pf": 1.3233156683941392,
+        "exact_oos_stress_net_pf": 1.020185134148908,
+        "exact_oos_trades": 99,
+        "exact_oos_sharpe": 1.4725092067576793
+      },
+      {
+        "symbol": "DAG/USDT",
+        "P_fast": 8,
+        "P_slow": 100,
+        "oos_trades": 109,
+        "oos_net_pf": 1.3177395884110277,
+        "oos_stress_net_pf": 1.0643522233297802,
+        "net_pf": 0.7767788104421957,
+        "stress_net_pf": 0.6673472347989043,
+        "exact_oos_net_pf": 1.317739588411027,
+        "exact_oos_stress_net_pf": 1.058764193213535,
+        "exact_oos_trades": 109,
+        "exact_oos_sharpe": 1.5113241168930138
+      },
+      {
+        "symbol": "WLD/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 94,
+        "oos_net_pf": 1.317097349228127,
+        "oos_stress_net_pf": 1.1761443848022668,
+        "net_pf": 1.1725064884790237,
+        "stress_net_pf": 1.0544215729381126,
+        "exact_oos_net_pf": 1.2811439564300773,
+        "exact_oos_stress_net_pf": 1.1346629142183322,
+        "exact_oos_trades": 100,
+        "exact_oos_sharpe": 1.307800513074608
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 12,
+        "P_slow": 144,
+        "oos_trades": 88,
+        "oos_net_pf": 1.312833588885628,
+        "oos_stress_net_pf": 1.1593941480008516,
+        "net_pf": 0.9756006543071565,
+        "stress_net_pf": 0.8189503158089194,
+        "exact_oos_net_pf": 1.2832701032811138,
+        "exact_oos_stress_net_pf": 1.1198238726321976,
+        "exact_oos_trades": 97,
+        "exact_oos_sharpe": 1.3059429552192083
+      },
+      {
+        "symbol": "AVA/USDT",
+        "P_fast": 34,
+        "P_slow": 200,
+        "oos_trades": 97,
+        "oos_net_pf": 1.3089964897961353,
+        "oos_stress_net_pf": 1.0502433413437167,
+        "net_pf": 0.8733514216335351,
+        "stress_net_pf": 0.7151928888955961,
+        "exact_oos_net_pf": 1.3089964897961353,
+        "exact_oos_stress_net_pf": 1.0465379226301899,
+        "exact_oos_trades": 97,
+        "exact_oos_sharpe": 1.4279760502140648
+      },
+      {
+        "symbol": "IMX/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 122,
+        "oos_net_pf": 1.3057122533407548,
+        "oos_stress_net_pf": 1.0825665608012418,
+        "net_pf": 1.1007837605609014,
+        "stress_net_pf": 0.9381663771759455,
+        "exact_oos_net_pf": 1.3381824985279758,
+        "exact_oos_stress_net_pf": 1.1115845833631397,
+        "exact_oos_trades": 129,
+        "exact_oos_sharpe": 1.755838183304015
+      },
+      {
+        "symbol": "IMX/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 93,
+        "oos_net_pf": 1.3049452273630056,
+        "oos_stress_net_pf": 1.1024061625613752,
+        "net_pf": 1.2101622224411543,
+        "stress_net_pf": 1.0486735710709203,
+        "exact_oos_net_pf": 1.2910513073510863,
+        "exact_oos_stress_net_pf": 1.089936719413881,
+        "exact_oos_trades": 100,
+        "exact_oos_sharpe": 1.377241295102358
+      },
+      {
+        "symbol": "DIA/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 120,
+        "oos_net_pf": 1.3037089035469056,
+        "oos_stress_net_pf": 1.0514605732907167,
+        "net_pf": 0.9698979888044089,
+        "stress_net_pf": 0.7985082490359526,
+        "exact_oos_net_pf": 1.3177109436143322,
+        "exact_oos_stress_net_pf": 1.0516004603917475,
+        "exact_oos_trades": 126,
+        "exact_oos_sharpe": 1.6015581802241885
+      },
+      {
+        "symbol": "BLUR/USDT",
+        "P_fast": 12,
+        "P_slow": 144,
+        "oos_trades": 103,
+        "oos_net_pf": 1.303396939727508,
+        "oos_stress_net_pf": 1.0909891465462631,
+        "net_pf": 1.0280878225876486,
+        "stress_net_pf": 0.8659485094052853,
+        "exact_oos_net_pf": 1.3405559403372074,
+        "exact_oos_stress_net_pf": 1.110571487615371,
+        "exact_oos_trades": 116,
+        "exact_oos_sharpe": 1.690577018839437
+      },
+      {
+        "symbol": "COTI/USDT",
+        "P_fast": 50,
+        "P_slow": 200,
+        "oos_trades": 99,
+        "oos_net_pf": 1.302590701435141,
+        "oos_stress_net_pf": 1.0675480666282222,
+        "net_pf": 1.059660428124899,
+        "stress_net_pf": 0.8962397152937152,
+        "exact_oos_net_pf": 1.302590701435141,
+        "exact_oos_stress_net_pf": 1.0757592815909944,
+        "exact_oos_trades": 99,
+        "exact_oos_sharpe": 1.485228157332197
+      },
+      {
+        "symbol": "PENDLE/USDT",
+        "P_fast": 34,
+        "P_slow": 144,
+        "oos_trades": 98,
+        "oos_net_pf": 1.3019749494371473,
+        "oos_stress_net_pf": 1.0650022371238277,
+        "net_pf": 0.841262773996595,
+        "stress_net_pf": 0.7069115895614188,
+        "exact_oos_net_pf": 1.3019749494371473,
+        "exact_oos_stress_net_pf": 1.0712705609628428,
+        "exact_oos_trades": 98,
+        "exact_oos_sharpe": 1.448845104022204
+      },
+      {
+        "symbol": "WIN/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 104,
+        "oos_net_pf": 1.2949336228161414,
+        "oos_stress_net_pf": 1.0848243187361348,
+        "net_pf": 1.0108760152185887,
+        "stress_net_pf": 0.8217603314562855,
+        "exact_oos_net_pf": 1.3046510822402015,
+        "exact_oos_stress_net_pf": 1.0781469273985014,
+        "exact_oos_trades": 107,
+        "exact_oos_sharpe": 1.40535213208465
+      },
+      {
+        "symbol": "DIA/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 122,
+        "oos_net_pf": 1.2927297838254226,
+        "oos_stress_net_pf": 1.0444492896082531,
+        "net_pf": 0.9439530208332412,
+        "stress_net_pf": 0.7763286248434597,
+        "exact_oos_net_pf": 1.3063580799131456,
+        "exact_oos_stress_net_pf": 1.0448613702967238,
+        "exact_oos_trades": 128,
+        "exact_oos_sharpe": 1.5725422385190995
+      },
+      {
+        "symbol": "COTI/USDT",
+        "P_fast": 55,
+        "P_slow": 144,
+        "oos_trades": 112,
+        "oos_net_pf": 1.2910522460782488,
+        "oos_stress_net_pf": 1.0220483163280754,
+        "net_pf": 0.8965526052075516,
+        "stress_net_pf": 0.7255974981198818,
+        "exact_oos_net_pf": 1.2910522460782483,
+        "exact_oos_stress_net_pf": 1.0353758878325325,
+        "exact_oos_trades": 112,
+        "exact_oos_sharpe": 1.5519961474020374
+      },
+      {
+        "symbol": "SUPER/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 64,
+        "oos_net_pf": 1.2855435120826788,
+        "oos_stress_net_pf": 1.0890166232659666,
+        "net_pf": 1.1941145393332655,
+        "stress_net_pf": 1.0498119574437519,
+        "exact_oos_net_pf": 1.148329500861605,
+        "exact_oos_stress_net_pf": 0.966711578801582,
+        "exact_oos_trades": 67,
+        "exact_oos_sharpe": 0.6273084575799686
+      },
+      {
+        "symbol": "BLUR/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 83,
+        "oos_net_pf": 1.2799091505192928,
+        "oos_stress_net_pf": 1.0998194566883301,
+        "net_pf": 1.1877013944957768,
+        "stress_net_pf": 1.0229580198781978,
+        "exact_oos_net_pf": 1.3389102442812237,
+        "exact_oos_stress_net_pf": 1.1488311465306151,
+        "exact_oos_trades": 88,
+        "exact_oos_sharpe": 1.4744569430156869
+      },
+      {
+        "symbol": "WIN/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 96,
+        "oos_net_pf": 1.2758785490114841,
+        "oos_stress_net_pf": 1.0615886702658035,
+        "net_pf": 0.8747458322068214,
+        "stress_net_pf": 0.7032544091451274,
+        "exact_oos_net_pf": 1.2654559151260991,
+        "exact_oos_stress_net_pf": 1.0383712613882201,
+        "exact_oos_trades": 98,
+        "exact_oos_sharpe": 1.193850730537735
+      },
+      {
+        "symbol": "BLUR/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 86,
+        "oos_net_pf": 1.2755097363267442,
+        "oos_stress_net_pf": 1.0906985505866964,
+        "net_pf": 1.0764350472310105,
+        "stress_net_pf": 0.9104850454336241,
+        "exact_oos_net_pf": 1.3083757162226464,
+        "exact_oos_stress_net_pf": 1.120141193563116,
+        "exact_oos_trades": 90,
+        "exact_oos_sharpe": 1.407919933487961
+      },
+      {
+        "symbol": "CETUS/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 68,
+        "oos_net_pf": 1.274564064417869,
+        "oos_stress_net_pf": 1.130473552600871,
+        "net_pf": 1.2390835149087045,
+        "stress_net_pf": 1.1033301492615406,
+        "exact_oos_net_pf": 1.2745640644178693,
+        "exact_oos_stress_net_pf": 1.1338008946830689,
+        "exact_oos_trades": 68,
+        "exact_oos_sharpe": 1.133485960830629
+      },
+      {
+        "symbol": "VELO/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 114,
+        "oos_net_pf": 1.2723210795645512,
+        "oos_stress_net_pf": 1.1008888129738845,
+        "net_pf": 0.9931625850103033,
+        "stress_net_pf": 0.8812902472525487,
+        "exact_oos_net_pf": 1.2463887277909194,
+        "exact_oos_stress_net_pf": 1.0735662774883845,
+        "exact_oos_trades": 115,
+        "exact_oos_sharpe": 1.2648592689628333
+      },
+      {
+        "symbol": "PUFFER/USDT",
+        "P_fast": 26,
+        "P_slow": 200,
+        "oos_trades": 75,
+        "oos_net_pf": 1.2674441006254538,
+        "oos_stress_net_pf": 1.1244226733993665,
+        "net_pf": 1.0036893412880294,
+        "stress_net_pf": 0.8831092773835726,
+        "exact_oos_net_pf": 1.2674441006254535,
+        "exact_oos_stress_net_pf": 1.1275048588811858,
+        "exact_oos_trades": 75,
+        "exact_oos_sharpe": 1.2929075271138175
+      },
+      {
+        "symbol": "COTI/USDT",
+        "P_fast": 50,
+        "P_slow": 144,
+        "oos_trades": 115,
+        "oos_net_pf": 1.265584978014728,
+        "oos_stress_net_pf": 1.009993519923705,
+        "net_pf": 0.8727102052892028,
+        "stress_net_pf": 0.7127283026744643,
+        "exact_oos_net_pf": 1.2655849780147286,
+        "exact_oos_stress_net_pf": 1.0217138591325285,
+        "exact_oos_trades": 115,
+        "exact_oos_sharpe": 1.4546398283306983
+      },
+      {
+        "symbol": "SYN/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 99,
+        "oos_net_pf": 1.262783694385618,
+        "oos_stress_net_pf": 1.0678497865108862,
+        "net_pf": 0.9918051381005099,
+        "stress_net_pf": 0.8524885501084803,
+        "exact_oos_net_pf": 1.2313699082470266,
+        "exact_oos_stress_net_pf": 1.0361854379066384,
+        "exact_oos_trades": 100,
+        "exact_oos_sharpe": 1.1316943120890997
+      },
+      {
+        "symbol": "AVA/USDT",
+        "P_fast": 26,
+        "P_slow": 200,
+        "oos_trades": 99,
+        "oos_net_pf": 1.2615793609313217,
+        "oos_stress_net_pf": 1.0340681478157927,
+        "net_pf": 0.8462641136461171,
+        "stress_net_pf": 0.7038697351182372,
+        "exact_oos_net_pf": 1.261579360931321,
+        "exact_oos_stress_net_pf": 1.0337840147508235,
+        "exact_oos_trades": 99,
+        "exact_oos_sharpe": 1.2778684151688502
+      },
+      {
+        "symbol": "TWT/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 73,
+        "oos_net_pf": 1.2603710594456063,
+        "oos_stress_net_pf": 1.0173778326467229,
+        "net_pf": 0.8890004616195942,
+        "stress_net_pf": 0.7168063199731503,
+        "exact_oos_net_pf": 1.260371059445606,
+        "exact_oos_stress_net_pf": 1.0098096229393732,
+        "exact_oos_trades": 73,
+        "exact_oos_sharpe": 1.049231607282513
+      },
+      {
+        "symbol": "ENA/USDT",
+        "P_fast": 34,
+        "P_slow": 144,
+        "oos_trades": 111,
+        "oos_net_pf": 1.2518653889300428,
+        "oos_stress_net_pf": 1.0555492419580226,
+        "net_pf": 0.901367340742998,
+        "stress_net_pf": 0.78623755057541,
+        "exact_oos_net_pf": 1.2518653889300426,
+        "exact_oos_stress_net_pf": 1.0600150360779905,
+        "exact_oos_trades": 111,
+        "exact_oos_sharpe": 1.3175736168441767
+      },
+      {
+        "symbol": "WLD/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 103,
+        "oos_net_pf": 1.2453839594305909,
+        "oos_stress_net_pf": 1.111923063689046,
+        "net_pf": 1.0863365911058167,
+        "stress_net_pf": 0.973176304121691,
+        "exact_oos_net_pf": 1.2453839594305904,
+        "exact_oos_stress_net_pf": 1.1074400929134431,
+        "exact_oos_trades": 103,
+        "exact_oos_sharpe": 1.1847224344225686
+      },
+      {
+        "symbol": "BRETT/USDT",
+        "P_fast": 8,
+        "P_slow": 144,
+        "oos_trades": 78,
+        "oos_net_pf": 1.244443157222382,
+        "oos_stress_net_pf": 1.0707516878230519,
+        "net_pf": 0.8901575832098009,
+        "stress_net_pf": 0.7914594523542683,
+        "exact_oos_net_pf": 1.1688076704319499,
+        "exact_oos_stress_net_pf": 1.0004437986404089,
+        "exact_oos_trades": 92,
+        "exact_oos_sharpe": 0.8799584338792513
+      },
+      {
+        "symbol": "DIA/USDT",
+        "P_fast": 26,
+        "P_slow": 200,
+        "oos_trades": 114,
+        "oos_net_pf": 1.2412684439283304,
+        "oos_stress_net_pf": 1.0017766261474923,
+        "net_pf": 0.9740126232909757,
+        "stress_net_pf": 0.7944575689979111,
+        "exact_oos_net_pf": 1.2789127274198144,
+        "exact_oos_stress_net_pf": 1.0211109057778334,
+        "exact_oos_trades": 116,
+        "exact_oos_sharpe": 1.3786291996957205
+      },
+      {
+        "symbol": "BOME/USDT",
+        "P_fast": 26,
+        "P_slow": 200,
+        "oos_trades": 112,
+        "oos_net_pf": 1.240263066374094,
+        "oos_stress_net_pf": 1.0411470179086781,
+        "net_pf": 0.9894904346682932,
+        "stress_net_pf": 0.8567967345248291,
+        "exact_oos_net_pf": 1.240263066374094,
+        "exact_oos_stress_net_pf": 1.0386630543847484,
+        "exact_oos_trades": 112,
+        "exact_oos_sharpe": 1.2337138506549894
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 26,
+        "P_slow": 200,
+        "oos_trades": 63,
+        "oos_net_pf": 1.2401065513131027,
+        "oos_stress_net_pf": 1.123313574472344,
+        "net_pf": 0.9471385183034833,
+        "stress_net_pf": 0.803236356426079,
+        "exact_oos_net_pf": 1.225019449970233,
+        "exact_oos_stress_net_pf": 1.085078167554782,
+        "exact_oos_trades": 85,
+        "exact_oos_sharpe": 1.04279102140484
+      },
+      {
+        "symbol": "IMX/USDT",
+        "P_fast": 50,
+        "P_slow": 200,
+        "oos_trades": 102,
+        "oos_net_pf": 1.239686652829519,
+        "oos_stress_net_pf": 1.0012443854198683,
+        "net_pf": 1.0174876063815295,
+        "stress_net_pf": 0.847072526804149,
+        "exact_oos_net_pf": 1.2396866528295187,
+        "exact_oos_stress_net_pf": 1.0091490160559216,
+        "exact_oos_trades": 102,
+        "exact_oos_sharpe": 1.220869029574797
+      },
+      {
+        "symbol": "CHZ/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 66,
+        "oos_net_pf": 1.2395205615667204,
+        "oos_stress_net_pf": 1.0876342739299913,
+        "net_pf": 0.9347610123350849,
+        "stress_net_pf": 0.785166092447209,
+        "exact_oos_net_pf": 1.113708942808118,
+        "exact_oos_stress_net_pf": 0.9676338410902632,
+        "exact_oos_trades": 76,
+        "exact_oos_sharpe": 0.5231594776768929
+      },
+      {
+        "symbol": "IMX/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 111,
+        "oos_net_pf": 1.2393583532783268,
+        "oos_stress_net_pf": 1.0251934720617473,
+        "net_pf": 1.0431110243615507,
+        "stress_net_pf": 0.8925979453774942,
+        "exact_oos_net_pf": 1.2771436401981677,
+        "exact_oos_stress_net_pf": 1.0590932186056037,
+        "exact_oos_trades": 118,
+        "exact_oos_sharpe": 1.4251872250143498
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 20,
+        "P_slow": 144,
+        "oos_trades": 90,
+        "oos_net_pf": 1.2390879527896723,
+        "oos_stress_net_pf": 1.0937909071635268,
+        "net_pf": 0.9165877460999383,
+        "stress_net_pf": 0.7705992098294935,
+        "exact_oos_net_pf": 1.2489327923416824,
+        "exact_oos_stress_net_pf": 1.0920010920373138,
+        "exact_oos_trades": 98,
+        "exact_oos_sharpe": 1.1869780558675536
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 8,
+        "P_slow": 100,
+        "oos_trades": 114,
+        "oos_net_pf": 1.2378548118866304,
+        "oos_stress_net_pf": 1.0946748003705644,
+        "net_pf": 0.9075955505314066,
+        "stress_net_pf": 0.7500790554816749,
+        "exact_oos_net_pf": 1.2388397591549747,
+        "exact_oos_stress_net_pf": 1.087723813478947,
+        "exact_oos_trades": 119,
+        "exact_oos_sharpe": 1.2517966258888715
+      },
+      {
+        "symbol": "VELO/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 107,
+        "oos_net_pf": 1.233903018628853,
+        "oos_stress_net_pf": 1.0704841370997429,
+        "net_pf": 0.9854963748538945,
+        "stress_net_pf": 0.8674175732958481,
+        "exact_oos_net_pf": 1.2072722135324097,
+        "exact_oos_stress_net_pf": 1.041581538436462,
+        "exact_oos_trades": 108,
+        "exact_oos_sharpe": 1.0530232237300745
+      },
+      {
+        "symbol": "FET/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 34,
+        "oos_net_pf": 1.233566698105549,
+        "oos_stress_net_pf": 1.132408908366488,
+        "net_pf": 1.0235624838843427,
+        "stress_net_pf": 0.9041831804023875,
+        "exact_oos_net_pf": 1.2335666981055493,
+        "exact_oos_stress_net_pf": 1.1306104590193142,
+        "exact_oos_trades": 34,
+        "exact_oos_sharpe": 0.6599287244845935
+      },
+      {
+        "symbol": "AVA/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 105,
+        "oos_net_pf": 1.2325643259508678,
+        "oos_stress_net_pf": 1.0120062292970378,
+        "net_pf": 0.8490452573758713,
+        "stress_net_pf": 0.7083291558453445,
+        "exact_oos_net_pf": 1.2325643259508676,
+        "exact_oos_stress_net_pf": 1.0141843102815231,
+        "exact_oos_trades": 105,
+        "exact_oos_sharpe": 1.2073684265914286
+      },
+      {
+        "symbol": "AVA/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 105,
+        "oos_net_pf": 1.2324110578175669,
+        "oos_stress_net_pf": 1.0117182889126275,
+        "net_pf": 0.8315817183929994,
+        "stress_net_pf": 0.6937315042665089,
+        "exact_oos_net_pf": 1.232411057817567,
+        "exact_oos_stress_net_pf": 1.0139161389945544,
+        "exact_oos_trades": 105,
+        "exact_oos_sharpe": 1.2066715008888365
+      },
+      {
+        "symbol": "BLUR/USDT",
+        "P_fast": 8,
+        "P_slow": 144,
+        "oos_trades": 112,
+        "oos_net_pf": 1.2247523308093131,
+        "oos_stress_net_pf": 1.0201802397635473,
+        "net_pf": 1.0347419352134302,
+        "stress_net_pf": 0.8783134151867475,
+        "exact_oos_net_pf": 1.2691367022134425,
+        "exact_oos_stress_net_pf": 1.0464401053210475,
+        "exact_oos_trades": 123,
+        "exact_oos_sharpe": 1.4448273243097174
+      },
+      {
+        "symbol": "GMT/USDT",
+        "P_fast": 8,
+        "P_slow": 144,
+        "oos_trades": 110,
+        "oos_net_pf": 1.2242232855252702,
+        "oos_stress_net_pf": 1.0183457367055502,
+        "net_pf": 0.9924057826596095,
+        "stress_net_pf": 0.8449009143634809,
+        "exact_oos_net_pf": 1.1403534578239996,
+        "exact_oos_stress_net_pf": 0.936426566944454,
+        "exact_oos_trades": 113,
+        "exact_oos_sharpe": 0.7597508081238038
+      },
+      {
+        "symbol": "APT/USDT",
+        "P_fast": 21,
+        "P_slow": 144,
+        "oos_trades": 93,
+        "oos_net_pf": 1.2225851373206,
+        "oos_stress_net_pf": 1.0567121982246181,
+        "net_pf": 1.0361798018768744,
+        "stress_net_pf": 0.8804067371992115,
+        "exact_oos_net_pf": 1.2517195329914879,
+        "exact_oos_stress_net_pf": 1.0800125161614311,
+        "exact_oos_trades": 97,
+        "exact_oos_sharpe": 1.2322948924415258
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 34,
+        "P_slow": 144,
+        "oos_trades": 88,
+        "oos_net_pf": 1.2221964752465009,
+        "oos_stress_net_pf": 1.06322606268966,
+        "net_pf": 0.9170088097674843,
+        "stress_net_pf": 0.75134310895833,
+        "exact_oos_net_pf": 1.2221964752465007,
+        "exact_oos_stress_net_pf": 1.064879052287002,
+        "exact_oos_trades": 88,
+        "exact_oos_sharpe": 1.0586356112368556
+      },
+      {
+        "symbol": "DIA/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 89,
+        "oos_net_pf": 1.2168829368514034,
+        "oos_stress_net_pf": 1.0140627842488226,
+        "net_pf": 1.0235923677187102,
+        "stress_net_pf": 0.8644302448508463,
+        "exact_oos_net_pf": 1.2941072693608588,
+        "exact_oos_stress_net_pf": 1.0807545903403177,
+        "exact_oos_trades": 95,
+        "exact_oos_sharpe": 1.3742905763188664
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 21,
+        "P_slow": 144,
+        "oos_trades": 89,
+        "oos_net_pf": 1.216571247446358,
+        "oos_stress_net_pf": 1.0751110664102348,
+        "net_pf": 0.90164000385601,
+        "stress_net_pf": 0.7594596819326445,
+        "exact_oos_net_pf": 1.227844118907517,
+        "exact_oos_stress_net_pf": 1.0744539172696692,
+        "exact_oos_trades": 97,
+        "exact_oos_sharpe": 1.0952391941151527
+      },
+      {
+        "symbol": "MINA/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 75,
+        "oos_net_pf": 1.2161974490788725,
+        "oos_stress_net_pf": 1.0532191046012527,
+        "net_pf": 0.9441863277852066,
+        "stress_net_pf": 0.8020535467718888,
+        "exact_oos_net_pf": 1.33420122274577,
+        "exact_oos_stress_net_pf": 1.1513148967959608,
+        "exact_oos_trades": 74,
+        "exact_oos_sharpe": 1.2988017107978929
+      },
+      {
+        "symbol": "W/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 80,
+        "oos_net_pf": 1.2138046189638032,
+        "oos_stress_net_pf": 1.051187023860602,
+        "net_pf": 0.9955616931426204,
+        "stress_net_pf": 0.884938882228419,
+        "exact_oos_net_pf": 1.0902397120822993,
+        "exact_oos_stress_net_pf": 0.9213638907928793,
+        "exact_oos_trades": 99,
+        "exact_oos_sharpe": 0.49718884003562885
+      },
+      {
+        "symbol": "APT/USDT",
+        "P_fast": 20,
+        "P_slow": 144,
+        "oos_trades": 90,
+        "oos_net_pf": 1.2129336534996351,
+        "oos_stress_net_pf": 1.050745266868115,
+        "net_pf": 0.99117890222782,
+        "stress_net_pf": 0.8405648891738348,
+        "exact_oos_net_pf": 1.2432366728186148,
+        "exact_oos_stress_net_pf": 1.0744436482846538,
+        "exact_oos_trades": 94,
+        "exact_oos_sharpe": 1.1762453831439301
+      },
+      {
+        "symbol": "FET/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 45,
+        "oos_net_pf": 1.211529047502504,
+        "oos_stress_net_pf": 1.119988877063469,
+        "net_pf": 1.0214914916578384,
+        "stress_net_pf": 0.9132324443872525,
+        "exact_oos_net_pf": 1.2115290475025036,
+        "exact_oos_stress_net_pf": 1.118301466759829,
+        "exact_oos_trades": 45,
+        "exact_oos_sharpe": 0.7046107150738065
+      },
+      {
+        "symbol": "APT/USDT",
+        "P_fast": 26,
+        "P_slow": 200,
+        "oos_trades": 80,
+        "oos_net_pf": 1.202872235374639,
+        "oos_stress_net_pf": 1.0383888120285818,
+        "net_pf": 1.0097352939451427,
+        "stress_net_pf": 0.864869996719865,
+        "exact_oos_net_pf": 1.2284148346996393,
+        "exact_oos_stress_net_pf": 1.0590526077678206,
+        "exact_oos_trades": 81,
+        "exact_oos_sharpe": 1.0172885951475865
+      },
+      {
+        "symbol": "ENA/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "oos_trades": 106,
+        "oos_net_pf": 1.2024169824193232,
+        "oos_stress_net_pf": 1.0478789939386437,
+        "net_pf": 0.9190472315309783,
+        "stress_net_pf": 0.8214880959689067,
+        "exact_oos_net_pf": 1.2024169824193227,
+        "exact_oos_stress_net_pf": 1.0475025641828857,
+        "exact_oos_trades": 106,
+        "exact_oos_sharpe": 1.0479928854797707
+      },
+      {
+        "symbol": "ENA/USDT",
+        "P_fast": 8,
+        "P_slow": 144,
+        "oos_trades": 123,
+        "oos_net_pf": 1.2020189238202523,
+        "oos_stress_net_pf": 1.0456036217086822,
+        "net_pf": 1.0575541326955913,
+        "stress_net_pf": 0.9440910919861312,
+        "exact_oos_net_pf": 1.2020189238202525,
+        "exact_oos_stress_net_pf": 1.0433179595193185,
+        "exact_oos_trades": 123,
+        "exact_oos_sharpe": 1.117037488433036
+      },
+      {
+        "symbol": "ZEN/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 37,
+        "oos_net_pf": 1.2001606620052385,
+        "oos_stress_net_pf": 1.062299960292207,
+        "net_pf": 1.0183336096360736,
+        "stress_net_pf": 0.8794968708127628,
+        "exact_oos_net_pf": 1.3990642649925251,
+        "exact_oos_stress_net_pf": 1.2441649419877918,
+        "exact_oos_trades": 38,
+        "exact_oos_sharpe": 1.138687312583995
+      },
+      {
+        "symbol": "RENDER/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 45,
+        "oos_net_pf": 1.1898305081095621,
+        "oos_stress_net_pf": 1.0721564813735212,
+        "net_pf": 0.9712910836192608,
+        "stress_net_pf": 0.8673557578314869,
+        "exact_oos_net_pf": 1.189830508109562,
+        "exact_oos_stress_net_pf": 1.0727143720851298,
+        "exact_oos_trades": 45,
+        "exact_oos_sharpe": 0.7067976865288031
+      },
+      {
+        "symbol": "BLUR/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 90,
+        "oos_net_pf": 1.1884767238838438,
+        "oos_stress_net_pf": 1.011072022618786,
+        "net_pf": 1.019856262007381,
+        "stress_net_pf": 0.8593311738264171,
+        "exact_oos_net_pf": 1.1884767238838436,
+        "exact_oos_stress_net_pf": 1.0125147086610484,
+        "exact_oos_trades": 90,
+        "exact_oos_sharpe": 0.9217984351006683
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 12,
+        "P_slow": 100,
+        "oos_trades": 112,
+        "oos_net_pf": 1.1870800769304772,
+        "oos_stress_net_pf": 1.034882747613749,
+        "net_pf": 0.915664130868035,
+        "stress_net_pf": 0.7605089453085133,
+        "exact_oos_net_pf": 1.1870800769304772,
+        "exact_oos_stress_net_pf": 1.0307476189496831,
+        "exact_oos_trades": 112,
+        "exact_oos_sharpe": 1.0011683704141032
+      },
+      {
+        "symbol": "MEW/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 49,
+        "oos_net_pf": 1.184474827391166,
+        "oos_stress_net_pf": 1.0102530682968822,
+        "net_pf": 0.9307717912273481,
+        "stress_net_pf": 0.8259261581926559,
+        "exact_oos_net_pf": 0.9391294732072876,
+        "exact_oos_stress_net_pf": 0.796472381175735,
+        "exact_oos_trades": 56,
+        "exact_oos_sharpe": -0.20197796500517087
+      },
+      {
+        "symbol": "GMT/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 83,
+        "oos_net_pf": 1.182660438763359,
+        "oos_stress_net_pf": 1.0090353591775418,
+        "net_pf": 0.9341390481863125,
+        "stress_net_pf": 0.7926925270922364,
+        "exact_oos_net_pf": 1.169317911275505,
+        "exact_oos_stress_net_pf": 0.9984514238764333,
+        "exact_oos_trades": 85,
+        "exact_oos_sharpe": 0.8335884142410133
+      },
+      {
+        "symbol": "PYTH/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "oos_trades": 82,
+        "oos_net_pf": 1.182656741124557,
+        "oos_stress_net_pf": 1.055282256509627,
+        "net_pf": 1.081712673987953,
+        "stress_net_pf": 0.9665564364393989,
+        "exact_oos_net_pf": 1.1983045464572177,
+        "exact_oos_stress_net_pf": 1.0602604874210788,
+        "exact_oos_trades": 85,
+        "exact_oos_sharpe": 0.8803733972956678
+      },
+      {
+        "symbol": "ROSE/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 55,
+        "oos_net_pf": 1.1549849997122714,
+        "oos_stress_net_pf": 1.0027257548761168,
+        "net_pf": 0.9312611383011886,
+        "stress_net_pf": 0.8162609791494254,
+        "exact_oos_net_pf": 1.329772726365323,
+        "exact_oos_stress_net_pf": 1.163789832857724,
+        "exact_oos_trades": 60,
+        "exact_oos_sharpe": 1.2552791263102094
+      },
+      {
+        "symbol": "SYN/USDT",
+        "P_fast": 26,
+        "P_slow": 200,
+        "oos_trades": 91,
+        "oos_net_pf": 1.1536923189704187,
+        "oos_stress_net_pf": 1.003185385392872,
+        "net_pf": 0.9779750106431068,
+        "stress_net_pf": 0.8470518039343876,
+        "exact_oos_net_pf": 1.1536923189704187,
+        "exact_oos_stress_net_pf": 1.0030262251299575,
+        "exact_oos_trades": 91,
+        "exact_oos_sharpe": 0.7812712408838353
+      },
+      {
+        "symbol": "ENA/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 101,
+        "oos_net_pf": 1.1506269056921783,
+        "oos_stress_net_pf": 1.0041166549425762,
+        "net_pf": 0.8940826810361163,
+        "stress_net_pf": 0.7988814994042213,
+        "exact_oos_net_pf": 1.1506269056921783,
+        "exact_oos_stress_net_pf": 1.0043177278460782,
+        "exact_oos_trades": 101,
+        "exact_oos_sharpe": 0.7956003147074376
+      },
+      {
+        "symbol": "APT/USDT",
+        "P_fast": 12,
+        "P_slow": 144,
+        "oos_trades": 86,
+        "oos_net_pf": 1.142932049578338,
+        "oos_stress_net_pf": 1.0090450331356577,
+        "net_pf": 0.9399514398666495,
+        "stress_net_pf": 0.8069615087040298,
+        "exact_oos_net_pf": 1.1794863835830167,
+        "exact_oos_stress_net_pf": 1.037460116749608,
+        "exact_oos_trades": 90,
+        "exact_oos_sharpe": 0.8658101141092465
+      },
+      {
+        "symbol": "AERO/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "oos_trades": 79,
+        "oos_net_pf": 1.1392370742354048,
+        "oos_stress_net_pf": 1.0083868769816124,
+        "net_pf": 1.1453597856513094,
+        "stress_net_pf": 1.0317413007969989,
+        "exact_oos_net_pf": 1.1490887079427525,
+        "exact_oos_stress_net_pf": 1.0136675757001066,
+        "exact_oos_trades": 89,
+        "exact_oos_sharpe": 0.7641594317578098
+      },
+      {
+        "symbol": "FET/USDT",
+        "P_fast": 21,
+        "P_slow": 200,
+        "oos_trades": 39,
+        "oos_net_pf": 1.1274312808781461,
+        "oos_stress_net_pf": 1.0388888914273084,
+        "net_pf": 1.0076935087685746,
+        "stress_net_pf": 0.8895418373272167,
+        "exact_oos_net_pf": 1.127431280878146,
+        "exact_oos_stress_net_pf": 1.0368357726352655,
+        "exact_oos_trades": 39,
+        "exact_oos_sharpe": 0.4173594845381762
+      }
+    ],
+    "family_symbols": [
+      "AERO/USDT",
+      "APT/USDT",
+      "AVA/USDT",
+      "BLUR/USDT",
+      "BOME/USDT",
+      "BRETT/USDT",
+      "CETUS/USDT",
+      "CHZ/USDT",
+      "COTI/USDT",
+      "DAG/USDT",
+      "DEXE/USDT",
+      "DIA/USDT",
+      "EGLD/USDT",
+      "ENA/USDT",
+      "FET/USDT",
+      "FLUX/USDT",
+      "GMT/USDT",
+      "GRT/USDT",
+      "IMX/USDT",
+      "JASMY/USDT",
+      "MEW/USDT",
+      "MINA/USDT",
+      "PENDLE/USDT",
+      "POL/USDT",
+      "PUFFER/USDT",
+      "PYTH/USDT",
+      "RENDER/USDT",
+      "ROSE/USDT",
+      "RUNE/USDT",
+      "SUPER/USDT",
+      "SYN/USDT",
+      "T/USDT",
+      "TWT/USDT",
+      "VELO/USDT",
+      "W/USDT",
+      "WIN/USDT",
+      "WLD/USDT",
+      "XPR/USDT",
+      "ZEN/USDT"
+    ],
+    "per_symbol": [
+      {
+        "symbol": "AERO/USDT",
+        "cells": 1,
+        "trades": 79,
+        "net_pf": 1.1392370742354048,
+        "stress_net_pf": 1.0083868769816124,
+        "net_pnl": 608.5299837510947,
+        "net_pnl_share": 0.005624696892241324
+      },
+      {
+        "symbol": "APT/USDT",
+        "cells": 5,
+        "trades": 385,
+        "net_pf": 1.2098707675905396,
+        "stress_net_pf": 1.0529183590535034,
+        "net_pnl": 3452.77375498091,
+        "net_pnl_share": 0.03191429564331404
+      },
+      {
+        "symbol": "AVA/USDT",
+        "cells": 5,
+        "trades": 494,
+        "net_pf": 1.2814449715754528,
+        "stress_net_pf": 1.04036618299333,
+        "net_pnl": 4557.833506390245,
+        "net_pnl_share": 0.042128461445266406
+      },
+      {
+        "symbol": "BLUR/USDT",
+        "cells": 5,
+        "trades": 474,
+        "net_pf": 1.2535246601145413,
+        "stress_net_pf": 1.0609105710186966,
+        "net_pnl": 5372.224188213651,
+        "net_pnl_share": 0.049655947122941795
+      },
+      {
+        "symbol": "BOME/USDT",
+        "cells": 1,
+        "trades": 112,
+        "net_pf": 1.240263066374094,
+        "stress_net_pf": 1.0411470179086781,
+        "net_pnl": 1074.0119348605813,
+        "net_pnl_share": 0.009927188065578263
+      },
+      {
+        "symbol": "BRETT/USDT",
+        "cells": 2,
+        "trades": 120,
+        "net_pf": 1.3967438943095025,
+        "stress_net_pf": 1.2247444910171659,
+        "net_pnl": 1752.5776705005173,
+        "net_pnl_share": 0.016199231656443526
+      },
+      {
+        "symbol": "CETUS/USDT",
+        "cells": 2,
+        "trades": 153,
+        "net_pf": 1.3703448218165497,
+        "stress_net_pf": 1.2046739495454974,
+        "net_pnl": 2903.8739031256446,
+        "net_pnl_share": 0.02684076537640634
+      },
+      {
+        "symbol": "CHZ/USDT",
+        "cells": 1,
+        "trades": 66,
+        "net_pf": 1.2395205615667204,
+        "stress_net_pf": 1.0876342739299913,
+        "net_pnl": 592.2672000827033,
+        "net_pnl_share": 0.005474378532914252
+      },
+      {
+        "symbol": "COTI/USDT",
+        "cells": 3,
+        "trades": 326,
+        "net_pf": 1.2870579523840964,
+        "stress_net_pf": 1.0345105561102723,
+        "net_pnl": 3561.675610957287,
+        "net_pnl_share": 0.03292088520705884
+      },
+      {
+        "symbol": "DAG/USDT",
+        "cells": 1,
+        "trades": 109,
+        "net_pf": 1.3177395884110277,
+        "stress_net_pf": 1.0643522233297802,
+        "net_pnl": 781.2319830634019,
+        "net_pnl_share": 0.007220996868830686
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "cells": 18,
+        "trades": 1393,
+        "net_pf": 1.4160628099268773,
+        "stress_net_pf": 1.2543358764817885,
+        "net_pnl": 19779.445315172088,
+        "net_pnl_share": 0.18282317645010454
+      },
+      {
+        "symbol": "DIA/USDT",
+        "cells": 5,
+        "trades": 529,
+        "net_pf": 1.2926481968914916,
+        "stress_net_pf": 1.055927366741644,
+        "net_pnl": 5963.463287846393,
+        "net_pnl_share": 0.055120822831738546
+      },
+      {
+        "symbol": "EGLD/USDT",
+        "cells": 1,
+        "trades": 99,
+        "net_pf": 1.323315668394139,
+        "stress_net_pf": 1.0262271974953217,
+        "net_pnl": 1073.4741280754824,
+        "net_pnl_share": 0.009922217069516369
+      },
+      {
+        "symbol": "ENA/USDT",
+        "cells": 5,
+        "trades": 487,
+        "net_pf": 1.2222195666018365,
+        "stress_net_pf": 1.038474338276131,
+        "net_pnl": 4297.910418838979,
+        "net_pnl_share": 0.03972596917404026
+      },
+      {
+        "symbol": "FET/USDT",
+        "cells": 4,
+        "trades": 154,
+        "net_pf": 1.2652031051337491,
+        "stress_net_pf": 1.1668823203078618,
+        "net_pnl": 1723.8908647457201,
+        "net_pnl_share": 0.01593407695332977
+      },
+      {
+        "symbol": "FLUX/USDT",
+        "cells": 1,
+        "trades": 93,
+        "net_pf": 1.5169626921226593,
+        "stress_net_pf": 1.2910335798631871,
+        "net_pnl": 2123.6717127944094,
+        "net_pnl_share": 0.019629286973608447
+      },
+      {
+        "symbol": "GMT/USDT",
+        "cells": 3,
+        "trades": 281,
+        "net_pf": 1.282931104042357,
+        "stress_net_pf": 1.0878296079555785,
+        "net_pnl": 3124.2336787532695,
+        "net_pnl_share": 0.028877570428324156
+      },
+      {
+        "symbol": "GRT/USDT",
+        "cells": 2,
+        "trades": 114,
+        "net_pf": 1.4044613877911445,
+        "stress_net_pf": 1.2333306765890575,
+        "net_pnl": 1834.72263119933,
+        "net_pnl_share": 0.016958504851673432
+      },
+      {
+        "symbol": "IMX/USDT",
+        "cells": 7,
+        "trades": 737,
+        "net_pf": 1.3314196442395145,
+        "stress_net_pf": 1.1011822614592495,
+        "net_pnl": 10678.896547551823,
+        "net_pnl_share": 0.09870599284742851
+      },
+      {
+        "symbol": "JASMY/USDT",
+        "cells": 1,
+        "trades": 56,
+        "net_pf": 1.492752774916359,
+        "stress_net_pf": 1.0550171955411645,
+        "net_pnl": 1024.9015506438177,
+        "net_pnl_share": 0.009473256405912019
+      },
+      {
+        "symbol": "MEW/USDT",
+        "cells": 1,
+        "trades": 49,
+        "net_pf": 1.184474827391166,
+        "stress_net_pf": 1.0102530682968822,
+        "net_pnl": 365.74333523941687,
+        "net_pnl_share": 0.0033805982548274455
+      },
+      {
+        "symbol": "MINA/USDT",
+        "cells": 1,
+        "trades": 75,
+        "net_pf": 1.2161974490788725,
+        "stress_net_pf": 1.0532191046012527,
+        "net_pnl": 606.5100684649979,
+        "net_pnl_share": 0.005606026635169904
+      },
+      {
+        "symbol": "PENDLE/USDT",
+        "cells": 1,
+        "trades": 98,
+        "net_pf": 1.3019749494371473,
+        "stress_net_pf": 1.0650022371238277,
+        "net_pnl": 891.3689129909576,
+        "net_pnl_share": 0.008239002331217087
+      },
+      {
+        "symbol": "POL/USDT",
+        "cells": 5,
+        "trades": 358,
+        "net_pf": 1.4250269956126185,
+        "stress_net_pf": 1.1938362329450485,
+        "net_pnl": 6087.028174828572,
+        "net_pnl_share": 0.056262944098326946
+      },
+      {
+        "symbol": "PUFFER/USDT",
+        "cells": 3,
+        "trades": 231,
+        "net_pf": 1.3343484765157965,
+        "stress_net_pf": 1.1847180590720845,
+        "net_pnl": 3517.2132413815816,
+        "net_pnl_share": 0.03250991556110554
+      },
+      {
+        "symbol": "PYTH/USDT",
+        "cells": 1,
+        "trades": 82,
+        "net_pf": 1.182656741124557,
+        "stress_net_pf": 1.055282256509627,
+        "net_pnl": 668.7832966416877,
+        "net_pnl_share": 0.006181623635068156
+      },
+      {
+        "symbol": "RENDER/USDT",
+        "cells": 1,
+        "trades": 45,
+        "net_pf": 1.1898305081095621,
+        "stress_net_pf": 1.0721564813735212,
+        "net_pnl": 368.52266785119195,
+        "net_pnl_share": 0.0034062878739446367
+      },
+      {
+        "symbol": "ROSE/USDT",
+        "cells": 3,
+        "trades": 255,
+        "net_pf": 1.291302187197622,
+        "stress_net_pf": 1.0669198349153861,
+        "net_pnl": 3122.102711993708,
+        "net_pnl_share": 0.0288578737125829
+      },
+      {
+        "symbol": "RUNE/USDT",
+        "cells": 2,
+        "trades": 209,
+        "net_pf": 1.4220853014715598,
+        "stress_net_pf": 1.050174953249171,
+        "net_pnl": 3121.901600298731,
+        "net_pnl_share": 0.028856014819256467
+      },
+      {
+        "symbol": "SUPER/USDT",
+        "cells": 1,
+        "trades": 64,
+        "net_pf": 1.2855435120826788,
+        "stress_net_pf": 1.0890166232659666,
+        "net_pnl": 942.450926835138,
+        "net_pnl_share": 0.00871115793930675
+      },
+      {
+        "symbol": "SYN/USDT",
+        "cells": 2,
+        "trades": 190,
+        "net_pf": 1.2082386262338622,
+        "stress_net_pf": 1.0356433084279153,
+        "net_pnl": 1655.3603905482505,
+        "net_pnl_share": 0.015300643670607591
+      },
+      {
+        "symbol": "T/USDT",
+        "cells": 1,
+        "trades": 52,
+        "net_pf": 1.3271681827958808,
+        "stress_net_pf": 1.0711346341775436,
+        "net_pnl": 605.0218926105958,
+        "net_pnl_share": 0.005592271293071942
+      },
+      {
+        "symbol": "TWT/USDT",
+        "cells": 1,
+        "trades": 73,
+        "net_pf": 1.2603710594456063,
+        "stress_net_pf": 1.0173778326467229,
+        "net_pnl": 645.7275242886803,
+        "net_pnl_share": 0.005968517075712114
+      },
+      {
+        "symbol": "VELO/USDT",
+        "cells": 2,
+        "trades": 221,
+        "net_pf": 1.2536117047862982,
+        "stress_net_pf": 1.0860994083660167,
+        "net_pnl": 2210.186722841654,
+        "net_pnl_share": 0.020428952924570042
+      },
+      {
+        "symbol": "W/USDT",
+        "cells": 1,
+        "trades": 80,
+        "net_pf": 1.2138046189638032,
+        "stress_net_pf": 1.051187023860602,
+        "net_pnl": 724.2756663197574,
+        "net_pnl_share": 0.006694544555328042
+      },
+      {
+        "symbol": "WIN/USDT",
+        "cells": 2,
+        "trades": 200,
+        "net_pf": 1.2865786321784827,
+        "stress_net_pf": 1.074585304190933,
+        "net_pnl": 2033.185651434711,
+        "net_pnl_share": 0.018792916241333682
+      },
+      {
+        "symbol": "WLD/USDT",
+        "cells": 2,
+        "trades": 197,
+        "net_pf": 1.2804459078577193,
+        "stress_net_pf": 1.1433272432570714,
+        "net_pnl": 2520.8613822034677,
+        "net_pnl_share": 0.023300546498708996
+      },
+      {
+        "symbol": "XPR/USDT",
+        "cells": 1,
+        "trades": 44,
+        "net_pf": 1.5710001626950403,
+        "stress_net_pf": 1.3538071420165574,
+        "net_pnl": 806.9257210282985,
+        "net_pnl_share": 0.007458486379520646
+      },
+      {
+        "symbol": "ZEN/USDT",
+        "cells": 2,
+        "trades": 70,
+        "net_pf": 1.3296494572584419,
+        "stress_net_pf": 1.197973006988513,
+        "net_pnl": 1014.1583131183406,
+        "net_pnl_share": 0.00937395570366942
+      }
+    ],
+    "leave_one_symbol_out": [
+      {
+        "dropped_symbol": "AERO/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 79,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3131679416240263,
+        "family_remaining_stress_net_pf": 1.1135670471365424,
+        "family_remaining_net_pnl": 107580.40808871604,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "APT/USDT",
+        "dropped_cells": 5,
+        "dropped_trades": 385,
+        "family_remaining": 101,
+        "family_remaining_net_pf": 1.316001856795808,
+        "family_remaining_stress_net_pf": 1.1151962426063389,
+        "family_remaining_net_pnl": 104736.16431748617,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "AVA/USDT",
+        "dropped_cells": 5,
+        "dropped_trades": 494,
+        "family_remaining": 101,
+        "family_remaining_net_pf": 1.3124250297331732,
+        "family_remaining_stress_net_pf": 1.1158493228055313,
+        "family_remaining_net_pnl": 103631.10456607689,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "BLUR/USDT",
+        "dropped_cells": 5,
+        "dropped_trades": 474,
+        "family_remaining": 101,
+        "family_remaining_net_pf": 1.314709682548946,
+        "family_remaining_stress_net_pf": 1.1156123736956638,
+        "family_remaining_net_pnl": 102816.7138842534,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "BOME/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 112,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3119034322191752,
+        "family_remaining_stress_net_pf": 1.1131845470272597,
+        "family_remaining_net_pnl": 107114.9261376065,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "BRETT/USDT",
+        "dropped_cells": 2,
+        "dropped_trades": 120,
+        "family_remaining": 104,
+        "family_remaining_net_pf": 1.309879950333125,
+        "family_remaining_stress_net_pf": 1.110835799645441,
+        "family_remaining_net_pnl": 106436.36040196655,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 8,
+            "P_slow": 144
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6688853991617527,
+        "ranked_family_stress_net_pf": 1.478503642444961,
+        "ranked_family_net_pnl": 12900.864878623539,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "CETUS/USDT",
+        "dropped_cells": 2,
+        "dropped_trades": 153,
+        "family_remaining": 104,
+        "family_remaining_net_pf": 1.309614132461386,
+        "family_remaining_stress_net_pf": 1.11014232635302,
+        "family_remaining_net_pnl": 105285.06416934147,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "CHZ/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 66,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3114944799116728,
+        "family_remaining_stress_net_pf": 1.112440967487479,
+        "family_remaining_net_pnl": 107596.67087238439,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "COTI/USDT",
+        "dropped_cells": 3,
+        "dropped_trades": 326,
+        "family_remaining": 103,
+        "family_remaining_net_pf": 1.3118677450818272,
+        "family_remaining_stress_net_pf": 1.1152110007719416,
+        "family_remaining_net_pnl": 104627.26246150979,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "DAG/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 109,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3109348192066619,
+        "family_remaining_stress_net_pf": 1.1126123898070448,
+        "family_remaining_net_pnl": 107407.70608940371,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "DEXE/USDT",
+        "dropped_cells": 18,
+        "dropped_trades": 1393,
+        "family_remaining": 88,
+        "family_remaining_net_pf": 1.2943510251836547,
+        "family_remaining_stress_net_pf": 1.0902013826984367,
+        "family_remaining_net_pnl": 88409.49275729497,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FLUX/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "GMT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "IMX/USDT",
+            "P_fast": 26,
+            "P_slow": 200
+          },
+          {
+            "symbol": "JASMY/USDT",
+            "P_fast": 144,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "RUNE/USDT",
+            "P_fast": 50,
+            "P_slow": 144
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "ZEN/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.524515577180041,
+        "ranked_family_stress_net_pf": 1.2618466281031246,
+        "ranked_family_net_pnl": 13434.926904737902,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "DIA/USDT",
+        "dropped_cells": 5,
+        "dropped_trades": 529,
+        "family_remaining": 101,
+        "family_remaining_net_pf": 1.312123671894406,
+        "family_remaining_stress_net_pf": 1.115826741121242,
+        "family_remaining_net_pnl": 102225.47478462069,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "EGLD/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 99,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3108640768046003,
+        "family_remaining_stress_net_pf": 1.1131318592348118,
+        "family_remaining_net_pnl": 107115.46394439158,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "ENA/USDT",
+        "dropped_cells": 5,
+        "dropped_trades": 487,
+        "family_remaining": 101,
+        "family_remaining_net_pf": 1.3162081209348646,
+        "family_remaining_stress_net_pf": 1.1165818776604914,
+        "family_remaining_net_pnl": 103891.02765362815,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "FET/USDT",
+        "dropped_cells": 4,
+        "dropped_trades": 154,
+        "family_remaining": 102,
+        "family_remaining_net_pf": 1.3118545776926707,
+        "family_remaining_stress_net_pf": 1.1112632165911456,
+        "family_remaining_net_pnl": 106465.04720772133,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 8,
+            "P_slow": 144
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.677047806390339,
+        "ranked_family_stress_net_pf": 1.4838412898285989,
+        "ranked_family_net_pnl": 13208.755483758174,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "FLUX/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 93,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3085216080223279,
+        "family_remaining_stress_net_pf": 1.1101147186956422,
+        "family_remaining_net_pnl": 106065.2663596727,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "GMT/USDT",
+        "dropped_cells": 3,
+        "dropped_trades": 281,
+        "family_remaining": 103,
+        "family_remaining_net_pf": 1.3119024833513566,
+        "family_remaining_stress_net_pf": 1.1130703748814037,
+        "family_remaining_net_pnl": 105064.7043937138,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "GRT/USDT",
+        "dropped_cells": 2,
+        "dropped_trades": 114,
+        "family_remaining": 104,
+        "family_remaining_net_pf": 1.3097479350496577,
+        "family_remaining_stress_net_pf": 1.110692190651261,
+        "family_remaining_net_pnl": 106354.2154412677,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "IMX/USDT",
+        "dropped_cells": 7,
+        "dropped_trades": 737,
+        "family_remaining": 99,
+        "family_remaining_net_pf": 1.3088968661189424,
+        "family_remaining_stress_net_pf": 1.1134057975331753,
+        "family_remaining_net_pnl": 97510.04152491526,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "JASMY/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 56,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3098896276892298,
+        "family_remaining_stress_net_pf": 1.112631546284999,
+        "family_remaining_net_pnl": 107164.03652182326,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "MEW/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 49,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.311708003916734,
+        "family_remaining_stress_net_pf": 1.1128554478113988,
+        "family_remaining_net_pnl": 107823.19473722763,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "MINA/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 75,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.311753458507073,
+        "family_remaining_stress_net_pf": 1.1127414991179416,
+        "family_remaining_net_pnl": 107582.42800400208,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "PENDLE/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 98,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3110599960890357,
+        "family_remaining_stress_net_pf": 1.1126774174211422,
+        "family_remaining_net_pnl": 107297.56915947609,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "POL/USDT",
+        "dropped_cells": 5,
+        "dropped_trades": 358,
+        "family_remaining": 101,
+        "family_remaining_net_pf": 1.3060865670698398,
+        "family_remaining_stress_net_pf": 1.1087627693544109,
+        "family_remaining_net_pnl": 102101.90989763848,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 8,
+            "P_slow": 144
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.676809798518037,
+        "ranked_family_stress_net_pf": 1.4925168629050432,
+        "ranked_family_net_pnl": 12634.563514691152,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "PUFFER/USDT",
+        "dropped_cells": 3,
+        "dropped_trades": 231,
+        "family_remaining": 103,
+        "family_remaining_net_pf": 1.3102543535128826,
+        "family_remaining_stress_net_pf": 1.1100403651039612,
+        "family_remaining_net_pnl": 104671.72483108548,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "PYTH/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 82,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.312347851617313,
+        "family_remaining_stress_net_pf": 1.1128590646757637,
+        "family_remaining_net_pnl": 107520.15477582545,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "RENDER/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 45,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3116627631645656,
+        "family_remaining_stress_net_pf": 1.1124879032973956,
+        "family_remaining_net_pnl": 107820.41540461592,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "ROSE/USDT",
+        "dropped_cells": 3,
+        "dropped_trades": 255,
+        "family_remaining": 103,
+        "family_remaining_net_pf": 1.3116084991736083,
+        "family_remaining_stress_net_pf": 1.1137330608020128,
+        "family_remaining_net_pnl": 105066.83536047337,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "RUNE/USDT",
+        "dropped_cells": 2,
+        "dropped_trades": 209,
+        "family_remaining": 104,
+        "family_remaining_net_pf": 1.3085695137086812,
+        "family_remaining_stress_net_pf": 1.1136708656136602,
+        "family_remaining_net_pnl": 105067.0364721684,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "SUPER/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 64,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3112265730210395,
+        "family_remaining_stress_net_pf": 1.112492211799768,
+        "family_remaining_net_pnl": 107246.48714563192,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "SYN/USDT",
+        "dropped_cells": 2,
+        "dropped_trades": 190,
+        "family_remaining": 104,
+        "family_remaining_net_pf": 1.3133855108276067,
+        "family_remaining_stress_net_pf": 1.114056486491412,
+        "family_remaining_net_pnl": 106533.5776819188,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "T/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 52,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3108964170521196,
+        "family_remaining_stress_net_pf": 1.1124965403989169,
+        "family_remaining_net_pnl": 107583.91617985652,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "TWT/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 73,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3113462986478792,
+        "family_remaining_stress_net_pf": 1.1129603625922362,
+        "family_remaining_net_pnl": 107543.21054817841,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "VELO/USDT",
+        "dropped_cells": 2,
+        "dropped_trades": 221,
+        "family_remaining": 104,
+        "family_remaining_net_pf": 1.3124570053476663,
+        "family_remaining_stress_net_pf": 1.1129324176806612,
+        "family_remaining_net_pnl": 105978.75134962541,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "W/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 80,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.3119384745630482,
+        "family_remaining_stress_net_pf": 1.1128655023311105,
+        "family_remaining_net_pnl": 107464.66240614734,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "WIN/USDT",
+        "dropped_cells": 2,
+        "dropped_trades": 200,
+        "family_remaining": 104,
+        "family_remaining_net_pf": 1.3114909552946792,
+        "family_remaining_stress_net_pf": 1.113066784218242,
+        "family_remaining_net_pnl": 106155.75242103235,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "WLD/USDT",
+        "dropped_cells": 2,
+        "dropped_trades": 197,
+        "family_remaining": 104,
+        "family_remaining_net_pf": 1.3117928436437953,
+        "family_remaining_stress_net_pf": 1.1114652577912343,
+        "family_remaining_net_pnl": 105668.07669026364,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "XPR/USDT",
+        "dropped_cells": 1,
+        "dropped_trades": 44,
+        "family_remaining": 105,
+        "family_remaining_net_pf": 1.309922386558117,
+        "family_remaining_stress_net_pf": 1.111281748152584,
+        "family_remaining_net_pnl": 107382.01235143881,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 8,
+            "P_slow": 144
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6769089751004733,
+        "ranked_family_stress_net_pf": 1.4907813816004178,
+        "ranked_family_net_pnl": 13144.11226747109,
+        "ranked_family_clears_gates": true
+      },
+      {
+        "dropped_symbol": "ZEN/USDT",
+        "dropped_cells": 2,
+        "dropped_trades": 70,
+        "family_remaining": 104,
+        "family_remaining_net_pf": 1.310816367668126,
+        "family_remaining_stress_net_pf": 1.1115207345564329,
+        "family_remaining_net_pnl": 107174.77975934872,
+        "family_full_net_pf": 1.3109829115294354,
+        "family_full_stress_net_pf": 1.112267965194243,
+        "family_full_net_pnl": 108188.9380724671,
+        "ranked_retained": 10,
+        "ranked_retained_cells": [
+          {
+            "symbol": "BRETT/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 20,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 21,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 50,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 55,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 89,
+            "P_slow": 200
+          },
+          {
+            "symbol": "DEXE/USDT",
+            "P_fast": 100,
+            "P_slow": 200
+          },
+          {
+            "symbol": "FET/USDT",
+            "P_fast": 12,
+            "P_slow": 200
+          },
+          {
+            "symbol": "POL/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          },
+          {
+            "symbol": "XPR/USDT",
+            "P_fast": 8,
+            "P_slow": 200
+          }
+        ],
+        "ranked_entrants": [],
+        "ranked_family_net_pf": 1.6861652954182855,
+        "ranked_family_stress_net_pf": 1.4923812896119257,
+        "ranked_family_net_pnl": 12545.162922002564,
+        "ranked_family_clears_gates": true
+      }
+    ]
+  },
+  "part_b": {
+    "n_folds": 5,
+    "min_history_trades": 20,
+    "walk_forward": {
+      "steps": 1064,
+      "steps_selected": 1064,
+      "steps_scored": 1061,
+      "oof_pf_gt_1": 175,
+      "oof_pf_gt_1_share": 0.1649387370405278,
+      "oof_stress_pf_gt_1": 84,
+      "oof_stress_pf_gt_1_share": 0.07917059377945335,
+      "pooled_oof_net_pf": 0.7389990750129458,
+      "pooled_oof_stress_net_pf": 0.5730648239337698,
+      "pooled_oof_net_pnl": -856154.8087970512,
+      "pooled_oof_trades": 60853,
+      "history_pf_distribution": {
+        "n": 1064,
+        "mean": 1.1524389669742803,
+        "median": 1.0905618494761282,
+        "p05": 0.7817662871347295,
+        "p25": 0.9496872753542264,
+        "p75": 1.2743163646807518,
+        "p95": 1.7573147304520766,
+        "max": 3.9806363262555364,
+        "min": 0.47978915146041295
+      },
+      "oof_pf_distribution": {
+        "n": 1059,
+        "mean": 0.7859102363530976,
+        "median": 0.7347217461418631,
+        "p05": 0.3825995195109108,
+        "p25": 0.5890760065091563,
+        "p75": 0.9029562720707363,
+        "p95": 1.3235423834596207,
+        "max": 4.637529385379459,
+        "min": 0.0
+      },
+      "median_history_pf": 1.0905618494761282,
+      "median_oof_pf": 0.7347217461418631
+    },
+    "steps": [
+      {
+        "history_folds": 1,
+        "test_fold": 1,
+        "symbols_scored": 266,
+        "steps": 266,
+        "steps_selected": 266,
+        "steps_scored": 266,
+        "oof_pf_gt_1": 67,
+        "oof_pf_gt_1_share": 0.2518796992481203,
+        "oof_stress_pf_gt_1": 32,
+        "oof_stress_pf_gt_1_share": 0.12030075187969924,
+        "pooled_oof_net_pf": 0.8134064873758658,
+        "pooled_oof_stress_net_pf": 0.664083546458356,
+        "pooled_oof_net_pnl": -154523.4087181684,
+        "pooled_oof_trades": 14637,
+        "history_pf_distribution": {
+          "n": 266,
+          "mean": 1.3862142225153673,
+          "median": 1.2832261916244474,
+          "p05": 0.8921894054138265,
+          "p25": 1.1068225841484898,
+          "p75": 1.5594669094241127,
+          "p95": 2.100434223388954,
+          "max": 3.9806363262555364,
+          "min": 0.5793346101697521
+        },
+        "oof_pf_distribution": {
+          "n": 266,
+          "mean": 0.8548944171769159,
+          "median": 0.7898814885035632,
+          "p05": 0.43316902287219017,
+          "p25": 0.6589129458963623,
+          "p75": 1.0005767892612942,
+          "p95": 1.3940742391798973,
+          "max": 2.419671380539071,
+          "min": 0.17608686545262225
+        },
+        "median_history_pf": 1.2832261916244474,
+        "median_oof_pf": 0.7898814885035632,
+        "null_cells": 17556,
+        "null_median_pf": 0.7842601518064019,
+        "null_mean_pf": 0.8123277970223501,
+        "null_pf_gt_1": 2986,
+        "null_pf_gt_1_share": 0.17008430166324903,
+        "null_p95_pf": 1.2155006541484359
+      },
+      {
+        "history_folds": 2,
+        "test_fold": 2,
+        "symbols_scored": 266,
+        "steps": 266,
+        "steps_selected": 266,
+        "steps_scored": 266,
+        "oof_pf_gt_1": 40,
+        "oof_pf_gt_1_share": 0.15037593984962405,
+        "oof_stress_pf_gt_1": 16,
+        "oof_stress_pf_gt_1_share": 0.06015037593984962,
+        "pooled_oof_net_pf": 0.7358342008055753,
+        "pooled_oof_stress_net_pf": 0.5722500429992716,
+        "pooled_oof_net_pnl": -225080.4826456263,
+        "pooled_oof_trades": 14984,
+        "history_pf_distribution": {
+          "n": 266,
+          "mean": 1.183758247454558,
+          "median": 1.1639872543146694,
+          "p05": 0.8394944437705572,
+          "p25": 1.0016898925793263,
+          "p75": 1.3121589900684498,
+          "p95": 1.6645854702270824,
+          "max": 1.9987531700754322,
+          "min": 0.6384135922944584
+        },
+        "oof_pf_distribution": {
+          "n": 264,
+          "mean": 0.7905197234174057,
+          "median": 0.7446635565233652,
+          "p05": 0.4087434338862463,
+          "p25": 0.6108962266409159,
+          "p75": 0.8926911427879644,
+          "p95": 1.3479392491295035,
+          "max": 2.5073626177083335,
+          "min": 0.0
+        },
+        "median_history_pf": 1.1639872543146694,
+        "median_oof_pf": 0.7446635565233652,
+        "null_cells": 17518,
+        "null_median_pf": 0.7175098138968046,
+        "null_mean_pf": 0.7379421865014774,
+        "null_pf_gt_1": 1785,
+        "null_pf_gt_1_share": 0.10189519351524147,
+        "null_p95_pf": 1.11903978058135
+      },
+      {
+        "history_folds": 3,
+        "test_fold": 3,
+        "symbols_scored": 266,
+        "steps": 266,
+        "steps_selected": 266,
+        "steps_scored": 265,
+        "oof_pf_gt_1": 39,
+        "oof_pf_gt_1_share": 0.1471698113207547,
+        "oof_stress_pf_gt_1": 16,
+        "oof_stress_pf_gt_1_share": 0.06037735849056604,
+        "pooled_oof_net_pf": 0.7044930518811928,
+        "pooled_oof_stress_net_pf": 0.531648612844648,
+        "pooled_oof_net_pnl": -237745.8901235722,
+        "pooled_oof_trades": 14979,
+        "history_pf_distribution": {
+          "n": 266,
+          "mean": 1.0601163342119189,
+          "median": 1.03317452135505,
+          "p05": 0.7835731113552942,
+          "p25": 0.9280665812176655,
+          "p75": 1.1505299113702216,
+          "p95": 1.4339740695567667,
+          "max": 1.977915162143288,
+          "min": 0.5129450414358547
+        },
+        "oof_pf_distribution": {
+          "n": 265,
+          "mean": 0.7541283316953444,
+          "median": 0.7057055614833165,
+          "p05": 0.3444736583196053,
+          "p25": 0.5414290042244295,
+          "p75": 0.8919679226957067,
+          "p95": 1.2579803979166893,
+          "max": 2.803863300643731,
+          "min": 0.1954879278480946
+        },
+        "median_history_pf": 1.03317452135505,
+        "median_oof_pf": 0.7057055614833165,
+        "null_cells": 17487,
+        "null_median_pf": 0.6729700585916799,
+        "null_mean_pf": 0.6978341004048749,
+        "null_pf_gt_1": 1521,
+        "null_pf_gt_1_share": 0.08697889861039629,
+        "null_p95_pf": 1.0952742416261163
+      },
+      {
+        "history_folds": 4,
+        "test_fold": 4,
+        "symbols_scored": 266,
+        "steps": 266,
+        "steps_selected": 266,
+        "steps_scored": 264,
+        "oof_pf_gt_1": 29,
+        "oof_pf_gt_1_share": 0.10984848484848485,
+        "oof_stress_pf_gt_1": 20,
+        "oof_stress_pf_gt_1_share": 0.07575757575757576,
+        "pooled_oof_net_pf": 0.6998308915168667,
+        "pooled_oof_stress_net_pf": 0.5240498567036482,
+        "pooled_oof_net_pnl": -238805.02730968397,
+        "pooled_oof_trades": 16253,
+        "history_pf_distribution": {
+          "n": 266,
+          "mean": 0.9796670637152769,
+          "median": 0.9670645935517086,
+          "p05": 0.7335049564323093,
+          "p25": 0.8707630378531227,
+          "p75": 1.0552570664188234,
+          "p95": 1.2667168782916642,
+          "max": 1.6983109533995981,
+          "min": 0.47978915146041295
+        },
+        "oof_pf_distribution": {
+          "n": 264,
+          "mean": 0.7436962516947323,
+          "median": 0.6730370328421127,
+          "p05": 0.36032425049490774,
+          "p25": 0.5590992739893933,
+          "p75": 0.847704396972308,
+          "p95": 1.3056795552504852,
+          "max": 4.637529385379459,
+          "min": 0.13520605823159945
+        },
+        "median_history_pf": 0.9670645935517086,
+        "median_oof_pf": 0.6730370328421127,
+        "null_cells": 17428,
+        "null_median_pf": 0.6375811231555081,
+        "null_mean_pf": 0.6565661414957363,
+        "null_pf_gt_1": 1153,
+        "null_pf_gt_1_share": 0.06615790681661694,
+        "null_p95_pf": 1.049716761665016
+      }
+    ],
+    "selection_vs_null": {
+      "scored": 1059,
+      "median_percentile": 0.5565469359651136,
+      "mean_percentile": 0.5405308555173728,
+      "above_p95": 106,
+      "above_p95_share": 0.10009442870632672,
+      "expected_above_p95": 52.95,
+      "binomial_p_value": 2.2412935158002297e-11,
+      "null_cells": 69989,
+      "null_median_pf": 0.7049874671491941,
+      "null_pf_gt_1": 7445,
+      "null_pf_gt_1_share": 0.10637385874923203
+    }
+  },
+  "part_c": {
+    "n_subperiods": 4,
+    "closest_survivors": [
+      {
+        "symbol": "BRETT/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "subperiods": [
+          {
+            "subperiod": 0,
+            "trades": 8,
+            "net_pf": 2.8569948872045097,
+            "stress_net_pf": 2.755871950917406
+          },
+          {
+            "subperiod": 1,
+            "trades": 5,
+            "net_pf": 3.812945975968751,
+            "stress_net_pf": 3.6422991420482633
+          },
+          {
+            "subperiod": 2,
+            "trades": 8,
+            "net_pf": 2.8336519500107,
+            "stress_net_pf": 2.728623669361089
+          },
+          {
+            "subperiod": 3,
+            "trades": 21,
+            "net_pf": 1.0210528427153767,
+            "stress_net_pf": 0.8717035301247128
+          }
+        ],
+        "subperiods_with_trades": 4,
+        "subperiods_pf_gt_1": 4,
+        "subperiods_stress_pf_gt_1": 3
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 50,
+        "P_slow": 200,
+        "subperiods": [
+          {
+            "subperiod": 0,
+            "trades": 25,
+            "net_pf": 0.8932738313730313,
+            "stress_net_pf": 0.7366904800266122
+          },
+          {
+            "subperiod": 1,
+            "trades": 24,
+            "net_pf": 4.404805838025635,
+            "stress_net_pf": 4.062231728706232
+          },
+          {
+            "subperiod": 2,
+            "trades": 21,
+            "net_pf": 1.7020300166881608,
+            "stress_net_pf": 1.5411398786507111
+          },
+          {
+            "subperiod": 3,
+            "trades": 0,
+            "net_pf": null,
+            "stress_net_pf": null
+          }
+        ],
+        "subperiods_with_trades": 3,
+        "subperiods_pf_gt_1": 2,
+        "subperiods_stress_pf_gt_1": 2
+      },
+      {
+        "symbol": "DEXE/USDT",
+        "P_fast": 55,
+        "P_slow": 200,
+        "subperiods": [
+          {
+            "subperiod": 0,
+            "trades": 24,
+            "net_pf": 0.9741939767541408,
+            "stress_net_pf": 0.8027755267838823
+          },
+          {
+            "subperiod": 1,
+            "trades": 18,
+            "net_pf": 4.49424048061631,
+            "stress_net_pf": 4.18992725277181
+          },
+          {
+            "subperiod": 2,
+            "trades": 21,
+            "net_pf": 2.1684657188266256,
+            "stress_net_pf": 1.986156915919763
+          },
+          {
+            "subperiod": 3,
+            "trades": 0,
+            "net_pf": null,
+            "stress_net_pf": null
+          }
+        ],
+        "subperiods_with_trades": 3,
+        "subperiods_pf_gt_1": 2,
+        "subperiods_stress_pf_gt_1": 2
+      },
+      {
+        "symbol": "GRT/USDT",
+        "P_fast": 20,
+        "P_slow": 200,
+        "subperiods": [
+          {
+            "subperiod": 0,
+            "trades": 13,
+            "net_pf": 2.035030718705773,
+            "stress_net_pf": 1.8708734549093815
+          },
+          {
+            "subperiod": 1,
+            "trades": 1,
+            "net_pf": Infinity,
+            "stress_net_pf": Infinity
+          },
+          {
+            "subperiod": 2,
+            "trades": 20,
+            "net_pf": 1.5663306335914033,
+            "stress_net_pf": 1.3098875912246084
+          },
+          {
+            "subperiod": 3,
+            "trades": 23,
+            "net_pf": 1.0536978185379215,
+            "stress_net_pf": 0.926276868941256
+          }
+        ],
+        "subperiods_with_trades": 4,
+        "subperiods_pf_gt_1": 4,
+        "subperiods_stress_pf_gt_1": 3
+      },
+      {
+        "symbol": "MERL/USDT",
+        "P_fast": 8,
+        "P_slow": 200,
+        "subperiods": [
+          {
+            "subperiod": 0,
+            "trades": 22,
+            "net_pf": 1.5734300607326384,
+            "stress_net_pf": 1.4521878240314916
+          },
+          {
+            "subperiod": 1,
+            "trades": 0,
+            "net_pf": null,
+            "stress_net_pf": null
+          },
+          {
+            "subperiod": 2,
+            "trades": 0,
+            "net_pf": null,
+            "stress_net_pf": null
+          },
+          {
+            "subperiod": 3,
+            "trades": 0,
+            "net_pf": null,
+            "stress_net_pf": null
+          }
+        ],
+        "subperiods_with_trades": 1,
+        "subperiods_pf_gt_1": 1,
+        "subperiods_stress_pf_gt_1": 1
+      },
+      {
+        "symbol": "ZEN/USDT",
+        "P_fast": 12,
+        "P_slow": 200,
+        "subperiods": [
+          {
+            "subperiod": 0,
+            "trades": 18,
+            "net_pf": 1.7835825516866466,
+            "stress_net_pf": 1.5980640418009768
+          },
+          {
+            "subperiod": 1,
+            "trades": 4,
+            "net_pf": 0.826695891142391,
+            "stress_net_pf": 0.6911778042572262
+          },
+          {
+            "subperiod": 2,
+            "trades": 11,
+            "net_pf": 0.7205540600089163,
+            "stress_net_pf": 0.6299084223232719
+          },
+          {
+            "subperiod": 3,
+            "trades": 4,
+            "net_pf": 1.4529935029284347,
+            "stress_net_pf": 1.3909036476464993
+          }
+        ],
+        "subperiods_with_trades": 4,
+        "subperiods_pf_gt_1": 2,
+        "subperiods_stress_pf_gt_1": 2
+      }
+    ]
+  },
+  "verdict": [
+    "The 106-cell survivor family is concentrated in 39 symbols; dropping the dominant symbol leaves 88 of the 106 cells.",
+    "Re-selecting the family from the remaining cells keeps 10-10 of the original cells, so the family is stable under a leave-one-symbol-out.",
+    "Walk-forward: the procedure picks a cell on the history (median in-fold net PF 1.0906) and the same cell nets a median out-of-fold PF of 0.7347; the pooled out-of-fold net PF is 0.7390 over 60853 trades, and 16.5% of the out-of-fold windows land above PF 1 against the 10.6% the grid's own null produces on the same folds.",
+    "The selected cells rank at a median of the 0.5565 percentile of that null, and 106 of 1059 beat its 95th percentile (one-sided exact binomial p 2.241e-11): the selection does rank the cells, it just never ranks one into a net-profitable window.",
+    "Sub-period stability: 2 of 6 closest survivors keep PF above 1 in every out-of-sample sub-period that carries trades.",
+    "The out-of-sample gate is measuring a window, not a rule: the survivors do not survive their own walk-forward, and the family collapses onto a handful of symbols."
+  ]
+}

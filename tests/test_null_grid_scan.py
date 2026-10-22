@@ -12,8 +12,8 @@ from signals.signals import generate_signals, generate_signals_vectorized
 from scripts.null_grid_scan import (apply_entries, binomial_tail, build_grid_summary,
                                     build_verdict, cell_seed, eligible_bars,
                                     fmt_probability, null_entries, passes_gate,
-                                    pooled_ratio, process_cell, survivor_cells,
-                                    window_stats)
+                                    pooled_ratio, process_cell, run_config,
+                                    survivor_cells, window_stats)
 
 FIXTURES = Path('data/fixtures')
 
@@ -499,3 +499,67 @@ def test_a_resumed_pass_keeps_the_rows_the_first_pass_wrote(tmp_path, monkeypatc
             (out_dir / 'cells.jsonl').read_text().splitlines() if line.strip()]
     assert len(rows) == 1
     assert set(rows[0]['null']) == {'block', 'sign'}
+
+
+def test_the_null_randomizes_the_rule_of_the_run_it_is_asked_about(tmp_path):
+    """The null has to use the run's own config, not the engine defaults.
+
+    A mutation run changes the rule (the ATR minimum-risk child skips
+    entries the baseline takes), so a null built on the baseline rule would
+    score the child against the wrong reference.
+    """
+    from scripts.run_grid import CONFIG_DEFAULTS
+
+    run_dir = tmp_path / 'grid'
+    run_dir.mkdir()
+    (run_dir / 'run_config.json').write_text(json.dumps({
+        'config': dict(CONFIG_DEFAULTS, min_risk_atr=True, atr_threshold=1.5),
+    }))
+    config = run_config(run_dir)
+    assert config['min_risk_atr'] is True
+    assert config['atr_threshold'] == 1.5
+    # Everything the run did not change keeps the engine default.
+    assert config['taker_fee_bps'] == CONFIG_DEFAULTS['taker_fee_bps']
+    assert config['sizing'] == CONFIG_DEFAULTS['sizing']
+
+    # A run without a config file falls back to the engine defaults.
+    bare = tmp_path / 'bare'
+    bare.mkdir()
+    assert run_config(bare) == CONFIG_DEFAULTS
+
+
+def test_the_baseline_run_is_unaffected_by_the_config_lookup():
+    """The baseline grid's config is the engine default, so its null leg is
+    unchanged by reading the config from the run."""
+    from scripts.run_grid import CONFIG_DEFAULTS
+
+    run_dir = Path('results/20261019_135940_grid')
+    if not (run_dir / 'run_config.json').exists():
+        pytest.skip('baseline grid run is not present')
+    assert run_config(run_dir) == CONFIG_DEFAULTS
+
+
+def test_the_atr_rule_changes_the_real_leg_of_the_null():
+    """The rule under test has to change the reference the null is scored
+    against: the ATR minimum-risk child trades less than the baseline rule,
+    so a null built on the baseline rule would describe the wrong strategy."""
+    from data.data_loader import load_ohlcv_csv
+    from scripts.oos_grid_scan import entry_start_index
+    from scripts.run_grid import CONFIG_DEFAULTS
+
+    path = FIXTURES / 'ADA_USDT.csv'
+    if not path.exists():
+        pytest.skip('fixture is not present')
+    df = load_ohlcv_csv(str(path))
+    base = dict(CONFIG_DEFAULTS, stress_multiplier=2.0)
+    child = dict(CONFIG_DEFAULTS, min_risk_atr=True, atr_threshold=1.0,
+                 stress_multiplier=2.0)
+    entry_start = entry_start_index(len(df), 0.35)
+    base_stats = window_stats(generate_signals_vectorized(df.copy(), 20, 50,
+                                                           base['stricter_trend']),
+                              entry_start, base, 'ADA/USDT')
+    child_stats = window_stats(generate_signals_vectorized(df.copy(), 20, 50,
+                                                            child['stricter_trend']),
+                               entry_start, child, 'ADA/USDT')
+    assert child_stats['trades'] < base_stats['trades']
+    assert child_stats['net_pf'] != base_stats['net_pf']

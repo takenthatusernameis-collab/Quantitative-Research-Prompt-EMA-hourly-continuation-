@@ -1,6 +1,6 @@
 {
   "run_id": "20261021_172619_grid",
-  "timestamp": "20261021_191147",
+  "timestamp": "20261021_225028",
   "strategy": "ema_hourly_continuation",
   "mode": "full_ema_grid_mutation",
   "runner": "scripts/run_mutation_grid.py",
@@ -303,7 +303,7 @@
   ],
   "n_symbols": 266,
   "workers": 4,
-  "note": "PROMPT.md 5.2 ATR minimum-risk mutation (skip trades whose risk distance < ATR(14) x 1.0); single-variable child of results/20261019_135940_grid",
+  "note": "PROMPT.md 5.2 ATR minimum-risk mutation (skip trades whose risk distance < ATR(14) x 1.0); resumed single-variable child of results/20261019_135940_grid after the previous worker container was terminated",
   "parent_run": "results/20261019_135940_grid",
   "mcap_snapshot": {
     "updated_at": "2026-10-20T22:48:58.960399Z",

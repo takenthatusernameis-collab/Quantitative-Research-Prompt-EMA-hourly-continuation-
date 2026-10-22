@@ -53,7 +53,8 @@ import numpy as np
 import pandas as pd
 
 from data.data_loader import load_ohlcv_csv
-from scripts.run_grid import CONFIG_DEFAULTS, read_artifact_csv, run_cell
+from scripts.run_grid import (CONFIG_DEFAULTS, load_run_config, read_artifact_csv,
+                              run_cell)
 
 # Trade blotter columns the screen needs. Reading only these keeps the
 # grid-wide pass cheap: the run holds 17 556 blotters.
@@ -646,7 +647,9 @@ def main():
     out_dir = Path(args.out) if args.out else Path('results') / f'{timestamp}_oos_grid_scan'
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    config = dict(CONFIG_DEFAULTS)
+    # The audit has to re-run the cells of the run it audits, so it uses the
+    # run's own config: a mutation run's rule is not the baseline rule.
+    config = load_run_config(run_dir)
     rows = screen_run(run_dir, args.fixture_base, args.oos_fraction,
                       args.stress_multiplier, args.screen_pf, args.min_trades)
     if not rows:

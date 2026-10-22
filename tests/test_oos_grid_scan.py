@@ -1,6 +1,7 @@
 """Tests for the grid-wide out-of-sample audit (scripts/oos_grid_scan.py)."""
 import gzip
 import json
+from pathlib import Path
 
 import pandas as pd
 import pytest
@@ -158,3 +159,28 @@ def test_compare_with_candidate_check_measures_the_screen_error(tmp_path):
     assert fidelity['max_abs_trade_delta'] == 2
     # Both put the net PF on the same side of 1.0.
     assert fidelity['sign_agreement'] == 2
+
+
+def test_the_audit_re_runs_the_cells_with_the_runs_own_config(tmp_path):
+    """The exact leg has to use the audited run's own config.
+
+    A mutation run (PROMPT.md §5.2) changes the rule, so an audit that
+    re-runs the cells with the baseline config would verify the wrong
+    strategy: the screen (which reads the stored blotters) and the exact leg
+    would describe two different rules.
+    """
+    from scripts.oos_grid_scan import main as audit_main
+    from scripts.run_grid import CONFIG_DEFAULTS, load_run_config
+
+    run_dir = tmp_path / 'grid'
+    (run_dir / 'results').mkdir(parents=True)
+    (run_dir / 'run_config.json').write_text(json.dumps({
+        'config': dict(CONFIG_DEFAULTS, min_risk_atr=True),
+    }))
+    assert load_run_config(run_dir)['min_risk_atr'] is True
+
+    # The baseline grid's config is the engine default, so its audit is
+    # unchanged by reading the config from the run.
+    baseline = Path('results/20261019_135940_grid')
+    if (baseline / 'run_config.json').exists():
+        assert load_run_config(baseline) == CONFIG_DEFAULTS
