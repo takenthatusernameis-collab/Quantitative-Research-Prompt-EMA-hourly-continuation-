@@ -334,6 +334,50 @@
         "child_grid": "results/20261021_172619_grid stays a documented, reproducible negative result: the single-variable ATR mutation is kept as the reference point for the next mutation, not as a candidate",
         "decided_at": "2026-10-22T02:55:00+00:00"
       }
+    },
+    "C_stricter_trend": {
+      "run_id": "20261022_134500_grid",
+      "config": {
+        "taker_fee_bps": 10.0,
+        "slippage_bps": 2.0,
+        "rr": 1.0,
+        "stricter_trend": true,
+        "min_risk_atr": false,
+        "atr_threshold": 1.0,
+        "conservative_exit": true,
+        "sizing": "risk",
+        "risk_fraction": 0.01,
+        "max_notional_multiple": 10.0
+      },
+      "note": "PROMPT.md §5.1 stricter-trend mutation (entry also requires close above/below EMAslow) of the expanded 275-symbol baseline; ATR min-risk filter stays closed as a NOT_PROMOTED decision",
+      "status": "running",
+      "started_at": "2026-10-22T13:44:05Z",
+      "parent_run": "results/20261019_135940_grid",
+      "n_symbols": 275,
+      "n_cells": 18150,
+      "progress": {
+        "checked_at": "2026-10-22T13:54:05Z",
+        "completed_cells": 264,
+        "total_cells": 18150,
+        "symbols_complete": 4,
+        "next_cell": ["XRP/USDT", 8, 12],
+        "runner": "PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid",
+        "note": "resumable: re-running the same command skips cells whose summary.json already exists; background process is persistent"
+      },
+      "open_legs": [
+        "finish the full 18150-cell stricter-trend grid (re-run the runner command above; it resumes from progress.json)",
+        "scripts/aggregate_grid.py --run results/20261022_134500_grid",
+        "scripts/candidate_check.py against the stricter-trend grid",
+        "scripts/mutation_eval.py parent results/20261019_135940_grid vs child results/20261022_134500_grid (full universe, 18 150 cells)",
+        "scripts/null_grid_scan.py on the child grid (child's own randomized null, Bonferroni over 18 150 cells)",
+        "scripts/mutation_repro_check.py and scripts/mutation_survivor_check.py on gate-clearing cells",
+        "record a NOT_PROMOTED/promoted decision in mutations.json and close this child entry"
+      ],
+      "decision": {
+        "state": "PENDING",
+        "reason": "grid still running; no evaluation legs executed yet",
+        "decided_at": null
+      }
     }
   }
 }

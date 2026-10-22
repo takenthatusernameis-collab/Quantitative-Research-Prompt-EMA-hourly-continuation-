@@ -8,19 +8,20 @@
 
 | Item | Value |
 |---|---|
-| Program state | `AWAITING_NEW_ELIGIBLE_CANDIDATES` |
-| Baseline grid (program grid) | `results/20261019_135940_grid` — 266 symbols × 66 pairs = 17 556 cells, complete, 0 blocked |
-| Universe | N = 266, floor `AGLD/USDT` $16 279 472 |
-| Frozen universe snapshot | `universe/mcap_snapshot_20261021_114120.json` (fetched 2026-10-21T11:41:20Z, 10/10 pages, 1 000 entries, lowest covered $15 931 465) |
-| Last offline verification (this session) | 2026-10-22T10:28Z — `refresh_universe.py plan` → `refresh_allowed_now: false` (bound 2026-10-22T11:41:20Z not elapsed); `refresh_universe.py state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Tests: `249 passed`. No provider call. Next eligible refresh **2026-10-22T11:41:20Z**. |
-| **Next eligible universe refresh** | **2026-10-22T11:41:20Z** (24 h after the snapshot) |
+| Program state | `MUTATION_RUNNING` (stricter-trend child `results/20261022_134500_grid`, 264/18 150 cells, next cell `XRP/USDT P8_12`; persistent background process) |
+| Baseline grid (program grid) | `results/20261019_135940_grid` — 275 symbols × 66 pairs = 18 150 cells, complete, 0 blocked |
+| Universe | N = 275, floor `ALPINE/USDT` $3 614 141 |
+| Frozen universe snapshot | `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z, 20/20 pages, 2 000 entries, lowest covered $3 490 223) |
+| Last offline verification (this session) | 2026-10-22T13:54Z — expansion complete (ALPINE/USDT 66/66 cells); `scripts/validate_fixtures.py --all` → 268 fixtures, 0 invalid; `PYTHONPATH=. python3 -m pytest tests/ -q` → **249 passed**. Stricter-trend mutation grid launched (see below). No provider contact this session. |
+| **Next eligible universe refresh** | **2026-10-23T12:15:58Z** (24 h after the 12:15:58Z snapshot) |
 | ATR min-risk mutation | **closed: `NOT_PROMOTED`** (see `results/mutations.json`) |
+| Stricter-trend mutation | **running** — `results/20261022_134500_grid`, `stricter_trend: true` (single-variable, everything else registered), 264/18 150 cells complete, next cell `XRP/USDT P8_12`, resume command below |
 | Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) |
-| Tooling | `scripts/refresh_universe.py` (gated refresh, one command sequence) — ranking pass covers **20 pages**; `scripts/refresh_gate.py` enforces the 24 h bound |
+| Tooling | `scripts/run_mutation_grid.py` (resumable parallel mutation runner), `scripts/aggregate_grid.py`, `scripts/candidate_check.py`, `scripts/mutation_eval.py`, `scripts/null_grid_scan.py`; `scripts/refresh_gate.py` enforces the 24 h bound |
 
-**Provider discipline.** Until 2026-10-22T11:41:20Z the market-data provider must not be contacted at all — no polling, no "quick check", no partial refresh. After that timestamp exactly **one** ranking pass is allowed; the new snapshot is then frozen for the following 24 h.
+**Provider discipline.** Until 2026-10-23T12:15:58Z the market-data provider must not be contacted at all — no polling, no "quick check", no partial refresh. After that timestamp exactly **one** ranking pass is allowed; the new snapshot is then frozen for the following 24 h.
 
-**Timing note.** A session that starts before 11:41:20Z must not fetch: verify the state offline and stop cleanly. The expansion belongs to the first session that runs after the bound.
+**Timing note.** A session that starts before 12:15:58Z must not fetch: verify the state offline and stop cleanly. The expansion belongs to the first session that runs after the bound. The mutation work below is fully offline (uses existing fixtures) and may run at any time.
 
 **Session 2026-10-22T10:28Z (this session).** Offline only — bound not yet elapsed (10:28 < 11:41:20). `refresh_universe.py plan` → `refresh_allowed_now: false` ("the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 has not elapsed yet"); `refresh_universe.py state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`; `scripts/validate_fixtures.py --all` → 268 fixtures, 0 invalid, 0 gaps, 0 duplicate timestamps, 0 NaN rows; `PYTHONPATH=. python3 -m pytest tests/ -q` → **249 passed**. Outbound HTTPS confirmed against a non-provider host only. No provider contact this session (no CoinGecko, no KuCoin). `universe/last_scan.json` verification note rewritten with this session's timestamp. Session stopped cleanly; nothing was fetched. The single gated ranking pass + expansion belongs to the first session after 2026-10-22T11:41:20Z.
 **Session 2026-10-22T09:52Z (this session).** Offline only — bound not yet elapsed (09:52 < 11:41:20). `plan` → `refresh_allowed_now: false` ("the 24 h refresh bound 2026-10-22T11:41:20.375553+00:00 has not elapsed yet"); `state` → N=266, floor AGLD/USDT $16 279 472, 17 556/17 556 cells, 0 blocked, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`; `scripts/validate_fixtures.py --all` → 268 fixtures, 0 invalid, 0 gaps, 0 duplicate timestamps, 0 NaN rows; `PYTHONPATH=. python3 -m pytest tests/ -q` → **249 passed**. Outbound HTTPS confirmed against a non-provider host only. No provider contact this session. The verification note in `universe/last_scan.json` was rewritten with this session's timestamp. A wakeup is scheduled for **2026-10-22T11:42:00Z** to run the single gated ranking pass + expansion once the bound opens.
@@ -34,64 +35,61 @@
 
 ---
 
-## 2. The task (execute after 2026-10-22T11:41:20Z)
+## 2. The task (single-variable mutation of the expanded baseline — offline, safe at any time)
 
-### 2.1 Check the clock (offline, safe at any time)
+The expansion finished at 2026-10-22T13:20Z: ALPINE/USDT grid 66/66 cells, N = 275, floor `ALPINE/USDT` $3 614 141, mean net PF 0.4987, 37 cells net PF > 1, candidate_check rejected all, tests 249 passed. The baseline grid `results/20261019_135940_grid` is now the 275-symbol expanded baseline (18 150 cells).
+
+### 2.1 Resume / run the stricter-trend mutation grid
+
+One registered variable is flipped on the expanded baseline: `stricter_trend: true` (PROMPT.md §5.1 — entry also requires close above/below EMAslow). The ATR min-risk filter stays closed (`NOT_PROMOTED`). Registered costs (10 bps taker + 2 bps slippage per side), rr 1.0, conservative exit, risk sizing, folds, entry/exit semantics and §3.4 gates are unchanged.
+
+The grid is durable and resumable: cells whose `summary.json` already exist are skipped, and `progress.json` is rewritten after every symbol. A persistent background process is running:
 ```bash
-PYTHONPATH=. python3 scripts/refresh_universe.py plan
+PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
 ```
+Progress as of 2026-10-22T13:54Z: 264 / 18 150 cells (4 symbols complete), next cell `XRP/USDT P8_12`. Re-running the same command resumes from `progress.json` — do not start a second writer on this run directory. Full grid needs ~2+ hours, so it spans sessions; record `next_cell` in this handoff at each stop.
 
-### 2.2 One ranking pass, then the expansion
+### 2.2 After the mutation grid completes
+
 ```bash
-PYTHONPATH=. python3 scripts/refresh_universe.py fetch --pages 20 --batch-size 10
-PYTHONPATH=. python3 scripts/refresh_universe.py fixtures
-PYTHONPATH=. python3 scripts/refresh_universe.py grid
-PYTHONPATH=. python3 scripts/refresh_universe.py state
-PYTHONPATH=. python3 scripts/refresh_universe.py log
-```
-Or `PYTHONPATH=. python3 scripts/refresh_universe.py all`. Key guards: `fetch` refuses before `next_eligible_refresh_at` (second pass refused), `fixtures` never re-fetches a symbol the grid already ran, `grid` expands via `--resume` skipping existing cells, `log` is idempotent and writes nothing if cycle added no name.
-
-### 2.3 If no name is eligible below the floor
-Record snapshot id, fetch time, page coverage, floor, exclusions in `universe/last_scan.json`, keep `state = AWAITING_NEW_ELIGIBLE_CANDIDATES` and set `next_eligible_refresh_at = scanned_at + 24 h`. **No section written to log** if cycle added no name.
-
-### 2.4 If band still holds eligible names after the batch
-Take remainder from same frozen snapshot (no new provider pass):
-```bash
-PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --apply-from universe/mcap_snapshot_<TS>.json --batch-size 10 --apply
-PYTHONPATH=. python3 scripts/refresh_universe.py fixtures
-PYTHONPATH=. python3 scripts/refresh_universe.py grid
-PYTHONPATH=. python3 scripts/refresh_universe.py state
-PYTHONPATH=. python3 scripts/refresh_universe.py log
-```
-Second batch gets its own log section (Batch 28). Order preserved.
-
-### 2.5 After the expansion
-```bash
-PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid
-PYTHONPATH=. python3 scripts/candidate_check.py --run results/20261019_135940_grid
+PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261022_134500_grid
+PYTHONPATH=. python3 scripts/candidate_check.py --run results/20261022_134500_grid
+PYTHONPATH=. python3 scripts/mutation_eval.py --child results/20261022_134500_grid --parent results/20261019_135940_grid
+PYTHONPATH=. python3 scripts/null_grid_scan.py --run results/20261022_134500_grid   # child's own randomized null
+PYTHONPATH=. python3 scripts/mutation_repro_check.py --run results/20261022_134500_grid
+PYTHONPATH=. python3 scripts/mutation_survivor_check.py --run results/20261022_134500_grid
 PYTHONPATH=. python3 -m pytest tests/ -q
 ```
-Update `universe/mcap_expansion_log.md` and this handoff. Pooled report replaced in run dir; baseline 266-symbol numbers stay in `results/mutations.json` → `parent.pooled`.
+Then record a `NOT_PROMOTED` or promoted decision in `results/mutations.json` (child `C_stricter_trend`), close the entry, update `universe/mcap_expansion_log.md` is unchanged (no universe change), and update this handoff.
+
+### 2.3 What must not happen
+- No provider call before 2026-10-23T12:15:58Z.
+- No re-run of the baseline grid, no second writer on `results/20261022_134500_grid`, no promotion from a partial child grid.
+- No change to registered costs, folds, entry/exit semantics, or §3.4 gates.
+- Mutate one variable at a time: `stricter_trend` only; do not combine with `--min-risk-atr`, `--rr`, or `--aggressive-exit` in this run.
+
+---
+
+**Session 2026-10-22T13:54Z (this session).** Expansion verified complete (N=275, ALPINE/USDT 66/66 cells, 18 150/18 150, 0 blocked; aggregate mean net PF 0.4987; candidate_check rejected all; tests 249 passed). Stricter-trend mutation grid `results/20261022_134500_grid` launched as a persistent background process (4 workers): 264/18 150 cells complete, next cell `XRP/USDT P8_12`. `results/mutations.json` updated with child `C_stricter_trend` (status `running`). No provider contact (next refresh bound 2026-10-23T12:15:58Z). Next agent: resume the mutation grid to completion, then run the evaluation legs (§2.2) and record the decision.
 
 ---
 
 ## 3. Acceptance checklist
-- [ ] Exactly one ranking pass; snapshot committed and linked from `universe/last_scan.json`.
-- [ ] Pass covered **20 pages** and snapshot records `pages_fetched == pages_requested` (truncated pass is `INCOMPLETE_SCAN`).
-- [ ] `universe/mcap_rank.json` grew by exactly the batch, descending market cap, old 266 untouched.
-- [ ] Fixture exists for every new symbol with ≥17 520 hourly bars, contiguous grid; `data/fixtures/fetch_manifest.json` has provenance row.
-- [ ] Grid has 66 cells per new symbol: `progress.json` shows `completed_cells = (266+n)×66`, `next_cell = null`, 0 blocked.
-- [ ] Fixtures of 266 existing symbols not re-fetched (row counts/spans unchanged), `universe/last_scan.json` has no `fixture_conflicts`.
-- [ ] `universe/last_scan.json` reports new `universe_n`, new floor, remaining eligible count, `next_eligible_refresh_at = scanned_at + 24 h`.
-- [ ] `universe/mcap_expansion_log.md` records previous N → new N, rank range, source/date **once** as `## Batch 27` (or `## Batch 28` for second batch). If no name added, log unchanged.
-- [ ] `PYTHONPATH=. python3 -m pytest tests/ -q` passes.
+- [ ] Stricter-trend mutation grid completes: 18 150 / 18 150 cells (275 symbols × 66 pairs), 0 blocked, `next_cell = null`, `all_symbols_processed = true`.
+- [ ] `results/mutations.json` child `C_stricter_trend` has `status = complete` with progress and a recorded `NOT_PROMOTED`/promoted `decision`.
+- [ ] `aggregate_grid.py --run results/20261022_134500_grid` produces the child pooled report; parent baseline numbers stay in `results/mutations.json` → `parent.pooled`.
+- [ ] `candidate_check.py` against the stricter-trend grid: verdict per cell, 0 promoted without full §3.4 gates.
+- [ ] `mutation_eval.py` parent vs child (full 18 150 cells): pooled net PF delta, OOS net PF, 2x-cost stress, cells clearing gate, walk-forward.
+- [ ] `null_grid_scan.py` on the child grid: child's own randomized null (Bonferroni over 18 150 cells); selection vs null reported.
+- [ ] `mutation_repro_check.py` and `mutation_survivor_check.py` on gate-clearing cells; reproduction matches stored artifacts.
+- [ ] `PYTHONPATH=. python3 -m pytest tests/ -q` passes (249 passed baseline; no new failures).
+- [ ] No provider contact before 2026-10-23T12:15:58Z; no second writer on the mutation run dir; no change to registered costs/folds/gates.
 
 ---
 
 ## 4. What must not happen
-- No provider call before 2026-10-22T11:41:20Z, no second pass inside 24 h window.
-- No re-run of baseline grid, no re-opening child grid, no second worker on any run directory, no promotion from child grid.
-- No re-fetch of fixture the grid already ran (invalidates stored cells). Missing fixture of gridded symbol is conflict to restore, not download.
+- No provider call before 2026-10-23T12:15:58Z, no second ranking pass inside the 24 h window.
+- No re-run of baseline grid, no second worker on any run directory, no promotion from a child grid.
 - No change to registered grid, cost model, fill rule, folds, or §3.4 gates.
 - Use `start` + `logs`/`status` for background processes (not `monitor` action to follow running processes).
 
