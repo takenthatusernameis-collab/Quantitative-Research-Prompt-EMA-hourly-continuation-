@@ -1,9 +1,9 @@
 # NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z
 
-## Update 2026-10-23T20:25 UTC (current session)
+## Update 2026-10-23T20:39 UTC (current session)
 
 Offline eligibility re-check (no provider contact): `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:25:51.940670+00:00`.
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:39:59+00:00`.
 Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
 yet". ~16 h remaining. Nothing actionable until the bound.
 
@@ -18,15 +18,14 @@ State confirmed unchanged from batch 28:
   37 cells net PF > 1 (0.20%), 27 exploratory, 18123 rejected, 0 blocked, 0 credible
   candidates. `mutations.json`: `C_stricter_trend` and `C_min_risk_atr` both NOT_PROMOTED.
 
-Environment note for the next agent: `pytest`, `numpy` and `pandas` were **not**
-preinstalled in this sandbox (`ModuleNotFoundError`). They were installed into the
-user site-packages during this check (`pip3 install pytest numpy pandas`); if the
-sandbox is reset, install them before running `PYTHONPATH=. python3 -m pytest tests/ -q`.
+Environment note for the next agent: `pytest`, `numpy` and `pandas` are installed in
+this sandbox (pytest 9.1.1, numpy 2.5.4, pandas 3.1.0). If the sandbox is reset,
+install them before running `PYTHONPATH=. python3 -m pytest tests/ -q`.
 One pre-existing test is failing for a reason unrelated to any code change:
 `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`
 hard-codes `assert gate.gate_status(record)['eligible'] is False` against a fixed
 bound of `2026-10-23T12:00:00+00:00`, so it fails whenever `now` is past that bound
-(it is: 20:25 UTC). 248/249 tests pass. Do not "fix" it by loosening the gate; the
+(it is: 20:39 UTC). 248/249 tests pass. Do not "fix" it by loosening the gate; the
 correct fix is to make the test clock-relative, and only if the next agent touches
 that file.
 
