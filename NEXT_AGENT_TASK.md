@@ -106,3 +106,17 @@ Task completed as offline-only: refresh gate verified closed (bound 2026-10-23T1
 ## Update 2026-10-23T11:35 UTC (this session, completion)
 
 Task completed as offline-only: refresh gate verified closed (bound 2026-10-23T12:15:58.876534Z, now 2026-10-23T11:35:22Z); no provider contact made. All prior work (null scan no edge, mutations NOT_PROMOTED, batch 27 expansion N 266→275) remains closed. Baseline grid `results/20261019_135940_grid` remains program grid (18 150/18 150 cells, 0 blocked). Stopping cleanly. Next agent runs after 12:15:58Z: verify eligibility, run exactly one market-cap ranking pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py`), freeze snapshot for 24 h, expand universe per PROMPT.md §2.1, run full 66-pair EMA grid on new symbols, update handoffs.
+
+## Update 2026-10-23T11:36 UTC (this session, completion — full offline re-verification)
+
+Task completed as offline-only. Re-verified every claim on disk at 2026-10-23T11:36:04Z:
+
+- **Refresh gate:** `gate_status(universe/last_scan.json)` → `{'eligible': False, 'bound': '2026-10-23T12:15:58.876534+00:00', 'now': '2026-10-23T11:36:14.957551+00:00', 'reason': 'the 24 h refresh bound ... has not elapsed yet'}`. **No provider contact made.**
+- **Baseline grid** `results/20261019_135940_grid/progress.json`: `completed_cells` 18 150 (= 275 symbols × 66 pairs), `all_symbols_processed: true`, `next_cell: null`. `summary.json` pooled: n_cells 18 150, n_symbols 275, n_pairs 66, mean_net_pf 0.4987, n_cells_net_pf_gt_1 37, n_blocked 0. `per_symbol.json` is a list of 275 records.
+- **Batch 27 expansion:** all 9 added symbols verified present in `per_symbol.json` — BLZ/USDT, PIXEL/USDT, ALEX/USDT, CWEB/USDT, TRADE/USDT, ZPAY/USDT, ZKJ/USDT, BOSON/USDT, ALPINE/USDT. `universe/last_scan.json` confirms `universe_n: 275`, `expansion_floor.symbol ALPINE/USDT market_cap_usd 3614141`, `eligible_unseen_below_floor_count: 0`, `batch_selected` = the same 9, `state AWAITING_NEW_ELIGIBLE_CANDIDATES`. `mcap_expansion_log.md` Batch 27 section complete.
+- **Null grid scan** `results/20261023_050716_null_grid_scan/`: `cells.jsonl`, `config.json`, `summary.json`, `summary.md` all on disk, generated 2026-10-23T09:29:22Z. Summary re-read: real 77 cells OOS net PF > 1 / 6 gate-clearing vs block null 320 / 24, timing 86 / 7, sign 44 / 1; pooled OOS net PF real 0.4163 vs nulls 0.4480-0.5114; best real 1.4697 vs best block 2.2215; Leg 0 harness 200/200. **Conclusion unchanged: no edge.**
+- **Mutations** `results/mutations.json`: `C_stricter_trend` (zero-delta no-op, NOT_PROMOTED, decided 2026-10-23T05:30:00Z) and `C_min_risk_atr` (NOT_PROMOTED, decided 2026-10-22T02:55:00Z) both closed. Baseline grid remains the program grid.
+- **Environment:** `/usr/bin/python3` — numpy 2.5.4, pandas 3.1.0 present; `pytest` still not installed.
+- **Program decisions** `results/FINAL_DECISION.md` and `results/RESEARCH_CONCLUSION.md` present.
+
+Nothing further is actionable before the bound. Stopping cleanly. Next agent runs after 12:15:58.876534Z: verify eligibility, run exactly one market-cap ranking pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py`), freeze snapshot for 24 h, expand universe per PROMPT.md §2.1, run full 66-pair EMA grid on new symbols, update handoffs.
