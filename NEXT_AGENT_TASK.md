@@ -66,3 +66,9 @@ Do **NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
   `PYTHONPATH=. python3 -m pytest tests/ -q`. Expect 248/249 to pass; the one
   failure (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`)
   is a pre-existing clock-relative-test bug — do not loosen the gate to fix it.
+## Update 2026-10-23T20:40 UTC (current session)
+
+Offline eligibility re-check (no provider contact): `eligible: False`, bound
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:40:56+00:00`.
+Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
+yet". ~16 h remaining. Nothing actionable until the bound; no provider contact made.
