@@ -1,45 +1,28 @@
 # NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z
 
-## Update 2026-10-23T21:43 UTC (current session)
+## Update 2026-10-23T22:04 UTC (current session)
 
 Offline eligibility re-check (no provider contact): `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:43:17+00:00`.
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T22:04:07+00:00`.
 Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not
-elapsed yet". ~14 h 45 min remaining. Nothing actionable until the bound; no
+elapsed yet". ~14 h 24 min remaining. Nothing actionable until the bound; no
 provider contact made. State unchanged from batch 28 (see below).
 
 A wakeup was previously noted for `2026-10-24T12:29:00Z` (wku_16a9cbdea001jvDE8cLXeZlQkp);
 the queued task resumes immediately after the bound elapses. The prompt carried
 by that wakeup is the full task below; the next agent does not need to re-derive it.
 
-## Update 2026-10-23T20:39 UTC (current session)
+## State confirmed unchanged from batch 28
 
-Offline eligibility re-check (no provider contact): `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:39:59+00:00`.
-Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
-yet". ~16 h remaining. Nothing actionable until the bound.
-
-State confirmed unchanged from batch 28:
-- `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
-  `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`,
+- `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`,
+  `universe_n=275`, `snapshot_id=mcap_snapshot_20261023_122828`,
+  `scanned_at=2026-10-23T12:28:28.949476+00:00`,
   `eligible_unseen_below_floor_count=0`, `batch_selected=[]`,
   `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`.
-- Baseline grid `results/20261019_135940_grid`: `completed_cells=18150` (275 symbols x 66
-  pairs), `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=true`, `next_cell=null`,
-  no second writer. `summary.json` pooled: mean net PF 0.4987, median 0.5198,
-  37 cells net PF > 1 (0.20%), 27 exploratory, 18123 rejected, 0 blocked, 0 credible
-  candidates. `mutations.json`: `C_stricter_trend` and `C_min_risk_atr` both NOT_PROMOTED.
-
-Environment note for the next agent: `pytest`, `numpy` and `pandas` are installed in
-this sandbox (pytest 9.1.1, numpy 2.5.4, pandas 3.1.0). If the sandbox is reset,
-install them before running `PYTHONPATH=. python3 -m pytest tests/ -q`.
-One pre-existing test is failing for a reason unrelated to any code change:
-`tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`
-hard-codes `assert gate.gate_status(record)['eligible'] is False` against a fixed
-bound of `2026-10-23T12:00:00+00:00`, so it fails whenever `now` is past that bound
-(it is: 20:39 UTC). 248/249 tests pass. Do not "fix" it by loosening the gate; the
-correct fix is to make the test clock-relative, and only if the next agent touches
-that file.
+- Baseline grid `results/20261019_135940_grid`: `completed_cells=18150` (275
+  symbols x 66 pairs), `all_symbols_processed=true`, no second writer.
+  Pooled summary: mean net PF 0.4987, median 0.5198, 37 cells net PF > 1
+  (0.20%), 0 credible candidates.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 
@@ -68,62 +51,10 @@ Do **NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
 7. **Update handoffs:** After completing (or determining no-candidates), update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and next unprocessed symbol/pair batch (or "none").
 
 ## Constraints
+
 - No provider call before 2026-10-24T12:28:28.949476Z
 - No second writer on `results/20261019_135940_grid`; no promotion from partial child grid
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop program due to failures - expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
-- Tests: `pytest`/`numpy`/`pandas` are not preinstalled in the sandbox; install them
-  first (`pip3 install pytest numpy pandas`) before running
-  `PYTHONPATH=. python3 -m pytest tests/ -q`. Expect 248/249 to pass; the one
-  failure (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`)
-  is a pre-existing clock-relative-test bug — do not loosen the gate to fix it.
-## Update 2026-10-23T20:40 UTC (current session)
-
-Offline eligibility re-check (no provider contact): `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:40:56+00:00`.
-Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
-yet". ~16 h remaining. Nothing actionable until the bound; no provider contact made.
-
-## Update 2026-10-23T21:06 UTC (current session)
-
-Offline eligibility re-check (no provider contact): `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:06:17+00:00`.
-Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not
-elapsed yet". ~15 h remaining. Nothing actionable until the bound; no provider
-contact made. State unchanged from batch 28 (see above).
-
-## Update 2026-10-23T21:11 UTC (current session)
-
-Offline eligibility re-check (no provider contact): `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:11:22+00:00`.
-Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
-yet". ~15 h 17 min remaining. Nothing actionable until the bound; no provider
-contact made. State unchanged from batch 28 (see above).
-
-## Update 2026-10-23T21:17 UTC (current session)
-
-Offline eligibility re-check (no provider contact): `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:17:08+00:00`.
-Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
-yet". ~15 h 11 min remaining. Nothing actionable until the bound; no provider
-contact made. State unchanged from batch 28:
-- `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
-  `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`,
-  `eligible_unseen_below_floor_count=0`, `batch_selected=[]`,
-  `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`.
-- Baseline grid `results/20261019_135940_grid`: `completed_cells=18150` (275x66), all processed, no second writer.
-
-## Update 2026-10-23T21:47 UTC (current session)
-- Verified eligibility offline: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:47:20+00:00`. Reason: bound not elapsed yet (~14h 41m remaining).
-- State unchanged from batch 28: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `snapshot_id=mcap_snapshot_20261023_122828`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, next bound `2026-10-24T12:28:28.949476+00:00`. Baseline grid `results/20261019_135940_grid` complete (18150/18150). No provider contact made. Task unchanged; resume at/after bound.
-
-## Update 2026-10-23T21:48 UTC (current session)
-- Verified eligibility offline: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:48:28.415964+00:00`. Reason: bound not elapsed yet (~14h 40m remaining).
-- State unchanged from batch 28: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `snapshot_id=mcap_snapshot_20261023_122828`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, next bound `2026-10-24T12:28:28.949476+00:00`. Baseline grid `results/20261019_135940_grid` complete (18150/18150). No provider contact made. Task unchanged; resume at/after bound.
-
-## Update 2026-10-23T21:49 UTC (current session)
-- Verified eligibility offline: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:49:41.151693+00:00`. Reason: bound not elapsed yet (~14h 39m remaining).
-- State unchanged from batch 28: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, next bound `2026-10-24T12:28:28.949476+00:00`.
-- Baseline grid `results/20261019_135940_grid`: complete (18150/18150), all symbols processed, no second writer. No provider contact made.
-- Wakeup `wku_16a9cbdea001jvDE8cLXeZlQkp` queued for ~2026-10-24T12:29:00Z; full task will resume at/after bound. Handoffs updated.
+- Tests: `pytest`, `numpy` and `pandas` are installed in this sandbox (pytest 9.1.1, numpy 2.5.4, pandas 3.1.0). If the sandbox is reset, install them first (`pip3 install pytest numpy pandas`) before running `PYTHONPATH=. python3 -m pytest tests/ -q`. Expect 248/249 to pass; the one failure (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`) is a pre-existing clock-relative-test bug — do not loosen the gate to fix it.
