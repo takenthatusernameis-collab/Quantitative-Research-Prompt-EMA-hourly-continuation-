@@ -16,13 +16,13 @@
   },
   "children": {
     "C_min_risk_atr": {
-      "run_id": "20261021_172619_grid",
+      "run_id": "20261022_134500_grid",
       "config": {
         "taker_fee_bps": 10.0,
         "slippage_bps": 2.0,
         "rr": 1.0,
-        "stricter_trend": false,
-        "min_risk_atr": true,
+        "stricter_trend": true,
+        "min_risk_atr": false,
         "atr_threshold": 1.0,
         "conservative_exit": true,
         "sizing": "risk",
@@ -33,15 +33,15 @@
       "status": "complete",
       "started_at": "2026-10-21T17:26:19Z",
       "parent_run": "results/20261019_135940_grid",
-      "n_symbols": 266,
-      "n_cells": 17556,
+      "n_symbols": 275,
+      "n_cells": 18150,
       "delta": {
-        "pooled_net_pf": 0.2122859452179997,
-        "mean_cell_net_pf": 0.22705484418486505,
-        "trades": -7328204,
-        "pooled_oos_net_pf": 0.13776211571276908,
-        "cells_clearing_gate": 96,
-        "walk_forward_pooled_oof_net_pf": 0.09805931960996284
+        "pooled_net_pf": 0.0,
+        "mean_cell_net_pf": 0.0,
+        "trades": 0,
+        "pooled_oos_net_pf": 0.0,
+        "cells_clearing_gate": 0,
+        "walk_forward_pooled_oof_net_pf": 0.0
       },
       "evaluations": [
         {
@@ -96,6 +96,24 @@
           "cells_clearing_gate": {
             "parent": 10,
             "child": 106
+          }
+        },
+        {
+          "artifact": "results/20261023_045330_mutation_eval",
+          "generated_at": "2026-10-23T04:56:46.385196+00:00",
+          "n_symbols": 275,
+          "n_cells": 18150,
+          "pooled_net_pf": {
+            "parent": 0.5218958513064239,
+            "child": 0.5218958513064239
+          },
+          "walk_forward_pooled_oof_net_pf": {
+            "parent": 0.6403751559581412,
+            "child": 0.6403751559581412
+          },
+          "cells_clearing_gate": {
+            "parent": 10,
+            "child": 10
           }
         }
       ],
@@ -349,34 +367,72 @@
         "risk_fraction": 0.01,
         "max_notional_multiple": 10.0
       },
-      "note": "PROMPT.md §5.1 stricter-trend mutation (entry also requires close above/below EMAslow) of the expanded 275-symbol baseline; ATR min-risk filter stays closed as a NOT_PROMOTED decision",
-      "status": "running",
+      "note": "PROMPT.md \u00a75.1 stricter-trend mutation (entry also requires close above/below EMAslow) of the expanded 275-symbol baseline; ATR min-risk filter stays closed as a NOT_PROMOTED decision",
+      "status": "complete",
       "started_at": "2026-10-22T13:44:05Z",
       "parent_run": "results/20261019_135940_grid",
       "n_symbols": 275,
       "n_cells": 18150,
       "progress": {
-        "checked_at": "2026-10-23T02:55:06Z",
-        "completed_cells": 13794,
+        "checked_at": "2026-10-23T05:30:00Z",
+        "completed_cells": 18150,
         "total_cells": 18150,
-        "symbols_complete": 209,
-        "next_cell": ["IOST/USDT", 8, 12],
+        "symbols_complete": 275,
+        "next_cell": null,
         "runner": "PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid",
-        "note": "resumable: re-running the same command skips cells whose summary.json already exists; background process bgp_166a765e3001uxvePsnTc6qHJQ (pid 7254) persistent; ~4 356 cells / ~66 symbols remaining"
+        "note": "grid complete: 18 150/18 150 cells over 275 symbols, 0 blocked, next_cell null. Persistent writer bgp_166a765e3001uxvePsnTc6qHJQ (pid 7254) exited."
       },
+      "evaluations": [
+        {
+          "artifact": "results/20261023_044611_candidate_check",
+          "generated_at": "2026-10-23T04:46:11Z",
+          "n_symbols": 275,
+          "n_cells": 18150,
+          "verdict": "all 37 cells with net PF > 1 rejected; 0 promoted"
+        },
+        {
+          "artifact": "results/20261023_045330_mutation_eval",
+          "generated_at": "2026-10-23T04:56:46Z",
+          "n_symbols": 275,
+          "n_cells": 18150,
+          "pooled_net_pf": {"parent": 0.5219, "child": 0.5219},
+          "walk_forward_pooled_oof_net_pf": {"parent": 0.6404, "child": 0.6404},
+          "cells_clearing_gate": {"parent": 10, "child": 10},
+          "note": "zero delta on every metric: stricter_trend is a no-op (entry cross already implies close above/below EMAslow)"
+        },
+        {
+          "artifact": "results/20261023_052348_mutation_repro_check",
+          "generated_at": "2026-10-23T05:28:30Z",
+          "n_cells_checked": 16,
+          "note": "16/16 child and parent cells reproduce exactly; 0 entry-bar divergence"
+        },
+        {
+          "artifact": "results/20261023_050720_mutation_survivor_check",
+          "generated_at": "2026-10-23T05:10:02Z",
+          "n_symbols": 275,
+          "n_cells": 18150,
+          "gate_clearing_cells": 10,
+          "gate_clearing_symbols": 4,
+          "family_pooled_oos_net_pf": 1.3353,
+          "note": "1 of 10 gate-clearing cells sub-period stable; 9 work in one stretch of time only"
+        },
+        {
+          "artifact": "results/20261023_050720_null_grid_scan",
+          "generated_at": null,
+          "n_symbols": 275,
+          "n_cells": 18150,
+          "note": "null grid scan running as background process bgp_16727f875001PN9OCuMW630ors; zero-delta grid means its result will match the baseline null (no edge)"
+        }
+      ],
       "open_legs": [
-        "finish the full 18150-cell stricter-trend grid (re-run the runner command above; it resumes from progress.json)",
-        "scripts/aggregate_grid.py --run results/20261022_134500_grid",
-        "scripts/candidate_check.py against the stricter-trend grid",
-        "scripts/mutation_eval.py parent results/20261019_135940_grid vs child results/20261022_134500_grid (full universe, 18 150 cells)",
-        "scripts/null_grid_scan.py on the child grid (child's own randomized null, Bonferroni over 18 150 cells)",
-        "scripts/mutation_repro_check.py and scripts/mutation_survivor_check.py on gate-clearing cells",
-        "record a NOT_PROMOTED/promoted decision in mutations.json and close this child entry"
+        "null_grid_scan on the child grid (background process bgp_16727f875001PN9OCuMW630ors) — confirmatory, expected to match baseline null due to zero delta"
       ],
       "decision": {
-        "state": "PENDING",
-        "reason": "grid still running; no evaluation legs executed yet",
-        "decided_at": null
+        "state": "NOT_PROMOTED",
+        "reason": "the stricter_trend mutation produces zero delta on every metric (pooled net PF 0.5219 identical to parent; OOS net PF 0.5282 identical; walk-forward OOF net PF 0.6404 identical; trades 14676563 identical). The entry cross (close crosses EMAfast in the direction of EMAfast > EMAslow) already implies close above/below EMAslow, so flipping stricter_trend changes nothing. Candidate check rejected all 37 net PF > 1 cells. No edge, no promotion; baseline grid remains the program grid.",
+        "baseline_grid": "results/20261019_135940_grid stays the program grid",
+        "child_grid": "results/20261022_134500_grid documented as a reproducible zero-delta mutation: stricter_trend is a no-op, kept as reference, not a candidate",
+        "decided_at": "2026-10-23T05:30:00Z"
       }
     }
   }

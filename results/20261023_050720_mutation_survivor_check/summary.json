@@ -1,0 +1,617 @@
+{
+  "generated_at": "2026-10-23T05:10:02.522809+00:00",
+  "child_run": "results/20261022_134500_grid",
+  "n_symbols": 275,
+  "n_cells": 18150,
+  "oos_fraction": 0.35,
+  "stress_multiplier": 2.0,
+  "min_trades": 30,
+  "subperiods": 4,
+  "n_gate_cells": 10,
+  "n_gate_symbols": 4,
+  "gate_by_symbol": {
+    "DEXE/USDT": 6,
+    "GRT/USDT": 2,
+    "BRETT/USDT": 1,
+    "MERL/USDT": 1
+  },
+  "gate_cells": [
+    {
+      "symbol": "GRT/USDT",
+      "P_fast": 8,
+      "P_slow": 200,
+      "n_bars": 22099,
+      "entry_start_index": 14364,
+      "oos_trades": 64,
+      "oos_net_pf": 1.3135727843433342,
+      "oos_stress_net_pf": 1.0548486538071058,
+      "full_net_pf": 0.7534811645140839,
+      "oos_win_sum": 2276.198264430557,
+      "oos_loss_abs": 1732.829951686649,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9995565164366096
+    },
+    {
+      "symbol": "GRT/USDT",
+      "P_fast": 20,
+      "P_slow": 200,
+      "n_bars": 22099,
+      "entry_start_index": 14364,
+      "oos_trades": 61,
+      "oos_net_pf": 1.4546601421257161,
+      "oos_stress_net_pf": 1.2401172120007882,
+      "full_net_pf": 0.9087343835200111,
+      "oos_win_sum": 2936.62316724717,
+      "oos_loss_abs": 2018.7692521469926,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9997228227728809
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 12,
+      "P_slow": 200,
+      "n_bars": 22000,
+      "entry_start_index": 14300,
+      "oos_trades": 79,
+      "oos_net_pf": 1.2103391700257202,
+      "oos_stress_net_pf": 1.03247300591532,
+      "full_net_pf": 0.81691258768732,
+      "oos_win_sum": 3034.0158367826466,
+      "oos_loss_abs": 2506.74844863376,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9991130328732192
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 20,
+      "P_slow": 200,
+      "n_bars": 22000,
+      "entry_start_index": 14300,
+      "oos_trades": 77,
+      "oos_net_pf": 1.4789635085256336,
+      "oos_stress_net_pf": 1.2966559211880817,
+      "full_net_pf": 0.7855180492762426,
+      "oos_win_sum": 3015.2726774383173,
+      "oos_loss_abs": 2038.7742226609887,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9998336936637285
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 21,
+      "P_slow": 200,
+      "n_bars": 22000,
+      "entry_start_index": 14300,
+      "oos_trades": 75,
+      "oos_net_pf": 1.4985247512565059,
+      "oos_stress_net_pf": 1.3135727359323415,
+      "full_net_pf": 0.8209278843784485,
+      "oos_win_sum": 3170.3144346611416,
+      "oos_loss_abs": 2115.62367054855,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9998891291091524
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 26,
+      "P_slow": 200,
+      "n_bars": 22000,
+      "entry_start_index": 14300,
+      "oos_trades": 73,
+      "oos_net_pf": 1.1483683336969597,
+      "oos_stress_net_pf": 1.0066230449930944,
+      "full_net_pf": 0.8040652470071815,
+      "oos_win_sum": 2799.845710097792,
+      "oos_loss_abs": 2438.1077289759514,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9983923720827097
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 50,
+      "P_slow": 200,
+      "n_bars": 22000,
+      "entry_start_index": 14300,
+      "oos_trades": 86,
+      "oos_net_pf": 1.356503436185914,
+      "oos_stress_net_pf": 1.116461778492367,
+      "full_net_pf": 0.8057824821012993,
+      "oos_win_sum": 3340.1765469306615,
+      "oos_loss_abs": 2462.3428572523553,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9996673873274572
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 55,
+      "P_slow": 200,
+      "n_bars": 22000,
+      "entry_start_index": 14300,
+      "oos_trades": 81,
+      "oos_net_pf": 1.3377621921609157,
+      "oos_stress_net_pf": 1.0789335242579292,
+      "full_net_pf": 0.7534661021055232,
+      "oos_win_sum": 2958.886586143468,
+      "oos_loss_abs": 2211.8180671288933,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9996119518820333
+    },
+    {
+      "symbol": "BRETT/USDT",
+      "P_fast": 8,
+      "P_slow": 200,
+      "n_bars": 20783,
+      "entry_start_index": 13508,
+      "oos_trades": 51,
+      "oos_net_pf": 1.3106858555056078,
+      "oos_stress_net_pf": 1.0111314652061905,
+      "full_net_pf": 0.8337439842593195,
+      "oos_win_sum": 2388.359732485518,
+      "oos_loss_abs": 1822.2213373655343,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9995010809911857
+    },
+    {
+      "symbol": "MERL/USDT",
+      "P_fast": 8,
+      "P_slow": 200,
+      "n_bars": 21939,
+      "entry_start_index": 14260,
+      "oos_trades": 31,
+      "oos_net_pf": 1.2518324756463706,
+      "oos_stress_net_pf": 1.0215360890571594,
+      "full_net_pf": 0.8224484629191635,
+      "oos_win_sum": 1285.383413183908,
+      "oos_loss_abs": 1026.8014596124085,
+      "clears_gate": true,
+      "oos_pf_percentile": 0.9993347746549144
+    }
+  ],
+  "family": {
+    "cells": 10,
+    "trades": 678,
+    "pooled_oos_net_pf": 1.33528158286579,
+    "pooled_oos_net_pnl": 6831.039373389096
+  },
+  "leave_one_symbol_out": [
+    {
+      "cells": 9,
+      "trades": 627,
+      "pooled_oos_net_pf": 1.3376974574102776,
+      "pooled_oos_net_pnl": 6264.900978269114,
+      "dropped_symbol": "BRETT/USDT",
+      "cells_left": 9,
+      "gate_cells_left": 9
+    },
+    {
+      "cells": 4,
+      "trades": 207,
+      "pooled_oos_net_pf": 1.3463222975432465,
+      "pooled_oos_net_pnl": 2285.942576535569,
+      "dropped_symbol": "DEXE/USDT",
+      "cells_left": 4,
+      "gate_cells_left": 4
+    },
+    {
+      "cells": 8,
+      "trades": 553,
+      "pooled_oos_net_pf": 1.323046307207222,
+      "pooled_oos_net_pnl": 5369.817145545014,
+      "dropped_symbol": "GRT/USDT",
+      "cells_left": 8,
+      "gate_cells_left": 8
+    },
+    {
+      "cells": 9,
+      "trades": 647,
+      "pooled_oos_net_pf": 1.339710415343435,
+      "pooled_oos_net_pnl": 6572.457419817598,
+      "dropped_symbol": "MERL/USDT",
+      "cells_left": 9,
+      "gate_cells_left": 9
+    }
+  ],
+  "subperiod_stability": [
+    {
+      "symbol": "GRT/USDT",
+      "P_fast": 8,
+      "P_slow": 200,
+      "oos_trades": 64,
+      "oos_net_pf": 1.3135727843433342,
+      "oos_stress_net_pf": 1.0548486538071058,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 21,
+          "net_pf": 1.1506764624465786,
+          "stress_net_pf": 0.9993055326259154
+        },
+        {
+          "subperiod": 1,
+          "trades": 1,
+          "net_pf": 0.0,
+          "stress_net_pf": 0.0
+        },
+        {
+          "subperiod": 2,
+          "trades": 21,
+          "net_pf": 1.5853581365551161,
+          "stress_net_pf": 1.2515355545983324
+        },
+        {
+          "subperiod": 3,
+          "trades": 21,
+          "net_pf": 1.4081035224851626,
+          "stress_net_pf": 1.0529900005348574
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 4,
+      "subperiods_pf_gt_1": 3,
+      "subperiods_stress_pf_gt_1": 2,
+      "stable": false
+    },
+    {
+      "symbol": "GRT/USDT",
+      "P_fast": 20,
+      "P_slow": 200,
+      "oos_trades": 61,
+      "oos_net_pf": 1.4546601421257161,
+      "oos_stress_net_pf": 1.2401172120007882,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 13,
+          "net_pf": 2.0350307187057726,
+          "stress_net_pf": 1.8708734549093815
+        },
+        {
+          "subperiod": 1,
+          "trades": 1,
+          "net_pf": Infinity,
+          "stress_net_pf": Infinity
+        },
+        {
+          "subperiod": 2,
+          "trades": 22,
+          "net_pf": 1.7976941844296592,
+          "stress_net_pf": 1.485666401776201
+        },
+        {
+          "subperiod": 3,
+          "trades": 25,
+          "net_pf": 0.9909409942570003,
+          "stress_net_pf": 0.835422504205852
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 4,
+      "subperiods_pf_gt_1": 3,
+      "subperiods_stress_pf_gt_1": 3,
+      "stable": false
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 12,
+      "P_slow": 200,
+      "oos_trades": 79,
+      "oos_net_pf": 1.2103391700257202,
+      "oos_stress_net_pf": 1.03247300591532,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 13,
+          "net_pf": 0.489384670460956,
+          "stress_net_pf": 0.3881925311216691
+        },
+        {
+          "subperiod": 1,
+          "trades": 34,
+          "net_pf": 2.8002898253748527,
+          "stress_net_pf": 2.4882684417691037
+        },
+        {
+          "subperiod": 2,
+          "trades": 32,
+          "net_pf": 0.7966548210455989,
+          "stress_net_pf": 0.6707633431356594
+        },
+        {
+          "subperiod": 3,
+          "trades": 0,
+          "net_pf": null,
+          "stress_net_pf": null
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 3,
+      "subperiods_pf_gt_1": 1,
+      "subperiods_stress_pf_gt_1": 1,
+      "stable": false
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 20,
+      "P_slow": 200,
+      "oos_trades": 77,
+      "oos_net_pf": 1.4789635085256336,
+      "oos_stress_net_pf": 1.2966559211880817,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 11,
+          "net_pf": 0.6589214675024407,
+          "stress_net_pf": 0.5141988599640536
+        },
+        {
+          "subperiod": 1,
+          "trades": 34,
+          "net_pf": 3.3090776787403113,
+          "stress_net_pf": 2.936987236009802
+        },
+        {
+          "subperiod": 2,
+          "trades": 32,
+          "net_pf": 0.9453219127355594,
+          "stress_net_pf": 0.8345648321630246
+        },
+        {
+          "subperiod": 3,
+          "trades": 0,
+          "net_pf": null,
+          "stress_net_pf": null
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 3,
+      "subperiods_pf_gt_1": 1,
+      "subperiods_stress_pf_gt_1": 1,
+      "stable": false
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 21,
+      "P_slow": 200,
+      "oos_trades": 75,
+      "oos_net_pf": 1.4985247512565059,
+      "oos_stress_net_pf": 1.3135727359323415,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 9,
+          "net_pf": 0.6209849507688011,
+          "stress_net_pf": 0.47143259775553975
+        },
+        {
+          "subperiod": 1,
+          "trades": 34,
+          "net_pf": 3.30871874090289,
+          "stress_net_pf": 2.936298502752289
+        },
+        {
+          "subperiod": 2,
+          "trades": 32,
+          "net_pf": 0.9452827808487301,
+          "stress_net_pf": 0.8344900281005108
+        },
+        {
+          "subperiod": 3,
+          "trades": 0,
+          "net_pf": null,
+          "stress_net_pf": null
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 3,
+      "subperiods_pf_gt_1": 1,
+      "subperiods_stress_pf_gt_1": 1,
+      "stable": false
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 26,
+      "P_slow": 200,
+      "oos_trades": 73,
+      "oos_net_pf": 1.1483683336969597,
+      "oos_stress_net_pf": 1.0066230449930944,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 8,
+          "net_pf": 0.5251818276538488,
+          "stress_net_pf": 0.46203094116360155
+        },
+        {
+          "subperiod": 1,
+          "trades": 30,
+          "net_pf": 1.9821438755993808,
+          "stress_net_pf": 1.7234949652060099
+        },
+        {
+          "subperiod": 2,
+          "trades": 35,
+          "net_pf": 0.8780591287677784,
+          "stress_net_pf": 0.7757082989831258
+        },
+        {
+          "subperiod": 3,
+          "trades": 0,
+          "net_pf": null,
+          "stress_net_pf": null
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 3,
+      "subperiods_pf_gt_1": 1,
+      "subperiods_stress_pf_gt_1": 1,
+      "stable": false
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 50,
+      "P_slow": 200,
+      "oos_trades": 86,
+      "oos_net_pf": 1.356503436185914,
+      "oos_stress_net_pf": 1.116461778492367,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 33,
+          "net_pf": 0.873735496547308,
+          "stress_net_pf": 0.6244215636608823
+        },
+        {
+          "subperiod": 1,
+          "trades": 27,
+          "net_pf": 2.447932461841646,
+          "stress_net_pf": 2.18110326213617
+        },
+        {
+          "subperiod": 2,
+          "trades": 26,
+          "net_pf": 1.2895378399415436,
+          "stress_net_pf": 1.108181523778462
+        },
+        {
+          "subperiod": 3,
+          "trades": 0,
+          "net_pf": null,
+          "stress_net_pf": null
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 3,
+      "subperiods_pf_gt_1": 2,
+      "subperiods_stress_pf_gt_1": 2,
+      "stable": false
+    },
+    {
+      "symbol": "DEXE/USDT",
+      "P_fast": 55,
+      "P_slow": 200,
+      "oos_trades": 81,
+      "oos_net_pf": 1.3377621921609157,
+      "oos_stress_net_pf": 1.0789335242579292,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 32,
+          "net_pf": 0.9320607373114944,
+          "stress_net_pf": 0.663882972839519
+        },
+        {
+          "subperiod": 1,
+          "trades": 22,
+          "net_pf": 2.2557884313652017,
+          "stress_net_pf": 1.9763219589221686
+        },
+        {
+          "subperiod": 2,
+          "trades": 27,
+          "net_pf": 1.3397210866534617,
+          "stress_net_pf": 1.1281036186201407
+        },
+        {
+          "subperiod": 3,
+          "trades": 0,
+          "net_pf": null,
+          "stress_net_pf": null
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 3,
+      "subperiods_pf_gt_1": 2,
+      "subperiods_stress_pf_gt_1": 2,
+      "stable": false
+    },
+    {
+      "symbol": "BRETT/USDT",
+      "P_fast": 8,
+      "P_slow": 200,
+      "oos_trades": 51,
+      "oos_net_pf": 1.3106858555056078,
+      "oos_stress_net_pf": 1.0111314652061905,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 8,
+          "net_pf": 2.8569948872045092,
+          "stress_net_pf": 2.7558719509174066
+        },
+        {
+          "subperiod": 1,
+          "trades": 5,
+          "net_pf": 3.812945975968751,
+          "stress_net_pf": 3.642299142048263
+        },
+        {
+          "subperiod": 2,
+          "trades": 13,
+          "net_pf": 1.691292107252214,
+          "stress_net_pf": 1.3047517536972126
+        },
+        {
+          "subperiod": 3,
+          "trades": 25,
+          "net_pf": 0.8021959617492638,
+          "stress_net_pf": 0.5682395584091203
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 4,
+      "subperiods_pf_gt_1": 3,
+      "subperiods_stress_pf_gt_1": 3,
+      "stable": false
+    },
+    {
+      "symbol": "MERL/USDT",
+      "P_fast": 8,
+      "P_slow": 200,
+      "oos_trades": 31,
+      "oos_net_pf": 1.2518324756463706,
+      "oos_stress_net_pf": 1.0215360890571594,
+      "subperiods": [
+        {
+          "subperiod": 0,
+          "trades": 31,
+          "net_pf": 1.2518324756463706,
+          "stress_net_pf": 1.0215360890571594
+        },
+        {
+          "subperiod": 1,
+          "trades": 0,
+          "net_pf": null,
+          "stress_net_pf": null
+        },
+        {
+          "subperiod": 2,
+          "trades": 0,
+          "net_pf": null,
+          "stress_net_pf": null
+        },
+        {
+          "subperiod": 3,
+          "trades": 0,
+          "net_pf": null,
+          "stress_net_pf": null
+        }
+      ],
+      "n_subperiods": 4,
+      "subperiods_with_trades": 1,
+      "subperiods_pf_gt_1": 1,
+      "subperiods_stress_pf_gt_1": 1,
+      "stable": true
+    }
+  ],
+  "n_stable_cells": 1,
+  "n_cells_oos_pf_gt_1": 77,
+  "share_of_cells_oos_pf_gt_1": 0.004242424242424243,
+  "share_of_cells_clearing_gate": 0.0005509641873278236,
+  "verdict": [
+    "10 of 18150 child cells clear the \u00a73.4 gate, on 4 symbols: {'DEXE/USDT': 6, 'GRT/USDT': 2, 'BRETT/USDT': 1, 'MERL/USDT': 1}.",
+    "The family pools to an out-of-sample net PF of 1.3353 over 678 out-of-sample trades, and the child's own cells put 0.4 % of their out-of-sample scores above PF 1.",
+    "1 of 10 gate-clearing cells keep a net PF above 1 in every out-of-sample sub-period that carries trades (MERL/USDT P8_200); the other 9 work in one stretch of time only.",
+    "A cell that clears a gate is a selection result, not a promotion: the family still has to beat its own randomizations (the null leg on the child grid) and the walk-forward has to hold up on the complete child grid before anything can be promoted."
+  ],
+  "artifact": "results/20261023_050720_mutation_survivor_check"
+}

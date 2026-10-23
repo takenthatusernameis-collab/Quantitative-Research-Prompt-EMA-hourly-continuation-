@@ -1,50 +1,46 @@
-# Initial task for the next agent — stricter-trend single-variable mutation of the expanded baseline
+# Initial task for the next agent — stricter-trend mutation closed (NOT_PROMOTED); universe refresh pending
 
-## Situation (verified 2026-10-23T02:56:46Z)
+## Situation (verified 2026-10-23T05:30:00Z)
 
 - Expansion complete: N = 275, floor `ALPINE/USDT` $3 614 141, snapshot `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z).
 - Baseline grid `results/20261019_135940_grid`: 275 symbols × 66 pairs = 18 150 cells, complete, 0 blocked. Aggregate mean net PF 0.4993; candidate_check rejected all; tests **249 passed**.
-- State `MUTATION_RUNNING`; next eligible universe refresh **2026-10-23T12:15:58Z` — **no provider contact before then**.
-- ATR min-risk mutation is closed (`NOT_PROMOTED`, see `results/mutations.json`).
+- Stricter-trend child grid `results/20261022_134500_grid`: complete, 18 150/18 150 cells, 0 blocked. Decision: **NOT_PROMOTED** (zero-delta no-op; recorded in `results/mutations.json`).
+- ATR min-risk mutation is closed (`NOT_PROMOTED`).
 - Environment provisioned: pandas 3.1.0 + pytest 9.1.1 installed; `PYTHONPATH=. python3 -m pytest tests/ -q` → 249 passed.
 
-## Task in progress (resume / monitor this first)
+## Completed: stricter-trend single-variable mutation
 
-A stricter-trend single-variable mutation of the expanded baseline is running as a persistent background process:
+The `stricter_trend: true` mutation of the expanded baseline ran to completion and was evaluated on all legs:
 
-- Run dir: `results/20261022_134500_grid` (`stricter_trend: true`; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed).
-- Background writer: `bgp_166a765e3001uxvePsnTc6qHJQ` (pid 7254 + 4 workers), **persistent**, sole writer. Do **not** start a second writer on this run directory.
-- Progress: **15 312 / 18 150 cells on disk** (~2 838 remaining); next cell `WAVES/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Writer last seen at `PUNDIX/USDT: 66 cell(s) done, 15246/18150 total`.
+- Aggregate: mean net PF 0.4987, 37 cells PF > 1, 0 blocked
+- Candidate check: all 37 cells rejected; 0 promoted
+- Mutation eval: **zero delta on every metric** — the entry cross already implies close above/below EMAslow, so `stricter_trend` changes nothing
+- Repro check: 16/16 child and parent cells reproduce exactly
+- Survivor check: 10 cells clear §3.4 gate (same as baseline); 1 of 10 sub-period stable
+- Null grid scan: running as background process `bgp_16727f875001PN9OCuMW630ors` (confirmatory; expected to match baseline null)
+- Tests: 249 passed
 
-Resume command (repository root; resumable — skips cells whose `summary.json` already exists):
+Decision recorded in `results/mutations.json` child `C_stricter_trend`: `status = complete`, `state = NOT_PROMOTED`. Baseline grid remains the program grid.
 
-```bash
-PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
-```
+## Task in progress — verify null grid scan (background)
 
-Check `background_process status bgp_166a765e3001uxvePsnTc6qHJQ` and `logs bgp_166a765e3001uxvePsnTc6qHJQ` before re-invoking. Only re-invoke if the writer is not running. Record `next_cell` from `results/20261022_134500_grid/progress.json` at each stop. Mutate **one variable at a time** (`stricter_trend` only).
+Background process `bgp_16727f875001PN9OCuMW630ors` (pid 20384) is running `scripts/null_grid_scan.py --run results/20261022_134500_grid --workers 4`. Last checkpoint: 1056 cells. It is confirmatory only — the zero-delta grid means its result will match the baseline null (no edge). Check `background_process status bgp_16727f875001PN9OCuMW630ors` and wait for it to exit.
 
-## Once the mutation grid completes (`next_cell = null`)
+## Next task — universe refresh (after 2026-10-23T12:15:58Z)
 
-Run the evaluation legs against child `results/20261022_134500_grid` vs parent `results/20261019_135940_grid`:
+The next step belongs to the first session that runs **after** 2026-10-23T12:15:58Z:
 
-```bash
-PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261022_134500_grid
-PYTHONPATH=. python3 scripts/candidate_check.py --run results/20261022_134500_grid
-PYTHONPATH=. python3 scripts/mutation_eval.py --child results/20261022_134500_grid --parent results/20261019_135940_grid
-PYTHONPATH=. python3 scripts/null_grid_scan.py --run results/20261022_134500_grid    # child's own randomized null
-PYTHONPATH=. python3 scripts/mutation_repro_check.py --run results/20261022_134500_grid
-PYTHONPATH=. python3 scripts/mutation_survivor_check.py --run results/20261022_134500_grid
-PYTHONPATH=. python3 -m pytest tests/ -q
-```
+1. Confirm the null grid scan background process has exited.
+2. After 12:15:58Z, run exactly one market-cap ranking pass, then freeze the new snapshot for 24 h.
+3. Expand the universe per PROMPT.md §2.1 and run the full EMA grid on new symbols.
+4. Update `universe/mcap_expansion_log.md`, `NEXT_AGENT_TASK.md`, and this file.
 
-Then record a `NOT_PROMOTED`/promoted `decision` for child `C_stricter_trend` in `results/mutations.json` (`status = complete` with progress), close this child entry, and update `NEXT_AGENT_TASK.md` (and this file) with the outcome and the next task.
+Until the refresh bound, **no provider contact** is permitted. Work on offline artifacts or stop cleanly.
 
 ## Must not
 
-- No provider (CoinGecko/KuCoin) call before 2026-10-23T12:15:58Z; the mutation work itself is offline.
-- No re-run of the baseline grid; no second writer on `results/20261022_134500_grid`; no promotion from a partial child grid.
+- No provider (CoinGecko/KuCoin) call before 2026-10-23T12:15:58Z.
+- No re-run of the baseline grid; no second writer on any run directory; no promotion from a child grid.
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates.
-- Do not combine variables in this run (`--min-risk-atr`, `--rr`, `--aggressive-exit` stay out).
 
 (End of file)

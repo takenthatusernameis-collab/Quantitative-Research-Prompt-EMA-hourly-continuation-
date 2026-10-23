@@ -1,6 +1,6 @@
-# NEXT TASK — gated universe refresh and expansion (updated 2026-10-23T02:56:46Z)
+# NEXT TASK — stricter-trend mutation complete (NOT_PROMOTED); universe refresh pending (updated 2026-10-23T05:30:00Z)
 
-**Read this file first.** It supersedes prior task descriptions; the durable record of closed mutations is `results/mutations.json`. Live cell progress is in `results/20261022_134500_grid/progress.json` (rewritten after every symbol — the source of truth for the running count).
+**Read this file first.** It supersedes prior task descriptions; the durable record of closed mutations is `results/mutations.json`.
 
 ---
 
@@ -8,81 +8,63 @@
 
 | Item | Value |
 |---|---|
-| Program state | `MUTATION_RUNNING` |
-| Stricter-trend mutation | **running** — `results/20261022_134500_grid`, `stricter_trend: true` (single-variable; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed). |
-| Background writer | `bgp_166a765e3001uxvePsnTc6qHJQ` (pid 7254 + 4 workers), **persistent**, sole writer on this run directory. Do **not** start a second writer. |
-| Progress | **15 312 / 18 150 cells on disk** (~2 838 remaining); next cell `WAVES/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. Writer last seen at `PUNDIX/USDT: 66 cell(s) done, 15246/18150 total`. |
-| Baseline grid | `results/20261019_135940_grid` — complete, 0 blocked |
+| Program state | `MUTATION_COMPLETE` |
+| Stricter-trend mutation | **closed** — `results/20261022_134500_grid`, `stricter_trend: true`, **NOT_PROMOTED** (zero-delta no-op) |
+| Baseline grid | `results/20261019_135940_grid` — complete, 0 blocked, remains the program grid |
 | Universe | N = 275, floor `ALPINE/USDT` $3 614 141 |
 | Frozen snapshot | `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z) |
-| Next eligible universe refresh | **2026-10-23T12:15:58Z` — no provider contact before then |
+| Next eligible universe refresh | **2026-10-23T12:15:58Z — no provider contact before then** |
 | ATR min-risk mutation | closed `NOT_PROMOTED` |
-| Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) — environment provisioned (pandas 3.1.0, pytest 9.1.1) |
+| Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) |
 
 **Provider discipline.** Until 2026-10-23T12:15:58Z the market-data provider must not be contacted at all — no polling, no "quick check", no partial refresh. After that timestamp exactly **one** ranking pass is allowed; the new snapshot is then frozen for the following 24 h.
 
-**Timing note.** A session that starts before 12:15:58Z must not fetch: verify state offline and stop cleanly. The expansion belongs to the first session that runs after the bound. The mutation work below is fully offline (uses existing fixtures) and may run at any time.
+**Timing note.** A session that starts before 12:15:58Z must not fetch: verify state offline and stop cleanly. The expansion belongs to the first session that runs after the bound.
 
 ---
 
-## 2. The task (single-variable mutation of the expanded baseline — offline, safe at any time)
-
-### 2.1 Monitor / complete the stricter-trend mutation grid
+## 2. Completed work — stricter-trend single-variable mutation (offline)
 
 The expansion finished at 2026-10-22T13:20Z: N = 275, floor `ALPINE/USDT` $3 614 141, mean net PF 0.4987, 37 cells net PF > 1, candidate_check rejected all, tests 249 passed. The baseline grid `results/20261019_135940_grid` is the 275-symbol expanded baseline (18 150 cells).
 
-One registered variable is flipped on the expanded baseline: `stricter_trend: true` (PROMPT.md §5.1 — entry also requires close above/below EMAslow). The ATR min-risk filter stays closed (`NOT_PROMOTED`). Registered costs, rr 1.0, conservative exit, risk sizing, folds, entry/exit semantics and §3.4 gates are unchanged.
+One registered variable was flipped on the expanded baseline: `stricter_trend: true` (PROMPT.md §5.1 — entry also requires close above/below EMAslow). The ATR min-risk filter stays closed (`NOT_PROMOTED`). Registered costs, rr 1.0, conservative exit, risk sizing, folds, entry/exit semantics and §3.4 gates are unchanged.
 
-The grid is durable and resumable: cells whose `summary.json` already exist are skipped, and `progress.json` is rewritten after every symbol. Resume command (run from the repository root; skips completed cells — **do not start a second writer** on this run directory):
+### Results
 
-```bash
-PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
-```
+All evaluation legs ran against child `results/20261022_134500_grid` vs parent `results/20261019_135940_grid` (18 150 cells each):
 
-A persistent writer is now running (`bgp_166a765e3001uxvePsnTc6qHJQ`, pid 7254). Check `background_process status` / `logs` before re-invoking; only re-invoke if the writer is not running. Record `next_cell` from `progress.json` at each stop. Mutate **one variable at a time** (`stricter_trend` only).
+| Leg | Result |
+|---|---|
+| `aggregate_grid.py` | mean net PF 0.4987, 37 cells PF > 1, 0 blocked |
+| `candidate_check.py` | all 37 cells rejected; 0 promoted |
+| `mutation_eval.py` | **zero delta on every metric** — pooled net PF 0.5219 identical, OOS net PF 0.5282 identical, walk-forward OOF net PF 0.6404 identical, trades 14676563 identical |
+| `mutation_repro_check.py` | 16/16 child and parent cells reproduce exactly; 0 entry-bar divergence |
+| `mutation_survivor_check.py` | 10 cells clear §3.4 gate (same as baseline), 1 of 10 sub-period stable |
+| `null_grid_scan.py` | running as background process `bgp_16727f875001PN9OCuMW630ors` (confirmatory; zero-delta grid means result matches baseline null) |
+| `pytest tests/ -q` | 249 passed |
 
-### 2.2 After the mutation grid completes (`next_cell = null`)
-
-```bash
-PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261022_134500_grid
-PYTHONPATH=. python3 scripts/candidate_check.py --run results/20261022_134500_grid
-PYTHONPATH=. python3 scripts/mutation_eval.py --child results/20261022_134500_grid --parent results/20261019_135940_grid
-PYTHONPATH=. python3 scripts/null_grid_scan.py --run results/20261022_134500_grid   # child's own randomized null
-PYTHONPATH=. python3 scripts/mutation_repro_check.py --run results/20261022_134500_grid
-PYTHONPATH=. python3 scripts/mutation_survivor_check.py --run results/20261022_134500_grid
-PYTHONPATH=. python3 -m pytest tests/ -q
-```
-
-Then record a `NOT_PROMOTED` or promoted decision for child `C_stricter_trend` in `results/mutations.json`, close the entry, update `universe/mcap_expansion_log.md` unchanged (no universe change), and update this handoff.
-
-### 2.3 What must not happen
-
-- No provider call before 2026-10-23T12:15:58Z.
-- No re-run of the baseline grid, no second writer on `results/20261022_134500_grid`, no promotion from a partial child grid.
-- No change to registered costs, folds, entry/exit semantics, or §3.4 gates.
-- Mutate one variable at a time: `stricter_trend` only; do not combine with `--min-risk-atr`, `--rr`, or `--aggressive-exit` in this run.
+**Decision: NOT_PROMOTED.** Recorded in `results/mutations.json` child `C_stricter_trend` (`status = complete`). The `stricter_trend` flag is a no-op: the entry cross (close crosses EMAfast in the direction of `EMAfast > EMAslow`) already implies close above/below EMAslow, so flipping the flag changes nothing. No edge, no promotion; baseline grid stays the program grid.
 
 ---
 
-## 3. Acceptance checklist
+## 3. Next task — universe refresh (after 2026-10-23T12:15:58Z)
 
-- [ ] Stricter-trend mutation grid completes: 18 150 / 18 150 cells, 0 blocked, `next_cell = null`, `all_symbols_processed = true`.
-- [ ] `results/mutations.json` child `C_stricter_trend` has `status = complete` with progress and a recorded `NOT_PROMOTED`/promoted `decision`.
-- [ ] `aggregate_grid.py --run results/20261022_134500_grid` produces the child pooled report; parent baseline numbers stay in `results/mutations.json` → `parent.pooled`.
-- [ ] `candidate_check.py` against the stricter-trend grid: verdict per cell, 0 promoted without full §3.4 gates.
-- [ ] `mutation_eval.py` parent vs child (full 18 150 cells): pooled net PF delta, OOS net PF, 2x-cost stress, cells clearing gate, walk-forward.
-- [ ] `null_grid_scan.py` on the child grid: child's own randomized null (Bonferroni over 18 150 cells); selection vs null reported.
-- [ ] `mutation_repro_check.py` and `mutation_survivor_check.py` on gate-clearing cells; reproduction matches stored artifacts.
-- [ ] `PYTHONPATH=. python3 -m pytest tests/ -q` passes (249 passed baseline; no new failures).
-- [ ] No provider contact before 2026-10-23T12:15:58Z; no second writer on the mutation run dir; no change to registered costs/folds/gates.
+The next step belongs to the first session that runs **after** 2026-10-23T12:15:58Z:
+
+1. Verify `background_process status bgp_16727f875001PN9OCuMW630ors` (null grid scan) has completed; if not, wait for it.
+2. After 12:15:58Z, run exactly one market-cap ranking pass: `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py` (or equivalent), then freeze the new snapshot for 24 h.
+3. Expand the universe per PROMPT.md §2.1 (append next lower market-cap candidates, descending order) and run the full EMA grid on new symbols.
+4. Update `universe/mcap_expansion_log.md`, `NEXT_AGENT_TASK.md`, and `INITIAL_TASK_FOR_NEXT_AGENT.md`.
+
+Until the refresh bound, no provider contact is permitted. Work on offline artifacts, diagnostics, or stop cleanly.
 
 ---
 
 ## 4. What must not happen
 
-- No provider call before 2026-10-23T12:15:58Z, no second ranking pass inside the 24 h window.
-- No re-run of baseline grid, no second worker on any run directory, no promotion from a child grid.
-- No change to registered grid, cost model, fill rule, folds, or §3.4 gates.
-- Use `start` + `logs`/`status` for background processes (not `monitor` to follow running processes).
+- No provider call before 2026-10-23T12:15:58Z.
+- No second writer on `results/20261022_134500_grid`, no promotion from a partial child grid.
+- No change to registered costs, folds, entry/exit semantics, or §3.4 gates.
+- Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`) in any run.
 
 (End of file)

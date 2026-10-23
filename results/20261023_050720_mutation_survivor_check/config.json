@@ -1,0 +1,13 @@
+{
+  "args": {
+    "child": "results/20261022_134500_grid",
+    "mcap": "universe/mcap_rank.json",
+    "fixture_base": "data/fixtures",
+    "oos_fraction": 0.35,
+    "stress_multiplier": 2.0,
+    "min_trades": 30,
+    "subperiods": 4,
+    "out": null,
+    "render_only": null
+  }
+}
