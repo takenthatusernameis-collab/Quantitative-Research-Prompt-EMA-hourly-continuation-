@@ -8,7 +8,7 @@ You are starting a new session on the Quantitative Research Prompt (EMA hourly c
 - `universe/mcap_expansion_log.md` (expansion history)
 - `results/mutations.json` (closed mutations record)
 
-## Current state (verified 2026-10-23T12:41 UTC)
+## Current state (verified 2026-10-23T12:43 UTC)
 - Program grid: `results/20261019_135940_grid` — 18 150/18 150 cells, 0 blocked, remains program grid.
 - Universe: N = 275, floor `ALPINE/USDT` $3 614 141. Snapshot `universe/mcap_snapshot_20261023_122828.json`.
 - Refresh bound: `2026-10-24T12:28:28.949476Z` (24 h freeze after single ranking pass at 2026-10-23T12:28:28Z). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`.
