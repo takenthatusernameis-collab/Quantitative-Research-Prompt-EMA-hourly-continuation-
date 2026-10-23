@@ -1,8 +1,8 @@
 # NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z
 
-## Update 2026-10-23T20:03 UTC (current session)
+## Update 2026-10-23T20:04 UTC (current session)
 
-Offline eligibility re-check: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:03:08.939519+00:00`. No provider contact. Nothing actionable until bound.
+Offline eligibility re-check: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:04:03.383895+00:00`. Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet". No provider contact. Nothing actionable until bound.
 
 ## Update 2026-10-23T19:40 UTC (current session)
 
@@ -11,7 +11,7 @@ Prior agent completed offline-only verification (no provider contact).
 - `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`, 20 pages/2000 entries, lowest $3,441,774, `expansion_floor=BOSON/USDT $3,558,643`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`
 - Baseline grid `results/20261019_135940_grid`: complete (18150/18150 cells), `all_symbols_processed=true`, `next_cell=null`. Pooled mean net PF 0.4987, median 0.5198, 37 cells net PF>1 (0.20%), 27 exploratory, 18123 rejected, **0 credible candidates**
 - `results/mutations.json`: `C_stricter_trend` and `C_min_risk_atr` both **NOT_PROMOTED** (baseline remains program grid)
-- Null grid `results/20261023_050716_null_grid_scan/`: no edge
+- Null grid `results/20261023_050716_null_grid_scan/`: no edge.
 
 **Status:** Nothing actionable before bound. Waiting for next refresh window.
 

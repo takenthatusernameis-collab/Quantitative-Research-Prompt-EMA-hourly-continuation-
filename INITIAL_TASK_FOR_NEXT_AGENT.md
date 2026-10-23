@@ -1,8 +1,8 @@
 # NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z
 
-## Update 2026-10-23T20:03 UTC (current session)
+## Update 2026-10-23T20:04 UTC (current session)
 
-Offline eligibility re-check: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:03:08.939519+00:00`. No provider contact. Nothing actionable until bound.
+Offline eligibility re-check: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:04:03.383895+00:00`. Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet". No provider contact. Nothing actionable until bound.
 
 ## Update 2026-10-23T19:44 UTC (current session)
 
