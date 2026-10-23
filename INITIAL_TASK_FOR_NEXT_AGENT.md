@@ -1,5 +1,17 @@
 # NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z
 
+## Update 2026-10-23T21:13 UTC (current session)
+
+Offline eligibility re-check (no provider contact): `eligible: False`, bound
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:13:01+00:00`.
+Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not
+elapsed yet". ~15 h 15 min remaining. Nothing actionable until the bound; no
+provider contact made. State unchanged from batch 28 (see below).
+
+A wakeup is scheduled for `2026-10-24T12:29:00Z` (wku_16a9cbdea001jvDE8cLXeZlQkp)
+so the queued task resumes immediately after the bound elapses. The prompt carried
+by that wakeup is the full task below; the next agent does not need to re-derive it.
+
 ## Update 2026-10-23T20:39 UTC (current session)
 
 Offline eligibility re-check (no provider contact): `eligible: False`, bound
