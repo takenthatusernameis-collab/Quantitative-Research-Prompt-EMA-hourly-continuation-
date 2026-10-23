@@ -8,12 +8,13 @@ You are starting a new session on the Quantitative Research Prompt (EMA hourly c
 - `universe/mcap_expansion_log.md` (expansion history)
 - `results/mutations.json` (closed mutations record)
 
-## Current state (verified 2026-10-23T13:30 UTC)
+## Current state (verified 2026-10-23T13:36 UTC, offline)
 - Program grid: `results/20261019_135940_grid` — 18 150/18 150 cells, 0 blocked, remains program grid.
 - Universe: N = 275, floor `ALPINE/USDT` $3 614 141. Snapshot `universe/mcap_snapshot_20261023_122828.json`.
 - Refresh bound: `2026-10-24T12:28:28.949476Z` (24 h freeze after single ranking pass at 2026-10-23T12:28:28Z). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`.
 - Null scan complete (no edge). Mutations `C_stricter_trend` and `C_min_risk_atr` closed NOT_PROMOTED.
 - Tests: pytest not installed; numpy+pandas present.
+- Offline gate re-verified: `gate_status(universe/last_scan.json)` → `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00` has not elapsed. No provider contact made.
 
 ## Your task (only after the bound elapses)
 1. Verify eligibility offline first: `PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import json; from pathlib import Path; print(gate_status(json.loads(Path('universe/last_scan.json').read_text())))"`. Must return eligible: True.
