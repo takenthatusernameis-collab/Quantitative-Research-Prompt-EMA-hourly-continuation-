@@ -48,3 +48,7 @@ Until the refresh bound, no provider contact is permitted. Work on offline artif
 - No second writer on `results/20261019_135940_grid`, no promotion from a partial child grid.
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates.
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`) in any run.
+
+## Update 2026-10-23T14:21 UTC (this session, re-check)
+
+Re-verified the refresh gate offline: `gate_status(universe/last_scan.json)` → `eligible: False` (bound 2026-10-24T12:28:28.949476+00:00, now 2026-10-23T14:21:35Z). No provider contact made. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, universe_n 275, floor `BOSON/USDT` $3 558 643, snapshot `universe/mcap_snapshot_20261023_122828.json` frozen, baseline grid `results/20261019_135940_grid` complete (18 150/18 150 cells, 0 blocked), both mutations NOT_PROMOTED, null scan no edge. Nothing further is actionable before the bound. Next agent runs at/after 2026-10-24T12:28:28.949476Z per the task section above.
