@@ -150,3 +150,16 @@ Task completed as offline-only: refresh gate verified closed (bound 2026-10-24T1
 ## Update 2026-10-23T12:36 UTC (this session, completion)
 
 Prior agent task completed as offline-only: refresh gate verified closed (bound 2026-10-24T12:28:28.949476+00:00). No provider contact made. Batch 28 refresh pass already logged; baseline grid remains program grid. Next agent runs at/after 2026-10-24T12:28:28.949476Z: verify eligibility, run exactly one 20-page ranking pass, freeze snapshot for 24 h, re-check band below current floor, log pass, update handoffs.
+
+## Update 2026-10-23T12:41 UTC (this session, completion)
+
+Task completed as offline-only: refresh gate verified closed (bound 2026-10-24T12:28:28.949476+00:00, now 2026-10-23T12:41:12Z); no provider contact made. Batch 28 refresh pass (2026-10-23T12:28:28Z) already logged; snapshot `universe/mcap_snapshot_20261023_122828.json` on disk; state AWAITING_NEW_ELIGIBLE_CANDIDATES, universe_n 275, eligible_unseen_below_floor_count 0; baseline grid `results/20261019_135940_grid` remains program grid (18 150/18 150 cells, 0 blocked). Stopping cleanly.
+
+### Initial task for the next agent (runs at/after 2026-10-24T12:28:28.949476Z)
+
+1. Verify eligibility first: `PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import json; from pathlib import Path; print(gate_status(json.loads(Path('universe/last_scan.json').read_text())))"`. Must return eligible True before any provider call.
+2. Run exactly one market-cap ranking pass: `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py` (or `scripts/refresh_universe.py`), then freeze the new snapshot for the next 24 h.
+3. Expand the universe per PROMPT.md §2.1: append next lower market-cap candidates in descending order (previous N → new N, rank range added, source/date in `universe/mcap_expansion_log.md`), fetch hourly fixtures via `scripts/fetch_kucoin.py`, and run the full 66-pair EMA grid on each new symbol via `scripts/run_grid.py --resume results/20261019_135940_grid`.
+4. Update `universe/mcap_expansion_log.md`, `NEXT_AGENT_TASK.md`, and this file with new state and next eligible refresh time.
+
+Must not: no provider call before the bound; no second writer on `results/20261019_135940_grid`; no promotion from a child/partial grid; no re-run of baseline; no change to costs, folds, entry/exit semantics, or §3.4 gates; do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`); do not poll provider while waiting; respect 24 h freeze after fetch.
