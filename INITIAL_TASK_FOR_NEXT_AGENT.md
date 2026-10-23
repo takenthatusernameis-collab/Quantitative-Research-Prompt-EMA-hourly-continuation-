@@ -14,10 +14,10 @@ expand the universe (append descending market-cap candidates, fetch OHLCV, run
 the full 66-pair EMA grid on each new symbol into `results/20261019_135940_grid`)
 or record the empty pass and re-arm the bound. Then update both handoff files.
 
-## Latest offline check (2026-10-23T22:12 UTC)
+## Latest offline check (2026-10-23T22:17 UTC)
 
 `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now
-`2026-10-23T22:12:35+00:00`. Reason: bound not elapsed yet (~14 h 16 min
+`2026-10-23T22:17:42+00:00`. Reason: bound not elapsed yet (~14 h 11 min
 remaining). Nothing actionable until the bound; no provider contact made. State
 unchanged from batch 28: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
 `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid
