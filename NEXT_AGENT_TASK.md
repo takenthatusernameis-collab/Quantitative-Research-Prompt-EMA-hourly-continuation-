@@ -17,7 +17,13 @@ Prior agent completed offline-only verification (no provider contact).
 - `results/mutations.json`: `C_stricter_trend` and `C_min_risk_atr` both **NOT_PROMOTED** (baseline remains program grid)
 - Null grid `results/20261023_050716_null_grid_scan/`: no edge.
 
-**Status:** Nothing actionable before bound. Waiting for next refresh window.
+## Update 2026-10-23T20:11 UTC (current session)
+
+Offline re-check confirmed (no provider contact).
+- Gate: `eligible: False`, `bound: 2026-10-24T12:28:28.949476+00:00`, `now: 2026-10-23T20:11:32+00:00`, reason "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet". ~16 hours remaining.
+- `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id=mcap_snapshot_20261023_122828`, `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`.
+
+**Status:** Nothing actionable before bound. Waiting for next refresh window at 2026-10-24T12:28:28Z.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 
