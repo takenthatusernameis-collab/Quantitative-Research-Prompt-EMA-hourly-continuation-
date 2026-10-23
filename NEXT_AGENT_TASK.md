@@ -72,3 +72,11 @@ Offline eligibility re-check (no provider contact): `eligible: False`, bound
 `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:40:56+00:00`.
 Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
 yet". ~16 h remaining. Nothing actionable until the bound; no provider contact made.
+
+## Update 2026-10-23T21:06 UTC (current session)
+
+Offline eligibility re-check (no provider contact): `eligible: False`, bound
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:06:17+00:00`.
+Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not
+elapsed yet". ~15 h remaining. Nothing actionable until the bound; no provider
+contact made. State unchanged from batch 28 (see above).
