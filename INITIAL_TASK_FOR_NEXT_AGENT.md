@@ -65,3 +65,44 @@ Offline verification only: refresh gate still closed (bound 12:15:58.876534Z, no
 
 ## Update 2026-10-23T11:23 UTC (this session, completion)
 Offline verification only: refresh gate still closed (bound 12:15:58.876534Z, now 11:23:39Z). No provider contact made. All prior work remains closed (null scan no edge, mutations NOT_PROMOTED, batch 27 expansion N 266→275). Baseline grid `results/20261019_135940_grid` remains program grid. Stopping cleanly. Next agent runs after bound.
+
+---
+
+# TASK FOR THE NEXT AGENT — starts after 2026-10-23T12:15:58.876534+00:00
+
+Read this section first. It supersedes everything above it; the durable record of closed mutations is `results/mutations.json`.
+
+## Current state (verified 2026-10-23T11:30:19Z, offline)
+
+| Item | Value |
+|---|---|
+| Refresh gate | **closed** — bound 2026-10-23T12:15:58.876534+00:00. No provider contact before then. |
+| Baseline grid | `results/20261019_135940_grid` — 18 150/18 150 cells (275 symbols × 66 EMA pairs), 0 blocked, `all_symbols_processed=true`, `next_cell=null`. Remains the program grid. |
+| Universe | N = 275, floor `ALPINE/USDT` $3 614 141. Frozen snapshot `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z). |
+| Batch 27 expansion | logged in `universe/mcap_expansion_log.md`: N 266 → 275, added BLZ/PIXEL/ALEX/CWEB/TRADE/ZPAY/ZKJ/BOSON/ALPINE, 594 grid cells completed (66×9), 0 blocked. |
+| Null grid scan | `results/20261023_050716_null_grid_scan/` — complete, 18 150 cells. **No edge**: real 77 cells OOS net PF > 1 / 6 gate-clearing vs block null 320 / 24, timing 86 / 7, sign 44 / 1; pooled OOS net PF real 0.4163 vs nulls 0.4480-0.5114; Leg 0 harness 200/200. |
+| Mutations | `C_stricter_trend` (zero-delta no-op) and `C_min_risk_atr` — both **NOT_PROMOTED**, recorded in `results/mutations.json`. |
+| Tests | `pytest` not installed in `/usr/bin/python3`; numpy+pandas are. |
+
+## What to do
+
+1. **At/after 12:15:58Z** run exactly **one** market-cap ranking pass:
+   `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py` (or `scripts/refresh_universe.py`).
+   Then freeze the new snapshot for the next 24 h. Verify eligibility first with
+   `PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import json; from pathlib import Path; print(gate_status(json.loads(Path('universe/last_scan.json').read_text())))"`.
+2. Expand the universe per PROMPT.md §2.1: append the next lower market-cap candidates in descending order (previous N → new N, rank range added, source/date in `universe/mcap_expansion_log.md`), fetch their hourly fixtures via `scripts/fetch_kucoin.py`, and run the full 66-pair EMA grid on each new symbol via `scripts/run_grid.py --resume results/20261019_135940_grid`.
+3. Update `universe/mcap_expansion_log.md`, `NEXT_AGENT_TASK.md`, and this file with the new state and the next eligible refresh time.
+
+## Must not
+
+- No provider (CoinGecko/KuCoin) call before 2026-10-23T12:15:58Z.
+- No second writer on `results/20261019_135940_grid`; no promotion from a child/partial grid; no re-run of the baseline.
+- No change to registered costs, folds, entry/exit semantics, or §3.4 gates.
+- Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`) in any run.
+- Do not repeatedly poll the provider while waiting; respect the 24 h freeze after a fetch.
+
+## Durable records
+
+- Closed mutations: `results/mutations.json`.
+- Null scan artifact: `results/20261023_050716_null_grid_scan/summary.md` (no edge).
+- Program decision: `results/FINAL_DECISION.md`, `results/RESEARCH_CONCLUSION.md` — no credible edge; continue by expanding the universe (PROMPT.md §2.1). A negative result is never a stop.
