@@ -3174,5 +3174,42 @@ repository root.
 
 ### 5. Next action
 
-From **2026-10-22T11:41:20Z**: exactly one universe fetch (20 pages), then the
-expansion of the new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.
+From **2026-10-22T11:41:20Z**: exactly one universe fetch (20 pages), then the expansion of the new symbols. See `INITIAL_TASK_FOR_NEXT_AGENT.md`.
+
+---
+
+## Batch 27 (applied 2026-10-22T12:15:58Z) — BLZ, PIXEL, ALEX, CWEB, TRADE, ZPAY, ZKJ, BOSON, ALPINE (N 266 → 275)
+
+**Source snapshot:** `universe/mcap_snapshot_20261022_121558.json` (CoinGecko `/api/v3/coins/markets`, `vs_currency=usd`, `order=market_cap_desc`, 20 pages / 2 000 entries). Fetched at 2026-10-22T12:15:58Z, after the 24 h refresh bound of `mcap_snapshot_20261021_114120` (2026-10-22T11:41:20Z) had opened. One pass only; the new snapshot is frozen for the next 24 h.
+
+**Expansion floor at selection time:** `TAIKO/USDT` 5 436 339 (batch 26 floor). Every added name ranks strictly below it.
+
+**New expansion floor:** `ALPINE/USDT`  614 141.
+
+**Snapshot coverage:** 2 000 entries, lowest covered rank 2 000 ( 490 223), which reaches below the floor ( 614 141). The band below the floor holds names down to  490 223; `eligible_unseen_below_floor_count = 0`, so the band is exhausted and the program enters `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
+
+**Next eligible refresh:** 2026-10-23T12:15:58.876534Z (24 h after the ranking pass).
+
+### Selection (descending market cap, strictly below TAIKO floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) |
+|---|---|---|---|---|
+| — | 267 | BLZ/USDT | — | 4 426 543 |
+| — | 268 | PIXEL/USDT | — | 3 946 380 |
+| — | 269 | ALEX/USDT | — | 3 926 041 |
+| — | 270 | CWEB/USDT | — | 3 898 532 |
+| — | 271 | TRADE/USDT | — | 3 829 622 |
+| — | 272 | ZPAY/USDT | — | 3 761 991 |
+| — | 273 | ZKJ/USDT | — | 3 686 819 |
+| — | 274 | BOSON/USDT | — | 3 633 288 |
+| — | 275 | ALPINE/USDT | — | 3 614 141 |
+
+All 9 fixtures were already on disk (KuCoin 1h UTC, >= 17 520 hourly bars, validated against the ranked price). The grid was expanded through `scripts/run_grid.py --resume results/20261019_135940_grid`: all 9 × 66 = 594 cells completed, 0 blocked. `results/20261019_135940_grid/progress.json` records 275 symbols × 66 pairs = 18 150 cells, `all_symbols_processed=true`, `next_cell=null`.
+
+### Grid outcome
+
+No new cell reached net PF > 1; the 36-cell survivor set (BABYDOGE × 32, JASMY P20_200/P21_200, SUPER P8_200, MOODENG P8_200) is unchanged from batch 26. All 36 fail OOS + cost stress. **0 credible candidates.** Pooled mean net PF **0.4987** over 275 symbols.
+
+### Tests
+
+`PYTHONPATH=. python3 -m pytest tests/ -q` → **passed** (no code changes in this cycle).
