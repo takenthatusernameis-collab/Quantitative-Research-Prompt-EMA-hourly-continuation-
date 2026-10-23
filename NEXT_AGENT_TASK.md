@@ -1,6 +1,6 @@
-# NEXT TASK — session active 08:05 UTC; null scan ~53% done; refresh bound 12:15:58Z (updated 2026-10-23T08:05:00Z)
+# NEXT TASK — session active 08:32 UTC; null scan checkpointed ~56% (env lacks numpy/pandas); refresh bound 12:15:58Z (updated 2026-10-23T08:32:00Z)
 
-**Read this file first.** It supersedes prior task descriptions; the durable record of closed mutations is `results/mutations.json`.
+Read this file first. It supersedes prior task descriptions; the durable record of closed mutations is `results/mutations.json`.
 
 ---
 
@@ -8,15 +8,15 @@
 
 | Item | Value |
 |---|---|
-| Program state | `NULL_SCAN_RUNNING` (this session) |
-| Stricter-trend mutation | **closed** — `results/20261022_134500_grid`, `stricter_trend: true`, **NOT_PROMOTED** (zero-delta no-op) |
+| Program state | `NULL_SCAN_BLOCKED` + refresh-bound waiting (this session) |
+| Stricter-trend mutation | closed — `results/20261022_134500_grid`, `stricter_trend: true`, **NOT_PROMOTED** (zero-delta no-op) |
+| ATR min-risk mutation | closed, **NOT_PROMOTED** |
 | Baseline grid | `results/20261019_135940_grid` — complete, 0 blocked, remains the program grid |
 | Universe | N = 275, floor `ALPINE/USDT` $3 614 141 |
 | Frozen snapshot | `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z) |
 | Next eligible universe refresh | **2026-10-23T12:15:58Z — no provider contact before then** |
-| ATR min-risk mutation | closed `NOT_PROMOTED` |
-| Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) |
-| Null grid scan | **running** — `results/20261023_050716_null_grid_scan`, **9 702 / 18 150 cells (~53 %)** checkpointed, bgp `bgp_16727f875001PN9OCuMW630ors`; expected completion ~10:15–10:30 UTC |
+| Null grid scan | **blocked in this env**: `results/20261023_050716_null_grid_scan`, **10 230 / 18 150 cells (~56 %)** checkpointed in `cells.jsonl`; resume requires numpy+pandas (not installed in `/usr/bin/python3`; the resume attempt failed with `ModuleNotFoundError: No module named 'numpy'`). Next step on resume: `--summarize-only` → `summary.json` / `summary.md` |
+| Tests | `249 passed` claimed in prior handoff, **NOT verifiable here** (`pytest`, `numpy`, `pandas` not installed in `/usr/bin/python3`) |
 
 **Provider discipline.** Until 2026-10-23T12:15:58Z the market-data provider must not be contacted at all. After that timestamp exactly **one** ranking pass is allowed; the new snapshot is then frozen for the following 24 h.
 
@@ -24,18 +24,20 @@
 
 ---
 
-## 2. Completed work — stricter-trend single-variable mutation (offline)
+## 2. Completed work — mutations (offline, closed)
 
-Decision: NOT_PROMOTED. Recorded in `results/mutations.json` child `C_stricter_trend` (`status = complete`). The `stricter_trend` flag is a no-op. No edge, no promotion; baseline grid stays the program grid.
+Decision: NOT_PROMOTED for both `C_stricter_trend` and `C_min_risk_atr`. Recorded in `results/mutations.json`. Neither produced an edge; baseline grid stays the program grid. See `results/FINAL_DECISION.md` and `results/RESEARCH_CONCLUSION.md`.
 
 ---
 
-## 3. Next task — universe refresh (after 2026-10-23T12:15:58Z)
+## 3. Next task
 
-The next step belongs to the first session that runs **after** 2026-10-23T12:15:58Z:
-
-1. Verify `background_process status bgp_16727f875001PN9OCuMW630ors` (null grid scan) has completed; if not, wait for it. On exit, run `PYTHONPATH=. python3 scripts/null_grid_scan.py --summarize-only results/20261023_050716_null_grid_scan` to produce `summary.json` / `summary.md`.
-2. After 12:15:58Z, run exactly one market-cap ranking pass: `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py` (or equivalent), then freeze the new snapshot for 24 h.
+1. **Null grid scan (offline, needs numpy+pandas):** resume `results/20261023_050716_null_grid_scan` (auto-resumes from the 10 230-cell checkpoint) in an environment with numpy+pandas:
+   `PYTHONPATH=. python3 scripts/null_grid_scan.py --run results/20261022_134500_grid --workers 4 --out results/20261023_050716_null_grid_scan`
+   then summarize:
+   `PYTHONPATH=. python3 scripts/null_grid_scan.py --summarize-only results/20261023_050716_null_grid_scan`
+   → `summary.json` / `summary.md`. Expected result matches baseline null (no edge).
+2. **After 12:15:58Z:** run exactly one market-cap ranking pass: `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py` (or equivalent), then freeze the new snapshot for 24 h.
 3. Expand the universe per PROMPT.md §2.1 (append next lower market-cap candidates, descending order) and run the full EMA grid on new symbols.
 4. Update `universe/mcap_expansion_log.md`, `NEXT_AGENT_TASK.md`, and `INITIAL_TASK_FOR_NEXT_AGENT.md`.
 
