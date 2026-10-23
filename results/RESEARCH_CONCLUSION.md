@@ -132,3 +132,45 @@ out-of-sample, net-of-costs evidence — with far more evidence than it had then
   costs in both the full sample and the OOS window.
 - Never treat a negative batch as a program stop; expand instead.
 - No live trading.
+
+---
+
+## Update 2026-10-23T12:28Z — batch 28 refresh pass (N = 275, unchanged)
+
+The program is **still not concluded** and is in
+`AWAITING_NEW_ELIGIBLE_CANDIDATES`. The refresh bound of
+`mcap_snapshot_20261022_121558` (2026-10-23T12:15:58.876534Z) opened, and at
+2026-10-23T12:28:28.949476Z exactly one 20-page CoinGecko ranking pass was run
+(`universe/mcap_snapshot_20261023_122828.json`, 2 000 entries, 20/20 pages,
+lowest covered rank 2 000 at $3 441 774, 0 history-probe failures). The new
+snapshot is frozen for 24 h; the next eligible refresh is
+**2026-10-24T12:28:28.949476Z**.
+
+**No expansion was possible from this pass.** The expansion floor moved to
+`BOSON/USDT` $3 558 643 (recomputed from the fresh ranking; it rose above the
+batch-27 floor of `ALPINE/USDT` $3 614 141 because BOSON's market cap grew more
+than ALPINE's between the two snapshots). The pass reached below that floor
+($3 441 774 < $3 558 643), so the band was genuinely inspected — this is not an
+incomplete scan. The 21 entries ranking below the floor are all ineligible:
+18 have no tradable KuCoin spot USDT pair and 3 (4STOCK, MANYU, EVAA Protocol)
+fail the 2-year hourly-history probe. `eligible_unseen_below_floor_count = 0`,
+so `universe/last_scan.json` records `state = AWAITING_NEW_ELIGIBLE_CANDIDATES`
+and `batch_selected = []`. The working universe stays at **N = 275**.
+
+**Grid outcome, unchanged.** `results/20261019_135940_grid` remains the program
+grid: 18 150/18 150 cells (275 symbols × 66 EMA pairs), 0 blocked,
+`all_symbols_processed = true`, `next_cell = null`. Pooled mean net PF
+**0.4987**; 37 cells net PF > 1; the 36-cell survivor set (BABYDOGE × 32,
+JASMY P20_200 / P21_200, SUPER P8_200, MOODENG P8_200) is unchanged and every
+one of them fails OOS + cost stress. **0 credible candidates.** No second writer
+touched the grid and no child grid was promoted.
+
+**What this means.** The registered EMA continuation rule still shows no edge
+after 275 symbols, and the market-cap ranking now has no eligible name left in
+its 2 000-entry coverage band. Both facts are consistent with the program's
+existing conclusion: the strategy is rejected on out-of-sample, net-of-costs
+evidence, and the multiple-testing tail matches the null. Per PROMPT.md §2.1.5,
+an empty snapshot is a temporary waiting state, not a stop — the ranking must be
+refreshed again at/after 2026-10-24T12:28:28.949476Z, and the program continues
+until an explicit user cancellation. See `universe/mcap_expansion_log.md`
+(Batch 28) for the full pass record.

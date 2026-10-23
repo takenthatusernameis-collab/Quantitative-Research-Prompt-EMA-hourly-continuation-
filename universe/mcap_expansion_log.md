@@ -1958,6 +1958,8 @@ Two of those names need a specific check in the next batch:
 | Batch 24 | 247 | complete - SATS, OGN, CETUS, YGG, DODO, ONE, AEVO, SLP, CGPT, WOO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 25 | 257 | complete - CELR, DOGS, LQTY, DIA, BIGTIME, CYBER, FIDA, CHR, QI, ARPA (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
 | Batch 26 | 266 | complete - POKT, XAI, ANYONE, ACE, MOVR, RIO, BICO, AGLD, TAIKO (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 27 | 275 | complete - BLZ, PIXEL, ALEX, CWEB, TRADE, ZPAY, ZKJ, BOSON, ALPINE (66 pairs each) | `results/20261019_135940_grid/` (same run, resumed) |
+| Batch 28 | 275 | refresh pass 2026-10-23T12:28:28Z — no eligible name below the floor; universe unchanged | `results/20261019_135940_grid/` (unchanged) |
 
 The grid directory is shared across batches (the runner resumes from `progress.json`), so one aggregate report covers the whole processed universe. OHLCV for every symbol in every batch is in `data/fixtures/`, with provenance in `data/fixtures/fetch_manifest.json` (KuCoin public `/api/v1/market/candles`, 1h, UTC).
 
@@ -3213,3 +3215,32 @@ No new cell reached net PF > 1; the 36-cell survivor set (BABYDOGE × 32, JASMY 
 ### Tests
 
 `PYTHONPATH=. python3 -m pytest tests/ -q` → **passed** (no code changes in this cycle).
+
+---
+
+## Batch 28 — refresh pass 2026-10-23T12:28:28Z (N unchanged at 275; band exhausted)
+
+**Source snapshot:** `universe/mcap_snapshot_20261023_122828.json` (CoinGecko `/api/v3/coins/markets`, `vs_currency=usd`, `order=market_cap_desc`, 20 pages / 2 000 entries). Fetched at 2026-10-23T12:28:28.949476Z, after the 24 h refresh bound of `mcap_snapshot_20261022_121558` (2026-10-23T12:15:58.876534Z) had opened. **One pass only**; the new snapshot is frozen for the next 24 h. No `--apply` was run: the pass found no eligible unseen name, so the working universe is unchanged at N = 275.
+
+**Gate verification before the pass** (offline, no provider contact): `scripts/refresh_gate.gate_status(universe/last_scan.json)` → `{'eligible': True, 'bound': '2026-10-23T12:15:58.876534+00:00', 'now': '2026-10-23T12:16:05.271976+00:00', 'reason': 'the 24 h refresh bound ... has elapsed'}`.
+
+**Expansion floor at pass time (recomputed from the fresh snapshot):** `BOSON/USDT` 3 558 643 — the lowest market cap among the 275 names already in the universe, read from the fresh ranking rather than from the snapshot the universe was built from. It moved up from the batch-27 floor (`ALPINE/USDT` 3 614 141) because BOSON's market cap rose above ALPINE's between the two snapshots.
+
+**Snapshot coverage:** 2 000 entries, pages 20/20 fetched (`all_requested_pages_returned: true`), lowest covered rank 2 000 at **$3 441 774**, which is **below** the floor ($3 558 643). The pass therefore genuinely observed the band the expansion works on — this is not an "nothing looked at" result. 0 history-probe failures. The pass was retried through CoinGecko rate limits (429s on pages 9, 15 and 20) with the registered exponential backoff and completed cleanly.
+
+**Result: `eligible_unseen_below_floor_count = 0`.** The 21 entries in the snapshot that rank below the floor are all ineligible for reasons the registered filter decides before the grid:
+
+| Exclusion reason | Count |
+|---|---|
+| `no_tradable_kucoin_spot_usdt_pair` | 18 |
+| `insufficient_hourly_history_for_grid` | 3 |
+
+Every one of the 21 is either not a tradable KuCoin spot USDT pair or does not carry 2 years of hourly history, and none is a wrapped/staked duplicate, stablecoin or ticker collision. The three with a KuCoin pair (4STOCK, MANYU, EVAA Protocol) fail the 2-year history probe. No API failure hid a name: `history_probe_failure_count = 0`, so no name was kept as a candidate on the strength of an unresolved probe.
+
+**State written:** `universe/last_scan.json` → `state = AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n = 275`, `batch_selected = []`, `next_eligible_refresh_at = 2026-10-24T12:28:28.949476+00:00` (24 h after the ranking pass, per PROMPT.md §2.1.5). Per §2.1.5 this is a **temporary waiting state, not a program stop**: the ranking must be refreshed again at/after the next bound, and an empty snapshot must never disable future refreshes.
+
+**Grid:** unchanged. `results/20261019_135940_grid` remains the program grid at 18 150/18 150 cells (275 symbols × 66 EMA pairs), 0 blocked, `all_symbols_processed = true`, `next_cell = null`. No second writer touched it; no child grid was promoted. Pooled mean net PF **0.4987**, 37 cells net PF > 1, 36 failing OOS + cost stress, **0 credible candidates**.
+
+**Tests:** `PYTHONPATH=. python3 -m pytest tests/ -q` → **passed** (no code changes in this cycle).
+
+**Next action:** at/after **2026-10-24T12:28:28.949476Z** run exactly one more 20-page ranking pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`), re-verify eligibility first with `scripts/refresh_gate.gate_status`, freeze the new snapshot for 24 h, and re-check the band below the then-current floor. If it is still empty, record the pass in this log and wait for the following bound — do not override the gate, do not poll the provider repeatedly, and do not change registered costs, folds, entry/exit semantics or §3.4 gates.
