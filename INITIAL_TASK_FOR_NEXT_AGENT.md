@@ -13,7 +13,7 @@
 A stricter-trend single-variable mutation of the expanded baseline is running as a persistent background process:
 
 - Run dir: `results/20261022_134500_grid` (`stricter_trend: true`; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed).
-- Background writer: `bgp_165c26e18001HrFOj1yrcSOD6T` (pid 6252 + 4 workers), **persistent**, sole writer. Do **not** start a second writer on this run directory.
+- Background writer: `bgp_166a765e3001uxvePsnTc6qHJQ` (pid 7254 + 4 workers), **persistent**, sole writer. Do **not** start a second writer on this run directory.
 - Progress: 12 474 / 18 150 cells on disk (~5 676 remaining across ~86 symbols); next cell `MEW/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. The grid runs across sessions (several hours of wall clock remaining). Writer last seen at `MOODENG/USDT: 66 cell(s) done, 12474/18150 total`.
 
 Resume command (repository root; resumable — skips cells whose `summary.json` already exists):
