@@ -356,13 +356,13 @@
       "n_symbols": 275,
       "n_cells": 18150,
       "progress": {
-        "checked_at": "2026-10-22T16:04:00Z",
-        "completed_cells": 4356,
+        "checked_at": "2026-10-23T02:55:06Z",
+        "completed_cells": 13794,
         "total_cells": 18150,
-        "symbols_complete": 66,
-        "next_cell": ["BTT/USDT", 8, 12],
+        "symbols_complete": 209,
+        "next_cell": ["IOST/USDT", 8, 12],
         "runner": "PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid",
-        "note": "resumable: re-running the same command skips cells whose summary.json already exists; background process bgp_163dac260001iUtpf1UG3qqleM (pid 19110) persistent; ~5 h remaining"
+        "note": "resumable: re-running the same command skips cells whose summary.json already exists; background process bgp_166a765e3001uxvePsnTc6qHJQ (pid 7254) persistent; ~4 356 cells / ~66 symbols remaining"
       },
       "open_legs": [
         "finish the full 18150-cell stricter-trend grid (re-run the runner command above; it resumes from progress.json)",

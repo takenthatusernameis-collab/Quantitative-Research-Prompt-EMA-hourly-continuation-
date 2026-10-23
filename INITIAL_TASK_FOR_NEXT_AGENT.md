@@ -1,10 +1,10 @@
 # Initial task for the next agent — stricter-trend single-variable mutation of the expanded baseline
 
-## Situation (verified 2026-10-23T01:33:12Z)
+## Situation (verified 2026-10-23T02:55:06Z)
 
 - Expansion complete: N = 275, floor `ALPINE/USDT` $3 614 141, snapshot `universe/mcap_snapshot_20261022_121558.json` (fetched 2026-10-22T12:15:58Z).
 - Baseline grid `results/20261019_135940_grid`: 275 symbols × 66 pairs = 18 150 cells, complete, 0 blocked. Aggregate mean net PF 0.4993; candidate_check rejected all; tests **249 passed**.
-- State `MUTATION_RUNNING`; next eligible universe refresh **2026-10-23T12:15:58Z** — **no provider contact before then**.
+- State `MUTATION_RUNNING`; next eligible universe refresh **2026-10-23T12:15:58Z` — **no provider contact before then**.
 - ATR min-risk mutation is closed (`NOT_PROMOTED`, see `results/mutations.json`).
 - Environment provisioned: pandas 3.1.0 + pytest 9.1.1 installed; `PYTHONPATH=. python3 -m pytest tests/ -q` → 249 passed.
 
@@ -14,7 +14,7 @@ A stricter-trend single-variable mutation of the expanded baseline is running as
 
 - Run dir: `results/20261022_134500_grid` (`stricter_trend: true`; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed).
 - Background writer: `bgp_166a765e3001uxvePsnTc6qHJQ` (pid 7254 + 4 workers), **persistent**, sole writer. Do **not** start a second writer on this run directory.
-- Progress: 12 474 / 18 150 cells on disk (~5 676 remaining across ~86 symbols); next cell `MEW/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. The grid runs across sessions (several hours of wall clock remaining). Writer last seen at `MOODENG/USDT: 66 cell(s) done, 12474/18150 total`.
+- Progress: **13 794 / 18 150 cells on disk** (~4 356 remaining across ~66 symbols); next cell `IOST/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. 209 of 275 symbols complete. The grid runs across sessions (several hours of wall clock remaining). Writer last seen at `CTSI/USDT: 66 cell(s) done, 13794/18150 total`.
 
 Resume command (repository root; resumable — skips cells whose `summary.json` already exists):
 
@@ -22,7 +22,7 @@ Resume command (repository root; resumable — skips cells whose `summary.json` 
 PYTHONPATH=. python3 scripts/run_mutation_grid.py --run results/20261022_134500_grid --stricter-trend --workers 4 --parent-run results/20261019_135940_grid
 ```
 
-Check `background_process status bgp_165c26e18001HrFOj1yrcSOD6T` and `logs bgp_165c26e18001HrFOj1yrcSOD6T` before re-invoking. Only re-invoke if the writer is not running. Record `next_cell` from `results/20261022_134500_grid/progress.json` at each stop. Mutate **one variable at a time** (`stricter_trend` only).
+Check `background_process status bgp_166a765e3001uxvePsnTc6qHJQ` and `logs bgp_166a765e3001uxvePsnTc6qHJQ` before re-invoking. Only re-invoke if the writer is not running. Record `next_cell` from `results/20261022_134500_grid/progress.json` at each stop. Mutate **one variable at a time** (`stricter_trend` only).
 
 ## Once the mutation grid completes (`next_cell = null`)
 
