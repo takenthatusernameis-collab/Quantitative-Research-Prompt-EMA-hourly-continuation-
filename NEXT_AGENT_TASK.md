@@ -1,4 +1,4 @@
-# NEXT TASK — session active 07:49 UTC; null scan ~49% done; refresh bound 12:15:58Z (updated 2026-10-23T07:49:19Z)
+# NEXT TASK — session active 08:05 UTC; null scan ~53% done; refresh bound 12:15:58Z (updated 2026-10-23T08:05:00Z)
 
 **Read this file first.** It supersedes prior task descriptions; the durable record of closed mutations is `results/mutations.json`.
 
@@ -16,7 +16,7 @@
 | Next eligible universe refresh | **2026-10-23T12:15:58Z — no provider contact before then** |
 | ATR min-risk mutation | closed `NOT_PROMOTED` |
 | Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) |
-| Null grid scan | **running** — `results/20261023_050716_null_grid_scan`, ~8 910 / 18 150 cells checkpointed, bgp `bgp_16727f875001PN9OCuMW630ors`; expected completion ~10:20 UTC |
+| Null grid scan | **running** — `results/20261023_050716_null_grid_scan`, **9 702 / 18 150 cells (~53 %)** checkpointed, bgp `bgp_16727f875001PN9OCuMW630ors`; expected completion ~10:15–10:30 UTC |
 
 **Provider discipline.** Until 2026-10-23T12:15:58Z the market-data provider must not be contacted at all. After that timestamp exactly **one** ranking pass is allowed; the new snapshot is then frozen for the following 24 h.
 
