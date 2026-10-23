@@ -57,3 +57,7 @@ Do **NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop program due to failures - expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
+
+## Update 2026-10-23T20:22 UTC (current session - agent)
+
+Offline eligibility re-check: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:22:57.291234+00:00`. Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet". No provider contact. Nothing actionable until bound. ~15h 65m remaining.
