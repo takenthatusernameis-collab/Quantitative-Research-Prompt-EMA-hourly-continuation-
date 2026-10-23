@@ -14,25 +14,14 @@ expand the universe (append descending market-cap candidates, fetch OHLCV, run
 the full 66-pair EMA grid on each new symbol into `results/20261019_135940_grid`)
 or record the empty pass and re-arm the bound. Then update both handoff files.
 
-## Latest offline check (2026-10-23T23:05 UTC, this session)
+## Latest offline check (2026-10-23T23:06 UTC, current session)
 
 `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now
-`2026-10-23T23:05:07+00:00`. Reason: bound not elapsed (~13 h 23 min remaining).
+`2026-10-23T23:06:51.093737+00:00`. Reason: bound not elapsed (~13 h 21 min remaining).
 No provider contact made. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`,
 `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
 Baseline grid verified complete (18150/18150). Wakeup
 wku_16ae2dc2f001dy4r5HL8OY1Xwq scheduled for 2026-10-24T12:29:00Z remains pending.
-
-## Latest offline check (2026-10-23T22:27 UTC, this session)
-
-`eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now
-`2026-10-23T22:27:37+00:00`. Reason: bound not elapsed (~14 h 0 min remaining).
-No provider contact made. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`,
-`universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
-Baseline grid `results/20261019_135940_grid` verified complete
-(275 symbols x 66 pairs = 18150/18150 cells, `all_symbols_processed=true`,
-`next_cell=null`, 0 blocked). A wakeup is scheduled for
-`2026-10-24T12:29:00Z` (wku_16ae2dc2f001dy4r5HL8OY1Xwq) to resume after the bound.
 
 ## Steps
 
@@ -64,5 +53,3 @@ Baseline grid `results/20261019_135940_grid` verified complete
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).
 - Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - Tests: `pytest`/`numpy`/`pandas` are installed (pytest 9.1.1, numpy 2.5.4, pandas 3.1.0). If reset, install first (`pip3 install pytest numpy pandas`) before `PYTHONPATH=. python3 -m pytest tests/ -q`. Expect 248/249 to pass; the one failure (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`) is a pre-existing clock-relative-test bug — do not loosen the gate to fix it.
-
-(End of file - total 62 lines)
