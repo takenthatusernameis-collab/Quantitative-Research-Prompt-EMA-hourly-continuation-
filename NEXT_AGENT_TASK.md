@@ -1,23 +1,19 @@
-## Update 2026-10-23T22:23 UTC (this session)
-
-Offline eligibility re-check: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`,
-now `2026-10-23T22:23:29+00:00`. Reason: bound not elapsed (~14 h 5 min remaining).
-No provider contact made. State unchanged from batch 28. Wakeup scheduled for
-`2026-10-24T12:29:00Z` (wku_16add3170001A3leHWJN6gicFd) to resume after the bound.
-
-"
-
-## Update 2026-10-23T22:17 UTC (current session)
+## Update 2026-10-23T22:27 UTC (this session)
 
 Offline eligibility re-check (no provider contact): `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T22:17:42+00:00`.
-Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not
-elapsed yet". ~14 h 11 min remaining. Nothing actionable until the bound; no
-provider contact made. State unchanged from batch 28 (see below).
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T22:27:37+00:00`.
+Reason: bound not elapsed (~14 h 0 min remaining). Nothing actionable until the
+bound; no provider contact made. State unchanged from batch 28:
+`AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
+`eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
 
-A wakeup was previously noted for `2026-10-24T12:29:00Z` (wku_16a9cbdea001jvDE8cLXeZlQkp);
-the queued task resumes immediately after the bound elapses. The prompt carried
-by that wakeup is the full task below; the next agent does not need to re-derive it.
+Baseline grid `results/20261019_135940_grid` verified complete
+(275 symbols x 66 pairs = 18150/18150 cells, `all_symbols_processed=true`,
+`next_cell=null`, 0 blocked). No second writer; no child grid promoted.
+
+A wakeup is scheduled for `2026-10-24T12:29:00Z`
+(wku_16ae2dc2f001dy4r5HL8OY1Xwq) to resume after the bound elapses. The queued
+task carries the full task below; the next agent does not need to re-derive it.
 
 ## State confirmed unchanged from batch 28
 
@@ -28,8 +24,7 @@ by that wakeup is the full task below; the next agent does not need to re-derive
   `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`.
 - Baseline grid `results/20261019_135940_grid`: `completed_cells=18150` (275
   symbols x 66 pairs), `all_symbols_processed=true`, no second writer.
-  Pooled summary: mean net PF 0.4987, median 0.5198, 37 cells net PF > 1
-  (0.20%), 0 credible candidates.
+  Pooled summary: mean net PF 0.4987, 37 cells net PF > 1, 0 credible candidates.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 
@@ -65,3 +60,5 @@ Do **NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop program due to failures - expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
 - Tests: `pytest`, `numpy` and `pandas` are installed in this sandbox (pytest 9.1.1, numpy 2.5.4, pandas 3.1.0). If the sandbox is reset, install them first (`pip3 install pytest numpy pandas`) before running `PYTHONPATH=. python3 -m pytest tests/ -q`. Expect 248/249 to pass; the one failure (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`) is a pre-existing clock-relative-test bug — do not loosen the gate to fix it.
+
+(End of file - total 67 lines)
