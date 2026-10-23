@@ -1,12 +1,12 @@
 ## Update 2026-10-23T23:22 UTC (current session)
 
 Offline eligibility re-check: `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T23:22:09.140315+00:00`.
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T23:22:57.959382+00:00`.
 Reason: bound not elapsed (~13 h 06 min remaining). No provider contact made.
 State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
 `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified
-complete (18150/18150). Wakeup wku_16b0c3159001u4xHKQg6Hu69MS scheduled for
-2026-10-24T12:29:00Z remains pending. Nothing actionable until bound.
+complete (18150/18150). Wakeup wku_16b13a895001ZgTxUHZNT42y64 scheduled for
+2026-10-24T12:29:32Z remains pending. Nothing actionable until bound.
 
 ## Update 2026-10-23T23:19 UTC (prior session)
 
