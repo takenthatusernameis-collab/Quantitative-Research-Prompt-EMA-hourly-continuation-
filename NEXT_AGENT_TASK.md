@@ -1,29 +1,34 @@
 # NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z
 
-## Update 2026-10-23T20:04 UTC (current session)
+## Update 2026-10-23T20:25 UTC (current session)
 
-Offline eligibility re-check: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:04:03.383895+00:00`. Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet". No provider contact. Nothing actionable until bound.
+Offline eligibility re-check (no provider contact): `eligible: False`, bound
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:25:51.940670+00:00`.
+Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
+yet". ~16 h remaining. Nothing actionable until the bound.
 
-## Update 2026-10-23T20:07 UTC (current session)
+State confirmed unchanged from batch 28:
+- `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
+  `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`,
+  `eligible_unseen_below_floor_count=0`, `batch_selected=[]`,
+  `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`.
+- Baseline grid `results/20261019_135940_grid`: `completed_cells=18150` (275 symbols x 66
+  pairs), `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=true`, `next_cell=null`,
+  no second writer. `summary.json` pooled: mean net PF 0.4987, median 0.5198,
+  37 cells net PF > 1 (0.20%), 27 exploratory, 18123 rejected, 0 blocked, 0 credible
+  candidates. `mutations.json`: `C_stricter_trend` and `C_min_risk_atr` both NOT_PROMOTED.
 
-Offline eligibility re-check (gate_status on `universe/last_scan.json`): `{'eligible': False, 'bound': '2026-10-24T12:28:28.949476+00:00', 'now': '2026-10-23T20:07:38.507531+00:00', 'reason': 'the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet'}`. `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`, 20 pages/2000 entries, lowest $3,441,774, `expansion_floor=BOSON/USDT $3,558,643`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`. No provider contact. Nothing actionable until bound.
-
-## Update 2026-10-23T19:40 UTC (current session)
-
-Prior agent completed offline-only verification (no provider contact).
-- Gate check: `eligible: False`, `bound: 2026-10-24T12:28:28.949476+00:00`, reason "24 h refresh bound has not elapsed yet"
-- `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`, 20 pages/2000 entries, lowest $3,441,774, `expansion_floor=BOSON/USDT $3,558,643`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`
-- Baseline grid `results/20261019_135940_grid`: complete (18150/18150 cells), `all_symbols_processed=true`, `next_cell=null`. Pooled mean net PF 0.4987, median 0.5198, 37 cells net PF>1 (0.20%), 27 exploratory, 18123 rejected, **0 credible candidates**
-- `results/mutations.json`: `C_stricter_trend` and `C_min_risk_atr` both **NOT_PROMOTED** (baseline remains program grid)
-- Null grid `results/20261023_050716_null_grid_scan/`: no edge.
-
-## Update 2026-10-23T20:16 UTC (current session)
-
-Offline re-check confirmed (no provider contact).
-- Gate: `eligible: False`, `bound: 2026-10-24T12:28:28.949476+00:00`, `now: 2026-10-23T20:16:01.112548+00:00`, reason "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet". ~16 hours remaining.
-- `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id=mcap_snapshot_20261023_122828`, `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`.
-
-**Status:** Nothing actionable before bound. Waiting for next refresh window at 2026-10-24T12:28:28Z.
+Environment note for the next agent: `pytest`, `numpy` and `pandas` were **not**
+preinstalled in this sandbox (`ModuleNotFoundError`). They were installed into the
+user site-packages during this check (`pip3 install pytest numpy pandas`); if the
+sandbox is reset, install them before running `PYTHONPATH=. python3 -m pytest tests/ -q`.
+One pre-existing test is failing for a reason unrelated to any code change:
+`tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`
+hard-codes `assert gate.gate_status(record)['eligible'] is False` against a fixed
+bound of `2026-10-23T12:00:00+00:00`, so it fails whenever `now` is past that bound
+(it is: 20:25 UTC). 248/249 tests pass. Do not "fix" it by loosening the gate; the
+correct fix is to make the test clock-relative, and only if the next agent touches
+that file.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 
@@ -57,7 +62,8 @@ Do **NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop program due to failures - expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
-
-## Update 2026-10-23T20:22 UTC (current session - agent)
-
-Offline eligibility re-check: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T20:22:57.291234+00:00`. Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet". No provider contact. Nothing actionable until bound. ~15h 65m remaining.
+- Tests: `pytest`/`numpy`/`pandas` are not preinstalled in the sandbox; install them
+  first (`pip3 install pytest numpy pandas`) before running
+  `PYTHONPATH=. python3 -m pytest tests/ -q`. Expect 248/249 to pass; the one
+  failure (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`)
+  is a pre-existing clock-relative-test bug — do not loosen the gate to fix it.
