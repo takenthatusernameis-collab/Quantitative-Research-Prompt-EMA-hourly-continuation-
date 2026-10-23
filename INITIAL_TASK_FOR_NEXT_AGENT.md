@@ -2,26 +2,13 @@
 
 ## Initial task message for the next agent
 
-The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after batch 28 (the
-2026-10-23T12:28:28Z pass found 0 eligible unseen names below the floor; the
-2,000-entry CoinGecko ranking band is exhausted down to $3,441,774). The 24 h
-refresh bound expires at 2026-10-24T12:28:28.949476Z. Do **not** contact
-CoinGecko/KuCoin before that timestamp.
+The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after batch 28 (the 2026-10-23T12:28:28Z pass found 0 eligible unseen names below the floor; the 2,000-entry CoinGecko ranking band is exhausted down to $3,441,774). The 24 h refresh bound expires at 2026-10-24T12:28:28.949476Z. Do **not** contact CoinGecko/KuCoin before that timestamp.
 
-At/after the bound, run exactly one 20-page market-cap ranking pass, freeze the
-snapshot for 24 h, re-check the band below the then-current floor, and either
-expand the universe (append descending market-cap candidates, fetch OHLCV, run
-the full 66-pair EMA grid on each new symbol into `results/20261019_135940_grid`)
-or record the empty pass and re-arm the bound. Then update both handoff files.
+At/after the bound, run exactly one 20-page market-cap ranking pass, freeze the snapshot for 24 h, re-check the band below the then-current floor, and either expand the universe (append descending market-cap candidates, fetch OHLCV, run the full 66-pair EMA grid on each new symbol into `results/20261019_135940_grid`) or record the empty pass and re-arm the bound. Then update both handoff files.
 
-## Latest offline check (2026-10-23T23:22 UTC, current session)
+## Latest offline check (2026-10-23T23:26 UTC, current session)
 
-`eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now
-`2026-10-23T23:22:57.959382+00:00`. Reason: bound not elapsed (~13 h 06 min remaining).
-No provider contact made. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`,
-`universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
-Baseline grid verified complete (18150/18150). Wakeup
-wku_16b13a895001ZgTxUHZNT42y64 scheduled for 2026-10-24T12:29:32Z remains pending.
+`eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T23:26:55.263958+00:00`. Reason: bound not elapsed (~13 h 01 min remaining). No provider contact made. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified complete (18150/18150). Wakeup remains pending until bound elapses.
 
 ## Steps
 
@@ -53,5 +40,3 @@ wku_16b13a895001ZgTxUHZNT42y64 scheduled for 2026-10-24T12:29:32Z remains pendin
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).
 - Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - Tests: `pytest`/`numpy`/`pandas` are installed (pytest 9.1.1, numpy 2.5.4, pandas 3.1.0). If reset, install first (`pip3 install pytest numpy pandas`) before `PYTHONPATH=. python3 -m pytest tests/ -q`. Expect 248/249 to pass; the one failure (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`) is a pre-existing clock-relative-test bug — do not loosen the gate to fix it.
-
-(End of file - total 55 lines)
