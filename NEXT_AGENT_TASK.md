@@ -16,7 +16,7 @@
 | Next eligible universe refresh | **2026-10-23T12:15:58Z — no provider contact before then** |
 | ATR min-risk mutation | closed `NOT_PROMOTED` |
 | Tests | `249 passed` (`PYTHONPATH=. python3 -m pytest tests/ -q`) |
-| Null grid scan | **running** — `results/20261023_050716_null_grid_scan`, 3 366 / 18 150 cells checkpointed (~1 cell/s, 4 workers) |
+| Null grid scan | **running** — `results/20261023_050716_null_grid_scan`, 3 564 / 18 150 cells checkpointed (~1 cell/s, 4 workers) |
 
 **Provider discipline.** Until 2026-10-23T12:15:58Z the market-data provider must not be contacted at all — no polling, no "quick check", no partial refresh. After that timestamp exactly **one** ranking pass is allowed; the new snapshot is then frozen for the following 24 h.
 

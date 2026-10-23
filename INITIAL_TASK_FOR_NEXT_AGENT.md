@@ -24,7 +24,7 @@ Decision recorded in `results/mutations.json` child `C_stricter_trend`: `status 
 
 ## Task in progress — verify null grid scan (background)
 
-Background process `bgp_16727f875001PN9OCuMW630ors` (pid 20384) is running `PYTHONPATH=. python3 scripts/null_grid_scan.py --run results/20261022_134500_grid --workers 4`. Checkpoint: 3 366 / 18 150 cells written to `results/20261023_050716_null_grid_scan/cells.jsonl` at 06:08 UTC, progressing at ~1 cell/s with 4 workers. Expected completion ~10:15 UTC. It is confirmatory only — the zero-delta grid means its result will match the baseline null (no edge). Check `background_process status bgp_16727f875001PN9OCuMW630ors` and wait for it to exit; on exit, run `--summarize-only results/20261023_050716_null_grid_scan` to produce `summary.json` / `summary.md`.
+Background process `bgp_16727f875001PN9OCuMW630ors` (pid 20384) is running `PYTHONPATH=. python3 scripts/null_grid_scan.py --run results/20261022_134500_grid --workers 4`. Checkpoint: 3 564 / 18 150 cells written to `results/20261023_050716_null_grid_scan/cells.jsonl` at 06:08 UTC, progressing at ~1 cell/s with 4 workers. Expected completion ~10:15 UTC. It is confirmatory only — the zero-delta grid means its result will match the baseline null (no edge). Check `background_process status bgp_16727f875001PN9OCuMW630ors` and wait for it to exit; on exit, run `--summarize-only results/20261023_050716_null_grid_scan` to produce `summary.json` / `summary.md`.
 
 ## Next task — universe refresh (after 2026-10-23T12:15:58Z)
 
