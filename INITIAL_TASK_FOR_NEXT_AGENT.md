@@ -14,7 +14,7 @@ A stricter-trend single-variable mutation of the expanded baseline is running as
 
 - Run dir: `results/20261022_134500_grid` (`stricter_trend: true`; everything else — costs 10/2 bps, rr 1.0, conservative exit, risk sizing, folds, entry/exit, §3.4 gates — unchanged; ATR stays closed).
 - Background writer: `bgp_165c26e18001HrFOj1yrcSOD6T` (pid 6252 + 4 workers), **persistent**, sole writer. Do **not** start a second writer on this run directory.
-- Progress: 6 402 / 18 150 cells on disk; next cell `MANA/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. The grid runs across sessions (several hours of wall clock remaining).
+- Progress: 12 474 / 18 150 cells on disk; next cell `MEW/USDT P8_12`; `stopped=true`, `stop_reason=in_progress`, `all_symbols_processed=false`. The grid runs across sessions (several hours of wall clock remaining).
 
 Resume command (repository root; resumable — skips cells whose `summary.json` already exists):
 
