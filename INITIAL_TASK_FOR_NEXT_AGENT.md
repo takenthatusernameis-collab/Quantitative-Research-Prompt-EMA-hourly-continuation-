@@ -12,9 +12,9 @@ Run at/after 2026-10-24T12:28:28.949476Z (refresh bound). Do NOT contact the pro
 
 Program state: N=275, floor BOSON/USDT $3 558 643 (recomputed from the 2026-10-23T12:28:28Z snapshot), baseline grid `results/20261019_135940_grid` (18 150/18 150 cells, 0 blocked), null scan complete (no edge), both mutations NOT_PROMOTED, batch 28 logged (no new candidates). No provider contact before the bound.
 
-## Verification performed 2026-10-23T13:42 UTC (this session)
+## Verification performed 2026-10-23T13:49 UTC (this session)
 
-- `gate_status(universe/last_scan.json)` → `eligible: False`, bound 2026-10-24T12:28:28.949476+00:00, now 2026-10-23T13:42:34Z. No provider contact made.
+- `gate_status(universe/last_scan.json)` → `eligible: False`, bound 2026-10-24T12:28:28.949476+00:00, now 2026-10-23T13:49:31Z. No provider contact made.
 - `universe/last_scan.json`: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, universe_n 275, eligible_unseen_below_floor_count 0, batch_selected [], snapshot `universe/mcap_snapshot_20261023_122828.json` frozen, next_eligible_refresh_at 2026-10-24T12:28:28.949476+00:00.
 - Baseline grid `results/20261019_135940_grid/progress.json`: completed_cells 18 150 (= 275 symbols × 66 pairs), all_symbols_processed true, next_cell null. `summary.json`: n_cells 18 150, n_symbols 275, n_pairs 66, mean_net_pf 0.4987, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18 123, n_blocked 0.
 - `results/mutations.json`: `C_stricter_trend` (zero-delta no-op, NOT_PROMOTED, decided 2026-10-23T05:30:00Z) and `C_min_risk_atr` (NOT_PROMOTED, decided 2026-10-22T02:55:00Z) both closed. Baseline grid remains the program grid.
