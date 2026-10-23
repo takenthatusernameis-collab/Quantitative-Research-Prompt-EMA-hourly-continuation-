@@ -29,3 +29,8 @@
 - Closed mutations: `results/mutations.json` (C_stricter_trend, C_min_risk_atr — both NOT_PROMOTED).
 - Null scan artifact: `results/20261023_050716_null_grid_scan/summary.md` (no edge; tail matches null).
 - Program decision: `results/FINAL_DECISION.md` and `results/RESEARCH_CONCLUSION.md` — no credible edge; program continues by expanding the universe (PROMPT.md §2.1), negative result is never a stop.
+---
+
+## Update 2026-10-23T09:41 UTC
+
+Offline verification complete: refresh gate still closed (bound 12:15:58Z). No provider contact. Null scan and mutations remain closed. Next agent runs after the bound: one market-cap ranking pass, freeze snapshot, expand universe, run grid.
