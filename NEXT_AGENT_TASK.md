@@ -100,3 +100,16 @@ Offline eligibility re-check (no provider contact): `eligible: False`, bound
 Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
 yet". ~15 h 17 min remaining. Nothing actionable until the bound; no provider
 contact made. State unchanged from batch 28 (see above).
+
+## Update 2026-10-23T21:17 UTC (current session)
+
+Offline eligibility re-check (no provider contact): `eligible: False`, bound
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:17:08+00:00`.
+Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed
+yet". ~15 h 11 min remaining. Nothing actionable until the bound; no provider
+contact made. State unchanged from batch 28:
+- `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
+  `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`,
+  `eligible_unseen_below_floor_count=0`, `batch_selected=[]`,
+  `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`.
+- Baseline grid `results/20261019_135940_grid`: `completed_cells=18150` (275x66), all processed, no second writer.
