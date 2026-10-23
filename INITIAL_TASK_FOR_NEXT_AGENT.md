@@ -1,11 +1,11 @@
 # NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z
 
-## Update 2026-10-23T21:29 UTC (current session)
+## Update 2026-10-23T21:43 UTC (current session)
 
 Offline eligibility re-check (no provider contact): `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:29:03.243675+00:00`.
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T21:43:17+00:00`.
 Reason: "the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not
-elapsed yet". ~15 h 0 min remaining. Nothing actionable until the bound; no
+elapsed yet". ~14 h 45 min remaining. Nothing actionable until the bound; no
 provider contact made. State unchanged from batch 28:
 - `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
   `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`,
