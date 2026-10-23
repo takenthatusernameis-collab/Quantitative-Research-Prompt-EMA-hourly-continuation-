@@ -1,0 +1,33 @@
+# EMA Hourly Continuation — VR/USDT P50_89
+
+**Symbol:** VR/USDT  |  **P_fast:** 50  |  **P_slow:** 89
+
+**Costs:** 10.0 bps taker + 2.0 bps slippage per side
+
+**RR:** 1.0  |  **Fill:** signal-bar close  |  **SL/TP:** 1:1 to EMA_slow
+
+**Sizing:** risk-based, 1.00% of equity per trade (notional cap 10.0x equity)
+
+
+## Metrics (net of costs)
+
+| Metric | Value |
+|---|---|
+| trade_count | 756 |
+| net_profit_factor | 0.3514 |
+| net_win_rate | 0.2884 |
+| gross_profit_factor | 0.6026 |
+| gross_win_rate | 0.3003 |
+| sharpe_ratio | -12.8561 |
+| sortino_ratio | -5.0917 |
+| max_drawdown | 0.9994 |
+| cagr | -0.9489 |
+| net_avg_win | 24.8381 |
+| net_avg_loss | -28.6413 |
+| avg_hold_time_bars | 4.2844 |
+| exposure | 0.1472 |
+
+Decision label: rejected
+
+
+Bulk artifacts: `trades.csv.gz`, `equity.csv.gz` (gzip-compressed CSV). Read with `gzip -dc <file>` or `pandas.read_csv(file, compression="gzip")`.
