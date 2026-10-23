@@ -1,0 +1,33 @@
+# EMA Hourly Continuation — XNO/USDT P20_144
+
+**Symbol:** XNO/USDT  |  **P_fast:** 20  |  **P_slow:** 144
+
+**Costs:** 10.0 bps taker + 2.0 bps slippage per side
+
+**RR:** 1.0  |  **Fill:** signal-bar close  |  **SL/TP:** 1:1 to EMA_slow
+
+**Sizing:** risk-based, 1.00% of equity per trade (notional cap 10.0x equity)
+
+
+## Metrics (net of costs)
+
+| Metric | Value |
+|---|---|
+| trade_count | 697 |
+| net_profit_factor | 0.5143 |
+| net_win_rate | 0.4175 |
+| gross_profit_factor | 0.7666 |
+| gross_win_rate | 0.4261 |
+| sharpe_ratio | -5.8427 |
+| sortino_ratio | -2.1819 |
+| max_drawdown | 0.9257 |
+| cagr | -0.6448 |
+| net_avg_win | 33.6858 |
+| net_avg_loss | -46.9446 |
+| avg_hold_time_bars | 15.4749 |
+| exposure | 0.4903 |
+
+Decision label: rejected
+
+
+Bulk artifacts: `trades.csv.gz`, `equity.csv.gz` (gzip-compressed CSV). Read with `gzip -dc <file>` or `pandas.read_csv(file, compression="gzip")`.
