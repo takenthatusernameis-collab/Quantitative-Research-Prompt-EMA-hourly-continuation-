@@ -3306,3 +3306,15 @@ Every one of the 7 has no tradable KuCoin spot USDT pair, and none is a wrapped/
 **Tests:** `PYTHONPATH=. python3 -m pytest tests/ -q` → **passed** (no code changes in this cycle).
 
 **Next action:** at/after **2026-10-25T14:30:39.449637Z** run exactly one more 20-page ranking pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`), re-verify eligibility first with `scripts/refresh_gate.gate_status`, freeze the new snapshot for 24 h, and re-check the band below the then-current floor. If it is still empty, record the pass in this log and wait for the following bound — do not override the gate, do not poll the provider repeatedly, and do not change registered costs, folds, entry/exit semantics or §3.4 gates.
+
+---
+
+## Offline gate re-verification (2026-10-24T16:32Z)
+
+No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)` →
+`{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-24T16:32:04.247887+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}` —
+~21.9 h remaining. Baseline grid re-verified complete a fifth time: `results/20261019_135940_grid/progress.json` `completed_cells=18150`, `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=True`, `next_cell=null`, `stopped=False`, `stop_reason=None`, "blocked" substring count 0; `summary.json` pooled mean net PF 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**. Universe unchanged at N = 275, floor `CWEB/USDT` $3 388 825, `eligible_unseen_below_floor_count = 0`. Nothing actionable until the bound elapses at 2026-10-25T14:30:39Z. Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated with this verification.
+
+### Tests
+
+`PYTHONPATH=. python3 -m pytest tests/ -q` → **248 passed, 1 failed**. The single failure is the pre-existing clock-relative bug named in the handoff, `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` — it asserts the gate stays closed after a pass that *found* eligible names, but the bound is recorded at the pass time, so by the time the assertion runs the bound has already elapsed. It is a test defect, not a gate defect: the gate was not loosened, and the instruction in the handoff is to leave it alone.
