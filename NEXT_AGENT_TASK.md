@@ -1,9 +1,9 @@
-# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T02:20 UTC)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T03:00 UTC)
 
 ## Current status (current session)
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline check (2026-10-24T02:20:45Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:20:45.571716+00:00`. Reason: bound not elapsed (~10h 8m remaining). No provider contact made.
-- Wakeup scheduled: `wku_16bbaf77000153l8ZQk4UEr5Ip` at 2026-10-24T12:29:17Z to resume automatically. If harness does not resume, run steps at/after bound.
+- Offline check (2026-10-24T03:00:08Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T03:00:08.970998+00:00`. Reason: the 24 h refresh bound has not elapsed yet (~9h 28m remaining). No provider contact made.
+- Wakeup scheduled: `wku_16bda2ec5001ktwBWJUOUvAufm` at 2026-10-24T12:28:29Z to resume automatically. If harness does not resume, run steps at/after bound.
 - Last scan: batch 28 (2026-10-23T12:28:28Z) found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to $3,441,774. Universe n=275, eligible_unseen_below_floor_count=0.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
@@ -28,6 +28,9 @@
 5. **If no candidates exist:** Record pass (snapshot_id, fetch time, pages, floor, exclusions) in `universe/mcap_expansion_log.md`. Set state back to `AWAITING_NEW_ELIGIBLE_CANDIDATES` in `universe/last_scan.json`; next bound becomes +24h from new scan time.
 
 6. **Update handoffs:** After completing (or determining no-candidates), update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and next unprocessed symbol/pair batch (or "none").
+
+## Next unprocessed symbol/pair batch
+- None. No candidates exist; awaiting new eligible names from next 20-page pass at/after bound.
 
 ## Constraints
 - No provider call before 2026-10-24T12:28:28.949476Z

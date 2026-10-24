@@ -1,11 +1,11 @@
-# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T02:20 UTC)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T03:00 UTC)
 
 ## Initial task message for the next agent
 The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after batch 28 (2026-10-23T12:28:28Z pass found 0 eligible unseen names below the floor; 2000-entry CoinGecko ranking band exhausted down to $3,441,774). Universe n=275. The 24h refresh bound expires at 2026-10-24T12:28:28.949476Z. **Do not** contact CoinGecko/KuCoin before that timestamp.
 
-Offline check confirmed (2026-10-24T02:20:45Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:20:45.571716+00:00`. Reason: bound not elapsed (~10h 8m remaining). No provider contact made. State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid `results/20261019_135940_grid` verified complete (18150/18150).
+Offline check confirmed (2026-10-24T03:00:08Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T03:00:08.970998+00:00`. Reason: bound not elapsed (~9h 28m remaining). No provider contact made. State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid `results/20261019_135940_grid` verified complete (18150/18150).
 
-A wakeup is scheduled for 2026-10-24T12:29:17Z (id `wku_16bbaf77000153l8ZQk4UEr5Ip`) to resume automatically. If harness does not resume, run steps below at/after bound.
+A wakeup is scheduled for 2026-10-24T12:28:29Z (id `wku_16bda2ec5001ktwBWJUOUvAufm`) to resume automatically. If harness does not resume, run steps below at/after bound.
 
 ## Steps
 1. **Verify eligibility offline first:**
@@ -27,6 +27,9 @@ A wakeup is scheduled for 2026-10-24T12:29:17Z (id `wku_16bbaf77000153l8ZQk4UEr5
 5. **If no candidates exist:** record pass (snapshot_id, fetch time, pages, floor, exclusions) in `universe/mcap_expansion_log.md`, set `universe/last_scan.json` state to `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next bound becomes +24h from new scan time.
 
 6. **Update handoffs:** after completing (or determining no-candidates), update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with new bound and next unprocessed symbol/pair batch (or "none").
+
+## Next unprocessed symbol/pair batch
+- None. No candidates exist; awaiting new eligible names from next 20-page pass at/after bound.
 
 ## Constraints
 - No provider call before 2026-10-24T12:28:28.949476Z
