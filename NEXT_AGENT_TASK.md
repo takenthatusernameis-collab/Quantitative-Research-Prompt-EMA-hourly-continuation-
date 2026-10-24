@@ -1,4 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T06:05 UTC)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T06:08 UTC)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
@@ -8,7 +8,7 @@
 - `summary.json` pooled: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, credible candidates 0.
 - Last scan: batch 28, `universe/mcap_snapshot_20261023_122828.json` (2026-10-23T12:28:28.949476Z, 20/20 pages, 2 000 entries, lowest covered $3 441 774). Floor `BOSON/USDT` $3 558 643. `eligible_unseen_below_floor_count = 0`.
 - Refresh bound: **2026-10-24T12:28:28.949476Z**.
-- **This session (2026-10-24T06:05Z): verified the gate offline** — `gate_status` returned `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T06:05:30Z`, reason "the 24 h refresh bound ... has not elapsed yet" (~6h 23m remaining). **No provider contact made.** Nothing actionable until the bound elapses.
+- **This session (2026-10-24T06:08Z): verified the gate offline** — `gate_status` returned `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T06:08:00Z`, reason "the 24 h refresh bound ... has not elapsed yet" (~6h 20m remaining). **No provider contact made.** Nothing actionable until the bound elapses.
 - Wakeup scheduled for 2026-10-24T12:29:00Z (id `wku_16c6591f7001IIS1HRmvgi1w5P`). If the harness does not resume, run the steps below at/after the bound.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
