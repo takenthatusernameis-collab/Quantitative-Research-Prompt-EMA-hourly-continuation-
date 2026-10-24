@@ -1,4 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T08:58:47 UTC; gate eligible=False, bound not elapsed)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T09:08:13 UTC; gate eligible=False, bound not elapsed)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
@@ -6,7 +6,7 @@
 - `summary.json` pooled: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, credible candidates 0.
 - Last scan: batch 28, `universe/mcap_snapshot_20261023_122828.json` (2026-10-23T12:28:28.949476Z, 20/20 pages, 2 000 entries, lowest covered $3 441 774). Floor `BOSON/USDT` $3 558 643. `eligible_unseen_below_floor_count = 0`. Coverage reaches below the floor ($3 441 774 < $3 558 643), so the band was genuinely inspected — not an incomplete scan. The 21 entries below the floor are all ineligible (18 no tradable KuCoin spot USDT pair; 3 fail the 2-year hourly-history probe).
 - Refresh bound: **2026-10-24T12:28:28.949476Z**.
-- **This session (2026-10-24T08:58:47Z): re-verified the gate offline** — `gate_status` returned `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T08:58:47.327568+00:00`, reason "the 24 h refresh bound ... has not elapsed yet" (~3h 30m remaining). **No provider contact made.** Scheduled wakeup `wku_16d1da5610010q6NUwrO1zKAsW` at 2026-10-24T12:29:00Z to execute the refresh pass per steps 1-6 below. Nothing actionable until the bound elapses.
+- **This session (2026-10-24T09:08:13Z): re-verified the gate offline** — `gate_status` returned `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T09:08:13.560503+00:00`, reason "the 24 h refresh bound ... has not elapsed yet" (~3h 20m remaining). **No provider contact made.** Tests run: 25 passed, 1 pre-known clock-relative failure (`test_the_classic_path_records_the_bound_even_when_names_are_eligible` — do not loosen the gate). Scheduled wakeup `wku_16d2c4e39001y16qan5hr5dca1` at 2026-10-24T12:29:00Z to execute the refresh pass per steps 1-6 below. Nothing actionable until the bound elapses.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 **Do NOT** contact CoinGecko/KuCoin before that timestamp.
