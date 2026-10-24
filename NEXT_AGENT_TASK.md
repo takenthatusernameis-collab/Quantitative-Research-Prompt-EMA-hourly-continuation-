@@ -1,11 +1,11 @@
-# NEXT AGENT TASK — Durable Handoff (updated 2026-10-24T03:31 UTC)
+# NEXT AGENT TASK — Durable Handoff (updated 2026-10-24T04:11 UTC)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
 - Baseline grid: `results/20261019_135940_grid` — **18 150/18 150 cells complete** (275 × 66 EMA pairs), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked. Pooled mean net PF 0.4987, 37 cells net PF > 1, all fail OOS + 2x-cost stress. **0 credible candidates.**
 - Last scan: batch 28, `universe/mcap_snapshot_20261023_122828.json` (2026-10-23T12:28:28Z, 20/20 pages, 2 000 entries, lowest covered $3 441 774). Floor `BOSON/USDT` $3 558 643. `eligible_unseen_below_floor_count = 0`.
-- Refresh bound: **2026-10-24T12:28:28.949476Z** (verified offline 2026-10-24T03:31:47Z: `eligible: False`, ~8h 57m remaining). No provider contact made.
+- Refresh bound: **2026-10-24T12:28:28.949476Z** (verified offline 2026-10-24T04:11:36Z: `eligible: False`, ~8h 17m remaining). No provider contact made.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 **Do NOT** contact CoinGecko/KuCoin before that timestamp.
