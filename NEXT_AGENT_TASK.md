@@ -1,4 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T06:18 UTC)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T06:19 UTC)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`

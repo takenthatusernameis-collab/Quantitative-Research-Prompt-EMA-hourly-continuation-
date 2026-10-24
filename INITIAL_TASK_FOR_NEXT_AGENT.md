@@ -1,4 +1,4 @@
-# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (re-verified 2026-10-24T06:18 UTC)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (re-verified 2026-10-24T06:19 UTC)
 
 ## Initial task message for the next agent
 The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after batch 28 (2026-10-23T12:28:28Z pass found 0 eligible unseen names below the floor; 2000-entry CoinGecko ranking band exhausted down to $3,441,774). Universe n=275. The 24h refresh bound expires at 2026-10-24T12:28:28.949476Z. **Do not** contact CoinGecko/KuCoin before that timestamp.
