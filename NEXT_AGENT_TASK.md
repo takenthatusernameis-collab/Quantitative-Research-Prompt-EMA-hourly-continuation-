@@ -1,8 +1,8 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T15:34Z; gate eligible=False, bound NOT yet elapsed)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T15:52Z; gate eligible=False, bound NOT yet elapsed)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified 2026-10-24T15:34:01Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~23h remaining); no provider contact made. Nothing actionable until the bound.
+- Offline gate re-verified 2026-10-24T15:52:41Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~22.6h remaining); no provider contact made. Nothing actionable until the bound.
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
 - Baseline grid: `results/20261019_135940_grid` — **18 150/18 150 cells complete** (275 × 66 EMA pairs), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150 == n_symbols(275) x n_pairs(66)`, 0 blocked. `progress.json` has no "blocked" substring.
 - `summary.json` pooled: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, credible candidates 0.
