@@ -1,13 +1,13 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T16:17Z; gate eligible=False, bound NOT yet elapsed)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T16:22Z; gate eligible=False, bound NOT yet elapsed)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified 2026-10-24T16:17Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~22.1h remaining); no provider contact made. Nothing actionable until the bound. No provider call was made in this session.
+- Offline gate re-verified 2026-10-24T16:22Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~22.1h remaining); no provider contact made. Nothing actionable until the bound. No provider call was made in this session.
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
 - Baseline grid: `results/20261019_135940_grid` — **18 150/18 150 cells complete** (275 × 66 EMA pairs), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150 == n_symbols(275) x n_pairs(66)`, 0 blocked. `progress.json` has no "blocked" substring.
 - `summary.json` pooled: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, credible candidates 0.
 - Last scan (Batch 29): `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2 000 entries, lowest covered $3 363 414). Floor `CWEB/USDT` $3 388 825. `eligible_unseen_below_floor_count = 0`. Coverage reaches below the floor ($3 363 414 < $3 388 825), so the band was genuinely inspected — not an incomplete scan. The 7 entries below the floor are all ineligible (7 no tradable KuCoin spot USDT pair; 0 history-probe failures). State set back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next bound `2026-10-25T14:30:39.449637Z`.
-- Refresh bound: **2026-10-25T14:30:39.449637Z** (not yet elapsed as of 2026-10-24T16:17Z).
+- Refresh bound: **2026-10-25T14:30:39.449637Z** (not yet elapsed as of 2026-10-24T16:22Z).
 
 ## Your task (run at/after 2026-10-25T14:30:39.449637Z)
 **Do NOT** contact CoinGecko/KuCoin before that timestamp.
@@ -41,6 +41,6 @@
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).
 - Do not stop the program on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is a pre-existing clock-relative bug — do not loosen the gate.
-- Wakeup `wku_16ea07eea0019PuPheU71gDh1E` at 2026-10-25T14:31:00Z scheduled to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_16eb8c749001KQwq3rh1SRrHSu` at 2026-10-25T14:31:00Z scheduled to resume this task at the bound; do not re-schedule a duplicate.
 
 (End of file - total 44 lines)
