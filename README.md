@@ -31,3 +31,9 @@ Symbols are processed in market cap descending order. Market cap can be loaded f
 ## Processing Order
 
 All symbols are processed in market cap descending order as specified in the strategy.
+
+
+## Adaptive research-gate policy
+
+See `AGENTS.md` for the default tiered policy. The confirmatory benchmark remains unchanged. If repeated, documented feasibility attempts show the full historical universe is unavailable, continue with a separately versioned and explicitly exploratory baseline on verified data rather than stopping all progress; disclose current-universe/survivorship limitations and never label it confirmatory.
+
