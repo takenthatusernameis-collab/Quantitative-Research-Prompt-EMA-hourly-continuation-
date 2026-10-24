@@ -3318,3 +3318,14 @@ No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)`
 ### Tests
 
 `PYTHONPATH=. python3 -m pytest tests/ -q` → **248 passed, 1 failed**. The single failure is the pre-existing clock-relative bug named in the handoff, `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` — it asserts the gate stays closed after a pass that *found* eligible names, but the bound is recorded at the pass time, so by the time the assertion runs the bound has already elapsed. It is a test defect, not a gate defect: the gate was not loosened, and the instruction in the handoff is to leave it alone.
+
+---
+
+## Offline gate re-verification (2026-10-24T21:45Z)
+
+No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)` ->
+`{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-24T21:45:12.859773+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}` —
+~17 h 6 m remaining. Baseline grid re-verified complete a sixth time: `results/20261019_135940_grid/progress.json` `completed_cells=18150`, `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=True`, `next_cell=null`, `stopped=False`, `stop_reason=None`, "blocked" substring count 0; `summary.json` pooled mean net PF 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**. Universe unchanged at N = 275, floor `CWEB/USDT` $3 888 825, `eligible_unseen_below_floor_count = 0`. Nothing actionable until the bound elapses at 2026-10-25T14:30:39Z. Wakeup `wku_16fe02b4f001nX7517gPiiIrfh` scheduled at 2026-10-25T14:31:00Z to execute the refresh pass (the prior wakeup `wku_16fcd6dc2001hddUtJFTA4Q12X` was replaced; only one pending wakeup exists for this session). Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated with this verification.
+
+### Tests
+`PYTHONPATH=. python3 -m pytest tests/ -q` → **248 passed, 1 failed** (the pre-existing clock-relative bug named above; left untouched).
