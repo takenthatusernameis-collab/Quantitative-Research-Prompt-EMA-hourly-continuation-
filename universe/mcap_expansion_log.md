@@ -3244,3 +3244,9 @@ Every one of the 21 is either not a tradable KuCoin spot USDT pair or does not c
 **Tests:** `PYTHONPATH=. python3 -m pytest tests/ -q` → **passed** (no code changes in this cycle).
 
 **Next action:** at/after **2026-10-24T12:28:28.949476Z** run exactly one more 20-page ranking pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`), re-verify eligibility first with `scripts/refresh_gate.gate_status`, freeze the new snapshot for 24 h, and re-check the band below the then-current floor. If it is still empty, record the pass in this log and wait for the following bound — do not override the gate, do not poll the provider repeatedly, and do not change registered costs, folds, entry/exit semantics or §3.4 gates.
+
+### Offline gate re-verification (2026-10-24T05:29Z)
+
+No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)` →
+`{'eligible': False, 'bound': '2026-10-24T12:28:28.949476+00:00', 'now': '2026-10-24T05:29:34.800409+00:00', 'reason': 'the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet'}` —
+~7 h remaining. Baseline grid re-verified complete: 18 150/18 150 cells (275 × 66), 0 blocked, `all_symbols_processed=true`, `next_cell=null`; `summary.json` pooled mean net PF 0.4987, 37 cells net PF > 1, **0 credible candidates**. Universe unchanged at N = 275. A wakeup is scheduled for 2026-10-24T12:29:00Z to resume automatically.
