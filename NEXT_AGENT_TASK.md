@@ -1,4 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T10:09:05 UTC; gate eligible=False, bound not elapsed)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T10:17:12 UTC; gate eligible=False, bound not elapsed)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
