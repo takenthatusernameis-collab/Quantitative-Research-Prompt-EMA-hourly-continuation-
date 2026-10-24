@@ -1,7 +1,7 @@
-# NEXT TASK — refresh bound 2026-10-25T14:30:39.449637Z (verified 2026-10-24T17:57:39Z, gate eligible=False, bound not yet elapsed)
+# NEXT TASK — refresh bound 2026-10-25T14:30:39.449637Z (verified 2026-10-24T17:59:08Z, gate eligible=False, bound not yet elapsed)
 ## Initial task message for the next agent
 
-Offline gate re-verified 2026-10-24T17:54:31Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~20.6h remaining); no provider contact made. Nothing actionable until the bound. No provider call was made in this session. Wakeup `wku_16f0cff73001nYBYC9A4MHT2Fl` scheduled at 2026-10-25T14:31:00Z to resume at the bound.
+Offline gate re-verified 2026-10-24T17:59:08Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~20.5h remaining); no provider contact made. Nothing actionable until the bound. No provider call was made in this session. Wakeup `wku_16f1145a40019XwuVvh1rxlTNf` scheduled at 2026-10-25T14:31:00Z to resume at the bound.
 
 The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after Batch 29 (2026-10-24T14:30:39Z pass found 0 eligible unseen names below the floor; 2000-entry CoinGecko ranking band exhausted down to $3,363,414). Universe n=275. The 24h refresh bound expires at 2026-10-25T14:30:39.449637Z. **Do not** contact CoinGecko/KuCoin before that timestamp.
 
@@ -41,6 +41,6 @@ Baseline grid re-verified: 18150/18150 cells complete (275 × 66), `all_symbols_
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
-- Wakeup `wku_16f0cff73001nYBYC9A4MHT2Fl` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_16f1145a40019XwuVvh1rxlTNf` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
 
 (End of file - total 47 lines)
