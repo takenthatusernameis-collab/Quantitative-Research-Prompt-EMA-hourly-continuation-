@@ -1,27 +1,14 @@
-## Update 2026-10-24T00:05 UTC (current session)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (updated 2026-10-24T00:08 UTC)
 
-Offline eligibility re-check: `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T00:05:23.811095+00:00`.
-Reason: bound not elapsed (~12 h 23 min remaining). No provider contact made.
-State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
-`eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified
-complete (18150/18150). Wakeup remains pending until bound elapses. Nothing
-actionable until bound.
-
-## State confirmed unchanged from batch 28
-
-- `universe/last_scan.json`: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`,
-  `universe_n=275`, `snapshot_id=mcap_snapshot_20261023_122828`,
-  `scanned_at=2026-10-23T12:28:28.949476+00:00`,
-  `eligible_unseen_below_floor_count=0`, `batch_selected=[]`,
-  `next_eligible_refresh_at=2026-10-24T12:28:28.949476+00:00`.
-- Baseline grid `results/20261019_135940_grid`: `completed_cells=18150` (275
-  symbols x 66 pairs), `all_symbols_processed=true`, no second writer.
-  Pooled summary: mean net PF 0.4987, 37 cells net PF > 1, 0 credible candidates.
+## Current status (current session)
+- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
+- `universe/last_scan.json`: `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`
+- Baseline grid `results/20261019_135940_grid`: complete (18150/18150 cells, 275 symbols × 66 pairs). Pooled summary mean net PF 0.4987, 37 cells net PF > 1, 0 credible candidates.
+- Gate check (offline): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T00:08:59.261036+00:00`. Reason: bound not elapsed (~12h 19m remaining). No provider contact made.
+- Wakeup/pending refresh remains until bound.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
-
-Do **NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
+**Do NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
 
 1. **Verify eligibility offline first:**
    ```bash
@@ -33,23 +20,20 @@ Do **NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
    ```bash
    PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20
    ```
-   (or `scripts/refresh_universe.py fetch`). This is the only provider contact this cycle.
+   (or `scripts/refresh_universe.py fetch`). This is the only provider contact this cycle. The tool freezes snapshot for 24h and writes new bound to `universe/last_scan.json`.
 
-3. **Freeze snapshot for 24h** (tool writes bound to `universe/last_scan.json`).
+3. **Re-check band below current floor** for eligible unseen candidates (`eligible_unseen_below_floor_count`).
 
-4. **Re-check band below current floor** for eligible unseen candidates (`eligible_unseen_below_floor_count`).
+4. **If candidates exist:** Expand per PROMPT.md §2.1 - append next lower market-cap candidates descending (track previous→new N, rank range, log to `universe/mcap_expansion_log.md` with source/date). Fetch OHLCV for each via `scripts/fetch_kucoin.py`. Run full 66-pair EMA grid on each new symbol with `scripts/run_grid.py --resume results/20261019_135940_grid`. Never create second writer on baseline grid; never promote from partial child grid.
 
-5. **If candidates exist:** Expand per PROMPT.md §2.1 - append next lower market-cap candidates descending (track previous→new N, rank range, log to `universe/mcap_expansion_log.md` with source/date). Fetch OHLCV for each via `scripts/fetch_kucoin.py`. Run full 66-pair EMA grid on each new symbol with `scripts/run_grid.py --resume results/20261019_135940_grid`. Never create second writer on baseline grid; never promote from partial child grid.
+5. **If no candidates exist:** Record pass (snapshot_id, fetch time, pages, floor, exclusions) in `universe/mcap_expansion_log.md`. Set state back to `AWAITING_NEW_ELIGIBLE_CANDIDATES` in `universe/last_scan.json`; next bound becomes +24h from new scan time.
 
-6. **If no candidates exist:** Record pass (snapshot_id, fetch time, pages, floor, exclusions) in `universe/mcap_expansion_log.md`. Set state back to `AWAITING_NEW_ELIGIBLE_CANDIDATES` in `universe/last_scan.json`; next bound becomes +24h from new scan time.
-
-7. **Update handoffs:** After completing (or determining no-candidates), update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and next unprocessed symbol/pair batch (or "none").
+6. **Update handoffs:** After completing (or determining no-candidates), update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and next unprocessed symbol/pair batch (or "none").
 
 ## Constraints
-
 - No provider call before 2026-10-24T12:28:28.949476Z
 - No second writer on `results/20261019_135940_grid`; no promotion from partial child grid
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop program due to failures - expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
-- Tests: `pytest`, `numpy` and `pandas` are installed in this sandbox (pytest 9.1.1, numpy 2.5.4, pandas 3.1.0). If the sandbox is reset, install them first (`pip3 install pytest numpy pandas`) before running `PYTHONPATH=. python3 -m pytest tests/ -q`. Expect 248/249 to pass; the one failure (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`) is a pre-existing clock-relative-test bug — do not loosen the gate to fix it.
+- Tests: `pytest` 9.1.1, `numpy` 2.5.4, `pandas` 3.1.0 installed. Expect 248/249 pass; `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
