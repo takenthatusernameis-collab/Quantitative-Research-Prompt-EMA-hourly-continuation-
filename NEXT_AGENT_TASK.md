@@ -1,10 +1,11 @@
-# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T03:11 UTC)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T03:13 UTC)
 
 ## Current status (current session)
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline check (2026-10-24T03:11:17Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T03:11:17.022575+00:00`. Reason: the 24 h refresh bound has not elapsed yet (~9h 17m remaining). No provider contact made. Confirmed via `scripts.refresh_gate.gate_status(universe/last_scan.json)`.
-- Wakeup scheduled: `wku_16bda2ec5001ktwBWJUOUvAufm` at 2026-10-24T12:28:29Z to resume automatically. If harness does not resume, run steps at/after bound.
+- Offline check (2026-10-24T03:13:40Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T03:13:40.956088+00:00`. Reason: the 24 h refresh bound has not elapsed yet (~9h 15m remaining). No provider contact made. Confirmed via `scripts.refresh_gate.gate_status(universe/last_scan.json)`.
+- Wakeup scheduled: `wku_16be8a9eb001Uo1uk0TZk3T0MJ` at 2026-10-24T12:28:29Z to resume automatically. If harness does not resume, run steps at/after bound.
 - Last scan: batch 28 (2026-10-23T12:28:28Z) found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to $3,441,774. Universe n=275, eligible_unseen_below_floor_count=0.
+- Baseline grid `results/20261019_135940_grid` verified complete (2026-10-24T03:13): 18150/18150 cells (275 symbols × 66 EMA pairs), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked. No second writer.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 **Do NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
