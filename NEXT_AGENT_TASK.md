@@ -1,11 +1,12 @@
-# NEXT AGENT TASK — Durable Handoff (updated 2026-10-24T04:33 UTC)
+# NEXT AGENT TASK — Durable Handoff (updated 2026-10-24T04:37 UTC)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
-- Baseline grid: `results/20261019_135940_grid` — **18 150/18 150 cells complete** (275 × 66 EMA pairs), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked (verified 2026-10-24T04:26Z: `progress.json.completed` list length 18150, no blocked markers). Pooled mean net PF 0.4987, 37 cells net PF > 1, all fail OOS + 2x-cost stress. **0 credible candidates.**
+- Baseline grid: `results/20261019_135940_grid` — **18 150/18 150 cells complete** (275 × 66 EMA pairs), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked (verified: `progress.json.completed` list length 18150, no blocked markers). Pooled mean net PF 0.4987, 37 cells net PF > 1, all fail OOS + 2x-cost stress. **0 credible candidates.**
 - Last scan: batch 28, `universe/mcap_snapshot_20261023_122828.json` (2026-10-23T12:28:28.949476Z, 20/20 pages, 2 000 entries, lowest covered $3 441 774). Floor `BOSON/USDT` $3 558 643. `eligible_unseen_below_floor_count = 0`.
-- Refresh bound: **2026-10-24T12:28:28.949476Z** (verified offline 2026-10-24T04:33:34Z: `eligible: False`, reason "the 24 h refresh bound ... has not elapsed yet", ~7h 55m remaining). No provider contact made.
+- Refresh bound: **2026-10-24T12:28:28.949476Z**.
+- **This session (2026-10-24T04:37:18Z): verified the gate offline** — `gate_status` returned `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, reason "the 24 h refresh bound ... has not elapsed yet" (~7h 51m remaining). **No provider contact made.** Nothing is actionable until the bound elapses.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 **Do NOT** contact CoinGecko/KuCoin before that timestamp.
@@ -40,4 +41,4 @@
 - Do not stop the program on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is a pre-existing clock-relative bug — do not loosen the gate.
 
-(End of file - total 41 lines)
+(End of file - total 43 lines)
