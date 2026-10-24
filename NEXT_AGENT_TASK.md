@@ -1,5 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T17:36:38Z; gate eligible=False, bound NOT yet elapsed)
-
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T17:37:11Z; gate eligible=False, bound NOT yet elapsed)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - Offline gate re-verified 2026-10-24T17:36:38Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~20.95h remaining); no provider contact made. Nothing actionable until the bound. No provider call was made in this session.
