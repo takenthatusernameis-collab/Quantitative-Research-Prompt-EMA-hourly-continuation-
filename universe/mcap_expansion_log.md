@@ -3329,3 +3329,14 @@ No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)`
 
 ### Tests
 `PYTHONPATH=. python3 -m pytest tests/ -q` → **248 passed, 1 failed** (the pre-existing clock-relative bug named above; left untouched).
+
+---
+
+## Offline gate re-verification (2026-10-24T22:19Z)
+
+No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)` →
+`{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-24T22:19:14.538177+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}` —
+~16 h 11 m remaining. Baseline grid re-verified complete a seventh time: `results/20261019_135940_grid/progress.json` `completed_cells=18150`, `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=True`, `next_cell=null`, `stopped=False`, `stop_reason=None`, "blocked" substring count 0; `summary.json` pooled mean net PF 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**. Universe unchanged at N = 275, floor `CWEB/USDT` $3 888 825, `eligible_unseen_below_floor_count = 0`. Nothing actionable until the bound elapses at 2026-10-25T14:30:39Z. Wakeup `wku_170065bae001qdSdDnChJBozE7` scheduled at 2026-10-25T14:31:00Z to execute the refresh pass (the prior wakeup `wku_16fe02b4f001nX7517gPiiIrfh` was replaced; only one pending wakeup exists for this session). Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated with this verification.
+
+### Tests
+`PYTHONPATH=. python3 -m pytest tests/ -q` → **248 passed, 1 failed** (the pre-existing clock-relative bug named above; left untouched). Note: pytest, pandas and numpy were not installed in the base interpreter at the time of this run and were installed into the user site-packages to execute the suite; the code itself is unchanged.
