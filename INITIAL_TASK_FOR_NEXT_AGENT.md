@@ -5,7 +5,7 @@ The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after batch 28 (2026-10-23T
 
 Offline check confirmed (2026-10-24T02:20:45Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:20:45.571716+00:00`. Reason: bound not elapsed (~10h 8m remaining). No provider contact made. State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid `results/20261019_135940_grid` verified complete (18150/18150).
 
-A wakeup is scheduled for 2026-10-24T12:29:00Z (id `wku_16bb690c2001ekee7D28UhvGTw`) to resume automatically. If harness does not resume, run steps below at/after bound.
+A wakeup is scheduled for 2026-10-24T12:29:17Z (id `wku_16bbaf77000153l8ZQk4UEr5Ip`) to resume automatically. If harness does not resume, run steps below at/after bound.
 
 ## Steps
 1. **Verify eligibility offline first:**
