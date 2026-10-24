@@ -1,9 +1,9 @@
-# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (re-verified 2026-10-24T07:10:52 UTC, wakeup scheduled wku_16cbc6a38001aSg8ho6YlHOA9y @ 2026-10-24T12:29:30Z)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (re-verified 2026-10-24T07:13:46 UTC, wakeup scheduled wku_16cc2ae71001Zb9TPu7eF2d5oY @ 2026-10-24T12:29:30Z)
 
 ## Initial task message for the next agent
 The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after batch 28 (2026-10-23T12:28:28Z pass found 0 eligible unseen names below the floor; 2000-entry CoinGecko ranking band exhausted down to $3,441,774). Universe n=275. The 24h refresh bound expires at 2026-10-24T12:28:28.949476Z. **Do not** contact CoinGecko/KuCoin before that timestamp.
 
-This session (2026-10-24T07:10:52Z) re-verified the gate offline: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T07:10:52.978947+00:00`. Reason: bound not elapsed (~5h 17m remaining). No provider contact made. Scheduled wakeup `wku_16cbc6a38001aSg8ho6YlHOA9y` at 2026-10-24T12:29:30Z to resume automatically. State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid `results/20261019_135940_grid` re-verified complete (18150/18150 cells, 275 symbols x 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked — `completed` list length 18150, no "blocked" substring anywhere in `progress.json`; `summary.json` pooled: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, credible candidates 0).
+This session (2026-10-24T07:13:46Z) re-verified the gate offline: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T07:13:53.136267+00:00`. Reason: bound not elapsed (~5h 14m remaining). No provider contact made. Scheduled wakeup `wku_16cc2ae71001Zb9TPu7eF2d5oY` at 2026-10-24T12:29:30Z to resume automatically. State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid `results/20261019_135940_grid` complete (18150/18150 cells, 275 symbols x 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked — `completed` list length 18150, no "blocked" substring anywhere in `progress.json`; `summary.json` pooled: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, credible candidates 0).
 
 ## Steps
 1. **Verify eligibility offline first:**
@@ -36,3 +36,5 @@ This session (2026-10-24T07:10:52Z) re-verified the gate offline: `eligible: Fal
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
+
+(End of file - total 38 lines)
