@@ -7,8 +7,8 @@ Offline check confirmed (2026-10-24T00:12 UTC): `eligible: False`, bound not ela
 
 At/after the bound, run exactly one 20-page market-cap ranking pass, freeze the snapshot for 24 h, re-check the band below the then-current floor, and either expand the universe (append descending market-cap candidates, fetch OHLCV, run the full 66-pair EMA grid on each new symbol into `results/20261019_135940_grid`) or record the empty pass and re-arm the bound. Then update both handoff files.
 
-## Current offline check (2026-10-24T00:22 UTC)
-`eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T00:22:55.253148+00:00`. Reason: bound not elapsed (~12h 5m remaining). No provider contact made. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified complete (18150/18150).
+## Current offline check (2026-10-24T00:26 UTC)
+`eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T00:26:13.843557+00:00`. Reason: bound not elapsed (~12h 2m remaining). No provider contact made. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified complete (18150/18150).
 
 ## Steps
 1. **Verify eligibility offline first:**
