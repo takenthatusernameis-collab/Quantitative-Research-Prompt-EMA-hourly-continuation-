@@ -1,12 +1,12 @@
-# NEXT TASK — refresh bound 2026-10-25T14:30:39.449637+00:00 (verified 2026-10-24T21:23:42.598619+00:00, gate eligible=False, bound not yet elapsed)
+# NEXT TASK — refresh bound 2026-10-25T14:30:39.449637+00:00 (verified 2026-10-24T21:24:42.902698+00:00, gate eligible=False, bound not yet elapsed)
 
 ## Initial task message for the next agent
 
-Offline gate re-verified 2026-10-24T21:23:10.275204+00:00: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~17h 11m remaining); no provider contact made. Wakeup `wku_16f90db84001XH9S8un72Tz3vW` at 2026-10-25T14:31:00Z to resume at the bound.
+Offline gate re-verified 2026-10-24T21:24:33.759290+00:00: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~17h 6m remaining); no provider contact made. Wakeup `wku_16fcd6dc2001hddUtJFTA4Q12X` at 2026-10-25T14:31:00Z to resume at the bound.
 
 The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after Batch 29 (2026-10-24T14:30:39Z pass found 0 eligible unseen names below the floor; 2000-entry CoinGecko ranking band exhausted down to $3,363,414). Universe n=275. The 24h refresh bound expires at 2026-10-25T14:30:39.449637+00:00. **Do not** contact CoinGecko/KuCoin before that timestamp.
 
-Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 18150/18150 cells complete (275 × 66), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked. `summary.json` pooled: mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
+Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols × 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked. `summary.json` pooled: mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 
 ## Steps
 
@@ -40,4 +40,4 @@ Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 1815
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
-- Wakeup `wku_16f90db84001XH9S8un72Tz3vW` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_16fcd6dc2001hddUtJFTA4Q12X` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
