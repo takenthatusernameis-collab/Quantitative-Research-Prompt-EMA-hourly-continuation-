@@ -1,14 +1,14 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T12:11:58 UTC; gate eligible=False, bound not elapsed)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T14:33 UTC; gate eligible=True, bound elapsed)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
 - Baseline grid: `results/20261019_135940_grid` — **18 150/18 150 cells complete** (275 × 66 EMA pairs), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150 == n_symbols(275) x n_pairs(66)`, 0 blocked. `progress.json` has no "blocked" substring.
 - `summary.json` pooled: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, credible candidates 0.
-- Last scan: batch 28, `universe/mcap_snapshot_20261023_122828.json` (2026-10-23T12:28:28.949476Z, 20/20 pages, 2 000 entries, lowest covered $3 441 774). Floor `BOSON/USDT` $3 558 643. `eligible_unseen_below_floor_count = 0`. Coverage reaches below the floor ($3 441 774 < $3 558 643), so the band was genuinely inspected — not an incomplete scan. The 21 entries below the floor are all ineligible (18 no tradable KuCoin spot USDT pair; 3 fail the 2-year hourly-history probe).
-- Refresh bound: **2026-10-24T12:28:28.949476Z** (~24 min remaining from 12:04:18Z).
-- **This session (2026-10-24T12:04:18Z): re-verified the gate offline** — `gate_status` returned `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T12:04:18.727528+00:00`, reason "the 24 h refresh bound ... has not elapsed yet". **No provider contact made.** Baseline grid independently re-verified: `progress.json` `completed_cells=18150`, `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked — no "blocked" substring anywhere in `progress.json`; `summary.json` pooled mean net PF 0.4987, median 0.5198, best_net_pf 2.2274, n_rejected 18123, n_blocked 0, **0 credible candidates**. Universe unchanged at N = 275, floor `BOSON/USDT` $3 558 643, `eligible_unseen_below_floor_count = 0`. Nothing actionable until the bound elapses at 12:28:28Z. Wakeup `wku_16dcc65f9001i6INGKlOahwLY1` at 2026-10-24T12:29:00Z executes the refresh pass; do not re-schedule a duplicate.
+- Last scan: batch 29, `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2 000 entries, lowest covered $3 363 414). Floor `CWEB/USDT` $3 388 825. `eligible_unseen_below_floor_count = 0`. Coverage reaches below the floor ($3 363 414 < $3 388 825), so the band was genuinely inspected — not an incomplete scan. The 7 entries below the floor are all ineligible (7 no tradable KuCoin spot USDT pair).
+- Refresh bound: **2026-10-25T14:30:39.449637Z** (elapsed as of this session).
+- **This session (2026-10-24T14:33Z): executed the refresh pass** — `gate_status` returned `eligible: True` (bound `2026-10-24T12:28:28.949476+00:00` has elapsed), then ran exactly one 20-page market-cap ranking pass (`scripts/fetch_mcap_snapshot.py --pages 20`, pages 20/20, 429s on pages 8 and 16 recovered with backoff). Snapshot `universe/mcap_snapshot_20261024_143039.json` written and frozen for 24 h. Scan record: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, floor `CWEB/USDT` $3 388 825, `eligible_unseen_below_floor_count=0`, `next_eligible_refresh_at=2026-10-25T14:30:39.449637+00:00`. No candidates exist below the floor, so no expansion was applied and `universe/mcap_rank.json` is unchanged. Batch 29 recorded in `universe/mcap_expansion_log.md`. Baseline grid independently re-verified: `progress.json` `completed_cells=18150`, `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked; `summary.json` pooled mean net PF 0.4987, median 0.5198, best_net_pf 2.2274, n_rejected 18123, n_blocked 0, **0 credible candidates**. Universe unchanged at N = 275. Nothing actionable until the next bound elapses at 2026-10-25T14:30:39Z.
 
-## Your task (run at/after 2026-10-24T12:28:28.949476Z)
+## Your task (run at/after 2026-10-25T14:30:39.449637Z)
 **Do NOT** contact CoinGecko/KuCoin before that timestamp.
 
 1. Verify eligibility offline:
@@ -34,7 +34,7 @@
 - None. Awaiting new eligible names from the next 20-page pass at/after the bound.
 
 ## Constraints
-- No provider call before 2026-10-24T12:28:28.949476Z.
+- No provider call before 2026-10-25T14:30:39.449637Z.
 - No second writer on `results/20261019_135940_grid`; no promotion from a partial child grid.
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates.
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).

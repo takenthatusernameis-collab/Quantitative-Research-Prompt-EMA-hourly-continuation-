@@ -3268,3 +3268,41 @@ No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)`
 No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)` →
 `{'eligible': False, 'bound': '2026-10-24T12:28:28.949476+00:00', 'now': '2026-10-24T11:19:02.502537+00:00', 'reason': 'the 24 h refresh bound 2026-10-24T12:28:28.949476+00:00 has not elapsed yet'}` —
 ~1 h 9 m remaining. Baseline grid re-verified complete a fourth time: `results/20261019_135940_grid/progress.json` `completed_cells=18150`, `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=True`, `next_cell=null`, `stopped=False`, `stop_reason=None`, "blocked" substring count 0; `summary.json` pooled mean net PF 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**. Universe unchanged at N = 275, floor `BOSON/USDT` $3 558 643, `eligible_unseen_below_floor_count = 0`. Nothing actionable until the bound elapses at 12:28:28Z. Wakeup `wku_16da6493e001elJgYl2zTmxA3x` scheduled at 2026-10-24T12:29:00Z to execute the refresh pass (re-verified as the only pending wakeup for this session; the earlier `wku_16da06840001MbrdcOiKMB2Uvp` was not present in this session's pending list, so this is the single scheduled resume). Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated with this verification.
+
+---
+
+## Batch 29 — refresh pass 2026-10-24T14:30:39Z (N unchanged at 275; band exhausted)
+
+**Source snapshot:** `universe/mcap_snapshot_20261024_143039.json` (CoinGecko `/api/v3/coins/markets`, `vs_currency=usd`, `order=market_cap_desc`, 20 pages / 2 000 entries). Fetched at 2026-10-24T14:30:39.449637Z, after the 24 h refresh bound of `mcap_snapshot_20261023_122828` (2026-10-24T12:28:28.949476Z) had opened. One pass only; the new snapshot is frozen for the next 24 h. No `--apply` was run: the pass found no eligible unseen name, so the working universe is unchanged at N = 275.
+
+**Gate verification before the pass** (offline, no provider contact): `scripts/refresh_gate.gate_status(universe/last_scan.json)` → `{'eligible': True, 'bound': '2026-10-24T12:28:28.949476+00:00', 'now': '2026-10-24T14:21:12.768405+00:00', 'reason': 'the 24 h refresh bound ... has elapsed'}`.
+
+**Expansion floor at pass time (recomputed from the fresh snapshot):** `CWEB/USDT` 3 388 825 — the lowest market cap among the 275 names already in the universe, read from the fresh ranking rather than from the snapshot the universe was built from. It moved down from the batch-28 floor (`BOSON/USDT` 3 558 643) because included names' market caps drifted between the two snapshots.
+
+**Snapshot coverage:** 2 000 entries, pages 20/20 fetched (`all_requested_pages_returned: true`), lowest covered rank 2 000 at $3 363 414, which is **below** the floor ($3 388 825). The pass therefore genuinely observed the band the expansion works on — this is not an "nothing looked at" result. 0 history-probe failures. The pass was retried through CoinGecko rate limits (429s on pages 8 and 16) with the registered exponential backoff and completed cleanly.
+
+**Result: `eligible_unseen_below_floor_count = 0`.** The 7 entries in the snapshot that rank below the floor are all ineligible:
+
+| Exclusion reason | Count |
+|---|---|
+| `no_tradable_kucoin_spot_usdt_pair` | 7 |
+
+| Rank | Symbol | Market cap (USD) | Exclusion reason |
+|---|---|---|---|
+| 1994 | ASCEND | 3 383 116 | `no_tradable_kucoin_spot_usdt_pair` |
+| 1995 | DACITYCOIN | 3 383 084 | `no_tradable_kucoin_spot_usdt_pair` |
+| 1996 | OBSR | 3 377 012 | `no_tradable_kucoin_spot_usdt_pair` |
+| 1997 | WBRL | 3 373 306 | `no_tradable_kucoin_spot_usdt_pair` |
+| 1998 | OTO | 3 367 296 | `no_tradable_kucoin_spot_usdt_pair` |
+| 1999 | STONKEX | 3 367 010 | `no_tradable_kucoin_spot_usdt_pair` |
+| 2000 | $NAP | 3 363 414 | `no_tradable_kucoin_spot_usdt_pair` |
+
+Every one of the 7 has no tradable KuCoin spot USDT pair, and none is a wrapped/staked duplicate, stablecoin or ticker collision. No API failure hid a name: `history_probe_failure_count = 0`, so no name was kept as a candidate on the strength of an unresolved probe.
+
+**State written:** `universe/last_scan.json` → `state = AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n = 275`, `batch_selected = []`, `next_eligible_refresh_at = 2026-10-25T14:30:39.449637+00:00` (24 h after the ranking pass, per PROMPT.md §2.1.5). Per §2.1.5 this is a **temporary waiting state, not a program stop**: the ranking must be refreshed again at/after the next bound, and an empty snapshot must never disable future refreshes.
+
+**Grid:** unchanged. `results/20261019_135940_grid` remains the program grid at 18 150/18 150 cells (275 symbols × 66 EMA pairs), 0 blocked, `all_symbols_processed = true`, `next_cell = null`. No second writer touched it; no child grid was promoted. Pooled mean net PF **0.4987**, 37 cells net PF > 1, **0 credible candidates**.
+
+**Tests:** `PYTHONPATH=. python3 -m pytest tests/ -q` → **passed** (no code changes in this cycle).
+
+**Next action:** at/after **2026-10-25T14:30:39.449637Z** run exactly one more 20-page ranking pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`), re-verify eligibility first with `scripts/refresh_gate.gate_status`, freeze the new snapshot for 24 h, and re-check the band below the then-current floor. If it is still empty, record the pass in this log and wait for the following bound — do not override the gate, do not poll the provider repeatedly, and do not change registered costs, folds, entry/exit semantics or §3.4 gates.
