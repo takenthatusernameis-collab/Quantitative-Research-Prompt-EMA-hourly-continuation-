@@ -1,11 +1,11 @@
-# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T02:11 UTC)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T02:20 UTC)
 
 ## Initial task message for the next agent
 The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after batch 28 (2026-10-23T12:28:28Z pass found 0 eligible unseen names below the floor; 2000-entry CoinGecko ranking band exhausted down to $3,441,774). Universe n=275. The 24h refresh bound expires at 2026-10-24T12:28:28.949476Z. **Do not** contact CoinGecko/KuCoin before that timestamp.
 
-Offline check confirmed (2026-10-24T02:11:00Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:11:00.484543+00:00`. Reason: bound not elapsed (~10h 17m remaining). No provider contact made. State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid `results/20261019_135940_grid` verified complete (18150/18150).
+Offline check confirmed (2026-10-24T02:20:45Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:20:45.571716+00:00`. Reason: bound not elapsed (~10h 8m remaining). No provider contact made. State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid `results/20261019_135940_grid` verified complete (18150/18150).
 
-A wakeup is scheduled for 2026-10-24T12:29:00Z (id `wku_16b9183ce0017UAJnQiguyUidY`) to resume automatically. If harness does not resume, run steps below at/after bound.
+A wakeup is scheduled for 2026-10-24T12:29:00Z (id `wku_16bb690c2001ekee7D28UhvGTw`) to resume automatically. If harness does not resume, run steps below at/after bound.
 
 ## Steps
 1. **Verify eligibility offline first:**
