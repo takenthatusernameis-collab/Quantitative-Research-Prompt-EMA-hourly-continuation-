@@ -1,46 +1,12 @@
-## Update 2026-10-23T23:30 UTC (current session)
+## Update 2026-10-24T00:05 UTC (current session)
 
 Offline eligibility re-check: `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T23:30:06.203005+00:00`.
-Reason: bound not elapsed (~12 h 58 min remaining). No provider contact made.
+`2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T00:05:23.811095+00:00`.
+Reason: bound not elapsed (~12 h 23 min remaining). No provider contact made.
 State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
 `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified
 complete (18150/18150). Wakeup remains pending until bound elapses. Nothing
 actionable until bound.
-
-## Update 2026-10-23T23:26 UTC (prior session)
-
-Offline eligibility re-check: `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T23:26:55.263958+00:00`. Reason: bound not elapsed (~13 h 01 min remaining). No provider contact made. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified complete (18150/18150). Wakeup remains pending until bound elapses.
-
-## Update 2026-10-23T23:22 UTC (prior session)
-
-Offline eligibility re-check: `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T23:22:57.959382+00:00`.
-Reason: bound not elapsed (~13 h 06 min remaining). No provider contact made.
-State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
-`eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified
-complete (18150/18150). Wakeup wku_16b13a895001ZgTxUHZNT42y64 scheduled for
-2026-10-24T12:29:32Z remains pending. Nothing actionable until bound.
-
-## Update 2026-10-23T23:19 UTC (prior session)
-
-Offline eligibility re-check: `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T23:19:09.362907+00:00`.
-Reason: bound not elapsed (~13 h 09 min remaining). No provider contact made.
-State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
-`eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified
-complete (18150/18150). Wakeup wku_16b0c3159001u4xHKQg6Hu69MS scheduled for
-2026-10-24T12:29:00Z remains pending. Nothing actionable until bound.
-
-## Update 2026-10-23T23:10 UTC (prior session)
-
-Offline eligibility re-check: `eligible: False`, bound
-`2026-10-24T12:28:28.949476+00:00`, now `2026-10-23T23:10:26.646168+00:00`.
-Reason: bound not elapsed (~13 h 18 min remaining). No provider contact made.
-State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n=275`,
-`eligible_unseen_below_floor_count=0`, `batch_selected=[]`. Baseline grid verified
-complete (18150/18150). Wakeup wku_16ae2dc2f001dy4r5HL8OY1Xwq scheduled for
-2026-10-24T12:29:00Z remains pending. Nothing actionable until bound.
 
 ## State confirmed unchanged from batch 28
 
