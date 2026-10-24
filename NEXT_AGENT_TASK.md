@@ -1,4 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T07:13:46 UTC; wakeup wku_16cc2ae71001Zb9TPu7eF2d5oY scheduled @ 2026-10-24T12:29:30Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T07:17:25 UTC; wakeup wku_16cc2ae71001Zb9TPu7eF2d5oY scheduled @ 2026-10-24T12:29:30Z)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
