@@ -2,7 +2,7 @@
 
 ## Current status (current session)
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline check (2026-10-24T01:44 UTC): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T01:43:59.819222+00:00`. Reason: bound not elapsed (~10h 44m remaining). No provider contact made.
+- Offline check (2026-10-24T02:02 UTC): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:02:19.262871+00:00`. Reason: bound not elapsed (~10h 26m remaining). No provider contact made.
 - Wakeup scheduled: `wku_16b9183ce0017UAJnQiguyUidY` at 2026-10-24T12:29:00Z to resume automatically. If harness does not resume, run steps at/after bound.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
