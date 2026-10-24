@@ -1,9 +1,10 @@
-# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T02:05 UTC)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T02:07 UTC)
 
 ## Current status (current session)
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline check (2026-10-24T02:05 UTC): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:05:48.740829+00:00`. Reason: bound not elapsed (~10h 23m remaining). No provider contact made.
+- Offline check (2026-10-24T02:07:14Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:07:14.714988+00:00`. Reason: bound not elapsed (~10h 21m remaining). No provider contact made.
 - Wakeup scheduled: `wku_16b9183ce0017UAJnQiguyUidY` at 2026-10-24T12:29:00Z to resume automatically. If harness does not resume, run steps at/after bound.
+- Last scan: batch 28 (2026-10-23T12:28:28Z) found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to $3,441,774. Universe n=275, eligible_unseen_below_floor_count=0.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 **Do NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
@@ -34,6 +35,4 @@
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop program due to failures - expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
-- Tests: `pytest` was **not importable** in this session (`ModuleNotFoundError: No module named 'pytest'`), so `python3 -m pytest tests/` could not be executed and the 248/249 figure was not re-verified here. Handoff notes expect pytest 9.1.1 / numpy 2.5.4 / pandas 3.1.0 installed with 248/249 pass; `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is a pre-existing clock-relative bug — do not loosen gate. Confirm the test environment before relying on the 248/249 figure.
-
-(End of file)
+- Tests: `pytest` not importable in prior sessions; confirm test env before relying on 248/249 figure. `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
