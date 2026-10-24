@@ -1,4 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T07:03 UTC)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-24T07:07 UTC; wakeup wku_16cbc6a38001aSg8ho6YlHOA9y scheduled @ 2026-10-24T12:29:30Z)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
@@ -8,7 +8,7 @@
 - `summary.json` pooled: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, credible candidates 0.
 - Last scan: batch 28, `universe/mcap_snapshot_20261023_122828.json` (2026-10-23T12:28:28.949476Z, 20/20 pages, 2 000 entries, lowest covered $3 441 774). Floor `BOSON/USDT` $3 558 643. `eligible_unseen_below_floor_count = 0`.
 - Refresh bound: **2026-10-24T12:28:28.949476Z**.
-- **This session (2026-10-24T07:03Z): verified the gate offline** — `gate_status` returned `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T07:03:38.477672+00:00`, reason "the 24 h refresh bound ... has not elapsed yet" (~5h 24m remaining). **No provider contact made.** Nothing actionable until the bound elapses.
+- **This session (2026-10-24T07:07Z): verified the gate offline** — `gate_status` returned `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T07:07:13.240534+00:00`, reason "the 24 h refresh bound ... has not elapsed yet" (~5h 21m remaining). **No provider contact made.** Wakeup `wku_16cbc6a38001aSg8ho6YlHOA9y` scheduled at 2026-10-24T12:29:30Z to resume automatically. Nothing actionable until the bound elapses.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 **Do NOT** contact CoinGecko/KuCoin before that timestamp.
