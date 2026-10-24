@@ -1,7 +1,7 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T17:37:11Z; gate eligible=False, bound NOT yet elapsed)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T17:54:31Z; gate eligible=False, bound NOT yet elapsed)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified 2026-10-24T17:36:38Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~20.95h remaining); no provider contact made. Nothing actionable until the bound. No provider call was made in this session.
+- Offline gate re-verified 2026-10-24T17:54:31Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~20.6h remaining); no provider contact made. Nothing actionable until the bound. No provider call was made in this session. Wakeup `wku_16f0cff73001nYBYC9A4MHT2Fl` scheduled at 2026-10-25T14:31:00Z to resume at the bound.
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
 - Baseline grid: `results/20261019_135940_grid` — **18 150/18 150 cells complete** (275 × 66 EMA pairs), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150 == n_symbols(275) x n_pairs(66)`, 0 blocked. `progress.json` has no "blocked" substring.
 - `summary.json` pooled: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, credible candidates 0.
@@ -40,6 +40,6 @@
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).
 - Do not stop the program on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is a pre-existing clock-relative bug — do not loosen the gate.
-- Wakeup `wku_16ef9a6a0001uj8tiWiNeU9hnM` scheduled at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_16f0cff73001nYBYC9A4MHT2Fl` scheduled at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
 
 (End of file - total 46 lines)
