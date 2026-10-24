@@ -5,7 +5,7 @@ The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after batch 28 (the 2026-10
 
 Offline check confirmed (2026-10-24T01:10 UTC): `eligible: False`, bound not elapsed (~11h 18m remaining). No provider contact made. Nothing is actionable until the bound expires.
 
-A wakeup is scheduled for 2026-10-24T12:29:00Z (id `wku_16b564aff001EO27sZd4koqdLw`) to resume the task automatically. If the harness does not resume, the next agent should run the steps below at/after the bound.
+A wakeup is scheduled for 2026-10-24T12:29:00Z (id `wku_16b799874001OXI66mEvRl5k3A`) to resume the task automatically. If the harness does not resume, the next agent should run the steps below at/after the bound.
 
 At/after the bound, run exactly one 20-page market-cap ranking pass, freeze the snapshot for 24 h, re-check the band below the then-current floor, and either expand the universe (append descending market-cap candidates, fetch OHLCV, run the full 66-pair EMA grid on each new symbol into `results/20261019_135940_grid`) or record the empty pass and re-arm the bound. Then update both handoff files.
 
