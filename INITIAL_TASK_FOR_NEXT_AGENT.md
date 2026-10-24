@@ -1,8 +1,8 @@
-# NEXT TASK — refresh bound 2026-10-25T14:30:39.449637+00:00 (verified 2026-10-24T20:22:30.204541+00:00, gate eligible=False, bound not yet elapsed)
+# NEXT TASK — refresh bound 2026-10-25T14:30:39.449637+00:00 (verified 2026-10-24T20:58:07.537636+00:00, gate eligible=False, bound not yet elapsed)
 
 ## Initial task message for the next agent
 
-Offline gate re-verified 2026-10-24T20:22:30.204541+00:00: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~18h 08m remaining); no provider contact made. Wakeup `wku_16f90db84001XH9S8un72Tz3vW` scheduled at 2026-10-25T14:31:00Z to resume at the bound.
+Offline gate re-verified 2026-10-24T20:58:07.537636+00:00: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~17h 32m remaining); no provider contact made. Wakeup `wku_16f90db84001XH9S8un72Tz3vW` scheduled at 2026-10-25T14:31:00Z to resume at the bound.
 
 The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after Batch 29 (2026-10-24T14:30:39Z pass found 0 eligible unseen names below the floor; 2000-entry CoinGecko ranking band exhausted down to $3,363,414). Universe n=275. The 24h refresh bound expires at 2026-10-25T14:30:39.449637+00:00. **Do not** contact CoinGecko/KuCoin before that timestamp.
 
