@@ -1,10 +1,11 @@
-# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (updated 2026-10-24T00:22 UTC)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (updated 2026-10-24T00:29 UTC)
 
 ## Current status (current session)
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - `universe/last_scan.json`: `universe_n=275`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, `snapshot_id=mcap_snapshot_20261023_122828`, `scanned_at=2026-10-23T12:28:28.949476+00:00`
 - Baseline grid `results/20261019_135940_grid`: complete (18150/18150 cells, 275 symbols × 66 pairs). Pooled summary mean net PF 0.4987, 37 cells net PF > 1, 0 credible candidates.
-- Gate check (offline, confirmed 2026-10-24T00:28 UTC): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T00:28:45.446538+00:00`. Reason: bound not elapsed (~11h 59m remaining). No provider contact made. Wakeup/pending refresh remains until bound.
+- Gate check (offline, confirmed 2026-10-24T00:29 UTC): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T00:29:31.912510+00:00`. Reason: bound not elapsed (~11h 59m remaining). No provider contact made.
+- Wakeup scheduled: `wku_16b5042c8001mDKj4HjuEhwAlD` at 2026-10-24T12:29:00Z to resume automatically. If harness does not resume, run steps at/after bound.
 
 ## Your task (run at/after 2026-10-24T12:28:28.949476Z)
 **Do NOT** contact provider (CoinGecko/KuCoin) before that timestamp.
