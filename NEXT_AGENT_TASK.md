@@ -1,4 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T20:58:07.537636+00:00; gate eligible=False, bound NOT yet elapsed)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T20:58:40.867278+00:00; gate eligible=False, bound NOT yet elapsed)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - Offline gate re-verified 2026-10-24T20:58:07.537636+00:00: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~17h 32m remaining); no provider contact made. Wakeup `wku_16f90db84001XH9S8un72Tz3vW` scheduled at 2026-10-25T14:31:00Z to resume at the bound.
