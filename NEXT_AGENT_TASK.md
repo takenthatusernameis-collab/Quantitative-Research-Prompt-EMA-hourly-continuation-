@@ -1,8 +1,8 @@
-# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T02:07 UTC)
+# NEXT TASK — refresh bound 2026-10-24T12:28:28.949476Z (verified 2026-10-24T02:11 UTC)
 
 ## Current status (current session)
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline check (2026-10-24T02:07:14Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:07:14.714988+00:00`. Reason: bound not elapsed (~10h 21m remaining). No provider contact made.
+- Offline check (2026-10-24T02:11:00Z): `eligible: False`, bound `2026-10-24T12:28:28.949476+00:00`, now `2026-10-24T02:11:00.484543+00:00`. Reason: bound not elapsed (~10h 17m remaining). No provider contact made.
 - Wakeup scheduled: `wku_16b9183ce0017UAJnQiguyUidY` at 2026-10-24T12:29:00Z to resume automatically. If harness does not resume, run steps at/after bound.
 - Last scan: batch 28 (2026-10-23T12:28:28Z) found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to $3,441,774. Universe n=275, eligible_unseen_below_floor_count=0.
 
