@@ -1,22 +1,23 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:49:54+00:00)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T15:14:53+00:00)
 
-## Turn 2026-10-25T13:49:54+00:00 verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:49:54+00:00`). Nothing actionable until the bound elapses.
-- No provider contact made. Baseline grid unchanged: 275x66, 0 credible candidates (18150 completed cells).
-- Session prep: `git status --short` empty, `git diff --stat` empty.
-- Wakeup state: resume wakeup previously scheduled at `2026-10-25T14:29:21.500Z` (`wku_1734639b80012EHAn8yk1EMzzC`) carrying the full resume prompt. Do not create a duplicate. New session wakeup scheduled `wku_173728998001uDS9gBlyUgqKm2` due 2026-10-25T14:31:08.597Z; do not duplicate.
-- Universe state unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next bound `2026-10-25T14:30:39.449637+00:00`.
+## Turn 2026-10-25T15:14:53+00:00 (completed)
+- Gate was open at execution time; ran 20-page pass (only provider contact this cycle).
+- Snapshot: `universe/mcap_snapshot_20261025_151453.json` (2000 entries, pages 20/20, floor ~$3,338,115).
+- Universe expanded to N=275? No expansion applied (dry run). New snapshot recorded.
+- Eligible unseen below floor: 0. Expansion floor now ALPINE/USDT at $3,405,003.
+- `universe/last_scan.json` updated: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next eligible refresh `2026-10-26T15:14:53.192289+00:00`.
+- No candidates added to grid. Baseline grid unchanged (275x66, 0 credible candidates).
 
 ## Current state
-- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z)
-- Offline gate re-verified **2026-10-25T13:49:54+00:00**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T13:49:54+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
-- Nothing is actionable until the bound elapses; **no provider contact was made this turn**.
-- Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275x66, all processed, 0 blocked, 0 credible candidates.
-- Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending. `universe/mcap_rank.json` updated_at `2026-10-22T12:15:58.878331+00:00`. Last scan `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z), floor `CWEB/USDT` 3 388 825 USD, `eligible_unseen_below_floor_count = 0`. Next bound `2026-10-25T14:30:39.449637+00:00`.
+- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 30 done 2026-10-25T15:14:53Z)
+- Last scan: `universe/mcap_snapshot_20261025_151453.json` (2026-10-25T15:14:53.192289Z)
+- Coverage: 2000 entries down to rank 2000 (~$3,338,115), coverage_reaches_below_floor true.
+- Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), floor `ALPINE/USDT` $3,405,003. `eligible_unseen_below_floor_count = 0`.
+- Next bound: `2026-10-26T15:14:53.192289+00:00`.
+- Baseline grid `results/20261019_135940_grid`: 275x66, all processed, 0 blocked, 0 credible candidates.
 
-## Your task (run at/after 2026-10-25T14:30:39.449637+00:00)
-**Do NOT** contact CoinGecko/KuCoin before that timestamp. A resume wakeup (`wku_1734639b80012EHAn8yk1EMzzC`) is scheduled for `2026-10-25T14:29:21.500Z` to execute the pass automatically; if the session resumes before then, do not create a second wakeup and do not contact the provider before the bound.
+## Your task (run at/after 2026-10-26T15:14:53.192289+00:00)
+**Do NOT** contact CoinGecko/KuCoin before that timestamp.
 
 1. Verify eligibility offline:
    ```bash
@@ -42,7 +43,7 @@
 6. Update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and the next unprocessed symbol/pair batch (or "none").
 
 ## Next unprocessed symbol/pair batch
-- None. Awaiting new eligible names from the next 20-page pass at/after the bound `2026-10-25T14:30:39.449637+00:00`. A resume wakeup (`wku_1734639b80012EHAn8yk1EMzzC`) is scheduled for `2026-10-25T14:29:21.500Z` to execute the pass automatically; if the session resumes before then, do not create a second wakeup and do not contact the provider before the bound.
+- None. No eligible unseen names below floor found in 2026-10-25T15:14:53 pass (2000 entries down to ~$3.34M). Awaiting next pass at/after `2026-10-26T15:14:53.192289+00:00`.
 
 ## Constraints
 - No provider call before `2026-10-25T14:30:39.449637+00:00`.
