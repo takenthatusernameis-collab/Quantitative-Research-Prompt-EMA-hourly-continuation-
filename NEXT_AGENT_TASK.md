@@ -1,11 +1,12 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T05:13:55Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T05:15:14Z)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T05:11:07Z**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T05:13:55.398222+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T05:15:14Z**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T05:15:14.514515+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
   Nothing is actionable until the bound elapses; no provider contact was made.
-- Wakeup scheduled (system): `wku_1713d293b0011J1U3KwoxXpvYF` at `2026-10-25T14:31:00Z` to resume at/after bound.
+- Wakeup scheduled (system): `wku_1717c4c78001H2ghNCLydbeQe1` at `2026-10-25T14:31:00Z` to resume at/after bound.
+  (Prior wakeup `wku_1713d293b0011J1U3KwoxXpvYF` was no longer pending at re-verification; this one replaces it. Do not re-schedule a duplicate.)
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols x 66 pairs,
   `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked,
   `completed_cells=18150`. `summary.json` pooled: n_cells 18150, mean net PF 0.4987, median 0.5198,
@@ -51,4 +52,6 @@
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).
 - Do not stop the program on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is a pre-existing clock-relative bug — do not loosen the gate.
-- Wakeup `wku_1713d293b0011J1U3KwoxXpvYF` at `2026-10-25T14:31:00Z` to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_1717c4c78001H2ghNCLydbeQe1` at `2026-10-25T14:31:00Z` to resume this task at the bound; do not re-schedule a duplicate.
+
+(End of file - total 55 lines)
