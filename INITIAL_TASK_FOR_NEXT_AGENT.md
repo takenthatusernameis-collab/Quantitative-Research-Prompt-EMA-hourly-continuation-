@@ -1,6 +1,6 @@
 # Initial Task For Next Agent — Durable Handoff
 
-**Re-verified at:** 2026-10-25T21:49:37Z
+**Re-verified at:** 2026-10-25T22:18:50Z
 **Repo:** Quantitative-Research-Prompt-EMA-hourly-continuation-
 **Status:** AWAITING_NEW_ELIGIBLE_CANDIDATES (Batch 30 done 2026-10-25T15:14:53Z)
 **Next wakeup:** `wku_1750ab531001z8Nf0B1rXB9DwQ` due `2026-10-26T15:16:00.000Z`
@@ -331,4 +331,10 @@ Wait for gate to open (after `2026-10-26T15:14:53.192289+00:00`). Then:
 - Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-25T21:49:44.608868+00:00`).
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
 - Wakeup scheduled: `wku_1750ab531001z8Nf0B1rXB9DwQ`, due `2026-10-26T15:16:00.000Z` (resume at/after bound). (Prior wakeup `wku_174f0a35e001b3btkUTIUBS0bo` was not found in this session's pending list; re-created to guarantee the resume fires.)
+- `git status --short` empty, `git diff --stat` empty (only handoff edits).
+
+## Turn 2026-10-25T22:18:50Z (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-25T22:18:50.857216+00:00`).
+- No provider contact. `universe/last_scan.json` unchanged.
+- Wakeup scheduled: `wku_1752547620017HSsejlo9EZmOq`, due `2026-10-26T15:18:59.807Z`.
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
