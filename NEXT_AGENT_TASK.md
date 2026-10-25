@@ -1,11 +1,20 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T00:29:40.969540Z)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T00:31:00Z)
+
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified 2026-10-25T00:20:36Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed; no provider contact made. Wakeup `wku_17017e7a2001oqP6EMPbjp7N00` at 2026-10-25T14:31:00Z to resume at the bound.
-- Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols × 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked. `summary.json` pooled: mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
+- Offline gate re-verified **2026-10-25T00:30:57Z** by this session:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T00:30:57.977853+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+  No provider contact made. Bound is ~14 h away.
+- Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols × 66 pairs,
+  `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked.
+  `summary.json` pooled: mean net PF 0.4987, median 0.5198, best net PF 2.2274,
+  n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
 - Last scan (Batch 29): `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2000 entries, lowest covered $3,363,414). Floor `CWEB/USDT` $3,888,825. `eligible_unseen_below_floor_count = 0`. State set back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Next bound `2026-10-25T14:30:39.449637+00:00`.
-- Session work done: offline gate check returns `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', ...}` confirming the 24 h refresh bound has not elapsed. Provider contact prohibited until the bound passes (PROMPT.md §2.1.5).
+- Session work done: offline gate check re-run, confirming the 24 h refresh bound has not elapsed.
+  Provider contact prohibited until the bound passes (PROMPT.md §2.1.5). The prior session's wakeup
+  `wku_17017e7a2001oqP6EMPbjp7N00` was already consumed (no longer pending), so this session
+  scheduled a fresh wakeup at the same time.
 
 ## Your task (run at/after 2026-10-25T14:30:39.449637+00:00)
 **Do NOT** contact CoinGecko/KuCoin before that timestamp.
@@ -23,11 +32,18 @@
 
 3. Re-check `eligible_unseen_below_floor_count` against the new floor.
 
-4. **If candidates exist:** append descending market-cap names, log to `universe/mcap_expansion_log.md` (previous N → new N, rank range, source/date), fetch OHLCV via `scripts/fetch_kucoin.py`, run the full 66-pair EMA grid per new symbol with `scripts/run_grid.py --resume results/20261019_135940_grid`, then `scripts/aggregate_grid.py` and `scripts/candidate_check.py`. Never create a second writer on the baseline grid; never promote from a partial child grid.
+4. **If candidates exist:** append descending market-cap names, log to `universe/mcap_expansion_log.md`
+   (previous N → new N, rank range, source/date), fetch OHLCV via `scripts/fetch_kucoin.py`,
+   run the full 66-pair EMA grid per new symbol with `scripts/run_grid.py --resume results/20261019_135940_grid`,
+   then `scripts/aggregate_grid.py` and `scripts/candidate_check.py`. Never create a second writer on
+   the baseline grid; never promote from a partial child grid.
 
-5. **If no candidates exist:** record the pass in `universe/mcap_expansion_log.md` (snapshot_id, fetch time, pages, floor, exclusions), set `universe/last_scan.json` state back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`, and set the next bound to +24 h from the new scan time.
+5. **If no candidates exist:** record the pass in `universe/mcap_expansion_log.md`
+   (snapshot_id, fetch time, pages, floor, exclusions), set `universe/last_scan.json` state back to
+   `AWAITING_NEW_ELIGIBLE_CANDIDATES`, and set the next bound to +24 h from the new scan time.
 
-6. Update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and the next unprocessed symbol/pair batch (or "none").
+6. Update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and the
+   next unprocessed symbol/pair batch (or "none").
 
 ## Next unprocessed symbol/pair batch
 - None. Awaiting new eligible names from the next 20-page pass at/after the bound 2026-10-25T14:30:39.449637+00:00.
@@ -39,4 +55,4 @@
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).
 - Do not stop the program on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is a pre-existing clock-relative bug — do not loosen the gate.
-- Wakeup `wku_17017e7a2001oqP6EMPbjp7N00` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_17079c4dd001GC1I4QxOzRYHZc` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
