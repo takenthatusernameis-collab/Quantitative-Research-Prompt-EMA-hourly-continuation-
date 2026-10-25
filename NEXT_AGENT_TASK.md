@@ -1,4 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T10:38:10Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T10:38:46Z)
 
 ## Turn 2026-10-25T10:36:45Z verification (no provider contact)
 - Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T10:38:10.795203+00:00`). Nothing actionable until the bound elapses.
