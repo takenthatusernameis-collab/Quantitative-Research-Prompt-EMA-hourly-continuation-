@@ -3358,3 +3358,37 @@ No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)`
 
 ### Tests
 `PYTHONPATH=. python3 -m pytest tests/ -q` → **248 passed, 1 failed** (the pre-existing clock-relative bug named above; left untouched). Note: pytest, pandas and numpy were not installed in the base interpreter at the time of this run and were installed into the user site-packages to execute the suite; the code itself is unchanged.
+
+---
+
+## Offline gate re-verification (2026-10-25T05:58Z) — new session, handoff resumed
+
+No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)` →
+`{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T05:58:20.066069+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}` —
+~8 h 32 m remaining. Nothing is actionable until the bound elapses at 2026-10-25T14:30:39Z.
+
+**Session prep (verified this turn, all from the repository root):**
+- `git status --short` empty, `git diff --stat` empty — working tree clean.
+- All six scripts import OK: `scripts.refresh_gate`, `scripts.fetch_mcap_snapshot`,
+  `scripts.fetch_kucoin`, `scripts.run_grid`, `scripts.aggregate_grid`,
+  `scripts.candidate_check`.
+- Baseline grid re-verified an eighth time:
+  `results/20261019_135940_grid/progress.json` `completed_cells=18150`,
+  `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=True`, `next_cell=null`,
+  `stopped=False`, `stop_reason=None`, "blocked" substring count 0;
+  `summary.json` pooled mean net PF **0.4987**, median 0.5198, best_net_pf 2.2274,
+  n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
+- Universe unchanged at N = 275, floor `CWEB/USDT` $3 388 825,
+  `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`,
+  next eligible refresh **2026-10-25T14:30:39.449637+00:00**.
+
+**Wakeup.** The wakeup named in the handoff
+(`wku_17199840a001ji5pGaSVWz5lS2`) was **not** pending in this session's list
+(`cancel_wakeup list` returned nothing), so a fresh resume wakeup was scheduled at
+2026-10-25T14:31:00Z: **`wku_171a642f6001RI5Jn1UBVn9mcD`**. It carries the full
+resume prompt (offline gate check → one 20-page pass → band re-check → expand or
+record → update both handoffs). Only one pending wakeup exists for this session; do
+not re-schedule a duplicate.
+
+Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated with
+this verification and the new wakeup id.
