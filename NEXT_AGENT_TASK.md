@@ -1,19 +1,17 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T01:02:15Z)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T01:08:48Z)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T01:02:15Z** by this session:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:02:14.879635+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
-  Prior re-verifications at 2026-10-25T00:50:55Z, 00:55:22Z, 00:57:27Z all returned the same result. No provider contact made. Bound is ~13 h 28 m away.
+- Offline gate re-verified **2026-10-25T01:08:48Z**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:08:48.961431+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Prior verifications: 2026-10-25T01:02:15Z, 00:57:27Z, 00:55:22Z, 00:50:55Z all returned same. No provider contact made. Bound ~13h 22m away.
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols × 66 pairs,
   `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked.
   `summary.json` pooled: mean net PF 0.4987, median 0.5198, best net PF 2.2274,
   n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
 - Last scan (Batch 29): `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2000 entries, lowest covered $3,363,414). Floor `CWEB/USDT` $3,888,825. `eligible_unseen_below_floor_count = 0`. State set back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Next bound `2026-10-25T14:30:39.449637+00:00`.
-- Session work done: offline gate check re-run at 2026-10-25T01:02:15Z, confirming the 24 h refresh bound has not elapsed. Nothing actionable until the bound passes.
-  Provider contact prohibited until the bound passes (PROMPT.md §2.1.5). Wakeup `wku_1707e6a54001MXJfcTlE65DsVP`
-  scheduled at 2026-10-25T14:31:00Z to resume at the bound; do not re-schedule a duplicate.
+- Wakeup scheduled: `wku_1708f2979001zLgKzt7wkoHara` at `2026-10-25T14:31:00Z` to resume at/after bound. Do not re-schedule duplicate.
 
 ## Your task (run at/after 2026-10-25T14:30:39.449637+00:00)
 **Do NOT** contact CoinGecko/KuCoin before that timestamp.
@@ -31,18 +29,11 @@
 
 3. Re-check `eligible_unseen_below_floor_count` against the new floor.
 
-4. **If candidates exist:** append descending market-cap names, log to `universe/mcap_expansion_log.md`
-   (previous N → new N, rank range, source/date), fetch OHLCV via `scripts/fetch_kucoin.py`,
-   run the full 66-pair EMA grid per new symbol with `scripts/run_grid.py --resume results/20261019_135940_grid`,
-   then `scripts/aggregate_grid.py` and `scripts/candidate_check.py`. Never create a second writer on
-   the baseline grid; never promote from a partial child grid.
+4. **If candidates exist:** append descending market-cap names, log to `universe/mcap_expansion_log.md` (previous N → new N, rank range, source/date), fetch OHLCV via `scripts/fetch_kucoin.py`, run the full 66-pair EMA grid per new symbol with `scripts/run_grid.py --resume results/20261019_135940_grid`, then `scripts/aggregate_grid.py` and `scripts/candidate_check.py`. Never create a second writer on the baseline grid; never promote from a partial child grid.
 
-5. **If no candidates exist:** record the pass in `universe/mcap_expansion_log.md`
-   (snapshot_id, fetch time, pages, floor, exclusions), set `universe/last_scan.json` state back to
-   `AWAITING_NEW_ELIGIBLE_CANDIDATES`, and set the next bound to +24 h from the new scan time.
+5. **If no candidates exist:** record the pass in `universe/mcap_expansion_log.md` (snapshot_id, fetch time, pages, floor, exclusions), set `universe/last_scan.json` state back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`, and set the next bound to +24 h from the new scan time.
 
-6. Update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and the
-   next unprocessed symbol/pair batch (or "none").
+6. Update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and the next unprocessed symbol/pair batch (or "none").
 
 ## Next unprocessed symbol/pair batch
 - None. Awaiting new eligible names from the next 20-page pass at/after the bound 2026-10-25T14:30:39.449637+00:00.
