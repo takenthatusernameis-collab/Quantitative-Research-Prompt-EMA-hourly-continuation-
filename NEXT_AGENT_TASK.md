@@ -1,9 +1,9 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T01:45:51Z)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T01:51:48Z)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T01:45:51Z**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:45:51.440259+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T01:51:48Z**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:51:48.470238+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
 - Prior verifications: 2026-10-25T01:41:09Z, 01:40:34Z, 01:36:52Z, 01:08:48Z, 01:02:15Z, 00:57:27Z, 00:55:22Z, 00:50:55Z all returned same. No provider contact made. Bound ~12h 45m away.
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols × 66 pairs,
   `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked.
