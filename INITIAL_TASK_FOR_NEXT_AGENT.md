@@ -1,10 +1,10 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T04:03:38Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T04:06:11Z)
 
 ## Context
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to ~363414. Universe N=275 (BTC/USDT ... ALPINE/USDT).
-- Offline gate re-verified **2026-10-25T04:03:38Z**: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made.
+- Offline gate re-verified **2026-10-25T04:06:11Z**: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made.
 - Baseline grid `results/20261019_135940_grid` re-verified via `progress.json`: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked, `completed_cells=18150` (275x66). `summary.json` pooled: n_cells 18150 (275x66), mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, **0 credible candidates**.
-- Wakeup `wku_170fdf4d1001kk00mGKpvHFBCh` at `2026-10-25T14:31:00Z` to resume at the bound. Do not re-schedule a duplicate.
+- Wakeup `wku_1713d293b0011J1U3KwoxXpvYF` at `2026-10-25T14:31:00Z` to resume at the bound. (Prior wakeup `wku_170fdf4d1001kk00mGKpvHFBCh` was stale and removed; re-scheduled once.)
 - Session prep (verified this turn): all six scripts import OK; git clean.
 
 ## Required action (at/after bound)
@@ -44,4 +44,4 @@
 - Do not combine variables
 - Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
-- Wakeup `wku_170fdf4d1001kk00mGKpvHFBCh` at `2026-10-25T14:31:00Z` to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_1713d293b0011J1U3KwoxXpvYF` at `2026-10-25T14:31:00Z` to resume this task at the bound; do not re-schedule a duplicate.
