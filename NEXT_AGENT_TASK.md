@@ -1,12 +1,19 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T15:14:53+00:00)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T15:17:49+00:00)
 
-## Turn 2026-10-25T15:14:53+00:00 (completed)
-- Gate was open at execution time; ran 20-page pass (only provider contact this cycle).
-- Snapshot: `universe/mcap_snapshot_20261025_151453.json` (2000 entries, pages 20/20, floor ~$3,338,115).
-- Universe expanded to N=275? No expansion applied (dry run). New snapshot recorded.
-- Eligible unseen below floor: 0. Expansion floor now ALPINE/USDT at $3,405,003.
-- `universe/last_scan.json` updated: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next eligible refresh `2026-10-26T15:14:53.192289+00:00`.
-- No candidates added to grid. Baseline grid unchanged (275x66, 0 credible candidates).
+## Turn 2026-10-25T15:17:49+00:00 (completed — offline gate check only, provider bound not yet open)
+- Offline gate check ran against `universe/last_scan.json`:
+  `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed
+  (`now` 2026-10-25T15:17:49.774928+00:00).
+- **No provider contact.** Per the handoff step 1: `eligible: False` → stop and report the bound; nothing is actionable.
+- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, floor `ALPINE/USDT` $3,405,003,
+  `eligible_unseen_below_floor_count = 0`, N = 275, next bound `2026-10-26T15:14:53.192289+00:00`.
+- Snapshot: `universe/mcap_snapshot_20261025_151453.json` (2000 entries, pages 20/20, floor ~$3,338,115),
+  coverage_reaches_below_floor true. No expansion applied.
+- Baseline grid `results/20261019_135940_grid` unchanged: 275x66, 0 blocked, 0 credible candidates.
+- Test suite: `python3 -m pytest tests/ -q` → **248 passed, 1 failed** — the single failure is the pre-existing
+  clock-relative bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`,
+  left untouched per the handoff constraint.
+- Session prep: `git status --short` empty, `git diff --stat` empty.
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 30 done 2026-10-25T15:14:53Z)
@@ -46,7 +53,7 @@
 - None. No eligible unseen names below floor found in 2026-10-25T15:14:53 pass (2000 entries down to ~$3.34M). Awaiting next pass at/after `2026-10-26T15:14:53.192289+00:00`.
 
 ## Constraints
-- No provider call before `2026-10-25T14:30:39.449637+00:00`.
+- No provider call before `2026-10-26T15:14:53.192289+00:00` (the 24 h refresh bound).
 - No second writer on `results/20261019_135940_grid`; no promotion from a partial child grid.
 - No change to registered costs, folds, entry/exit semantics, or §3.4 gates.
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).
