@@ -1,4 +1,12 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T12:59:49.473273Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T13:04:15Z)
+
+## Turn 2026-10-25T13:04:15Z verification (no provider contact)
+- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:04:15.983389+00:00`). Nothing actionable.
+- Baseline grid `results/20261019_135940_grid/progress.json` re-read directly: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275x66), 0 blocked. `summary.json.pooled`: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14676563, mean net PF 0.49869497744821545, median_net_pf 0.5197980508009844, best_net_pf 2.227366213741068, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, **0 credible candidates**.
+- Session prep: `git status --short` empty, `git diff --stat` empty.
+- Wakeup state: no pending wakeups at the start of this turn; a single resume wakeup was scheduled at 2026-10-25T14:31:00.000Z (`wku_1732c01a90019wGSqrFeF9efkD`) carrying the full resume prompt. Do not create a duplicate.
+- Tests: `python -m pytest tests/ -q` -> 248 passed, 1 failed — the pre-existing clock-relative bug named in the handoff, `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; left untouched.
+- `universe/last_scan.json` re-read directly: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261024_143039`, scanned_at `2026-10-24T14:30:39.449637+00:00`, coverage 20/20 pages, 2000 entries, lowest_market_cap_usd 3363414, floor `CWEB/USDT` 3388825, `eligible_unseen_below_floor_count = 0`, `next_eligible_refresh_at` `2026-10-25T14:30:39.449637+00:00` — authoritative and unchanged.
 
 ## Turn 2026-10-25T12:59:49Z verification (no provider contact)
 - Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T12:59:49.473273+00:00`). Nothing actionable.
@@ -13,8 +21,9 @@
 - **No provider contact made this turn.** Nothing is actionable until the bound elapses.
 - Baseline grid `results/20261019_135940_grid` has 0 credible candidates as above.
 
-## Required action (at/after bound)
+## Required action (at/after bound 2026-10-25T14:30:39.449637+00:00)
 **Do NOT** contact CoinGecko/KuCoin before 2026-10-25T14:30:39.449637+00:00.
+A resume wakeup (`wku_1732c01a90019wGSqrFeF9efkD`) is scheduled for 2026-10-25T14:31:00.000Z to execute this automatically; if the session resumes before then, do not create a second wakeup and do not contact the provider before the bound.
 
 1. **Verify eligibility offline first:**
    ```bash
@@ -41,7 +50,7 @@
 6. **Update handoffs:** update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with new bound and next unprocessed symbol/pair batch (or "none").
 
 ## Next unprocessed symbol/pair batch
-- None. No candidates exist currently; awaiting new eligible names from next 20-page pass at/after bound 2026-10-25T14:30:39.449637+00:00.
+- None. No candidates exist currently; awaiting new eligible names from next 20-page pass at/after bound 2026-10-25T14:30:39.449637+00:00. The resume wakeup `wku_1732c01a90019wGSqrFeF9efkD` at 2026-10-25T14:31:00.000Z executes the pass automatically; do not create a second wakeup before the bound.
 
 ## Constraints
 - No provider contact before 2026-10-25T14:30:39.449637+00:00
