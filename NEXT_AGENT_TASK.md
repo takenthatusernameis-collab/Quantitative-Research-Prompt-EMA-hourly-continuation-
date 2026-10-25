@@ -1,4 +1,10 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:04:15Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:13:35Z)
+
+## Turn 2026-10-25T13:13:35Z verification (no provider contact)
+- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:13:35.557525+00:00). Nothing actionable until bound elapses.
+- A single resume wakeup scheduled at 2026-10-25T14:35:56.965Z (`wku_17335ef6c001aaYCGg9j7g87qa`); do not create a duplicate.
+- Baseline grid unchanged: 275x66, 0 credible candidates.
+- Session prep: git status clean.
 
 ## Turn 2026-10-25T13:04:15Z verification (no provider contact)
 - Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:04:15.983389+00:00`). Nothing actionable until the bound elapses.
