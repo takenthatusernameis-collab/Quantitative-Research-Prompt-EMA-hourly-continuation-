@@ -1,16 +1,22 @@
 # Market-Cap Universe Expansion Log
 
-## Gate re-check (2026-10-25T02:55:00Z) — no ranking pass made
+## Gate re-check (2026-10-25T05:46:55Z) — no ranking pass made
 - `scripts/refresh_gate.gate_status` re-run against `universe/last_scan.json`:
   `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed.
 - **No provider contact.** No snapshot written. `last_scan.json` unchanged
   (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, floor `CWEB/USDT` 3 388 825 USD,
   `eligible_unseen_below_floor_count = 0`, N = 275).
-- Resume wakeup `wku_170fdf4d1001kk00mGKpvHFBCh` scheduled for
-  2026-10-25T14:31:00Z. Prior wakeup `wku_170cbe6bf0013uJ3t23NgENTkm` had expired.
+- Resume wakeup `wku_17199840a001ji5pGaSVWz5lS2` scheduled for
+  2026-10-25T14:31:00Z. Prior wakeups `wku_171833856001G9qB72WC26KuJD` and
+  `wku_1717c4c78001H2ghNCLydbeQe1` were not pending in this session; this one
+  replaces them. Do not re-schedule a duplicate.
 - Baseline grid `results/20261019_135940_grid` re-verified: `all_symbols_processed=true`,
   `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150`
-  (275 x 66), 0 blocked. No second writer.
+  (275 x 66), 0 blocked. `summary.json` pooled: mean net PF 0.4987, median 0.5198,
+  best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, **0 credible candidates**.
+- Session prep: all six scripts import OK; `git status --short` empty,
+  `git diff --stat` empty. Handoffs `NEXT_AGENT_TASK.md` and
+  `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with the new wakeup id.
 
 Every universe change for the EMA hourly-continuation program, in order.
 Required by PROMPT.md §2.1 (rule 6): *previous N -> new N, rank range added,
