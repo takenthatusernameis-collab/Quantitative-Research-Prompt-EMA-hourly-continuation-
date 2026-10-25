@@ -1,10 +1,10 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T17:48:39.460897+00:00)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T18:39:28.538436+00:00)
 
 ## Initial Task Message (read first)
 
 **You are the next agent in the EMA hourly continuation research loop.** Your job is a single gated cycle of market-cap universe expansion. Everything you need is below; do not improvise beyond it.
 
-**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor.
+**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed as of 2026-10-25T18:39:28+00:00.
 
 **Your task, in order:**
 
@@ -12,7 +12,7 @@
    ```bash
    PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import json; from pathlib import Path; print(gate_status(json.loads(Path('universe/last_scan.json').read_text())))"
    ```
-   Must return `eligible: True`. If `False`, stop and report the bound — nothing is actionable. (This is exactly what the previous turn did; the gate was still closed as of 2026-10-25T15:48:49Z.)
+   Must return `eligible: True`. If `False`, stop and report the bound — nothing is actionable.
 
 2. **If eligible, run exactly one 20-page ranking pass** (the only provider contact this cycle):
    ```bash
@@ -234,4 +234,10 @@
 - Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-25T18:38:08.733391+00:00`).
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
 - Wakeup `wku_17401053a001UZJPqBrPh4NcAE` remains scheduled due `2026-10-26T15:16:00.000Z` (resume at/after bound).
+- `git status --short` empty, `git diff --stat` empty (only handoff edits).
+
+## Turn 2026-10-25T18:39:28+00:00 (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-25T18:39:28.538436+00:00`).
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Wakeup re-scheduled: `wku_1745c9465001AWClIRzsLrNiz9`, due `2026-10-26T15:16:00.000Z`, prompt resumes the cycle at/after the bound. (Previous wakeup `wku_17401053a001UZJPqBrPh4NcAE` was not found in this session's pending list; re-created to guarantee the resume fires.)
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
