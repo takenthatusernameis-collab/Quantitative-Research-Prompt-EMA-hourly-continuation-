@@ -1,11 +1,11 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (verified 2026-10-25T01:51:48Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (verified 2026-10-25T01:58:00Z)
 
 ## Context
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to ,363,414. Universe N=275 (BTC/USDT ... ALPINE/USDT).
-- Offline gate re-verified **2026-10-25T01:51:48Z**: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made. Gate check: `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:51:48.470238+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T01:57:57Z**: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made. Gate check: `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:57:57.780236+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
 - Baseline grid `results/20261019_135940_grid` re-verified via `progress.json`: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked. `summary.json` pooled: n_cells 18150 (275×66), mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, **0 credible candidates**.
-- Wakeup `wku_170c4c0e10013052W0gyaY4qMd` at `2026-10-25T14:31:00Z` to resume at the bound. No duplicate scheduled.
-- Session 2026-10-25T01:45Z prep: installed missing `pandas` dependency (pip, no-cost) so the full pipeline imports cleanly; verified all scripts (`refresh_gate`, `fetch_mcap_snapshot`, `fetch_kucoin`, `run_grid`, `aggregate_grid`, `candidate_check`) import OK; git clean, no second writer on baseline grid.
+- Wakeup `wku_170c7b3c6001H7j7fXftX989zT` at `2026-10-25T14:31:00Z` to resume at the bound. NOTE: the prior session's wakeup `wku_170c4c0e10013052W0gyaY4qMd` was NOT present in this session (`cancel_wakeup list` returned "No pending wakeups"), so a replacement wakeup was scheduled. Only one wakeup is now pending.
+- Session 2026-10-25T01:58Z prep: verified all scripts (`refresh_gate`, `fetch_mcap_snapshot`, `fetch_kucoin`, `run_grid`, `aggregate_grid`, `candidate_check`) import OK; git clean, no second writer on baseline grid.
 
 ## Required action (at/after bound)
 **Do NOT** contact CoinGecko/KuCoin before 2026-10-25T14:30:39.449637+00:00.
@@ -40,4 +40,6 @@
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
-- Wakeup `wku_170c4c0e10013052W0gyaY4qMd` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_170c7b3c6001H7j7fXftX989zT` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
+
+(End of file - total 44 lines)
