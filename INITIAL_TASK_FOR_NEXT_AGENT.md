@@ -1,14 +1,13 @@
-# NEXT TASK — refresh bound 2026-10-25T14:30:39.449637+00:00 (verified 2026-10-24T23:35:28Z, gate eligible=False, bound not yet elapsed)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (verified 2026-10-25T00:09:38Z)
 
-## Initial task message for the next agent
+## Context
+- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to $3,363,414. Universe N=275 (BTC/USDT ... ALPINE/USDT).
+- Offline gate re-verified 2026-10-25T00:09:38Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~14h 21m remaining). No provider contact made.
+- Wakeup `wku_17017e7a2001oqP6EMPbjp7N00` at 2026-10-25T14:31:00Z to resume at the bound.
+- Baseline grid `results/20261019_135940_grid`: all 275×66 processed, 0 blocked, pooled mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, **0 credible candidates**.
 
-Offline gate re-verified 2026-10-24T23:35:28Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~16h -2m remaining); no provider contact made. Wakeup `wku_17017e7a2001oqP6EMPbjp7N00` at 2026-10-25T14:31:00Z to resume at the bound.
-
-The program is in `AWAITING_NEW_ELIGIBLE_CANDIDATES` after Batch 29 (2026-10-24T14:30:39Z pass found 0 eligible unseen names below the floor; 2000-entry CoinGecko ranking band exhausted down to $3,363,414). Universe n=275. The 24h refresh bound expires at 2026-10-25T14:30:39.449637+00:00. **Do not** contact CoinGecko/KuCoin before that timestamp.
-
-Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols × 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked. `summary.json` pooled: mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
-
-## Steps
+## Required action (at/after bound)
+**Do NOT** contact CoinGecko/KuCoin before 2026-10-25T14:30:39.449637+00:00.
 
 1. **Verify eligibility offline first:**
    ```bash
@@ -31,7 +30,7 @@ Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 
 6. **Update handoffs:** after completing (or determining no-candidates), update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with new bound and next unprocessed symbol/pair batch (or "none").
 
 ## Next unprocessed symbol/pair batch
-- None. No candidates exist; awaiting new eligible names from next 20-page pass at/after bound 2026-10-25T14:30:39.449637+00:00.
+- None. No candidates exist currently; awaiting new eligible names from next 20-page pass at/after bound 2026-10-25T14:30:39.449637+00:00.
 
 ## Constraints
 - No provider call before 2026-10-25T14:30:39.449637+00:00

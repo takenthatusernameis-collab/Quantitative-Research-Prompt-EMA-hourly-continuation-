@@ -1,7 +1,7 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-24T23:35:28Z; gate eligible=False, bound NOT yet elapsed)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T00:09:38Z; gate eligible=False, bound NOT yet elapsed)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified 2026-10-24T23:35:28Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~16h -2m remaining); no provider contact made. Wakeup `wku_17017e7a2001oqP6EMPbjp7N00` at 2026-10-25T14:31:00Z to resume at the bound.
+- Offline gate re-verified 2026-10-25T00:09:38Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (~14h 21m remaining); no provider contact made. Wakeup `wku_17017e7a2001oqP6EMPbjp7N00` at 2026-10-25T14:31:00Z to resume at the bound.
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols × 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked. `summary.json` pooled: mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
 - Last scan (Batch 29): `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2000 entries, lowest covered $3,363,414). Floor `CWEB/USDT` $3,888,825. `eligible_unseen_below_floor_count = 0`. State set back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Next bound `2026-10-25T14:30:39.449637+00:00`.
