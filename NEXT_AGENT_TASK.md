@@ -1,11 +1,10 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T07:01:00Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T07:38:00Z)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T06:57:27Z**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T06:57:27.407660+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T07:38:00Z**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T07:38:00.183352+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
   Nothing is actionable until the bound elapses; no provider contact was made this turn.
 - Wakeup scheduled: `wku_171e045d0001wUVFWfmtx5RXOc` at `2026-10-25T14:31:00Z` to resume at/after bound. Do not re-schedule a duplicate.
-  (Prior wakeups `wku_171d9da0a001shs7NEML4KUili`, `wku_171d640ba001oupP5v39eC0Q3X`, `wku_171d458c6001iS2dA6Bhgxmg4k`, `wku_171cfeb6e001AHN0hBIgaT4lcY` and `wku_171a870c7001rVIqCwJG2KU7SJ` were not pending in this session; this one replaces them.)
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols x 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked, `completed_cells=18150`. `summary.json` pooled: n_cells 18150, mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Universe: **N = 275** symbols (BTC/USDT ... CWEB/USDT), ranked strictly market-cap descending, append-only.
 - Last scan (Batch 29): `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2000 entries). Floor `CWEB/USDT` ~3388825. `eligible_unseen_below_floor_count = 0`. State set back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Next bound `2026-10-25T14:30:39.449637+00:00`.
@@ -49,5 +48,3 @@
 - Do not stop the program on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is a pre-existing clock-relative bug — do not loosen the gate.
 - Wakeup `wku_171e045d0001wUVFWfmtx5RXOc` at `2026-10-25T14:31:00Z` to resume this task at the bound; do not re-schedule a duplicate.
-
-(End of file - total 52 lines)
