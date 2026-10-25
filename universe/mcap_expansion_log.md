@@ -1,5 +1,28 @@
 # Market-Cap Universe Expansion Log
 
+## Gate re-check (2026-10-25T11:35:59Z) — no ranking pass made
+- `scripts/refresh_gate.gate_status` re-run against `universe/last_scan.json`:
+  `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed
+  (`now` 2026-10-25T11:35:59.703399+00:00`).
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged
+  (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, floor `CWEB/USDT` 3 388 825 USD,
+  `eligible_unseen_below_floor_count = 0`, N = 275).
+- Baseline grid `results/20261019_135940_grid` re-verified directly:
+  `progress.json` -> `all_symbols_processed=true`, `next_cell=null`,
+  `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275 x 66),
+  0 blocked. `summary.json.pooled` -> n_cells 18150, n_symbols 275, n_pairs 66,
+  total_trades 14 676 563, mean net PF 0.4987, median_net_pf 0.5198, best net PF 2.2274,
+  n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123,
+  **0 credible candidates**.
+- Session prep (verified this turn): `git status --short` empty, `git diff --stat`
+  empty.
+- Resume wakeup `wku_172d92059001F3NkzEZdJr6IL4` pending at
+  2026-10-25T14:31:00Z; do **not** re-schedule a duplicate.
+- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with
+  this verification.
+
+---
+
 ## Gate re-check (2026-10-25T10:58:11Z) — no ranking pass made
 - `scripts/refresh_gate.gate_status` re-run against `universe/last_scan.json`:
   `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed
