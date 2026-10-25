@@ -1,50 +1,9 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T15:37:44+00:00)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T15:42:37+00:00)
 
-## Turn 2026-10-25T15:41:56.068+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:41:56.068+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
-
-
-## Turn 2026-10-25T15:37:44+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:37:44.001921+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
-
-## Turn 2026-10-25T15:29:12+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:29:12.712181+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
-
-## Turn 2026-10-25T15:25:15+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:25:15.720175+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
-
-
-## Turn 2026-10-25T15:17:49+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check ran against `universe/last_scan.json`:
-  `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed
-  (`now` 2026-10-25T15:17:49.774928+00:00).
-- **No provider contact.** Per the handoff step 1: `eligible: False` → stop and report the bound; nothing is actionable.
-- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, floor `ALPINE/USDT` $3,405,003,
-  `eligible_unseen_below_floor_count = 0`, N = 275, next bound `2026-10-26T15:14:53.192289+00:00`.
-- Snapshot: `universe/mcap_snapshot_20261025_151453.json` (2000 entries, pages 20/20, floor ~$3,338,115),
-  coverage_reaches_below_floor true. No expansion applied.
-- Baseline grid `results/20261019_135940_grid` unchanged: 275x66, 0 blocked, 0 credible candidates.
-- Test suite: `python3 -m pytest tests/ -q` → **248 passed, 1 failed** — the single failure is the pre-existing
-  clock-relative bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`,
-  left untouched per the handoff constraint.
-- Session prep: `git status --short` empty, `git diff --stat` empty.
-
-## Turn 2026-10-25T15:30:40+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:30:49.716940+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
-
-## Turn 2026-10-25T15:34:09+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:34:40.770951+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
+## Turn 2026-10-25T15:42:37+00:00 (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:42:37.568355+00:00`).
+- No provider contact. `universe/last_scan.json` unchanged.
+- Tests: 248 passed, 1 failed (pre-existing clock bug `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
 - `git status --short` empty, `git diff --stat` empty.
 
 ## Current state

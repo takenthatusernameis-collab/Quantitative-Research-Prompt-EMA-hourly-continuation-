@@ -1,90 +1,40 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T15:37:44+00:00)
+# Initial Task For Next Agent — Durable Handoff
 
-## Turn 2026-10-25T15:41:56.068+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:41:56.068+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
+**Re-verified at:** 2026-10-25T15:42:37+00:00
+**Repo:** Quantitative-Research-Prompt-EMA-hourly-continuation-
+**Status:** AWAITING_NEW_ELIGIBLE_CANDIDATES (Batch 30 done 2026-10-25T15:14:53Z)
 
+## State summary
+- Last scan: `universe/mcap_snapshot_20261025_151453.json` (2026-10-25T15:14:53.192289Z)
+- Coverage: 2000 entries, rank 2000 ~ $3,338,115; coverage_reaches_below_floor = true
+- Universe: N=275 (BTC/USDT ... ALPINE/USDT), floor ALPINE/USDT $3,405,003
+- Eligible unseen below floor: 0
+- Next refresh bound: `2026-10-26T15:14:53.192289+00:00`
+- Baseline grid: `results/20261019_135940_grid` — 275x66, all processed, 0 blocked, 0 credible candidates
+- Tests: 248 passed, 1 failed (pre-existing `test_refresh_gate.py` clock bug)
 
-## Turn 2026-10-25T15:37:44+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:37:44.001921+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
+## Exact task to run
+Wait for gate to open (after `2026-10-26T15:14:53.192289+00:00`). Then:
 
-## Turn 2026-10-25T15:29:12+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:29:12.712181+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
+1. Check gate: `PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import json; from pathlib import Path; print(gate_status(json.loads(Path('universe/last_scan.json').read_text())))"` → must be `eligible: True`. If False, stop and report bound.
+2. Run exactly one 20-page pass: `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20` (only provider contact this cycle).
+3. Check `eligible_unseen_below_floor_count`.
+4. If candidates: expand universe, fetch OHLCV via `scripts/fetch_kucoin.py`, run grid with `--mcap universe/mcap_rank.json --n <NEW_N> --fixture-base data/fixtures --resume results/20261019_135940_grid`. Then aggregate/candidate check on the same grid. Do **not** create a second grid writer.
+5. If none: log pass to `universe/mcap_expansion_log.md`, set state to `AWAITING_NEW_ELIGIBLE_CANDIDATES`, set next bound to +24h from new scan time.
+6. Update `NEXT_AGENT_TASK.md` and this file.
 
-## Turn 2026-10-25T15:25:15+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:25:15.720175+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
+## Hard constraints
+- No provider call before bound.
+- No second writer on baseline grid; no partial-grid promotion.
+- No changes to costs/folds/entry-exit/gates.
+- Do not combine variables.
+- Do not stop on failures; expand down market cap per PROMPT.
+- Ignore pre-existing clock bug in `test_refresh_gate.py`.
 
-
-## Turn 2026-10-25T15:17:49+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check ran against `universe/last_scan.json`:
-  `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed
-  (`now` 2026-10-25T15:17:49.774928+00:00).
-- **No provider contact.** Per the required action step 1: `eligible: False` → stop and report bound; nothing actionable.
-- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, floor `ALPINE/USDT` $3,405,003,
-  `eligible_unseen_below_floor_count = 0`, N = 275, next eligible refresh `2026-10-26T15:14:53.192289+00:00`.
-- Snapshot: `universe/mcap_snapshot_20261025_151453.json` (2000 entries, pages 20/20, lowest covered rank 2000 ~$3,338,115).
-- Coverage reaches below floor true; floor now `ALPINE/USDT` $3,405,003.
-- **Eligible unseen below floor: 0** (no candidates). Dry run only — no universe expansion applied, no grid runs.
-- Baseline grid `results/20261019_135940_grid` unchanged: 275x66, 0 credible candidates.
-- Test suite: `python3 -m pytest tests/ -q` → **248 passed, 1 failed** — the single failure is the pre-existing clock-relative bug named in the constraints, left untouched.
-- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty.
-
-## Turn 2026-10-25T15:30:40+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:30:49.716940+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
-
-## Turn 2026-10-25T15:34:09+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T15:34:40.770951+00:00).
-- No provider contact. `universe/last_scan.json` unchanged. Tests: 248 passed, 1 failed (pre-existing clock bug).
-- `git status --short` empty, `git diff --stat` empty.
-
-## Context
-- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 30 done 2026-10-25T15:14:53Z). 2000-entry band exhausted down to ~3.34M; no eligible unseen names below current floor. Universe N=275.
-- Next bound: `2026-10-26T15:14:53.192289+00:00`.
-- Baseline grid has 0 credible candidates (275x66, 18150 completed cells, 0 blocked).
-
-## Required action (at/after bound 2026-10-26T15:14:53.192289+00:00)
-**Do NOT** contact CoinGecko/KuCoin before `2026-10-26T15:14:53.192289+00:00`.
-
-1. **Verify eligibility offline first:**
-   ```bash
-   PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import json; from pathlib import Path; print(gate_status(json.loads(Path('universe/last_scan.json').read_text())))"
-   ```
-   Must return `eligible: True`. If `False`, stop and report bound; nothing actionable.
-
-2. **Run exactly one 20-page market-cap ranking pass** (the only provider contact this cycle):
-   ```bash
-   PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20
-   ```
-   Freezes snapshot for 24h and writes new bound to `universe/last_scan.json`.
-
-3. **Re-check band below current floor** for `eligible_unseen_below_floor_count`.
-
-4. **If candidates exist:** expand per PROMPT.md §2.1 — append descending market-cap candidates, log to `universe/mcap_expansion_log.md` with source/date, fetch OHLCV via `scripts/fetch_kucoin.py`, run full 66-pair EMA grid on each new symbol with:
-   ```bash
-   PYTHONPATH=. python3 scripts/run_grid.py --mcap universe/mcap_rank.json --n <NEW_TOTAL_N> --fixture-base data/fixtures --resume results/20261019_135940_grid
-   ```
-   Then `scripts/aggregate_grid.py --run results/20261019_135940_grid` and `scripts/candidate_check.py --run results/20261019_135940_grid`. Never create second writer on baseline grid; never promote from partial child grid.
-
-5. **If no candidates exist:** record pass in `universe/mcap_expansion_log.md` (snapshot_id, fetch time, pages, floor, exclusions), set `universe/last_scan.json` state to `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next bound becomes +24h from new scan time.
-
-6. **Update handoffs:** update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with new bound and next unprocessed symbol/pair batch (or "none").
-
-## Next unprocessed symbol/pair batch
-- None. No candidates in 2026-10-25T15:14:53 pass; awaiting new eligible names from next pass at/after `2026-10-26T15:14:53.192289+00:00`.
-
-## Constraints
-- No provider contact before `2026-10-26T15:14:53.192289+00:00`
-- No second writer on `results/20261019_135940_grid`; no promotion from partial child grid
-- No change to registered costs, folds, entry/exit semantics, or §3.4 gates
-- Do not combine variables
-- Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
-- `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
+## Evidence to report
+- Gate status before/after
+- Snapshot path/pages/floor/N and eligible count
+- If expanded: old->new N, ranks, log entry
+- If not: log entry + new bound
+- Grid/aggregate/candidate outputs paths and any blocked/credible counts
+- Tests after changes (or confirm unchanged if none)
