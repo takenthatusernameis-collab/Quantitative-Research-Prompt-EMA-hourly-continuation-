@@ -4,7 +4,7 @@
 - Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:49:54+00:00`). Nothing actionable until the bound elapses.
 - No provider contact made. Baseline grid unchanged: 275x66, 0 credible candidates (18150 completed cells).
 - Session prep: `git status --short` empty, `git diff --stat` empty.
-- Wakeup state: resume wakeup previously scheduled at `2026-10-25T14:29:21.500Z` (`wku_1734639b80012EHAn8yk1EMzzC`) carrying the full resume prompt. Do not create a duplicate.
+- Wakeup state: resume wakeup previously scheduled at `2026-10-25T14:29:21.500Z` (`wku_1734639b80012EHAn8yk1EMzzC`) carrying the full resume prompt. Do not create a duplicate. New session wakeup scheduled `wku_173728998001uDS9gBlyUgqKm2` due 2026-10-25T14:31:08.597Z; do not duplicate.
 - Universe state unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next bound `2026-10-25T14:30:39.449637+00:00`.
 
 ## Current state
