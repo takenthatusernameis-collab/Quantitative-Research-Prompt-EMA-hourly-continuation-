@@ -1,9 +1,9 @@
 # Initial Task For Next Agent — Durable Handoff
 
-**Re-verified at:** 2026-10-25T16:25:19+00:00
+**Re-verified at:** 2026-10-25T16:30:35+00:00
 **Repo:** Quantitative-Research-Prompt-EMA-hourly-continuation-
 **Status:** AWAITING_NEW_ELIGIBLE_CANDIDATES (Batch 30 done 2026-10-25T15:14:53Z)
-**Next wakeup:** `wku_173e1dfe9001G3mFcVuYZMZY1M` due `2026-10-26T15:16:00.000Z`
+**Next wakeup:** `wku_173e6c1f4001aoV3aEMfM31ROg` due `2026-10-26T15:16:00.000Z`
 
 ## Initial Task Message (read first)
 
@@ -56,4 +56,11 @@ Wait for gate to open (after `2026-10-26T15:14:53.192289+00:00`). Then:
 - Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T16:25:19.444603+00:00`).
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
 - Wakeup scheduled: `wku_173e1dfe9001G3mFcVuYZMZY1M`, due `2026-10-26T15:16:00.000Z`, prompt resumes the cycle at/after the bound.
+- `git status --short` empty, `git diff --stat` empty (only handoff edits).
+
+## Turn 2026-10-25T16:30:35+00:00 (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T16:30:34.830305+00:00`).
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Tests: 248 passed, 1 failed (pre-existing clock bug `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
+- Wakeup re-scheduled: `wku_173e6c1f4001aoV3aEMfM31ROg`, due `2026-10-26T15:16:00.000Z`, prompt resumes the cycle at/after the bound. (Previous wakeup `wku_173e1dfe9001G3mFcVuYZMZY1M` was not found in this session's pending list; re-created to guarantee the resume fires.)
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
