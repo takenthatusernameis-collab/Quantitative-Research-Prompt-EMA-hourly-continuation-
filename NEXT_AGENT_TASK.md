@@ -1,60 +1,16 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:29:05Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:33:08Z)
 
-## Turn 2026-10-25T13:29:05Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:29:06.487668+00:00`). Nothing actionable until the bound elapses.
+## Turn 2026-10-25T13:33:08Z verification (no provider contact)
+- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:33:08.227174+00:00`). Nothing actionable until the bound elapses.
 - No provider contact made. Baseline grid unchanged: 275x66, 0 credible candidates.
 - Session prep: `git status --short` empty, `git diff --stat` empty.
-- Wakeup state: prior resume wakeup `wku_1732c01a90019wGSqrFeF9efkD` no longer pending (fired/resolved). New resume wakeup scheduled at 2026-10-25T14:29:21.500Z (`wku_17340615f001QnXQz8RUoU0tqd`) carrying the full resume prompt. Do not create a duplicate.
+- Wakeup state: no pending wakeups for this session at the start of this turn. New resume wakeup scheduled at 2026-10-25T14:29:21.500Z (`wku_1734639b80012EHAn8yk1EMzzC`) carrying the full resume prompt. Do not create a duplicate.
 - Universe state unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next bound 2026-10-25T14:30:39.449637+00:00.
-
-## Turn 2026-10-25T13:26:05Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:26:05.923187+00:00). Nothing actionable until the bound elapses.
-- No provider contact made. Baseline grid unchanged: 275x66, 0 credible candidates.
-- Git status clean. Single pre-existing test failure unchanged (pytest unavailable in this env).
-- Resume wakeup `wku_1732c01a90019wGSqrFeF9efkD` scheduled for 2026-10-25T14:31:00.000Z; do not duplicate.
-- Universe state unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next bound 2026-10-25T14:30:39.449637+00:00.
-
-## Turn 2026-10-25T13:22:17Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:22:28.076735+00:00). Nothing actionable until the bound elapses.
-- No provider contact made. Baseline grid unchanged: 275x66, 0 credible candidates.
-- Git status clean. Single pre-existing test failure unchanged (pytest unavailable in this env).
-- Resume wakeup `wku_1732c01a90019wGSqrFeF9efkD` scheduled for 2026-10-25T14:31:00.000Z; do not duplicate.
-- Universe state unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next bound 2026-10-25T14:30:39.449637+00:00.
-
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:21:44Z)
-
-## Turn 2026-10-25T13:21:44Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:21:44.689556+00:00). Nothing actionable until the bound elapses.
-- No provider contact made. Baseline grid unchanged: 275x66, 0 credible candidates.
-- Git status clean. Single pre-existing test failure unchanged.
-- Resume wakeup `wku_1732c01a90019wGSqrFeF9efkD` scheduled for 2026-10-25T14:31:00.000Z; do not duplicate.
-## Turn 2026-10-25T13:13:35Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:13:35.557525+00:00). Nothing actionable until bound elapses.
-- A single resume wakeup scheduled at 2026-10-25T14:35:56.965Z (`wku_17335ef6c001aaYCGg9j7g87qa`); do not create a duplicate.
-- Baseline grid unchanged: 275x66, 0 credible candidates.
-- Session prep: git status clean.
-
-## Turn 2026-10-25T13:04:15Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:04:15.983389+00:00`). Nothing actionable until the bound elapses.
-- Baseline grid re-verified directly via `results/20261019_135940_grid/progress.json`: 275 symbols x 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150`. `summary.json.pooled`: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14676563, mean net PF 0.49869497744821545, median_net_pf 0.5197980508009844, best net PF 2.227366213741068, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, **0 credible candidates**.
-- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty.
-- Wakeup state: no pending wakeups for this session at the start of this turn; a single resume wakeup was scheduled at 2026-10-25T14:31:00.000Z (`wku_1732c01a90019wGSqrFeF9efkD`) carrying the full resume prompt. Do **not** create a duplicate.
-- `universe/mcap_expansion_log.md` current state unchanged by this turn (no provider contact).
-- Tests: `python -m pytest tests/ -q` -> 248 passed, 1 failed — the single failure is the pre-existing clock-relative bug (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`), left untouched.
-- `universe/last_scan.json` re-read directly: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261024_143039`, scanned_at `2026-10-24T14:30:39.449637+00:00`, coverage 20/20 pages, 2000 entries, lowest_market_cap_usd 3363414, expansion_floor `CWEB/USDT` 3388825, `eligible_unseen_below_floor_count = 0`, `next_eligible_refresh_at` `2026-10-25T14:30:39.449637+00:00` — authoritative and unchanged.
-
-## Turn 2026-10-25T12:59:49Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T12:59:49.473273+00:00`). Nothing actionable until the bound elapses.
-- Baseline grid re-verified directly via `results/20261019_135940_grid/progress.json`: 275 symbols x 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150`. `summary.json.pooled`: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14676563, mean net PF 0.49869497744821545, median_net_pf 0.5197980508009844, best net PF 2.227366213741068, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, **0 credible candidates**.
-- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty.
-- Wakeup state: no pending wakeups for this session (previous wakeup appears to have fired/resolved). If resuming at bound, ensure only one wakeup is scheduled per policy; do **not** create duplicates.
-- `universe/mcap_expansion_log.md` current state unchanged by this turn (no provider contact).
-- Tests: `python -m pytest tests/ -q` -> 248 passed, 1 failed — the single failure is the pre-existing clock-relative bug (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`), left untouched.
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T12:57:04.072636+00:00**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T12:57:04.072636+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T13:33:08.227174+00:00**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T13:33:08.227174+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
 - Nothing is actionable until the bound elapses; **no provider contact was made this turn**.
 - Baseline grid re-verified directly via `results/20261019_135940_grid/progress.json`: 275x66, all processed, 0 blocked, 0 credible candidates (summary as above).
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending. `universe/mcap_rank.json` updated_at `2026-10-22T12:15:58.878331+00:00`. Last scan `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z), floor `CWEB/USDT` 3 388 825 USD, `eligible_unseen_below_floor_count = 0`. Next bound `2026-10-25T14:30:39.449637+00:00`.
@@ -86,7 +42,7 @@
 6. Update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and the next unprocessed symbol/pair batch (or "none").
 
 ## Next unprocessed symbol/pair batch
-- None. Awaiting new eligible names from the next 20-page pass at/after the bound 2026-10-25T14:30:39.449637+00:00. A resume wakeup (`wku_17340615f001QnXQz8RUoU0tqd`) is scheduled for 2026-10-25T14:29:21.500Z to execute the pass automatically; if the session resumes before then, do not create a second wakeup and do not contact the provider before the bound.
+- None. Awaiting new eligible names from the next 20-page pass at/after the bound 2026-10-25T14:30:39.449637+00:00. A resume wakeup (`wku_1734639b80012EHAn8yk1EMzzC`) is scheduled for 2026-10-25T14:29:21.500Z to execute the pass automatically; if the session resumes before then, do not create a second wakeup and do not contact the provider before the bound.
 
 ## Constraints
 - No provider call before 2026-10-25T14:30:39.449637+00:00.
