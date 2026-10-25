@@ -1,9 +1,9 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T00:34:16Z)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T00:38:04Z)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T00:30:57Z** by this session:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T00:30:57.977853+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T00:38:04Z** by this session:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T00:38:04.747359+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
   No provider contact made. Bound is ~14 h away.
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols × 66 pairs,
   `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked.
@@ -55,4 +55,4 @@
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).
 - Do not stop the program on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is a pre-existing clock-relative bug — do not loosen the gate.
-- Wakeup `wku_17079c4dd001GC1I4QxOzRYHZc` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_1707e6a54001MXJfcTlE65DsVP` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
