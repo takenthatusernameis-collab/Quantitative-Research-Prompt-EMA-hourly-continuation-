@@ -1,8 +1,8 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T06:03:21Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T06:09:58Z)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T06:03:31Z**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T06:03:31.960790+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T06:09:58Z**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T06:09:58.588170+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
   Nothing is actionable until the bound elapses; no provider contact was made.
 - Wakeup scheduled (system): `wku_171a870c7001rVIqCwJG2KU7SJ` at `2026-10-25T14:31:00Z` to resume at/after bound. Do not re-schedule a duplicate.
   (The wakeup named in the prior handoff, `wku_171a642f6001RI5Jn1UBVn9mcD`, was not pending in this session; this one replaces it.)
