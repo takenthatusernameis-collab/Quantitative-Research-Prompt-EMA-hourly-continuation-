@@ -1,8 +1,8 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T05:51:17Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T05:55:30Z)
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T05:51:17Z**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T05:51:17.327793+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T05:55:30Z**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T05:55:30.173370+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
   Nothing is actionable until the bound elapses; no provider contact was made.
 - Wakeup scheduled (system): `wku_17199840a001ji5pGaSVWz5lS2` at `2026-10-25T14:31:00Z` to resume at/after bound. Do not re-schedule a duplicate.
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols x 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked, `completed_cells=18150`. `summary.json` pooled: n_cells 18150, mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
