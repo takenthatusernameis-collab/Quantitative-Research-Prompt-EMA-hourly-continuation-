@@ -1,10 +1,11 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T12:57:04.072636Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T12:59:49.473273Z)
 
-## Turn 2026-10-25T12:57:04.072636Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T12:57:04.072636+00:00`). Nothing actionable.
+## Turn 2026-10-25T12:59:49Z verification (no provider contact)
+- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T12:59:49.473273+00:00`). Nothing actionable.
 - Baseline grid `results/20261019_135940_grid/progress.json` re-read directly: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275x66), 0 blocked. `summary.json.pooled`: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14676563, mean net PF 0.49869497744821545, median_net_pf 0.5197980508009844, best net PF 2.227366213741068, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Session prep: `git status --short` empty, `git diff --stat` empty.
 - Wakeup state: no pending wakeups for this session.
+- Tests: `python -m pytest tests/ -q` -> 248 passed, 1 failed — the single failure is the pre-existing clock-relative bug named in the handoffs (`test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`), left untouched.
 
 ## Context
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to ~3388825. Universe N=275 (BTC/USDT ... ALPINE/USDT).
