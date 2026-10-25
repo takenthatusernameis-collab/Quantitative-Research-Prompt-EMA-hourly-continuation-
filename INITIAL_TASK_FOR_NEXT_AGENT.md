@@ -1,9 +1,9 @@
 # Initial Task For Next Agent — Durable Handoff
 
-**Re-verified at:** 2026-10-25T23:33:24Z
+**Re-verified at:** 2026-10-25T23:34:43Z
 **Repo:** Quantitative-Research-Prompt-EMA-hourly-continuation-
 **Status:** AWAITING_NEW_ELIGIBLE_CANDIDATES (Batch 30 done 2026-10-25T15:14:53Z)
-**Next wakeup:** `wku_17532a68f001Zl9x6ELzedXavJ` due `2026-10-26T15:16:00.000Z`
+**Next wakeup:** `wku_1755ecebc001A2I3VckxU117yQ` due `2026-10-26T15:16:00.000Z`
 
 ## Initial Task Message (read first)
 
@@ -394,4 +394,9 @@ Wait for gate to open (after `2026-10-26T15:14:53.192289+00:00`). Then:
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
 - Tests: 248 passed, 1 failed (pre-existing clock bug `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
 - Wakeup scheduled: `wku_1755ecebc001A2I3VckxU117yQ`, due `2026-10-26T15:16:00.000Z` (resume at/after bound).
+
+## Turn 2026-10-25T23:34:43Z (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-25T23:34:43.308628+00:00`).
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Tests: 248 passed, 1 failed (pre-existing clock bug `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
