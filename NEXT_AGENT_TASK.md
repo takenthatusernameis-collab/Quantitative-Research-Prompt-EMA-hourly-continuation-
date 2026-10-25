@@ -54,4 +54,4 @@
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`).
 - Do not stop the program on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7.
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is a pre-existing clock-relative bug — do not loosen the gate.
-- Wakeup `wku_1707e6a54001MXJfcTlE65DsVP` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_1708f2979001zLgKzt7wkoHara` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
