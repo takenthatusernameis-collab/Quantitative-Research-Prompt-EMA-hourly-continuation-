@@ -1,6 +1,6 @@
 # Initial Task For Next Agent — Durable Handoff
 
-**Re-verified at:** 2026-10-25T18:43:11.854880+00:00
+**Re-verified at:** 2026-10-25T19:14:55.796551+00:00
 **Repo:** Quantitative-Research-Prompt-EMA-hourly-continuation-
 **Status:** AWAITING_NEW_ELIGIBLE_CANDIDATES (Batch 30 done 2026-10-25T15:14:53Z)
 **Next wakeup:** `wku_1745fdfae0016La8oUK6idLcs8` due `2026-10-26T15:16:00.000Z`
