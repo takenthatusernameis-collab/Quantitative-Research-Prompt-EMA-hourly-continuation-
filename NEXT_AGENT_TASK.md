@@ -1,4 +1,4 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T16:53:12+00:00)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T16:59:31+00:00)
 
 ## Initial Task Message (read first)
 
@@ -151,6 +151,13 @@
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
 
 ## Turn 2026-10-25T16:53:48+00:00 (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T16:57:17.466823+00:00).
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T16:57:17.466823+00:00`).
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Wakeup scheduled: `wku_173e6c1f4001aoV3aEMfM31ROg`, due `2026-10-26T15:16:00.000Z`, prompt resumes the cycle at/after the bound.
+- `git status --short` empty, `git diff --stat` empty (only handoff edits).
+
+## Turn 2026-10-25T16:59:31+00:00 (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T16:59:37.124988+00:00`).
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Wakeup re-scheduled: `wku_17401053a001UZJPqBrPh4NcAE`, due `2026-10-26T15:16:00.000Z`, prompt resumes the cycle at/after the bound. (Previous wakeup `wku_173e6c1f4001aoV3aEMfM31ROg` was not found in this session's pending list; re-created to guarantee the resume fires.)
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
