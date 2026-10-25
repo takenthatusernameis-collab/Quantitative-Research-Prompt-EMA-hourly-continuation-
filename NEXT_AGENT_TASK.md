@@ -167,3 +167,10 @@
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
 - Wakeup `wku_17401053a001UZJPqBrPh4NcAE` remains scheduled due `2026-10-26T15:16:00.000Z` (resume at/after bound).
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
+
+## Turn 2026-10-25T17:30:53+00:00 (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` 2026-10-25T17:30:53.207920+00:00`).
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Tests: 248 passed, 1 failed (pre-existing clock bug `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
+- Wakeup scheduled: `wku_1741f054b001zQP9pW1sDn9etM`, due `2026-10-26T15:32:32.454Z`, prompt resumes the cycle at/after the bound.
+- `git status --short` empty, `git diff --stat` empty (only handoff edits).
