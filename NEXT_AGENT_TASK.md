@@ -1,16 +1,16 @@
-# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T01:36:52Z)
+# NEXT AGENT TASK — Durable Handoff (verified 2026-10-25T01:40:34Z)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T01:08:48Z**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:08:48.961431+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
-- Prior verifications: 2026-10-25T01:02:15Z, 00:57:27Z, 00:55:22Z, 00:50:55Z all returned same. No provider contact made. Bound ~13h 22m away.
+- Offline gate re-verified **2026-10-25T01:40:34Z**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:40:34Z', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Prior verifications: 2026-10-25T01:36:52Z, 2026-10-25T01:08:48Z, 01:02:15Z, 00:57:27Z, 00:55:22Z, 00:50:55Z all returned same. No provider contact made. Bound ~13h 22m away.
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols × 66 pairs,
   `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked.
   `summary.json` pooled: mean net PF 0.4987, median 0.5198, best net PF 2.2274,
   n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
-- Last scan (Batch 29): `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2000 entries, lowest covered $3,363,414). Floor `CWEB/USDT` $3,888,825. `eligible_unseen_below_floor_count = 0`. State set back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Next bound `2026-10-25T14:30:39.449637+00:00`.
+- Last scan (Batch 29): `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2000 entries, lowest covered ,363,414). Floor `CWEB/USDT` ,888,825. `eligible_unseen_below_floor_count = 0`. State set back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Next bound `2026-10-25T14:30:39.449637+00:00`.
 - Wakeup scheduled: `wku_1708f2979001zLgKzt7wkoHara` at `2026-10-25T14:31:00Z` to resume at/after bound. Do not re-schedule duplicate.
 
 ## Your task (run at/after 2026-10-25T14:30:39.449637+00:00)

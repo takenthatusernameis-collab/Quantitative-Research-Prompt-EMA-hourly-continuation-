@@ -1,9 +1,9 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (verified 2026-10-25T01:36:52Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (verified 2026-10-25T01:41:09Z)
 
 ## Context
-- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to $3,363,414. Universe N=275 (BTC/USDT ... ALPINE/USDT).
-- Offline gate re-verified 2026-10-25T01:36:52Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made. Gate check: `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:08:48.961431+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
-- Wakeup `wku_1708f2979001zLgKzt7wkoHara` at 2026-10-25T14:31:00Z to resume at the bound.
+- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to ,363,414. Universe N=275 (BTC/USDT ... ALPINE/USDT).
+- Offline gate re-verified 2026-10-25T01:41:09Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made. Gate check: `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T01:41:09Z', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Wakeup `wku_1708f2979001zLgKzt7wkoHara` at `2026-10-25T14:31:00Z` to resume at the bound.
 - Baseline grid `results/20261019_135940_grid`: all 275×66 processed, 0 blocked, pooled mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, **0 credible candidates**.
 
 ## Required action (at/after bound)
@@ -39,4 +39,4 @@
 - Do not combine variables (`--min-risk-atr`, `--rr`, `--aggressive-exit`)
 - Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
-- Wakeup `wku_1708f2979001zLgKzt7wkoHara` at 2026-10-25T14:31:00Z to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_1708f2979001zLgKzt7wkoHara` at `2026-10-25T14:31:00Z` to resume this task at the bound; do not re-schedule a duplicate.
