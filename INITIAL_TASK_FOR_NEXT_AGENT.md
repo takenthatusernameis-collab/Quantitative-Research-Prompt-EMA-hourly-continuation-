@@ -1,9 +1,9 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T06:09:58Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T06:43:42Z)
 ## Context
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to ~3363414. Universe N=275 (BTC/USDT ... CWEB/USDT).
-- Offline gate re-verified **2026-10-25T06:09:58Z**: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made.
+- Offline gate re-verified **2026-10-25T06:43:42Z**: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made.
 - Baseline grid `results/20261019_135940_grid` re-verified via `progress.json`: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked, `completed_cells=18150` (275x66). `summary.json` pooled: n_cells 18150, mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, **0 credible candidates**.
-- Wakeup `wku_171a870c7001rVIqCwJG2KU7SJ` at `2026-10-25T14:31:00Z` to resume at the bound. Do not re-schedule a duplicate.
+- Wakeup `wku_171cfeb6e001AHN0hBIgaT4lcY` at `2026-10-25T14:31:00Z` to resume at the bound. Do not re-schedule a duplicate.
 - Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty.
 
 ## Required action (at/after bound)
@@ -43,6 +43,6 @@
 - Do not combine variables
 - Do not stop on failures — expand descending market cap and continue per PROMPT.md §2.1.4, §6.7
 - `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` is pre-existing clock-relative bug — do not loosen gate.
-- Wakeup `wku_171a870c7001rVIqCwJG2KU7SJ` at `2026-10-25T14:31:00Z` to resume this task at the bound; do not re-schedule a duplicate.
+- Wakeup `wku_171cfeb6e001AHN0hBIgaT4lcY` at `2026-10-25T14:31:00Z` to resume this task at the bound; do not re-schedule a duplicate.
 
 (End of file - total 46 lines)
