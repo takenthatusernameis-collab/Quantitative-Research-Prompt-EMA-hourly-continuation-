@@ -1,4 +1,11 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:26:05Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:29:05Z)
+
+## Turn 2026-10-25T13:29:05Z verification (no provider contact)
+- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:29:06.487668+00:00`). Nothing actionable until the bound elapses.
+- No provider contact made. Baseline grid unchanged: 275x66, 0 credible candidates.
+- Session prep: `git status --short` empty, `git diff --stat` empty.
+- Wakeup state: prior resume wakeup `wku_1732c01a90019wGSqrFeF9efkD` no longer pending (fired/resolved). New resume wakeup scheduled at 2026-10-25T14:29:21.500Z (`wku_17340615f001QnXQz8RUoU0tqd`) carrying the full resume prompt. Do not create a duplicate.
+- Universe state unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next bound 2026-10-25T14:30:39.449637+00:00.
 
 ## Turn 2026-10-25T13:26:05Z verification (no provider contact)
 - Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:26:05.923187+00:00). Nothing actionable until the bound elapses.
@@ -79,7 +86,7 @@
 6. Update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with the new bound and the next unprocessed symbol/pair batch (or "none").
 
 ## Next unprocessed symbol/pair batch
-- None. Awaiting new eligible names from the next 20-page pass at/after the bound 2026-10-25T14:30:39.449637+00:00. A resume wakeup (`wku_1732c01a90019wGSqrFeF9efkD`) is scheduled for 2026-10-25T14:31:00.000Z to execute the pass automatically; if the session resumes before then, do not create a second wakeup and do not contact the provider before the bound.
+- None. Awaiting new eligible names from the next 20-page pass at/after the bound 2026-10-25T14:30:39.449637+00:00. A resume wakeup (`wku_17340615f001QnXQz8RUoU0tqd`) is scheduled for 2026-10-25T14:29:21.500Z to execute the pass automatically; if the session resumes before then, do not create a second wakeup and do not contact the provider before the bound.
 
 ## Constraints
 - No provider call before 2026-10-25T14:30:39.449637+00:00.

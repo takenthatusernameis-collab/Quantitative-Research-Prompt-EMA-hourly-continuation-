@@ -1,4 +1,10 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T13:26:05Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T13:29:05Z)
+
+## Turn 2026-10-25T13:29:05Z verification (no provider contact)
+- Offline gate: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:29:06.487668+00:00`). Nothing actionable.
+- No provider contact made. Baseline grid unchanged; 0 credible candidates.
+- Git status clean (`git status --short` empty, `git diff --stat` empty).
+- Wakeup state: prior resume wakeup `wku_1732c01a90019wGSqrFeF9efkD` no longer pending (fired/resolved). New resume wakeup scheduled at 2026-10-25T14:29:21.500Z (`wku_17340615f001QnXQz8RUoU0tqd`) carrying the full resume prompt. Do not create a duplicate.
 
 ## Turn 2026-10-25T13:26:05Z verification (no provider contact)
 - Offline gate: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:26:05.923187+00:00). Nothing actionable.
@@ -45,7 +51,7 @@
 
 ## Required action (at/after bound 2026-10-25T14:30:39.449637+00:00)
 **Do NOT** contact CoinGecko/KuCoin before 2026-10-25T14:30:39.449637+00:00.
-A resume wakeup (`wku_1732c01a90019wGSqrFeF9efkD`) is scheduled for 2026-10-25T14:31:00.000Z to execute this automatically; if the session resumes before then, do not create a second wakeup and do not contact the provider before the bound.
+A resume wakeup (`wku_17340615f001QnXQz8RUoU0tqd`) is scheduled for 2026-10-25T14:29:21.500Z to execute this automatically; if the session resumes before then, do not create a second wakeup and do not contact the provider before the bound.
 
 1. **Verify eligibility offline first:**
    ```bash
@@ -72,7 +78,7 @@ A resume wakeup (`wku_1732c01a90019wGSqrFeF9efkD`) is scheduled for 2026-10-25T1
 6. **Update handoffs:** update both `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` with new bound and next unprocessed symbol/pair batch (or "none").
 
 ## Next unprocessed symbol/pair batch
-- None. No candidates exist currently; awaiting new eligible names from next 20-page pass at/after bound 2026-10-25T14:30:39.449637+00:00. The resume wakeup `wku_1732c01a90019wGSqrFeF9efkD` at 2026-10-25T14:31:00.000Z executes the pass automatically; do not create a second wakeup before the bound.
+- None. No candidates exist currently; awaiting new eligible names from next 20-page pass at/after bound 2026-10-25T14:30:39.449637+00:00. The resume wakeup `wku_17340615f001QnXQz8RUoU0tqd` at 2026-10-25T14:29:21.500Z executes the pass automatically; do not create a second wakeup before the bound.
 
 ## Constraints
 - No provider contact before 2026-10-25T14:30:39.449637+00:00
