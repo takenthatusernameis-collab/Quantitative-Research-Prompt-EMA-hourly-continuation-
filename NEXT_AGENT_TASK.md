@@ -1,19 +1,18 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T04:10:29Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T04:44:15Z)
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T04:10:29Z**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T04:06:11.879801+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T04:44:15Z**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T04:44:15.414776+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
   Nothing is actionable until the bound elapses; no provider contact was made.
 - Wakeup scheduled (system): `wku_1713d293b0011J1U3KwoxXpvYF` at `2026-10-25T14:31:00Z` to resume at/after bound.
-  (Prior wakeup `wku_170fdf4d1001kk00mGKpvHFBCh` was no longer pending; re-scheduled once.)
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275 symbols x 66 pairs,
   `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked,
   `completed_cells=18150`. `summary.json` pooled: n_cells 18150, mean net PF 0.4987, median 0.5198,
   best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending, append-only.
-- Last scan (Batch 29): `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2000 entries, lowest covered ~363414). Floor `CWEB/USDT` ~3388825. `eligible_unseen_below_floor_count = 0`. State set back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Next bound `2026-10-25T14:30:39.449637+00:00`.
-- Session prep (verified this turn): all six scripts import OK; `git status --short` empty, `git diff --stat` empty; fixture manifest reconciled. Gate re-checked: `eligible=False`, bound not yet elapsed.
+- Last scan (Batch 29): `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z, 20/20 pages, 2000 entries). Floor `CWEB/USDT` ~3388825. `eligible_unseen_below_floor_count = 0`. State set back to `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Next bound `2026-10-25T14:30:39.449637+00:00`.
+- Session prep (verified this turn): all six scripts import OK; `git status --short` empty, `git diff --stat` empty.
 
 ## Your task (run at/after 2026-10-25T14:30:39.449637+00:00)
 **Do NOT** contact CoinGecko/KuCoin before that timestamp.
