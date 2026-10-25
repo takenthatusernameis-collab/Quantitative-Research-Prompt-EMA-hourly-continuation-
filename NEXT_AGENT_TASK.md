@@ -1,7 +1,7 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T12:04:16Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T12:10:51.447674Z)
 
-## Turn 2026-10-25T12:04:16Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T12:04:16.727610+00:00`). Nothing actionable until the bound elapses.
+## Turn 2026-10-25T12:10:51.447674Z verification (no provider contact)
+- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T12:10:51.448132+00:00). Nothing actionable until the bound elapses.
 - Baseline grid re-verified directly via `results/20261019_135940_grid/progress.json`: 275 symbols x 66 pairs, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, 0 blocked, `completed_cells=18150`. `summary.json.pooled`: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14676563, mean net PF 0.49869497744821545, median_net_pf 0.5197980508009844, best net PF 2.227366213741068, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty.
 - Resume wakeup: `wku_172f2cfb8001uq2WbBmq0SA104` scheduled at 2026-10-25T14:31:00Z (carries full resume prompt). Only one pending wakeup exists for this session; do **not** re-schedule a duplicate.
@@ -9,8 +9,8 @@
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- Offline gate re-verified **2026-10-25T12:04:16.727610+00:00**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T12:04:16.727610+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T12:10:51.448132+00:00**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T12:10:51.448132+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
 - Nothing is actionable until the bound elapses; **no provider contact was made this turn**.
 - Wakeup scheduled: `wku_172f2cfb8001uq2WbBmq0SA104` at `2026-10-25T14:31:00Z` to resume at/after bound. Do **not** re-schedule a duplicate.
 - Baseline grid re-verified directly via `results/20261019_135940_grid/progress.json`: 275x66, all processed, 0 blocked, 0 credible candidates (summary as above).
