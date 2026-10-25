@@ -1,8 +1,8 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (verified 2026-10-25T00:19:09Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (verified 2026-10-25T00:20:36Z)
 
 ## Context
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to $3,363,414. Universe N=275 (BTC/USDT ... ALPINE/USDT).
-- Offline gate re-verified 2026-10-25T00:18:15Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made.
+- Offline gate re-verified 2026-10-25T00:20:36Z: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed. No provider contact made. Gate check output: `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'reason': 'the 24 h refresh bound ... has not elapsed yet'}`.
 - Wakeup `wku_17017e7a2001oqP6EMPbjp7N00` at 2026-10-25T14:31:00Z to resume at the bound.
 - Baseline grid `results/20261019_135940_grid`: all 275×66 processed, 0 blocked, pooled mean net PF 0.4987, median 0.5198, best net PF 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, **0 credible candidates**.
 
