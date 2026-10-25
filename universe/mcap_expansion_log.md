@@ -3614,6 +3614,52 @@ No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)`
 
 ---
 
+## Offline gate re-verification (2026-10-25T09:45Z) — new session, handoff resumed
+
+No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)` ->
+`{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T09:45:20.033776+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}` —
+~4 h 45 m remaining. Nothing is actionable until the bound elapses at 2026-10-25T14:30:39Z.
+
+**Session prep (verified this turn, all from the repository root):**
+- `git status --short` empty, `git diff --stat` empty — working tree clean.
+- `universe/mcap_rank.json` re-read directly: `updated_at` 2026-10-22T12:15:58.878331+00:00,
+  **N = 275** symbols, first 3 `BTC/USDT, ETH/USDT, SOL/USDT`, last 3
+  `ZKJ/USDT, BOSON/USDT, ALPINE/USDT` — matches the handoff's N = 275
+  (BTC/USDT ... ALPINE/USDT).
+- Baseline grid re-verified directly:
+  `results/20261019_135940_grid/progress.json` -> `all_symbols_processed=true`,
+  `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150`
+  (275 x 66), 0 blocked. `summary.json.pooled` -> n_cells 18150, n_symbols 275,
+  n_pairs 66, total_trades 14676563, mean net PF 0.49869497744821545,
+  median 0.5197980508009844, best_net_pf 2.227366213741068, n_cells_net_pf_gt_1 37,
+  n_exploratory_signal 27, n_rejected 18123, n_blocked 0, **0 credible candidates**.
+- `universe/last_scan.json` re-read directly: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`,
+  snapshot `mcap_snapshot_20261024_143039`, scanned_at 2026-10-24T14:30:39.449637+00:00,
+  coverage 20/20 pages, 2000 entries, lowest_market_cap_usd 3363414,
+  floor `CWEB/USDT` 3388825, `eligible_unseen_below_floor_count = 0`,
+  `next_eligible_refresh_at` 2026-10-25T14:30:39.449637+00:00 — unchanged.
+- Script imports: all six import OK — `scripts.refresh_gate`,
+  `scripts.fetch_mcap_snapshot`, `scripts.fetch_kucoin`, `scripts.run_grid`,
+  `scripts.aggregate_grid`, `scripts.candidate_check`. (pandas/numpy/pytest were
+  not in the base interpreter; installed into user site-packages to run the suite.)
+- Tests: `PYTHONPATH=. python3 -m pytest tests/ -q` -> **248 passed, 1 failed**.
+  The single failure is the pre-existing clock-relative bug named in the handoff,
+  `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`;
+  left untouched.
+
+**Wakeup.** The wakeup named in the handoff
+(`wku_1726cc1d5001ZcfV7oprrYudX5`) was **not** pending in this session's list
+(`cancel_wakeup list` returned nothing), so a fresh resume wakeup was scheduled at
+2026-10-25T14:31:00Z: **`wku_17275b0ed001eF7ZpA8iw3FmDa`**. It carries the full
+resume prompt (offline gate check -> one 20-page pass -> band re-check -> expand or
+record -> update both handoffs). Only one pending wakeup exists for this session; do
+not re-schedule a duplicate.
+
+Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated with
+this verification and the new wakeup id.
+
+---
+
 ## Offline gate re-verification (2026-10-25T05:58Z) — new session, handoff resumed
 
 No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)` →
