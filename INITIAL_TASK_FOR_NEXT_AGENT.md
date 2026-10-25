@@ -1,7 +1,7 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T12:11:38.676969Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T12:12:29.923799Z)
 
-## Turn 2026-10-25T12:11:09.688691Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T12:11:09.689136+00:00). Nothing actionable.
+## Turn 2026-10-25T12:12:29.923799Z verification (no provider contact)
+- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T12:12:30.112350+00:00`). Nothing actionable.
 - Baseline grid `results/20261019_135940_grid/progress.json` re-read directly: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275x66), 0 blocked. `summary.json.pooled`: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14676563, mean net PF 0.49869497744821545, median_net_pf 0.5197980508009844, best net PF 2.227366213741068, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Session prep: `git status --short` empty, `git diff --stat` empty.
 - Resume wakeup: `wku_172f2cfb8001uq2WbBmq0SA104` at 2026-10-25T14:31:00Z. Do **not** re-schedule a duplicate.
@@ -9,7 +9,7 @@
 
 ## Context
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to ~3388825. Universe N=275 (BTC/USDT ... ALPINE/USDT).
-- Offline gate re-verified **2026-10-25T12:11:09.689136+00:00**: `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T12:11:09.689136+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T12:12:30.112350+00:00**: `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T12:12:30.112350+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
 - **No provider contact made this turn.** Nothing is actionable until the bound elapses.
 - Baseline grid `results/20261019_135940_grid` has 0 credible candidates as above.
 - Resume wakeup: `wku_172f2cfb8001uq2WbBmq0SA104` at `2026-10-25T14:31:00Z`; do **not** re-schedule a duplicate.
