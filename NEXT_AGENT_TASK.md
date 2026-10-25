@@ -1,7 +1,7 @@
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:45:47Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-25T13:49:54+00:00)
 
-## Turn 2026-10-25T13:45:47Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:45:47.596122+00:00`). Nothing actionable until the bound elapses.
+## Turn 2026-10-25T13:49:54+00:00 verification (no provider contact)
+- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T13:49:54+00:00`). Nothing actionable until the bound elapses.
 - No provider contact made. Baseline grid unchanged: 275x66, 0 credible candidates (18150 completed cells).
 - Session prep: `git status --short` empty, `git diff --stat` empty.
 - Wakeup state: resume wakeup previously scheduled at `2026-10-25T14:29:21.500Z` (`wku_1734639b80012EHAn8yk1EMzzC`) carrying the full resume prompt. Do not create a duplicate.
@@ -9,8 +9,8 @@
 
 ## Current state
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z)
-- Offline gate re-verified **2026-10-25T13:45:47.596122+00:00**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T13:45:47.596122+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- Offline gate re-verified **2026-10-25T13:49:54+00:00**:
+  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T13:49:54+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
 - Nothing is actionable until the bound elapses; **no provider contact was made this turn**.
 - Baseline grid re-verified via `results/20261019_135940_grid/progress.json`: 275x66, all processed, 0 blocked, 0 credible candidates.
 - Universe: **N = 275** symbols (BTC/USDT ... ALPINE/USDT), ranked strictly market-cap descending. `universe/mcap_rank.json` updated_at `2026-10-22T12:15:58.878331+00:00`. Last scan `universe/mcap_snapshot_20261024_143039.json` (2026-10-24T14:30:39.449637Z), floor `CWEB/USDT` 3 388 825 USD, `eligible_unseen_below_floor_count = 0`. Next bound `2026-10-25T14:30:39.449637+00:00`.
