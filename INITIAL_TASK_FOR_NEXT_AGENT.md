@@ -1,26 +1,21 @@
-# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T09:54:26Z)
+# INITIAL TASK MESSAGE FOR NEXT AGENT (re-verified 2026-10-25T10:04:29Z)
 
-## Turn 2026-10-25T09:54:26Z verification (no provider contact)
-- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T09:54:26.763151+00:00`). Nothing actionable.
+## Turn 2026-10-25T10:04:29Z verification (no provider contact)
+- Offline gate re-checked: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed (`now` 2026-10-25T10:04:29.565113+00:00`). Nothing actionable.
 - Baseline grid `results/20261019_135940_grid/progress.json` re-read directly: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275x66), 0 blocked. `summary.json.pooled`: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14676563, mean net PF 0.49869497744821545, median 0.5197980508009844, best net PF 2.227366213741068, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, **0 credible candidates**.
 - Session prep: `git status --short` empty, `git diff --stat` empty; all six scripts import OK; pytest **248 passed, 1 failed** (pre-existing clock-relative bug, left untouched).
-- Resume wakeup: prior wakeup `wku_17275b0ed001eF7ZpA8iw3FmDa` was **not** pending in this session's list, so a fresh resume wakeup was scheduled at 2026-10-25T14:31:00Z: **`wku_1727e1c59001LR53U36airZI8E`**. It carries the full resume prompt. Only one pending wakeup exists for this session; do not re-schedule a duplicate.
-- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with this verification and the new wakeup id. `universe/mcap_expansion_log.md` updated with this gate re-check.
+- Resume wakeup: `wku_1727e1c59001LR53U36airZI8E` scheduled at 2026-10-25T14:31:00Z. Do **not** re-schedule a duplicate.
+- Handoffs updated with this verification and wakeup id.
 
 ## Context
-- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to ~3363414. Universe N=275 (BTC/USDT ... ALPINE/USDT).
-- Offline gate re-verified **2026-10-25T09:45:20.033776+00:00**:
-  `{'eligible': False, 'bound': '2026-10-25T14:30:39.449637+00:00', 'now': '2026-10-25T09:45:20.033776+00:00', 'reason': 'the 24 h refresh bound 2026-10-25T14:30:39.449637+00:00 has not elapsed yet'}`.
+- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES` (Batch 29 done 2026-10-24T14:30:39Z). Found 0 eligible unseen names below floor; 2000-entry CoinGecko band exhausted down to ~3388825. Universe N=275 (BTC/USDT ... ALPINE/USDT).
+- Offline gate re-verified **2026-10-25T10:04:29.565113+00:00**: `eligible=False`, bound `2026-10-25T14:30:39.449637+00:00` not yet elapsed.
 - **No provider contact made this turn.** Nothing is actionable until the bound elapses.
-- Baseline grid `results/20261019_135940_grid` re-verified directly this turn:
-  - `progress.json`: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275x66), 0 blocked.
-  - `summary.json.pooled`: n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14676563, mean net PF 0.49869497744821545, median 0.5197980508009844, best net PF 2.227366213741068, n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123, n_blocked 0, **0 credible candidates**.
-- Resume wakeup: `wku_1727e1c59001LR53U36airZI8E` at `2026-10-25T14:31:00Z` (scheduled this turn; the prior `wku_17275b0ed001eF7ZpA8iw3FmDa` was not pending in this session). Do **not** re-schedule a duplicate.
-- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty; all six scripts import OK; pytest 248 passed, 1 failed (pre-existing clock-relative bug, left untouched).
+- Baseline grid `results/20261019_135940_grid` has 0 credible candidates as above.
+- Resume wakeup: `wku_1727e1c59001LR53U36airZI8E` at `2026-10-25T14:31:00Z`; do **not** re-schedule a duplicate.
 
 ## Required action (at/after bound)
-
-**Do NOT** contact CoinGecko/KuCoin before 2026-10-25T14:30:39.449637+00:00**.
+**Do NOT** contact CoinGecko/KuCoin before 2026-10-25T14:30:39.449637+00:00.
 
 1. **Verify eligibility offline first:**
    ```bash
