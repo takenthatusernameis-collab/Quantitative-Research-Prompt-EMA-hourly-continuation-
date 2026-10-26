@@ -1,9 +1,9 @@
-## Turn 2026-10-26T19:05Z (gate check — not yet eligible, no provider contact)
+## Turn 2026-10-26T19:08Z (gate check — not yet eligible, no provider contact)
 - Offline gate check: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed.
 - No provider contact. State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor ALPINE/USDT $3,426,968, eligible count 0.
 - Baseline grid complete (18150 cells, 0 blocked/credible). Child mutation grid complete and evaluated, not promoted.
 - `git status --short` empty. No code changes.
-- Wakeup scheduled (`wku_1799cb086001aezM73vQxfX2fh`) to resume at `2026-10-27T18:07:54.369Z`, after bound.
+- Wakeup scheduled (`wku_1799d7162001hHjX1pY5IzEkZK`) to resume at `2026-10-27T19:08:43.743Z`, after bound.
 
 **Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Gate bound not yet elapsed. No provider contact permitted before bound. Nothing actionable until then.
 
