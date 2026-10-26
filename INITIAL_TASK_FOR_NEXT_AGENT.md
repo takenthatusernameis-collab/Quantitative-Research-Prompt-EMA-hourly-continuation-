@@ -1,11 +1,11 @@
 # Initial Task for the Next Agent — EMA Hourly Continuation
 
-## Current state (verified 2026-10-26T21:05Z)
+## Current state (verified 2026-10-26T21:11Z)
 Program in `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Gate bound not elapsed:
-- Bound: `2026-10-27T17:19:35.198212+00:00` (now 2026-10-26T21:05Z)
+- Bound: `2026-10-27T17:19:35.198212+00:00` (now 2026-10-26T21:11:45Z)
 - `eligible=False`, no provider contact before bound
 
-Baseline `results/20261019_135940_grid` complete (18150/18150, 0 blocked, 0 credible). Mutations `NOT_PROMOTED`. Clean git. Tests 248 passed, 1 failed (pre-existing clock bug). Wakeup `wku_179e0faae0016460LtxA1T7Xq8` at 2026-10-27T17:20:00Z.
+Baseline `results/20261019_135940_grid` complete (18150/18150, 0 blocked, 0 credible). Mutations `NOT_PROMOTED`. Clean git. Tests 248 passed, 1 failed (pre-existing clock bug). Wakeup `wku_17a0e75870017c3T0H5KQTCtMu` at 2026-10-27T17:20:00Z.
 
 ## Your task
 At/after bound, check eligibility offline first:

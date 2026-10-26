@@ -1,12 +1,12 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Turn 2026-10-26T21:05Z (this turn, wakeup waiting for bound)
-- Gate bound: `2026-10-27T17:19:35.198212+00:00` NOT yet elapsed (now 2026-10-26T21:05Z).
-- Offline `gate_status` verified: `eligible=False`, reason "the 24 h refresh bound ... has not elapsed yet".
+## Turn 2026-10-26T21:11Z (this turn, wakeup waiting for bound)
+- Gate bound: `2026-10-27T17:19:35.198212+00:00` NOT yet elapsed (now 2026-10-26T21:11:45Z).
+- Offline `gate_status` verified: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet".
 - No provider contact before bound (honored). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968.
 - Baseline grid `results/20261019_135940_grid` complete (18150/18150, 0 blocked, 0 credible candidates). Child grids documented `NOT_PROMOTED` in `results/mutations.json`.
 - `git status` clean. Full test suite: **248 passed, 1 failed** (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; ignore per constraints).
-- Wakeup scheduled: `wku_179e0faae0016460LtxA1T7Xq8` at 2026-10-27T17:20:00Z.
+- Wakeup scheduled: `wku_17a0e75870017c3T0H5KQTCtMu` at 2026-10-27T17:20:00Z.
 
 ## Next action (after bound)
 ```bash
