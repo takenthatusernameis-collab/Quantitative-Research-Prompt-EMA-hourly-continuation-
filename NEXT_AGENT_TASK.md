@@ -79,9 +79,16 @@
 - Wakeup state: resume at/after bound `2026-10-26T15:14:53.192289+00:00` (no new wakeup scheduled this turn).
 - `git status --short` empty, `git diff --stat` empty (handoff updated).
 
+## Turn 2026-10-26T08:06:49Z (completed — offline gate check only, not eligible; wakeup scheduled)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T08:07:13.702935+00:00`). Reason: `the 24 h refresh bound 2026-10-26T15:14:53.192289+00:00 has not elapsed yet`.
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Baseline grid `results/20261019_135940_grid/progress.json` re-verified directly: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275 x 66), 0 blocked.
+- Wakeup state: scheduled `wku_177404e7e001o8c3TCe300Q9sL` due `2026-10-26T15:15:30.000Z` (resume at/after bound `2026-10-26T15:14:53.192289+00:00`).
+- `git status --short` empty, `git diff --stat` empty (handoff updated).
+
 # NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-26T08:05:51Z)
 
-**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `None` not yet elapsed as of 2026-10-26T08:06:22.001776+00:00.
+**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed as of 2026-10-26T08:07:13.702935+00:00. Wakeup `wku_177404e7e001o8c3TCe300Q9sL` scheduled for 2026-10-26T15:15:30Z.
 
 **Your task, in order:**
 
