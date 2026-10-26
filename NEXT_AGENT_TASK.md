@@ -1,5 +1,35 @@
 # NEXT AGENT TASK — Durable Handoff
 
+## Turn 2026-10-26T17:19Z (gate OPEN — ranking pass made, 0 eligible candidates)
+
+- Offline gate check (run at `2026-10-26T16:59:58.004556+00:00`): `eligible=True`,
+  bound `2026-10-26T15:14:53.192289+00:00` elapsed. Reason: `the 24 h refresh bound ... has elapsed`.
+- **Provider contact made** (exactly one 20-page pass, the only allowed contact this cycle):
+  `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`.
+  Snapshot `universe/mcap_snapshot_20261026_171935.json` written at
+  `2026-10-26T17:19:35.198212+00:00`.
+- Coverage: 2000 entries, 20/20 pages returned, lowest rank 2000, lowest mcap $3,378,863.
+  Coverage reaches below the floor.
+- New expansion floor (from the fresh snapshot): `ALPINE/USDT` $3,426,968 (was $3,405,003).
+- `eligible_unseen_below_floor_count = 0`; `eligible_unseen_below_floor = []`;
+  `batch_selected = []`. **No expansion performed.**
+- `universe/last_scan.json` rewritten: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`,
+  universe_n 275, `next_eligible_refresh_at = 2026-10-27T17:19:35.198212+00:00`.
+- Baseline grid `results/20261019_135940_grid` unchanged and complete:
+  `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`,
+  `completed_cells=18150` (275 x 66), 0 blocked.
+- `git status --short`: `M universe/last_scan.json`, `?? universe/mcap_snapshot_20261026_171935.json`.
+  No code changes.
+
+**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275, baseline grid complete
+(0 blocked/credible). New gate bound `2026-10-27T17:19:35.198212+00:00`. No provider contact
+permitted before the bound. Nothing is actionable until then.
+
+**Next action:** wait for the bound, then follow steps below. If eligible, run one 20-page
+ranking pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`), re-check
+`eligible_unseen_below_floor_count`, expand or record the pass and set the next +24 h bound,
+then update both handoff files.
+
 ## Turn 2026-10-26T15:07Z (gate check — not yet eligible, no provider contact)
 
 - Offline gate check (run at `2026-10-26T15:07:43.324863+00:00`): `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed. Reason: `the 24 h refresh bound 2026-10-26T15:14:53.192289+00:00 has not elapsed yet`.
