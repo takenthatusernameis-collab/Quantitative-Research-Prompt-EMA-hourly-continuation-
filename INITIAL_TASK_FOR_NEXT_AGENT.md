@@ -79,13 +79,13 @@
 - Wakeup state: resume at/after bound `2026-10-26T15:14:53.192289+00:00` (no new wakeup scheduled this turn).
 - `git status --short` empty, `git diff --stat` empty (handoff updated).
 
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-26T05:30:38Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-26T08:05:51Z)
 
-**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed as of 2026-10-26T05:30:38Z.
+**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `None` not yet elapsed as of 2026-10-26T08:06:22.001776+00:00.
 
 **Your task, in order:**
 
-1. **Wait for the gate.** Do NOT contact CoinGecko/KuCoin before `2026-10-26T15:14:53.192289+00:00`. Check eligibility offline first:
+1. **Wait for the gate.** Do NOT contact CoinGecko/KuCoin before `None`. Check eligibility offline first:
    ```bash
    PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import json; from pathlib import Path; print(gate_status(json.loads(Path('universe/last_scan.json').read_text())))"
    ```
@@ -116,6 +116,13 @@
 **Hard constraints:** no provider call before the bound; no second writer on the baseline grid; no partial-grid promotion; no changes to costs/folds/entry-exit/gates; do not combine variables; do not stop on failures — expand descending market cap and continue; ignore the pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`.
 
 **Evidence to report:** gate status before/after; snapshot path/pages/floor/N and eligible count; if expanded: old→new N, ranks, log entry; if not: log entry + new bound; grid/aggregate/candidate output paths and any blocked/credible counts; tests after changes (or confirm unchanged if none).
+
+## Turn 2026-10-26T08:05:51Z (completed — offline gate check only, not eligible)
+- Offline gate check: `eligible=False`, bound `None` not yet elapsed (`now` `2026-10-26T08:06:22.001776+00:00`). Reason: `the 24 h refresh bound None has not elapsed yet`.
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Baseline grid `results/20261019_135940_grid/progress.json` re-verified directly: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275 x 66), 0 blocked.
+- Wakeup state: resume at/after bound `None` (no new wakeup scheduled this turn).
+- `git status --short` empty, `git diff --stat` empty (handoff updated).
 
 ## Turn 2026-10-26T05:38:34Z (completed — offline gate check only, not eligible)
 - Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T05:38:34.446584+00:00`). Reason: `the 24 h refresh bound 2026-10-26T15:14:53.192289+00:00 has not elapsed yet`.
