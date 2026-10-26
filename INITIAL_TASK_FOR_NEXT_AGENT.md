@@ -1,5 +1,5 @@
 ## Turn 2026-10-26T18:13Z (gate check — not yet eligible, no provider contact)
-- Offline gate check (run at `2026-10-26T18:13:15.518422+00:00`): `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed.
+- Offline gate check (run at `2026-10-26T18:14:48.950750+00:00`): `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed.
 - No provider contact. State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor ALPINE/USDT $3,426,968, eligible count 0.
 - Baseline grid `results/20261019_135940_grid` complete (18150 cells, 0 blocked/credible). Child mutation grid complete and evaluated, not promoted.
 - `git status --short` empty, `git diff --stat` empty. No code changes.
@@ -13,5 +13,3 @@ If eligible, run exactly one 20-page ranking pass (`PYTHONPATH=. python3 scripts
 re-check `eligible_unseen_below_floor_count`, expand or record the pass and set the next +24 h bound,
 then update both handoff files. See NEXT_AGENT_TASK.md for full steps. Do not contact CoinGecko/KuCoin
 before the bound.
-" filePath">
-/home/runner/work/Quantitative-Research-Prompt-EMA-hourly-continuation-/Quantitative-Research-Prompt-EMA-hourly-continuation-/INITIAL_TASK_FOR_NEXT_AGENT.md
