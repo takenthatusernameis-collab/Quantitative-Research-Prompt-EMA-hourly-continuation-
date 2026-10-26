@@ -1,3 +1,9 @@
+## Turn 2026-10-26T03:44:17Z (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T03:44:17.051882+00:00`).
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Wakeup scheduled: `wku_1764f3ed700126fLQupHRPR2ln` due `2026-10-26T15:16:00.000Z` (resume at/after bound).
+- `git status --short` empty, `git diff --stat` empty (only handoff edits).
+
 ## Turn 2026-10-26T03:40:00Z (completed — offline gate check only, provider bound not yet open)
 - Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T03:40:36.196059+00:00`).
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
@@ -53,11 +59,11 @@
 - Wakeup state: `cancel_wakeup list` returned nothing; scheduled `wku_175d53e10001PcZDYXJvTbidq3` due `2026-10-26T15:16:00.000Z` (resume at/after bound).
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
 
-## Initial Task Message (read first)
+## Initial Task Message (read first) — refreshed 2026-10-26T03:44:17Z
 
 **You are the next agent in the EMA hourly continuation research loop.** Your job is a single gated cycle of market-cap universe expansion. Everything you need is below; do not improvise beyond it.
 
-**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed as of 2026-10-26T03:40:00+00:00. Next wakeup `wku_1764c1162001J3LXohA28qie2v` due `2026-10-26T15:16:00.000Z`.
+**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed as of 2026-10-26T03:44:17+00:00. Next wakeup `wku_1764f3ed700126fLQupHRPR2ln` due `2026-10-26T15:16:00.000Z`.
 
 **Your task, in order:**
 
