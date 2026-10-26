@@ -1,15 +1,14 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Turn 2026-10-26T12:28:15Z (gate check — not yet eligible, no provider contact)
+## Turn 2026-10-26T12:31:41Z (gate check — not yet eligible, no provider contact)
 
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T12:28:15.931843+00:00`). Reason: `the 24 h refresh bound 2026-10-26T15:14:53.192289+00:00 has not elapsed yet`.
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T12:31:41.228461+00:00`). Reason: `the 24 h refresh bound 2026-10-26T15:14:53.192289+00:00 has not elapsed yet`.
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
-- Baseline grid `results/20261019_135940_grid` re-verified directly: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275 x 66), 0 blocked.
+- Baseline grid `results/20261019_135940_grid` re-verified: complete (0 blocked/credible).
 - `git status --short` empty, `git diff --stat` empty.
-- pytest unavailable in this environment (pandas not installed); no code changed, so tests unchanged. No code changes were made this cycle.
-- Wakeup `wku_1782f25e8001T7YkjAkMgXkTmu` scheduled due `2026-10-26T15:15:00Z` (after the bound) to resume.
+- Wakeup `wku_178322b8c001HAGkjPUaxQSL3d` scheduled due `2026-10-26T15:15:00Z` (after the bound) to resume.
 
-**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed as of `2026-10-26T12:28:15Z`. Wakeup due `2026-10-26T15:15:00Z`. No provider contact permitted before the bound.
+**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275, baseline grid complete (0 blocked/credible). Gate bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed. No provider contact permitted before the bound. Next action is to wait for the wakeup/gate eligibility and follow steps below: if eligible, run one 20-page ranking pass (`scripts/fetch_mcap_snapshot.py --pages 20`), re-check eligible candidates, expand or record the pass and set the next +24 h bound, then update both handoff files.
 
 **Your task, in order:**
 
