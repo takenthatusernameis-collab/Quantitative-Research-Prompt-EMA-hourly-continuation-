@@ -1,7 +1,7 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Turn 2026-10-26T22:23Z (current)
-- Gate re-checked at now `2026-10-26T22:23:51.131398+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged.
+## Turn 2026-10-26T22:33Z (current)
+- Gate re-checked offline at now `2026-10-26T22:33:00.068663+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged.
 - No provider contact (compliant). Wakeup `wku_17a504f2d001I35AOLbWliGJDs` at 2026-10-27T17:20:00Z remains scheduled (single). Prior wakeup `wku_17a3a534f0017Ych3F2EKBo7qR` expired and was replaced.
 - Baseline grid `results/20261019_135940_grid` verified complete (18150/18150, 0 blocked, 0 credible). Mutations `NOT_PROMOTED`.
 - Git status clean. Full test suite: **248 passed, 1 failed** (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; exit 1, ignore).
