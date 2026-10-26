@@ -33,3 +33,10 @@ Re-check `eligible_unseen_below_floor_count`. If >0 → apply with `--apply` (ap
 - Turn 2026-10-26T21:15Z / 21:25Z / 21:28Z / 21:54Z / 22:03Z: gate re-checked each time, `eligible=False`, bound not elapsed. Wakeups rescheduled to single `wku_17a3a534f0017Ych3F2EKBo7qR` at 2026-10-27T17:20:00Z. Baseline grid `results/20261019_135940_grid` (18150/18150, 0 blocked, 0 credible), mutations `NOT_PROMOTED`. Child mutation grid `results/20261022_134500_grid` (18150 cells, min_risk_atr=true); full mutation eval `results/20261022_002531_mutation_eval_full/`: child walk-forward pooled OOF net PF 0.7390 (0.5731 at 2x costs), 106 cells clear §3.4 gate but child's own null puts 10.6% of folds above PF 1 — **NOT_PROMOTED**; baseline grid remains the program grid. `results/FINAL_DECISION.md` (393 lines) and `results/RESEARCH_CONCLUSION.md` exist and are current (2026-10-26T18:49Z).
 
 (End of file - total 28 lines)
+## Update 2026-10-26T23:06Z
+- Gate re-checked offline at now `2026-10-26T23:06:46.733747+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged.
+- Wakeup `wku_17a72e86a001dGFCzLbFrQ0pKe` at 2026-10-27T17:20:00Z remains scheduled (single). No provider contact (compliant).
+- Baseline grid `results/20261019_135940_grid` verified complete: 18150/18150 cells, 0 blocked, 0 credible candidates (summary: mean_net_pf 0.4987, best_net_pf 2.2274, n_cells_net_pf_gt_1 37). Mutations `NOT_PROMOTED`.
+- Git status clean. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, floor `ALPINE/USDT` $3,426,968, N=275, `eligible_unseen_below_floor_count=0`).
+- Tests: 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
+- Nothing actionable before bound. Handoffs updated.
