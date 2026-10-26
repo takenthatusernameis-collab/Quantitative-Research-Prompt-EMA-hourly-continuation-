@@ -1,14 +1,15 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Turn 2026-10-26T18:19Z (gate check — not yet eligible, no provider contact)
-- Offline gate check (run at `2026-10-26T18:19:58.679029+00:00`): `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. Reason: `the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet`.
+## Turn 2026-10-26T18:23Z (gate check — not yet eligible, no provider contact)
+- Offline gate check (run at `2026-10-26T18:23:30.063630+00:00`): `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. Reason: `the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet`.
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor ALPINE/USDT $3,426,968, eligible count 0).
 - Baseline grid `results/20261019_135940_grid` complete (18150 cells = 275 x 66, 0 blocked/credible). Child mutation grid `results/20261021_172619_grid` complete and evaluated (not promoted).
 - `git status --short` empty, `git diff --stat` empty. No code changes.
+- A wakeup is scheduled (`wku_17974391c001cHN3gZE15hxnxz`) to resume this task at `2026-10-27T17:22:00Z`, after the bound elapses.
 
 **Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275, baseline grid complete. Gate bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. No provider contact permitted before the bound. Nothing is actionable until then.
 
-**Next action:** wait for the bound, then check eligibility offline first:
+**Next action:** wait for the bound (wakeup scheduled), then check eligibility offline first:
 ```bash
 PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import json; from pathlib import Path; print(gate_status(json.loads(Path('universe/last_scan.json').read_text())))"
 ```
@@ -17,3 +18,5 @@ Must return `eligible: True`. If `False`, stop and report the bound — nothing 
 **Hard constraints:** no provider call before the bound; no second writer on the baseline grid; no partial-grid promotion; no changes to costs/folds/entry-exit/gates; do not combine variables; do not stop on failures — expand descending market cap and continue; ignore the pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`.
 
 **Evidence to report:** gate status before/after; snapshot path/pages/floor/N and eligible count; if expanded: old→new N, ranks, log entry; if not: log entry + new bound; grid/aggregate/candidate output paths and any blocked/credible counts; tests after changes (or confirm unchanged if none).
+
+(End of file - total 32 lines)
