@@ -3,7 +3,7 @@
 ## Turn 2026-10-26T10:17:18Z (gate check — not yet eligible, wakeup scheduled)
 
 - Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T10:17:18Z`). Reason: `the 24 h refresh bound 2026-10-26T15:14:53.192289+00:00 has not elapsed yet`.
-- Wakeup scheduled: `wku_177b7211b001RMZ3ZXepemtnfE` due `2026-10-26T15:15:00Z` to resume and proceed per steps below.
+- Wakeup scheduled: `wku_177b89249001b4CPYkp4hXIEza` due `2026-10-26T15:16:07Z` to resume and proceed per steps below.
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
 - Baseline grid `results/20261019_135940_grid/progress.json` re-verified directly: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150` (275 x 66), 0 blocked.
 - `git status --short` empty, `git diff --stat` empty.
