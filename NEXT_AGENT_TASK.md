@@ -536,3 +536,8 @@
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
 - Wakeup state: no pending wakeups existed at start of turn; scheduled `wku_1759d4e00001Xl7ZO0SY9taMXn` due `2026-10-26T16:20:05.820Z` (resume at/after bound). Earlier candidate `wku_1759d1238001KveiDTO876M5Bh` (due 09:29:50Z, before bound) was cancelled to avoid a pre-bound resume.
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
+
+## Turn 2026-10-26T00:32:30.179735+00:00 (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T00:32:30.179735+00:00`).
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- `git status --short` empty, `git diff --stat` empty (only handoff edits).
