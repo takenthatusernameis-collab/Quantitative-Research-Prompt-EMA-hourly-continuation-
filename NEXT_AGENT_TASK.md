@@ -1,12 +1,12 @@
-## Turn 2026-10-26T04:39:00Z (completed — offline gate check only, provider bound not yet open)
-- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T04:39:00.144182+00:00`).
+## Turn 2026-10-26T04:40:12Z (completed — offline gate check only, provider bound not yet open)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T04:40:12.396896+00:00`). Reason: `the 24 h refresh bound 2026-10-26T15:14:53.192289+00:00 has not elapsed yet`.
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
 - Wakeup state: resume at/after bound `2026-10-26T15:14:53.192289+00:00` (no new wakeup scheduled this turn).
 - `git status --short` empty, `git diff --stat` empty (only handoff edits).
 
-# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-26T04:35:53Z)
+# NEXT AGENT TASK — Durable Handoff (re-verified 2026-10-26T04:39:00Z)
 
-**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed as of 2026-10-26T04:35:53Z.
+**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275 (BTC/USDT … ALPINE/USDT), floor ALPINE/USDT $3,405,003. Baseline grid `results/20261019_135940_grid` (275×66) is complete: 0 blocked, 0 credible candidates. Last scan `universe/mcap_snapshot_20261025_151453.json` covered 2000 entries down to rank 2000 (~$3.34M) with 0 eligible unseen names below floor. Gate bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed as of 2026-10-26T04:39:00Z.
 
 **Your task, in order:**
 
