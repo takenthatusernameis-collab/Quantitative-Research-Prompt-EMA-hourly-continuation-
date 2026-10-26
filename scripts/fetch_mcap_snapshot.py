@@ -52,7 +52,7 @@ PAUSE_SECONDS = 0.6
 # calls per minute; paging through 10 pages 0.6s apart reliably answers 429 on
 # page 6. The ranking pages are therefore spaced out so a multi-page pass
 # completes instead of aborting half-way through the coverage band.
-COINGECKO_PAUSE_SECONDS = 9.0
+COINGECKO_PAUSE_SECONDS = 30.0
 
 # A ticker can name two different assets (CoinGecko "ONE" is "ONEchain" while
 # KuCoin's ONE-USDT is "Harmony"). Trading the wrong asset would put a name in
