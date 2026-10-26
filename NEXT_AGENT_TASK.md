@@ -9,6 +9,8 @@
 
 **Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275, baseline grid complete. Gate bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. No provider contact permitted before the bound. Nothing actionable until bound elapses.
 
+**Wakeup:** newly scheduled `wku_1799328a9001bVRYjw1ZC7JNDi` to resume at `2026-10-27T17:30:00Z` (after bound).
+
 **Next action:** wait for bound (wakeup scheduled), then check eligibility offline first:
 ```bash
 PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import json; from pathlib import Path; print(gate_status(json.loads(Path('universe/last_scan.json').read_text())))"

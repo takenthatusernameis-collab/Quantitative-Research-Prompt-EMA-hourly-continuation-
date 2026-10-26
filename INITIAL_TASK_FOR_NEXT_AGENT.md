@@ -3,7 +3,7 @@
 - No provider contact. State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor ALPINE/USDT $3,426,968, eligible count 0.
 - Baseline grid `results/20261019_135940_grid` complete (18150 cells, 0 blocked/credible). Child mutation grid complete and evaluated, not promoted.
 - `git status --short` empty, `git diff --stat` empty. No code changes.
-- Wakeup scheduled (`wku_17982f35900158vDyzPuEp3Tog`) to resume at `2026-10-27T17:39:47.540Z`, after bound elapses.
+- Wakeup scheduled (`wku_1799328a9001bVRYjw1ZC7JNDi`) to resume at `2026-10-27T17:30:00Z`, after bound elapses.
 
 **Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Gate bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. No provider contact permitted before bound. Nothing actionable until then.
 
