@@ -4087,3 +4087,76 @@ not re-schedule a duplicate.
 
 Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated with
 this verification and the new wakeup id.
+
+---
+
+## Batch 30 — refresh pass 2026-10-26T17:19:35Z (N unchanged at 275; band exhausted)
+
+**Snapshot:** `universe/mcap_snapshot_20261026_171935.json`, CoinGecko public API
+`/coins/markets` (vs_currency=usd, order=market_cap_desc), 20/20 pages requested
+and returned, **2 000 entries**, lowest covered rank 2 000 at **$3 378 863**,
+0 history-probe failures. Recorded in `universe/last_scan.json`
+(`scanned_at = 2026-10-26T17:19:35.198212+00:00`).
+
+**No expansion was possible.** The expansion floor was recomputed from the
+fresh ranking as `ALPINE/USDT` **$3 426 968** (the lowest market cap among the
+275 names already in the working universe). The pass reached below that floor
+($3 378 863 < $3 426 968), so the band was genuinely inspected — this is not an
+incomplete scan. `eligible_unseen_below_floor_count = 0`: every entry ranking
+below the floor is ineligible under the registered filter (no tradable KuCoin
+spot USDT pair, or insufficient hourly history), and `batch_selected = []`.
+The working universe stays at **N = 275**.
+
+**State written:** `universe/last_scan.json` →
+`state = AWAITING_NEW_ELIGIBLE_CANDIDATES`, `universe_n = 275`,
+`batch_selected = []`,
+`next_eligible_refresh_at = 2026-10-27T17:19:35.198212+00:00` (24 h after the
+ranking pass, per PROMPT.md §2.1.5). Per §2.1.5 this is a **temporary waiting
+state, not a program stop**: the ranking must be refreshed again at/after the
+next bound, and an empty snapshot must never disable future refreshes.
+
+**Grid outcome, unchanged.** `results/20261019_135940_grid` remains the program
+grid: 18 150/18 150 cells (275 symbols × 66 EMA pairs), 0 blocked,
+`all_symbols_processed = true`, `next_cell = null`. Pooled mean net PF
+**0.4987**; 37 cells net PF > 1; **0 credible candidates**. No second writer
+touched the grid and no child grid was promoted.
+
+## Offline gate re-verification (2026-10-26T20:07Z) — new session, handoff resumed
+
+No provider contact. `scripts/refresh_gate.gate_status(universe/last_scan.json)` →
+`{'eligible': False, 'bound': '2026-10-27T17:19:35.198212+00:00', 'now': '2026-10-26T20:10:58.268923+00:00', 'reason': 'the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet'}` —
+~21 h 8 m remaining. Nothing is actionable until the bound elapses at
+2026-10-27T17:19:35Z.
+
+**Session prep (verified this turn, all from the repository root):**
+- `git status --short` empty, `git diff --stat` empty — working tree clean.
+- `universe/last_scan.json` cross-checked against
+  `universe/mcap_snapshot_20261026_171935.json`: snapshot_id, scanned_at,
+  coverage (20/20 pages, 2 000 entries, lowest rank 2 000, $3 378 863),
+  universe_n 275, floor `ALPINE/USDT` $3 426 968, eligible count 0, and
+  `next_eligible_refresh_at` all agree; `mcap_rank.json` holds 275 symbols with
+  `ALPINE/USDT` last, matching the record.
+- Baseline grid re-verified complete a ninth time:
+  `results/20261019_135940_grid/progress.json` `completed_cells=18150`,
+  `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=True`, `next_cell=null`,
+  `stopped=False`, `stop_reason=None`, "blocked" substring count 0;
+  `summary.json` pooled mean net PF **0.4987**, median 0.5198, best_net_pf 2.2274,
+  n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
+- Child mutation grids remain `NOT_PROMOTED` per `results/mutations.json`
+  (ATR min-risk pooled OOS net PF 0.6676 / 0.4781 at 2x costs; stricter_trend
+  zero delta on every metric).
+- Full test suite run this turn (pytest 9.1.1, installed this session):
+  **248 passed, 1 failed** in 135.34 s. The single failure is the pre-existing
+  clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` — its fixed bound `2026-10-23T12:00:00Z` is in the
+  past relative to the wall clock of 2026-10-26, so `gate_status` correctly
+  returns `eligible: True` and the assertion `eligible is False` fails.
+  Reproduced deterministically; not a regression, and flagged in both handoffs.
+
+**Wakeup.** A fresh resume wakeup was scheduled at 2026-10-27T17:20:00Z:
+**`wku_179dbd67a001bVWLiAKIDkKmmJ`** (no prior wakeup was pending for this
+session). It carries the full resume prompt (offline gate check → one 20-page
+pass → band re-check → expand or record → update both handoffs → run tests).
+Only one pending wakeup exists for this session; do not re-schedule a duplicate.
+
+Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated
+with this verification, the test totals, and the new wakeup id.
