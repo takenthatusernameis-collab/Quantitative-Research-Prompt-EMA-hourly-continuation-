@@ -24,6 +24,9 @@ Re-check `eligible_unseen_below_floor_count`. If >0 → apply with `--apply` (ap
 - Expand desc mcap; ignore pre-existing clock bug
 - Historical research only
 
+## Update 2026-10-26T23:03Z
+Gate re-checked offline at now `2026-10-26T23:03:39.543044+00:00`: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not elapsed. No provider contact. Wakeup `wku_17a72e86a001dGFCzLbFrQ0pKe` at 2026-10-27T17:20:00Z remains scheduled (single). Baseline grid complete (18150/18150, 0 blocked, 0 credible). Mutations `NOT_PROMOTED`. Git clean. `last_scan.json` unchanged (N=275, floor `ALPINE/USDT` $3,426,968, eligible_unseen_below_floor_count=0). Nothing actionable before bound. Clear initial task message for next agent: at/after bound, run gate_status offline; if False stop and report bound+reason; if True run exactly one 20-page pass `fetch_mcap_snapshot.py --pages 20`, re-check eligible_unseen_below_floor_count, apply/expand or log+bound, update both handoffs, run tests.
+
 ## Evidence to report
 Gate before/after, snapshot/pages/floor/N/eligible, expansion or log+bound, grid/aggregate/candidate paths, blocked/credible, test totals.
 
