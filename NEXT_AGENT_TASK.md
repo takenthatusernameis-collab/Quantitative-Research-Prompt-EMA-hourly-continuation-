@@ -28,7 +28,8 @@ Re-check `eligible_unseen_below_floor_count`. If >0 → apply with `--apply` (ap
 - No provider contact (compliant). Wakeup `wku_17a0e75870017c3T0H5KQTCtMu` at 2026-10-27T17:20:00Z remains scheduled.
 - Baseline grid still `results/20261019_135940_grid` (18150/18150, 0 blocked, 0 credible). State remains `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 
-## Turn 2026-10-26T21:27Z (update)
-- Checked gate at now `2026-10-26T21:28:04.990599+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged.
-- No provider contact (compliant). Wakeup `wku_17a0e75870017c3T0H5KQTCtMu` at 2026-10-27T17:20:00Z remains scheduled.
+## Turn 2026-10-26T21:28Z (update)
+- Checked gate at now `2026-10-26T21:28:31Z`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged.
+- No provider contact (compliant). Wakeup `wku_17a0e75870017c3T0H5KQTCtMu` at 2026-10-27T17:20:00Z remains scheduled (resume ~bound).
 - Baseline grid still `results/20261019_135940_grid` (18150/18150, 0 blocked, 0 credible). State remains `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
+- Git status clean. Tests 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).

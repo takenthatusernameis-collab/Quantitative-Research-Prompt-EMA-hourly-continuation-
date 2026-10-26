@@ -30,5 +30,5 @@ Gate before/after, snapshot/pages/floor/N/eligible, expansion or log+bound, grid
 ## Update 2026-10-26T21:25Z
 Gate re-checked: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` (not elapsed; now 21:25:21Z). No provider contact. Wakeup still scheduled at 2026-10-27T17:20:00Z. Await bound before proceeding per instructions.
 
-## Update 2026-10-26T21:27Z
-Gate re-checked: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` (not elapsed; now 21:28:05Z). No provider contact. Wakeup still scheduled at 2026-10-27T17:20:00Z. Await bound before proceeding per instructions.
+## Update 2026-10-26T21:28Z
+Gate re-checked: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` (not elapsed; now 21:28:31Z). No provider contact. Wakeup still scheduled at 2026-10-27T17:20:00Z. Await bound before proceeding per instructions. Git clean, tests 248 passed, 1 failed (pre-existing clock bug).
