@@ -1,5 +1,5 @@
-## Turn 2026-10-26T18:30Z (gate check — not yet eligible, no provider contact)
-- Offline gate check (run at `2026-10-26T18:38:57.318320+00:00`): `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. Reason: `the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet`.
+## Turn 2026-10-26T18:51Z (gate check — not yet eligible, no provider contact)
+- Offline gate check (run at `2026-10-26T18:51:05.036284+00:00`): `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. Reason: `the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet`.
 - No provider contact. State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor ALPINE/USDT $3,426,968, eligible count 0.
 - Baseline grid `results/20261019_135940_grid` complete (18150 cells, 0 blocked/credible). Child mutation grid complete and evaluated, not promoted.
 - `git status --short` empty, `git diff --stat` empty. No code changes.
