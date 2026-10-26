@@ -40,3 +40,11 @@ Re-check `eligible_unseen_below_floor_count`. If >0 → apply with `--apply` (ap
 - Git status clean. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, floor `ALPINE/USDT` $3,426,968, N=275, `eligible_unseen_below_floor_count=0`).
 - Tests: 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
 - Nothing actionable before bound. Handoffs updated.
+
+## Update 2026-10-26T23:09Z
+- Gate re-checked offline at now `2026-10-26T23:09:57.536813+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged.
+- Wakeup `wku_17a72e86a001dGFCzLbFrQ0pKe` at 2026-10-27T17:20:00Z remains scheduled (single). No provider contact (compliant).
+- Baseline grid `results/20261019_135940_grid` verified complete: 18150/18150 cells, 0 blocked, 0 credible candidates (summary: mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37). Mutations `NOT_PROMOTED`.
+- Git status clean. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, floor `ALPINE/USDT` $3,426,968, N=275, `eligible_unseen_below_floor_count=0`).
+- Tests: 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
+- Nothing actionable before bound. Handoffs updated.
