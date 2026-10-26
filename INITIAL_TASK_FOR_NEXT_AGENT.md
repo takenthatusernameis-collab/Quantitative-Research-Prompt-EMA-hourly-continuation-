@@ -26,3 +26,6 @@ Re-check `eligible_unseen_below_floor_count`. If >0 → apply with `--apply` (ap
 
 ## Evidence to report
 Gate before/after, snapshot/pages/floor/N/eligible, expansion or log+bound, grid/aggregate/candidate paths, blocked/credible, test totals.
+
+## Update 2026-10-26T21:25Z
+Gate re-checked: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` (not elapsed; now 21:25:21Z). No provider contact. Wakeup still scheduled at 2026-10-27T17:20:00Z. Await bound before proceeding per instructions.
