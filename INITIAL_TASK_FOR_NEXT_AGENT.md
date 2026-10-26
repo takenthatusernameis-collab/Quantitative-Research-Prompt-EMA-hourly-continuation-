@@ -1,8 +1,9 @@
-## Turn 2026-10-26T17:29Z (gate check — not yet eligible, no provider contact)
+## Turn 2026-10-26T17:30Z (gate check — not yet eligible, no provider contact)
 
-- Offline gate check: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed.
+- Offline gate check: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed (checked at `2026-10-26T17:30:27.785344+00:00`).
 - No provider contact. State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, N=275, floor ALPINE/USDT $3,426,968, eligible count 0.
-- Baseline grid complete (18150 cells, 0 blocked/credible).
+- Baseline grid complete (18150 cells, 0 blocked/credible). Child mutation grid complete and evaluated (not promoted).
+- Wakeup due `2026-10-27T17:20:00.000Z` (after the bound).
 
 **Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Gate bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. No provider contact permitted before the bound. Nothing is actionable until then.
 

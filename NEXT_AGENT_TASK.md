@@ -1,14 +1,14 @@
-## Turn 2026-10-26T17:29Z (gate check — not yet eligible, no provider contact)
+## Turn 2026-10-26T17:30Z (gate check — not yet eligible, no provider contact)
 
-- Offline gate check (run at `2026-10-26T17:29:05.109239+00:00`): `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed.
+- Offline gate check (run at `2026-10-26T17:30:27.785344+00:00`): `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. Reason: `the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet`.
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, N=275, floor ALPINE/USDT $3,426,968, eligible count 0).
-- Baseline grid `results/20261019_135940_grid` complete (18150 cells, 0 blocked/credible).
+- Baseline grid `results/20261019_135940_grid` complete (18150 cells, 0 blocked/credible). Child mutation grid `results/20261021_172619_grid` complete and evaluated (not promoted).
 - `git status --short` empty, `git diff --stat` empty. No code changes.
 - Wakeup scheduled due `2026-10-27T17:20:00.000Z` (after the bound).
 
-**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275, baseline grid complete. Gate bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. No provider contact permitted before the bound. Nothing is actionable until then.
+**Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Universe N=275, baseline grid complete (0 blocked/credible). Gate bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. No provider contact permitted before the bound. Nothing is actionable until then.
 
-**Next action:** wait for the bound, then follow steps: if eligible run one 20-page ranking pass, re-check eligible candidates, expand or record pass and set next +24 h bound, then update both handoff files.
+**Next action:** wait for the bound, then follow steps in NEXT_AGENT_TASK.md: if eligible run one 20-page ranking pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`), re-check eligible candidates, expand or record pass and set next +24 h bound, then update both handoff files.
 
 ## Turn 2026-10-26T17:23Z (gate check — not yet eligible, no provider contact)
 
