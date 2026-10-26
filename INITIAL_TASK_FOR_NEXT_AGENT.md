@@ -95,3 +95,9 @@
 - No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
 - Wakeup state: resume at/after bound `2026-10-26T15:14:53.192289+00:00`.
 - `git status --short` empty, `git diff --stat` empty (handoff updated).
+
+## Turn 2026-10-26T06:19:43Z (completed — offline gate check only, not eligible)
+- Offline gate check: `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed (`now` `2026-10-26T06:19:43.841047+00:00`). Reason: `the 24 h refresh bound 2026-10-26T15:14:53.192289+00:00 has not elapsed yet`.
+- No provider contact. `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`, N=275, floor ALPINE/USDT $3,405,003, eligible count 0).
+- Wakeup state: resume at/after bound `2026-10-26T15:14:53.192289+00:00`.
+- `git status --short` empty, `git diff --stat` empty (handoff updated).
