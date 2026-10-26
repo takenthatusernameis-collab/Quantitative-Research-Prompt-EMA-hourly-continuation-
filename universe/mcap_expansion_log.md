@@ -1,5 +1,34 @@
 # Market-Cap Universe Expansion Log
 
+## Gate re-check (2026-10-26T17:23Z) — no ranking pass made
+
+- Offline gate check (run at `2026-10-26T17:26:34.052889+00:00`):
+  `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed.
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged
+  (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`,
+  floor `ALPINE/USDT` 3 426 968 USD, `eligible_unseen_below_floor_count = 0`,
+  N = 275).
+- Baseline grid `results/20261019_135940_grid` re-verified directly:
+  `all_symbols_processed=true`, `next_cell=null`, `stopped=false`,
+  `stop_reason=null`, `completed_cells=18150` (275 x 66), 0 blocked.
+- Child mutation grid `results/20261021_172619_grid` re-verified directly:
+  `all_symbols_processed=true`, `completed_cells=17556` (266 x 66), `min_risk_atr=true`.
+  Full evaluation `results/20261022_002531_mutation_eval_full/`: child walk-forward pooled
+  OOF net PF 0.7390 (0.5731 under 2x costs), 106 cells clear the §3.4 gate, but the
+  child's own null puts 10.6% of folds above PF 1 — **not promoted**; the baseline grid
+  remains the program grid.
+- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty.
+- Wakeup state: no pending wakeups for this session at the start of this turn; a single
+  resume wakeup was scheduled at 2026-10-27T17:20:00Z:
+  **`wku_17940995f001N9sXoK3uaCzjaF`**. It carries the full resume prompt (offline
+  gate check -> one 20-page pass -> band re-check -> expand or record -> update both
+  handoffs). Only one pending wakeup exists for this session; do **not** re-schedule
+  a duplicate.
+- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with
+  this verification and the new wakeup id.
+- The gated market-cap expansion cycle cannot proceed until the bound elapses —
+  nothing is actionable before `2026-10-27T17:19:35.198212+00:00`.
+
 ## Ranking pass (2026-10-26T17:19:35Z) — gate OPEN, 0 eligible candidates, no expansion
 
 - Offline gate check first (run at `2026-10-26T16:59:58.004556+00:00`):
