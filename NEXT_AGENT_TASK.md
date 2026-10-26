@@ -1,11 +1,11 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Turn 2026-10-26T19:09Z (gate check — not yet eligible, no provider contact)
-- Offline gate check: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed. Reason: `the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet`.
+## Turn 2026-10-26T19:51Z (gate check — not yet eligible, no provider contact)
+- Offline gate check: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed (current time 2026-10-26T19:51:59Z). Reason: `the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet`.
 - No provider contact. State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor ALPINE/USDT $3,426,968, eligible count 0.
 - Baseline grid `results/20261019_135940_grid` complete (18150 cells, 0 blocked/credible). Child mutation grid complete and evaluated, not promoted.
 - `git status --short` empty, `git diff --stat` empty. No code changes.
-- Wakeup scheduled (`wku_1799a0d7d5001TigtidtswWEdqw`) to resume at `2026-10-27T17:25:00Z`, after bound.
+- Wakeup scheduled (`wku_179c59f6a001Hzy508UIL7y4MJ`) to resume at `2026-10-27T17:25:00Z`, after bound.
 
 **Current state:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Gate bound not yet elapsed. No provider contact permitted before bound. Nothing actionable until then.
 
