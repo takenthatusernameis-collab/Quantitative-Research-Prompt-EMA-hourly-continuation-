@@ -1,5 +1,22 @@
 # Market-Cap Universe Expansion Log
 
+## Gate re-check (2026-10-26T00:44:31Z) — no ranking pass made
+- `scripts/refresh_gate.gate_status` re-run against `universe/last_scan.json`:
+  `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed
+  (`now` 2026-10-26T00:44:31.259465+00:00`).
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged
+  (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261025_151453`,
+  floor `ALPINE/USDT` 3 405 003 USD, `eligible_unseen_below_floor_count = 0`,
+  N = 275).
+- Wakeup `wku_175a67ddb0017uwE5qxuFkSJYy` remains scheduled due
+  `2026-10-26T15:17:07.896Z` (resume at/after bound).
+- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with
+  this verification.
+- The gated market-cap expansion cycle cannot proceed until the bound elapses —
+  nothing is actionable before `2026-10-26T15:14:53.192289+00:00`.
+
+---
+
 ## Gate re-check (2026-10-26T00:27:24Z) — no ranking pass made
 - `scripts/refresh_gate.gate_status` re-run against `universe/last_scan.json`:
   `eligible=False`, bound `2026-10-26T15:14:53.192289+00:00` not yet elapsed
