@@ -1,11 +1,11 @@
 # Initial Task for the Next Agent — EMA Hourly Continuation
 
-## Current state (verified 2026-10-26T21:15Z)
+## Current state (verified 2026-10-26T22:19Z)
 Program in `AWAITING_NEW_ELIGIBLE_CANDIDATES`. Gate bound not elapsed:
-- Bound: `2026-10-27T17:19:35.198212+00:00` (now 2026-10-26T21:15:28.627547+00:00)
+- Bound: `2026-10-27T17:19:35.198212+00:00` (now 2026-10-26T22:19:16.608747+00:00`)
 - `eligible=False` (offline gate_status), no provider contact before bound
 
-Baseline `results/20261019_135940_grid` complete (18150/18150, 0 blocked, 0 credible). Mutations `NOT_PROMOTED`. Clean git. Tests 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; ignore). Wakeup `wku_17a0e75870017c3T0H5KQTCtMu` at 2026-10-27T17:20:00Z.
+Baseline `results/20261019_135940_grid` complete (18150/18150, 0 blocked, 0 credible). Mutations `NOT_PROMOTED`. Clean git. Tests 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; ignore).
 
 ## Your task
 At/after bound, check eligibility offline first:
@@ -27,25 +27,5 @@ Re-check `eligible_unseen_below_floor_count`. If >0 → apply with `--apply` (ap
 ## Evidence to report
 Gate before/after, snapshot/pages/floor/N/eligible, expansion or log+bound, grid/aggregate/candidate paths, blocked/credible, test totals.
 
-## Update 2026-10-26T21:25Z
-Gate re-checked: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` (not elapsed; now 21:25:21Z). No provider contact. Wakeup still scheduled at 2026-10-27T17:20:00Z. Await bound before proceeding per instructions.
-
-## Update 2026-10-26T21:28Z
-Gate re-checked: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` (not elapsed; now 21:28:31Z). No provider contact. Wakeup still scheduled at 2026-10-27T17:20:00Z. Await bound before proceeding per instructions. Git clean, tests 248 passed, 1 failed (pre-existing clock bug).
-
-## Update 2026-10-26T21:54Z
-Gate re-checked at now `2026-10-26T21:54:47.242632+00:00`: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not elapsed. No provider contact; no ranking pass made. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count=0`, N=275).
-
-Direct re-verification:
-- Baseline grid `results/20261019_135940_grid/progress.json`: `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `completed_cells=18150` = 275 x 66, 0 blocked.
-- Child mutation grid `results/20261022_134500_grid/progress.json`: `all_symbols_processed=true`, `completed_cells=18150`, `min_risk_atr=true`. `mutations.json` records `C_min_risk_atr` status `complete`, run_id `20261022_134500_grid`, n_cells 18150. Full mutation eval `results/20261022_002531_mutation_eval_full/`: child walk-forward pooled OOF net PF 0.7390 (0.5731 at 2x costs), 106 cells clear the §3.4 gate but the child's own null puts 10.6% of folds above PF 1 — **NOT_PROMOTED**; baseline grid remains the program grid.
-- `results/FINAL_DECISION.md` (393 lines) and `results/RESEARCH_CONCLUSION.md` exist and are current (2026-10-26T18:49Z).
-
-Session prep: `git status --short` empty, `git diff --stat` empty. `python3 -m pytest tests/ -q` → **248 passed, 1 failed** (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; exit 1, ignore).
-
-Wakeup state: all prior wakeups expired; a single resume wakeup is now scheduled at 2026-10-27T17:20:00Z: **`wku_17a3a534f0017Ych3F2EKBo7qR`**. Only one pending wakeup exists for this session; do **not** re-schedule a duplicate.
-
-Await bound before proceeding per instructions.
-
-## Update 2026-10-26T22:03Z
-Read prior agent task from durable handoffs. Confirmed state unchanged: gate bound `2026-10-27T17:19:35.198212+00:00` not elapsed (now 2026-10-26T22:03:47Z), `eligible=False` offline, no provider contact. Wakeup `wku_17a3a534f0017Ych3F2EKBo7qR` at 2026-10-27T17:20:00Z remains scheduled (single). Baseline `results/20261019_135940_grid` complete (18150/18150, 0 blocked, 0 credible), mutations `NOT_PROMOTED`. Clean git, tests 248 passed, 1 failed (pre-existing clock bug ignored). Nothing actionable before bound. Handoffs updated; clear initial task message provided below for next agent.
+## Update 2026-10-26T22:19Z
+Gate re-checked at now `2026-10-26T22:19:16.608747+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). Wakeup re-scheduled at 2026-10-27T17:20:00Z: `wku_17a4e13e6001QQc1MdxXE8LFjg` (single). Prior wakeup `wku_17a3a534f0017Ych3F2EKBo7qR` expired and was replaced. Baseline grid `results/20261019_135940_grid` verified complete (18150/18150, 0 blocked, 0 credible), mutations `NOT_PROMOTED`. Git clean. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count=0`, N=275). Nothing actionable before bound. Handoffs updated; clear initial task message provided below for next agent.
