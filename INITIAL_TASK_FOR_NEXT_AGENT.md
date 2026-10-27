@@ -1,12 +1,12 @@
-# INITIAL TASK FOR NEXT AGENT — Durable Handoff
+# INITIAL TASK FOR NEXT AGENT
 
-## Current state (turn 2026-10-27T20:01:00Z)
+## Current state (turn 2026-10-27T20:32:21Z)
 
-- Gate re-checked offline (PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~23 h 29 m remaining). now 2026-10-27T20:00:56.388642+00:00.
-- State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 2026-10-27T19:29:54Z, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
+- Gate re-checked offline: eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~23 h 0 m remaining). now 2026-10-27T20:32:49.233717+00:00.
+- State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
-- Wakeup wku_17ef02515001StA5uyppePcYOU set at/after the bound (due 2026-10-28T19:30:00.000Z). No provider contact this turn (no provider before bound; historical research only).
-- Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, next_cell=null, stopped=false, stop_reason=null, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
+- Wakeup wku_17f1108d4001HrGB4lemsgYZ1X set at/after the bound (due 2026-10-28T19:30:00.000Z). No provider contact this turn (no provider before bound; historical research only).
+- Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
 - Child mutation grids C_min_risk_atr (results/20261021_172619_grid) and C_stricter_trend (results/20261022_134500_grid) both complete, NOT_PROMOTED; baseline grid remains the program grid (results/mutations.json).
 - git status --short empty; git diff --stat empty; pytest tests/ -q -> 248 passed, 1 failed (pre-existing clock bug test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible, left untouched per AGENTS.md #6).
 
