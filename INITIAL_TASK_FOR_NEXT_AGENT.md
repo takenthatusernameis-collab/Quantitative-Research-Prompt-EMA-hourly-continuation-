@@ -1,6 +1,6 @@
 # Durable Handoff — EMA Hourly Continuation
 
-## Current state (turn 2026-10-27T12:01:29Z — verified by current agent)
+## Current state (turn 2026-10-27T12:05:30Z — verified by current agent)
 
 - Gate re-checked offline at now `2026-10-27T12:01:29Z`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). Nothing actionable before the bound.
 - Resume wakeup already scheduled: **`wku_17d2e2d7a001oRYlYXCFRys56a`**, due `2026-10-27T17:20:00.000Z` (at/after the bound `2026-10-27T17:19:35.198212+00:00`). Record its id in both handoffs. Do not create a duplicate.
