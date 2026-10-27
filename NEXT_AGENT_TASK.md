@@ -1,15 +1,15 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T10:16:00Z)
+## Current state (turn 2026-10-27T10:20:56Z — verified by the reading agent)
 
-- Gate re-checked offline at now `2026-10-27T10:16:40.439057+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
-- Baseline grid `results/20261019_135940_grid` complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`.
-- Mutations remain `NOT_PROMOTED` per `results/mutations.json`:
-  - `C_min_risk_atr` (ATR min-risk filter): evaluated across multiple legs; final decision NOT_PROMOTED (pooled OOS/net performance below credible edge; family-wise null/test evidence did not support promotion). See mutations.json for full audit trail.
-  - `C_stricter_trend`: zero delta on every metric (no-op; entry cross already implies close above/below EMAslow). NOT_PROMOTED. Baseline grid remains the program grid.
-- Git clean (`git status --short` empty, `git diff --stat` empty). `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count`=0, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00.
+- Gate re-checked offline at now `2026-10-27T10:20:56.126453+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). Nothing actionable before the bound; this agent stopped here.
+- Prior verification (turn 2026-10-27T10:16:00Z): same `eligible=False`, bound unchanged.
+- Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `n_rejected=18123`, `n_blocked=0`, `n_exploratory_signal=27` (summary-level; FINAL_DECISION.md audit labels 26 exploratory on the 266-symbol parent — both artifacts as recorded, no drift introduced). `progress.json` `completed_cells=18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `n_symbols=275`, `n_pairs=66`.
+- `universe/mcap_rank.json` holds 275 symbols, `ALPINE/USDT` last (floor), BTC/USDT first — matches `last_scan.json`.
+- Mutations remain `NOT_PROMOTED` per `results/mutations.json`: `C_min_risk_atr` complete/18150 cells/delta all-zero (final NOT_PROMOTED verdict), `C_stricter_trend` complete/18150 cells/delta `None` (no-op). Baseline grid remains the program grid.
+- Git clean (`git status --short` empty, `git diff --stat` empty).
 - Wakeup: no pending wakeups for this session (`cancel_wakeup list` returned empty). Do not create duplicate wakeups; the next agent may schedule a resume wakeup at/after the bound if needed.
-- Test suite: `PYTHONPATH=. python3 -m pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; explicitly ignored).
+- Test suite: `PYTHONPATH=. python3 -m pytest tests/ -q` → 248 passed, 1 failed in 140.87 s (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; explicitly ignored).
 
 ## Next action (immediately at/after bound)
 
@@ -28,6 +28,8 @@ PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import js
   - If >0 → apply with `--apply` (append below floor in desc mcap order), update `universe/mcap_rank.json`, run baseline 66-pair grid for new symbols only or full per implementation (baseline config only; no cost/fold/entry-exit/gate changes; no combining vars), then run `candidate_check`, `oos_grid_scan`, `null_grid_scan`, `survivor_selection_audit`, `cost_drag_leg`, append to `results/FINAL_DECISION.md` and `results/RESEARCH_CONCLUSION.md`.
   - If 0 → record pass in `universe/mcap_expansion_log.md` and set next +24h bound via gated refresh path.
 - Update both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`). Run `PYTHONPATH=. python3 -m pytest tests/ -q`.
+
+**Wakeup.** No wakeup is pending for this session at handoff. Schedule exactly one resume wakeup at/after the bound (e.g. `2026-10-27T17:20:00Z`) so the loop continues without polling; record its id in both handoffs. Do not create duplicate wakeups.
 
 ## Constraints
 
