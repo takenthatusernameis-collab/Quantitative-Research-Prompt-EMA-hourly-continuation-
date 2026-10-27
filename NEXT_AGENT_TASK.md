@@ -4,7 +4,7 @@
 
 - Gate re-checked offline at now `2026-10-27T13:53:33.185568+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). Nothing actionable before the bound (~3h 26m remaining).
 - Tests: `PYTHONPATH=. python3 -m pytest tests/ -q` → 248 passed, 1 failed. The single failure is the pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, to be ignored per AGENTS.md §6.
-- Resume wakeup scheduled: **`wku_17d5fa048001vAhe1Hl0adUr5a`**, due `2026-10-27T17:20:00.000Z` (at/after the bound `2026-10-27T17:19:35.198212+00:00`). Record its id in both handoffs. Do not create a duplicate wakeup.
+- Resume wakeup scheduled: **`wku_17da8c5a0001VXoJFMrgNr7uNH`**, due `2026-10-27T17:23:35.069Z` (at/after the bound `2026-10-27T17:19:35.198212+00:00`). Record its id in both handoffs. Do not create a duplicate wakeup.
 - Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `n_rejected=18123`, `n_blocked=0`, `n_exploratory_signal=27`. `progress.json` `completed_cells=18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `n_symbols=275`, `n_pairs=66`.
 - `universe/mcap_rank.json` holds 275 symbols, `ALPINE/USDT` last (floor), BTC/USDT first — matches `last_scan.json`.
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`: `C_min_risk_atr` complete/18150 cells/delta all-zero (final NOT_PROMOTED verdict), `C_stricter_trend` complete/18150 cells/delta `None` (no-op). Baseline grid remains the program grid.
@@ -28,7 +28,7 @@ PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import js
   - If 0 → record pass in `universe/mcap_expansion_log.md` and set next +24h bound via gated refresh path.
 - Update both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`). Run `PYTHONPATH=. python3 -m pytest tests/ -q`.
 
-**Wakeup.** Exactly one resume wakeup is scheduled — **`wku_17d5fa048001vAhe1Hl0adUr5a`**, due `2026-10-27T17:20:00.000Z` (at/after the bound) — so the loop continues without polling; record its id in both handoffs. Do not create duplicate wakeups.
+**Wakeup.** Exactly one resume wakeup is scheduled — **`wku_17da8c5a0001VXoJFMrgNr7uNH`**, due `2026-10-27T17:23:35.069Z` (at/after the bound) — so the loop continues without polling; record its id in both handoffs. Do not create duplicate wakeups.
 
 ## Constraints
 
