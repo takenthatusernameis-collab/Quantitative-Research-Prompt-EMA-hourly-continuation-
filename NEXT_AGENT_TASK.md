@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T06:40Z)
+## Current state (turn 2026-10-27T06:42Z)
 
-- Gate re-checked offline at now `2026-10-27T06:40:21.930036+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
+- Gate re-checked offline at now `2026-10-27T06:42:51.842892+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
 - Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. Pooled: mean_net_pf 0.4987, median_net_pf 0.5198, best_net_pf 2.2274. **0 credible candidates.**
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`:
   - `C_min_risk_atr` (ATR min-risk filter): pooled OOS net PF 0.6676 (0.4781 at 2x costs); 103 gate-clearing cells vs 329 from the child's own randomized timing null; family-wise p 0.9933; walk-forward OOF net PF 0.7390 still below 1. **NOT_PROMOTED.**
@@ -66,3 +66,4 @@ PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import js
 - 2026-10-27T06:20Z: gate re-checked offline at `2026-10-27T06:20:54.857043+00:00`, `eligible=False`, bound unchanged (`next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00); `last_scan.json` unchanged; no provider contact; baseline grid complete (18150/18150); tests 248 passed, 1 failed (pre-existing clock bug); git clean; handoffs updated for next agent. Nothing actionable before bound.
 - 2026-10-27T06:23Z: gate re-checked offline at `2026-10-27T06:23:34.541982+00:00`, `eligible=False`, bound unchanged (`next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00); `last_scan.json` unchanged; no provider contact; baseline grid complete (18150/18150); tests 248 passed, 1 failed (pre-existing clock bug); git clean; handoffs updated for next agent. Nothing actionable before bound.
 - 2026-10-27T06:40Z: gate re-checked offline at `2026-10-27T06:40:21.930036+00:00`, `eligible=False`, bound unchanged (`next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00); `last_scan.json` unchanged; no provider contact; baseline grid complete (18150/18150); tests could not execute (pytest not installed in this environment); prior recorded 248 passed, 1 failed (pre-existing clock bug); git clean; handoffs updated for next agent. Nothing actionable before bound.
+- 2026-10-27T06:42Z: gate re-checked offline at `2026-10-27T06:42:51.842892+00:00`, `eligible=False`, bound unchanged (`next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00); `last_scan.json` unchanged; no provider contact; baseline grid complete (18150/18150); git clean; tests could not execute (pytest not installed in this environment); prior recorded 248 passed, 1 failed (pre-existing clock bug); handoffs updated for next agent. Nothing actionable before bound.
