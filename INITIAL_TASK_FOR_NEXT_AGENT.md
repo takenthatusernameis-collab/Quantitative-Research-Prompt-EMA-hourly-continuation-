@@ -1,8 +1,8 @@
 # Durable Handoff — EMA Hourly Continuation
 
-## Current state (turn 2026-10-27T08:10:11.658331+00:00)
+## Current state (turn 2026-10-27T08:10:40Z)
 
-- Gate re-checked offline at now `2026-10-27T08:06:28.228962+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
+- Gate re-checked offline at now `2026-10-27T08:10:59.912399+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
 - Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. Pooled: mean_net_pf 0.4987, median_net_pf 0.5198, best_net_pf 2.2274. **0 credible candidates.**
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`:
   - `C_min_risk_atr` (ATR min-risk filter): pooled OOS net PF 0.6676 (0.4781 at 2x costs); 103 gate-clearing cells vs 329 from the child's own randomized timing null; family-wise p 0.9933; walk-forward OOF net PF 0.7390 still below 1. **NOT_PROMOTED.**
@@ -45,4 +45,6 @@ PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import js
 
 ## Prior turns (compact)
 
-- 2026-10-27T08:06:28.228962+00:00: gate re-checked offline at now 2026-10-27T08:06:28.228962+00:00, eligible=False, reason bound not elapsed; no provider contact; baseline grid complete (18150/18150); git clean; tests could not execute (pytest not installed); prior recorded 248 passed, 1 failed (pre-existing clock bug); handoffs updated for next agent. Nothing actionable before bound.
+- 2026-10-27T08:10:40Z: read durable handoff; re-verified gate offline at now 2026-10-27T08:10:59.912399+00:00, eligible=False (bound not elapsed); re-verified baseline grid 18150/18150 complete; re-read mutations.json confirming both NOT_PROMOTED decisions; git clean; last_scan.json unchanged; no pending wakeups found in this session (prior wku_17b8d840600108uIBxdjvSuO9Y not visible here — reschedule to be safe); updated both handoffs with this turn. Nothing actionable before bound.
+
+(End of file - total 48 lines)
