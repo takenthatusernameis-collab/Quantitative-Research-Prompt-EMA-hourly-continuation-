@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T19:46:00Z)
+## Current state (turn 2026-10-27T19:53:17Z)
 
-- Gate re-checked offline (PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~24 h remaining).
+- Gate re-checked offline (PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~23 h 36 m remaining).
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 2026-10-27T19:29:54Z, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
 - Wakeup wku_17eec3dc4001uuHGHB4XT627JL re-set at/after the bound (due 2026-10-28T19:30:00.000Z). No provider contact this turn (no provider before bound; historical research only).
