@@ -1,8 +1,8 @@
 # Durable Handoff — EMA Hourly Continuation
 
-## Current state (turn 2026-10-27T06:42Z)
+## Current state (turn 2026-10-27T06:50:52+00:00)
 
-- Gate re-checked offline at now `2026-10-27T06:42:51.842892+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
+- Gate re-checked offline at now `2026-10-27T06:50:52.529177+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
 - Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. Pooled: mean_net_pf 0.4987, median_net_pf 0.5198, best_net_pf 2.2274. **0 credible candidates.**
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`:
   - `C_min_risk_atr` (ATR min-risk filter): pooled OOS net PF 0.6676 (0.4781 at 2x costs); 103 gate-clearing cells vs 329 from the child's own randomized timing null; family-wise p 0.9933; walk-forward OOF net PF 0.7390 still below 1. **NOT_PROMOTED.**
