@@ -1,5 +1,30 @@
 # Market-Cap Universe Expansion Log
 
+## Gate re-check (2026-10-27T12:36Z) — no ranking pass made
+
+- Offline gate check (run at `2026-10-27T12:37:10.589073+00:00`):
+  `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed.
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged
+  (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`,
+  floor `ALPINE/USDT` 3 426 968 USD, `eligible_unseen_below_floor_count = 0`,
+  N = 275).
+- Baseline grid `results/20261019_135940_grid` re-verified directly:
+  `summary.json` -> n_cells 18150, n_symbols 275, n_pairs 66,
+  **0 credible candidates**. `progress.json` -> `all_symbols_processed=true`,
+  `next_cell=null`, `stopped=false`, `completed_cells=18150`, 0 blocked.
+- Session prep (verified this turn): `git status --short` empty,
+  `git diff --stat` empty; `PYTHONPATH=. python3 -m pytest tests/ -q` →
+  **248 passed, 1 failed** (pre-existing clock bug
+  `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`,
+  left untouched per AGENTS.md #6).
+- Wakeup state: no pending wakeups existed at start of turn; scheduled a single
+  resume wakeup at 2026-10-27T17:20:00Z:
+  **`wku_17d5fa048001vAhe1Hl0adUr5a`**. Do **not** re-schedule a duplicate.
+- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated
+  with this verification and the new wakeup id.
+- The gated market-cap expansion cycle cannot proceed until the bound elapses —
+  nothing is actionable before `2026-10-27T17:19:35.198212+00:00`.
+
 ## Gate re-check (2026-10-27T08:39Z) — no ranking pass made
 
 - Offline gate check (run at `2026-10-27T08:39:50.045471+00:00`):
