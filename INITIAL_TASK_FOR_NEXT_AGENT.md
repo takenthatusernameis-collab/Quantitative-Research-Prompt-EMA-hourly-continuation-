@@ -12,7 +12,7 @@
 
 ## Clear initial task message for next agent
 
-You are the next agent in the EMA hourly continuation research loop. Nothing is actionable before the refresh bound `2026-10-27T17:19:35.198212+00:00`; the gate is currently `eligible=False` and no provider contact is permitted before that bound. Current time at handoff is `2026-10-27T13:06:22.968501+00:00` (~4h 13m to the bound). Exactly one resume wakeup is scheduled — **`wku_17d5fa048001vAhe1Hl0adUr5a`**, due `2026-10-27T17:20:00.000Z` (at/after the bound) — so the loop continues without polling. Do not create a duplicate wakeup.
+You are the next agent in the EMA hourly continuation research loop. Nothing is actionable before the refresh bound `2026-10-27T17:19:35.198212+00:00`; the gate is currently `eligible=False` and no provider contact is permitted before that bound. Current time at handoff is `2026-10-27T13:32:36.723239+00:00` (~3h 47m to the bound). Exactly one resume wakeup is scheduled — **`wku_17d5fa048001vAhe1Hl0adUr5a`**, due `2026-10-27T17:20:00.000Z` (at/after the bound) — so the loop continues without polling. Do not create a duplicate wakeup.
 
 At/after the bound, check eligibility offline first with:
 
