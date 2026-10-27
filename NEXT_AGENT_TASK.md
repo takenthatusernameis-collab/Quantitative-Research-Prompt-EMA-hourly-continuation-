@@ -1,6 +1,14 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Turn 2026-10-27T00:34Z (current)
+## Turn 2026-10-27T00:48Z (current)
+- Gate re-checked offline at now `2026-10-27T00:48:52Z`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
+- Baseline grid `results/20261019_135940_grid` re-verified complete: progress.json `completed_cells=18150`, `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=True`, `next_cell=null`, `stopped=False`, `stop_reason=None`, "blocked" substring count 0; summary.json pooled n_cells 18150, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
+- Mutations remain `NOT_PROMOTED` per `results/mutations.json` (C_min_risk_atr and C_stricter_trend both documented negatives).
+- Git status clean. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count=0`, N=275, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00`). Nothing actionable before bound.
+- Test suite re-run: 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; ignore). Total runtime ~61s.
+- **Wakeup rescheduled to single `wku_17adba020001ALDWTPlsACR7Cl` at 2026-10-27T17:20:00Z.** No prior pending wakeups existed; this is the only scheduled wakeup.
+
+## Turn 2026-10-27T00:34Z (prior)
 - Gate re-checked offline at now `2026-10-27T00:34:29.901684+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
 - Wakeup `wku_17ac825b1001WIMy4VR5lQzEiH` at 2026-10-27T17:20:00Z remains scheduled (single). No prior pending wakeups existed; this is the only scheduled wakeup.
 - Baseline grid `results/20261019_135940_grid` re-verified complete: progress.json `completed_cells=18150`, `n_symbols=275`, `n_pairs=66`, `all_symbols_processed=True`, `next_cell=null`, `stopped=False`, `stop_reason=None`, "blocked" substring count 0; summary.json pooled n_cells 18150, mean_net_pf 0.4987, median 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, n_rejected 18123, n_blocked 0, **0 credible candidates**.
