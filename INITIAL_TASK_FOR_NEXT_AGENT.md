@@ -1,19 +1,19 @@
-# NEXT AGENT TASK — Durable Handoff
+# INITIAL TASK FOR NEXT AGENT — Durable Handoff
 
-## Current state (turn 2026-10-27T19:40:16Z)
+## Current state (turn 2026-10-27T19:46:00Z)
 
-- Gate re-checked offline (scripts/refresh_gate.gate_status against universe/last_scan.json): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~24 h remaining).
+- Gate re-checked offline (PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~24 h remaining).
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 2026-10-27T19:29:54Z, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
-- Wakeup wku_17ee0d532001SF6TTSpW4O8xHR re-set at/after the bound (due 2026-10-28T19:29:54.929Z). No provider contact this turn (no provider before bound; historical research only).
+- Wakeup wku_17eeb2fd10011mIEAHBRS2shhI re-set at/after the bound (due 2026-10-28T19:30:00.000Z). No provider contact this turn (no provider before bound; historical research only).
 - Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, next_cell=null, stopped=false, stop_reason=null, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
 - Child mutation grids C_min_risk_atr (results/20261021_172619_grid) and C_stricter_trend (results/20261022_134500_grid) both complete, NOT_PROMOTED; baseline grid remains the program grid (results/mutations.json).
-- git status --short empty; git diff --stat empty; pytest tests/ -q -> 248 passed, 1 failed (pre-existing clock bug test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible, left untouched per AGENTS.md #6).
+- git status --short empty; git diff --stat empty; pytest tests/ -q -> 248 passed, 1 failed (pre-existing clock bug test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible, left untouched per AGENTS.md #6). Reproduced this turn after installing pytest+pandas+numpy into the session-local environment (system python3 had none).
 
 ## Next action at/after bound
 
 At/after 2026-10-28T19:29:54.929656+00:00:
-1. Check gate offline (scripts/refresh_gate.gate_status). If not yet eligible, re-set a wakeup at/after the bound and stop — no provider contact.
+1. Check gate offline (PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"). If not yet eligible, re-set a wakeup at/after the bound and stop — no provider contact.
 2. If eligible: run exactly one 20-page CoinGecko ranking pass (PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20).
 3. Recompute the expansion floor from the fresh snapshot; inspect the band strictly below the floor.
 4. If eligible_unseen_below_floor_count == 0: record the pass in universe/last_scan.json (state AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected = []) and set a +24 h bound (next_eligible_refresh_at = scanned_at + 24 h).
