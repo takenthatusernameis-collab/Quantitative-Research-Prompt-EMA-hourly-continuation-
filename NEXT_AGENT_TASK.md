@@ -1,6 +1,6 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T22:56Z)
+## Current state (turn 2026-10-27T23:02Z)
 
 - Gate re-checked offline this turn: eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~20.5 h remaining). Command: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. No provider contact this turn. Wakeup already set at/after the bound — do not re-schedule a duplicate.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
@@ -8,7 +8,7 @@
 - Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
 - Child mutation grids C_min_risk_atr (results/20261022_134500_grid) and C_stricter_trend (results/20261022_134500_grid) both complete, NOT_PROMOTED; baseline grid remains the program grid (results/mutations.json).
 - git status --short empty; git diff --stat empty; pytest tests/ -q -> 248 passed, 1 failed (pre-existing clock bug test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible, left untouched per AGENTS.md #6).
-- Wakeup re-set this turn (prior id stale/cross-session): due 2026-10-28T19:41:53Z (at/after bound 2026-10-28T19:29:54.929656+00:00), id **wku_17f9944c500163aiOyLkrpZyk1**. Only one pending wakeup exists for this session; do not re-schedule a duplicate.
+- Wakeup re-set this turn (prior id stale/cross-session): due 2026-10-28T19:35:00Z (at/after bound 2026-10-28T19:29:54.929656+00:00), id **wku_17f9a27aa0014lNoHSZZ0NhVbN**. Only one pending wakeup exists for this session; do not re-schedule a duplicate.
 
 ## Next action at/after bound
 
@@ -28,3 +28,5 @@ At/after 2026-10-28T19:29:54.929656+00:00:
 - Do not fetch new candle data; do not modify the baseline grid or registered costs/fills/entry-exit semantics.
 - Preserve all negative and blocked results; never label a partial grid complete.
 - A negative result is a valid research result; expand rather than stop.
+
+(End of file - total 30 lines)
