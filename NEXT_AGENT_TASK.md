@@ -1,9 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T06:00Z)
+## Current state (turn 2026-10-27T06:08Z)
 
-- Gate re-checked offline at now `2026-10-27T06:00:57.654461+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
-- Baseline grid `results/20261019_135940_grid` re-verified complete this turn: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. 0 credible candidates.
+- Gate re-checked offline at now `2026-10-27T06:08:21.390350+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
 - Baseline grid `results/20261019_135940_grid` re-verified complete this turn: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. Pooled: mean_net_pf 0.4987, median_net_pf 0.5198, best_net_pf 2.2274. **0 credible candidates.**
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`:
   - `C_min_risk_atr` (ATR min-risk filter): pooled OOS net PF 0.6676 (0.4781 at 2x costs); 103 gate-clearing cells vs 329 from the child's own randomized timing null; family-wise p 0.9933; walk-forward OOF net PF 0.7390 still below 1. **NOT_PROMOTED.**
@@ -12,6 +11,7 @@
 - Git clean (3 chore checkpoints). `last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count=0`, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00.
 - Wakeup scheduled at 2026-10-27T17:20:00Z (`wku_17b8d840600108uIBxdjvSuO9Y`). No prior pending wakeups existed; this is the only scheduled wakeup.
 - Nothing actionable before bound.
+- Tests at this turn: 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
 
 ## Next action (immediately at/after bound)
 
@@ -57,5 +57,7 @@ PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import js
 - 2026-10-27T04:53Z: gate re-checked offline at `2026-10-27T04:53:29.271366+00:00`, `eligible=False`, bound unchanged; no provider contact; baseline grid re-verified complete (18150/18150 cells, 0 blocked, 0 credible candidates); tests 248 passed, 1 failed (pre-existing clock bug); handoffs updated for next agent.
 - 2026-10-27T04:56Z: gate re-checked offline at `2026-10-27T04:55:59.834447+00:00`, `eligible=False`, bound unchanged; no provider contact; baseline grid re-verified complete (18150/18150 cells, 0 blocked, 0 credible candidates); tests 248 passed, 1 failed (pre-existing clock bug); handoffs updated for next agent.
 - 2026-10-27T05:07Z: gate re-checked offline at `2026-10-27T05:07:05.000000+00:00`, `eligible=False`, bound unchanged; no provider contact; baseline grid re-verified complete (18150/18150 cells, 0 blocked, 0 credible candidates); tests 248 passed, 1 failed (pre-existing clock bug); git clean; handoffs updated for next agent.
-- 2026-10-27T05:49Z: gate re-checked offline at `2026-10-27T05:49:38.688370+00:00`, `eligible=False`, bound unchanged; no provider contact; baseline grid re-verified complete (18150/18150 cells, 0 blocked, 0 credible candidates); tests pending; handoffs updated for next agent.
+- 2026-10-27T05:16Z: gate re-checked offline at `2026-10-27T05:16:29.548697+00:00`, `eligible=False`, bound unchanged; baseline grid re-verified complete (18150/18150 cells, 0 blocked, 0 credible candidates); no provider contact; tests 248 passed, 1 failed (pre-existing clock bug); git clean; handoffs updated for next agent.
+- 2026-10-27T05:55Z: gate re-checked offline at `2026-10-27T05:54:53.002503+00:00`, `eligible=False`, bound unchanged; no provider contact; baseline grid re-verified complete (18150/18150 cells, 0 blocked, 0 credible candidates); tests 248 passed, 1 failed (pre-existing clock bug); git clean; handoffs updated for next agent.
 - 2026-10-27T06:00Z: gate re-checked offline at `2026-10-27T06:00:57.654461+00:00`, `eligible=False`, bound unchanged; no provider contact; baseline grid complete (18150/18150); tests 248 passed, 1 failed (pre-existing clock bug); git clean; handoffs updated for next agent.
+- 2026-10-27T06:08Z: gate re-checked offline at `2026-10-27T06:08:21.390350+00:00`, `eligible=False`, bound unchanged; no provider contact; baseline grid complete (18150/18150); tests 248 passed, 1 failed (pre-existing clock bug); git clean; handoffs updated for next agent.
