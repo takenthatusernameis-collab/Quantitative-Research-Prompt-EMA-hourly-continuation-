@@ -1,5 +1,39 @@
 # Market-Cap Universe Expansion Log
 
+## Gate re-check (2026-10-27T08:39Z) — no ranking pass made
+
+- Offline gate check (run at `2026-10-27T08:39:50.045471+00:00`):
+  `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not yet elapsed.
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged
+  (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`,
+  floor `ALPINE/USDT` 3 426 968 USD, `eligible_unseen_below_floor_count = 0`,
+  N = 275).
+- Baseline grid `results/20261019_135940_grid` re-verified directly:
+  `summary.json` -> n_cells 18150, n_symbols 275, n_pairs 66, total_trades 14 676 563,
+  mean net PF 0.4987, median_net_pf 0.5198, best net PF 2.2274,
+  n_cells_net_pf_gt_1 37, n_exploratory_signal 27, n_rejected 18123,
+  **0 credible candidates**. `progress.json` -> `all_symbols_processed=true`,
+  `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150`,
+  0 blocked.
+- Child mutation grid `results/20261022_134500_grid` re-verified directly:
+  `progress.json` -> `all_symbols_processed=true`, `completed_cells=18150`,
+  `min_risk_atr=true`. `mutations.json` records `C_min_risk_atr` status `complete`,
+  run_id `20261022_134500_grid`, n_cells 18150. Full mutation eval
+  `results/20261022_002531_mutation_eval_full/`: child walk-forward pooled OOF net PF
+  0.7390 (0.5731 under 2x costs), 106 cells clear the §3.4 gate, but the child's own
+  null puts 10.6% of folds above PF 1 — **NOT_PROMOTED**; the baseline grid remains
+  the program grid.
+- Session prep (verified this turn): `git status --short` empty,
+  `git diff --stat` empty.
+- Wakeup state: `cancel_wakeup list` returned **no pending wakeups for this
+  session** (prior `wku_17b8d840600108uIBxdjvSuO9Y` not visible here); a single
+  resume wakeup is now scheduled at 2026-10-27T17:20:00Z
+  (**`wku_17c87a761001RxDPguvXxuXK4u`**). Do **not** re-schedule a duplicate.
+- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with
+  this verification.
+- The gated market-cap expansion cycle cannot proceed until the bound elapses —
+  nothing is actionable before `2026-10-27T17:19:35.198212+00:00`.
+
 ## Gate re-check (2026-10-26T21:54Z) — no ranking pass made
 
 - Offline gate check (run at `2026-10-26T21:54:47.242632+00:00`):

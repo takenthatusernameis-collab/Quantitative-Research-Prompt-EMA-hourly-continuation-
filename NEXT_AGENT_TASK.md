@@ -1,17 +1,16 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T08:10:40Z)
+## Current state (turn 2026-10-27T08:39:50Z)
 
-- Gate re-checked offline at now `2026-10-27T08:10:59.912399+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
-- Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. Pooled: mean_net_pf 0.4987, median_net_pf 0.5198, best_net_pf 2.2274. **0 credible candidates.**
+- Gate re-checked offline at now `2026-10-27T08:39:50.045471+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
+- Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. Pooled: mean_net_pf 0.4987, median_net_pf 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, **0 credible candidates**.
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`:
   - `C_min_risk_atr` (ATR min-risk filter): pooled OOS net PF 0.6676 (0.4781 at 2x costs); 103 gate-clearing cells vs 329 from the child's own randomized timing null; family-wise p 0.9933; walk-forward OOF net PF 0.7390 still below 1. **NOT_PROMOTED.**
   - `C_stricter_trend`: zero delta on every metric (no-op; entry cross already implies close above/below EMAslow). **NOT_PROMOTED.**
   - Baseline grid `results/20261019_135940_grid` remains the program grid.
-- Git clean. `last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count`=0, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00.
-- Wakeup scheduled at 2026-10-27T17:20:00Z (`wku_17b8d840600108uIBxdjvSuO9Y`). Only scheduled wakeup.
+- Git clean (`git status --short` empty, `git diff --stat` empty). `last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count`=0, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00.
+- Wakeup state: `cancel_wakeup list` returned **no pending wakeups for this session**. The prior scheduled wakeup `wku_17b8d840600108uIBxdjvSuO9Y` was not visible in this session's list. A single resume wakeup is now scheduled at 2026-10-27T17:20:00Z (`wku_17c87a761001RxDPguvXxuXK4u`). Only scheduled wakeup.
 - Nothing actionable before bound.
-- Tests at this turn: could not execute (pytest not installed in this environment); prior recorded 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
 
 ## Next action (immediately at/after bound)
 
@@ -45,6 +44,6 @@ PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import js
 
 ## Prior turns (compact)
 
-- 2026-10-27T08:10:40Z: read durable handoff; re-verified gate offline at now 2026-10-27T08:10:59.912399+00:00, eligible=False (bound not elapsed); re-verified baseline grid 18150/18150 complete; re-read mutations.json confirming both NOT_PROMOTED decisions; git clean; last_scan.json unchanged; no pending wakeups found in this session (prior wku_17b8d840600108uIBxdjvSuO9Y not visible here — reschedule to be safe); updated both handoffs with this turn. Nothing actionable before bound.
+- 2026-10-27T08:39:50Z: read durable handoff; re-verified gate offline at now `2026-10-27T08:39:50.045471+00:00`, eligible=False (bound not elapsed); re-verified baseline grid 18150/18150 complete via `progress.json` and `summary.json`; re-read mutations.json confirming both NOT_PROMOTED decisions; git clean; `last_scan.json` unchanged; `cancel_wakeup list` returned no pending wakeups (prior wku_17b8d840600108uIBxdjvSuO9Y not visible here — rescheduled to be safe); updated both handoffs with this turn. Nothing actionable before bound.
 
-(End of file - total 48 lines)
+(End of file - total 62 lines)
