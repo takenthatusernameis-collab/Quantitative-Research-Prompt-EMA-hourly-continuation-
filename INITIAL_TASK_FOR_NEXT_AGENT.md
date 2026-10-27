@@ -31,7 +31,13 @@ At/after bound `2026-10-27T17:19:35.198212+00:00`, check eligibility offline fir
 ## Evidence to report
 Gate before/after, snapshot/pages/floor/N/eligible, expansion or log+bound, grid/aggregate/candidate paths, blocked/credible, test totals.
 
-## Update 2026-10-27T01:03Z (current)
+## Update 2026-10-27T01:03Z
 - Gate re-checked offline at now `2026-10-27T01:03:42.624945+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
 - Prior wakeups cancelled (none were pending at start of this turn; `wku_17adba020001ALDWTPlsACR7Cl` from prior turn no longer present). Single wakeup `wku_17ae2c4ca001Oh4l47nQz6oOGO` scheduled at 2026-10-27T17:20:00Z.
 - Baseline grid verified complete (18150/18150, 0 blocked, 0 credible). Mutations `NOT_PROMOTED`. Git clean. `last_scan.json` unchanged (N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count=0`). Nothing actionable before bound. Handoffs updated.
+
+## Update 2026-10-27T01:08Z (current)
+- Read prior agent task from durable handoff; no actionable work before bound.
+- Gate re-confirmed offline: `eligible=False`, bound `2026-10-27T17:19:35.198212+00:00` not elapsed. Single wakeup `wku_17ae2c4ca001Oh4l47nQz6oOGO` at 2026-10-27T17:20:00Z.
+- Baseline grid complete (18150/18150, 0 credible). Mutations NOT_PROMOTED. Clean git. Nothing actionable before bound.
+- Handoffs updated; clear initial task message written for next agent.
