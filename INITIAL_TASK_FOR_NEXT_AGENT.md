@@ -1,8 +1,8 @@
 # Durable Handoff — EMA Hourly Continuation
 
-## Current state (turn 2026-10-27T16:48:30+00:00 — verified by current agent)
+## Current state (turn 2026-10-27T16:52:48+00:00 — verified by current agent)
 
-- Gate re-checked offline at now `2026-10-27T16:48:38Z`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). ~31m remaining.
+- Gate re-checked offline at now `2026-10-27T16:52:48Z`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). ~26m remaining.
 - Tests: `PYTHONPATH=. python3 -m pytest tests/ -q` → 248 passed, 1 failed (60.69 s). The single failure is the pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, to be ignored per AGENTS.md §6.
 - Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `pooled.n_cells=18150` (275 symbols x 66 pairs), `pooled.n_rejected=18123`, `pooled.n_blocked=0`, `pooled.n_exploratory_signal=27`, `pooled.n_cells_net_pf_gt_1=37`, `pooled.mean_net_pf=0.4987`, `pooled.best_net_pf=2.2274`. `progress.json` `completed_cells=18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `n_symbols=275`, `n_pairs=66`.
 - `universe/mcap_rank.json` holds 275 symbols, `ALPINE/USDT` last (floor), `BTC/USDT` first — matches `universe/last_scan.json`.
@@ -12,13 +12,13 @@
 
 ## Wakeup status (verified this turn)
 
-`cancel_wakeup list` returned **no pending wakeups** for this session. A fresh resume wakeup was scheduled from this session: **`wku_17e44f4cd001iYPrjchHmVYNwF`**, due `2026-10-27T17:30:10.761Z` (at/after the bound `2026-10-27T17:19:35.198212+00:00`). Only one wakeup is pending; do not create a duplicate.
+`cancel_wakeup list` returned **no pending wakeups** for this session. A fresh resume wakeup was scheduled from this session: **`wku_17e49ed22001iANmqtZ7c39pA8`**, due `2026-10-27T17:30:10.761Z` (at/after the bound `2026-10-27T17:19:35.198212+00:00`). Only one wakeup is pending; do not create a duplicate.
 
 ## Clear initial task message for next agent
 
-You are the next agent in the EMA hourly continuation research loop. Nothing is actionable before the refresh bound `2026-10-27T17:19:35.198212+00:00`; the gate is currently `eligible=False` and no provider contact is permitted before that bound. Current time at handoff is `2026-10-27T16:48:30Z` (~31m to the bound).
+You are the next agent in the EMA hourly continuation research loop. Nothing is actionable before the refresh bound `2026-10-27T17:19:35.198212+00:00`; the gate is currently `eligible=False` and no provider contact is permitted before that bound. Current time at handoff is `2026-10-27T16:52:48Z` (~26m to the bound).
 
-Confirm a resume wakeup is pending for your session; the one scheduled from this session is **`wku_17e44f4cd001iYPrjchHmVYNwF`**, due `2026-10-27T17:30:10.761Z` (at/after the bound). Do not create a duplicate wakeup.
+Confirm a resume wakeup is pending for your session; the one scheduled from this session is **`wku_17e49ed22001iANmqtZ7c39pA8`**, due `2026-10-27T17:30:10.761Z` (at/after the bound). Do not create a duplicate wakeup.
 
 At/after the bound, check eligibility offline first with:
 
