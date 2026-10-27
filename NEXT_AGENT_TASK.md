@@ -1,11 +1,11 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T20:40:42Z)
+## Current state (turn 2026-10-27T20:44:39Z)
 
-- Gate re-checked offline (PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~23 h 0 m remaining). now 2026-10-27T20:40:42.377770+00:00.
+- Gate re-checked offline (PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~23 h 0 m remaining). now 2026-10-27T20:44:39.133218+00:00.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 2026-10-27T19:29:54Z, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
-- Wakeup wku_17f1a61b3001cYYO2jEXZTCYlX set at/after the bound (due 2026-10-28T19:35:00Z). No provider contact this turn (no provider before bound; historical research only).
+- Wakeup wku_17f1bb107001Su47I6r85D382j set at/after the bound (due 2026-10-28T20:44:43.651Z). No provider contact this turn (no provider before bound; historical research only).
 - Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, next_cell=null, stopped=false, stop_reason=null, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
 - Child mutation grids C_min_risk_atr (results/20261021_172619_grid) and C_stricter_trend (results/20261022_134500_grid) both complete, NOT_PROMOTED; baseline grid remains the program grid (results/mutations.json).
 - git status --short empty; git diff --stat empty; pytest tests/ -q -> 248 passed, 1 failed (pre-existing clock bug test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible, left untouched per AGENTS.md #6).
@@ -28,3 +28,4 @@ At/after 2026-10-28T19:29:54.929656+00:00:
 - Do not fetch new candle data; do not modify the baseline grid or registered costs/fills/entry-exit semantics.
 - Preserve all negative and blocked results; never label a partial grid complete.
 - A negative result is a valid research result; expand rather than stop.
+"
