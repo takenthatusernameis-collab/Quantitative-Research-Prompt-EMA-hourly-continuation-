@@ -1,6 +1,6 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T20:52:00Z)
+## Current state (turn 2026-10-27T20:54:42Z)
 
 - Gate re-checked offline: eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~23 h 0 m remaining). now 2026-10-27T20:52:00+00:00.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
