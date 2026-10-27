@@ -1,14 +1,14 @@
 # Durable Handoff — EMA Hourly Continuation
 
-## Current state (turn 2026-10-27T10:12:00Z)
+## Current state (turn 2026-10-27T10:16:00Z)
 
-- Gate re-checked offline at now `2026-10-27T10:12:02.388875+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
+- Gate re-checked offline at now `2026-10-27T10:16:40.439057+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
 - Baseline grid `results/20261019_135940_grid` complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`.
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`:
   - `C_min_risk_atr`: NOT_PROMOTED (no credible edge; failed to clear null/survivor/cost checks).
   - `C_stricter_trend`: zero delta on every metric (no-op). NOT_PROMOTED. Baseline grid remains the program grid.
 - Git clean (`git status --short` empty, `git diff --stat` empty). `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count`=0, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00.
-- Wakeup: no pending wakeups for this session.
+- Wakeup: no pending wakeups for this session (`cancel_wakeup list` returned empty). Do not create duplicate wakeups; the next agent may schedule a resume wakeup at/after the bound if needed.
 - Test suite: `PYTHONPATH=. python3 -m pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; explicitly ignored).
 
 ## Clear initial task message for next agent
