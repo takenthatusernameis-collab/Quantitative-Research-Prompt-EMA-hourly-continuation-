@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T19:29:55Z)
+## Current state (turn 2026-10-27T19:34:26.405126+00:00)
 
-- Gate: bound 2026-10-28T19:29:54.929656+00:00; eligible=False until then.
+- Gate checked offline: eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not elapsed.
 - Baseline grid unchanged (275 symbols x 66 pairs).
 - 20-page pass recorded; eligible_unseen_below_floor_count=0.
 - No universe expansion.
