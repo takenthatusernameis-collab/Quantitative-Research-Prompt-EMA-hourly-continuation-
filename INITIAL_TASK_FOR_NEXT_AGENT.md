@@ -1,14 +1,14 @@
 # Durable Handoff — EMA Hourly Continuation
 
-## Current state (turn 2026-10-27T06:50:52+00:00)
+## Current state (turn 2026-10-27T06:55:17+00:00)
 
-- Gate re-checked offline at now `2026-10-27T06:50:52.529177+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
+- Gate re-checked offline at now `2026-10-27T06:55:17+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
 - Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. Pooled: mean_net_pf 0.4987, median_net_pf 0.5198, best_net_pf 2.2274. **0 credible candidates.**
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`:
   - `C_min_risk_atr` (ATR min-risk filter): pooled OOS net PF 0.6676 (0.4781 at 2x costs); 103 gate-clearing cells vs 329 from the child's own randomized timing null; family-wise p 0.9933; walk-forward OOF net PF 0.7390 still below 1. **NOT_PROMOTED.**
   - `C_stricter_trend`: zero delta on every metric (no-op; entry cross already implies close above/below EMAslow). **NOT_PROMOTED.**
   - Baseline grid `results/20261019_135940_grid` remains the program grid.
-- Git clean (3 chore checkpoints). `last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count=0`, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00.
+- Git clean. `last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count`=0, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00.
 - Wakeup scheduled at 2026-10-27T17:20:00Z (`wku_17b8d840600108uIBxdjvSuO9Y`). Only scheduled wakeup.
 - Nothing actionable before bound.
 - Tests at this turn: could not execute (pytest not installed in this environment); prior recorded 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`).
@@ -67,3 +67,4 @@ PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import js
 - 2026-10-27T06:42Z: gate re-checked offline at `2026-10-27T06:42:51.842892+00:00`, `eligible=False`, bound unchanged (`next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00); `last_scan.json` unchanged; no provider contact; baseline grid complete (18150/18150); git clean; tests could not execute (pytest not installed in this environment); prior recorded 248 passed, 1 failed (pre-existing clock bug); handoffs updated for next agent. Nothing actionable before bound.
 
 - 2026-10-27T06:51Z: gate re-checked offline at `2026-10-27T06:51:28.471256+00:00`, `eligible=False`, bound unchanged (`next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00); `last_scan.json` unchanged; no provider contact; baseline grid re-verified complete (18150/18150); git clean; tests could not execute (pytest not installed in this environment); prior recorded 248 passed, 1 failed (pre-existing clock bug); handoffs updated for next agent. Nothing actionable before bound.
+- 2026-10-27T06:55:17+00:00: gate re-checked offline at `2026-10-27T06:55:17+00:00`, `eligible=False`, bound unchanged (`next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00); `last_scan.json` unchanged; no provider contact; baseline grid re-verified complete (18150/18150); git clean; tests could not execute (pytest not installed in this environment); prior recorded 248 passed, 1 failed (pre-existing clock bug); handoffs updated for next agent. Nothing actionable before bound.
