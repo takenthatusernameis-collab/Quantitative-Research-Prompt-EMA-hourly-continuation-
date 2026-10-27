@@ -1,14 +1,14 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T22:42Z)
+## Current state (turn 2026-10-27T22:45Z)
 
-- Gate re-checked offline: eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~20.79 h remaining). Command: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. No provider contact this turn.
+- Gate re-checked offline: eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~20.73 h remaining). Command: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. No provider contact this turn.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
 - Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
 - Child mutation grids C_min_risk_atr (results/20261022_134500_grid) and C_stricter_trend (results/20261022_134500_grid) both complete, NOT_PROMOTED; baseline grid remains the program grid (results/mutations.json).
 - git status --short empty; git diff --stat empty; pytest tests/ -q -> 248 passed, 1 failed (pre-existing clock bug test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible, left untouched per AGENTS.md #6).
-- Wakeup re-set this turn: due 2026-10-28T19:41:05Z (at/after bound 2026-10-28T19:29:54.929656+00:00), id **wku_17f863ac2001JxMu070C3Ahlwn**. Only one pending wakeup exists for this session; do not re-schedule a duplicate.
+- Wakeup previously set: due 2026-10-28T19:41:05Z (at/after bound 2026-10-28T19:29:54.929656+00:00), id **wku_17f863ac2001JxMu070C3Ahlwn**. Only one pending wakeup exists for this session; do not re-schedule a duplicate.
 
 ## Next action at/after bound
 
