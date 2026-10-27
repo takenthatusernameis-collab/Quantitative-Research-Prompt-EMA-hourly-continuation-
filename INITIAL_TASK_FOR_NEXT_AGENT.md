@@ -1,16 +1,15 @@
 # Durable Handoff — EMA Hourly Continuation
 
-## Current state (turn 2026-10-27T10:03:05Z)
+## Current state (turn 2026-10-27T10:12:00Z)
 
-- Gate re-checked offline at now `2026-10-27T09:46:26.391270+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
-- Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. Pooled: mean_net_pf 0.4987, median_net_pf 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, **0 credible candidates**.
+- Gate re-checked offline at now `2026-10-27T10:12:02.388875+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
+- Baseline grid `results/20261019_135940_grid` complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`.
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`:
-  - `C_min_risk_atr` (ATR min-risk filter): pooled OOS net PF 0.6676 (0.4781 at 2x costs); 103 gate-clearing cells vs 329 from the child's own randomized timing null; family-wise p 0.9933; walk-forward OOF net PF 0.7390 still below 1. **NOT_PROMOTED.**
-  - `C_stricter_trend`: zero delta on every metric (no-op; entry cross already implies close above/below EMAslow). **NOT_PROMOTED.**
-  - Baseline grid `results/20261019_135940_grid` remains the program grid.
-- Git clean (`git status --short` empty, `git diff --stat` empty). `last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count`=0, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00.
-- Wakeup state: `cancel_wakeup list` returned **no pending wakeups for this session**. A single resume wakeup is now scheduled at 2026-10-27T17:20:00Z (`wku_17c89524a00102MSYZ3vlQ4zAK`).
-- Test suite run: `PYTHONPATH=. python3 -m pytest tests/ -q` → 248 passed, 1 failed. The single failure is the pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible` (explicitly ignored per constraints). Nothing actionable before bound.
+  - `C_min_risk_atr`: NOT_PROMOTED (no credible edge; failed to clear null/survivor/cost checks).
+  - `C_stricter_trend`: zero delta on every metric (no-op). NOT_PROMOTED. Baseline grid remains the program grid.
+- Git clean (`git status --short` empty, `git diff --stat` empty). `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261026_171935`, N=275, floor `ALPINE/USDT` $3,426,968, `eligible_unseen_below_floor_count`=0, `next_eligible_refresh_at` 2026-10-27T17:19:35.198212+00:00.
+- Wakeup: no pending wakeups for this session.
+- Test suite: `PYTHONPATH=. python3 -m pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug in `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`; explicitly ignored).
 
 ## Clear initial task message for next agent
 
@@ -40,13 +39,7 @@ PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import js
 
 ## Key artifacts
 
-- `results/FINAL_DECISION.md` (393 lines) and `results/RESEARCH_CONCLUSION.md` — current as of 2026-10-26T18:49Z; program decision: no credible edge; keep expanding universe per PROMPT.md §2.1.
+- `results/FINAL_DECISION.md` and `results/RESEARCH_CONCLUSION.md` — program decision: no credible edge; keep expanding universe per PROMPT.md §2.1.
 - `results/20261019_135940_grid/` — baseline program grid (275 symbols x 66 pairs = 18150 cells).
+- `results/mutations.json` — both mutations NOT_PROMOTED.
 - `universe/last_scan.json`, `universe/mcap_rank.json`, `universe/mcap_expansion_log.md`.
-
-## Prior turns (compact)
-- 2026-10-27T09:40:49.314586+00:00: read prior handoff; re-checked gate offline (eligible=False, bound 2026-10-27T17:19:35.198212+00:00 not elapsed); re-verified baseline grid 18150/18150 complete and mutations NOT_PROMOTED; git clean; `cancel_wakeup list` no pending wakeups this session; ran tests (248 passed, 1 pre-existing clock-bug failure ignored); updated both handoffs. Nothing actionable before bound.
-
-
-- 2026-10-27T08:45:00Z: read durable handoff; re-verified gate offline at now `2026-10-27T08:44:57.961433558+00:00`, eligible=False (bound not elapsed); re-verified baseline grid 18150/18150 complete via `progress.json` and `summary.json`; re-read mutations.json confirming both NOT_PROMOTED decisions; git clean; `last_scan.json` unchanged; `cancel_wakeup list` returned no pending wakeups — scheduled single resume wakeup `wku_17c89524a00102MSYZ3vlQ4zAK` at 2026-10-27T17:20:00Z; ran full test suite (248 passed, 1 pre-existing clock-bug failure explicitly ignored); updated both handoffs with this turn. Nothing actionable before bound.
-- 2026-10-27T10:03:05Z: read prior handoff; re-checked gate offline (eligible=False, bound 2026-10-27T17:19:35.198212+00:00 not elapsed); re-verified baseline grid 18150/18150 complete and mutations NOT_PROMOTED; git clean; ran tests (248 passed, 1 pre-existing clock-bug failure ignored); updated both handoffs. Nothing actionable before bound.
