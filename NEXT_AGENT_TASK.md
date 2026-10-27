@@ -1,6 +1,6 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T09:51:00Z)
+## Current state (turn 2026-10-27T10:03:05Z)
 
 - Gate re-checked offline at now `2026-10-27T09:51:00Z`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant).
 - Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `progress.json` `completed_cells=18150/18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`. Pooled: mean_net_pf 0.4987, median_net_pf 0.5198, best_net_pf 2.2274, n_cells_net_pf_gt_1 37, **0 credible candidates**.
@@ -44,4 +44,4 @@ PYTHONPATH=. python3 -c "from scripts.refresh_gate import gate_status; import js
 
 ## Prior turns (compact)
 - 2026-10-27T09:46:26Z: read prior handoff; re-checked gate offline (eligible=False, bound 2026-10-27T17:19:35.198212+00:00 not elapsed); re-verified baseline grid 18150/18150 complete and mutations NOT_PROMOTED; git clean; wakeup `wku_17c89524a00102MSYZ3vlQ4zAK` at 2026-10-27T17:20:00Z present; ran tests 248 passed, 1 pre-existing clock-bug failure ignored; updated both handoffs. Nothing actionable before bound.
-- 2026-10-27T09:51:00Z: read durable handoff; re-checked gate offline (eligible=False, bound not elapsed); re-verified baseline grid 18150/18150 complete via `summary.json` and `progress.json`; re-read mutations.json confirming both NOT_PROMOTED decisions; git clean; `last_scan.json` unchanged; `cancel_wakeup list` returned no pending wakeups — scheduled single resume wakeup `wku_17cc61f46001dnpK66HU44VcHh` at 2026-10-27T17:20:00Z; ran full test suite (248 passed, 1 pre-existing clock-bug failure explicitly ignored); updated both handoffs with this turn. Nothing actionable before bound.
+- 2026-10-27T10:03:05Z: read durable handoff; re-checked gate offline (eligible=False, bound 2026-10-27T17:19:35.198212+00:00 not elapsed); re-verified baseline grid 18150/18150 complete via summary.json (mean_net_pf 0.4987, median 0.5198, best 2.2274, 37 cells >1, 0 credible); re-read mutations.json confirming both NOT_PROMOTED; git clean; last_scan.json unchanged; ran full test suite (248 passed, 1 pre-existing clock-bug failure explicitly ignored); updated both handoffs. Nothing actionable before bound.
