@@ -1,11 +1,11 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T21:06:11Z)
+## Current state (turn 2026-10-27T21:33:20Z)
 
-- Gate re-checked offline: eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~22 h 24 m remaining). now 2026-10-27T21:06:24.943086+00:00.
+- Gate re-checked offline: eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~22 h remaining). now 2026-10-27T21:33:20.696095+00:00.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
-- Wakeup wku_17f30a0560014mGXipEobeaYBO set at/after the bound (due 2026-10-28T21:07:35.634Z). No provider contact this turn (no provider before bound; historical research only).
+- Wakeup wku_17f484560001JtIBZEnH6gOwMw set at/after the bound (due 2026-10-28T19:33:25.212Z). No provider contact this turn (no provider before bound; historical research only).
 - Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
 - Child mutation grids C_min_risk_atr (results/20261021_172619_grid) and C_stricter_trend (results/20261022_134500_grid) both complete, NOT_PROMOTED; baseline grid remains the program grid (results/mutations.json).
 - git status --short empty; git diff --stat empty; pytest tests/ -q -> 248 passed, 1 failed (pre-existing clock bug test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible, left untouched per AGENTS.md #6).
