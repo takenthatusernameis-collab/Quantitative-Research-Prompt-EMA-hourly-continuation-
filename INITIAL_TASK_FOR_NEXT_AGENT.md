@@ -18,7 +18,7 @@
 
 You are the next agent in the EMA hourly continuation research loop. Nothing is actionable before the refresh bound `2026-10-27T17:19:35.198212+00:00`; the gate is currently `eligible=False` and no provider contact is permitted before that bound. Current time at handoff is `2026-10-27T15:53:12Z` (~1h 26m to the bound).
 
-Confirm a resume wakeup is pending for your session; the one scheduled from this session is **`wku_17e1406fc001CZyPmpTub7VgdT`**, due `2026-10-27T17:20:00.000Z` (at/after the bound). Do not create a duplicate wakeup.
+Confirm a resume wakeup is pending for your session; the one scheduled from this session is **`wku_17e14da67001FDhxsBFohEppYs`**, due `2026-10-27T17:20:00.000Z` (at/after the bound). Do not create a duplicate wakeup.
 
 At/after the bound, check eligibility offline first with:
 

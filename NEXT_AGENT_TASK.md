@@ -12,7 +12,7 @@
 
 ## Wakeup status (verified this turn)
 
-`cron_list` returned **no pending cron tasks** and `cancel_wakeup list` returned **no pending wakeups** for this session. A fresh resume wakeup was scheduled from this session: **`wku_17e1406fc001CZyPmpTub7VgdT`**, due `2026-10-27T17:20:00.000Z` (at/after the bound `2026-10-27T17:19:35.198212+00:00`). Only one wakeup is pending; do not create a duplicate.
+`cron_list` returned **no pending cron tasks** and `cancel_wakeup list` returned **no pending wakeups** for this session. A fresh resume wakeup was scheduled from this session: **`wku_17e14da67001FDhxsBFohEppYs`**, due `2026-10-27T17:20:00.000Z` (at/after the bound `2026-10-27T17:19:35.198212+00:00`). Only one wakeup is pending; do not create a duplicate.
 
 ## Next action (immediately at/after bound)
 
