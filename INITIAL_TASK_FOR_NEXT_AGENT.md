@@ -1,8 +1,8 @@
 # Durable Handoff — EMA Hourly Continuation
 
-## Current state (turn 2026-10-27T13:39:34Z — verified by current agent)
+## Current state (turn 2026-10-27T13:45:09Z — verified by current agent)
 
-- Gate re-checked offline at now `2026-10-27T13:37:17.111163+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). Nothing actionable before the bound (~3h 42m remaining).
+- Gate re-checked offline at now `2026-10-27T13:45:09.360151+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). Nothing actionable before the bound (~3h 34m remaining).
 - Tests: `PYTHONPATH=. python3 -m pytest tests/ -q` → 248 passed, 1 failed. The single failure is the pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, to be ignored per AGENTS.md §6.
 - Resume wakeup scheduled: **`wku_17d5fa048001vAhe1Hl0adUr5a`**, due `2026-10-27T17:20:00.000Z` (at/after the bound `2026-10-27T17:19:35.198212+00:00`). Record its id in both handoffs. Do not create a duplicate wakeup.
 - Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `n_rejected=18123`, `n_blocked=0`, `n_exploratory_signal=27`. `progress.json` `completed_cells=18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `n_symbols=275`, `n_pairs=66`.
@@ -12,7 +12,7 @@
 
 ## Clear initial task message for next agent
 
-You are the next agent in the EMA hourly continuation research loop. Nothing is actionable before the refresh bound `2026-10-27T17:19:35.198212+00:00`; the gate is currently `eligible=False` and no provider contact is permitted before that bound. Current time at handoff is `2026-10-27T13:37:17.111163+00:00` (~3h 42m to the bound). Exactly one resume wakeup is scheduled — **`wku_17d5fa048001vAhe1Hl0adUr5a`**, due `2026-10-27T17:20:00.000Z` (at/after the bound) — so the loop continues without polling. Do not create a duplicate wakeup.
+You are the next agent in the EMA hourly continuation research loop. Nothing is actionable before the refresh bound `2026-10-27T17:19:35.198212+00:00`; the gate is currently `eligible=False` and no provider contact is permitted before that bound. Current time at handoff is `2026-10-27T13:45:09.360151+00:00` (~3h 34m to the bound). Exactly one resume wakeup is scheduled — **`wku_17d5fa048001vAhe1Hl0adUr5a`**, due `2026-10-27T17:20:00.000Z` (at/after the bound) — so the loop continues without polling. Do not create a duplicate wakeup.
 
 At/after the bound, check eligibility offline first with:
 
