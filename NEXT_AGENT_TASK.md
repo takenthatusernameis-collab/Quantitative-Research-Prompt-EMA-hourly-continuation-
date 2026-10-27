@@ -1,16 +1,30 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-27T19:34:26.405126+00:00)
+## Current state (turn 2026-10-27T19:38:15Z)
 
-- Gate checked offline: eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not elapsed.
-- Baseline grid unchanged (275 symbols x 66 pairs).
-- 20-page pass recorded; eligible_unseen_below_floor_count=0.
-- No universe expansion.
+- Gate checked offline (scripts/refresh_gate.gate_status against universe/last_scan.json): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~24 h remaining).
+- State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 2026-10-27T19:29:54Z, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
+- Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
+- No provider contact this turn (no provider before bound; historical research only).
+- Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, next_cell=null, stopped=false, stop_reason=null, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
+- Child mutation grids C_min_risk_atr (results/20261021_172619_grid) and C_stricter_trend (results/20261022_134500_grid) both complete, NOT_PROMOTED; baseline grid remains the program grid (results/mutations.json).
+- git status --short empty; git diff --stat empty; pytest tests/ -q -> 248 passed, 1 failed (pre-existing clock bug test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible, left untouched per AGENTS.md #6).
 
 ## Next action at/after bound
 
-Check gate offline; if eligible run 20-page pass; if 0 eligible record pass + set +24h bound; else expand. Update both handoffs.
+At/after 2026-10-28T19:29:54.929656+00:00:
+1. Check gate offline (scripts/refresh_gate.gate_status). If not yet eligible, re-set a wakeup at/after the bound and stop — no provider contact.
+2. If eligible: run exactly one 20-page CoinGecko ranking pass (PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20).
+3. Recompute the expansion floor from the fresh snapshot; inspect the band strictly below the floor.
+4. If eligible_unseen_below_floor_count == 0: record the pass in universe/last_scan.json (state AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected = []) and set a +24 h bound (next_eligible_refresh_at = scanned_at + 24 h).
+5. Else (eligible names exist): expand per PROMPT.md §2.1 (append next lower market-cap names, update universe/mcap_rank.json + mcap_expansion_log.md, then run the full 66-pair grid on each new symbol).
+6. Update both handoffs (NEXT_AGENT_TASK.md and INITIAL_TASK_FOR_NEXT_AGENT.md) with the result.
 
 ## Constraints
 
-No provider before bound; historical research only.
+- No provider before bound; historical research only.
+- One 20-page pass per cycle maximum; do not poll CoinGecko while waiting.
+- Do not trigger, cancel, rerun, or dispatch GitHub Actions; do not edit workflow files.
+- Do not fetch new candle data; do not modify the baseline grid or registered costs/fills/entry-exit semantics.
+- Preserve all negative and blocked results; never label a partial grid complete.
+- A negative result is a valid research result; expand rather than stop.
