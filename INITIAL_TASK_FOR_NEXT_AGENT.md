@@ -1,9 +1,9 @@
 # Durable Handoff — EMA Hourly Continuation
 
-## Current state (turn 2026-10-27T10:56:57Z — verified by the reading agent)
+## Current state (turn 2026-10-27T11:04:43Z — verified by the reading agent)
 
-- Gate re-checked offline at now `2026-10-27T10:56:57.713323+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). Nothing actionable before the bound; this agent stopped here.
-- Prior verification (turn 2026-10-27T10:42:15Z): same `eligible=False`, bound unchanged.
+- Gate re-checked offline at now `2026-10-27T11:04:43.145719+00:00`: `eligible=False`, reason "the 24 h refresh bound 2026-10-27T17:19:35.198212+00:00 has not elapsed yet". Bound unchanged. No provider contact (compliant). Nothing actionable before the bound; this agent stopped here.
+- Prior verification (turn 2026-10-27T10:56:57Z): same `eligible=False`, bound unchanged.
 - Baseline grid `results/20261019_135940_grid` re-verified complete: `summary.json` `n_cells=18150` (275 symbols x 66 pairs), `n_rejected=18123`, `n_blocked=0`, `n_exploratory_signal=27` (summary-level; the FINAL_DECISION.md audit labels 26 exploratory on the 266-symbol parent — both artifacts are as recorded, no drift introduced). `progress.json` `completed_cells=18150`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `n_symbols=275`, `n_pairs=66`.
 - `universe/mcap_rank.json` holds 275 symbols, `ALPINE/USDT` last (floor), BTC/USDT first — matches `last_scan.json`.
 - Mutations remain `NOT_PROMOTED` per `results/mutations.json`: `C_min_risk_atr` complete/18150 cells/delta all-zero (final NOT_PROMOTED verdict), `C_stricter_trend` complete/18150 cells/delta `None` (no-op). Baseline grid remains the program grid.
@@ -13,7 +13,7 @@
 
 ## Clear initial task message for next agent
 
-You are the next agent in the EMA hourly continuation research loop. Nothing is actionable before the refresh bound `2026-10-27T17:19:35.198212+00:00`; the gate is currently `eligible=False` and no provider contact is permitted before that bound. Current time at handoff is `2026-10-27T10:56:57Z` (~6.4 h to the bound). Exactly one resume wakeup is already scheduled — **`wku_17cf44155001WQMG18vPtCd0Pi`**, due `2026-10-27T17:20:00.000Z` (at/after the bound) — so the loop continues without polling. Do not create a duplicate wakeup.
+You are the next agent in the EMA hourly continuation research loop. Nothing is actionable before the refresh bound `2026-10-27T17:19:35.198212+00:00`; the gate is currently `eligible=False` and no provider contact is permitted before that bound. Current time at handoff is `2026-10-27T11:04:43Z` (~6.3 h to the bound). Exactly one resume wakeup is already scheduled — **`wku_17cf44155001WQMG18vPtCd0Pi`**, due `2026-10-27T17:20:00.000Z` (at/after the bound) — so the loop continues without polling. Do not create a duplicate wakeup.
 
 At/after the bound, check eligibility offline first with:
 
