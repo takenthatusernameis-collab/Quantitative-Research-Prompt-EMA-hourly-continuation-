@@ -2,14 +2,13 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md`.
 
-## Situation at wakeup (updated 2026-10-28T22:49Z)
-- Gate NOT eligible until 2026-10-29T21:24:11.948264+00:00. Currently NOT eligible (bound in future).
+## Situation at wakeup (2026-10-29T21:32:50Z)
+- Gate bound 2026-10-29T21:24:11.948264+00:00 should have elapsed by now; verify offline before any provider contact.
 - Last pass: mcap_snapshot_20261028_212411 (20 pages, 2000 entries). eligible_unseen_below_floor_count==0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected=[].
-- Wakeup wku_184b758f9001ABHsh2fSLP2GSs due 2026-10-29T21:32:50Z.
 
 ## Exact steps
-1. Check gate offline (`python3 scripts/refresh_gate.py` or `scripts/refresh_universe.py plan`). If not eligible, re-set wakeup and STOP. Do NOT contact the provider before the bound.
+1. Check gate offline (`scripts/refresh_universe.py plan` or the `scripts/refresh_gate.py` logic at the current time). If not eligible, re-set wakeup and STOP. Do NOT contact the provider before the bound.
 2. If eligible, run one 20-page pass: `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`.
 3. Recompute floor; check eligible count below the floor.
 4. If 0: record pass, set next bound, re-set wakeup, STOP.
