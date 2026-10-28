@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T11:37:XXZ)
+## Current state (turn 2026-10-28T11:41:XXZ)
 
-- Gate re-checked offline this turn (2026-10-28T11:38:18.774653+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed). No provider contact.
-- Wakeup set this turn (2026-10-28T19:40:00.000Z): `wku_1824de8dc001w95WbyEgBa3Pz4`. Previous wakeup `wku_1824d0c6b0019v2CCqFkTlZi1n` superseded; only the new one is pending. Re-verify at/after bound; re-set if cleared.
+- Gate re-checked offline this turn (2026-10-28T11:41:25.316639+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed). No provider contact.
+- Wakeup set this turn (2026-10-28T19:40:00.000Z): `wku_18250d1da001hhrwoyQJuV0Gl0`. Previous wakeup `wku_1824de8dc001w95WbyEgBa3Pz4` superseded; only the new one is pending. Re-verify at/after bound; re-set if cleared.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
@@ -31,4 +31,4 @@ At/after `2026-10-28T19:29:54.929656+00:00`:
 - Preserve all negative/blocked results; never label a partial grid complete.
 - A negative result is valid research result — expand rather than stop.
 
-(End of file - total 32 lines)
+(End of file - total 34 lines)
