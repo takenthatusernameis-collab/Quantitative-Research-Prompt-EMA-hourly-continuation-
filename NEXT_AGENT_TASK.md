@@ -2,12 +2,17 @@
 
 ## Current state (turn 2026-10-28T16:25:30Z)
 - Gate re-checked offline this turn (2026-10-28T16:21:18Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed). Reason: 24h refresh bound not elapsed. No provider contact.
-- Wakeup scheduled at 2026-10-28T19:35:00Z: `wku_183560016001YUPOliPm5iHaZl` (at/after bound). No duplicate scheduled.- Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
+- Wakeup scheduled at 2026-10-28T19:35:00Z: `wku_18356ffbc001wd1GBA6OJbeqKy` (at/after bound). No duplicate scheduled.- Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
 - Baseline grid `results/20261019_135940_grid`: all_symbols_processed=true, completed_cells=18150 (275×66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF>1, 27 exploratory, 18123 rejected, **0 credible candidates**.
 - Child mutation grids `results/20261022_134500_grid` (C_min_risk_atr) and (C_stricter_trend): both complete, NOT_PROMOTED; baseline remains program grid (`results/mutations.json`).
 - git status --short empty; git diff --stat empty. `pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, untouched per AGENTS.md #6).
+
+## Completed this turn (2026-10-28T16:27Z)
+
+- Re-checked gate offline at 2026-10-28T16:27:39Z → `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed); no provider contact.
+- Scheduled wakeup `wku_18356ffbc001wd1GBA6OJbeqKy` due 2026-10-28T19:34:59Z (at/after bound). No duplicate (prior wakeup expired with session).
 
 ## Completed this turn
 
