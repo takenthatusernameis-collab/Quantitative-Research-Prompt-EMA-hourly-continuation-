@@ -2,12 +2,12 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action).
 
-## Situation at wakeup (re-checked 2026-10-28T06:33:23Z)
+## Situation at wakeup (re-checked 2026-10-28T06:39:40Z)
 
 Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed.
 Last pass: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries).
-Gate re-checked offline at 2026-10-28T06:33:23Z → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound. Step 1 complete — STOP, re-set wakeup at/after bound.
-Wakeup: `wku_18136c64f001xcuQHanveIBDw7` due `2026-10-28T19:40:00Z` (~after bound) (set this turn 06:33Z). Previous wakeup `wku_18133dfd40014BvTNUvDPkABDr` (due 2026-10-28T19:40:00Z) was no longer pending; replaced with the new one.
+Gate re-checked offline at 2026-10-28T06:39:40Z → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound. Step 1 complete — STOP, re-set wakeup at/after bound.
+Wakeup: `wku_1813c9e8b001Be7274fp7ZQ0k4` due `2026-10-28T19:39:56Z` (~after bound) (set this turn 06:39Z). Previous wakeup `wku_18136c64f001xcuQHanveIBDw7` (due 2026-10-28T19:40:00Z) was no longer pending; replaced with the new one.
 
 ## Exact steps (do this in order)
 
@@ -43,5 +43,3 @@ Wakeup: `wku_18136c64f001xcuQHanveIBDw7` due `2026-10-28T19:40:00Z` (~after boun
 - Baseline grid `results/20261019_135940_grid`: 18150 cells, pooled mean net PF 0.4987, 0 credible candidates.
 - Mutations C_min_risk_atr, C_stricter_trend: complete, NOT_PROMOTED; baseline remains program grid.
 - Tests: 248 passed, 1 failed (pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, untouched per AGENTS.md #6).
-
-(End of file - total 45 lines)
