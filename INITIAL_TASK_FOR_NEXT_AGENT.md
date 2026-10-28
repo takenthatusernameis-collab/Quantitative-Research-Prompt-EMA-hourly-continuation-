@@ -4,7 +4,7 @@ Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action
 
 ## Situation at wakeup (due ~2026-10-28T19:30Z, i.e. at/after the 24 h refresh bound)
 
-Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Re-set wakeup id: `wku_17fea250f001sAM2VYc6z0PCuk` (due ~2026-10-28T19:30:13Z). No provider contact is permitted before the bound elapses.
+Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Wakeup id: `wku_17fea250f001sAM2VYc6z0PCuk` (due ~2026-10-28T19:30:13Z). Re-checked offline at 2026-10-28T00:31Z — gate remains `eligible=False`. No provider contact is permitted before the bound elapses.
 
 ## Your next action (run this turn)
 
