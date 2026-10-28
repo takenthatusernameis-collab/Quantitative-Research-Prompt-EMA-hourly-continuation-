@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T16:29:38Z)
-- Gate re-checked offline this turn (2026-10-28T16:29:09Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed). Reason: 24h refresh bound not elapsed. No provider contact.
-- Wakeup re-scheduled at 2026-10-28T19:35:00Z: `wku_1835c429700154v0c8HDPzodqw` (at/after bound). Gate re-checked offline 2026-10-28T16:33:35Z → eligible=False (bound not elapsed). No provider contact.
+## Current state (turn 2026-10-28T16:34:17Z)
+- Gate re-checked offline this turn (2026-10-28T16:34:54Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed, ~2h55m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
+- Wakeup re-scheduled at 2026-10-28T19:35:00Z: `wku_1835ee862001zacOyBIKsCJaes` (at/after bound). Gate re-checked offline 2026-10-28T16:34:54Z → eligible=False (bound not elapsed). No provider contact.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
@@ -10,9 +10,10 @@
 - Child mutation grids `results/20261022_134500_grid` (C_min_risk_atr) and (C_stricter_trend): both complete, NOT_PROMOTED; baseline remains program grid (`results/mutations.json`).
 - git status --short empty; git diff --stat empty. `pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, untouched per AGENTS.md #6).
 
-## Completed this turn (2026-10-28T16:29:38Z)
-- Re-checked gate offline at 2026-10-28T16:29:09Z → `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed); no provider contact.
-- Scheduled wakeup `wku_18358368e001wiSl94E6zcWguE` due 2026-10-28T19:35:00Z (at/after bound). No duplicate (prior wakeups replaced/expired).
+## Completed this turn (2026-10-28T16:34:17Z)
+- Re-checked gate offline at 2026-10-28T16:34:54Z → `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed); no provider contact. last_scan.json unchanged.
+- Scheduled wakeup `wku_1835ee862001zacOyBIKsCJaes` due 2026-10-28T19:35:00Z (at/after bound). No duplicate (prior wakeups replaced/expired).
+- Handoffs NEXT_AGENT_TASK.md and INITIAL_TASK_FOR_NEXT_AGENT.md updated with this verification and the new wakeup id.
 
 ## Next action at/after bound
 At/after `2026-10-28T19:29:54.929656+00:00`:
