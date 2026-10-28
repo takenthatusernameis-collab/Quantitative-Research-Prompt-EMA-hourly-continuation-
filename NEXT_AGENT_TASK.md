@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T14:25:26Z)
+## Current state (turn 2026-10-28T14:29:32Z)
 
-- Gate re-checked offline this turn (2026-10-28T14:25:25.928882+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~5h4m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
-- Wakeup `wku_182e71c75001zxXJabkOBABhkJ` due 2026-10-28T19:35:00.000Z set this turn (2026-10-28T14:25Z), at/after bound.
+- Gate re-checked offline this turn (2026-10-28T14:29:32Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~5h0m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
+- Wakeup `wku_182eaeb93001YYU1SY4eqs3LRd` due 2026-10-28T19:35:00.000Z set this turn (2026-10-28T14:29Z), at/after bound.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
@@ -13,8 +13,9 @@
 
 ## Completed this turn
 
-- Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T14:25:25.928882+00:00 → not eligible; no provider contact (same bound as prior turn).
-- Wakeup `wku_182e71c75001zxXJabkOBABhkJ` due 2026-10-28T19:35:00.000Z set this turn at/after bound.
+- Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T14:29:32Z → not eligible; no provider contact (same bound as prior turn).
+- Wakeup `wku_182eaeb93001YYU1SY4eqs3LRd` due 2026-10-28T19:35:00.000Z set this turn at/after bound.
+- Updated both handoffs with the new wakeup id/time.
 
 ## Next action at/after bound
 
@@ -35,3 +36,5 @@ At/after `2026-10-28T19:29:54.929656+00:00`:
 - Do not fetch new candle data; do not modify baseline grid or registered costs/fills/entry-exit semantics.
 - Preserve all negative/blocked results; never label a partial grid complete.
 - A negative result is valid research result — expand rather than stop.
+
+(End of file - total 47 lines)
