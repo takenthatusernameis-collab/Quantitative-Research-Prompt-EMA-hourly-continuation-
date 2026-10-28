@@ -2,12 +2,12 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action).
 
-## Situation at wakeup (re-checked 2026-10-28T05:54Z)
+## Situation at wakeup (re-checked 2026-10-28T05:58Z)
 
 Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed.
 Last pass: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries).
-Gate re-checked offline at 2026-10-28T05:54:35Z → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound. Step 1 complete — STOP, re-set wakeup at/after bound.
-Wakeup: `wku_1811629e6001ZfmBnwQrorNFP3` due `2026-10-28T19:40:00Z` (~after bound) (re-set this turn 05:57Z).
+Gate re-checked offline at 2026-10-28T05:58:49Z → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound. Step 1 complete — STOP, re-set wakeup at/after bound.
+Wakeup: `wku_181172d9a001WS977ac3biZn6s` due `2026-10-28T19:40:00Z` (~after bound) (set this turn 05:58Z).
 
 ## Exact steps (do this in order)
 
@@ -43,3 +43,5 @@ Wakeup: `wku_1811629e6001ZfmBnwQrorNFP3` due `2026-10-28T19:40:00Z` (~after boun
 - Baseline grid `results/20261019_135940_grid`: 18150 cells, pooled mean net PF 0.4987, 0 credible candidates.
 - Mutations C_min_risk_atr, C_stricter_trend: complete, NOT_PROMOTED; baseline remains program grid.
 - Tests: 248 passed, 1 failed (pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, untouched per AGENTS.md #6).
+
+(End of file - total 45 lines)
