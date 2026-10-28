@@ -3,7 +3,7 @@
 ## Current state (turn 2026-10-28T03:37Z)
 
 - Gate re-checked offline this turn (2026-10-28T03:37:00.276701+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; reason: 24h refresh bound not elapsed). No provider contact.
-- Wakeup: `wku_18098c1d2001o68iazuriEx3f5` (due 2026-10-28T19:40:57Z, ~after bound). Previous wakeup `wku_180982821001HyFtcg10IHCO0U` superseded. Gate re-checked offline 2026-10-28T03:40:52Z → eligible=False (24h bound not elapsed); no provider contact.
+- Wakeup: `wku_1809998cf001oecDX51EbR72Ox` (due 2026-10-28T19:41:52Z, ~after bound). Previous wakeup `wku_18098c1d2001o68iazuriEx3f5` superseded (session ended). Gate re-checked offline 2026-10-28T03:41:36Z → eligible=False (24h bound not elapsed); no provider contact.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
