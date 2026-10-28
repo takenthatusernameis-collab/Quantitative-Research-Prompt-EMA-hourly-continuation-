@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T01:36Z)
+## Current state (turn 2026-10-28T01:39Z)
 
-- Gate re-checked offline this turn (2026-10-28T01:36Z): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~18 h remaining). Command run; no provider contact. Wakeup re-set: wku_180271667001Vt8wpx41VPn1Zn.
-- Wakeup re-set this turn (2026-10-28T01:36Z): `wku_180271667001Vt8wpx41VPn1Zn`, due 2026-10-28T19:35:00.000Z (at/after bound 2026-10-28T19:29:54.929656+00:00). Previous wakeups superseded.
+- Gate re-checked offline this turn (2026-10-28T01:39Z): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~18 h remaining). Command run; no provider contact.
+- Wakeup re-set this turn (2026-10-28T01:39Z): `wku_1802a30a0001xMbN4JM7TKzhh3`, due 2026-10-28T19:35:00.000Z (at/after bound 2026-10-28T19:29:54.929656+00:00). Previous wakeups superseded.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
 - Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
@@ -28,3 +28,5 @@ At/after 2026-10-28T19:29:54.929656+00:00:
 - Do not fetch new candle data; do not modify the baseline grid or registered costs/fills/entry-exit semantics.
 - Preserve all negative and blocked results; never label a partial grid complete.
 - A negative result is a valid research result; expand rather than stop.
+
+(End of file - total 31 lines)
