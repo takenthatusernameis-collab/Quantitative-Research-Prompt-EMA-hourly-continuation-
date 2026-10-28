@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T15:39:38Z)
+## Current state (turn 2026-10-28T16:18:11Z)
 
-- Gate re-checked offline this turn (2026-10-28T15:39:38Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~3h50m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
-- Wakeup scheduled at 2026-10-28T19:35:00Z: `wku_183295f84001fH4ytDIDeENe41` (at/after bound).
+- Gate re-checked offline this turn (2026-10-28T16:18:11Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~3h12m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
+- Wakeup scheduled at 2026-10-28T19:35:00Z: `wku_183295f84001fH4ytDIDeENe41` (at/after bound). No duplicate scheduled.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
@@ -13,7 +13,7 @@
 
 ## Completed this turn
 
-- Read durable handoffs and confirmed gate/wakeup state (re-checked at 2026-10-28T15:39:38Z).
+- Read durable handoffs and confirmed gate/wakeup state (re-checked at 2026-10-28T16:18:11Z).
 - Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` → not eligible; no provider contact (bound not elapsed).
 - Confirmed wakeup `wku_183295f84001fH4ytDIDeENe41` scheduled for 2026-10-28T19:35:00Z (at/after bound). No duplicate scheduled.
 - Updated both handoffs to current turn timestamp/state.
