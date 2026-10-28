@@ -8,7 +8,7 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected=[].
 
 ## Exact steps
-1. Check gate offline (`scripts/refresh_universe.py plan` or the `scripts/refresh_gate.py` logic at the current time). If not eligible, re-set wakeup and STOP. Do NOT contact the provider before the bound.
+1. Check gate offline (`scripts/refresh_gate.py plan` or the `scripts/refresh_gate.py` logic at the current time). If not eligible, re-set wakeup and STOP. Do NOT contact the provider before the bound.
 2. If eligible, run one 20-page pass: `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`.
 3. Recompute floor; check eligible count below the floor.
 4. If 0: record pass, set next bound, re-set wakeup, STOP.
@@ -20,3 +20,8 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 - No GitHub Actions changes.
 - No new candle data; no baseline/cost changes.
 - Preserve negative/blocked results.
+
+## Wakeup state (verified this turn)
+- `cancel_wakeup list` returned no pending wakeups for this session.
+- Single resume wakeup scheduled: **`wku_184dedc12001C9iNPeMrB3bLe6`**, due 2026-10-29T21:25:00Z.
+- Do **not** re-schedule a duplicate.

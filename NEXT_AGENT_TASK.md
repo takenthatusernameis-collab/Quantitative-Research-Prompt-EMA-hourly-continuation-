@@ -1,12 +1,12 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T23:33Z)
-- Gate checked offline via refresh_gate logic at 2026-10-28T23:33Z: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed). No provider contact before bound.
+## Current state (turn 2026-10-28T23:35Z)
+- Gate checked offline via refresh_gate logic at 2026-10-28T23:35:41Z: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed). No provider contact before bound.
 - Scan: 20-page pass mcap_snapshot_20261028_212411 (2000 entries). Coverage reaches below expansion floor; eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967.
 - next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
-- Wakeup: set wku_184dd199200159TRcO4WCEPSXo, due 2026-10-29T21:25:00Z (after the bound).
+- Wakeup: set wku_184dedc12001C9iNPeMrB3bLe6, due 2026-10-29T21:25:00Z (after the bound).
 
 ## Next action at/after bound
 At/after 2026-10-29T21:24:11.948264+00:00:
