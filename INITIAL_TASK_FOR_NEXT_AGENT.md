@@ -2,12 +2,12 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action).
 
-## Situation at wakeup (re-checked 2026-10-28T03:32Z)
+## Situation at wakeup (re-checked 2026-10-28T03:37Z)
 
 Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (~16h remaining).
 Last pass: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries).
-Gate re-checked offline at 2026-10-28T03:32:09.179622+00:00 → `eligible=False` (reason: 24h refresh bound not yet elapsed).
-Wakeup: `wku_180942290001byIuw783D7Fsw2` due `2026-10-28T19:35:00Z` (~after bound). No provider contact permitted before bound. Previous wakeups superseded.
+Gate re-checked offline at 2026-10-28T03:37:00.276701+00:00 → `eligible=False` (reason: 24h refresh bound not yet elapsed).
+Wakeup: `wku_180955db0001l2Q6c0IS3LW3Ec` due `2026-10-28T19:35:00Z` (~after bound). No provider contact permitted before bound. Previous wakeup `wku_180942290001byIuw783D7Fsw2` superseded.
 
 ## Exact steps (do this in order)
 
@@ -30,6 +30,7 @@ Wakeup: `wku_180942290001byIuw783D7Fsw2` due `2026-10-28T19:35:00Z` (~after boun
    Update both handoffs with results (snapshot, floor, eligible count, batch, next bound/wakeup).
 
 ## Hard constraints
+
 - No provider before bound; historical research only. Never describe fixtures as market evidence.
 - Do not trigger/cancel/rerun/dispatch GitHub Actions; do not edit workflow files.
 - Do not fetch new candle data; do not modify baseline grid or registered costs/fills/entry-exit semantics.
@@ -37,6 +38,7 @@ Wakeup: `wku_180942290001byIuw783D7Fsw2` due `2026-10-28T19:35:00Z` (~after boun
 - A negative result is valid — expand rather than stop.
 
 ## Static context
+
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697; eligible_unseen_below_floor_count=0; batch_selected=[] (no expansion this turn).
 - Baseline grid `results/20261019_135940_grid`: 18150 cells, pooled mean net PF 0.4987, 0 credible candidates.
 - Mutations C_min_risk_atr, C_stricter_trend: complete, NOT_PROMOTED; baseline remains program grid.

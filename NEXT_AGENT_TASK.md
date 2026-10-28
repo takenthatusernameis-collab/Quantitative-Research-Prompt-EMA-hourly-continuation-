@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T03:32Z)
+## Current state (turn 2026-10-28T03:37Z)
 
-- Gate re-checked offline this turn (2026-10-28T03:32:09.179622+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; reason: 24h refresh bound not elapsed). No provider contact.
-- Wakeup: `wku_180942290001byIuw783D7Fsw2` (due 2026-10-28T19:35:00Z, ~after bound). Previous wakeups superseded.
+- Gate re-checked offline this turn (2026-10-28T03:37:00.276701+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; reason: 24h refresh bound not elapsed). No provider contact.
+- Wakeup: `wku_180955db0001l2Q6c0IS3LW3Ec` (due 2026-10-28T19:35:00Z, ~after bound). Previous wakeup `wku_180942290001byIuw783D7Fsw2` superseded.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
@@ -12,6 +12,7 @@
 - git status --short empty; git diff --stat empty. `pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, left untouched per AGENTS.md #6).
 
 ## Next action at/after bound
+
 At/after `2026-10-28T19:29:54.929656+00:00`:
 
 1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, re-set wakeup at/after bound and stop (no provider contact).
@@ -22,6 +23,7 @@ At/after `2026-10-28T19:29:54.929656+00:00`:
 6. Update both handoffs (`NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md`) with result (gate, snapshot/pages, floor, eligible count, batch, next bound/wakeup).
 
 ## Constraints
+
 - No provider before bound; historical research only.
 - One 20-page pass max per cycle; do not poll CoinGecko while waiting.
 - Do not trigger/cancel/rerun/dispatch GitHub Actions; do not edit workflow files.
