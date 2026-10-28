@@ -7,7 +7,7 @@
 - Scan: 1-page dry run `mcap_snapshot_20261028_193811` (100 entries). Coverage reaches below expansion floor; `eligible_unseen_below_floor_count=0`.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261028_193811`; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697 (STX/USDT floor $571,586,707).
-- Wakeup: `wku_1840567ef00119r9N2tcFo08AE` due 2026-10-29T19:43:00Z (after next bound 2026-10-29T19:38:11Z).
+- Wakeup: `wku_18448052f001IZdDP5CYCUW9Jo` due 2026-10-28T22:51:14.858Z (retry after 429). Previous `wku_18407cb6a001fddCpMCpQ1Lnjh` superseded.
 - Baseline grid `results/20261019_135940_grid`: 18150 cells, 0 credible candidates. Mutations NOT_PROMOTED.
 - git status --short empty. `pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug, untouched).
 
