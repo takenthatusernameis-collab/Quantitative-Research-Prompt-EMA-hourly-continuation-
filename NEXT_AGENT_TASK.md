@@ -2,8 +2,8 @@
 
 ## Current state (turn 2026-10-28T02:44Z)
 
-- Gate re-checked offline this turn (2026-10-28T02:44:23.993501+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed, ~17h remaining; reason: 24h refresh bound not elapsed). No provider contact.
-- Wakeup: `wku_180685cb4001NupLDrJvDzWIqg` (due 2026-10-28T19:35:00.000Z, ~after bound). Previous wakeups superseded (`wku_180655421001KnKGSvsy7dyGYK`, `wku_18063c352001JXuM4S92pIdvHI`, `wku_180604b740013mo8H8cQm4eQxv`, `wku_1805dd42a001FL4vTFB6Xg5Q2C`, `wku_1805a827c001vj3oAWgHvmUZqL`).
+- Gate re-checked offline this turn (2026-10-28T02:49:07.333450+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; reason: 24h refresh bound not elapsed). No provider contact.
+- Wakeup: `wku_18069b0100011Kr4fJvMCqH8bD` (due 2026-10-28T19:35:00.000Z, ~after bound). Previous wakeups superseded (`wku_180685cb4001NupLDrJvDzWIqg`, `wku_180655421001KnKGSvsy7dyGYK`, `wku_18063c352001JXuM4S92pIdvHI`, `wku_180604b740013mo8H8cQm4eQxv`, `wku_1805dd42a001FL4vTFB6Xg5Q2C`, `wku_1805a827c001vj3oAWgHvmUZqL`).
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
