@@ -2,7 +2,7 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md`.
 
-## Situation at wakeup (updated 2026-10-28T21:44:18Z)
+## Situation at wakeup (updated 2026-10-28T21:48:45Z)
 - Gate ELIGIBLE at/after `2026-10-29T21:24:11.948264+00:00`. Currently NOT eligible (bound in future).
 - Last pass: `mcap_snapshot_20261028_212411` (20 pages, 2000 entries). `eligible_unseen_below_floor_count==0`.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, batch_selected=[].
