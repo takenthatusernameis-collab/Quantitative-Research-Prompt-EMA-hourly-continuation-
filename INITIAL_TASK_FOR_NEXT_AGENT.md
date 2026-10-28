@@ -7,8 +7,7 @@ Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action
 - Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (~3h8m remaining).
 - Last pass: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries).
 - Gate re-checked offline at 2026-10-28T16:21:18Z → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound. **STOP — no provider contact.**
-- Wakeup scheduled at `2026-10-28T19:35:00.000Z` (`wku_183534c7c0012Xcz5l2L6gYpD2`), at/after bound. Do not re-schedule a duplicate.
-
+- Wakeup scheduled at `2026-10-28T19:35:00.000Z` (`wku_183550afc0013MjGlJ2OtJOz33`), at/after bound. Do not re-schedule a duplicate.
 ## Exact steps (do this in order)
 
 1. **Check gate offline**
