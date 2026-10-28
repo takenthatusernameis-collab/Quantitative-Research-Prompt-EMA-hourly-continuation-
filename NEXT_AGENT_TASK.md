@@ -10,9 +10,8 @@
   batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967.
 - next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
-- Wakeup: **wku_184e9e49e001vu9KPDPuESUm1x**, due 2026-10-29T21:25:00Z (after the bound).
-  Previous wku_184e8fe03001u6X9gat5VPBPnO was gone on arrival; this is
-  the single resume wakeup. Do **not** re-schedule a duplicate.
+- Wakeup: **wku_184eae640001zsEIDct3nJ5dh2**, due 2026-10-29T21:25:00Z (after the bound).
+  Previous wakeups gone on arrival; this is the single resume wakeup. Do **not** re-schedule a duplicate.
 
 ## Next action at/after bound
 At/after 2026-10-29T21:24:11.948264+00:00:

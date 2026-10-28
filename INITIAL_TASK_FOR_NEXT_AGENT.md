@@ -8,7 +8,7 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 - Last pass: mcap_snapshot_20261028_212411 (20 pages, 2000 entries, 0 history-probe
   failures). eligible_unseen_below_floor_count==0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected=[].
-- A single resume wakeup is scheduled: **wku_184e8fe03001u6X9gat5VPBPnO**, due
+- A single resume wakeup is scheduled: **wku_184eae640001zsEIDct3nJ5dh2**, due
   2026-10-29T21:25:00Z. The previous wakeup was already gone on arrival; do not
   re-schedule a duplicate.
 
@@ -28,7 +28,6 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 - Preserve negative/blocked results.
 
 ## Wakeup state (verified this turn)
-- `cancel_wakeup list` returned no pending wakeups for this session.
-- `cron_list` returned no scheduled cron tasks for this session.
-- Single resume wakeup scheduled: **wku_184e9e49e001vu9KPDPuESUm1x**, due 2026-10-29T21:25:00Z.
+- `cancel_wakeup list` returned no pending wakeups for this session at 2026-10-28T23:48Z.
+- Single resume wakeup scheduled: **wku_184eae640001zsEIDct3nJ5dh2**, due 2026-10-29T21:25:00Z.
 - Do **not** re-schedule a duplicate.
