@@ -30,5 +30,5 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 ## Wakeup state (verified this turn)
 - `cancel_wakeup list` returned no pending wakeups for this session.
 - `cron_list` returned no scheduled cron tasks for this session.
-- Single resume wakeup scheduled: **wku_184e8fe03001u6X9gat5VPBPnO**, due 2026-10-29T21:25:00Z.
+- Single resume wakeup scheduled: **wku_184e9e49e001vu9KPDPuESUm1x**, due 2026-10-29T21:25:00Z.
 - Do **not** re-schedule a duplicate.
