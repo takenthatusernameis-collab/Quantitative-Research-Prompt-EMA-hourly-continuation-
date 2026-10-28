@@ -6,7 +6,7 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 - Gate NOT eligible until 2026-10-29T21:24:11.948264+00:00. Currently NOT eligible (bound in future).
 - Last pass: mcap_snapshot_20261028_212411 (20 pages, 2000 entries). eligible_unseen_below_floor_count==0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected=[].
-- Wakeup wku_184a31cd0001p30EJmGunCogK8 due 2026-10-29T21:30:00Z.
+- Wakeup wku_184b758f9001ABHsh2fSLP2GSs due 2026-10-29T21:32:50Z.
 
 ## Exact steps
 1. Check gate offline (`python3 scripts/refresh_gate.py` or `scripts/refresh_universe.py plan`). If not eligible, re-set wakeup and STOP. Do NOT contact the provider before the bound.

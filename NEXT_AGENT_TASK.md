@@ -6,7 +6,7 @@
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967.
 - next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
-- Wakeup: wku_184a31cd0001p30EJmGunCogK8 due 2026-10-29T21:30:00Z (re-set).
+- Wakeup: wku_184b758f9001ABHsh2fSLP2GSs due 2026-10-29T21:32:50Z (re-set).
 
 ## Next action at/after bound
 At/after 2026-10-29T21:24:11.948264+00:00:
