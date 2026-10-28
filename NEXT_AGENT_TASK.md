@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T11:34:XXZ)
+## Current state (turn 2026-10-28T11:37:XXZ)
 
-- Gate re-checked offline this turn (2026-10-28T11:34:11.934871+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed). No provider contact.
-- Wakeup set this turn (2026-10-28T19:40:00.000Z): `wku_1824a3ded0016OX7ZQFzgF3H47`. Previous wakeup `wku_18249656f001GoH2ry4xaolvaF` superseded; only the new one is pending. Re-verify at/after bound; re-set if cleared.
+- Gate re-checked offline this turn (2026-10-28T11:37:22.119432+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed). No provider contact.
+- Wakeup set this turn (2026-10-28T19:40:00.000Z): `wku_1824d0c6b0019v2CCqFkTlZi1n`. Previous wakeup `wku_1824a3ded0016OX7ZQFzgF3H47` superseded; only the new one is pending. Re-verify at/after bound; re-set if cleared.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
