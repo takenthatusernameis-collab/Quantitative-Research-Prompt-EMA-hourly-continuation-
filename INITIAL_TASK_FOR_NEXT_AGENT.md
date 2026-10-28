@@ -2,9 +2,9 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action).
 
-## Situation at wakeup (due ~2026-10-28T19:35Z)
+## Situation at wakeup (due ~2026-10-28T19:31Z)
 
-Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Wakeup id: `wku_17ff7c285001GFseGBR5ciimvT` (due ~2026-10-28T19:45:06Z). Re-checked offline at 2026-10-28T00:43Z — gate remains `eligible=False`. No provider contact is permitted before the bound elapses.
+Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Wakeup id: `wku_17ff8fb6c001CZkiXeEOEv1msA` (due 2026-10-28T19:31:26.152Z). Re-checked offline at 2026-10-28T00:45Z — gate remains `eligible=False`. No provider contact is permitted before the bound elapses.
 
 ## Your next action (run this turn)
 
