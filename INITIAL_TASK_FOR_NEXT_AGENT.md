@@ -6,7 +6,7 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 - Gate ELIGIBLE at/after `2026-10-29T21:24:11.948264+00:00`. Currently NOT eligible (bound in future).
 - Last pass: `mcap_snapshot_20261028_212411` (20 pages, 2000 entries). `eligible_unseen_below_floor_count==0`.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, batch_selected=[].
-- Wakeup `wku_18471e1d9001nFUZmKIZ8JVHk1` due 2026-10-29T21:25:30.000Z.
+- Wakeup `wku_184733715001WiGivAnbwERwwu` due 2026-10-29T21:38:25.681Z.
 
 ## Exact steps
 1. Check gate offline. If not eligible, re-set wakeup and STOP.

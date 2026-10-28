@@ -6,7 +6,7 @@
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261028_212411`; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967.
 - next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
-- Wakeup: `wku_18471e1d9001nFUZmKIZ8JVHk1` due 2026-10-29T21:25:30.000Z (rescheduled).
+- Wakeup: `wku_184733715001WiGivAnbwERwwu` due 2026-10-29T21:38:25.681Z (rescheduled).
 - Baseline grid `results/20261019_135940_grid`: 18150 cells, 0 credible candidates. Mutations NOT_PROMOTED.
 - git status --short empty. Tests unchanged (248 passed, 1 failed pre-existing).
 
