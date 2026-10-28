@@ -2,12 +2,12 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action).
 
-## Situation at wakeup (checked 2026-10-28T12:46:28Z)
+## Situation at wakeup (checked 2026-10-28T13:14:00Z)
 
-Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (~6h43m remaining).
+Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (~6h16m remaining).
 Last pass: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries).
-Gate re-checked offline at 2026-10-28T12:46:28.131013+00:00 → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound. **STOP — no provider contact.**
-Wakeup: `wku_18280bf74001YnGS4zLqDCFlcy` due `2026-10-28T19:30:00.000Z` remains set (previous turn). Re-set at/after bound if cleared before eligibility.
+Gate re-checked offline at 2026-10-28T13:14:00.596364+00:00 → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound. **STOP — no provider contact.**
+Wakeup: `wku_182a596e1001yNq3AZwiLDhwIM` due `2026-10-28T19:30:00.000Z` set this turn. Re-set at/after bound if cleared before eligibility.
 
 ## Exact steps (do this in order)
 
