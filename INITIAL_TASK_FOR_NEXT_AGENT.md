@@ -2,19 +2,32 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action).
 
-## Situation at wakeup (re-checked 2026-10-28T04:32Z)
+## Situation at wakeup (re-checked 2026-10-28T04:40Z)
 
-Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (~14h 57m remaining).
+Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed.
 Last pass: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries).
-Gate re-checked offline at 2026-10-28T04:36Z → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound.
-Wakeup: `wku_180cc467f001Dhw0S4jdmT6Go3` due `2026-10-28T19:37:13Z` (~after bound). No provider contact permitted before bound. Previous wakeup `wku_180cb527f001odaSz58aiqQNlc` superseded (this session).
+Gate re-checked offline at 2026-10-28T04:40:49Z → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound.
+Wakeup: `wku_180cfe1a6001q0gWHC1VKoQJnj` due `2026-10-28T19:35:00Z` (~after bound). Previous wakeup `wku_180cc467f001Dhw0S4jdmT6Go3` superseded (this session).
 
 ## Exact steps (do this in order)
 
 1. **Check gate offline**
    `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
-   - If `eligible=False`: re-set a wakeup at/after the bound (e.g. 2026-10-28T19:35:00Z or later) with a short prompt and **STOP** — no provider contact. Update both handoffs with the new wakeup id/time.
+   - If `eligible=False`: re-set a wakeup at/after the bound and **STOP** — no provider contact. Update both handoffs with the new wakeup id/time.
    - If `eligible=True`: proceed to step 2.
+
+2. **Run exactly one 20-page CoinGecko ranking pass** (one pass max per cycle)
+   `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`
+
+3. **Recompute floor from fresh snapshot; inspect band strictly below floor**
+   Check `eligible_unseen_below_floor_count` against fresh snapshot.
+
+4. **If `eligible_unseen_below_floor_count == 0`**
+   Record the pass in `universe/last_scan.json` (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `batch_selected = []`), set `next_eligible_refresh_at = scanned_at + 24h`, re-set wakeup at/after that bound, and **STOP**.
+
+5. **If `eligible_unseen_below_floor_count > 0`**
+   Expand per PROMPT.md §2.1 (append next lower market-cap names, update `universe/mcap_rank.json` + `universe/mcap_expansion_log.md`), then run the full 66-pair grid on each new symbol.
+   Update both handoffs with results (snapshot, floor, eligible count, batch, next bound/wakeup).
 
 2. **Run exactly one 20-page CoinGecko ranking pass** (one pass max per cycle)
    `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`
