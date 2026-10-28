@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T13:45:02Z)
+## Current state (turn 2026-10-28T14:15:43Z)
 
-- Gate re-checked offline this turn (2026-10-28T13:45:02.974910+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~5h44m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
-- Wakeup `wku_182c228fd001NZLV2BhVdWSVq3` due 2026-10-28T19:35:24.983Z set this turn (2026-10-28T13:45Z), at/after bound; replaces previous `wku_182be1023001e9TacDImWAnY7p`.
+- Gate re-checked offline this turn (2026-10-28T14:15:43.290186+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~5h14m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
+- Wakeup `wku_182de45f8001ByYaAWtaXTiKTh` due 2026-10-28T19:35:00.000Z set this turn (2026-10-28T14:15Z), at/after bound; replaces previous `wku_182c228fd001NZLV2BhVdWSVq3`.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
@@ -13,8 +13,8 @@
 
 ## Completed this turn
 
-- Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T13:45:02.974910+00:00 → not eligible; no provider contact (same bound as prior turn).
-- Wakeup `wku_182c228fd001NZLV2BhVdWSVq3` due 2026-10-28T19:35:24.983Z set this turn at/after bound.
+- Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T14:15:43.290186+00:00 → not eligible; no provider contact (same bound as prior turn).
+- Wakeup `wku_182de45f8001ByYaAWtaXTiKTh` due 2026-10-28T19:35:00.000Z set this turn at/after bound.
 - Verified handoffs reflect current state (git clean).
 
 ## Next action at/after bound
