@@ -1,28 +1,20 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T16:25:30Z)
-- Gate re-checked offline this turn (2026-10-28T16:21:18Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed). Reason: 24h refresh bound not elapsed. No provider contact.
-- Wakeup scheduled at 2026-10-28T19:35:00Z: `wku_18356ffbc001wd1GBA6OJbeqKy` (at/after bound). No duplicate scheduled.- Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
+## Current state (turn 2026-10-28T16:29:38Z)
+- Gate re-checked offline this turn (2026-10-28T16:29:09Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed). Reason: 24h refresh bound not elapsed. No provider contact.
+- Wakeup scheduled at 2026-10-28T19:35:00Z: `wku_18358368e001wiSl94E6zcWguE` (at/after bound). No duplicate scheduled.
+- Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
 - Baseline grid `results/20261019_135940_grid`: all_symbols_processed=true, completed_cells=18150 (275×66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF>1, 27 exploratory, 18123 rejected, **0 credible candidates**.
 - Child mutation grids `results/20261022_134500_grid` (C_min_risk_atr) and (C_stricter_trend): both complete, NOT_PROMOTED; baseline remains program grid (`results/mutations.json`).
 - git status --short empty; git diff --stat empty. `pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, untouched per AGENTS.md #6).
 
-## Completed this turn (2026-10-28T16:27Z)
-
-- Re-checked gate offline at 2026-10-28T16:27:39Z → `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed); no provider contact.
-- Scheduled wakeup `wku_18356ffbc001wd1GBA6OJbeqKy` due 2026-10-28T19:34:59Z (at/after bound). No duplicate (prior wakeup expired with session).
-
-## Completed this turn
-
-- Read durable handoffs and confirmed gate/wakeup state (re-checked at 2026-10-28T16:21:18Z).
-- Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` → `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed); no provider contact (bound not elapsed).
-- Re-set wakeup `wku_183534c7c0012Xcz5l2L6gYpD2` scheduled for 2026-10-28T19:35:00Z (at/after bound). No duplicate scheduled.
-- Updated both handoffs to current turn timestamp/state.
+## Completed this turn (2026-10-28T16:29:38Z)
+- Re-checked gate offline at 2026-10-28T16:29:09Z → `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed); no provider contact.
+- Scheduled wakeup `wku_18358368e001wiSl94E6zcWguE` due 2026-10-28T19:35:00Z (at/after bound). No duplicate (prior wakeups replaced/expired).
 
 ## Next action at/after bound
-
 At/after `2026-10-28T19:29:54.929656+00:00`:
 
 1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, re-set wakeup at/after bound and stop (no provider contact).
@@ -33,7 +25,6 @@ At/after `2026-10-28T19:29:54.929656+00:00`:
 6. Update both handoffs (`NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md`) with result (gate, snapshot/pages, floor, eligible count, batch, next bound/wakeup).
 
 ## Constraints
-
 - No provider before bound; historical research only.
 - One 20-page pass max per cycle; do not poll CoinGecko while waiting.
 - Do not trigger/cancel/rerun/dispatch GitHub Actions; do not edit workflow files.
