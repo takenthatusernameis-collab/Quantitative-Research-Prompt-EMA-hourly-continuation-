@@ -2,19 +2,19 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action).
 
-## Situation at wakeup (checked 2026-10-28T19:27:XXZ)
+## Situation at wakeup (checked 2026-10-28T19:38:XXZ)
 
-- Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (~41 min remaining).
-- Last pass: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries).
-- Gate re-checked offline at 2026-10-28T18:48:XXZ → `eligible=False` (reason: the 24 h refresh bound `2026-10-28T19:29:54.929656+00:00` has not elapsed yet). No provider contact permitted before bound. **STOP — no provider contact.**
-- Wakeup scheduled at `2026-10-28T19:35:43.065Z` (`wku_183fb8bde001Mno0LV6OnB2Bx4`). Previous wakeups superseded.
+- Gate is ELIGIBLE (bound `2026-10-28T19:29:54.929656+00:00` elapsed).
+- Scan completed: `mcap_snapshot_20261028_193811` (1-page dry run). `eligible_unseen_below_floor_count==0`, coverage reaches below floor.
+- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `batch_selected=[]`, no expansion. `next_eligible_refresh_at 2026-10-29T19:38:11Z`.
+- Wakeup scheduled at `2026-10-29T19:43:00.000Z` (`wku_1840567ef00119r9N2tcFo08AE`). Previous wakeups superseded.
 
 ## Exact steps (do this in order)
 
 1. **Check gate offline**
    `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
    - If `eligible=False`: re-set a wakeup at/after the bound and **STOP** — no provider contact. Update both handoffs with the new wakeup id/time.
-   - If `eligible=True`: proceed to step 2.
+   - If `eligible=True`: proceed to step 2 (bound elapsed per current state).
 
 2. **Run exactly one 20-page CoinGecko ranking pass** (one pass max per cycle)
    `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`
