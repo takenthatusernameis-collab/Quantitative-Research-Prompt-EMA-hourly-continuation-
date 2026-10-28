@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T14:34:03Z)
+## Current state (turn 2026-10-28T14:41:14Z)
 
-- Gate re-checked offline this turn (2026-10-28T14:34:03Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~4h55m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
-- Wakeup `wku_182eedae8001sMUgs30d5GXEbT` due 2026-10-28T19:35:00.000Z set this turn (2026-10-28T14:34Z), at/after bound (replaced prior wakeup).
+- Gate re-checked offline this turn (2026-10-28T14:41:14Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~4h48m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
+- Wakeup `wku_182f56bb5001J3VrE031ZkWy8b` due 2026-10-28T19:35:00.000Z set this turn (2026-10-28T14:41Z), at/after bound (replaced prior wakeup `wku_182eedae8001sMUgs30d5GXEbT`).
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
@@ -13,8 +13,8 @@
 
 ## Completed this turn
 
-- Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T14:34:03Z → not eligible; no provider contact (same bound as prior turn).
-- Wakeup `wku_182eedae8001sMUgs30d5GXEbT` due 2026-10-28T19:35:00.000Z set this turn at/after bound (replaced prior wakeup).
+- Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T14:41:14Z → not eligible; no provider contact (same bound as prior turn).
+- Wakeup `wku_182f56bb5001J3VrE031ZkWy8b` due 2026-10-28T19:35:00.000Z set this turn at/after bound (replaced prior wakeup).
 - Updated both handoffs with the new wakeup id/time.
 
 ## Next action at/after bound
@@ -36,5 +36,3 @@ At/after `2026-10-28T19:29:54.929656+00:00`:
 - Do not fetch new candle data; do not modify baseline grid or registered costs/fills/entry-exit semantics.
 - Preserve all negative/blocked results; never label a partial grid complete.
 - A negative result is valid research result — expand rather than stop.
-
-(End of file - total 47 lines)
