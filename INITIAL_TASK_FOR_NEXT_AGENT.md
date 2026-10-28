@@ -2,15 +2,15 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action).
 
-## Situation at wakeup (due ~2026-10-28T19:30Z, i.e. at/after the 24 h refresh bound)
+## Situation at wakeup (due ~2026-10-28T19:35Z)
 
-Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Wakeup id: `wku_17fea250f001sAM2VYc6z0PCuk` (due ~2026-10-28T19:30:13Z). Re-checked offline at 2026-10-28T00:31Z — gate remains `eligible=False`. No provider contact is permitted before the bound elapses.
+Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Wakeup id: `wku_17ff0c093001YLPzeF5WPCCouJ` (due ~2026-10-28T19:35:00Z). Re-checked offline at 2026-10-28T00:35Z — gate remains `eligible=False`. No provider contact is permitted before the bound elapses.
 
 ## Your next action (run this turn)
 
 1. Check the gate offline:
    `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
-   - If still `eligible=False`: re-set a wakeup at/after the bound (e.g. +19 h or at 2026-10-28T19:30:00Z) and STOP — no provider contact, nothing else to do. Update both handoffs with the re-set wakeup id.
+   - If still `eligible=False`: re-set a wakeup at/after the bound (e.g. at 2026-10-28T19:35:00Z or later) and STOP — no provider contact, nothing else to do. Update both handoffs with the re-set wakeup id.
    - If `eligible=True`: proceed to step 2.
 
 2. Run exactly one 20-page CoinGecko ranking pass:

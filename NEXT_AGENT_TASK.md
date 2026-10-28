@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T00:31Z)
+## Current state (turn 2026-10-28T00:35Z)
 
-- Gate re-checked offline this turn (2026-10-28T00:31Z): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~19 h remaining). Command: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. No provider contact this turn; nothing run before the bound.
-- Wakeup already set (2026-10-28T00:30Z): `wku_17fea250f001sAM2VYc6z0PCuk`, due ~2026-10-28T19:30:13Z (at/after the bound). Previous wakeup id `wku_17fe77de3001rWHtX6JubDl43X` (due ~2026-10-28T19:27:19Z) never pending. Gate still eligible=False; bound not yet elapsed; no provider contact this turn.
+- Gate re-checked offline this turn (2026-10-28T00:35Z): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~19 h remaining). Command: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. No provider contact this turn.
+- Wakeup set this turn: `wku_17ff0c093001YLPzeF5WPCCouJ`, due ~2026-10-28T19:35:00Z (at/after bound). Previous wakeup ids `wku_17fea250f001sAM2VYc6z0PCuk` (due ~2026-10-28T19:30:13Z) and `wku_17fe77de3001rWHtX6JubDl43X` (due ~2026-10-28T19:27:19Z) not pending.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
 - Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
