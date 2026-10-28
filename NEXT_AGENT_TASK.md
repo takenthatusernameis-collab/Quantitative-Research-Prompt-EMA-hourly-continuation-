@@ -1,15 +1,20 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T12:30:11Z)
+## Current state (turn 2026-10-28T12:35:11Z)
 
-- Gate re-checked offline this turn (2026-10-28T12:33:30.503828+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~6h56m remaining). No provider contact.
-- Wakeup `wku_18280bf74001YnGS4zLqDCFlcy` due 2026-10-28T19:30:00.000Z re-set this turn (2026-10-28T12:30Z); at/after bound; no provider contact.
+- Gate re-checked offline this turn (2026-10-28T12:35:11.105419+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~6h54m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
+- Wakeup `wku_18280bf74001YnGS4zLqDCFlcy` due 2026-10-28T19:30:00.000Z set previous turn (2026-10-28T12:30Z); remains set at/after bound. Re-set at/after bound if cleared before eligibility.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
 - Baseline grid `results/20261019_135940_grid`: all_symbols_processed=true, completed_cells=18150 (275×66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF>1, 27 exploratory, 18123 rejected, **0 credible candidates**.
 - Child mutation grids `results/20261022_134500_grid` (C_min_risk_atr) and (C_stricter_trend): both complete, NOT_PROMOTED; baseline remains program grid (`results/mutations.json`).
 - git status --short empty; git diff --stat empty. `pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, left untouched per AGENTS.md #6).
+
+## Completed this turn
+- Read prior handoff (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`).
+- Re-checked gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T12:35:11.105419+00:00 → not eligible; no provider contact.
+- Wakeup already set (wku_18280bf74001YnGS4zLqDCFlcy due 2026-10-28T19:30:00.000Z); left in place per instructions (re-set at/after bound if cleared before eligibility).
 
 ## Next action at/after bound
 
@@ -30,5 +35,3 @@ At/after `2026-10-28T19:29:54.929656+00:00`:
 - Do not fetch new candle data; do not modify baseline grid or registered costs/fills/entry-exit semantics.
 - Preserve all negative/blocked results; never label a partial grid complete.
 - A negative result is valid research result — expand rather than stop.
-
-(End of file - total 34 lines)
