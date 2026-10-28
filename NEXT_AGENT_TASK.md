@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T15:37:48Z)
+## Current state (turn 2026-10-28T15:39:38Z)
 
-- Gate re-checked offline this turn (2026-10-28T15:33:40Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~3h56m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
-- Wakeup scheduled at 2026-10-28T19:35:00Z: `wku_183295f84001fH4ytDIDeENe41` (at/after bound) (re-set this turn; prior session wakeup not present).
+- Gate re-checked offline this turn (2026-10-28T15:39:38Z): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~3h50m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
+- Wakeup scheduled at 2026-10-28T19:35:00Z: `wku_183295f84001fH4ytDIDeENe41` (at/after bound).
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,489,697.
@@ -13,9 +13,9 @@
 
 ## Completed this turn
 
-- Read durable handoffs and confirmed gate/wakeup state (re-checked at 2026-10-28T15:32:12Z).
-- Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T15:32:12Z → not eligible; no provider contact (bound not elapsed).
-- Re-checked gate offline at 2026-10-28T15:34:34Z → not eligible; no provider contact. Scheduled new wakeup `wku_18326609a0011qqOwtauaNtUzg` at 2026-10-28T19:35:00Z (prior wakeup not present in this session).
+- Read durable handoffs and confirmed gate/wakeup state (re-checked at 2026-10-28T15:39:38Z).
+- Re-confirmed gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` → not eligible; no provider contact (bound not elapsed).
+- Confirmed wakeup `wku_183295f84001fH4ytDIDeENe41` scheduled for 2026-10-28T19:35:00Z (at/after bound). No duplicate scheduled.
 - Updated both handoffs to current turn timestamp/state.
 
 ## Next action at/after bound
