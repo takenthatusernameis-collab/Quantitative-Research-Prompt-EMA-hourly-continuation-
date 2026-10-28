@@ -2,7 +2,7 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md`.
 
-## Situation at wakeup (2026-10-29T21:32:50Z)
+## Situation at wakeup (2026-10-29T21:25:00Z)
 - Gate bound 2026-10-29T21:24:11.948264+00:00 should have elapsed by now; verify offline before any provider contact.
 - Last pass: mcap_snapshot_20261028_212411 (20 pages, 2000 entries). eligible_unseen_below_floor_count==0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected=[].
