@@ -1,6 +1,6 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T17:38:32Z)
+## Current state (turn 2026-10-28T17:49:27Z)
 - Gate re-checked offline: `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed, ~1h51m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
 - Wakeup: `wku_18397e5ee001gjD0gXdf4uv11q` due 2026-10-28T19:35:00Z (after bound, safe resume point).
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
@@ -10,9 +10,9 @@
 - Child mutation grids `results/20261022_134500_grid` (C_min_risk_atr) and (C_stricter_trend): both complete, NOT_PROMOTED; baseline remains program grid (`results/mutations.json`).
 - git status --short empty; git diff --stat empty. `pytest tests/ -q` → 248 passed, 1 failed (pre-existing clock bug `test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`, untouched per AGENTS.md #6).
 
-## Completed this turn (2026-10-28T17:38:32Z)
+## Completed this turn (2026-10-28T17:49:27Z)
 - Re-checked gate offline → `eligible=False` (bound not elapsed); no provider contact.
-- Re-scheduled wakeup to `wku_18397e5ee001gjD0gXdf4uv11q` at 2026-10-28T19:35:00Z (after bound).
+- Verified wakeup `wku_18397e5ee001gjD0gXdf4uv11q` at 2026-10-28T19:35:00Z (after bound).
 - Updated both handoffs with new wakeup id/time.
 
 ## Next action at/after bound
