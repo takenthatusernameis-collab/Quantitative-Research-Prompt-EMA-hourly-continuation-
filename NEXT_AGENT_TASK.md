@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T12:35:11Z)
+## Current state (turn 2026-10-28T12:46:28Z)
 
-- Gate re-checked offline this turn (2026-10-28T12:35:11.105419+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~6h54m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
+- Gate re-checked offline this turn (2026-10-28T12:46:28.131013+00:00): `eligible=False` (bound `2026-10-28T19:29:54.929656+00:00` not elapsed; ~6h43m remaining). Reason: 24h refresh bound not elapsed. No provider contact.
 - Wakeup `wku_18280bf74001YnGS4zLqDCFlcy` due 2026-10-28T19:30:00.000Z set previous turn (2026-10-28T12:30Z); remains set at/after bound. Re-set at/after bound if cleared before eligibility.
 - Last scan: `mcap_snapshot_20261027_192954` (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3,373,017). Coverage reaches below expansion floor.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261027_192954`; eligible_unseen_below_floor_count=0; batch_selected=[]; no universe expansion.
@@ -13,8 +13,9 @@
 
 ## Completed this turn
 - Read prior handoff (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`).
-- Re-checked gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T12:35:11.105419+00:00 → not eligible; no provider contact.
+- Re-checked gate offline via `scripts.refresh_gate.gate_status` on `universe/last_scan.json` at 2026-10-28T12:46:28.131013+00:00 → not eligible; no provider contact.
 - Wakeup already set (wku_18280bf74001YnGS4zLqDCFlcy due 2026-10-28T19:30:00.000Z); left in place per instructions (re-set at/after bound if cleared before eligibility).
+- Updated handoffs to reflect current state.
 
 ## Next action at/after bound
 
