@@ -2,8 +2,8 @@
 
 ## Current state (turn 2026-10-28T01:28Z)
 
-- Gate re-checked offline this turn (2026-10-28T01:28Z): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~18 h 1 m remaining). Command: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. No provider contact this turn.
-- Wakeup re-set this turn: `wku_1802171b50010gEdArQCP8mtaD`, due 2026-10-28T19:30:37.873Z (at/after bound). Previous wakeups superseded (including `wku_17ffcb443001B0MB8s0WlPTPgK`, `wku_17ffbaeac001hzOAQKQmEFOBvC`, `wku_17ff8fb6c001CZkiXeEOEv1msA`, etc.).
+- Gate re-checked offline this turn (2026-10-28T01:31Z): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~18 h remaining). Command run; no provider contact. Wakeup re-set: wku_18022b6060016SKi6W6y5Pz1nD.
+- Wakeup re-set this turn (2026-10-28T01:31Z): `wku_18022b6060016SKi6W6y5Pz1nD`, due 2026-10-28T19:32:00.899Z (at/after bound 2026-10-28T19:29:54.929656+00:00). Previous wakeups superseded.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
 - Baseline grid results/20261019_135940_grid re-verified directly: all_symbols_processed=true, completed_cells=18150 (275 x 66), 0 blocked; pooled mean net PF 0.4987, 37 cells net PF > 1, 27 exploratory, 18123 rejected, **0 credible candidates**.
