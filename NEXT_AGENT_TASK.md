@@ -1,12 +1,13 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T21:42:XXZ)
-- Gate checked offline: `eligible=False` (bound `2026-10-29T21:24:11.948264+00:00` not yet elapsed). No provider contact before bound.
+## Current state (turn 2026-10-28T21:44:18Z)
+- Gate checked offline via `scripts/refresh_gate.py` logic: `eligible=False` (bound `2026-10-29T21:24:11.948264+00:00` not yet elapsed). No provider contact before bound.
 - Scan: 20-page pass `mcap_snapshot_20261028_212411` (2000 entries). Coverage reaches below expansion floor; `eligible_unseen_below_floor_count=0`.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261028_212411`; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967.
 - next_eligible_refresh_at `2026-10-29T21:24:11.948264+00:00`.
 - Wakeup: `wku_184774178001r5lusliTnyyJej` due `2026-10-29T21:38:30.000Z` (rescheduled).
+- Handoff completed: read prior task from durable handoff and verified current gate state; updated handoffs.
 
 ## Next action at/after bound
 At/after `2026-10-29T21:24:11.948264+00:00`:
