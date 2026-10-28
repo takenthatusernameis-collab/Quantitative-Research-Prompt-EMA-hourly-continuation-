@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T01:48Z)
+## Current state (turn 2026-10-28T01:49Z)
 
-- Gate re-checked offline this turn (2026-10-28T01:47Z): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~18 h remaining). Command run; no provider contact.
-- Wakeup re-set this turn (2026-10-28T01:48Z): `wku_180322b0c0019Z2LDifK31ykxr` (scheduled; due 2026-10-28T19:48:53.896Z, ~18 h). Previous wakeups superseded.
+- Gate re-checked offline this turn (2026-10-28T01:49Z): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~18 h remaining). Command run; no provider contact.
+- Wakeup re-set this turn (2026-10-28T01:49Z): `wku_180335502001dlwdAWfKmQz4ql` (scheduled; due 2026-10-28T19:35:00.000Z, ~18 h). Previous wakeups superseded.
 - Last scan: mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
@@ -18,7 +18,7 @@ At/after 2026-10-28T19:29:54.929656+00:00:
 2. If eligible: run exactly one 20-page CoinGecko ranking pass (PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20).
 3. Recompute the expansion floor from the fresh snapshot; inspect the band strictly below the floor.
 4. If eligible_unseen_below_floor_count == 0: record the pass in universe/last_scan.json (state AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected = []) and set a +24 h bound (next_eligible_refresh_at = scanned_at + 24 h).
-5. Else (eligible names exist): expand per PROMPT.md §2.1 (append next lower market-cap names, update universe/mcap_rank.json + mcap_expansion_log.md, then run the full 66-pair grid on each new symbol).
+5. Else (eligible names exist): expand per PROMPT.md §2.1 (append next lower market-cap names, update universe/mcap_rank.json + universe/mcap_expansion_log.md, then run the full 66-pair grid on each new symbol).
 6. Update both handoffs (NEXT_AGENT_TASK.md and INITIAL_TASK_FOR_NEXT_AGENT.md) with the result.
 
 ## Constraints
@@ -30,4 +30,4 @@ At/after 2026-10-28T19:29:54.929656+00:00:
 - Preserve all negative and blocked results; never label a partial grid complete.
 - A negative result is a valid research result; expand rather than stop.
 
-(End of file - total 31 lines)
+(End of file - total 33 lines)
