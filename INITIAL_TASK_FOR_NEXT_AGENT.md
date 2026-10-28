@@ -4,7 +4,7 @@ Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action
 
 ## Situation at wakeup (re-checked 2026-10-28T01:47Z)
 
-Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Re-checked offline at 2026-10-28T01:47Z — gate remains `eligible=False`. No provider contact is permitted before the bound elapses. Wakeup id: `wku_180311d4b001nEnojyIVoEJutd` (due 2026-11-04T01:47:44.690Z; horizon clamped). Previous wakeup `wku_1802a30a0001xMbN4JM7TKzhh3` superseded.
+Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Re-checked offline at 2026-10-28T01:48Z — gate remains `eligible=False`. No provider contact is permitted before the bound elapses. Wakeup id: `wku_180322b0c0019Z2LDifK31ykxr` (due 2026-10-28T19:48:53.896Z, ~18 h). Previous wakeups superseded.
 
 1. Check the gate offline:
    `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`

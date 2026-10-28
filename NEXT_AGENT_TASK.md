@@ -1,9 +1,9 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-28T01:47Z)
+## Current state (turn 2026-10-28T01:48Z)
 
 - Gate re-checked offline this turn (2026-10-28T01:47Z): eligible=False; bound 2026-10-28T19:29:54.929656+00:00 not yet elapsed (~18 h remaining). Command run; no provider contact.
-- Wakeup re-set this turn (2026-10-28T01:47Z): `wku_180311d4b001nEnojyIVoEJutd` (scheduled; due 2026-11-04T01:47:44.690Z due to 7-day horizon clamp from requested delay). Previous wakeups superseded.
+- Wakeup re-set this turn (2026-10-28T01:48Z): `wku_180322b0c0019Z2LDifK31ykxr` (scheduled; due 2026-10-28T19:48:53.896Z, ~18 h). Previous wakeups superseded.
 - Last scan: mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261027_192954 (CoinGecko, 20/20 pages, 2000 entries, lowest rank 2000 at $3 373 017); coverage reaches below the expansion floor.
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; eligible_unseen_below_floor_count = 0; batch_selected = []; no universe expansion.
