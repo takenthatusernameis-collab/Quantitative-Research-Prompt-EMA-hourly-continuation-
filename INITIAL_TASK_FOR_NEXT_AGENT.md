@@ -4,7 +4,7 @@ Read this handoff first: `NEXT_AGENT_TASK.md` (durable state + exact next action
 
 ## Situation at wakeup (due ~2026-10-28T19:35Z)
 
-Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Re-checked offline at 2026-10-28T00:54Z — gate remains `eligible=False`. No provider contact is permitted before the bound elapses. Wakeup id: `wku_180004df90012bn7CZV1D6EU1e` (due 2026-10-28T19:35:00.000Z).
+Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elapsed (last pass `mcap_snapshot_20261027_192954`, CoinGecko 20/20 pages, 2000 entries). Re-checked offline at 2026-10-28T01:28Z — gate remains `eligible=False`. No provider contact is permitted before the bound elapses. Wakeup id: `wku_1802171b50010gEdArQCP8mtaD` (due 2026-10-28T19:30:37.873Z, at/after bound).
 
 ## Your next action (run this turn)
 
@@ -36,6 +36,6 @@ Gate is NOT eligible: bound `2026-10-28T19:29:54.929656+00:00` has not yet elaps
 ## Static context (unchanged this turn)
 
 - Universe N = 275; expansion floor ALPINE/USDT $3 489 697; `eligible_unseen_below_floor_count = 0`; `batch_selected = []`; no universe expansion this turn.
-- Baseline grid results/20261019_135940_grid: all symbols processed, 18150 cells, pooled mean net PF 0.4987, **0 credible candidates**.
+- Baseline grid `results/20261019_135940_grid`: all symbols processed, 18150 cells, pooled mean net PF 0.4987, **0 credible candidates**.
 - Child mutation grids C_min_risk_atr and C_stricter_trend: complete, NOT_PROMOTED; baseline grid remains the program grid (results/mutations.json).
 - `git status --short` empty; `pytest tests/ -q` -> 248 passed, 1 failed (pre-existing clock bug test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible, left untouched per AGENTS.md #6).
