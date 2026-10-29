@@ -1,6 +1,6 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T08:25Z)
+## Current state (turn 2026-10-29T08:29Z)
 - Prior task completed: gate re-checked offline; eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~12h59m remaining at 2026-10-29T08:25Z). No provider contact made. Verified via `scripts.refresh_gate.gate_status` against `universe/last_scan.json`.
 - Wakeup: single resume wakeup (wku_18644a6b2001tKcU6d6A3PdIWy) is set for 2026-10-29T21:29:00Z, just after the bound. `cancel_wakeup list` in this session returned no pending wakeups (cross-session visibility). Do NOT create a second one; let it fire.
 - Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages, fetched_at 2026-10-28T21:24:11.948264+00:00, lowest rank 2000, lowest mcap $3,410,633). eligible_unseen_below_floor_count=0.
