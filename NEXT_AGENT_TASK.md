@@ -1,12 +1,12 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T07:18Z)
-- Gate checked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~14h6m remaining). No provider contact made. Verified via `scripts.refresh_gate.gate_status` at `2026-10-29T07:18:02.113360+00:00`. Cross-session wakeup (wku_18644a6b2001tKcU6d6A3PdIWy) for 2026-10-29T21:29:00Z not visible in this session's cron_list (expected); do not duplicate.
+## Current state (turn 2026-10-29T07:22Z)
+- Gate checked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~13h41m remaining at 2026-10-29T07:22:47.872604+00:00). No provider contact made. Verified via `scripts.refresh_gate.gate_status` at `2026-10-29T07:22:47.872604+00:00`. Cross-session wakeup (wku_18644a6b2001tKcU6d6A3PdIWy) for 2026-10-29T21:29:00Z not visible in this session's cron_list (expected); do not duplicate.
 - Wakeup: a single resume wakeup (wku_18644a6b2001tKcU6d6A3PdIWy) is set for 2026-10-29T21:29:00Z, just after the bound. Do NOT create a second one; let it fire (cross-session, may not appear in `cron_list` of this session).
 - Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor: ALPINE/USDT at $3,472,967; next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
-- Baseline grid results/20261019_135940_grid re-verified: summary.json n_cells=18150, n_symbols=275, n_pairs=66, 0 credible candidates; progress.json all_symbols_processed=true, next_cell=null, stopped=false, stop_reason=null, completed_cells=18150, 0 blocked.
+- Baseline grid results/20261019_135940_grid re-verified: summary.json n_cells=18150, n_symbols=275, n_pairs=66, 0 credible candidates (n_exploratory_signal=27, n_rejected=18123, n_blocked=0); progress.json all_symbols_processed=true, next_cell=null, stopped=false, stop_reason=null, completed_cells=18150, 0 blocked.
 - Recompute floor from fresh snapshot at pass time — do not assume values without recomputing.
 - Git status clean; no uncommitted changes.
 
