@@ -23,13 +23,13 @@ PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_stat
 
 Historical research only; no orders/live/paper trading; **no provider before the bound**; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; **single wakeup only**; keep confirmatory separate from exploratory.
 
-## Evidence (this cycle, 2026-10-29T17:34:07Z)
+## Evidence (this cycle, 2026-10-29T17:35:08Z)
 
-- Gate status: NOT ELIGIBLE, bound `2026-10-29T21:24:11.948264+00:00` (~3h 50m remaining at check time).
+- Gate status: NOT ELIGIBLE, bound `2026-10-29T21:24:11.948264+00:00` (~3h 49m remaining at check time).
 - Command run (this cycle): `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
-- Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T17:34:07.376099+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (bound = scanned_at + 24h, scanned_at = 2026-10-28T21:24:11.948264+00:00).
+- Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T17:35:08.427161+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (bound = scanned_at + 24h, scanned_at = 2026-10-28T21:24:11.948264+00:00).
 - Action taken: **Stopped before any provider call.** Gate remains NOT ELIGIBLE.
-- Wakeup discipline: no pending wakeups existed at activation; set a single wakeup `wku_188ba23ef001NdMmayaJHz3Fz1` due `2026-10-29T21:25:00.000Z` (just after the bound). No second wakeup created.
+- Wakeup discipline: single wakeup `wku_188ba23ef001NdMmayaJHz3Fz1` due `2026-10-29T21:25:00.000Z` already set by prior cycle; no second wakeup created.
 - Universe: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Baseline grid: complete (18150 cells), 0 credible candidates. Child mutation `C_min_risk_atr` complete but not promoted.
 - Git status: clean (no uncommitted changes).
