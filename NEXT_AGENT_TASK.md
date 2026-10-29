@@ -5,7 +5,7 @@
 - Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T14:38:00Z`, ~6h 46m remaining).
 - Command run: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
 - Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T14:35:01.833254+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
-- Wakeup: re-set to `2026-10-29T21:38:14Z` (id `wku_18818e1b8001pym2LQdPhLCvAz`) — single allowed wakeup; do not create a second.
+- Wakeup: re-set to `2026-10-29T21:39:14Z` (id `wku_18819cdb3001cyy0V5l09ODwhh`) — single allowed wakeup; do not create a second.
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Baseline grid: complete, 18150 cells, 0 credible. Child mutation `C_min_risk_atr` complete but not promoted.
 
