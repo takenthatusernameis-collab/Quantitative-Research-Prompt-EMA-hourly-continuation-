@@ -2,7 +2,7 @@
 
 Read `NEXT_AGENT_TASK.md` first.
 
-Gate bound 2026-10-29T21:24:11.948264+00:00 NOT elapsed (verified 2026-10-29T03:15Z: eligible=False, ~18h 09m remaining). Do NOT contact provider before bound. Resume wakeup **wku_1857f5a68001eD2fbFktCp3eYF** due 2026-10-29T21:26:21Z — let it fire; do NOT duplicate or reschedule.
+Gate bound 2026-10-29T21:24:11.948264+00:00 NOT elapsed (verified 2026-10-29T03:18Z: eligible=False, ~18h 06m remaining). Do NOT contact provider before bound. Resume wakeup **wku_185aab6a10013sEyN7GGOzdKUX** due 2026-10-29T21:26:21Z — let it fire; do NOT duplicate or reschedule.
 
 On wakeup (at/after 2026-10-29T21:24:11.948264+00:00):
 1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, STOP (no provider).
@@ -13,3 +13,5 @@ On wakeup (at/after 2026-10-29T21:24:11.948264+00:00):
 6. Update both handoffs.
 
 Hard constraints: no provider before bound; one pass max; no GitHub Actions; no new candle data; no baseline/cost changes; preserve negative/blocked results.
+
+(End of file)
