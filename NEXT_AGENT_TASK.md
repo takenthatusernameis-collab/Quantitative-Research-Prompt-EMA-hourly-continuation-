@@ -1,11 +1,11 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T04:30Z)
-- Gate checked offline (2026-10-29T04:30:32Z): eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~17h remaining). No provider contact made. `git status --short` and `git diff --stat` empty.
-- Wakeup set: **wku_185eca5a2001vKWU9VKZ2uBDFO** due 2026-10-29T21:29:00.000Z (rescheduled this session after prior-session wakeup wku_185eb62f9001wPlpsRt6N5Y4Mu expired). Do NOT create a second one; let it fire.
+## Current state (turn 2026-10-29T04:33:41Z)
+- Gate checked offline (2026-10-29T04:33:41Z): eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~17h remaining). No provider contact made. `git status --short` and `git diff --stat` empty.
+- Wakeup set: **wku_185efb1aa001dX8sVwZ62RxP8N** due 2026-10-29T21:29:00.000Z (rescheduled after prior wakeup expired). Do NOT create a second one; let it fire.
 - Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
-- Universe N=275; expansion floor ALPINE/USDT $3,472,967 (last_scan.json) / $3,614,141 (mcap_rank.json). Floor used by gate is recomputed by `fetch_mcap_snapshot.py` from the fresh snapshot at pass time — do not assume values without recomputing.
+- Universe N=275; expansion floor recomputed from fresh snapshot at pass time — do not assume values without recomputing.
 - next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
 
 ## Next action at/after bound
