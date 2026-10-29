@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T00:28Z)
-- Gate checked **offline** at 2026-10-29T00:33:31.785937+00:00: **eligible=False** (bound
-  2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~20h51m remaining). No provider contact made.
+## Current state (turn 2026-10-29T01:12Z)
+- Gate checked **offline** at 2026-10-29T01:12:15.115975+00:00: **eligible=False** (bound
+  2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~20h12m remaining). No provider contact made.
   Task complete: nothing actionable before the bound; wakeup already scheduled, not re-scheduled.
 - Scan: 20-page pass `mcap_snapshot_20261028_212411` (2000 entries, 20/20 pages,
   history_probe_failures=0). Coverage reaches below expansion floor;
@@ -11,7 +11,7 @@
   batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967.
 - next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
-- Wakeup: **wku_18508cbfc001WJUlZDisgK8lUe**, due 2026-10-29T21:21:48Z (just before bound; gate check first).
+- Wakeup: **wku_18537a5210016Rc5AsWtWz414P**, due 2026-10-29T21:21:48Z (just before bound; gate check first).
   Single resume wakeup already scheduled. Do **not** re-schedule a duplicate.
 - Baseline grid `results/20261019_135940_grid` re-verified: summary.json n_cells 18150,
   n_symbols 275, n_pairs 66, mean net PF 0.4987; progress.json all_symbols_processed=true,
@@ -33,3 +33,5 @@ At/after 2026-10-29T21:24:11.948264+00:00:
 - Do not trigger/cancel/rerun/dispatch GitHub Actions.
 - Do not fetch new candle data; do not modify baseline grid or costs/fills/entry-exit.
 - Preserve all negative/blocked results.
+
+(End of file - total 35 lines)
