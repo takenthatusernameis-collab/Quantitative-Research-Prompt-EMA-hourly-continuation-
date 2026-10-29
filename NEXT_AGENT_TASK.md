@@ -1,7 +1,7 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T00:15Z)
-- Gate checked **offline** at 2026-10-29T00:15:24Z: **eligible=False** (bound
+## Current state (turn 2026-10-29T00:23Z)
+- Gate checked **offline** at 2026-10-29T00:23:00Z: **eligible=False** (bound
   2026-10-29T21:24:11.948264+00:00 not yet elapsed). No provider contact made.
 - Scan: 20-page pass `mcap_snapshot_20261028_212411` (2000 entries, 20/20 pages,
   history_probe_failures=0). Coverage reaches below expansion floor;
@@ -11,7 +11,11 @@
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967.
 - next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
 - Wakeup: **wku_18508cbfc001WJUlZDisgK8lUe**, due 2026-10-29T21:21:48Z (just before bound; gate check first).
-  Re-scheduled this turn (2026-10-29T00:18Z) because prior session's wakeup does not carry across sessions. Single resume wakeup. Do **not** re-schedule a duplicate.
+  Single resume wakeup already scheduled. Do **not** re-schedule a duplicate.
+- Baseline grid `results/20261019_135940_grid` re-verified: summary.json n_cells 18150,
+  n_symbols 275, n_pairs 66, mean net PF 0.4987; progress.json all_symbols_processed=true,
+  next_cell=null, stopped=false, stop_reason=null, completed_cells=18150, 0 blocked,
+  0 credible candidates.
 
 ## Next action at/after bound
 At/after 2026-10-29T21:24:11.948264+00:00:
