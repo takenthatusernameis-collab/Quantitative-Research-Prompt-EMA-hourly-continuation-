@@ -1,7 +1,7 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T05:20:44Z)
-- Gate checked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~16h03m remaining). No provider contact made.
+## Current state (turn 2026-10-29T05:24:11Z)
+- Gate checked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~16h00m remaining). No provider contact made.
 - Wakeup: **wku_185f582c90015BYv1bMaZieqf3** due 2026-10-29T21:29:00.000Z. Do NOT create a second one; let it fire.
 - Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
