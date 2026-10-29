@@ -1,7 +1,7 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T09:09:35Z)
-- Prior task completed: gate re-checked offline; eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~12h15m remaining at 2026-10-29T09:09:35Z). No provider contact made. Verified via `scripts.refresh_gate.gate_status` against `universe/last_scan.json` — re-checked at 2026-10-29T09:09:35Z, still `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T09:09:35.704109+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`.
+## Current state (turn 2026-10-29T09:13:47Z)
+- Prior task completed: gate re-checked offline; eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~12h10m remaining at 2026-10-29T09:13:47Z). No provider contact made. Verified via `scripts.refresh_gate.gate_status` against `universe/last_scan.json` — re-checked at 2026-10-29T09:13:47Z, still `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T09:13:47.268578+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`.
 - Wakeup: single resume wakeup (wku_186ee6dbe001SQ3NljRVNbIAmR) is set for 2026-10-29T21:27:15Z, just after the bound. The prior session's wakeup (wku_18644a6b2001tKcU6d6A3PdIWy) was not visible in this session's `cancel_wakeup list` (cross-session visibility), so a fresh one was created. Do NOT create a second one; let it fire.
 - Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages, fetched_at 2026-10-28T21:24:11.948264+00:00, lowest rank 2000, lowest mcap $3,410,633). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
