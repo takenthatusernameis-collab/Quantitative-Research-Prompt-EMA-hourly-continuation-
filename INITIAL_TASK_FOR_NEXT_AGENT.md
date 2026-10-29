@@ -26,6 +26,6 @@ Historical research only; no orders/live/paper trading; **no provider before the
 ## Evidence (this cycle, 2026-10-29T17:18:01Z)
 
 - Gate status: NOT ELIGIBLE, bound `2026-10-29T21:24:11.948264+00:00`.
-- Wakeup `wku_188ab5b2c001TGfD2kIH5ZqvXp` scheduled for `2026-10-29T21:30:00Z`.
+- Wakeup `wku_188ae680d001jBORuwmHaajLJn` scheduled for `2026-10-29T21:30:00Z`.
 - Universe: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Git status: clean.

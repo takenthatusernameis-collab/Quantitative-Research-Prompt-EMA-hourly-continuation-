@@ -5,14 +5,14 @@
 - Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T17:18:01.790327+00:00`, ~4h 6m remaining).
 - Command run (this cycle): `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
 - Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T17:18:01.790327+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (gate_status in scripts/refresh_gate.py; bound = scanned_at + 24h where scanned_at = 2026-10-28T21:24:11.948264+00:00).
-- Action taken: **stopped before any provider call**. `cancel_wakeup list` showed **no pending wakeups** (prior handoff's claimed wakeup `wku_188a8db75001zRTPe1rEQDhwl7` had never actually been created). Scheduled single wakeup `wku_188ab5b2c001TGfD2kIH5ZqvXp` for `2026-10-29T21:30:00Z` (just after bound). Do **not** create a second wakeup unless necessary.
+- Action taken: **stopped before any provider call**. Gate still NOT ELIGIBLE at 2026-10-29T17:21:10Z. No pending wakeups existed in this session; scheduled single wakeup `wku_188ae680d001jBORuwmHaajLJn` for `2026-10-29T21:30:00Z` (just after bound). Do **not** create a second wakeup unless necessary.
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Baseline grid: complete, 18150 cells, 0 credible. Child mutation `C_min_risk_atr` complete but not promoted.
 - Git status: clean (no uncommitted changes).
 
 ## Measurable next task
 
-At/after `2026-10-29T21:24:11.948264+00:00` (wakeup `wku_188ab5b2c001TGfD2kIH5ZqvXp` fires at `2026-10-29T21:30:00Z`), re-run the offline gate check:
+At/after `2026-10-29T21:24:11.948264+00:00` (wakeup `wku_188ae680d001jBORuwmHaajLJn` fires at `2026-10-29T21:30:00Z`), re-run the offline gate check:
 ```bash
 PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
 ```
