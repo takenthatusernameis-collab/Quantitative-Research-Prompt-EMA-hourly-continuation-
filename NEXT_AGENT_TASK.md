@@ -99,3 +99,11 @@ At/after 2026-10-29T21:24:11.948264+00:00:
 - Prior task completed: gate still closed; nothing actionable. No provider contact. Working tree clean (git status --short empty).
 - Wakeup already set for 2026-10-29T21:27:15Z; do not create a second one.
 - State unchanged: AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot mcap_snapshot_20261028_212411, batch_selected=[], universe N=275, floor ALPINE/USDT $3,472,967.
+
+## Update (turn 2026-10-29T10:13:31Z)
+- Gate re-verified offline at 2026-10-29T10:14:08Z:
+  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T10:14:08.223859+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` — ~11 h 10 m remaining.
+- Working tree clean: `git status --short` empty, `git diff --stat` empty. No provider contact; no changes.
+- Wakeup already set for 2026-10-29T21:27:15Z; do not create a second one; let it fire.
+- State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261028_212411`, `batch_selected=[]`, universe N=275, floor `ALPINE/USDT` $3,472,967.
+- Next action at/after bound: check gate offline first; if eligible run one 20-page pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`); recompute floor; if `eligible_unseen_below_floor_count > 0` expand per PROMPT.md §2.1; else record pass, set `next_eligible_refresh_at`, re-set wakeup, stop. Preserve all negative/blocked results.
