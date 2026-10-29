@@ -1,8 +1,8 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T21:10Z)
+## Current state (2026-10-29T21:14Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T21:10:35.384502+00:00`, ~14m remaining). Confirmed via offline gate check at `2026-10-29T21:10:35Z`.
+- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T21:14:47.103006+00:00`, ~10m remaining). Confirmed via offline gate check at `2026-10-29T21:14:47Z`.
 - Action taken (this cycle): **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged. No provider contact made.
 - Wakeup discipline: single wakeup `wku_1897e647f0010hM4qw5fccgknY` due `2026-10-29T21:28:24.283Z` (just after the bound + margin). This is the only pending wakeup. Do **not** re-schedule a duplicate — let the existing wakeup fire.
 
@@ -24,9 +24,11 @@ Both grids re-read from disk and independently verified complete — no missing,
 ## Measurable next task
 
 At/after `2026-10-29T21:28:24.283Z` (when wakeup `wku_1897e647f0010hM4qw5fccgknY` fires), re-run the offline gate check:
+
 ```bash
 PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
 ```
+
 If still not eligible, stop and re-set a single wakeup just after the bound (do **NOT** call the provider). If eligible, run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`, recompute the expansion floor, and inspect the band strictly below the floor for `eligible_unseen_below_floor_count`. If 0, record the pass, set `next_eligible_refresh_at`, re-set the wakeup just after the new bound, and stop. If >0, expand per PROMPT.md §2.1 and run the full 66-pair grid on each new symbol via `scripts/run_grid.py`, then re-aggregate.
 
 ## Constraints (unchanged)
