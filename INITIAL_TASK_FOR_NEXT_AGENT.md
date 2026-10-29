@@ -8,7 +8,7 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 - Last pass: mcap_snapshot_20261028_212411 (20 pages, 2000 entries, 0 history-probe
   failures). eligible_unseen_below_floor_count==0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected=[].
-- A single resume wakeup is scheduled: **wku_184ff3254001YuGqaO41o7FmEm**, due
+- A single resume wakeup is scheduled: **wku_185021781001TxHhn1QNwnz8Dk**, due
   2026-10-29T21:25:00Z. The previous wakeup was already gone on arrival; do not
   re-schedule a duplicate.
 
