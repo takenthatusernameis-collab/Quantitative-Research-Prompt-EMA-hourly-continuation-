@@ -1,12 +1,12 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T19:16:00Z)
+## Current state (2026-10-29T19:19:00Z)
 
 - Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T19:15:21.726470+00:00`, ~2h 8m 49s remaining).
 - Command run (this cycle): `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
 - Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T19:15:21.726470+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (bound = scanned_at + 24h, scanned_at = 2026-10-28T21:24:11.948264+00:00).
 - Action taken: **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirmed; `last_scan.json` unchanged.
-- Wakeup discipline: single wakeup `wku_18918e4a3001gEIk8ezcAu2UAc` due `2026-10-29T21:25:00.000Z` (only pending wakeup). No second wakeup created.
+- Wakeup discipline: single wakeup `wku_1891a2bbf001ro2zWDFlpNW654` due `2026-10-29T21:25:00.000Z` (only pending wakeup). No second wakeup created.
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Baseline grid: complete (18150 cells), 0 credible candidates. Child mutation `C_min_risk_atr` complete but not promoted.
 - Git status: clean (no uncommitted changes).
