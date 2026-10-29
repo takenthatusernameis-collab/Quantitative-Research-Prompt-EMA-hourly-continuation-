@@ -2,7 +2,7 @@
 
 ## Current state (turn 2026-10-29T03:22Z)
 - Gate re-checked offline at 2026-10-29T03:22:31Z: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~18h 02m remaining). No provider contact made. Confirmed via `scripts/refresh_gate.gate_status(json.load(open('universe/last_scan.json')))`.
-- Prior session wakeup not found in this session. Re-set wakeup **wku_185ad941100158OdLRWjzfzYTJ** due 2026-10-29T21:26:21Z (do NOT create a second one).
+- Wakeup set this session: **wku_185af5e44001at3cF6d2tO4E7R** due 2026-10-29T21:26:21Z. Do NOT create a second one.
 - Scan: 20-page pass mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages, history_probe_failures=0). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967 (last_scan.json) / $3,614,141 (mcap_rank.json). The floor used by the gate is recomputed by `fetch_mcap_snapshot.py` from the fresh snapshot at pass time — do not assume values are authoritative without recomputing.

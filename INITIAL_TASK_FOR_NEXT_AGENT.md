@@ -2,7 +2,7 @@
 
 Read `NEXT_AGENT_TASK.md` first.
 
-Gate bound 2026-10-29T21:24:11.948264+00:00 NOT elapsed (verified 2026-10-29T03:22Z: eligible=False, ~18h 02m remaining). Do NOT contact provider before bound. Resume wakeup **wku_185ad941100158OdLRWjzfzYTJ** due 2026-10-29T21:26:21Z — let it fire; do NOT duplicate or reschedule.
+Gate bound 2026-10-29T21:24:11.948264+00:00 NOT elapsed (verified 2026-10-29T03:22Z: eligible=False, ~18h 02m remaining). Do NOT contact provider before bound. Wakeup set this session: **wku_185af5e44001at3cF6d2tO4E7R** due 2026-10-29T21:26:21Z — let it fire; do NOT duplicate or reschedule.
 
 On wakeup (at/after 2026-10-29T21:24:11.948264+00:00):
 1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, STOP (no provider).
