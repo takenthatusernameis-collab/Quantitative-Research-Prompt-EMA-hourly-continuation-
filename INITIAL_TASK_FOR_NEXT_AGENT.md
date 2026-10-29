@@ -2,10 +2,10 @@
 
 Read `NEXT_AGENT_TASK.md` first.
 
-Gate bound 2026-10-29T21:24:11.948264+00:00 NOT elapsed (verified 2026-10-29T04:20:20Z: eligible=False, ~17h 03m remaining). Do NOT contact provider before bound. Wakeup **wku_185af5e44001at3cF6d2tO4E7R** due 2026-10-29T21:26:21Z is already set — let it fire; do NOT duplicate or reschedule.
+Gate bound 2026-10-29T21:24:11.948264+00:00 NOT elapsed (verified 2026-10-29T04:24:09Z: eligible=False, ~17h remaining). Do NOT contact provider before bound. Wakeup **wku_185e97961001JEkgdvgy3D4eqJ** due 2026-10-29T21:26:00Z is set — let it fire; do NOT duplicate or reschedule it.
 
 On wakeup (at/after bound):
-1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, stop (no provider).
+1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, stop (no provider); re-set wakeup per interval policy.
 2. If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`.
 3. Recompute floor from fresh snapshot; inspect band strictly below floor for eligible unseen candidates.
 4. If count==0: record pass, set next bound, re-set wakeup, stop.
