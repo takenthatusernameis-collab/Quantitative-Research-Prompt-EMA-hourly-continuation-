@@ -135,3 +135,9 @@ At/after 2026-10-29T21:24:11.948264+00:00:
 - Persisted state confirmed: `universe/last_scan.json` `state: AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261028_212411`, `universe_n: 275`, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`, floor `ALPINE/USDT` $3,472,967, `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`.
 - Wakeup already set for 2026-10-29T21:27:15Z; do not create a second one; let it fire.
 - Next agent: at/after bound, check gate offline first; if eligible run one 20-page pass; recompute floor; expand if `eligible_unseen_below_floor_count > 0` else record pass, set `next_eligible_refresh_at`, re-set wakeup, stop. Preserve all negative/blocked results.
+
+## Update (turn 2026-10-29T10:40:14Z)
+- Prior task completed: gate re-verified offline at 2026-10-29T10:40:25Z, still closed (~10 h 44 m remaining). No provider contact. Working tree clean (`git status --short` empty, `git diff --stat` empty).
+- Persisted state confirmed: `universe/last_scan.json` `state: AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261028_212411`, `universe_n: 275`, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`, floor `ALPINE/USDT` $3,472,967, `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`.
+- Wakeup already set for 2026-10-29T21:27:15Z; do not create a second one; let it fire.
+- Next agent: at/after 2026-10-29T21:24:11.948264+00:00, check gate offline first; if eligible run one 20-page pass; recompute floor; expand if `eligible_unseen_below_floor_count > 0` else record pass, set `next_eligible_refresh_at`, re-set wakeup, stop. Preserve all negative/blocked results.
