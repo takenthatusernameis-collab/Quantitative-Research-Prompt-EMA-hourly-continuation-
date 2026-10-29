@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT
 
-Read `NEXT_AGENT_TASK.md` (updated 2026-10-29T23:04Z) and act at/after `2026-10-30T22:20:37.246523+00:00` when wakeup `wku_189e90ebe001Z1sKtzquMuQlz3` fires (due 2026-10-30T22:21:00Z). If no wakeup exists, re-set a single wakeup just after the bound.
+Read `NEXT_AGENT_TASK.md` (updated 2026-10-29T23:07Z) and act at/after `2026-10-30T22:20:37.246523+00:00` when wakeup `wku_189ebf46a001QHwteT0r6YvfSe` fires (due 2026-10-30T22:21:00Z). If no wakeup exists, re-set a single wakeup just after the bound.
 
 Immediate action on wakeup:
 1. Run offline gate check:
@@ -14,5 +14,5 @@ Do not start exploratory pilots or modify baseline grid/costs/fills/entry-exit s
 ## Evidence gathered this cycle (2026-10-29T22:43Z)
 
 - Read prior durable handoff, gate/status, `README.md`, `AGENTS.md`. Confirmed bound not elapsed (`2026-10-30T22:20:37.246523+00:00`); gate not eligible yet (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at` set). Live check: `{'eligible': False, 'bound': '2026-10-30T22:20:37.246523+00:00', 'now': '2026-10-29T22:43:45.961498+00:00', 'reason': 'the 24 h refresh bound ... has not elapsed yet'}`
-- Wakeup `wku_189d042f6001ad6fxgp119ehe1` already scheduled due `2026-10-30T22:21:00Z` just after bound. No provider calls made. No code changes to strategy/grid/costs/fills; only handoffs updated.
+- Wakeup `wku_189ebf46a001QHwteT0r6YvfSe` scheduled due `2026-10-30T22:21:00Z` just after bound. No provider calls made. No code changes; only handoffs updated.
 - Prior cycle evidence preserved: snapshot `universe/mcap_snapshot_20261029_222037.json` created, `eligible_unseen_below_floor_count = 0`, universe unchanged (N=275).
