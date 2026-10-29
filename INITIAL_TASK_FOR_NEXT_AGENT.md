@@ -8,8 +8,8 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 - Last pass: mcap_snapshot_20261028_212411 (20 pages, 2000 entries, 0 history-probe
   failures). eligible_unseen_below_floor_count==0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected=[].
-- A single resume wakeup is scheduled: **wku_18503360f001k1Le1ApjK2aRkg**, due
-  2026-10-29T21:25:00Z. Do **not** re-schedule a duplicate.
+- A single resume wakeup is scheduled: **wku_18508cbfc001WJUlZDisgK8lUe**, due
+  2026-10-29T21:21:48Z. Do **not** re-schedule a duplicate.
 
 ## Exact steps
 1. Check gate offline (`PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`).
@@ -28,5 +28,5 @@ Read this handoff first: `NEXT_AGENT_TASK.md`.
 
 ## Wakeup state (verified this turn)
 - `cancel_wakeup list` returned no pending wakeups for this session at 2026-10-29T00:15Z.
-- Single resume wakeup scheduled: **wku_18503360f001k1Le1ApjK2aRkg**, due 2026-10-29T21:25:00Z.
+- Single resume wakeup scheduled: **wku_18508cbfc001WJUlZDisgK8lUe**, due 2026-10-29T21:21:48Z.
 - Do **not** re-schedule a duplicate.
