@@ -1,10 +1,10 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T21:14Z)
+## Current state (2026-10-29T21:20Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T21:14:47.103006+00:00`, ~10m remaining). Confirmed via offline gate check at `2026-10-29T21:14:47Z`.
+- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T21:20:02.056881+00:00`, ~4m remaining). Confirmed via offline gate check at `2026-10-29T21:20:02Z`.
 - Action taken (this cycle): **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged. No provider contact made.
-- Wakeup discipline: single wakeup `wku_189851942001OijX5MoTLgrH2S` due `2026-10-29T21:29:03.774Z` (just after the bound + margin). This is the only pending wakeup. Do **not** re-schedule a duplicate — let the existing wakeup fire.
+- Wakeup discipline: prior wakeup `wku_189851942001OijX5MoTLgrH2S` had already fired and been consumed (no pending wakeups found at 21:20Z). Re-scheduled single wakeup `wku_18988e093001GYOlFQPofcIg7H` due `2026-10-29T21:29:03.774Z` (just after the bound + margin). This is now the only pending wakeup. Do **not** re-schedule a duplicate — let the existing wakeup fire.
 
 ## Grid reconciliation completed this cycle (no compute consumed)
 
@@ -23,7 +23,7 @@ Both grids re-read from disk and independently verified complete — no missing,
 
 ## Measurable next task
 
-At/after `2026-10-29T21:28:24.283Z` (when wakeup `wku_1897e647f0010hM4qw5fccgknY` fires), re-run the offline gate check:
+At/after `2026-10-29T21:29:03.774Z` (when wakeup `wku_18988e093001GYOlFQPofcIg7H` fires), re-run the offline gate check:
 
 ```bash
 PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
