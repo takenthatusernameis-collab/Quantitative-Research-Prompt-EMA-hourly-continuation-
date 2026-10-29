@@ -1,11 +1,11 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T15:09:59Z)
+## Current state (2026-10-29T15:13:38Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T15:09:59Z`, ~6h 14m remaining).
+- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T15:13:38Z`, ~6h 10m remaining).
 - Command run: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
-- Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T15:09:59.899060+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
-- Wakeup: previously set to `2026-10-29T21:40:07Z` (id `wku_1881a9b35001UCaHaZP4oGds7K`) — single allowed wakeup; do **not** create a second.
+- Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T15:13:38.184082+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
+- Wakeup: re-set to `2026-10-29T21:40:07Z` (id `wku_1883973d6001aCCCa7vMS9f9iy`) — single allowed wakeup; do **not** create a second. Prior wakeup `wku_1881a9b35001UCaHaZP4oGds7K` was cancelled (no longer pending).
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Baseline grid: complete, 18150 cells, 0 credible. Child mutation `C_min_risk_atr` complete but not promoted.
 
