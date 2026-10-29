@@ -80,3 +80,6 @@ At/after 2026-10-29T21:24:11.948264+00:00:
   costs/fills/entry-exit semantics.
 - Preserve all negative and blocked results. A negative batch is not a program
   stop; expand instead (PROMPT.md §2.1.4).
+## Update (turn 2026-10-29T09:39:14Z)
+- Re-checked gate offline: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T09:39:14.157844+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (~11 h 45 m remaining).
+- No changes made; still awaiting bound. Wakeup set for 2026-10-29T21:27:15Z.
