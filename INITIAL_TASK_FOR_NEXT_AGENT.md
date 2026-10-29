@@ -1,31 +1,82 @@
 # INITIAL TASK FOR NEXT AGENT — Durable Handoff
 
 ## Task
-Resume the gated market-cap expansion cycle for the EMA hourly continuation research program. Read `README.md`, `AGENTS.md`, `PROMPT.md`, and `NEXT_AGENT_TASK.md` first.
 
-## Current state (turn 2026-10-29T09:23:09Z)
-- Gate re-checked offline this turn at 2026-10-29T09:23:09Z: eligible=False. Bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet (~12h01m remaining). No provider contact made. Verified via `scripts.refresh_gate.gate_status` — `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T09:23:09.262860+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`. Prior task completed as blocked-on-gate; no expansion performed.
-- Wakeup: a single resume wakeup (wku_186ee6dbe001SQ3NljRVNbIAmR) is set for 2026-10-29T21:27:15Z, just after the bound. Not visible in this session's `cancel_wakeup list` (cross-session visibility). Do NOT create a second one; let it fire.
-- Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages, fetched_at 2026-10-28T21:24:11.948264+00:00, lowest rank 2000, lowest mcap $3,410,633). eligible_unseen_below_floor_count=0.
-- State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
-- Universe N=275; expansion floor recomputed from the snapshot: ALPINE/USDT at $3,472,967; next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
-- Baseline grid results/20261019_135940_grid re-verified:
-  - summary.json: n_cells=18150, n_symbols=275, n_pairs=66, total_trades=14676563, mean_net_pf=0.4987, median_net_pf=0.5198, best_net_pf=2.2274, n_cells_net_pf_gt_1=37, n_exploratory_signal=27, n_rejected=18123, n_blocked=0, null_frac_net_pf_gt_1=0.5, excess_vs_null=-0.4980. **0 credible candidates.**
-  - progress.json: run_id=20261019_135940_grid, n_symbols=275, n_pairs=66, completed_cells=18150, next_cell=null, stopped=false, stop_reason=null, all_symbols_processed=true. 0 blocked.
-- Session prep verified: `git status` clean, `git diff --stat` empty, working tree clean on main.
+Resume the gated market-cap expansion cycle for the EMA hourly continuation
+research program. Read `README.md`, `AGENTS.md`, `PROMPT.md`, and
+`NEXT_AGENT_TASK.md` first.
+
+## Current state (turn 2026-10-29T09:26:11Z)
+
+This session completed the prior task: it re-verified the repository state and
+confirmed the gate is still closed. No provider contact was made.
+
+- Gate re-checked offline at 2026-10-29T09:26:47Z via
+  `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`:
+  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T09:26:47.918868+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` —
+  ~11 h 58 m remaining. Nothing is actionable until the bound elapses.
+- Working tree clean: `git status --short` empty, `git diff --stat` empty.
+- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot
+  `mcap_snapshot_20261028_212411`; `batch_selected=[]`; no universe expansion.
+- Universe N=275; expansion floor `ALPINE/USDT` $3,472,967;
+  `next_eligible_refresh_at` 2026-10-29T21:24:11.948264+00:00.
+- Baseline grid `results/20261019_135940_grid` re-verified complete:
+  18150/18150 cells (275 symbols x 66 EMA pairs), 0 blocked, 0 credible
+  candidates, pooled mean net PF 0.4987.
+- Child mutation grid `results/20261022_134500_grid` re-verified complete:
+  18150/18150 cells, `all_symbols_processed=True`, `next_cell=null`,
+  `stopped=False`, `stop_reason=None`, 0 blocked. Recorded in
+  `results/mutations.json` as child `C_min_risk_atr`, status `complete`,
+  `min_risk_atr: false -> true`, `atr_threshold` 1.0, every other config key
+  identical. Full-universe evaluation
+  `results/20261023_045330_mutation_eval/summary.md` shows parent == child on
+  every metric (pooled net PF 0.5219 vs 0.5219, OOS net PF 0.5282 vs 0.5282,
+  cells clearing the gate 10 vs 10) because the child run config inherited
+  `stricter_trend: true` from the parent's pre-resume config, so the recorded
+  mutation was **not** actually applied. **Child grid stays NOT_PROMOTED.**
+- Test suite: `248 passed, 1 failed` in 143.10 s. The single failure is the
+  pre-existing clock bug in
+  `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`
+  — its fixed bound `2026-10-23T12:00:00Z` is in the past relative to the wall
+  clock of 2026-10-29, so `gate_status` correctly returns `eligible: True` and
+  the assertion `eligible is False` fails. Reproduced deterministically; not a
+  regression, and already flagged in both handoffs.
+
+## Wakeup
+
+A single resume wakeup is set for **2026-10-29T21:27:15Z**, just after the
+bound. It is not visible in this session's `cancel_wakeup list`
+(cross-session visibility). **Do NOT create a second one; let it fire.**
 
 ## Next action at/after bound
+
 At/after 2026-10-29T21:24:11.948264+00:00:
-1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, stop (no provider); re-set wakeup per interval policy.
-2. If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`.
-3. Recompute floor from the fresh snapshot; inspect band strictly below floor.
-4. If count==0: record pass, set next bound, re-set wakeup, stop.
-5. If count>0: expand per PROMPT.md §2.1, run full 66-pair grid on each new symbol.
-6. Update both handoffs with evidence (snapshot_id, counts, results paths) and preserve negative/blocked results.
+
+1. Check the gate offline first:
+   `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`.
+   If not eligible, stop (no provider); re-set a wakeup per the 24 h interval
+   policy and update both handoffs.
+2. If eligible, run exactly one 20-page pass:
+   `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`.
+3. Recompute the expansion floor from the fresh snapshot; inspect the band
+   strictly below the floor.
+4. If `eligible_unseen_below_floor_count == 0`: record the pass, set
+   `next_eligible_refresh_at`, re-set the wakeup, stop. Do not expand.
+5. If count > 0: expand per PROMPT.md §2.1, run the full 66-pair grid on each
+   new symbol through `scripts/run_grid.py` (or the tested resume path), and
+   re-aggregate.
+6. Update both handoffs with evidence (snapshot_id, counts, results paths) and
+   preserve all negative/blocked results.
 
 ## Constraints
-- No provider before bound; historical research only.
-- One 20-page pass max per cycle.
-- Do not trigger/cancel/rerun/dispatch GitHub Actions.
-- Do not fetch new candle data; do not modify baseline grid or costs/fills/entry-exit.
-- Preserve all negative/blocked results.
+
+- No provider before the bound; historical research only. Never place orders
+  or deploy live/paper trading.
+- One 20-page pass max per cycle. Do not hit CoinGecko on every agent
+  activation; inspect saved state first.
+- Do not trigger, cancel, rerun, or dispatch GitHub Actions. Do not edit
+  workflow files or launch a second writer.
+- Do not fetch new candle data. Do not modify the baseline grid or the
+  costs/fills/entry-exit semantics.
+- Preserve all negative and blocked results. A negative batch is not a program
+  stop; expand instead (PROMPT.md §2.1.4).
