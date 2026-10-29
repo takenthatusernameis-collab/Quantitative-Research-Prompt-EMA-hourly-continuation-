@@ -526,3 +526,9 @@ Constraints: no provider before the bound; one 20-page pass max per cycle; do no
   (or tested resume path), re-aggregate. Update both handoffs with evidence (snapshot_id, counts,
   results paths); preserve all negative/blocked results. No provider before bound; one 20-page pass
   max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics.
+
+## Update (turn 2026-10-29T13:13:57Z)
+- Gate re-verified offline at 2026-10-29T13:13:57Z: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T13:13:57.597127+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (~8 h 10 m remaining). Nothing actionable until bound elapses.
+- Working tree clean. No provider contact; no changes made.
+- Wakeup already set for 2026-10-29T21:27:15Z (cross-session). Do NOT create a second one; let it fire.
+- Next agent initial task unchanged (see section below).
