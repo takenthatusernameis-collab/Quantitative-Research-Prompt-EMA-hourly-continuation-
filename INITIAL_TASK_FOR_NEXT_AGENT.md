@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT
 
-Read `NEXT_AGENT_TASK.md` (updated 2026-10-29T23:23Z) and act at/after `2026-10-30T22:20:37.246523+00:00` when wakeup `wku_189fb79a7001BDcZXmkbFSZW7G` fires (due 2026-10-30T23:25:21.697Z). If no wakeup exists, re-set a single wakeup just after the bound.
+Read `NEXT_AGENT_TASK.md` (updated 2026-10-29T23:26Z) and act at/after `2026-10-30T22:20:37.246523+00:00` when wakeup `wku_189fc9783001Eci8UsWdQQsTpE` fires (due 2026-10-30T22:26:34.878Z). If no wakeup exists, re-set a single wakeup just after the bound.
 
 Immediate action on wakeup:
 1. Run offline gate check:
@@ -11,8 +11,8 @@ Immediate action on wakeup:
 
 Do not start exploratory pilots or modify baseline grid/costs/fills/entry-exit semantics. Keep strict confirmatory separate. Update `NEXT_AGENT_TASK.md` and this file with concrete evidence after acting.
 
-## Evidence gathered this cycle (2026-10-29T23:23Z)
+## Evidence gathered this cycle (2026-10-29T23:26Z)
 
-- Read prior durable handoff, gate/status, `README.md`, `AGENTS.md`. Confirmed bound not elapsed (`2026-10-30T22:20:37.246523+00:00`); gate not eligible yet (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at` set). Live check: `{'eligible': False, 'bound': '2026-10-30T22:20:37.246523+00:00', 'now': '2026-10-29T23:23:07.327389+00:00', 'reason': 'the 24 h refresh bound 2026-10-30T22:20:37.246523+00:00 has not elapsed yet'}`
-- No prior wakeup remained for this session; re-set single wakeup `wku_189fb79a7001BDcZXmkbFSZW7G` due `2026-10-30T23:25:21.697Z` (just after bound). No provider calls. No code changes.
+- Read prior durable handoff, gate/status, `README.md`, `AGENTS.md`. Confirmed bound not elapsed (`2026-10-30T22:20:37.246523+00:00`); gate not eligible yet (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at` set). Live check: `{'eligible': False, 'bound': '2026-10-30T22:20:37.246523+00:00', 'now': '2026-10-29T23:26:29.015059+00:00', 'reason': 'the 24 h refresh bound 2026-10-30T22:20:37.246523+00:00 has not elapsed yet'}`
+- No prior wakeup carried into this session; re-set single wakeup `wku_189fc9783001Eci8UsWdQQsTpE` due `2026-10-30T22:26:34.878Z` (just after bound). No provider calls. No code changes.
 - Prior cycle evidence preserved: snapshot `universe/mcap_snapshot_20261029_222037.json` created, `eligible_unseen_below_floor_count = 0`, universe unchanged (N=275).
