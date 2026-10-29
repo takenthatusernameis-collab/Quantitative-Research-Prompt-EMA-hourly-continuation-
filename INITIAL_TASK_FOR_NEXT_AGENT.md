@@ -1,8 +1,8 @@
 # Initial Task Message for Next Agent
 
-Gate not eligible yet (bound 2026-10-29T21:24:11.948264+00:00; now 2026-10-29T16:23:24.651844+00:00, ~5h 1m remaining). No pending wakeups for this session (prior wakeup wku_188775018001L8BNxm1ZUluNg4 may be gone). Do **not** create a second wakeup unless necessary; if resuming later, schedule a single wakeup just after the bound.
+Gate not eligible yet (bound 2026-10-29T21:24:11.948264+00:00; now 2026-10-29T16:26:09Z). Scheduled wakeup `wku_1887c4ecf001ClSeqsVYxyOtiu` for `2026-10-29T21:30:00Z` (single wakeup). Do **not** create a second wakeup unless necessary.
 
-At/after wakeup fire (at/after bound 2026-10-29T21:24:11.948264+00:00):
+At/after wakeup fire (at/after bound):
 1. Check gate: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
 2. If not eligible -> stop, re-set a single wakeup. If eligible -> run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`. Recompute floor; if `eligible_unseen_below_floor_count==0` -> record pass, set `next_eligible_refresh_at`, re-set wakeup, stop. If >0 -> expand per PROMPT §2.1, run 66-pair grid per new symbol via `scripts/run_grid.py`, re-aggregate.
 

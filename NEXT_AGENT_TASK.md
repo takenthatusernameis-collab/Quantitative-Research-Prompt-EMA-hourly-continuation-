@@ -21,3 +21,6 @@ If still not eligible, stop and re-set the wakeup (do **NOT** call the provider)
 ## Constraints (unchanged)
 
 Historical research only; no orders/live/paper trading; no provider before bound; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; do not create a second wakeup; keep strict confirmatory separate from exploratory.
+
+## Update (2026-10-29T16:26:09Z)
+- Scheduled single wakeup `wku_1887c4ecf001ClSeqsVYxyOtiu` for `2026-10-29T21:30:00Z` (just after bound `2026-10-29T21:24:11.948264+00:00`). Resume at fire per above task.
