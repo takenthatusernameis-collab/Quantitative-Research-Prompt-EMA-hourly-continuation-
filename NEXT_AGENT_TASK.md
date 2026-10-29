@@ -22,5 +22,5 @@ If still not eligible, stop and re-set the wakeup (do **NOT** call the provider)
 
 Historical research only; no orders/live/paper trading; no provider before bound; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; do not create a second wakeup; keep strict confirmatory separate from exploratory.
 
-## Update (2026-10-29T16:26:09Z)
-- Scheduled single wakeup `wku_1887c4ecf001ClSeqsVYxyOtiu` for `2026-10-29T21:30:00Z` (just after bound `2026-10-29T21:24:11.948264+00:00`). Resume at fire per above task.
+## Update (2026-10-29T16:29:51Z)
+- Gate still NOT ELIGIBLE (bound 2026-10-29T21:24:11.948264+00:00; now 2026-10-29T16:29:37Z). Stopped before any provider call. No pending wakeups found in this session; scheduled single wakeup `wku_1887f105d001Qj7FRRZOKT0Qa9` for `2026-10-29T21:29:51Z` (just after bound). Resume at fire per above task. Do not create a second wakeup.
