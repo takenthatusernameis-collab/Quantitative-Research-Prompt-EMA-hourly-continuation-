@@ -4,7 +4,7 @@
 
 - Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T21:14:47.103006+00:00`, ~10m remaining). Confirmed via offline gate check at `2026-10-29T21:14:47Z`.
 - Action taken (this cycle): **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged. No provider contact made.
-- Wakeup discipline: single wakeup `wku_1897e647f0010hM4qw5fccgknY` due `2026-10-29T21:28:24.283Z` (just after the bound + margin). This is the only pending wakeup. Do **not** re-schedule a duplicate — let the existing wakeup fire.
+- Wakeup discipline: single wakeup `wku_189851942001OijX5MoTLgrH2S` due `2026-10-29T21:29:03.774Z` (just after the bound + margin). This is the only pending wakeup. Do **not** re-schedule a duplicate — let the existing wakeup fire.
 
 ## Grid reconciliation completed this cycle (no compute consumed)
 
