@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T05:17:14Z)
-- Gate checked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~16h remaining). No provider contact made.
-- Wakeup set: **wku_185f582c90015BYv1bMaZieqf3** due 2026-10-29T21:29:00.000Z. Do NOT create a second one; let it fire.
+## Current state (turn 2026-10-29T05:20:06Z)
+- Gate checked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~16h04m remaining). No provider contact made.
+- Wakeup (prior session): **wku_185f582c90015BYv1bMaZieqf3** due 2026-10-29T21:29:00.000Z. Do NOT create a second one; let it fire.
 - Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor recomputed from fresh snapshot at pass time — do not assume values without recomputing.
@@ -10,7 +10,7 @@
 
 ## Next action at/after bound
 At/after 2026-10-29T21:24:11.948264+00:00:
-1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, re-set wakeup (keep interval policy) and stop.
+1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, stop (no provider); re-set wakeup per interval policy.
 2. If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`.
 3. Recompute floor; inspect band strictly below floor.
 4. If count==0: record pass, set next bound, re-set wakeup, stop.
