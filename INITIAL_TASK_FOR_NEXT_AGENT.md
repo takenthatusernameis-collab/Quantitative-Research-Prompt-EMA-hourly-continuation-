@@ -1,12 +1,13 @@
 # INITIAL TASK FOR NEXT AGENT
 
-## Current state (turn 2026-10-29T13:20:25Z)
+## Current state (turn 2026-10-29T13:24:16Z)
 
-- Gate re-verified offline: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T13:20:25.162630+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` — ~8 h remaining. Nothing actionable until the bound elapses.
+- Gate re-verified offline: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T13:24:16.461945+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` — ~8 h remaining. Nothing actionable until the bound elapses.
 - Working tree clean (`git status --short` empty). No provider contact; no changes made.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot `mcap_snapshot_20261028_212411`; universe N=275; expansion floor `ALPINE/USDT` $3,472,967; `eligible_unseen_below_floor_count: 0`; `batch_selected: []`; `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`.
 - Coverage 20/20 pages, 2000 entries, lowest mcap $3,410,633 (below floor), `coverage_reaches_below_floor: true`.
 - Single resume wakeup already set for **2026-10-29T21:27:15Z** (cross-session; not visible in this session's `cancel_wakeup list`). **Do NOT create a second wakeup; let it fire.**
+- Baseline `results/20261019_135940_grid` complete (18150 cells, pooled mean net PF 0.4987). Child `results/20261022_134500_grid` complete; mutation `C_min_risk_atr` not actually applied, child stays NOT_PROMOTED.
 
 ## Task (at/after 2026-10-29T21:24:11.948264+00:00)
 
@@ -22,4 +23,4 @@
 
 ## Constraints
 
-- No provider before the bound; one 20-page pass max per cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not create a second wakeup (resume wakeup already set for 2026-10-29T21:27:15Z).
+- No provider before the bound; one 20-page pass max per cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not create a second wakeup (resume wakeup already set for 2026-10-29T21:27:15Z). Preserve all negative/blocked results.
