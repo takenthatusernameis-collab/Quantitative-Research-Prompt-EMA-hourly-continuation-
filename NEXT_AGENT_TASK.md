@@ -1,13 +1,13 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T23:12Z)
+## Current state (2026-10-29T23:16Z)
 
-- Gate status: **NOT eligible yet** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-29T23:12:48.602319+00:00`). Confirmed via `universe/last_scan.json` (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`). Gate check: `{'eligible': False, 'bound': '2026-10-30T22:20:37.246523+00:00', 'now': '2026-10-29T23:12:48.602319+00:00', 'reason': 'the 24 h refresh bound 2026-10-30T22:20:37.246523+00:00 has not elapsed yet'}` — offline check, no provider calls.
-- Action taken (this cycle): Offline gate check re-run at `2026-10-29T23:12Z` (bound not elapsed, so not eligible). Prior wakeup `wku_189eec1b7001oCXFbK3MWZhOae` expired; re-set single wakeup `wku_189f22179001a7trWDxHNqOOhl` due `2026-10-30T22:21:00Z` (just after bound). No provider calls made. No code changes.
+- Gate status: **NOT eligible yet** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-29T23:16:33.353286+00:00`). Confirmed via `universe/last_scan.json` (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`). Gate check: `{'eligible': False, 'bound': '2026-10-30T22:20:37.246523+00:00', 'now': '2026-10-29T23:16:33.353286+00:00', 'reason': 'the 24 h refresh bound 2026-10-30T22:20:37.246523+00:00 has not elapsed yet'}` — offline check, no provider calls.
+- Action taken (this cycle): Offline gate check re-run at `2026-10-29T23:16Z` (bound not elapsed). Re-set single wakeup `wku_189f38fd8001ejS1x0y04ACAPZ` due `2026-10-30T22:21:00Z` (just after bound). No provider calls made. No code changes.
 - Previous cycle state preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
 - Wakeup discipline: Single wakeup only; no polling before bound.
 
-## Grid reconciliation (unchanged from prior state)
+## Grid reconciliation (unchanged)
 
 Both grids re-read from disk and independently verified complete — no missing, blocked, or unverified cells:
 
