@@ -1,7 +1,7 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T01:19Z)
-- Gate re-checked offline at 2026-10-29T01:19:26Z: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~20h05m remaining). No provider contact made. Confirmed via `scripts/refresh_gate.gate_status(universe/last_scan.json)`.
+## Current state (turn 2026-10-29T01:22Z)
+- Gate re-checked offline at 2026-10-29T01:22:51Z: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~20h01m remaining). No provider contact made. Confirmed via `scripts/refresh_gate.gate_status(universe/last_scan.json)`.
 - Scan: 20-page pass mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages, history_probe_failures=0). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967.
@@ -24,3 +24,4 @@ At/after 2026-10-29T21:24:11.948264+00:00:
 - Do not trigger/cancel/rerun/dispatch GitHub Actions.
 - Do not fetch new candle data; do not modify baseline grid or costs/fills/entry-exit.
 - Preserve all negative/blocked results.
+"
