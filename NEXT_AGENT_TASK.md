@@ -1,14 +1,14 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T09:37:57Z)
+## Current state (turn 2026-10-29T13:07:34Z)
 
 This session completed the prior task: it re-verified the repository state and
 confirmed the gate is still closed. No provider contact was made.
 
-- Gate re-checked offline at 2026-10-29T09:37:57Z via
+- Gate re-checked offline at 2026-10-29T13:07:34Z via
   `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`:
-  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T09:37:57.101915+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` —
-  ~11 h 46 m remaining. Nothing is actionable until the bound elapses.
+  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T13:07:34.312486+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` —
+  ~8 h 17 m remaining. Nothing is actionable until the bound elapses.
 - Working tree clean: `git status --short` empty, `git diff --stat` empty.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot
   `mcap_snapshot_20261028_212411`; `batch_selected=[]`; no universe expansion.
@@ -16,18 +16,16 @@ confirmed the gate is still closed. No provider contact was made.
   `next_eligible_refresh_at` 2026-10-29T21:24:11.948264+00:00.
 - Baseline grid `results/20261019_135940_grid` re-verified complete:
   18150/18150 cells (275 symbols x 66 EMA pairs), 0 blocked, 0 credible
-  candidates, pooled mean net PF 0.4987.
+  candidates, pooled mean net PF 0.49869497744821545.
 - Child mutation grid `results/20261022_134500_grid` re-verified complete:
   18150/18150 cells, `all_symbols_processed=True`, `next_cell=null`,
   `stopped=False`, `stop_reason=None`, 0 blocked. Recorded in
   `results/mutations.json` as child `C_min_risk_atr`, status `complete`,
-  `min_risk_atr: false -> true`, `atr_threshold` 1.0, every other config key
-  identical. Full-universe evaluation
+  `min_risk_atr: false` (mutation **not** actually applied — child run inherited
+  `stricter_trend: true` from the parent's pre-resume config). Full-universe evaluation
   `results/20261023_045330_mutation_eval/summary.md` shows parent == child on
   every metric (pooled net PF 0.5219 vs 0.5219, OOS net PF 0.5282 vs 0.5282,
-  cells clearing the gate 10 vs 10) because the child run config inherited
-  `stricter_trend: true` from the parent's pre-resume config, so the recorded
-  mutation was **not** actually applied. **Child grid stays NOT_PROMOTED.**
+  cells clearing the gate 10 vs 10). **Child grid stays NOT_PROMOTED.**
 - Test suite: `248 passed, 1 failed` in 143.10 s. The single failure is the
   pre-existing clock bug in
   `tests/test_refresh_gate.py::test_the_classic_path_records_the_bound_even_when_names_are_eligible`
@@ -232,10 +230,43 @@ At/after 2026-10-29T21:24:11.948264+00:00:
   If eligible run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`;
   recompute floor from fresh snapshot; inspect band below floor. If `eligible_unseen_below_floor_count == 0`:
   record pass, set `next_eligible_refresh_at`, re-set wakeup, stop (no expand). If count > 0:
+expand per PROMPT.md §2.1, run full 66-pair grid on each new symbol via `scripts/run_grid.py`
+  (or tested resume path), re-aggregate. Update both handoffs with evidence (snapshot_id, counts,
+  results paths); preserve all negative/blocked results. No provider before bound; one 20-page pass
+  max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics.
+
+## Update (turn 2026-10-29T13:07:34Z)
+- Gate re-verified offline at 2026-10-29T13:07:34Z via
+  `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`:
+  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T13:07:34.312486+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` —
+  ~8 h 17 m remaining. Nothing actionable until the bound elapses.
+- Working tree clean: `git status --short` empty, `git diff --stat` empty. No provider contact; no changes made.
+- Persisted state re-read directly from `universe/last_scan.json` and confirmed consistent:
+  `state: AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id: mcap_snapshot_20261028_212411`,
+  `universe_n: 275`, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`,
+  `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`, expansion floor
+  `ALPINE/USDT` $3,472,967 (`expansion_floor.symbol`, `expansion_floor.market_cap_usd` both
+  present). Coverage 20/20 pages, 2000 entries, lowest market cap $3,410,633 (below floor),
+  `coverage_reaches_below_floor: true`.
+- Prior handoff claims re-verified independently this turn:
+  - Baseline grid `results/20261019_135940_grid` complete: `summary.json` `n_cells` 18150,
+    pooled mean net PF **0.49869497744821545** (matches 0.4987).
+  - Child grid `results/20261022_134500_grid` complete: `summary.json` `n_cells` 18150.
+  - `results/mutations.json` child `C_min_risk_atr` config still records `min_risk_atr: false`
+    (mutation **not** applied); child stays NOT_PROMOTED. Confirmed, unchanged.
+- Wakeup check: `cancel_wakeup list` returns "No pending wakeups for this session." Per the
+  standing handoff instruction, the resume wakeup for 2026-10-29T21:27:15Z is cross-session and
+  not visible here. **Do NOT create a second one; let it fire.**
+- Next agent initial task (unchanged): at/after 2026-10-29T21:24:11.948264+00:00, check
+  gate offline first via `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`;
+  if not eligible stop (no provider), re-set wakeup per 24h policy and update both handoffs.
+  If eligible run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`;
+  recompute floor from fresh snapshot; inspect band below floor. If `eligible_unseen_below_floor_count == 0`:
+  record pass, set `next_eligible_refresh_at`, re-set wakeup, stop (no expand). If count > 0:
   expand per PROMPT.md §2.1, run full 66-pair grid on each new symbol via `scripts/run_grid.py`
   (or tested resume path), re-aggregate. Update both handoffs with evidence (snapshot_id, counts,
   results paths); preserve all negative/blocked results. No provider before bound; one 20-page pass
-max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics.
+  max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics.
 
 ## Update (turn 2026-10-29T11:23:51Z)
 - Prior task completed: gate re-verified offline at 2026-10-29T11:23:51Z via

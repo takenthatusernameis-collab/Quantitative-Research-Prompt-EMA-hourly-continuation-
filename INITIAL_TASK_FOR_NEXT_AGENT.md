@@ -452,11 +452,11 @@ Constraints: no provider before the bound; one 20-page pass max per cycle; do no
 
 **When you start:** Read `README.md`, `AGENTS.md`, `PROMPT.md`, and this file first.
 
-**Current state (turn 2026-10-29T12:29:37Z):** Gate is CLOSED. Nothing is
+**Current state (turn 2026-10-29T13:07:34Z):** Gate is CLOSED. Nothing is
 actionable until the 24 h refresh bound elapses.
 
-- Gate status: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T12:29:37.258325+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
-  — ~8 h 55 m remaining.
+- Gate status: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T13:07:34.312486+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
+  — ~8 h 17 m remaining.
 - Working tree clean (`git status --short` empty, `git diff --stat` empty). No provider contact.
 - Persisted state (`universe/last_scan.json`): `state: AWAITING_NEW_ELIGIBLE_CANDIDATES`,
   `snapshot_id: mcap_snapshot_20261028_212411`, `universe_n: 275`,
@@ -464,9 +464,10 @@ actionable until the 24 h refresh bound elapses.
   `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`,
   expansion floor `ALPINE/USDT` $3,472,967. Coverage 20/20 pages, 2000 entries,
   lowest market cap $3,410,633 (below floor), `coverage_reaches_below_floor: true`.
-- Baseline grid `results/20261019_135940_grid` complete (18150/18150 cells, pooled mean net PF 0.4987).
-  Child mutation grid `results/20261022_134500_grid` complete but NOT_PROMOTED (mutation not actually
-  applied — see handoff). Test suite: 248 passed, 1 failed (pre-existing clock bug, not a regression).
+- Baseline grid `results/20261019_135940_grid` complete (18150/18150 cells, pooled mean net PF
+  0.4987). Child mutation grid `results/20261022_134500_grid` complete but NOT_PROMOTED (mutation
+  not actually applied — see handoff). Test suite: 248 passed, 1 failed (pre-existing clock bug,
+  not a regression).
 - **Wakeup:** A single resume wakeup is set for **2026-10-29T21:27:15Z**, just after the bound.
   It is cross-session and not visible in this session's `cancel_wakeup list`.
   **Do NOT create a second one; let it fire.**
@@ -495,3 +496,36 @@ actionable until the 24 h refresh bound elapses.
 - Do not trigger, cancel, rerun, or dispatch GitHub Actions. Do not edit workflow files or launch a second writer.
 - Do not fetch new candle data. Do not modify the baseline grid or the costs/fills/entry-exit semantics.
 - Preserve all negative and blocked results. A negative batch is not a program stop; expand instead (PROMPT.md §2.1.4).
+
+## Update (turn 2026-10-29T13:07:34Z)
+- Gate re-verified offline at 2026-10-29T13:07:34Z via
+  `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`:
+  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T13:07:34.312486+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` —
+  ~8 h 17 m remaining. Nothing actionable until the bound elapses.
+- Working tree clean: `git status --short` empty, `git diff --stat` empty. No provider contact; no changes made.
+- Persisted state re-read directly from `universe/last_scan.json` and confirmed consistent:
+  `state: AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id: mcap_snapshot_20261028_212411`,
+  `universe_n: 275`, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`,
+  `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`, expansion floor
+  `ALPINE/USDT` $3,472,967 (`expansion_floor.symbol`, `expansion_floor.market_cap_usd` both
+  present). Coverage 20/20 pages, 2000 entries, lowest market cap $3,410,633 (below floor),
+  `coverage_reaches_below_floor: true`.
+- Prior handoff claims re-verified independently this turn:
+  - Baseline grid `results/20261019_135940_grid` complete: `summary.json` `n_cells` 18150,
+    pooled mean net PF **0.49869497744821545** (matches 0.4987).
+  - Child grid `results/20261022_134500_grid` complete: `summary.json` `n_cells` 18150.
+  - `results/mutations.json` child `C_min_risk_atr` config still records `min_risk_atr: false`
+    (mutation **not** applied); child stays NOT_PROMOTED. Confirmed, unchanged.
+- Wakeup check: `cancel_wakeup list` returns "No pending wakeups for this session." Per the
+  standing handoff instruction, the resume wakeup for 2026-10-29T21:27:15Z is cross-session and
+  not visible here. **Do NOT create a second one; let it fire.**
+- Next agent initial task (unchanged): at/after 2026-10-29T21:24:11.948264+00:00, check
+  gate offline first via `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`;
+  if not eligible stop (no provider), re-set wakeup per 24h policy and update both handoffs.
+  If eligible run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`;
+  recompute floor from fresh snapshot; inspect band below floor. If `eligible_unseen_below_floor_count == 0`:
+  record pass, set `next_eligible_refresh_at`, re-set wakeup, stop (no expand). If count > 0:
+  expand per PROMPT.md §2.1, run full 66-pair grid on each new symbol via `scripts/run_grid.py`
+  (or tested resume path), re-aggregate. Update both handoffs with evidence (snapshot_id, counts,
+  results paths); preserve all negative/blocked results. No provider before bound; one 20-page pass
+  max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics.
