@@ -1,18 +1,18 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T20:16Z)
+## Current state (2026-10-29T20:22Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T20:16:35.076908+00:00`, ~1h 8m remaining).
-- Command run (this cycle): `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"` → `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T20:16:35.076908+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
-- Action taken: **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged.
-- Wakeup discipline: single wakeup `wku_18950d568001YDQGx65b4vLQRz` due `2026-10-29T21:30:58.527Z` (only pending wakeup). Previous wakeup `wku_1894b8170001wtvB6EdxKHVBdN` no longer pending.
+- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T20:22:44Z`, ~1h 1m remaining). Confirmed via offline gate check:
+  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T20:22:44.341414', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
+- Action taken (this cycle): **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged.
+- Wakeup discipline: single wakeup `wku_189547aed001fmAFvFfLr7sUyC` due `2026-10-29T21:31:11.508Z` (only pending wakeup, set just after the bound).
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Baseline grid: complete (18150 cells), 0 credible candidates. Child mutation `C_min_risk_atr` complete but not promoted.
 - Git status: clean (no uncommitted changes).
 
 ## Measurable next task
 
-At/after `2026-10-29T21:26:09.352Z` (single wakeup `wku_1894b8170001wtvB6EdxKHVBdN` already set), re-run the offline gate check:
+At/after `2026-10-29T21:31:11.508Z` (when wakeup `wku_189547aed001fmAFvFfLr7sUyC` fires), re-run the offline gate check:
 ```bash
 PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
 ```
