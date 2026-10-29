@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T03:29:28Z)
-- Gate rechecked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~17h 55m remaining). No provider contact made.
-- Wakeup set this session: **wku_185af5e44001at3cF6d2tO4E7R** due 2026-10-29T21:26:21Z. Do NOT create a second one.
+## Current state (turn 2026-10-29T03:32:13Z)
+- Gate rechecked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~17h 52m remaining). No provider contact made.
+- Wakeup already set: **wku_185af5e44001at3cF6d2tO4E7R** due 2026-10-29T21:26:21Z. Do NOT create a second one; let it fire.
 - Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor ALPINE/USDT $3,472,967 (last_scan.json) / $3,614,141 (mcap_rank.json). Floor used by gate is recomputed by `fetch_mcap_snapshot.py` from the fresh snapshot at pass time — do not assume values without recomputing.
@@ -12,12 +12,12 @@
 ## Next action at/after bound
 
 At/after 2026-10-29T21:24:11.948264+00:00:
-1. Check gate offline. If not eligible, re-set wakeup and stop.
+1. Check gate offline: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`. If not eligible, re-set wakeup (keep interval policy) and stop.
 2. If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`.
 3. Recompute floor; inspect band strictly below floor.
 4. If count==0: record pass, set next bound, re-set wakeup, stop.
 5. If count>0: expand per PROMPT.md §2.1, run full 66-pair grid on each new symbol.
-6. Update both handoffs.
+6. Update both handoffs with evidence (snapshot_id, counts, results paths) and preserve negative/blocked results.
 
 ## Constraints
 - No provider before bound; historical research only.
