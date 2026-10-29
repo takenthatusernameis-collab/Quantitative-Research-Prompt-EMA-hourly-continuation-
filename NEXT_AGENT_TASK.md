@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T04:33:41Z)
-- Gate checked offline (2026-10-29T04:33:41Z): eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~17h remaining). No provider contact made. `git status --short` and `git diff --stat` empty.
-- Wakeup set: **wku_185efb1aa001dX8sVwZ62RxP8N** due 2026-10-29T21:29:00.000Z (rescheduled after prior wakeup expired). Do NOT create a second one; let it fire.
+## Current state (turn 2026-10-29T04:37:45Z)
+- Gate checked offline (2026-10-29T04:37:45Z): eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~17h remaining). No provider contact made. `git status --short` and `git diff --stat` empty.
+- Wakeup set: **wku_185f582c90015BYv1bMaZieqf3** due 2026-10-29T21:29:00.000Z. Prior wakeup wku_185efb1aa001dX8sVwZ62RxP8N had already expired and was not listed by cancel_wakeup; this is the single active wakeup. Do NOT create a second one; let it fire.
 - Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
 - Universe N=275; expansion floor recomputed from fresh snapshot at pass time — do not assume values without recomputing.
@@ -23,3 +23,5 @@ At/after 2026-10-29T21:24:11.948264+00:00:
 - Do not trigger/cancel/rerun/dispatch GitHub Actions.
 - Do not fetch new candle data; do not modify baseline grid or costs/fills/entry-exit.
 - Preserve all negative/blocked results.
+
+(End of file - total 25 lines)
