@@ -1,6 +1,6 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T00:23Z)
+## Current state (turn 2026-10-29T00:26Z)
 - Gate checked **offline** at 2026-10-29T00:23:00Z: **eligible=False** (bound
   2026-10-29T21:24:11.948264+00:00 not yet elapsed). No provider contact made.
 - Scan: 20-page pass `mcap_snapshot_20261028_212411` (2000 entries, 20/20 pages,
