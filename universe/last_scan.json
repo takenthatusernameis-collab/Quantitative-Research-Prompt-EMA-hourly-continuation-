@@ -1,26 +1,26 @@
 {
-  "recorded_at": "2026-10-28T21:24:12.771468+00:00",
+  "recorded_at": "2026-10-29T22:26:22.849854+00:00",
   "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
-  "snapshot_id": "mcap_snapshot_20261028_212411",
-  "snapshot_path": "universe/mcap_snapshot_20261028_212411.json",
+  "snapshot_id": "mcap_snapshot_20261029_222037",
+  "snapshot_path": "universe/mcap_snapshot_20261029_222037.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-10-28T21:24:11.948264+00:00",
+  "scanned_at": "2026-10-29T22:20:37.246523+00:00",
   "coverage": {
     "pages_requested": 20,
     "pages_fetched": 20,
     "all_requested_pages_returned": true,
     "entries_count": 2000,
     "lowest_rank_covered": 2000,
-    "lowest_market_cap_usd": 3410633
+    "lowest_market_cap_usd": 3255665
   },
   "coverage_reaches_below_floor": true,
   "universe_n": 275,
   "expansion_floor": {
-    "symbol": "ALPINE/USDT",
-    "market_cap_usd": 3472967
+    "symbol": "ALEX/USDT",
+    "market_cap_usd": 3273884
   },
   "eligible_unseen_below_floor_count": 0,
   "eligible_unseen_below_floor": [],
   "batch_selected": [],
-  "next_eligible_refresh_at": "2026-10-29T21:24:11.948264+00:00"
+  "next_eligible_refresh_at": "2026-10-30T22:20:37.246523+00:00"
 }

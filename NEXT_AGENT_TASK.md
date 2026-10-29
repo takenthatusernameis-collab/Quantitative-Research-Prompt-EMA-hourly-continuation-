@@ -1,29 +1,26 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T21:20Z)
+## Current state (2026-10-29T22:26Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T21:20:02.056881+00:00`, ~4m remaining). Confirmed via offline gate check at `2026-10-29T21:20:02Z`.
-- Action taken (this cycle): **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged. No provider contact made.
-- Wakeup discipline: prior wakeup `wku_189851942001OijX5MoTLgrH2S` had already fired and been consumed (no pending wakeups found at 21:20Z). Re-scheduled single wakeup `wku_18988e093001GYOlFQPofcIg7H` due `2026-10-29T21:29:03.774Z` (just after the bound + margin). This is now the only pending wakeup. Do **not** re-schedule a duplicate — let the existing wakeup fire.
+- Gate status: **NOT eligible yet** (bound `2026-10-30T22:20:37.246523+00:00`, current time ~22:26Z). Confirmed via `last_scan.json`.
+- Action taken (this cycle): Read prior handoff; bound not elapsed. Scheduled single wakeup `wku_189c7af8b0013SlmU498V7uVRr` due `2026-10-30T22:21:00Z` (just after bound). No provider calls made. No code changes to strategy/grid/costs/fills.
+- Previous cycle state preserved: Last pass created snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
+- Wakeup discipline: Single wakeup only; no polling before bound.
 
-## Grid reconciliation completed this cycle (no compute consumed)
+## Grid reconciliation (unchanged from prior state)
 
 Both grids re-read from disk and independently verified complete — no missing, blocked, or unverified cells:
-
 | Run | Symbols | Pairs | Cells | Progress | Mean net PF |
 |---|---|---|---|---|---|
 | `results/20261019_135940_grid` (parent baseline) | 275 | 66 | 18,150 | `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked | 0.4987 |
 | `results/20261022_134500_grid` (child `C_stricter_trend`) | 275 | 66 | 18,150 | `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked | 0.4987 |
 | `results/20261021_172619_grid` (child `C_min_risk_atr`) | 275 | 66 | 18,150 | `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked | 0.7264 |
 
-- `results/mutations.json` records both children as `NOT_PROMOTED` with full decision legs (full-universe evaluation, reproduction check, survivor check, out-of-sample audit, walk-forward re-selection, randomized null). `C_stricter_trend` is a documented zero-delta no-op; `C_min_risk_atr` improves cost drag but never reaches a net-profitable out-of-fold window (walk-forward pooled OOF net PF 0.7390, 0.5731 at 2× costs).
-- Baseline grid: 0 credible candidates; 37 cells with net PF > 1, all rejected.
-- Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
-- Git status: clean (no uncommitted changes). `git diff --stat` empty.
+- `results/mutations.json` records both children as `NOT_PROMOTED` with full decision legs. Baseline has 0 credible candidates; 37 cells with net PF > 1 all rejected.
 
 ## Measurable next task
 
-At/after `2026-10-29T21:29:03.774Z` (when wakeup `wku_18988e093001GYOlFQPofcIg7H` fires), re-run the offline gate check:
+At/after `2026-10-30T22:20:37.246523+00:00` (24h after the pass at ~22:20:37Z), re-run the offline gate check:
 
 ```bash
 PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
