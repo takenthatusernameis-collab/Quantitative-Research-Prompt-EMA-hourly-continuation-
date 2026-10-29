@@ -1,6 +1,16 @@
 # Market-Cap Universe Expansion Log
 
-## Gate re-check (2026-10-29T05:33Z) — no ranking pass made (prior agent task complete)
+## Gate re-check (2026-10-29T06:27Z) — no ranking pass made (prior agent task complete)
+
+- Offline gate check (run at `2026-10-29T06:27:19.787108+00:00`): `eligible=False`, bound `2026-10-29T21:24:11.948264+00:00` not yet elapsed (~14h57m remaining). No provider contact made.
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261028_212411`, floor `ALPINE/USDT` 3 472 967 USD, `eligible_unseen_below_floor_count = 0`, N = 275).
+- Baseline grid `results/20261019_135940_grid` re-verified directly: `summary.json` -> n_cells 18150, n_symbols 275, n_pairs 66, **0 credible candidates**. `progress.json` -> `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150`, 0 blocked.
+- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty.
+- Wakeup state: single resume wakeup set in prior turn at 2026-10-29T21:29:00Z: **`wku_18644a6b2001tKcU6d6A3PdIWy`** (just after the bound). `cancel_wakeup list` in this session returned no pending wakeups (cross-session visibility); do **not** create a duplicate — let the existing wakeup fire.
+- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with this verification and the existing wakeup id.
+- The gated market-cap expansion cycle cannot proceed until the bound elapses — nothing is actionable before `2026-10-29T21:24:11.948264+00:00`.
+
+---
 
 - Offline gate check (run at `2026-10-29T05:33:47.341847+00:00`): `eligible=False`, bound `2026-10-29T21:24:11.948264+00:00` not yet elapsed (~15h51m remaining). No provider contact made.
 - **No provider contact.** No snapshot written. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261028_212411`, floor `ALPINE/USDT` 3 472 967 USD, `eligible_unseen_below_floor_count = 0`, N = 275).
