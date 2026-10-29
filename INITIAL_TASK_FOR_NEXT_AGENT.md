@@ -128,3 +128,10 @@ At/after 2026-10-29T21:24:11.948264+00:00:
 - Persisted state re-read and confirmed consistent with handoff: `universe/last_scan.json` shows `state: AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id: mcap_snapshot_20261028_212411`, `universe_n: 275`, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`, `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`, expansion floor `ALPINE/USDT` $3,472,967.
 - Wakeup already set for 2026-10-29T21:27:15Z; do not create a second one; let it fire.
 - Next agent: at/after 2026-10-29T21:24:11.948264+00:00, check gate offline first; if eligible run one 20-page pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`); recompute floor; if `eligible_unseen_below_floor_count > 0` expand per PROMPT.md §2.1; else record pass, set `next_eligible_refresh_at`, re-set wakeup, stop. Preserve all negative/blocked results.
+
+## Update (turn 2026-10-29T10:33:43Z)
+- Gate re-verified offline at 2026-10-29T10:33:42Z: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T10:33:42.227556+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (~10 h 50 m remaining).
+- Prior task completed: gate still closed; nothing actionable. No provider contact. Working tree clean (`git status --short` empty).
+- Persisted state confirmed: `universe/last_scan.json` `state: AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261028_212411`, `universe_n: 275`, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`, floor `ALPINE/USDT` $3,472,967, `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`.
+- Wakeup already set for 2026-10-29T21:27:15Z; do not create a second one; let it fire.
+- Next agent: at/after bound, check gate offline first; if eligible run one 20-page pass; recompute floor; expand if `eligible_unseen_below_floor_count > 0` else record pass, set `next_eligible_refresh_at`, re-set wakeup, stop. Preserve all negative/blocked results.
