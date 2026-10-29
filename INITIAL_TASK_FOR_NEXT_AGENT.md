@@ -2,9 +2,9 @@
 
 Read this handoff first: `NEXT_AGENT_TASK.md`.
 
-## Situation at wakeup (2026-10-29T01:12Z)
+## Situation at wakeup (2026-10-29T01:16Z)
 - Gate bound 2026-10-29T21:24:11.948264+00:00 has NOT elapsed yet. Verified offline this turn
-  (2026-10-29T01:12:15.115975+00:00): `gate_status` returns eligible=False (~20h12m remaining).
+  (2026-10-29T01:16:04.017315+00:00): `gate_status` returns eligible=False (~20h08m remaining).
   Task complete — nothing actionable before the bound. Do NOT contact the provider before the bound.
 - Last pass: mcap_snapshot_20261028_212411 (20 pages, 2000 entries, 0 history-probe
   failures). eligible_unseen_below_floor_count==0.
