@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT
 
-State at handoff (2026-10-29T14:21:00Z): gate closed, ~7h 3m to bound. Working tree clean. Snapshot mcap_snapshot_20261028_212411, universe N=275, floor ALPINE/USDT $3,472,967, eligible_unseen_below_floor_count 0, state AWAITING_NEW_ELIGIBLE_CANDIDATES. Wakeup set for 2026-10-29T21:27:15Z (cross-session; do NOT create second). Baseline grid complete (18150 cells, 0 credible), child mutation C_min_risk_atr complete but not promoted.
+State at handoff (2026-10-29T14:24:12Z): gate closed, ~7h 0m to bound. Working tree clean. Snapshot mcap_snapshot_20261028_212411, universe N=275, floor ALPINE/USDT $3,472,967, eligible_unseen_below_floor_count 0, state AWAITING_NEW_ELIGIBLE_CANDIDATES. Wakeup re-set for 2026-10-29T21:27:15Z (id wku_1880c690e0010afjYtJNbDgri9; do NOT create a second). Baseline grid complete (18150 cells, 0 credible), child mutation C_min_risk_atr complete but not promoted.
 
 Do this at/after 2026-10-29T21:24:11.948264+00:00:
 
