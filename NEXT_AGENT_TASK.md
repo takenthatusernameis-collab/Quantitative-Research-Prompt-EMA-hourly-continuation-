@@ -1,9 +1,9 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T20:05:50Z)
+## Current state (2026-10-29T20:10Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T20:05:50Z`, ~1h 18m remaining).
-- Command run (this cycle): `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"` → `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T20:05:50.663813+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
+- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T20:09:30.359676+00:00`, ~1h 15m remaining).
+- Command run (this cycle): `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"` → `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T20:09:30.359676+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
 - Action taken: **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged.
 - Wakeup discipline: single wakeup `wku_1894316ab0017GQh711wA6hlwh` due `2026-10-29T21:25:00.000Z` (only pending wakeup). No second wakeup created.
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
