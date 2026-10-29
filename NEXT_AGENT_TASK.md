@@ -1,18 +1,18 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T17:18:01Z)
+## Current state (2026-10-29T17:28:39Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T17:18:01.790327+00:00`, ~4h 6m remaining).
+- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T17:28:39.165984+00:00`, ~3h 55m remaining).
 - Command run (this cycle): `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
-- Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T17:18:01.790327+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (gate_status in scripts/refresh_gate.py; bound = scanned_at + 24h where scanned_at = 2026-10-28T21:24:11.948264+00:00).
-- Action taken: **stopped before any provider call**. Gate still NOT ELIGIBLE at 2026-10-29T17:21:10Z. No pending wakeups existed in this session; scheduled single wakeup `wku_188ae680d001jBORuwmHaajLJn` for `2026-10-29T21:30:00Z` (just after bound). Do **not** create a second wakeup unless necessary.
+- Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T17:28:39.165984+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (bound = scanned_at + 24h, scanned_at = 2026-10-28T21:24:11.948264+00:00).
+- Action taken: **Stopped before any provider call.** Gate remains NOT ELIGIBLE. No pending wakeups exist for this session. Previous wakeup `wku_188ae680d001jBORuwmHaajLJn` may have been scheduled earlier; do **not** create a second wakeup unless necessary.
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
-- Baseline grid: complete, 18150 cells, 0 credible. Child mutation `C_min_risk_atr` complete but not promoted.
+- Baseline grid: complete (18150 cells), 0 credible candidates. Child mutation `C_min_risk_atr` complete but not promoted.
 - Git status: clean (no uncommitted changes).
 
 ## Measurable next task
 
-At/after `2026-10-29T21:24:11.948264+00:00` (wakeup `wku_188ae680d001jBORuwmHaajLJn` fires at `2026-10-29T21:30:00Z`), re-run the offline gate check:
+At/after `2026-10-29T21:24:11.948264+00:00` (set a single wakeup just after the bound if none pending), re-run the offline gate check:
 ```bash
 PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
 ```
@@ -20,8 +20,8 @@ If still not eligible, stop and re-set a single wakeup just after the bound (do 
 
 ## Constraints (unchanged)
 
-Historical research only; no orders/live/paper trading; no provider before bound; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; do not create a second wakeup; keep strict confirmatory separate from exploratory.
+Historical research only; no orders/live/paper trading; no provider before bound; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; single wakeup only; keep strict confirmatory separate from exploratory.
 
-## Update (2026-10-29T17:18:01Z)
+## Update (2026-10-29T17:28:39Z)
 
-- Gate still NOT ELIGIBLE (bound 2026-10-29T21:24:11.948264+00:00; now 2026-10-29T17:18:01Z). Stopped before any provider call. No pending wakeups existed; scheduled single wakeup `wku_188ab5b2c001TGfD2kIH5ZqvXp` for `2026-10-29T21:30:00Z` (just after bound). Resume at fire per above task. Do not create a second wakeup.
+- Prior durable handoff task completed: verified offline gate (eligible=False, bound 2026-10-29T21:24:11.948264+00:00 not elapsed). Stopped before provider call; ensured single wakeup discipline. Handoffs updated with current verified state. No code changes.

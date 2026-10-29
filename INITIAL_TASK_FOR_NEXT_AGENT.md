@@ -1,6 +1,6 @@
 # Initial Task Message for Next Agent
 
-## When the wakeup fires (at/after 2026-10-29T21:30:00Z, just after the bound)
+## When the wakeup fires (at/after 2026-10-29T21:24:11.948264+00:00)
 
 Re-run the offline gate check:
 
@@ -23,9 +23,9 @@ PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_stat
 
 Historical research only; no orders/live/paper trading; **no provider before the bound**; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; **single wakeup only**; keep confirmatory separate from exploratory.
 
-## Evidence (this cycle, 2026-10-29T17:18:01Z)
+## Evidence (this cycle, 2026-10-29T17:28:39Z)
 
-- Gate status: NOT ELIGIBLE, bound `2026-10-29T21:24:11.948264+00:00`.
-- Wakeup `wku_188ae680d001jBORuwmHaajLJn` scheduled for `2026-10-29T21:30:00Z`.
+- Gate status: NOT ELIGIBLE, bound `2026-10-29T21:24:11.948264+00:00` (~3h 55m remaining).
+- No pending wakeups found for this session; previous wakeup may exist externally. If none pending at fire time, set a single wakeup just after bound.
 - Universe: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
-- Git status: clean.
+- Git status: clean. Handoffs updated to reflect verified state.
