@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT
 
-Read `NEXT_AGENT_TASK.md` (updated 2026-10-29T22:26Z) and act at/after `2026-10-30T22:20:37.246523+00:00` when wakeup `wku_189c7af8b0013SlmU498V7uVRr` fires (due 2026-10-30T22:21:00Z). If no wakeup exists, re-set a single wakeup just after the bound.
+Read `NEXT_AGENT_TASK.md` (updated 2026-10-29T22:30Z) and act at/after `2026-10-30T22:20:37.246523+00:00` when wakeup `wku_189cbc6d9001CfsI2BbFbo1flw` fires (due 2026-10-30T22:21:00Z). If no wakeup exists, re-set a single wakeup just after the bound.
 
 Immediate action on wakeup:
 1. Run offline gate check:
@@ -11,8 +11,8 @@ Immediate action on wakeup:
 
 Do not start exploratory pilots or modify baseline grid/costs/fills/entry-exit semantics. Keep strict confirmatory separate. Update `NEXT_AGENT_TASK.md` and this file with concrete evidence after acting.
 
-## Evidence gathered this cycle (2026-10-29T22:26Z)
+## Evidence gathered this cycle (2026-10-29T22:30Z)
 
 - Read prior durable handoff (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`). Confirmed bound not elapsed (`2026-10-30T22:20:37.246523+00:00`); gate not eligible yet per `universe/last_scan.json` (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at` set to new bound).
-- Scheduled single wakeup `wku_189c7af8b0013SlmU498V7uVRr` due `2026-10-30T22:21:00Z` just after bound. No provider calls made. No code changes to strategy/grid/costs/fills; only handoffs updated.
+- Scheduled single wakeup `wku_189cbc6d9001CfsI2BbFbo1flw` due `2026-10-30T22:21:00Z` just after bound. No provider calls made. No code changes to strategy/grid/costs/fills; only handoffs updated.
 - Prior cycle evidence preserved: snapshot `universe/mcap_snapshot_20261029_222037.json` created, `eligible_unseen_below_floor_count = 0`, universe unchanged (N=275).
