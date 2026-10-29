@@ -1,12 +1,12 @@
 # NEXT AGENT TASK — Durable Handoff
 
-## Current state (turn 2026-10-29T05:33Z)
-- Gate checked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~15h51m remaining). No provider contact made. Verified via `scripts.refresh_gate.gate_status`.
-- Wakeup: a single resume wakeup is set just after the bound (~2026-10-29T21:29:00Z). Do NOT create a second one; let it fire.
+## Current state (turn 2026-10-29T05:39Z)
+- Gate checked offline: eligible=False (bound 2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~15h45m remaining). No provider contact made. Verified via `scripts.refresh_gate.gate_status`.
+- Wakeup: a single resume wakeup (wku_1862c01aa001prOWykxzFLkb9P) is set for 2026-10-29T21:29:00Z, just after the bound. Do NOT create a second one; let it fire.
 - Last scan: mcap_snapshot_20261028_212411 (2000 entries, 20/20 pages). eligible_unseen_below_floor_count=0.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES; snapshot mcap_snapshot_20261028_212411; batch_selected=[]; no universe expansion.
-- Universe N=275; expansion floor recomputed from fresh snapshot at pass time — do not assume values without recomputing.
-- next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
+- Universe N=275; expansion floor: ALPINE/USDT at $3,472,967; next_eligible_refresh_at 2026-10-29T21:24:11.948264+00:00.
+- Recompute floor from fresh snapshot at pass time — do not assume values without recomputing.
 
 ## Next action at/after bound
 At/after 2026-10-29T21:24:11.948264+00:00:
