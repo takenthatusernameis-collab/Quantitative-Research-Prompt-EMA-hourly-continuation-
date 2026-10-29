@@ -1,9 +1,8 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T20:36Z)
+## Current state (2026-10-29T20:38Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T20:36:25.526400+00:00`, ~48m remaining). Confirmed via offline gate check:
-  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T20:36:25.526400+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
+- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T20:38:11.734732+00:00`, ~46m remaining). Confirmed via offline gate check.
 - Action taken (this cycle): **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged.
 - Wakeup discipline: single wakeup `wku_1895c2be70013N09sg8JaGqoMI` due `2026-10-29T21:37:21.568Z` (just after the bound + margin). This is the only pending wakeup.
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
