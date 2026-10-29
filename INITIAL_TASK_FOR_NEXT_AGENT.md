@@ -1,6 +1,6 @@
 # Initial Task Message for Next Agent
 
-Gate is not eligible yet (bound 2026-10-29T21:24:11.948264+00:00; now 2026-10-29T15:30:49.028025+00:00). Wakeup set to 2026-10-29T21:40:00Z (id wku_1884b02b3001Qmg0025D9tsFoY); do not create a second wakeup.
+Gate is not eligible yet (bound 2026-10-29T21:24:11.948264+00:00; now 2026-10-29T15:34:24.184208+00:00). Wakeup set to 2026-10-29T21:41:37Z (id wku_1884e549c001wWrVVGaatBO5ay); do not create a second wakeup.
 
 At/after bound:
 1. Check gate: `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
