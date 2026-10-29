@@ -1,8 +1,8 @@
 # NEXT AGENT TASK — Durable Handoff
 
 ## Current state (turn 2026-10-29T01:16Z)
-- Gate checked **offline** at 2026-10-29T01:16:04.017315+00:00: **eligible=False** (bound
-  2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~20h08m remaining). No provider contact made.
+- Gate checked **offline** at 2026-10-29T01:16:52.788275+00:00: **eligible=False** (bound
+  2026-10-29T21:24:11.948264+00:00 not yet elapsed; ~20h07m remaining). No provider contact made.
   Task complete: nothing actionable before the bound; wakeup already scheduled, not re-scheduled.
 - Scan: 20-page pass `mcap_snapshot_20261028_212411` (2000 entries, 20/20 pages,
   history_probe_failures=0). Coverage reaches below expansion floor;
@@ -33,5 +33,3 @@ At/after 2026-10-29T21:24:11.948264+00:00:
 - Do not trigger/cancel/rerun/dispatch GitHub Actions.
 - Do not fetch new candle data; do not modify baseline grid or costs/fills/entry-exit.
 - Preserve all negative/blocked results.
-
-(End of file - total 35 lines)
