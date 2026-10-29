@@ -1,17 +1,17 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T20:38Z)
+## Current state (2026-10-29T21:01Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T20:38:11.734732+00:00`, ~46m remaining). Confirmed via offline gate check.
+- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T21:01:13.410301+00:00`, ~23m remaining). Confirmed via offline gate check.
 - Action taken (this cycle): **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged.
-- Wakeup discipline: single wakeup `wku_1895c2be70013N09sg8JaGqoMI` due `2026-10-29T21:37:21.568Z` (just after the bound + margin). This is the only pending wakeup.
+- Wakeup discipline: single wakeup `wku_18977c7eb0013r9PRbKU9Hrd31` due `2026-10-29T21:25:20.984Z` (just after the bound + margin). This is the only pending wakeup.
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Baseline grid: complete (18150 cells), 0 credible candidates. Child mutation `C_min_risk_atr` complete but not promoted.
 - Git status: clean (no uncommitted changes).
 
 ## Measurable next task
 
-At/after `2026-10-29T21:37:21.568Z` (when wakeup `wku_1895c2be70013N09sg8JaGqoMI` fires), re-run the offline gate check:
+At/after `2026-10-29T21:25:20.984Z` (when wakeup `wku_18977c7eb0013r9PRbKU9Hrd31` fires), re-run the offline gate check:
 ```bash
 PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
 ```

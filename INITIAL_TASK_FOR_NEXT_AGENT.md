@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT
 
-Read `NEXT_AGENT_TASK.md` (updated 2026-10-29T20:36Z) and act at/after `2026-10-29T21:37:21.568Z` when wakeup `wku_1895c2be70013N09sg8JaGqoMI` fires (due 2026-10-29T21:37:21.568Z).
+Read `NEXT_AGENT_TASK.md` (updated 2026-10-29T21:01Z) and act at/after `2026-10-29T21:25:20.984Z` when wakeup `wku_18977c7eb0013r9PRbKU9Hrd31` fires (due 2026-10-29T21:25:20.984Z).
 
 Immediate action on wakeup:
 1. Run offline gate check:
