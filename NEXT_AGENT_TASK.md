@@ -539,3 +539,9 @@ Constraints: no provider before the bound; one 20-page pass max per cycle; do no
 - Persisted state confirmed: `universe/last_scan.json` `state: AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261028_212411`, `universe_n: 275`, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`, floor `ALPINE/USDT` $3,472,967, `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`.
 - Wakeup already set for 2026-10-29T21:27:15Z (cross-session). **Do NOT create a second one; let it fire.**
 - Next agent initial task unchanged (see INITIAL_TASK_FOR_NEXT_AGENT.md and section below).
+
+## Update (turn 2026-10-29T13:15:28Z)
+- Re-checked gate offline: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T13:15:28.449999+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (~8 h 9 m remaining).
+- Prior task completed: gate still closed; nothing actionable. No provider contact. Working tree clean.
+- Wakeup already set for 2026-10-29T21:27:15Z; do not create a second one.
+- State unchanged: AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot mcap_snapshot_20261028_212411, batch_selected=[], universe N=275, floor ALPINE/USDT $3,472,967.
