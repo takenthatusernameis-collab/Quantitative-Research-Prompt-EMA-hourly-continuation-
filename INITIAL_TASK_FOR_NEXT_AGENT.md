@@ -23,13 +23,13 @@ PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_stat
 
 Historical research only; no orders/live/paper trading; **no provider before the bound**; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; **single wakeup only**; keep confirmatory separate from exploratory.
 
-## Evidence (this cycle, 2026-10-29T18:08:15Z)
+## Evidence (this cycle, 2026-10-29T18:13:52Z)
 
-- Gate status: NOT ELIGIBLE, bound `2026-10-29T21:24:11.948264+00:00` (~3h 16m remaining at check time).
+- Gate status: NOT ELIGIBLE, bound `2026-10-29T21:24:11.948264+00:00` (~3h 10m remaining at check time).
 - Command run (this cycle): `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"`
-- Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T18:08:15.799217+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (bound = scanned_at + 24h, scanned_at = 2026-10-28T21:24:11.948264+00:00).
+- Result: `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T18:13:52.809387+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (bound = scanned_at + 24h, scanned_at = 2026-10-28T21:24:11.948264+00:00).
 - Action taken: **Stopped before any provider call.** Gate remains NOT ELIGIBLE.
-- Wakeup discipline: no pending wakeups at activation; single replacement wakeup `wku_188d96f36001Z15tzG7M4Mg3ND` due `2026-10-29T21:24:33.586Z` set this cycle; no second wakeup created.
+- Wakeup discipline: no pending wakeups at activation; single replacement wakeup `wku_188d96f36001Z15tzG7M4Mg3ND` due `2026-10-29T21:24:33.586Z` set by prior agent (still the only pending wakeup); no second wakeup created.
 - Universe: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Baseline grid: complete (18150 cells), 0 credible candidates. Child mutation `C_min_risk_atr` complete but not promoted.
 - Git status: clean (no uncommitted changes).
