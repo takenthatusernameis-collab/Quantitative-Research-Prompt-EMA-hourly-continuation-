@@ -2,8 +2,8 @@
 
 ## Context (from durable handoff)
 - Repo: Quantitative-Research-Prompt-EMA-hourly-continuation-
-- Current turn: 2026-10-29T14:12:40Z
-- Gate (offline): `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T14:13:08.140143+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (~7h 11m remaining)
+- Current turn: 2026-10-29T14:16:37Z
+- Gate (offline): `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T14:16:37.203758+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}` (~7h 7m remaining)
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261028_212411`, universe N=275, floor `ALPINE/USDT` $3,472,967, `eligible_unseen_below_floor_count: 0`, `batch_selected: []`, `next_eligible_refresh_at: 2026-10-29T21:24:11.948264+00:00`
 - Baseline grid `results/20261019_135940_grid`: complete (18150/18150), 0 credible candidates, pooled mean net PF 0.49869497744821545
 - Child mutation grid `results/20261022_134500_grid`: complete, `C_min_risk_atr` not applied; child == parent; NOT_PROMOTED
