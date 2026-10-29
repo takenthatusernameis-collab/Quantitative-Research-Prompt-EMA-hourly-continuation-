@@ -1,18 +1,18 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-29T20:27Z)
+## Current state (2026-10-29T20:28Z)
 
-- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T20:27:14.412092+00:00`, ~57m remaining). Confirmed via offline gate check:
-  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T20:27:14.412092+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
+- Gate status: **NOT ELIGIBLE** — 24h refresh bound `2026-10-29T21:24:11.948264+00:00` has not elapsed (now `2026-10-29T20:28:53.037541+00:00`, ~55m remaining). Confirmed via offline gate check:
+  `{'eligible': False, 'bound': '2026-10-29T21:24:11.948264+00:00', 'now': '2026-10-29T20:28:53.037541+00:00', 'reason': 'the 24 h refresh bound 2026-10-29T21:24:11.948264+00:00 has not elapsed yet'}`
 - Action taken (this cycle): **Stopped before any provider call.** Gate remains NOT ELIGIBLE. Offline gate check confirms `last_scan.json` unchanged.
-- Wakeup discipline: scheduled wakeup `wku_189563c77001iLmmIw9gy7yw9K` due `2026-10-29T21:34:52.594Z` (after bound + margin). This is the only pending wakeup.
+- Wakeup discipline: single wakeup `wku_1895c2be70013N09sg8JaGqoMI` due `2026-10-29T21:37:21.568Z` (just after the bound + margin). This is the only pending wakeup.
 - Universe state unchanged: snapshot `mcap_snapshot_20261028_212411`, N=275, floor ALPINE/USDT $3,472,967, `eligible_unseen_below_floor_count` = 0, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Baseline grid: complete (18150 cells), 0 credible candidates. Child mutation `C_min_risk_atr` complete but not promoted.
 - Git status: clean (no uncommitted changes).
 
 ## Measurable next task
 
-At/after `2026-10-29T21:34:52.594Z` (when wakeup `wku_189563c77001iLmmIw9gy7yw9K` fires), re-run the offline gate check:
+At/after `2026-10-29T21:37:21.568Z` (when wakeup `wku_1895c2be70013N09sg8JaGqoMI` fires), re-run the offline gate check:
 ```bash
 PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
 ```
