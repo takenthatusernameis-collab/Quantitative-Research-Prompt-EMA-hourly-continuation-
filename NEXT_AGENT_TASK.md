@@ -36,3 +36,4 @@ Historical research only; no orders/live/paper trading; no provider before bound
 
 - 2026-10-30T05:24:22Z — Gate re-checked offline (not eligible, ~17h 0m to bound). No provider call. Scheduled single wakeup `wku_18b462c19001IZ1rTr88W6q5j4` due 2026-10-30T22:25:42Z (after bound). Working tree clean. Handoff updated.
 - 2026-10-30T05:51:18Z — Resumed prior task; offline gate still not eligible (bound 2026-10-30T22:20:37Z, ~16h 29m remaining). No provider call. Re-set single wakeup `wku_18b5d3bf6001FG1DIwQ1xZDLnZ` due 2026-10-30T22:25:46Z (after bound). Working tree clean. Handoff updated.
+- 2026-10-30T05:52:20Z — Verified offline gate still NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, ~16h 28m remaining). No provider call. Scheduled single wakeup `wku_18b60f3b7001c6jkWSf34pkqvu` due 2026-10-30T22:25:46Z (after bound). Working tree clean. Handoff updated.
