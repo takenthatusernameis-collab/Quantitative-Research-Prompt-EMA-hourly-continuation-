@@ -23,5 +23,6 @@ Historical research only; no orders/live/paper trading; no provider before bound
 Gate bound elapsed. Ran expansion check with fresh 20-page snapshot (mcap_snapshot_20261030_230634.json); coverage reaches below floor (lowest $3.217M < floor $3.255M) but eligible unseen below floor = 0. Universe remains N=275. Scan record updated with next eligible refresh 2026-10-31T23:06:34.318029+00:00. No grid reruns needed. At next bound, do one offline gate check then at most one 20-page pass if eligible.
 
 ## Cycle log
-- 2026-10-30T23:08:30Z — This turn: read prior task from durable handoff (completed). Gate now eligible; performed expansion check (20 pages) against fresh snapshot. Found eligible_unseen_below_floor_count=0, floor ALEX/USDT $3,255,070, universe unchanged. Updated last_scan.json. Updated handoffs. No grid changes, no provider calls outside the single pass, no duplicate wakeups.
-- 2026-10-30T22:06:41Z — Previous cycle logged (wake scheduled).
+- 2026-10-30T23:10:30Z — This turn: read prior agent task from durable handoff and completed (verified last_scan matches snapshot; offline gate check => not eligible until 2026-10-31T23:06:34.318029+00:00). No provider calls, no grid changes. Updated handoffs.
+- 2026-10-30T23:08:30Z — Previous cycle: expansion check (20 pages), eligible_unseen_below_floor_count=0, universe unchanged, last_scan updated.
+- 2026-10-30T22:06:41Z — Wake scheduled.
