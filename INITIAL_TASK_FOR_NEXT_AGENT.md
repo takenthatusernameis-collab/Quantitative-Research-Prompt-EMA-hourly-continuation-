@@ -7,16 +7,16 @@ The existing single wake-up is already scheduled for 2026-10-30T22:22:00Z, just 
 # Initial Task For Next Agent
 
 ## Context (from durable handoff)
-- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T21:08:47Z)
-- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, current time 2026-10-30T21:08:47.523032+00:00, ~1h 12m remaining). Offline check only; no provider call.
-- Wakeups: single wakeup `wku_18ea510d5001GoUtb8DmSieskE` due `2026-10-30T22:22:00.000Z` (just after bound). No other cron tasks scheduled.
+- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T21:13:14Z)
+- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, current time 2026-10-30T21:13:14.849740+00:00, ~1h 7m remaining). Offline check only; no provider call.
+- Wakeups: single wakeup `wku_18ea90812001kYssJ8WZyZ7NjC` due `2026-10-30T22:22:00.000Z` (just after bound). No other cron tasks scheduled.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot universe/mcap_snapshot_20261029_222037.json, eligible_unseen_below_floor_count=0, N=275 unchanged.
 - Grids: 20261019_135940_grid (baseline), 20261021_172619_grid (C_min_risk_atr), 20261022_134500_grid (C_stricter_trend) all complete (18,150 cells). No credible baseline candidates.
 - Working tree clean (`git status --short` empty).
 
 ## Exact task to complete now
 
-Nothing is actionable before `2026-10-30T22:20:37.246523+00:00`. The single wakeup `wku_18ea2d698001K310SKqbj1y0UY` is already scheduled just after the bound.
+Nothing is actionable before `2026-10-30T22:20:37.246523+00:00`. The single wakeup `wku_18ea90812001kYssJ8WZyZ7NjC` is already scheduled just after the bound.
 
 When it fires, at/after the bound, re-run the offline gate check:
 
