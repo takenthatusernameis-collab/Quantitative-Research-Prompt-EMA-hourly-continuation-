@@ -1,16 +1,16 @@
 # Initial Task For Next Agent
 
 ## Context (from durable handoff)
-- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T19:19:04Z)
-- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, current time 2026-10-30T19:19:04Z, ~3h 1m remaining). Offline check only; no provider call.
-- Wakeups: single wakeup `wku_18e3d10d4001xbW5WTdkXe3mK1` due `2026-10-30T22:26:00Z` (just after bound). No other cron tasks scheduled.
+- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T19:38:09Z)
+- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, current time 2026-10-30T19:38:09Z, ~2h 42m remaining). Offline check only; no provider call.
+- Wakeups: single wakeup `wku_18e520b9900121Gl5J9kZeNSx2` due `2026-10-30T22:38:24Z` (just after bound). No other cron tasks scheduled.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot universe/mcap_snapshot_20261029_222037.json, eligible_unseen_below_floor_count=0, N=275 unchanged.
 - Grids: 20261019_135940_grid (baseline), 20261021_172619_grid (C_min_risk_atr), 20261022_134500_grid (C_stricter_trend) all complete (18,150 cells). No credible baseline candidates.
 - Working tree clean (`git status --short` empty).
 
 ## Exact task to complete now
 
-Nothing is actionable before `2026-10-30T22:20:37.246523+00:00`. The single wakeup `wku_18e3d10d4001xbW5WTdkXe3mK1` is already scheduled just after the bound.
+Nothing is actionable before `2026-10-30T22:20:37.246523+00:00`. The single wakeup `wku_18e520b9900121Gl5J9kZeNSx2` is already scheduled just after the bound.
 
 When it fires, at/after the bound, re-run the offline gate check:
 
@@ -35,4 +35,4 @@ PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_stat
 
 The only actionable step before the bound is done: gate re-verified offline (not eligible), single wakeup scheduled just after 2026-10-30T22:20:37.246523+00:00. After the bound, run the gate check and follow the branch above.
 
-(End of file - total 36 lines)
+(End of file)
