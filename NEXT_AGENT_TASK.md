@@ -15,11 +15,11 @@ This is an execution-cadence change only. Preserve the market-cap expansion poli
 
 # NEXT AGENT TASK
 
-## Current state (2026-10-30T20:45:38.314015Z)
+## Current state (2026-10-30T21:06:31.198659Z)
 
-- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T20:45:38.314015+00:00`, ~1h 35m remaining). Offline check confirms not eligible. No provider call made. Working tree clean (`git status --short` empty).
+- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T21:06:31.198659+00:00`, ~1h 14m remaining). Offline check confirms not eligible. No provider call made. Working tree clean (`git status --short` empty).
 - Previous cycle state preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
-- Wakeups: single wakeup `wku_18e8bf5b1001VLOUJBROEh3FWH` due `2026-10-30T22:22:00.000Z` (just after bound). No other cron tasks scheduled.
+- Wakeups: single wakeup `wku_18ea2d698001K310SKqbj1y0UY` due `2026-10-30T22:22:00.000Z` (just after bound). No other cron tasks scheduled.
 
 ## Grid reconciliation (unchanged)
 
@@ -49,10 +49,12 @@ Histororical research only; no orders/live/paper trading; no provider before bou
 
 ## Initial task message for next agent
 
-Gate bound `2026-10-30T22:20:37.246523+00:00` not yet elapsed as of `2026-10-30T20:45:38.314015Z` (~1h 35m remaining). Offline gate check returned NOT eligible; no provider call made. A single wakeup `wku_18e8bf5b1001VLOUJBROEh3FWH` is scheduled just after the bound (`2026-10-30T22:22:00.000Z`). Grids reconciled and complete; baseline has 0 credible candidates; both children NOT_PROMOTED. Your job: when the wakeup fires (at/after the bound), run the offline gate check first; if not eligible, stop and ensure exactly one wakeup remains (cancel extras); if eligible, run exactly one 20-page pass, recompute floor, inspect below-floor band, and follow the branching in the measurable next task above. Do not call the provider before the bound. Do not create a second wakeup.
+Gate bound `2026-10-30T22:20:37.246523+00:00` not yet elapsed as of `2026-10-30T21:06:31.198659Z` (~1h 14m remaining). Offline gate check returned NOT eligible; no provider call made. A single wakeup `wku_18ea2d698001K310SKqbj1y0UY` is scheduled just after the bound (`2026-10-30T22:22:00.000Z`). Grids reconciled and complete; baseline has 0 credible candidates; both children NOT_PROMOTED. Your job: when the wakeup fires (at/after the bound), run the offline gate check first; if not eligible, stop and ensure exactly one wakeup remains (cancel extras); if eligible, run exactly one 20-page pass, recompute floor, inspect below-floor band, and follow the branching in the measurable next task above. Do not call the provider before the bound. Do not create a second wakeup.
 
 ## Cycle log
+
 - 2026-10-30T19:56:36Z — Previous turn: read prior task from durable handoff. Re-verified gate offline (NOT eligible), scheduled single wakeup wku_18e62a8a20016yfnvA74ErnG7P due 2026-10-30T22:21:55Z. Grids unchanged.
 - 2026-10-30T20:39:51Z — This turn: read prior task from durable handoff (completed), re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T20:39:51.536845+00:00, ~1h 41m remaining). No provider call. Single wakeup wku_18e8a9097001hhlBYB1dsJyBG4 due 2026-10-30T22:22:08Z scheduled (exactly one). Grids unchanged. Updated handoff. No actions before bound.
 - 2026-10-30T20:45:38.314015Z — This turn: read prior task from durable handoff (completed), re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T20:41:23.685155+00:00, ~1h 35m remaining). No provider call. Cancelled stale wakeup wku_18e8a9097001hhlBYB1dsJyBG4 (already gone — no pending wakeups). Scheduled single wakeup wku_18e8bf5b1001VLOUJBROEh3FWH due 2026-10-30T22:22:00.000Z (exactly one). Grids unchanged. Updated handoff. No actions before bound.
 - 2026-10-30T20:45:24Z — This turn: read prior task from durable handoff (completed). Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T20:45:24.530523+00:00, ~1h 35m remaining). No provider call. Wakeup wku_18e8bf5b1001VLOUJBROEh3FWH due 2026-10-30T22:22:00.000Z still scheduled (exactly one). Grids unchanged. Updated handoff.
+- 2026-10-30T21:06:31.198659Z — This turn: read prior task from durable handoff (completed). Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T21:06:31.198659+00:00, ~1h 14m remaining). No provider call. Cancelled previous wakeup wku_18e8bf5b1001VLOUJBROEh3FWH (gone). Scheduled single wakeup wku_18ea2d698001K310SKqbj1y0UY due 2026-10-30T22:22:00.000Z (exactly one). Grids unchanged. Updated handoff. No actions before bound.
