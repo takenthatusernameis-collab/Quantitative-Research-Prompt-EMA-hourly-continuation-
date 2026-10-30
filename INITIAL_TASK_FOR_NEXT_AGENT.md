@@ -1,26 +1,21 @@
-# Initial task for next agent (2026-10-30T11:14:46Z)
+# Initial Task Message For Next Agent
 
-You are resuming the EMA hourly continuation. Follow `NEXT_AGENT_TASK.md` exactly.
+## Time
+2026-10-30T11:16:29Z
 
 ## State
-- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T11:14:46Z). ~11h 5m remaining until the bound.
-- Wakeup: `wku_18c8391ff00135T618gUuTJyLp` due 2026-10-30T22:28:00Z (fires after the bound). Single wakeup only.
-- Universe: N=275 unchanged. Snapshot `universe/mcap_snapshot_20261029_222037.json` (2000 entries, lowest rank 2000, lowest mcap $3,255,665). `eligible_unseen_below_floor_count=0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`.
-- Grids: all three complete, 0 blocked. Children `C_stricter_trend` and `C_min_risk_atr` NOT_PROMOTED; baseline 0 credible candidates.
+- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T11:16:29Z; ~11h 4m remaining)
+- Wakeup: `wku_18c8391ff00135T618gUuTJyLp` due 2026-10-30T22:28:00Z (after bound)
+- Universe: N=275 unchanged, snapshot `universe/mcap_snapshot_20261029_222037.json`
+- Grids: all three complete (baseline, C_min_risk_atr, C_stricter_trend), no blocked cells, baseline has 0 credible candidates
+- Working tree clean
 
-## Do this first (at/after bound)
-1. Re-check gate offline:
-   ```bash
-   PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
-   ```
-2. If not eligible: do NOT call the provider. A single wakeup is already set (`wku_18c8391ff00135T618gUuTJyLp`, due 2026-10-30T22:28:00Z, after the bound). Do not create a second wakeup; stop.
-3. If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`. Recompute expansion floor. Inspect band strictly below floor for `eligible_unseen_below_floor_count`. If 0: record pass, set `next_eligible_refresh_at`, set single wakeup just after the new bound (canceling the existing one first), stop. If >0: expand per PROMPT.md §2.1, run full 66-pair grid on each new symbol via `scripts/run_grid.py`, re-aggregate.
+## Task
+At/after 2026-10-30T22:20:37.246523+00:00, re-run:
+```bash
+PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
+```
+If not eligible: do nothing (single wakeup already exists, due after bound). If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`, recompute floor, check `eligible_unseen_below_floor_count`. If 0, record pass, set `next_eligible_refresh_at`, cancel existing wakeup and set new one just after bound, stop. If >0, expand per PROMPT.md §2.1 and run full 66-pair grid on each new symbol via `scripts/run_grid.py`, then re-aggregate.
 
-## Hard constraints
-- Historical research only. No orders/live/paper trading.
-- No provider before bound. Max 1 pass/cycle.
-- No new candle fetches. Do not modify baseline grid/costs/fills/entry-exit.
-- No GitHub Actions trigger/cancel/rerun; no workflow edits.
-- Single wakeup only.
-- Keep strict confirmatory separate from exploratory.
-- Preserve all negative/blocked results. Do not promote without auditable net-of-cost results/provenance/checks.
+## Constraints
+No provider before bound, 1 pass max/cycle, no new candle data, do not modify baseline grids/costs/fills/entry-exit, no workflow changes, single wakeup only, keep confirmatory separate from exploratory.
