@@ -14,6 +14,6 @@ Do not start exploratory pilots or modify baseline grid/costs/fills/entry-exit s
 ## Evidence gathered this cycle (2026-10-30T03:01:05Z)
 
 - Offline gate check re-run at context time: `{'eligible': False, 'bound': '2026-10-30T22:20:37.246523+00:00', 'now': '2026-10-30T03:00:58.219451+00:00', 'reason': 'the 24 h refresh bound 2026-10-30T22:20:37.246523+00:00 has not elapsed yet'}` (~19h 19m remaining). No provider contact.
-- Set single wakeup `wku_18ac10d02001Giy5zVCt0jGrGJ` due `2026-10-30T22:25:00.000Z`. No code changes.
+- Set single wakeup `wku_18ac6dcc2001xnkuUW1fBia5yv` due `2026-10-30T22:27:30.877Z`. No code changes.
 - Working tree clean.
 - Prior cycle evidence preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
