@@ -1,5 +1,16 @@
 # Market-Cap Universe Expansion Log
 
+## Gate re-check (2026-10-30T08:00Z) — no ranking pass made (prior agent task complete)
+
+- Offline gate check (run at `2026-10-30T08:00:30.898078+00:00`): `eligible=False`, bound `2026-10-30T22:20:37.246523+00:00` not yet elapsed (~14h 20m remaining). No provider contact made.
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261029_222037`, floor `ALEX/USDT` 3 273 884 USD, `eligible_unseen_below_floor_count` = 0, N = 275).
+- Baseline grid `results/20261019_135940_grid` re-verified directly: complete (`all_symbols_processed=true`, `next_cell=null`, `stopped=false`, `stop_reason=null`, `completed_cells=18150`, 0 blocked), mean net PF 0.4987, 0 credible candidates.
+- Child mutation grids complete: `results/20261022_134500_grid` (`C_stricter_trend`, NOT_PROMOTED) and `results/20261021_172619_grid` (`C_min_risk_atr`, NOT_PROMOTED).
+- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty.
+- Wakeup state: `cancel_wakeup list` returned no pending wakeups for this session; scheduled a single resume wakeup just after the bound at `2026-10-30T22:26:00Z`: **`wku_18bd34520001tYRRSPpbXumL5F`**. Do **not** re-schedule a duplicate — let the existing wakeup fire.
+- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with this verification and the current wakeup id.
+- The gated market-cap expansion cycle cannot proceed until the bound elapses — nothing is actionable before `2026-10-30T22:20:37.246523+00:00`.
+
 ## Gate re-check (2026-10-30T04:58Z) — no ranking pass made (prior agent task complete)
 
 - Offline gate check (run at `2026-10-30T04:58:33.335003+00:00`): `eligible=False`, bound `2026-10-30T22:20:37.246523+00:00` not yet elapsed (~17h 22m remaining). No provider contact made.
