@@ -16,32 +16,32 @@
   },
   "children": {
     "C_min_risk_atr": {
-      "run_id": "20261022_134500_grid",
+      "run_id": "20261021_172619_grid",
       "config": {
-        "taker_fee_bps": 10.0,
-        "slippage_bps": 2.0,
-        "rr": 1.0,
-        "stricter_trend": true,
-        "min_risk_atr": false,
-        "atr_threshold": 1.0,
+        "taker_fee_bps": 10,
+        "slippage_bps": 2,
+        "rr": 1,
+        "stricter_trend": false,
+        "min_risk_atr": true,
+        "atr_threshold": 1,
         "conservative_exit": true,
         "sizing": "risk",
         "risk_fraction": 0.01,
-        "max_notional_multiple": 10.0
+        "max_notional_multiple": 10
       },
-      "note": "PROMPT.md \u00a75.2 ATR minimum-risk mutation (skip trades whose risk distance < ATR(14) x threshold)",
+      "note": "PROMPT.md §5.2 ATR minimum-risk mutation (skip trades whose risk distance < ATR(14) x threshold)",
       "status": "complete",
       "started_at": "2026-10-21T17:26:19Z",
       "parent_run": "results/20261019_135940_grid",
       "n_symbols": 275,
       "n_cells": 18150,
       "delta": {
-        "pooled_net_pf": 0.0,
-        "mean_cell_net_pf": 0.0,
+        "pooled_net_pf": 0,
+        "mean_cell_net_pf": 0,
         "trades": 0,
-        "pooled_oos_net_pf": 0.0,
+        "pooled_oos_net_pf": 0,
         "cells_clearing_gate": 0,
-        "walk_forward_pooled_oof_net_pf": 0.0
+        "walk_forward_pooled_oof_net_pf": 0
       },
       "evaluations": [
         {
@@ -170,7 +170,7 @@
           "headline": {
             "child_cells_reproduced": 12,
             "parent_cells_reproduced": 12,
-            "max_abs_metric_delta": 0.0,
+            "max_abs_metric_delta": 0,
             "mean_parent_only_entry_bars": 788.2,
             "mean_child_only_entry_bars": 21.4,
             "note": "the ATR filter changes the trading path, it does not prune the parent trade list"
@@ -351,23 +351,31 @@
         "baseline_grid": "results/20261019_135940_grid stays the program grid",
         "child_grid": "results/20261021_172619_grid stays a documented, reproducible negative result: the single-variable ATR mutation is kept as the reference point for the next mutation, not as a candidate",
         "decided_at": "2026-10-22T02:55:00+00:00"
+      },
+      "metadata_reconciliation": {
+        "source_of_truth": "results/20261021_172619_grid/run_config.json",
+        "verified_config": {
+          "stricter_trend": false,
+          "min_risk_atr": true
+        },
+        "note": "Corrected the summary ledger to match the execution manifest. No metric, result, or candidate decision changed."
       }
     },
     "C_stricter_trend": {
       "run_id": "20261022_134500_grid",
       "config": {
-        "taker_fee_bps": 10.0,
-        "slippage_bps": 2.0,
-        "rr": 1.0,
+        "taker_fee_bps": 10,
+        "slippage_bps": 2,
+        "rr": 1,
         "stricter_trend": true,
         "min_risk_atr": false,
-        "atr_threshold": 1.0,
+        "atr_threshold": 1,
         "conservative_exit": true,
         "sizing": "risk",
         "risk_fraction": 0.01,
-        "max_notional_multiple": 10.0
+        "max_notional_multiple": 10
       },
-      "note": "PROMPT.md \u00a75.1 stricter-trend mutation (entry also requires close above/below EMAslow) of the expanded 275-symbol baseline; ATR min-risk filter stays closed as a NOT_PROMOTED decision",
+      "note": "PROMPT.md §5.1 stricter-trend mutation (entry also requires close above/below EMAslow) of the expanded 275-symbol baseline; ATR min-risk filter stays closed as a NOT_PROMOTED decision",
       "status": "complete",
       "started_at": "2026-10-22T13:44:05Z",
       "parent_run": "results/20261019_135940_grid",
@@ -395,9 +403,18 @@
           "generated_at": "2026-10-23T04:56:46Z",
           "n_symbols": 275,
           "n_cells": 18150,
-          "pooled_net_pf": {"parent": 0.5219, "child": 0.5219},
-          "walk_forward_pooled_oof_net_pf": {"parent": 0.6404, "child": 0.6404},
-          "cells_clearing_gate": {"parent": 10, "child": 10},
+          "pooled_net_pf": {
+            "parent": 0.5219,
+            "child": 0.5219
+          },
+          "walk_forward_pooled_oof_net_pf": {
+            "parent": 0.6404,
+            "child": 0.6404
+          },
+          "cells_clearing_gate": {
+            "parent": 10,
+            "child": 10
+          },
           "note": "zero delta on every metric: stricter_trend is a no-op (entry cross already implies close above/below EMAslow)"
         },
         {
