@@ -1,22 +1,25 @@
 # Initial Task For Next Agent
 
 ## Context (from durable handoff)
-- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T16:13:42Z)
-- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T16:13:42Z, ~6h 7m remaining). Offline check only; no provider call.
-- Durable single wakeup: wku_18d4fdd9b0015rux3kPqCVO2FR due 2026-10-30T22:28:00Z (after bound). Do not create a second wakeup.
+- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T16:16:41Z)
+- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T16:16:41Z, ~6h 4m remaining). Offline check only; no provider call.
+- Single wakeup: wku_18d9a39e4001bKf5HywGJkihIl due 2026-10-30T22:26:00Z (after bound). Do not create a second wakeup; let this one fire.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot universe/mcap_snapshot_20261029_222037.json, eligible_unseen_below_floor_count=0, N=275 unchanged.
 - Grids: 20261019_135940_grid (baseline), 20261021_172619_grid (C_min_risk_atr), 20261022_134500_grid (C_stricter_trend) all complete (18,150 cells). No credible baseline candidates.
+- Working tree clean (`git status --short` empty).
 
 ## Exact task to complete now
 
-At/after 2026-10-30T22:20:37.246523+00:00, re-run the offline gate check:
+Nothing is actionable before `2026-10-30T22:20:37.246523+00:00`. Wait for the scheduled wakeup `wku_18d9a39e4001bKf5HywGJkihIl` (due 2026-10-30T22:26:00Z, after the bound).
+
+When it fires, at/after the bound, re-run the offline gate check:
 
 ```bash
 PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
 ```
 
-If still not eligible: stop (wakeup already set after bound). Do NOT call provider, do NOT create second wakeup.
-If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`, recompute expansion floor, inspect band strictly below floor for `eligible_unseen_below_floor_count`. If 0: record pass, set `next_eligible_refresh_at`, re-set wakeup just after new bound (cancel existing first), stop. If >0: expand per PROMPT.md §2.1 and run full 66-pair grid on each new symbol via `scripts/run_grid.py`, then re-aggregate.
+- If still not eligible: stop (bound has not meaningfully elapsed / gate still closed). Do NOT call the provider. Do NOT create a second wakeup. Update NEXT_AGENT_TASK.md and INITIAL_TASK_FOR_NEXT_AGENT.md with the unchanged bound and re-set a single wakeup just after it.
+- If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`, recompute the expansion floor, inspect the band strictly below the floor for `eligible_unseen_below_floor_count`. If 0: record the pass, set `next_eligible_refresh_at`, re-set the wakeup just after the new bound (cancel `wku_18d9a39e4001bKf5HywGJkihIl` first), stop. If >0: expand per PROMPT.md §2.1 and run the full 66-pair grid on each new symbol via `scripts/run_grid.py`, then re-aggregate.
 
 ## Hard constraints
 - Historical research only; no orders/live/paper trading.
@@ -30,4 +33,4 @@ If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mc
 
 ## Measurable next task
 
-Same as the exact task above: the only actionable step before the bound is to confirm offline gate status and do nothing until/after 2026-10-30T22:20:37.246523+00:00.
+The only actionable step before the bound is to confirm offline gate status and do nothing until/after 2026-10-30T22:20:37.246523+00:00. After the bound, run the gate check and follow the branch above.
