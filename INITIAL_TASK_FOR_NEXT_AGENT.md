@@ -1,10 +1,10 @@
-# Initial task for next agent (2026-10-30T10:54:54Z)
+# Initial task for next agent (2026-10-30T10:58:16Z)
 
 You are resuming the EMA hourly continuation. Follow `NEXT_AGENT_TASK.md` exactly.
 
 ## State
-- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T10:54:54Z). ~11h 25m remaining until the bound.
-- Wakeup: `wku_18c5512f5001nUm7keAfyYYfQy` due 2026-10-30T22:28:00Z (fires after the bound). Single wakeup only.
+- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T10:58:16Z). ~11h 22m remaining until the bound.
+- Wakeup: `wku_18c7630b0001FN7wdQZ5Mv1CKc` due 2026-10-30T22:28:00Z (fires after the bound). Single wakeup only.
 - Universe: N=275 unchanged. Snapshot `universe/mcap_snapshot_20261029_222037.json` (2000 entries, lowest rank 2000, lowest mcap $3,255,665). `eligible_unseen_below_floor_count=0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`.
 - Grids: all three complete, 0 blocked. Children `C_stricter_trend` and `C_min_risk_atr` NOT_PROMOTED; baseline 0 credible candidates.
 
@@ -13,7 +13,7 @@ You are resuming the EMA hourly continuation. Follow `NEXT_AGENT_TASK.md` exactl
    ```bash
    PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
    ```
-2. If not eligible: do NOT call the provider. A single wakeup is already set (`wku_18c5512f5001nUm7keAfyYYfQy`, due 2026-10-30T22:28:00Z, after the bound). Do not create a second wakeup; stop.
+2. If not eligible: do NOT call the provider. A single wakeup is already set (`wku_18c7630b0001FN7wdQZ5Mv1CKc`, due 2026-10-30T22:28:00Z, after the bound). Do not create a second wakeup; stop.
 3. If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`. Recompute expansion floor. Inspect band strictly below floor for `eligible_unseen_below_floor_count`. If 0: record pass, set `next_eligible_refresh_at`, set single wakeup just after the new bound (canceling the existing one first), stop. If >0: expand per PROMPT.md §2.1, run full 66-pair grid on each new symbol via `scripts/run_grid.py`, re-aggregate.
 
 ## Hard constraints
