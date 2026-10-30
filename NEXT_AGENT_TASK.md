@@ -1,8 +1,8 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-30T13:48:35Z)
+## Current state (2026-10-30T13:52:21Z)
 
-- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T13:50:16Z`). Offline check confirms not eligible (~8h 30m remaining). No provider call. No pending wakeup/cron in this session (the durable single wakeup `wku_18cd8b415001JeggFk0GrSL8yf` is due 2026-10-30T22:28:00Z, after bound). Working tree clean.
+- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T13:52:21Z`). Offline check confirms not eligible (~8h 28m remaining). No provider call. No pending wakeup/cron in this session (the durable single wakeup `wku_18cd8b415001JeggFk0GrSL8yf` is due 2026-10-30T22:28:00Z, after bound). Working tree clean.
 - Previous cycle state preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
 
 ## Grid reconciliation (unchanged)
@@ -15,7 +15,7 @@ Both grids re-read from disk and independently verified complete — no missing,
 | `results/20261022_134500_grid` (child `C_stricter_trend`) | 275 | 66 | 18,150 | `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked | 0.4987 |
 | `results/20261021_172619_grid` (child `C_min_risk_atr`) | 275 | 66 | 18,150 | `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked | 0.7264 |
 
-- `results/mutations.json` records both children as `NOT_PROMOTED` with full decision legs. Baseline has 0 credible candidates; 37 cells with net PF > 1 all rejected.
+- `results/mutations.json` records both children as `NOT_PROMOTED` with full decision legs. Baseline has 0 credible candidates.
 
 ## Measurable next task
 
@@ -32,6 +32,7 @@ If still not eligible, stop — a single wakeup is already set (`wku_18cd8b41500
 Historical research only; no orders/live/paper trading; no provider before bound; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; single wakeup only; keep strict confirmatory separate from exploratory.
 
 ## Cycle log
+- 2026-10-30T13:52:21Z — Prior agent task from durable handoff completed (this turn): re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T13:52:21Z, ~8h 28m remaining). No provider call. No pending wakeup/cron in this session (durable single wakeup `wku_18cd8b415001JeggFk0GrSL8yf` due 2026-10-30T22:28:00Z, after bound). Working tree clean. Handoff updated (NEXT_AGENT_TASK.md); initial task message for next agent written to INITIAL_TASK_FOR_NEXT_AGENT.md. No actions taken before bound.
 - 2026-10-30T13:50:16Z — Prior agent task from durable handoff completed (this turn): re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T13:50:16Z, ~8h 30m remaining). No provider call. No pending wakeup/cron in this session (durable single wakeup `wku_18cd8b415001JeggFk0GrSL8yf` due 2026-10-30T22:28:00Z, after bound). Working tree clean. Handoff updated (NEXT_AGENT_TASK.md); initial task message for next agent written to INITIAL_TASK_FOR_NEXT_AGENT.md. No actions taken before bound.
 - 2026-10-30T13:44:56Z — Prior agent task from durable handoff completed (this turn): re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T13:44:56Z, ~8h 35m remaining). No provider call. Single wakeup `wku_18cd8b415001JeggFk0GrSL8yf` due 2026-10-30T22:28:00Z (after bound), unchanged. Working tree clean. Handoff updated (NEXT_AGENT_TASK.md); initial task message for next agent written to INITIAL_TASK_FOR_NEXT_AGENT.md. No actions taken before bound.
 - 2026-10-30T13:44:00Z — Prior agent task from durable handoff completed (this turn): re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T13:44:00Z, ~8h 36m remaining). No provider call. Single wakeup `wku_18cd8b415001JeggFk0GrSL8yf` due 2026-10-30T22:28:00Z (after bound), unchanged. Working tree clean. Handoff updated (NEXT_AGENT_TASK.md); initial task message for next agent written to INITIAL_TASK_FOR_NEXT_AGENT.md. No actions taken before bound.
