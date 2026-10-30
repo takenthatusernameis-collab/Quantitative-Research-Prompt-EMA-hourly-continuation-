@@ -1,8 +1,8 @@
 # Initial Task For Next Agent
 
 ## Context (from durable handoff)
-- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T19:15:20Z)
-- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, current time 2026-10-30T19:15:20Z, ~3h 5m remaining). Offline check only; no provider call.
+- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T19:19:04Z)
+- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, current time 2026-10-30T19:19:04Z, ~3h 1m remaining). Offline check only; no provider call.
 - Wakeups: single wakeup `wku_18e3d10d4001xbW5WTdkXe3mK1` due `2026-10-30T22:26:00Z` (just after bound). No other cron tasks scheduled.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot universe/mcap_snapshot_20261029_222037.json, eligible_unseen_below_floor_count=0, N=275 unchanged.
 - Grids: 20261019_135940_grid (baseline), 20261021_172619_grid (C_min_risk_atr), 20261022_134500_grid (C_stricter_trend) all complete (18,150 cells). No credible baseline candidates.
