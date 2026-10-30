@@ -15,11 +15,11 @@ This is an execution-cadence change only. Preserve the market-cap expansion poli
 
 # NEXT AGENT TASK
 
-## Current state (2026-10-30T21:13:14.849740Z)
+## Current state (2026-10-30T21:47:11Z)
 
-- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T21:13:14.849740+00:00`, ~1h 7m remaining). Offline check confirms not eligible. No provider call made. Working tree clean (`git status --short` empty).
+- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T21:47:18.272176+00:00`, ~33m remaining). Offline check confirms not eligible. No provider call made. Working tree clean (`git status --short` empty).
 - Previous cycle state preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
-- Wakeups: single wakeup `wku_18ea90812001kYssJ8WZyZ7NjC` due `2026-10-30T22:22:00.000Z` (just after bound). No other cron tasks scheduled.
+- Wakeups: single wakeup `wku_18ec82fd4001j94wAnW9KjV1Cd` due `2026-10-30T22:22:00.000Z` (just after bound). No other cron tasks scheduled.
 
 ## Grid reconciliation (unchanged)
 
@@ -61,3 +61,4 @@ Gate bound `2026-10-30T22:20:37.246523+00:00` not yet elapsed as of `2026-10-30T
 - 2026-10-30T21:08:47Z — This turn: read prior task from durable handoff (completed). Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T21:08:47.523032+00:00, ~1h 12m remaining). No provider call. Cancelled stale wakeup wku_18ea2d698001K310SKqbj1y0UY (already gone — no pending wakeups). Scheduled single wakeup wku_18ea510d5001GoUtb8DmSieskE due 2026-10-30T22:22:00.000Z (exactly one). Grids unchanged. Updated handoff. No actions before bound.
 - 2026-10-30T21:21:16Z — This turn: read prior task from durable handoff (completed). Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T21:21:15.911435+00:00, ~1h remaining). No provider call. Cron list showed no pending wakeups. Scheduled single wakeup wku_18eb049ec001axRk0Bvozi4Q99 due 2026-10-30T22:21:20.360Z (exactly one). Grids unchanged. Working tree clean (`git status --short` empty). Updated handoff. No actions before bound.
 - 2026-10-30T21:43:26Z — This turn: read prior task from durable handoff (completed). Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T21:44:09.721711+00:00, ~36m remaining). No provider call. State unchanged (AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0, N=275). Working tree clean. Single wakeup wku_18ec207ed001L1gB3MSouZNCPx due 2026-10-30T22:22:00.000Z remains the only scheduled wakeup. No actions before bound.
+- 2026-10-30T21:47:11Z — This turn: read prior task from durable handoff (completed). Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T21:47:18.272176+00:00, ~33m remaining). No provider call. State unchanged (AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0, N=275, snapshot mcap_snapshot_20261029_222037). Working tree clean (`git status --short` empty). Prior wakeup wku_18ec207ed001L1gB3MSouZNCPx already gone (no pending wakeups). Scheduled single wakeup wku_18ec82fd4001j94wAnW9KjV1Cd due 2026-10-30T22:22:00.000Z (exactly one). Grids unchanged. No actions before bound.
