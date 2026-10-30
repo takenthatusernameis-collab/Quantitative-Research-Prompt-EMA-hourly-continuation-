@@ -1,3 +1,18 @@
+# DELAY-ELIMINATION OVERRIDE — 2026-10-30
+
+**Observed repeat pattern:** all three 18,150-cell grids are complete, no credible candidates exist, and the market-cap snapshot has zero eligible unseen assets. The only next event is the 24-hour provider refresh boundary at 2026-10-30T22:20:37.246523Z, with exactly one wake-up already scheduled for 22:22:00Z.
+
+- Before the boundary, do not repeatedly recompute the full grid summaries, re-read all results, update both handoffs, or reschedule the existing wake-up on each agent activation. Check the saved state and existing wake-up once; if unchanged, exit without writes.
+- Do not call the market-cap provider before the boundary. A wake-up is already scheduled; do not create duplicate wake-ups.
+- At/after the boundary, perform one offline eligibility gate check first. If ineligible, perform at most one bounded refresh attempt according to the existing protocol, record the result, and schedule one wake-up for the next genuine refresh boundary.
+- If eligible new unseen names appear, append them in descending market-cap order and run the full registered grid only for those new names. Preserve all prior outputs; never rerun the 275-symbol grid.
+- Run the targeted checks after each state change and the full integrity/test gate at an expansion milestone. Do not rerun identical full checks on no-op activations.
+- Never reduce the registered 66-pair grid, costs, fill assumptions, history requirements, or strict-confirmatory separation to appear faster.
+
+This is an execution-cadence change only. Preserve the market-cap expansion policy and research-only/no-trading boundary.
+
+---
+
 # NEXT AGENT TASK
 
 ## Current state (2026-10-30T20:45:38.314015Z)
