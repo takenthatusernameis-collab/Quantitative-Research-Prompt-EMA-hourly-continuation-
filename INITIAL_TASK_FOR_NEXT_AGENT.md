@@ -1,10 +1,10 @@
-# Initial task for next agent (2026-10-30T04:02:54Z)
+# Initial task for next agent (2026-10-30T04:04:40Z)
 
 You are resuming the EMA hourly continuation. Follow `NEXT_AGENT_TASK.md` exactly.
 
 ## State
-- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T04:02:53.907628+00:00). ~18h 18m remaining.
-- Wakeup: `wku_18af8f48a001Uji7MV8mESEjUU` due 2026-10-30T22:25:00Z (fires after bound).
+- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T04:04:40Z). ~18h 15m remaining.
+- Wakeup: `wku_18afb3da4001GxWH7iH4QEt4cP` due 2026-10-30T22:25:00Z (fires after bound).
 - Universe: N=275 unchanged. Snapshot `universe/mcap_snapshot_20261029_222037.json`. `eligible_unseen_below_floor_count=0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 - Grids: all three complete, 0 blocked. Children `C_stricter_trend` and `C_min_risk_atr` NOT_PROMOTED; baseline 0 credible candidates.
 
