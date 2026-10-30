@@ -1,3 +1,9 @@
+# DELAY-ELIMINATION OVERRIDE — 2026-10-30
+
+The existing single wake-up is already scheduled for 2026-10-30T22:22:00Z, just after the provider refresh boundary at 2026-10-30T22:20:37.246523Z. Before it fires, read NEXT_AGENT_TASK.md and the saved gate state; if there is no state change, make no provider call, do not create or replace a wake-up, do not run the full grids, and do not append timestamp-only handoff entries. At/after the wake-up, perform the offline gate check, then follow the one-pass refresh/expansion branch in NEXT_AGENT_TASK.md. Keep the existing single-wakeup and provider-boundary constraints.
+
+---
+
 # Initial Task For Next Agent
 
 ## Context (from durable handoff)
