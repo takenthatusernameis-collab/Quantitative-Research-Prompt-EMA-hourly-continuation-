@@ -1,9 +1,9 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-30T02:06Z)
+## Current state (2026-10-30T02:10:52Z)
 
-- Gate status: **NOT eligible yet** (bound `2026-10-30T22:20:37.246523+00:00`, current time ~`2026-10-30T02:05Z`). Confirmed via offline check: `{'eligible': False, 'bound': '2026-10-30T22:20:37.246523+00:00`, 'now': '2026-10-30T02:04:54.544634+00:00', 'reason': 'the 24 h refresh bound 2026-10-30T22:20:37.246523+00:00 has not elapsed yet'}` (~20h 15m remaining). No provider calls.
-- Action taken (this cycle): Offline gate check re-run. Not eligible; set single wakeup `wku_18a91804b001DrqX0MmJTHYbzP` due `2026-10-30T22:25:00.000Z` (just after bound). No provider calls. No code changes. Working tree clean.
+- Gate status: **NOT eligible yet** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T02:10:52.177512+00:00`). Confirmed via offline check: `{'eligible': False, 'bound': '2026-10-30T22:20:37.246523+00:00', 'now': '2026-10-30T02:10:52.177512+00:00', 'reason': 'the 24 h refresh bound 2026-10-30T22:20:37.246523+00:00 has not elapsed yet'}` (~20h 10m remaining). No provider calls.
+- Action taken (this cycle): Offline gate check re-run. Not eligible; re-set single wakeup due `2026-10-30T22:25:00.000Z` (just after bound). No provider calls. No code changes. Working tree clean.
 - Previous cycle state preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
 - Wakeup discipline: Single wakeup only; no polling before bound.
 
