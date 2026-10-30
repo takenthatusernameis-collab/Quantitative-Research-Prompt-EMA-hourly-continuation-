@@ -1,8 +1,8 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-30T08:00:30Z)
+## Current state (2026-10-30T08:57:37Z)
 
-- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T08:52:51Z`). Offline check confirms not eligible (~13h 28m remaining). No provider calls. Single wakeup `wku_18c051518001yrbgFtojYXU3zj` due 2026-10-30T22:28:15.746Z (after bound). Working tree clean.
+- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T08:57:37Z`). Offline check confirms not eligible (~13h 23m remaining). No provider calls. Single wakeup `wku_18c07afbd001HbK48b6SAszglT` due 2026-10-30T22:28:00Z (after bound). Working tree clean.
 - Previous cycle state preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
 - Wakeup discipline: Single wakeup only; no polling before bound.
 
@@ -47,4 +47,4 @@ Historical research only; no orders/live/paper trading; no provider before bound
 
 - 2026-10-30T08:52:51Z — Re-checked gate offline: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T08:52:51Z, ~13h 28m remaining). No provider call. Scheduled single wakeup `wku_18c051518001yrbgFtojYXU3zj` due 2026-10-30T22:28:15.746Z (after bound). Working tree clean. Handoff updated.
 
-- 2026-10-30T08:56:24Z — Re-checked gate offline: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T08:56:24Z, ~13h 24m remaining). No provider call. Existing single wakeup `wku_18c051518001yrbgFtojYXU3zj` due 2026-10-30T22:28:15.746Z retained; no duplicate scheduled. Working tree clean. Handoff updated.
+- 2026-10-30T08:57:37Z — Re-checked gate offline: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T08:57:37Z, ~13h 23m remaining). No provider call. Scheduled single wakeup `wku_18c07afbd001HbK48b6SAszglT` due 2026-10-30T22:28:00Z (after bound). Working tree clean. Handoff updated.
