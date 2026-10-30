@@ -35,4 +35,4 @@ Historical research only; no orders/live/paper trading; no provider before bound
 ## Cycle log
 
 - 2026-10-30T05:24:22Z — Gate re-checked offline (not eligible, ~17h 0m to bound). No provider call. Scheduled single wakeup `wku_18b462c19001IZ1rTr88W6q5j4` due 2026-10-30T22:25:42Z (after bound). Working tree clean. Handoff updated.
-- 2026-10-30T05:50:33Z — Resumed prior task; offline gate still not eligible (bound 2026-10-30T22:20:37Z, ~16h 30m remaining). No provider call. Re-set single wakeup `wku_18b5c5461001tZghD2qqpZbt4d` due 2026-10-30T22:25:46Z (after bound). Working tree clean. Handoff updated.
+- 2026-10-30T05:51:18Z — Resumed prior task; offline gate still not eligible (bound 2026-10-30T22:20:37Z, ~16h 29m remaining). No provider call. Re-set single wakeup `wku_18b5d3bf6001FG1DIwQ1xZDLnZ` due 2026-10-30T22:25:46Z (after bound). Working tree clean. Handoff updated.
