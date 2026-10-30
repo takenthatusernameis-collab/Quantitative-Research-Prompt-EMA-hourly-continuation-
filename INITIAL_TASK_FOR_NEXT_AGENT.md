@@ -1,19 +1,26 @@
-# INITIAL TASK FOR NEXT AGENT
+# Initial task for next agent (2026-10-30T03:58:30Z)
 
-Read `NEXT_AGENT_TASK.md` (updated 2026-10-30T03:20:53Z) and act at/after `2026-10-30T22:20:37.246523+00:00` when wakeup fires (single wakeup `wku_18aced59b001MSZ2grKNqiS53v` due `2026-10-30T22:25:00Z`).
+You are resuming the EMA hourly continuation. Follow `NEXT_AGENT_TASK.md` exactly.
 
-Immediate action on wakeup:
-1. Run offline gate check:
-   ```bash
-   PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
-   ```
-2. Follow the exact branch in `NEXT_AGENT_TASK.md` (if not eligible -> single wakeup just after bound; if eligible -> exactly one 20-page pass, inspect below-floor band, act per rules). No provider before bound. Single wakeup only. Preserve all constraints in AGENTS.md/README.md/PROMPT.md.
+## State
+- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T03:58:29.519909+00:00). ~18h 22m remaining.
+- Wakeup: `wku_18af5a8e5001ThUaFdPJyMcZ0j` due 2026-10-30T22:25:00Z (fires after bound).
+- Universe: N=275 unchanged. Snapshot `universe/mcap_snapshot_20261029_222037.json`. `eligible_unseen_below_floor_count=0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
+- Grids: all three complete, 0 blocked. Children `C_stricter_trend` and `C_min_risk_atr` NOT_PROMOTED; baseline 0 credible candidates.
 
-Do not start exploratory pilots or modify baseline grid/costs/fills/entry-exit semantics. Keep strict confirmatory separate. Update `NEXT_AGENT_TASK.md` and this file with concrete evidence after acting.
+## Do this first (at/after bound)
+1. Re-check gate offline:
+```bash
+PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
+```
+2. If not eligible: do NOT call provider. Set a single wakeup just after new bound and stop.
+3. If eligible: run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`. Recompute expansion floor. Inspect band strictly below floor for `eligible_unseen_below_floor_count`. If 0: record pass, set `next_eligible_refresh_at`, set single wakeup just after bound, stop. If >0: expand per PROMPT.md §2.1, run full 66-pair grid on each new symbol via `scripts/run_grid.py`, re-aggregate.
 
-## Evidence gathered this cycle (2026-10-30T03:20:53Z)
-
-- Offline gate check re-run: `{'eligible': False, 'bound': '2026-10-30T22:20:37.246523+00:00', 'now': '2026-10-30T03:20:41.627096+00:00', 'reason': 'the 24 h refresh bound 2026-10-30T22:20:37.246523+00:00 has not elapsed yet'}` (~19h 00m remaining). No provider contact.
-- Single wakeup `wku_18aced59b001MSZ2grKNqiS53v` due `2026-10-30T22:25:00Z` remains set (after bound). No code changes.
-- Working tree clean.
-- Prior cycle evidence preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
+## Hard constraints
+- Historical research only. No orders/live/paper trading.
+- No provider before bound. Max 1 pass/cycle.
+- No new candle fetches. Do not modify baseline grid/costs/fills/entry-exit.
+- No GitHub Actions trigger/cancel/rerun; no workflow edits.
+- Single wakeup only.
+- Keep strict confirmatory separate from exploratory.
+- Preserve all negative/blocked results. Do not promote without auditable net-of-cost results/provenance/checks.
