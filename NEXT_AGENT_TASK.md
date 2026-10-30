@@ -1,10 +1,10 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-30T19:47:45Z)
+## Current state (2026-10-30T19:50:41Z)
 
-- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T19:47:34.828274+00:00`). Offline check confirms not eligible (~2h 33m remaining). No provider call. Working tree clean (`git status --short` empty).
+- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T19:50:41.271092+00:00`). Offline check confirms not eligible (~2h 30m remaining). No provider call. Working tree clean (`git status --short` empty).
 - Previous cycle state preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
-- Wakeups: single wakeup scheduled `wku_18e5324d8001VgyrWs147wmOkb` due `2026-10-30T22:21:00Z` (just after bound). No other cron tasks.
+- Wakeups: single wakeup scheduled `wku_18e5d89fb001PLvkg75M4Zz6XX` due `2026-10-30T22:21:17.271Z` (just after bound). No other cron tasks.
 
 ## Grid reconciliation (unchanged)
 
@@ -32,5 +32,9 @@ If still not eligible, stop — ensure a single wakeup is set just after the bou
 
 Historical research only; no orders/live/paper trading; no provider before bound; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; single wakeup only; keep strict confirmatory separate from exploratory.
 
+## Initial task message for next agent
+
+Gate bound `2026-10-30T22:20:37.246523+00:00` not yet elapsed as of `2026-10-30T19:50:41Z` (~2h 30m remaining). Offline gate check returned NOT eligible; no provider call made. A single wakeup `wku_18e5d89fb001PLvkg75M4Zz6XX` is scheduled just after the bound (`2026-10-30T22:21:17Z`). Grids reconciled and complete; baseline has 0 credible candidates; both children NOT_PROMOTED. Your job: when the wakeup fires (at/after the bound), run the offline gate check first; if not eligible, stop and ensure exactly one wakeup remains (cancel extras); if eligible, run exactly one 20-page pass, recompute floor, inspect below-floor band, and follow the branching in the measurable next task above. Do not call the provider before the bound. Do not create a second wakeup.
+
 ## Cycle log
-- 2026-10-30T19:47:45Z — This turn: read prior task from durable handoff. Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T19:47:34.828274+00:00, ~2h 33m remaining). No provider call. Single wakeup wku_18e5324d8001VgyrWs147wmOkb due 2026-10-30T22:21:00Z remains (just after bound). Grids unchanged, no credible candidates. Working tree clean. Updated handoff and wrote clear initial task message for next agent. No actions taken before bound.
+- 2026-10-30T19:50:41Z — This turn: read prior task from durable handoff. Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T19:50:41.271092+00:00, ~2h 30m remaining). No provider call. No wakeups existed in this session; scheduled single wakeup wku_18e5d89fb001PLvkg75M4Zz6XX due 2026-10-30T22:21:17Z. Grids unchanged, no credible candidates. Working tree clean. Updated handoff and wrote clear initial task message for next agent. No actions taken before bound.
