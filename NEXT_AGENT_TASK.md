@@ -1,10 +1,10 @@
 # NEXT AGENT TASK
 
-## Current state (2026-10-30T06:12:52Z)
+## Current state (2026-10-30T07:16:48Z)
 
-- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T06:12:52Z`). Offline check confirms not eligible (~16h 7m remaining). No provider calls. Single wakeup `wku_18b7185d100163vfwWLDiCKh3F` due 2026-10-30T22:26:00Z (after bound). Working tree clean.
+- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T07:16:48Z`). Offline check confirms not eligible (~15h 3m remaining). No provider calls. Single wakeup `wku_18bab2fd7001k35aKJNXMGsFzP` due 2026-10-30T22:26:00Z (after bound). Working tree clean.
 - Previous cycle state preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
-- Wakeup discipline: Single wakeup only; no polling before bound. Current single wakeup `wku_18b952066001aJQ3ZhVXyrer6B` due 2026-10-30T22:26:00Z (after bound).
+- Wakeup discipline: Single wakeup only; no polling before bound. Current single wakeup `wku_18bab2fd7001k35aKJNXMGsFzP` due 2026-10-30T22:26:00Z (after bound).
 
 ## Grid reconciliation (unchanged)
 
@@ -50,3 +50,4 @@ Historical research only; no orders/live/paper trading; no provider before bound
 - 2026-10-30T06:59:08Z — Re-checked gate offline: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, ~15h 21m remaining). No provider call. Set single wakeup `wku_18b9b2d9b001l5NgCT42UXp7ha` due 2026-10-30T22:26:00Z (after bound). Working tree clean. Handoff updated.
 - 2026-10-30T07:03:04Z — Re-checked gate offline: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, ~15h 17m remaining). No provider call. Set single wakeup `wku_18b9ee67a00122nrT1tfB5Inrh` due 2026-10-30T22:26:00Z (after bound). Working tree clean. Handoff updated.
 - 2026-10-30T07:10:07Z — Re-checked gate offline: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, ~15h 10m remaining). No provider call. Set single wakeup `wku_18ba54f97001jNIEiEcuJxpGGJ` due 2026-10-30T22:26:00Z (after bound). Working tree clean. Handoff updated.
+- 2026-10-30T07:16:48Z — Re-checked gate offline: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, ~15h 3m remaining). No provider call. Replaced prior wakeup with single wakeup `wku_18bab2fd7001k35aKJNXMGsFzP` due 2026-10-30T22:26:00Z (after bound). Working tree clean. Handoff updated.
