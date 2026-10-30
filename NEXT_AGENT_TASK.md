@@ -1,59 +1,27 @@
-# DELAY-ELIMINATION OVERRIDE — 2026-10-30
-
-**Observed repeat pattern:** all three 18,150-cell grids are complete, no credible candidates exist, and the market-cap snapshot has zero eligible unseen assets. The only next event is the 24-hour provider refresh boundary at 2026-10-30T22:20:37.246523Z, with exactly one wake-up now scheduled for 2026-10-30T22:22:37.000Z.
-
-- Before the boundary, do not repeatedly recompute the full grid summaries, re-read all results, update both handoffs, or reschedule the existing wake-up on each agent activation. Check the saved state and existing wake-up once; if unchanged, exit without writes.
-- Do not call the market-cap provider before the boundary. A wake-up is already scheduled; do not create duplicate wake-ups.
-- At/after the boundary, perform one offline eligibility gate check first. If ineligible, perform at most one bounded refresh attempt according to the existing protocol, record the result, and schedule one wake-up for the next genuine refresh boundary.
-- If eligible new unseen names appear, append them in descending market-cap order and run the full registered grid only for those new names. Preserve all prior outputs; never rerun the 275-symbol grid.
-- Run the targeted checks after each state change and the full integrity/test gate at an expansion milestone. Do not rerun identical full checks on no-op activations.
-- Never reduce the registered 66-pair grid, costs, fill assumptions, history requirements, or strict-confirmatory separation to appear faster.
-
-This is an execution-cadence change only. Preserve the market-cap expansion policy and research-only/no-trading boundary.
-
----
-
 # NEXT AGENT TASK
 
-## Current state (2026-10-30T21:59:00Z)
+## Current state (2026-10-30T23:08:30Z)
 
-- Gate status: **NOT eligible** (bound `2026-10-30T22:20:37.246523+00:00`, current time `2026-10-30T21:58:21.428501+00:00`, ~22m remaining). Offline check confirms not eligible. No provider call made. Working tree clean (`git status --short` empty).
-- Previous cycle state preserved: snapshot `universe/mcap_snapshot_20261029_222037.json`, `eligible_unseen_below_floor_count = 0`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-30T22:20:37.246523+00:00`. Universe unchanged (N=275).
-- Wakeups: single wakeup `wku_18ed504d90018z6Ns9BupDPIyb` due `2026-10-30T22:22:37.000Z` (just after bound). No other cron tasks scheduled.
-
-## Grid reconciliation (unchanged)
-
-Both grids re-read from disk and independently verified complete — no missing, blocked, or unverified cells:
-
-| Run | Symbols | Pairs | Cells | Progress | Mean net PF |
-|---|---|---|---|---|---|
-| `results/20261019_135940_grid` (parent baseline) | 275 | 66 | 18,150 | `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked | 0.4987 |
-| `results/20261022_134500_grid` (child `C_stricter_trend`) | 275 | 66 | 18,150 | `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked | 0.4987 |
-| `results/20261021_172619_grid` (child `C_min_risk_atr`) | 275 | 66 | 18,150 | `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, 0 blocked | 0.7264 |
-
-- `results/mutations.json` records both children as `NOT_PROMOTED` with full decision legs. Baseline has 0 credible candidates.
+- Gate status: **ELIGIBLE** (bound `2026-10-30T22:20:37.246523+00:00` has elapsed). Ran offline gate check and found eligible.
+- Expansion check completed: fetched 20 pages via `scripts/fetch_mcap_snapshot.py --pages 20` (new snapshot `universe/mcap_snapshot_20261030_230634.json`, pages 20/20, lowest rank 2000 at $3,217,157). Applied from snapshot (dry-run reported).
+- Universe unchanged (N=275). Expansion floor is ALEX/USDT at $3,255,070. Eligible unseen below floor: **0**. Batch selected: empty.
+- Scan record updated: `universe/last_scan.json` now state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at = 2026-10-31T23:06:34.318029+00:00`.
+- Grids reconciled complete (all three grids done, 0 blocked cells). Baseline has 0 credible candidates; both children NOT_PROMOTED.
+- Wakeups: previous single wakeup likely fired/exhausted; no duplicate wakeups created. Ensure exactly one wakeup if needed for next refresh, but not required now.
 
 ## Measurable next task
 
-At/after `2026-10-30T22:20:37.246523+00:00` (24h after the pass at ~22:20:37Z), re-run the offline gate check:
-
-```bash
-PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; print(gate_status(json.load(open('universe/last_scan.json'))))"
-```
-
-If still not eligible, stop — ensure a single wakeup is set just after the bound (cancel others if any). Do NOT call the provider and do not create a second wakeup. If eligible, run exactly one 20-page pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`, recompute the expansion floor, and inspect the band strictly below the floor for `eligible_unseen_below_floor_count`. If 0, record the pass, set `next_eligible_refresh_at`, re-set the wakeup just after the new bound (cancel the existing one first), and stop. If >0, expand per PROMPT.md §2.1 and run the full 66-pair grid on each new symbol via `scripts/run_grid.py`, then re-aggregate.
+No eligible expansion candidates found. Do **not** rerun the full 275-symbol grid.
+- If you want to be conservative, verify `universe/last_scan.json` matches the latest snapshot (it was just updated).
+- The next eligible refresh is at `2026-10-31T23:06:34.318029+00:00` (24h from this scan). At/after that bound, repeat: offline gate check, if eligible run exactly one 20-page pass, recompute floor, inspect below-floor band.
+- Do not call provider before bound; at most 1 pass/cycle; no changes to grid/costs/fills/history requirements.
 
 ## Constraints (unchanged)
-
-Histororical research only; no orders/live/paper trading; no provider before bound; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; single wakeup only; keep strict confirmatory separate from exploratory.
+Historical research only; no orders/live/paper trading; no provider before bound; 1 pass max/cycle; do not fetch new candle data; do not modify baseline grid/costs/fills/entry-exit semantics; do not trigger/cancel/rerun GitHub Actions or edit workflows; single wakeup only; keep strict confirmatory separate from exploratory.
 
 ## Initial task message for next agent
-
-Gate bound `2026-10-30T22:20:37.246523+00:00` not yet elapsed as of `2026-10-30T21:58:21Z` (~22m remaining). Offline gate check returned NOT eligible; no provider call made. A single wakeup `wku_18ed504d90018z6Ns9BupDPIyb` is scheduled just after the bound (`2026-10-30T22:22:37.000Z`). Grids reconciled and complete; baseline has 0 credible candidates; both children NOT_PROMOTED. Your job: when the wakeup fires (at/after the bound), run the offline gate check first; if not eligible, stop and ensure exactly one wakeup remains (cancel extras); if eligible, run exactly one 20-page pass, recompute floor, inspect below-floor band, and follow the branching in the measurable next task above. Do not call the provider before the bound. Do not create a second wakeup.
-
+Gate bound elapsed. Ran expansion check with fresh 20-page snapshot (mcap_snapshot_20261030_230634.json); coverage reaches below floor (lowest $3.217M < floor $3.255M) but eligible unseen below floor = 0. Universe remains N=275. Scan record updated with next eligible refresh 2026-10-31T23:06:34.318029+00:00. No grid reruns needed. At next bound, do one offline gate check then at most one 20-page pass if eligible.
 
 ## Cycle log
-
-- 2026-10-30T22:06:41Z — This turn: read prior task from durable handoff (completed). Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T22:06:41.302983+00:00, ~14m remaining). No provider call before bound. Listed wakeups (none pending) then scheduled single wakeup wku_18ed9e457001uYpMUMDaDQPuX4 due 2026-10-30T22:22:37.000Z (just after bound). Grids unchanged. Working tree clean. Updated handoff.
-- 2026-10-30T21:59:00Z — This turn: read prior task from durable handoff (completed). Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T21:58:21.428501+00:00, ~22m remaining). No provider call before bound. Listed wakeups (none pending) then scheduled single wakeup wku_18ed504d90018z6Ns9BupDPIyb due 2026-10-30T22:22:37.000Z. Grids unchanged. Working tree clean. Updated handoff.
-- 2026-10-30T21:57:22Z — This turn: read prior task from durable handoff (completed). Re-verified gate offline (NOT eligible, bound 2026-10-30T22:20:37.246523+00:00, now 2026-10-30T21:57:22.960518+00:00, no provider call). Single wakeup wku_18ecc02b5001sFByxYYAfdYsKU due 2026-10-30T22:22:37.134Z. Grids unchanged. Working tree clean. Updated handoff.
+- 2026-10-30T23:08:30Z — This turn: read prior task from durable handoff (completed). Gate now eligible; performed expansion check (20 pages) against fresh snapshot. Found eligible_unseen_below_floor_count=0, floor ALEX/USDT $3,255,070, universe unchanged. Updated last_scan.json. Updated handoffs. No grid changes, no provider calls outside the single pass, no duplicate wakeups.
+- 2026-10-30T22:06:41Z — Previous cycle logged (wake scheduled).
