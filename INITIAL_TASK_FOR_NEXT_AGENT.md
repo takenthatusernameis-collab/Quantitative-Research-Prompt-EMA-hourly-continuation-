@@ -1,22 +1,22 @@
 # DELAY-ELIMINATION OVERRIDE — 2026-10-30
 
-The existing single wake-up is already scheduled for 2026-10-30T22:22:37.134Z, just after the provider refresh boundary at 2026-10-30T22:20:37.246523Z. Before it fires, read NEXT_AGENT_TASK.md and the saved gate state; if there is no state change, make no provider call, do not create or replace a wake-up, do not run the full grids, and do not append timestamp-only handoff entries. At/after the wake-up, perform the offline gate check, then follow the one-pass refresh/expansion branch in NEXT_AGENT_TASK.md. Keep the existing single-wakeup and provider-boundary constraints.
+The existing single wake-up is now scheduled for 2026-10-30T22:22:37.000Z (wku_18ed504d90018z6Ns9BupDPIyb), just after the provider refresh boundary at 2026-10-30T22:20:37.246523Z. Before it fires, read NEXT_AGENT_TASK.md and the saved gate state; if there is no state change, make no provider call, do not create or replace a wake-up, do not run the full grids, and do not append timestamp-only handoff entries. At/after the wake-up, perform the offline gate check, then follow the one-pass refresh/expansion branch in NEXT_AGENT_TASK.md. Keep the existing single-wakeup and provider-boundary constraints.
 
 ---
 
 # Initial Task For Next Agent
 
 ## Context (from durable handoff)
-- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T21:57:22Z)
-- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, current time 2026-10-30T21:57:22.960518+00:00, ~23m remaining). Offline check only; no provider call.
-- Wakeups: single wakeup `wku_18ecc02b5001sFByxYYAfdYsKU` due `2026-10-30T22:22:37.134Z` (just after bound). No other cron tasks scheduled.
+- Handoff: NEXT_AGENT_TASK.md (updated 2026-10-30T21:59:00Z)
+- Gate: NOT eligible (bound 2026-10-30T22:20:37.246523+00:00, current time 2026-10-30T21:58:21.428501+00:00, ~22m remaining). Offline check only; no provider call.
+- Wakeups: single wakeup `wku_18ed504d90018z6Ns9BupDPIyb` due `2026-10-30T22:22:37.000Z` (just after bound). No other cron tasks scheduled.
 - State: AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot universe/mcap_snapshot_20261029_222037.json, eligible_unseen_below_floor_count=0, N=275 unchanged.
 - Grids: 20261019_135940_grid (baseline), 20261021_172619_grid (C_min_risk_atr), 20261022_134500_grid (C_stricter_trend) all complete (18,150 cells). No credible baseline candidates.
 - Working tree clean (`git status --short` empty).
 
 ## Exact task to complete now
 
-Nothing is actionable before `2026-10-30T22:20:37.246523+00:00`. The single wakeup `wku_18ecc02b5001sFByxYYAfdYsKU` is already scheduled just after the bound.
+Nothing is actionable before `2026-10-30T22:20:37.246523+00:00`. The single wakeup `wku_18ed504d90018z6Ns9BupDPIyb` is scheduled just after the bound.
 
 When it fires, at/after the bound, re-run the offline gate check:
 
@@ -40,5 +40,3 @@ PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_stat
 ## Measurable next task
 
 The only actionable step before the bound is done: gate re-verified offline (not eligible), single wakeup scheduled just after 2026-10-30T22:20:37.246523+00:00. After the bound, run the gate check and follow the branch above.
-
-(End of file - total 42 lines)
