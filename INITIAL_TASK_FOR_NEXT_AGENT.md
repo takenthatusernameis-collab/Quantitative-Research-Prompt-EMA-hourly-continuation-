@@ -18,4 +18,13 @@ Gate NOT yet eligible (bound 2026-10-31T23:06:34.318029+00:00). Do NOT call prov
 - `git status --short` empty; `git diff --stat` empty.
 - Wakeup state: no pending wakeups. Do **not** re-schedule a duplicate.
 
+
+## Verification performed this cycle (2026-10-31T01:52:31Z)
+
+- `universe/last_scan.json` vs `universe/mcap_snapshot_20261030_230634.json`: all fields reconcile — `scanned_at` == snapshot `fetched_at` (2026-10-30T23:06:34.318029+00:00), coverage 20/20 pages, `all_requested_pages_returned=true`, `entries_count=2000`, `lowest_rank_covered=2000`, `lowest_market_cap_usd=3,217,157`.
+- Floor: ALEX/USDT at $3,255,070. `universe_n=275` == `mcap_rank.json` `n_symbols=275`. `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
+- Offline gate check: `eligible=False`, bound 2026-10-31T23:06:34.318029+00:00 not elapsed (~21h 14m remaining). No provider contact made; no snapshot written; `last_scan.json` unchanged.
+- `git status --short` empty; `git diff --stat` empty.
+- Wakeup state: no pending wakeups. Do **not** re-schedule a duplicate.
+
 (End of file)
