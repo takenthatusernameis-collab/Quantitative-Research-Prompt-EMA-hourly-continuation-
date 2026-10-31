@@ -1,5 +1,18 @@
 # Market-Cap Universe Expansion Log
 
+## Gate re-check (2026-10-31T10:44Z) — no ranking pass made (prior agent task complete)
+
+- Offline gate check (run at `2026-10-31T10:44:30.829504+00:00`): `eligible=False`, bound `2026-10-31T23:06:34.318029+00:00` not yet elapsed (~12.4h remaining). No provider contact made.
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261030_230634`, floor `ALEX/USDT` 3 255 070 USD, `eligible_unseen_below_floor_count` = 0, N = 275).
+- Handoff verification (independent re-check this turn): `last_scan.json` reconciles with `mcap_snapshot_20261030_230634.json` — `scanned_at` == snapshot `fetched_at` (2026-10-30T23:06:34.318029+00:00), coverage 20/20 pages, `all_requested_pages_returned=true`, `entries_count=2000`, `lowest_rank_covered=2000`, `lowest_market_cap_usd=3,217,157`; `universe_n=275` == `mcap_rank.json` `n_symbols` == len(symbols) == 275; `coverage_reaches_below_floor=true`; floor ALEX/USDT $3,255,070 confirmed at snapshot rank 1986 with `kucoin_usdt_pair=true` and `exclusion_reason=null`.
+- Below-floor band (snapshot ranks 1987-2000, mcap < $3,255,070): 14 entries, **all excluded**, zero eligible names — 12 by `no_tradable_kucoin_spot_usdt_pair` (RMRVL, ASMLON, ALTSZN, TRIPLET, SN46, WAAC, CHECK, DDX, AMZN, PWEASE, 金蝶圣甲, PNIC), 2 by `insufficient_hourly_history_for_grid` (ALU rank 1999, MANYU rank 2000, both `kucoin_usdt_pair=true` but history too short for the grid).
+- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty. No pending wakeups for this session (`cancel_wakeup list` returned none).
+- Wakeup state: scheduled a single resume wakeup just after the bound at `2026-10-31T23:07:27.162Z`: **`wku_1919004cf001gDcjYnMequ1VV2`**. Do **not** re-schedule a duplicate — let the existing wakeup fire.
+- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with this verification and the current wakeup id.
+- The gated market-cap expansion cycle cannot proceed until the bound elapses — nothing is actionable before `2026-10-31T23:06:34.318029+00:00`.
+
+---
+
 ## Gate re-check (2026-10-30T23:56Z) — no ranking pass made (prior agent task complete)
 
 - Offline gate check (run at `2026-10-30T23:56:26Z`): `eligible=False`, bound `2026-10-31T23:06:34.318029+00:00` not yet elapsed (~23h 10m remaining). No provider contact made.
