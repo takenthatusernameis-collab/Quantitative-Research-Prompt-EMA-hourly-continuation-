@@ -2,7 +2,7 @@
 
 Gate NOT yet eligible (bound 2026-10-31T23:06:34.318029+00:00). Do NOT call provider. Verify `universe/last_scan.json` matches snapshot `mcap_snapshot_20261030_230634.json` (N=275, floor ALEX/USDT $3,255,070, eligible unseen below floor=0, next refresh 2026-10-31T23:06:34.318029+00:00). At/after bound: offline gate check first; if eligible run at most one 20-page pass (`scripts/fetch_mcap_snapshot.py --pages 20`), recompute floor, inspect below-floor band, update last_scan. No grid reruns, no candle fetches, no cost/fill changes. Keep strict confirmatory separate from exploratory.
 
-## Verification performed this cycle (2026-10-31T09:38:46Z)
+## Verification performed this cycle (2026-10-31T09:40:10Z)
 
 - Offline gate check (`scripts/refresh_gate.gate_status`): `eligible=False`, bound 2026-10-31T23:06:34.318029+00:00 not elapsed (~13.5h remaining). No provider contact made; no snapshot written; `last_scan.json` unchanged.
 - `git status --short` empty.
