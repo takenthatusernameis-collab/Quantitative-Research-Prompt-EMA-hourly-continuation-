@@ -14,3 +14,8 @@ Gate NOT yet eligible (bound 2026-10-31T23:06:34.318029+00:00). Do NOT call prov
   - Below-floor band ranks 1987-2000 (14 entries): 12 excluded by `no_tradable_kucoin_spot_usdt_pair` (RMRVL, ASMLON, ALTSZN, TRIPLET, SN46, WAAC, CHECK, DDX, AMZN, PWEASE, 金蝶圣甲, PNIC), 2 by `insufficient_hourly_history_for_grid` (ALU rank 1999, MANYU rank 2000). Zero eligible names.
   - `eligible_unseen_below_floor_count` 0, `eligible_unseen_below_floor` [], `batch_selected` [], state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `next_eligible_refresh_at` = 2026-10-31T23:06:34.318029+00:00.
 - `git status --short` empty; `git diff --stat` empty. No uncommitted changes.
+## Verification performed 2026-10-31T21:24:21Z (current, authoritative)
+
+- Offline gate check: **NOT ELIGIBLE**. Bound `2026-10-31T23:06:34.318029+00:00` not elapsed; now `2026-10-31T21:24:21Z`; ~1.70h remaining. No provider contact, no snapshot written, `last_scan.json` unchanged.
+- `universe/last_scan.json` matches `universe/mcap_snapshot_20261030_230634.json`: scanned_at==fetched_at==2026-10-30T23:06:34.318029+00:00; coverage complete 20/20 pages entries_count=2000 lowest_rank_covered=2000 lowest_market_cap_usd=3217157; universe_n 275 == mcap_rank.json n_symbols==275 == len(symbols)==275; floor ALEX/USDT rank 1986 $3,255,070 kucoin_usdt_pair=true/exclusion_reason=null; below-floor band 14 entries excluded (12 no_tradable_kucoin_spot_usdt_pair, 2 insufficient_hourly_history_for_grid ALU/MANYU); eligible_unseen_below_floor_count=0, batch_selected=[], state AWAITING_NEW_ELIGIBLE_CANDIDATES, next_eligible_refresh_at=2026-10-31T23:06:34.318029+00:00.
+- `git status --short` empty; `git diff --stat` empty. No uncommitted changes.
