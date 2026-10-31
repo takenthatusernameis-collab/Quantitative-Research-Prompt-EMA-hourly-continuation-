@@ -1,5 +1,16 @@
 # Market-Cap Universe Expansion Log
 
+## Gate re-check (2026-10-31T12:28Z) — no ranking pass made (prior agent task complete)
+
+- Offline gate check (run at `2026-10-31T12:28:40.536247+00:00`): `eligible=False`, bound `2026-10-31T23:06:34.318029+00:00` not yet elapsed (~10.6h remaining). No provider contact made.
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261030_230634`, scanned_at 2026-10-30T23:06:34.318029+00:00, floor `ALEX/USDT` $3,255,070, `eligible_unseen_below_floor_count = 0`, N = 275).
+- Direct reconciliation of `mcap_snapshot_20261030_230634.json`: len(entries)=2000 == `entries_count`, pages_fetched=20, pages_requested=20, `all_requested_pages_returned=True`, `lowest_rank_covered=2000`, `lowest_market_cap_usd=3217157`, `fetched_at` == `last_scan.scanned_at` (2026-10-30T23:06:34.318029+00:00). Floor `ALEX/USDT` confirmed at rank 1986 with `kucoin_usdt_pair=true` and `exclusion_reason=null`. Below-floor band (ranks 1987-2000): 14 entries, all excluded — 12 by `no_tradable_kucoin_spot_usdt_pair`, 2 by `insufficient_hourly_history_for_grid` (ALU rank 1999, MANYU rank 2000); zero eligible names. `universe_n=275` == `mcap_rank.json` `n_symbols` == len(symbols) == 275.
+- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty. Resume wakeup `wku_1919004cf001gDcjYnMequ1VV2` due 2026-10-31T23:07:27.162Z (just after the bound); do not duplicate. This session's `cancel_wakeup list` shows no pending wakeup (cross-session wakeup not listed here).
+- Handoffs `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md` updated with this verification. Rewrote `INITIAL_TASK_FOR_NEXT_AGENT.md` clean (prior file had accumulated duplicated verification blocks from repeated cycles).
+- The gated market-cap expansion cycle cannot proceed until the bound elapses — nothing is actionable before `2026-10-31T23:06:34.318029+00:00`.
+
+---
+
 ## Gate re-check (2026-10-31T11:26Z) — no ranking pass made (prior agent task complete)
 
 - Offline gate check (run at `2026-10-31T11:26:01.333042+00:00`): `eligible=False`, bound `2026-10-31T23:06:34.318029+00:00` not yet elapsed (~11.67h remaining). No provider contact made.
