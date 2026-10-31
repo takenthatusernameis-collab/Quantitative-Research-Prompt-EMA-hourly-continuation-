@@ -17,3 +17,11 @@ Gate NOT yet eligible (bound 2026-10-31T23:06:34.318029+00:00). Do NOT call prov
 - Expansion floor ALEX/USDT $3,255,070 at snapshot rank 1986 confirmed (kucoin_usdt_pair=true, exclusion_reason=null); below-floor band ranks 1987-2000: 14 entries all excluded (12 no_tradable_kucoin_spot_usdt_pair, 2 insufficient_hourly_history_for_grid ALU/MANYU); zero eligible names.
 - Resume wakeup `wku_1919004cf001gDcjYnMequ1VV2` due 2026-10-31T23:07:27.162Z exists; do not duplicate.
 - No provider call made (gate closed); state unchanged; working tree clean (`git status --short` empty, `git diff --stat` empty).
+
+## Verification performed at 2026-10-31T12:24:28Z
+
+- Offline gate check (`scripts/refresh_gate.gate_status`): **not eligible** — bound not elapsed (now 2026-10-31T12:24:28Z; bound 2026-10-31T23:06:34.318029+00:00, ~10.7h remaining).
+- `last_scan.json` reconciles with `mcap_snapshot_20261030_230634.json`: scanned_at == fetched_at 2026-10-30T23:06:34.318029+00:00, coverage 20/20 pages, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3217157, universe_n=275 == mcap_rank.json n_symbols==len(symbols)==275, coverage_reaches_below_floor=true.
+- Expansion floor ALEX/USDT $3,255,070 at snapshot rank 1986 confirmed (kucoin_usdt_pair=true, exclusion_reason=null); below-floor band ranks 1987-2000: 14 entries all excluded (12 no_tradable_kucoin_spot_usdt_pair, 2 insufficient_hourly_history_for_grid ALU/MANYU); zero eligible names.
+- Resume wakeup `wku_1919004cf001gDcjYnMequ1VV2` due 2026-10-31T23:07:27.162Z exists; do not duplicate.
+- No provider call made (gate closed); state unchanged; working tree clean (`git status --short` empty, `git diff --stat` empty).
