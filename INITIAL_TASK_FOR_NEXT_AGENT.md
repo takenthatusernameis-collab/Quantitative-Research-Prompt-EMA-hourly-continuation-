@@ -9,9 +9,9 @@ At/after bound `2026-11-01T23:24:44.567699+00:00`:
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-## Gate status at 2026-11-01T19:49:59Z: NOT ELIGIBLE
-- Bound `2026-11-01T23:24:44.567699+00:00` not elapsed (~3h35m remaining).
-- Verified with `scripts.refresh_gate.gate_status` (now=2026-11-01T19:49:59.797759+00:00): eligible=false, reason="the 24 h refresh bound 2026-11-01T23:24:44.567699+00:00 has not elapsed yet".
+## Gate status at 2026-11-01T19:51:35Z: NOT ELIGIBLE
+- Bound `2026-11-01T23:24:44.567699+00:00` not elapsed (~3h33m remaining).
+- Verified with `scripts.refresh_gate.gate_status` (now=2026-11-01T19:51:35.235235+00:00): eligible=false, reason="the 24 h refresh bound 2026-11-01T23:24:44.567699+00:00 has not elapsed yet".
 - Offline gate check completed by this agent; no snapshot/floor/universe changes made.
 - State: `EXPANSION_AVAILABLE`; snapshot `mcap_snapshot_20261031_232444` intact (scanned_at==fetched_at `2026-10-31T23:24:44.567699+00:00`, coverage pages 20/20, entries 2000, coverage complete, lowest_market_cap_usd=3224654, history_probe_failure_count=0).
 - Universe: N=275 (matches `universe/mcap_rank.json`).
