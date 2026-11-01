@@ -9,7 +9,7 @@ At/after bound `2026-11-01T23:24:44.567699+00:00`:
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-## Gate status at 2026-11-01T15:57:01Z: NOT ELIGIBLE
+## Gate status at 2026-11-01T15:58:38Z: NOT ELIGIBLE
 
 - Bound `2026-11-01T23:24:44.567699+00:00` not elapsed (~7.46h remaining).
 - State: `EXPANSION_AVAILABLE`; snapshot `mcap_snapshot_20261031_232444` (scanned_at==fetched_at 2026-10-31T23:24:44.567699+00:00, 2000 entries, coverage complete).
