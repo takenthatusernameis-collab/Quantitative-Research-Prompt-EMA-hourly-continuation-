@@ -9,4 +9,4 @@ At/after bound `2026-11-01T23:24:44.567699+00:00`:
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-Gate status at 2026-11-01T13:06:17Z: NOT ELIGIBLE (bound not elapsed). State: EXPANSION_AVAILABLE, snapshot `mcap_snapshot_20261031_232444` (2000 entries, coverage complete), universe_n=275, expansion_floor PIXEL/USDT rank 1977 $3,356,791, eligible_unseen_below_floor_count=2, batch_selected=['NIM/USDT','SUKU/USDT'] (not applied).
+Gate status at 2026-11-01T13:07:20Z: NOT ELIGIBLE (bound not elapsed). State: EXPANSION_AVAILABLE, snapshot `mcap_snapshot_20261031_232444` (2000 entries, coverage complete), universe_n=275, expansion_floor PIXEL/USDT rank 1977 $3,356,791, eligible_unseen_below_floor_count=2, batch_selected=['NIM/USDT','SUKU/USDT'] (not applied).
