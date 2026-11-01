@@ -3,15 +3,14 @@
 At/after bound `2026-11-01T23:24:44.567699+00:00`:
 1. Offline gate check first (compare now >= next_eligible_refresh_at; verify last_scan unchanged).
 2. If eligible: run at most one 20-page pass: `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20`.
-3. Recompute floor, inspect below-floor band, update `universe/last_scan.json`.
+3. Recompute floor, inspect below-floor band, update `universe/last_scan.json` (preserve fields; do not apply batch).
 4. Do NOT apply pending batch (NIM/SUKU) this cycle (no fixtures/grid coverage).
 5. No grid reruns, no candle fetches, no cost/fill changes. Keep strict confirmatory separate from exploratory.
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-## Gate status at 2026-11-01T18:55:16Z: NOT ELIGIBLE
-
-- Bound `2026-11-01T23:24:44.567699+00:00` not elapsed (~4h29m remaining). Now: `2026-11-01T18:55:16.696736+00:00`.
+## Gate status at 2026-11-01T18:57:00Z: NOT ELIGIBLE
+- Bound `2026-11-01T23:24:44.567699+00:00` not elapsed (~4h27m remaining). Now: `2026-11-01T18:56:56.106792+00:00` (gate check result eligible=false).
 - State: `EXPANSION_AVAILABLE`; snapshot `mcap_snapshot_20261031_232444` (scanned_at==fetched_at `2026-10-31T23:24:44.567699+00:00`, coverage pages 20/20, entries 2000, coverage complete, lowest_market_cap_usd=3224654).
 - Universe: N=275 (matches `universe/mcap_rank.json`).
 - Floor: `PIXEL/USDT` rank 1977 $3,356,791; eligible_unseen_below_floor_count=2 (NIM rank 1980 $3,346,785; SUKU rank 1985 $3,305,393); batch_selected=['NIM/USDT','SUKU/USDT'] not applied (no fixtures/grid coverage).
@@ -20,5 +19,3 @@ Constraints (unchanged): historical research only; no orders/live/paper trading;
 - No prior wakeup present in this session (do not duplicate).
 
 Only the offline gate check is completable now (NOT ELIGIBLE). The 20-page snapshot pass, floor recompute, and `last_scan.json` update must wait until at/after the bound.
-" filePath">
-/home/runner/work/Quantitative-Research-Prompt-EMA-hourly-continuation-/Quantitative-Research-Prompt-EMA-hourly-continuation-/INITIAL_TASK_FOR_NEXT_AGENT.md
