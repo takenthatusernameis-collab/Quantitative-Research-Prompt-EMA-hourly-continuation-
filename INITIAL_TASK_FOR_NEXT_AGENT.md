@@ -1,13 +1,13 @@
-## Current state (2026-11-01T10:23:09Z)
+## Current state (2026-11-01T10:24:58Z)
 
-- Gate status: **NOT ELIGIBLE** (bound `2026-11-01T23:24:44.567699+00:00` not elapsed; now `2026-11-01T10:23:09.512416+00:00`, ~13.0h remaining)
+- Gate status: **NOT ELIGIBLE** (bound `2026-11-01T23:24:44.567699+00:00` not elapsed; now `2026-11-01T10:24:57.716821+00:00`, ~13.0h remaining)
 - Latest snapshot: `universe/mcap_snapshot_20261031_232444.json` (scanned_at==fetched_at 2026-10-31T23:24:44.567699+00:00, 2000 entries, coverage complete)
 - Universe unchanged (N=275). Expansion floor PIXEL/USDT rank 1977 $3,356,791 (kucoin_usdt_pair=true/exclusion_reason=null confirmed)
 - Below-floor band (ranks 1978-2000): 23 entries; eligible unseen below-floor: 2 (NIM rank 1980 $3,346,785, SUKU rank 1985 $3,305,393)
 - Batch_selected: ["NIM/USDT","SUKU/USDT"] (recorded but NOT applied - no fixtures/grid coverage)
 - Scan record: `universe/last_scan.json` state `EXPANSION_AVAILABLE`
 - `--apply` NOT run (no fixtures/grid coverage for below-floor)
-- Wakeup: `wku_196a2c636001BFQ2aszHPH3M0u` due 2026-11-01T23:30:00Z (just after bound)
+- Wakeup: `wku_196a484dc001n4mVOXmHi7hCrZ` due 2026-11-01T23:30:00Z (just after bound)
 
 ## Measurable next task
 
