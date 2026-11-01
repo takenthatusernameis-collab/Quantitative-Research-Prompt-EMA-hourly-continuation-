@@ -1,6 +1,6 @@
-## Current state (2026-11-01T10:24:58Z)
+## Current state (2026-11-01T10:52:54Z)
 
-- Gate status: **NOT ELIGIBLE** (bound `2026-11-01T23:24:44.567699+00:00` not elapsed; now `2026-11-01T10:24:57.716821+00:00`, ~13.0h remaining)
+- Gate status: **NOT ELIGIBLE** (bound `2026-11-01T23:24:44.567699+00:00` not elapsed; now `2026-11-01T10:52:53.970076+00:00`, ~12.5h remaining)
 - Latest snapshot: `universe/mcap_snapshot_20261031_232444.json` (scanned_at==fetched_at 2026-10-31T23:24:44.567699+00:00, 2000 entries, coverage complete)
 - Universe unchanged (N=275). Expansion floor PIXEL/USDT rank 1977 $3,356,791 (kucoin_usdt_pair=true/exclusion_reason=null confirmed)
 - Below-floor band (ranks 1978-2000): 23 entries; eligible unseen below-floor: 2 (NIM rank 1980 $3,346,785, SUKU rank 1985 $3,305,393)
