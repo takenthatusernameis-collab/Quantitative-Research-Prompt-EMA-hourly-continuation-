@@ -2,8 +2,8 @@
 
 The only checkable step right now is the offline refresh gate, and it is NOT ELIGIBLE until the 24h bound elapses.
 
-Current state (2026-11-01T19:54:21Z):
-- Gate: NOT ELIGIBLE (bound `2026-11-01T23:24:44.567699+00:00`, ~3h30m remaining)
+Current state (2026-11-01T19:56:02Z):
+- Gate: NOT ELIGIBLE (bound `2026-11-01T23:24:44.567699+00:00`, ~3h28m remaining)
 - `universe/last_scan.json`: state EXPANSION_AVAILABLE, snapshot `mcap_snapshot_20261031_232444` (scanned_at==fetched_at 2026-10-31T23:24:44.567699+00:00, 2000 entries, coverage complete), universe_n=275, floor PIXEL/USDT rank 1977 $3,356,791, eligible_unseen_below_floor_count=2 (NIM rank 1980 $3,346,785; SUKU rank 1985 $3,305,393), batch_selected=['NIM/USDT','SUKU/USDT'] not applied (no fixtures/grid coverage).
 - Baseline grid `results/20261019_135940_grid` complete (18150/18150); mutations C_min_risk_atr and C_stricter_trend both NOT_PROMOTED.
 - Working tree clean.
