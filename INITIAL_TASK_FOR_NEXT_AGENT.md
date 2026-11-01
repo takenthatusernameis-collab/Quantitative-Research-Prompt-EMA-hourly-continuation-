@@ -1,6 +1,6 @@
 # Initial task message for next agent
 
-Verified (2026-11-01T05:17:42Z): `universe/last_scan.json` unchanged, state `EXPANSION_AVAILABLE`, snapshot `universe/mcap_snapshot_20261031_232444.json` (scanned_at==fetched_at 2026-10-31T23:24:44.567699+00:00; coverage complete {'pages_requested': 20, 'pages_fetched': 20, 'all_requested_pages_returned': True, 'entries_count': 2000, 'lowest_rank_covered': 2000, 'lowest_market_cap_usd': 3224654}). Offline gate check via `scripts/refresh_gate.gate_status`: **NOT ELIGIBLE** (bound `2026-11-01T23:24:44.567699+00:00` not elapsed; now `2026-11-01T05:17:42Z`, ~18.1h remaining). Do NOT call provider before bound.
+Verified (2026-11-01T05:21:10Z): `universe/last_scan.json` unchanged, state `EXPANSION_AVAILABLE`, snapshot `universe/mcap_snapshot_20261031_232444.json` (scanned_at==fetched_at 2026-10-31T23:24:44.567699+00:00; coverage complete {'pages_requested': 20, 'pages_fetched': 20, 'all_requested_pages_returned': True, 'entries_count': 2000, 'lowest_rank_covered': 2000, 'lowest_market_cap_usd': 3224654}). Offline gate check via `scripts/refresh_gate.gate_status`: **NOT ELIGIBLE** (bound `2026-11-01T23:24:44.567699+00:00` not elapsed; now `2026-11-01T05:21:10Z`, ~18.1h remaining). Do NOT call provider before bound.
 
 Expansion floor PIXEL/USDT rank 1977 $3,356,791 (kucoin_usdt_pair=true/exclusion_reason=null confirmed). Below-floor band (ranks 1978-2000): 23 entries; eligible unseen below-floor: 2 (NIM rank 1980 $3,346,785, SUKU rank 1985 $3,305,393). Batch_selected ['NIM/USDT', 'SUKU/USDT'] recorded but NOT applied (no fixtures/grid coverage). `--apply` NOT run.
 
@@ -13,4 +13,4 @@ At/after bound `2026-11-01T23:24:44.567699+00:00`, next agent actions:
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-Schedule a wakeup for ~2026-11-01T23:30:00Z (just after bound) so the next agent can resume the gate check at/after `2026-11-01T23:24:44.567699+00:00`. Do not schedule a duplicate unless a prior wakeup has fired/missed.
+Wakeup scheduled: `wku_1958e12e8001NzSCLNNtrCqN2M` due ~2026-11-01T23:31:18Z (just after bound). Do not schedule a duplicate unless it has fired/missed.
