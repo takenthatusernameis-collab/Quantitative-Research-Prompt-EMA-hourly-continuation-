@@ -9,14 +9,14 @@ At/after bound `2026-11-01T23:24:44.567699+00:00`:
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-## Gate status at 2026-11-01T18:10:59Z: NOT ELIGIBLE
+## Gate status at 2026-11-01T18:46:28Z: NOT ELIGIBLE
 
-- Bound `2026-11-01T23:24:44.567699+00:00` not elapsed (~5h14m remaining). Now: `2026-11-01T18:10:59.076362+00:00`.
-- State: `EXPANSION_AVAILABLE`; snapshot `mcap_snapshot_20261031_232444` (scanned_at `2026-10-31T23:24:44.567699+00:00`, fetched_at null, coverage pages 20/20, entries 2000, coverage complete, lowest_market_cap_usd=3224654).
+- Bound `2026-11-01T23:24:44.567699+00:00` not elapsed (~4h38m remaining). Now: `2026-11-01T18:46:59.984533+00:00`.
+- State: `EXPANSION_AVAILABLE`; snapshot `mcap_snapshot_20261031_232444` (scanned_at==fetched_at `2026-10-31T23:24:44.567699+00:00`, coverage pages 20/20, entries 2000, coverage complete, lowest_market_cap_usd=3224654).
 - Universe: N=275 (matches `universe/mcap_rank.json`).
 - Floor: `PIXEL/USDT` rank 1977 $3,356,791; eligible_unseen_below_floor_count=2 (NIM rank 1980 $3,346,785; SUKU rank 1985 $3,305,393); batch_selected=['NIM/USDT','SUKU/USDT'] not applied (no fixtures/grid coverage).
-- Baseline grid `results/20261019_135940_grid` complete (18150/18150, all_symbols_processed=true, next_cell=null); mutations.json: C_min_risk_atr (20261021_172619_grid, complete, final full eval child==parent pooled_net_pf 0.5219, oof 0.6404, cells_clearing_gate 10==10) and C_stricter_trend (20261022_134500_grid, complete, final null-grid scan) both NOT_PROMOTED.
-- Resume wakeup due 2026-11-01T23:26:00Z (`wku_198517040001R7LrsBjg05XSJV`): do not duplicate.
+- Baseline grid `results/20261019_135940_grid` complete (18150/18150, all_symbols_processed=true, next_cell=null); mutations.json: C_min_risk_atr and C_stricter_trend both NOT_PROMOTED.
 - Working tree clean (`git status --short` empty, `git diff --stat` empty).
+- No prior wakeup present in this session (do not duplicate).
 
 Only the offline gate check is completable now (NOT ELIGIBLE). The 20-page snapshot pass, floor recompute, and `last_scan.json` update must wait until at/after the bound.
