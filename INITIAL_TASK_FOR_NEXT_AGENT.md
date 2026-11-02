@@ -1,4 +1,4 @@
-Gate NOT ELIGIBLE (bound 2026-11-03T00:55:58.735958+00:00 not elapsed; now 2026-11-02T21:55:25Z, ~3h00m remaining).
+Gate NOT ELIGIBLE (bound 2026-11-03T00:55:58.735958+00:00 not elapsed; now 2026-11-02T21:55:49Z, ~2h59m remaining).
 
 Task for next agent:
 1. Offline gate check first: compare now >= next_eligible_refresh_at (2026-11-03T00:55:58.735958+00:00); verify universe/last_scan.json unchanged.
@@ -7,4 +7,4 @@ Task for next agent:
 
 Constraints unchanged: historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-Existing wakeup: retained (do not duplicate).
+Existing wakeup: wku_19e43ca08001gGvXvHV8y7r3Uw due 2026-11-03T01:00:00.000Z (do not duplicate).
