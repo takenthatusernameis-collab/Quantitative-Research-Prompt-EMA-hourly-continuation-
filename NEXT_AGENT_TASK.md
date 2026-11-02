@@ -1,6 +1,6 @@
-## Current state (2026-11-02T02:14:09Z)
+## Current state (2026-11-02T02:42:27Z)
 
-- Gate status: **NOT ELIGIBLE** (bound `2026-11-03T00:55:58.735958+00:00` not elapsed; now `2026-11-02T02:14:09.732689+00:00`, ~22h42m remaining).
+- Gate status: **NOT ELIGIBLE** (bound `2026-11-03T00:55:58.735958+00:00` not elapsed; now `2026-11-02T02:42:26.953301+00:00`, ~22h13m remaining).
 - Latest snapshot: `universe/mcap_snapshot_20261102_005558.json` (fetched_at `2026-11-02T00:55:58.735958+00:00`, pages 20/20, 2000 entries, coverage complete, lowest_market_cap_usd=3271138).
 - Universe unchanged (N=275). Expansion floor PIXEL/USDT rank 1977 $3,356,791 (mcap 3312119).
 - Below-floor band (ranks 1978-2000): inspected; eligible unseen below-floor: **0**. No batch added.
@@ -21,10 +21,10 @@ Gate not elapsed. Next refresh bound is 2026-11-03T00:55:58.735958+00:00:
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy. If gate still not elapsed, only perform offline gate check, record result, update handoff, and schedule/await next wakeup; do not make provider calls.
 
-Resume wakeup: `wku_19a094d2c001pZg5IkDoao522j` due 2026-11-03T00:56:00Z (do not duplicate).
+Resume wakeup: `wku_19a250c43001wUxXeVtCz5Znxq` due 2026-11-03T00:56:00Z (do not duplicate).
 
 ## Cycle log (append)
 
-- 2026-11-02T02:14:09Z — This agent re-read the durable handoff (INITIAL_TASK_FOR_NEXT_AGENT.md + NEXT_AGENT_TASK.md) and re-ran the offline gate check via `PYTHONPATH=. python3 -c "import json; from scripts.refresh_gate import gate_status; gs=gate_status(json.load(open('universe/last_scan.json'))); print(json.dumps(gs, default=str))"` at now `2026-11-02T02:14:09.732689+00:00`: NOT ELIGIBLE (bound `2026-11-03T00:55:58.735958+00:00` not elapsed; ~22h42m remaining). `universe/last_scan.json` unchanged (state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261102_005558` fetched_at `2026-11-02T00:55:58.735958+00:00`, 20/20 pages, 2000 entries, universe_n=275, floor PIXEL/USDT rank 1977 $3,356,791, eligible_unseen_below_floor_count=0, batch_selected=[] not applied). Baseline grid `results/20261019_135940_grid` complete; mutations C_min_risk_atr and C_stricter_trend NOT_PROMOTED; `FINAL_DECISION.md` records program-level rejection. No prior wakeup existed to cancel; scheduled fresh resume wakeup `wku_19a094d2c001pZg5IkDoao522j` due 2026-11-03T00:56:00Z (did not duplicate). No provider call, no snapshot pass, no `--apply`; no grid reruns, no candle fetches, no cost/fill changes. Prior task not yet completable (gate not elapsed): only offline gate check completable now. Preserved constraints per AGENTS.md. Updated handoff. Refreshed INITIAL_TASK_FOR_NEXT_AGENT.md for next agent.
+- 2026-11-02T02:42:27Z — Read durable handoff (NEXT_AGENT_TASK.md, INITIAL_TASK_FOR_NEXT_AGENT.md). Ran offline gate check via `scripts.refresh_gate` at now `2026-11-02T02:42:26.953301+00:00`: NOT ELIGIBLE (bound `2026-11-03T00:55:58.735958+00:00` not elapsed). `universe/last_scan.json` unchanged. Scheduled resume wakeup `wku_19a250c43001wUxXeVtCz5Znxq` due 2026-11-03T00:56:00Z (no prior wakeups). No provider call, no snapshot pass, no `--apply`, no grid reruns/candle fetches/cost changes. Prior task not completable now; only offline gate check completed. Updated handoffs.
 
 (End of file - total 33 lines)
