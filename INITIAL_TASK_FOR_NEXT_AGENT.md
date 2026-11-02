@@ -1,9 +1,16 @@
-Gate still closed. At/after 2026-11-03T00:55:58.735958+00:00:
-1. Offline gate check first (compare now >= next_eligible_refresh_at; verify universe/last_scan.json unchanged).
-2. If eligible and scan shows expansion available, run at most one 20-page pass: PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20.
-3. Recompute floor, inspect below-floor band, update universe/last_scan.json.
-4. Do NOT apply any batch without fixtures/grid coverage.
-5. No grid reruns, no candle fetches, no cost/fill changes. Keep strict confirmatory separate from exploratory.
+# Initial task for next agent
 
-If gate still not elapsed, only perform offline gate check, record result, update handoff, and await next wakeup; do not make provider calls.
-Existing wakeup wku_19cf917f30018EtUW41MWbYrU6 due 2026-11-03T01:00:00.000Z retained (do not duplicate).
+Read `NEXT_AGENT_TASK.md` (durable handoff) and follow its latest entry.
+
+Current state (from `universe/last_scan.json`):
+- snapshot_id: mcap_snapshot_20261102_005558 (scanned_at 2026-11-02T00:55:58.735958+00:00)
+- state: AWAITING_NEW_ELIGIBLE_CANDIDATES
+- universe_n: 275; expansion_floor: PIXEL/USDT $3,312,119
+- eligible_unseen_below_floor_count: 0; batch_selected: []
+- next_eligible_refresh_at: 2026-11-03T00:55:58.735958+00:00
+
+Gate check (now 2026-11-02T18:46:08Z): NOT ELIGIBLE (~6h09m remaining). Bound not elapsed.
+
+Constraints: historical research only; no orders; preserve EMA signal/fill/cost assumptions; do not call current snapshot "point-in-time historical truth"; keep confirmatory/exploratory separate; preserve negative/blocked results; follow AGENTS.md rules.
+
+Task: perform an offline gate check (read last_scan.json only). If not eligible, do NOT call providers, do NOT run snapshot pass/apply/grid/candle fetches. If gate still closed, update NEXT_AGENT_TASK.md handoff with evidence (times/snapshot/state/counts) and refresh this file. If eligible at/after bound, only proceed per README/adaptive policy with explicit labeling; never reduce frozen history/costs silently. Retain existing wakeup `wku_19cf917f30018EtUW41MWbYrU6` due 2026-11-03T01:00:00.000Z (do not duplicate). Keep diffs minimal and leave no uncommitted changes unless explicitly required.
