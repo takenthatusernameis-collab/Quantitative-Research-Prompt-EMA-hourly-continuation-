@@ -20,4 +20,4 @@ Gate not elapsed. At/after `2026-11-03T00:55:58.735958+00:00`:
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy. If gate still not elapsed, only perform offline gate check, record result, update handoff, and schedule/await next wakeup; do not make provider calls.
 
-Resume wakeup: `wku_19ba524d10014amfsXfRpfIdbo` due 2026-11-03T00:56:13.772Z (do not duplicate).
+Resume wakeup: `wku_19ba6dfe1001Q2hJRf3bqUwuB5` due 2026-11-03T00:56:13.772Z (do not duplicate).
