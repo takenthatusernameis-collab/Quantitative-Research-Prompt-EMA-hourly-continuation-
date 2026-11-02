@@ -1,14 +1,15 @@
 # Initial task for the next agent (durable handoff)
 
 Created: 2026-11-02T06:53:19.438097+00:00
+Updated: 2026-11-02T06:53:37+00:00
 Session goal: continue EMA hourly continuation universe refresh gate monitoring per AGENTS.md and README.
 
 ## Current state
-- Gate status: NOT ELIGIBLE (bound 2026-11-03T00:55:58.735958+00:00 not elapsed).
+- Gate status: NOT ELIGIBLE (bound 2026-11-03T00:55:58.735958+00:00 not elapsed; now 2026-11-02T06:53:37+00:00, ~17h58m remaining).
 - Snapshot: universe/mcap_snapshot_20261102_005558.json (fetched_at 2026-11-02T00:55:58.735958+00:00, pages 20/20, 2000 entries). Universe N=275, floor PIXEL/USDT $3312119, eligible_unseen_below_floor_count=0.
 - last_scan.json: state AWAITING_NEW_ELIGIBLE_CANDIDATES, batch_selected=[] not applied, next_eligible_refresh_at 2026-11-03T00:55:58.735958+00:00.
 - Baseline grid complete (results/20261019_135940_grid), mutations NOT_PROMOTED, FINAL_DECISION.md rejection recorded.
-- Resume cron: wku_19afbb0f8001SfdKJWKenEaZI8 due 2026-11-03T00:56:00Z (retained).
+- Resume wakeup: wku_19b0bdbfb001k7Vu4DxBkR1AFo due 2026-11-03T00:56:00Z (retained, do not duplicate).
 
 ## Measurable next task
 At/after 2026-11-03T00:55:58.735958+00:00:
@@ -18,7 +19,7 @@ At/after 2026-11-03T00:55:58.735958+00:00:
 4. Do NOT apply any batch without fixtures/grid coverage.
 5. No grid reruns, no candle fetches, no cost/fill changes. Keep strict confirmatory separate from exploratory.
 
-If gate not elapsed: perform offline gate check only, record in NEXT_AGENT_TASK.md cycle log, update handoff files, retain existing resume cron (do not duplicate). No provider calls.
+If gate not elapsed: perform offline gate check only, record in NEXT_AGENT_TASK.md cycle log, update handoff files, retain existing resume wakeup (do not duplicate). No provider calls.
 
 ## Constraints
 Historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy. Stop repeating same failure after 3 distinct attempts across 2 independent approaches per AGENTS.md rule 7.
