@@ -1,4 +1,4 @@
-Gate NOT ELIGIBLE (bound 2026-11-03T00:55:58.735958+00:00 not elapsed; now 2026-11-02T22:05:12Z, ~2h50m remaining).
+Gate NOT ELIGIBLE (bound 2026-11-03T00:55:58.735958+00:00 not elapsed; now 2026-11-02T22:11:53Z, ~2h44m remaining).
 
 Task for next agent:
 1. Offline gate check first: compare now >= next_eligible_refresh_at (2026-11-03T00:55:58.735958+00:00); verify universe/last_scan.json unchanged.
