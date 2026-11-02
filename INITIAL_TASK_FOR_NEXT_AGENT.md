@@ -1,4 +1,4 @@
-## Current state (2026-11-02T09:51:46+00:00)
+## Current state (2026-11-02T09:53:08+00:00)
 
 - Gate status: **NOT ELIGIBLE** (bound `2026-11-03T00:55:58.735958+00:00` not elapsed; ~15h4m remaining).
 - Latest snapshot: `universe/mcap_snapshot_20261102_005558.json` (fetched_at `2026-11-02T00:55:58.735958+00:00`, pages 20/20, 2000 entries, coverage complete, lowest_market_cap_usd=3271138).
@@ -20,4 +20,4 @@ Gate not elapsed. At/after `2026-11-03T00:55:58.735958+00:00`:
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy. If gate still not elapsed, only perform offline gate check, record result, update handoff, and schedule/await next wakeup; do not make provider calls.
 
-Resume wakeup: `wku_19b7cc686001zNurR5Bk1hWOFQ` due 2026-11-03T00:56:00Z (do not duplicate).
+Resume wakeup: `wku_19bad982b001VBoBsQKKHJGwuW` due 2026-11-03T00:53:27.591Z (do not duplicate).
