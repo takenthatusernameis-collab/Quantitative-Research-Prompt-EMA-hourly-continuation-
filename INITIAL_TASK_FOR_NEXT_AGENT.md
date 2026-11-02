@@ -7,5 +7,3 @@ Gate still closed. At/after 2026-11-03T00:55:58.735958+00:00:
 
 If gate still not elapsed, only perform offline gate check, record result, update handoff, and await next wakeup; do not make provider calls.
 Existing wakeup wku_19cf917f30018EtUW41MWbYrU6 due 2026-11-03T01:00:00.000Z retained (do not duplicate).
-" filePath">
-/home/runner/work/Quantitative-Research-Prompt-EMA-hourly-continuation-/Quantitative-Research-Prompt-EMA-hourly-continuation-/INITIAL_TASK_FOR_NEXT_AGENT.md
