@@ -1,7 +1,7 @@
-## Current state (2026-11-02T10:29:18+00:00)
+## Current state (2026-11-02T10:32:49+00:00)
 
-- Gate status: **NOT ELIGIBLE** (bound `2026-11-03T00:55:58.735958+00:00` not elapsed; now `2026-11-02T10:29:18.120229+00:00`, ~14h26m remaining).
-- Offline gate check performed via `scripts.refresh_gate.gate_status` (PYTHONPATH=. python3 -c "..."). Result: eligible=false, bound `2026-11-03T00:55:58.735958+00:00`, now `2026-11-02T10:29:18.120229+00:00`, reason "the 24 h refresh bound ... has not elapsed yet".
+- Gate status: **NOT ELIGIBLE** (bound `2026-11-03T00:55:58.735958+00:00` not elapsed; now `2026-11-02T10:32:49.181899+00:00`, ~14h23m remaining).
+- Offline gate check performed via `scripts.refresh_gate.gate_status` (PYTHONPATH=. python3 -c "..."). Result: eligible=false, bound `2026-11-03T00:55:58.735958+00:00`, now `2026-11-02T10:32:49.181899+00:00`, reason "the 24 h refresh bound ... has not elapsed yet".
 - Latest snapshot: `universe/mcap_snapshot_20261102_005558.json` (scanned_at `2026-11-02T00:55:58.735958+00:00`, recorded_at `2026-11-02T00:55:59.120403+00:00`, pages 20/20, 2000 entries, coverage complete, lowest_market_cap_usd=3271138).
 - Universe unchanged (N=275). Expansion floor PIXEL/USDT rank 1977, market_cap_usd 3312119.
 - Below-floor band (ranks 1978-2000): inspected; eligible unseen below-floor: **0**. No batch added.
@@ -9,7 +9,7 @@
 - `--apply` NOT run (no new batch). No grid reruns, no candle fetches, no cost/fill changes.
 - Baseline grid: `results/20261019_135940_grid` complete (18150/18150). Mutations C_min_risk_atr and C_stricter_trend NOT_PROMOTED. `FINAL_DECISION.md` records program-level rejection.
 - Git: clean working tree.
-- Resume wakeup: `wku_19bd053e4001Cwqq1XslXGmGc9` due 2026-11-03T00:57:23.868Z (do not duplicate).
+- Resume wakeup: `wku_19bd3d3b2001Cv6HoOrCsCB5Ba` due 2026-11-03T01:00:00.000Z (do not duplicate).
 
 ## Measurable next task
 
