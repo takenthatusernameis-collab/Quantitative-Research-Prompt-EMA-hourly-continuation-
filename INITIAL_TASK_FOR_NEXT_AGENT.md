@@ -1,6 +1,6 @@
 # Initial Task For Next Agent
 
-Gate bound: 2026-11-03T00:55:58.735958+00:00 (not elapsed as of 2026-11-02T03:04:58.918828+00:00 ; ~22h0m remaining).
+Gate bound: 2026-11-03T00:55:58.735958+00:00 (not elapsed as of 2026-11-02T03:06:20+00:00 ; ~21h50m remaining).
 Current state: universe/last_scan.json state AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot mcap_snapshot_20261102_005558 (fetched_at 2026-11-02T00:55:58.735958+00:00, pages 20/20, 2000 entries, coverage complete, lowest_market_cap_usd=3271138), universe_n=275, expansion_floor PIXEL/USDT rank 1977 $3,356,791, eligible_unseen_below_floor_count=0, batch_selected=[] not applied. Baseline grid results/20261019_135940_grid complete (18150/18150); mutations C_min_risk_atr and C_stricter_trend complete/NOT_PROMOTED; FINAL_DECISION.md records program-level rejection. Git clean.
 
 Measurable next task (at/after bound 2026-11-03T00:55:58.735958+00:00):
@@ -12,4 +12,4 @@ Measurable next task (at/after bound 2026-11-03T00:55:58.735958+00:00):
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy. If gate still not elapsed, only perform the offline gate check, record result, update handoff, and schedule/await next wakeup; do not make provider calls.
 
-Resume wakeup: wku_19a250c43001wUxXeVtCz5Znxq due 2026-11-03T00:56:00Z (do not duplicate).
+Resume wakeup: wku_19a3b4ecd001zC5zMG7tiKdXff due 2026-11-03T00:56:00Z (do not duplicate).
