@@ -1,16 +1,11 @@
-# Initial task for next agent
+Gate NOT ELIGIBLE (bound 2026-11-03T00:55:58.735958+00:00 not elapsed; now 2026-11-02T20:08:35Z, ~4h47m remaining).
 
-Read `NEXT_AGENT_TASK.md` (durable handoff) and follow its latest entry.
+Task for next agent:
+1. Offline gate check first: compare now >= next_eligible_refresh_at (2026-11-03T00:55:58.735958+00:00); verify universe/last_scan.json unchanged.
+2. If still not elapsed: record result, append handoff entry, refresh this file, retain existing wakeup (do NOT duplicate), no provider calls.
+3. If eligible and scan shows expansion available: run at most one 20-page pass: PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20. Recompute floor, inspect below-floor band, update universe/last_scan.json. Do NOT apply any batch without fixtures/grid coverage. No grid reruns, no candle fetches, no cost/fill changes.
 
-Current state (from `universe/last_scan.json`):
-- snapshot_id: mcap_snapshot_20261102_005558 (scanned_at 2026-11-02T00:55:58.735958+00:00)
-- state: AWAITING_NEW_ELIGIBLE_CANDIDATES
-- universe_n: 275; expansion_floor: PIXEL/USDT $3,312,119
-- eligible_unseen_below_floor_count: 0; batch_selected: []
-- next_eligible_refresh_at: 2026-11-03T00:55:58.735958+00:00
+Constraints unchanged: historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-Gate check (now 2026-11-02T20:07:44Z): NOT ELIGIBLE (~4.81h remaining). Bound not elapsed.
-
-Constraints: historical research only; no orders; preserve EMA signal/fill/cost assumptions; do not call current snapshot "point-in-time historical truth"; keep confirmatory/exploratory separate; preserve negative/blocked results; follow AGENTS.md rules.
-
-Task: perform an offline gate check (read last_scan.json only). If not eligible, do NOT call providers, do NOT run snapshot pass/apply/grid/candle fetches. If gate still closed, update NEXT_AGENT_TASK.md handoff with evidence (times/snapshot/state/counts) and refresh this file. If eligible at/after bound, only proceed per README/adaptive policy with explicit labeling; never reduce frozen history/costs silently. Retain existing wakeup `wku_19dcf8ec0001nzn7ChE1fLI512` due 2026-11-03T01:00:00.000Z (do not duplicate). Keep diffs minimal and leave no uncommitted changes unless explicitly required.
+Existing wakeup: wku_19dcf8ec0001nzn7ChE1fLI512 due 2026-11-03T01:00:00.000Z (retain, do not duplicate).
+EOF
