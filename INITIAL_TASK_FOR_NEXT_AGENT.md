@@ -9,10 +9,10 @@ Current state (from `universe/last_scan.json`):
 - eligible_unseen_below_floor_count: 0; batch_selected: []
 - next_eligible_refresh_at: 2026-11-03T00:55:58.735958+00:00
 
-Gate check (now 2026-11-02T18:52:24Z): NOT ELIGIBLE (~6h03m remaining). Bound not elapsed.
+Gate check (now 2026-11-02T18:53:06Z): NOT ELIGIBLE (~6h02m remaining). Bound not elapsed.
 
 Constraints: historical research only; no orders; preserve EMA signal/fill/cost assumptions; do not call current snapshot "point-in-time historical truth"; keep confirmatory/exploratory separate; preserve negative/blocked results; follow AGENTS.md rules.
 
-Task: perform an offline gate check (read last_scan.json only). If not eligible, do NOT call providers, do NOT run snapshot pass/apply/grid/candle fetches. If gate still closed, update NEXT_AGENT_TASK.md handoff with evidence (times/snapshot/state/counts) and refresh this file. If eligible at/after bound, only proceed per README/adaptive policy with explicit labeling; never reduce frozen history/costs silently. Retain existing wakeup `wku_19d983cf6001zRWufXS55hbqa3` due 2026-11-03T01:00:00.000Z (do not duplicate). Keep diffs minimal and leave no uncommitted changes unless explicitly required.
+Task: perform an offline gate check (read last_scan.json only). If not eligible, do NOT call providers, do NOT run snapshot pass/apply/grid/candle fetches. If gate still closed, update NEXT_AGENT_TASK.md handoff with evidence (times/snapshot/state/counts) and refresh this file. If eligible at/after bound, only proceed per README/adaptive policy with explicit labeling; never reduce frozen history/costs silently. Retain existing wakeup `wku_19cf917f30018EtUW41MWbYrU6` due 2026-11-03T01:00:00.000Z (do not duplicate). Keep diffs minimal and leave no uncommitted changes unless explicitly required.
 " filePath">
 /home/runner/work/Quantitative-Research-Prompt-EMA-hourly-continuation-/Quantitative-Research-Prompt-EMA-hourly-continuation-/INITIAL_TASK_FOR_NEXT_AGENT.md
