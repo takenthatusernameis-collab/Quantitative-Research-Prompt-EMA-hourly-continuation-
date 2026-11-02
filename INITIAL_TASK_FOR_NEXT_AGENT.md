@@ -1,6 +1,6 @@
 Durable handoff (read first): NEXT_AGENT_TASK.md (append-only cycle log).
 
-Gate NOT ELIGIBLE (bound 2026-11-03T00:55:58.735958+00:00 not elapsed; now 2026-11-02T23:52:57Z, ~1h03m remaining).
+Gate NOT ELIGIBLE (bound 2026-11-03T00:55:58.735958+00:00 not elapsed; now 2026-11-02T23:56:14Z, ~0h59m remaining).
 
 Task for next agent:
 1. Offline gate check first: compare now >= next_eligible_refresh_at (2026-11-03T00:55:58.735958+00:00); verify universe/last_scan.json unchanged.
@@ -11,4 +11,4 @@ Constraints unchanged: historical research only; no orders/live/paper trading; p
 
 Existing wakeup: wku_19e8b6fa0001XQk33E1t6Rf5A2 due 2026-11-03T01:00:00.000Z (do not duplicate).
 
-(End of file - total 12 lines)
+(End of file)
