@@ -2,12 +2,12 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-**Current state (as of 2026-11-03T21:24:56Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. NOT ELIGIBLE (~4h06m remaining as of 2026-11-03T21:28:40Z; re-verify at resume).
+**Current state (as of 2026-11-03T21:31:10Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. NOT ELIGIBLE (~4h04m remaining; re-verify at resume).
 - `universe/last_scan.json` (unchanged): state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261103_013503`, snapshot_path `universe/mcap_snapshot_20261103_013503.json` (544137 bytes), scanned_at `2026-11-03T01:35:03.192568+00:00`, recorded_at `2026-11-03T01:35:03.619173+00:00`, coverage 20/20 pages, 2000 entries, lowest_rank_covered=2000, lowest_market_cap_usd=3225884, coverage_reaches_below_floor=true, universe_n=275, expansion floor `ALPINE/USDT` $3,392,434, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"].
 - Only eligible unseen below-floor candidate: `DENT/USDT` (rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`).
-- DENT has NO fixture (`data/fixtures/DENT_USDT.csv` absent) and NO grid config for DENT in `results/` (grep exit=1, no matches) → `--apply` must NOT run without coverage.
-- Baseline grid `results/20261019_135940_grid` complete (18150/18150); mutations NOT_PROMOTED; `FINAL_DECISION.md` records program-level rejection. Git tree clean.
+- DENT has NO fixture (`data/fixtures/DENT_USDT.csv` absent) and NO grid config for DENT in `results/` (grep -rl exit=1, no matches) → `--apply` must NOT run without coverage.
+- Baseline grid `results/20261019_135940_grid` complete (18150/18150); mutations NOT_PROMOTED; `FINAL_DECISION.md` records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty).
 
 **What to do:**
 1. Re-verify gate eligibility: compare current UTC time against `next_eligible_refresh_at` in `universe/last_scan.json`; confirm the file is unchanged.
