@@ -2,9 +2,9 @@
 
 Durable handoff: `NEXT_AGENT_TASK.md` (append-only cycle log). Read it first.
 
-## Gate state (as of 2026-11-03T05:29:32Z)
+## Gate state (as of 2026-11-03T05:34:13Z)
 
-- Gate: **NOT ELIGIBLE**. `universe/last_scan.json` `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. Now is before that bound (~20h05m remaining).
+- Gate: **NOT ELIGIBLE**. `universe/last_scan.json` `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. Now is before that bound (~20h00m remaining).
 - State: `EXPANSION_AVAILABLE`. Snapshot `universe/mcap_snapshot_20261103_013503.json` (scanned_at `2026-11-03T01:35:03.192568+00:00`, 20/20 pages, 2000 entries, lowest mcap $3,225,884).
 - Universe: N=275. Expansion floor `ALPINE/USDT` $3,392,434 (rank 1970).
 - Below-floor band (mcap < $3,392,434): 30 entries; 29 excluded — 28 by `no_tradable_kucoin_spot_usdt_pair`, 1 by `insufficient_hourly_history_for_grid` (HPP rank 1975). Exactly 1 eligible unseen: **`DENT/USDT`** rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`. `eligible_unseen_below_floor_count=1`, `batch_selected=["DENT/USDT"]`.
