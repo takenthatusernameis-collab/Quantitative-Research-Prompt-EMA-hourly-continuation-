@@ -1,6 +1,6 @@
-## Current state (2026-11-03T17:16:10Z)
+## Current state (2026-11-03T17:20:49Z)
 
-- Gate status: **NOT ELIGIBLE** (bound `2026-11-04T01:35:03.192568+00:00` not elapsed; now `2026-11-03T17:16:10Z`, ~8h18m53s remaining). Re-verified via `universe/last_scan.json` at resume; unchanged from prior check.
+- Gate status: **NOT ELIGIBLE** (bound `2026-11-04T01:35:03.192568+00:00` not elapsed; now `2026-11-03T17:20:49Z`, ~8h14m14s remaining). Re-verified via `universe/last_scan.json` at resume; unchanged from prior check.
 - Latest snapshot: `universe/mcap_snapshot_20261103_013503.json` (scanned_at `2026-11-03T01:35:03.192568+00:00`, pages 20/20, 2000 entries, coverage complete).
 - Universe unchanged (N=275). Expansion floor `ALPINE/USDT` $3,392,434.
 - Below-floor band: 30 entries; 29 excluded (28 by `no_tradable_kucoin_spot_usdt_pair`, 1 by `insufficient_hourly_history_for_grid` HPP rank 1975); exactly 1 eligible unseen: `DENT/USDT` rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`.
@@ -46,8 +46,8 @@ Resume wakeup: `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and this file before acting.
 
-**Current state (as of 2026-11-03T17:16:10Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. NOT ELIGIBLE at resume time (~8h18m53s remaining, re-verify at resume).
+**Current state (as of 2026-11-03T17:20:49Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. NOT ELIGIBLE at resume time (~8h14m14s remaining, re-verify at resume).
 - `universe/last_scan.json`: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261103_013503`, scanned_at `2026-11-03T01:35:03.192568+00:00`, coverage 20/20 pages, 2000 entries, universe_n=275, expansion floor `ALPINE/USDT` $3,392,434, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"].
 - Only eligible unseen below-floor candidate: `DENT/USDT` (rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`).
 - DENT has NO fixture (`data/fixtures/DENT_USDT.csv` absent) and NO grid config for DENT → `--apply` must NOT run without coverage.
