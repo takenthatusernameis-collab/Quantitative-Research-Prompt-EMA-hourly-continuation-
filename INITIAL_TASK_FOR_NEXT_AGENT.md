@@ -1,6 +1,6 @@
-## Current state (2026-11-03T16:12:15Z)
+## Current state (2026-11-03T16:21:48Z)
 
-- Gate status: **NOT ELIGIBLE** (bound `2026-11-04T01:35:03.192568+00:00` not elapsed; now `2026-11-03T16:12:15Z`, ~9h22m remaining). Re-verified via `universe/last_scan.json` at resume; unchanged from prior check.
+- Gate status: **NOT ELIGIBLE** (bound `2026-11-04T01:35:03.192568+00:00` not elapsed; now `2026-11-03T16:21:48Z`, ~9h13m remaining). Re-verified via `universe/last_scan.json` at resume; unchanged from prior check.
 - Latest snapshot: `universe/mcap_snapshot_20261103_013503.json` (scanned_at `2026-11-03T01:35:03.192568+00:00`, pages 20/20, 2000 entries, coverage complete).
 - Universe unchanged (N=275). Expansion floor `ALPINE/USDT` $3,392,434.
 - Below-floor band: 30 entries; 29 excluded (28 by `no_tradable_kucoin_spot_usdt_pair`, 1 by `insufficient_hourly_history_for_grid` HPP rank 1975); exactly 1 eligible unseen: `DENT/USDT` rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`.
@@ -28,8 +28,8 @@ Resume wakeup: `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and this file before acting.
 
-**Current state (as of 2026-11-03T16:12:15Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. NOT ELIGIBLE at resume time (~9h22m remaining, re-verify at resume).
+**Current state (as of 2026-11-03T16:21:48Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. NOT ELIGIBLE at resume time (~9h13m remaining, re-verify at resume).
 - `universe/last_scan.json`: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261103_013503`, scanned_at `2026-11-03T01:35:03.192568+00:00`, coverage 20/20 pages, 2000 entries, universe_n=275, expansion floor `ALPINE/USDT` $3,392,434, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"].
 - Only eligible unseen below-floor candidate: `DENT/USDT` (rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`).
 - DENT has NO fixture (`data/fixtures/DENT_USDT.csv` absent) and NO grid config for DENT → `--apply` must NOT run without coverage.
@@ -59,3 +59,5 @@ Resume wakeup: `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (
 - 2026-11-03T16:16:49Z — Offline gate re-check at env time 2026-11-03T16:16:49Z. NOT ELIGIBLE until 2026-11-04T01:35:03.192568+00:00 (~9h18m remaining). State unchanged: EXPANSION_AVAILABLE, snapshot mcap_snapshot_20261103_013503, universe_n=275, floor ALPINE/USDT $3,392,434, eligible_unseen_below_floor_count=1 (DENT/USDT rank 1989, mcap $3,269,215, kucoin_usdt_pair=true). Coverage: data/fixtures/DENT_USDT.csv absent, no DENT references in results/ — --apply NOT run. Wakeup wku_19fbd8c47001bdVTRQ36qHnW8N due 2026-11-04T01:40:00.000Z retained. Git clean. No provider calls.
 
 - 2026-11-03T16:20:45Z — Offline gate re-check at env time 2026-11-03T16:20:45Z. NOT ELIGIBLE until 2026-11-04T01:35:03.192568+00:00 (~9h14m remaining). State unchanged: EXPANSION_AVAILABLE, snapshot mcap_snapshot_20261103_013503, universe_n=275, floor ALPINE/USDT $3,392,434, eligible_unseen_below_floor_count=1 (DENT/USDT rank 1989, mcap $3,269,215, kucoin_usdt_pair=true). Coverage: data/fixtures/DENT_USDT.csv absent, no DENT references in results/ — --apply NOT run. Wakeup wku_19fbd8c47001bdVTRQ36qHnW8N due 2026-11-04T01:40:00.000Z retained. Git clean. No provider calls.
+
+- 2026-11-03T16:21:48Z — Offline gate re-check at env time 2026-11-03T16:21:48Z. Source of truth `universe/last_scan.json`: next_eligible_refresh_at `2026-11-04T01:35:03.192568+00:00`, now `2026-11-03T16:21:48Z` → NOT ELIGIBLE (~9h13m15s remaining). State unchanged: state=EXPANSION_AVAILABLE, snapshot_id `mcap_snapshot_20261103_013503`, scanned_at `2026-11-03T01:35:03.192568Z`, coverage pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3225884, universe_n=275, expansion_floor ALPINE/USDT $3,392,434, eligible_unseen_below_floor_count=1 (DENT rank 1989, mcap $3,269,215, kucoin_usdt_pair=true, exclusion_reason=null), batch_selected=["DENT/USDT"]. Coverage re-verified: `data/fixtures/DENT_USDT.csv` absent (ls exit 2), no DENT references in `results/` (grep no matches) — no fixtures/grid coverage, so `--apply` NOT run. `git status --short` empty, `git diff --stat` empty. No provider calls; no `--apply`; no grid reruns; no candle fetches; no cost/fill changes. Wakeup `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` retained. Gate remains closed; nothing actionable before `2026-11-04T01:35:03.192568+00:00`.
