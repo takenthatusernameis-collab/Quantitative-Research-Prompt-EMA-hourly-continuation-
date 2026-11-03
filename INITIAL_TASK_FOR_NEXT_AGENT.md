@@ -1,6 +1,6 @@
 Durable handoff (read first): NEXT_AGENT_TASK.md (append-only cycle log).
 
-Gate: state=EXPANSION_AVAILABLE (scan 2026-11-03T01:35:03.192568+00:00); next eligible refresh 2026-11-04T01:35:03.192568+00:00. NOT ELIGIBLE now (2026-11-03T04:22:33Z; ~21h13m remaining).
+Gate: state=EXPANSION_AVAILABLE (scan 2026-11-03T01:35:03.192568+00:00); next eligible refresh 2026-11-04T01:35:03.192568+00:00. NOT ELIGIBLE now (2026-11-03T04:23:16Z; ~21h12m remaining).
 
 Task for next agent:
 1. Offline gate check first: compare now >= next_eligible_refresh_at (2026-11-04T01:35:03.192568+00:00); verify universe/last_scan.json unchanged (snapshot_id mcap_snapshot_20261103_013503).
