@@ -1,6 +1,6 @@
-## Current state (2026-11-03T10:25:52Z)
+## Current state (2026-11-03T10:29:09Z)
 
-- Gate status: **NOT ELIGIBLE** (bound `2026-11-04T01:35:03.192568+00:00` not elapsed; now `2026-11-03T10:25:52Z`, ~15h09m remaining).
+- Gate status: **NOT ELIGIBLE** (bound `2026-11-04T01:35:03.192568+00:00` not elapsed; now `2026-11-03T10:29:09Z`, ~15h06m remaining).
 - Offline gate check performed via `universe/last_scan.json` (unchanged).
 - Latest snapshot: `universe/mcap_snapshot_20261103_013503.json` (scanned_at `2026-11-03T01:35:03.192568+00:00`, pages 20/20, 2000 entries, coverage complete).
 - Universe unchanged (N=275). Expansion floor `ALPINE/USDT` $3,392,434.
