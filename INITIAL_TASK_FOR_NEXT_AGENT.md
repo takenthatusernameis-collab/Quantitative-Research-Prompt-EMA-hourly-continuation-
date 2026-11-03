@@ -62,3 +62,5 @@ Resume wakeup: `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (
 **Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
 **Wakeup:** `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (retain).
+
+- 2026-11-03T17:31:44Z — Offline gate re-check at env time 2026-11-03T17:31:44.142872Z. NOT ELIGIBLE until 2026-11-04T01:35:03.192568+00:00 (~8h05m remaining). EXPANSION_AVAILABLE, snapshot mcap_snapshot_20261103_013503, universe_n=275, floor ALPINE/USDT $3,392,434, eligible_unseen_below_floor_count=1 (DENT/USDT rank 1989, mcap $3,269,215, kucoin_usdt_pair=true). Coverage: data/fixtures/DENT_USDT.csv absent, no DENT references in results/ — --apply NOT run. Wakeup wku_19fbd8c47001bdVTRQ36qHnW8N due 2026-11-04T01:40:00.000Z retained. Git clean.
