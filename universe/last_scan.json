@@ -1,26 +1,35 @@
 {
-  "recorded_at": "2026-11-02T00:55:59.120403+00:00",
-  "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
-  "snapshot_id": "mcap_snapshot_20261102_005558",
-  "snapshot_path": "universe/mcap_snapshot_20261102_005558.json",
+  "recorded_at": "2026-11-03T01:35:03.619173+00:00",
+  "state": "EXPANSION_AVAILABLE",
+  "snapshot_id": "mcap_snapshot_20261103_013503",
+  "snapshot_path": "universe/mcap_snapshot_20261103_013503.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-11-02T00:55:58.735958+00:00",
+  "scanned_at": "2026-11-03T01:35:03.192568+00:00",
   "coverage": {
     "pages_requested": 20,
     "pages_fetched": 20,
     "all_requested_pages_returned": true,
     "entries_count": 2000,
     "lowest_rank_covered": 2000,
-    "lowest_market_cap_usd": 3271138
+    "lowest_market_cap_usd": 3225884
   },
   "coverage_reaches_below_floor": true,
   "universe_n": 275,
   "expansion_floor": {
-    "symbol": "PIXEL/USDT",
-    "market_cap_usd": 3312119
+    "symbol": "ALPINE/USDT",
+    "market_cap_usd": 3392434
   },
-  "eligible_unseen_below_floor_count": 0,
-  "eligible_unseen_below_floor": [],
-  "batch_selected": [],
-  "next_eligible_refresh_at": "2026-11-03T00:55:58.735958+00:00"
+  "eligible_unseen_below_floor_count": 1,
+  "eligible_unseen_below_floor": [
+    {
+      "rank": 1989,
+      "symbol": "DENT",
+      "name": "Dent",
+      "market_cap_usd": 3269215
+    }
+  ],
+  "batch_selected": [
+    "DENT/USDT"
+  ],
+  "next_eligible_refresh_at": "2026-11-04T01:35:03.192568+00:00"
 }
