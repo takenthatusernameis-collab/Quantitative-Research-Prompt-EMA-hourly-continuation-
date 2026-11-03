@@ -1,13 +1,12 @@
-# Initial Task for Next Agent
+# Initial Task for Next Agent — EMA hourly continuation universe-refresh gate
 
-**Task:** Resume the EMA hourly continuation universe-refresh gate.
+**Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
-
-**Current state (as of 2026-11-03T19:30:32Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. NOT ELIGIBLE at handoff time (~6h04m31s remaining; re-verify at resume).
-- `universe/last_scan.json`: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261103_013503`, scanned_at `2026-11-03T01:35:03.192568+00:00`, coverage 20/20 pages, 2000 entries, universe_n=275, expansion floor `ALPINE/USDT` $3,392,434, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"].
-- Only eligible unseen below-floor candidate: `DENT/USDT` (rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`). No fixture (`data/fixtures/DENT_USDT.csv` absent) and no grid coverage in `results/` → `--apply` must NOT run without coverage.
+**Current state (as of 2026-11-03T19:35:15Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. NOT ELIGIBLE at resume time (~6h00m remaining; re-verify at resume).
+- `universe/last_scan.json`: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261103_013503`, scanned_at `2026-11-03T01:35:03.192568Z`, coverage 20/20 pages, 2000 entries, universe_n=275, expansion floor `ALPINE/USDT` $3,392,434, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"].
+- Only eligible unseen below-floor candidate: `DENT/USDT` (rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`).
+- DENT has NO fixture (`data/fixtures/DENT_USDT.csv` absent) and NO grid config for DENT in `results/` → `--apply` must NOT run without coverage.
 - Baseline grid `results/20261019_135940_grid` complete (18150/18150); mutations NOT_PROMOTED; `FINAL_DECISION.md` records program-level rejection. Git tree clean.
 
 **What to do:**
