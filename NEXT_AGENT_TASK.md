@@ -1,6 +1,6 @@
-## Current state (2026-11-03T06:25:22Z)
+## Current state (2026-11-03T06:36:55Z)
 
-- Gate status: **NOT ELIGIBLE** (bound `2026-11-04T01:35:03.192568+00:00` not elapsed; now `2026-11-03T06:25:22Z`, ~19h09m remaining).
+- Gate status: **NOT ELIGIBLE** (bound `2026-11-04T01:35:03.192568+00:00` not elapsed; now `2026-11-03T06:36:55Z`, ~18h58m remaining).
 - Offline gate check performed: read `universe/last_scan.json` directly. Result: eligible=false per policy (next_eligible_refresh_at not elapsed).
 - Latest snapshot: `universe/mcap_snapshot_20261103_013503.json` (scanned_at `2026-11-03T01:35:03.192568+00:00`, pages 20/20, 2000 entries, coverage complete, lowest_market_cap_usd=3225884). Verified: `fetched_at` == `last_scan.scanned_at`, `entries_count`==len(entries)==2000, `all_requested_pages_returned`=true, `lowest_rank_covered`=2000.
 - Universe unchanged (N=275). Expansion floor `ALPINE/USDT` $3,392,434 (rank 1970).
@@ -29,3 +29,5 @@ Resume wakeup: `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (
 
 
 - 2026-11-03T06:31:17Z — Read prior agent task from durable handoff and completed. Offline gate check via `universe/last_scan.json` (next_eligible_refresh_at `2026-11-04T01:35:03.192568+00:00`, now `2026-11-03T06:31:17Z`): NOT ELIGIBLE (~18h04m remaining). Verified unchanged: state EXPANSION_AVAILABLE, snapshot_id `mcap_snapshot_20261103_013503`, scanned_at `2026-11-03T01:35:03.192568+00:00`, universe_n=275, expansion_floor ALPINE/USDT $3,392,434, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"]. `data/fixtures/DENT_USDT.csv` absent; no grid config for DENT — `--apply` NOT run. `git status --short` empty. No provider calls, no snapshot pass, no grid reruns, no candle fetches, no cost/fill changes. Existing wakeup `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` retained. Gate remains closed; nothing actionable before `2026-11-04T01:35:03.192568+00:00`.
+
+- 2026-11-03T06:36:55Z — Read prior agent task from durable handoff and completed. Offline gate check via `universe/last_scan.json` (next_eligible_refresh_at `2026-11-04T01:35:03.192568+00:00`, now `2026-11-03T06:36:55Z`): NOT ELIGIBLE (~18h58m remaining). Verified unchanged: state EXPANSION_AVAILABLE, snapshot_id `mcap_snapshot_20261103_013503`, scanned_at `2026-11-03T01:35:03.192568+00:00`, universe_n=275, expansion_floor ALPINE/USDT $3,392,434, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"]. `data/fixtures/DENT_USDT.csv` absent; no grid config for DENT — `--apply` NOT run. `git status --short` empty. No provider calls, no snapshot pass, no grid reruns, no candle fetches, no cost/fill changes. Existing wakeup `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` retained. Gate remains closed; nothing actionable before `2026-11-04T01:35:03.192568+00:00`.
