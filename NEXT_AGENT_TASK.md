@@ -1,27 +1,29 @@
-## Current state (2026-11-02T19:50:35+00:00)
+## Current state (2026-11-03T02:28:06+00:00)
 
-- Gate status: **NOT ELIGIBLE** (bound `2026-11-03T00:55:58.735958+00:00` not elapsed; now `2026-11-02T22:47:55Z`, ~2h08m remaining).
+- Gate status: **NOT ELIGIBLE** (bound `2026-11-04T01:35:03.192568+00:00` not elapsed; now `2026-11-03T02:28:06Z`, ~23h07m remaining).
 - Offline gate check performed: read `universe/last_scan.json` directly. Result: eligible=false per policy (next_eligible_refresh_at not elapsed).
-- Latest snapshot: `universe/mcap_snapshot_20261102_005558.json` (scanned_at `2026-11-02T00:55:58.735958+00:00`, recorded_at `2026-11-02T00:55:59.120403+00:00`, pages 20/20, 2000 entries, coverage complete, lowest_market_cap_usd=3271138).
-- Universe unchanged (N=275). Expansion floor PIXEL/USDT rank context, market_cap_usd 3312119.
-- Below-floor band (mcap < $3,312,119): 10 entries, **all excluded** — 10 by `no_tradable_kucoin_spot_usdt_pair` (USDSO, VOLT, NAV, HPO, AGVE, WAAC, BRL1, BOOE, MNTX, MAX); zero eligible unseen below-floor names, matching `eligible_unseen_below_floor_count=0`. No batch added.
-- Scan record: `universe/last_scan.json` state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, next eligible refresh `2026-11-03T00:55:58.735958+00:00`. Verified unchanged (snapshot_id, scanned_at, coverage, universe_n, expansion_floor, eligible_unseen_below_floor_count=0, batch_selected=[]).
-- `--apply` NOT run (no new batch). No grid reruns, no candle fetches, no cost/fill changes.
+- Latest snapshot: `universe/mcap_snapshot_20261103_013503.json` (scanned_at `2026-11-03T01:35:03.192568+00:00`, pages 20/20, 2000 entries, coverage complete, lowest_market_cap_usd=3225884). Verified: `fetched_at` == `last_scan.scanned_at`, `entries_count`==len(entries)==2000, `all_requested_pages_returned`=true, `lowest_rank_covered`=2000.
+- Universe unchanged (N=275). Expansion floor `ALPINE/USDT` $3,392,434 (rank 1970).
+- Below-floor band (mcap < $3,392,434): 30 entries; 29 excluded — 28 by `no_tradable_kucoin_spot_usdt_pair` and 1 by `insufficient_hourly_history_for_grid` (HPP rank 1975); exactly 1 eligible unseen: `DENT/USDT` rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`, matching `eligible_unseen_below_floor_count=1`, `batch_selected=["DENT/USDT"]`.
+- DENT coverage review: NO fixture (`data/fixtures/DENT_USDT.csv` absent), NO grid config for DENT. `--apply` NOT run. No grid reruns, no candle fetches, no cost/fill changes.
+- Scan record: `universe/last_scan.json` state `EXPANSION_AVAILABLE`, next eligible refresh `2026-11-04T01:35:03.192568+00:00`. Verified unchanged (snapshot_id, scanned_at, coverage, universe_n, expansion_floor, eligible_unseen_below_floor_count=1, batch_selected).
 - Baseline grid: `results/20261019_135940_grid` complete (18150/18150). Mutations C_min_risk_atr and C_stricter_trend NOT_PROMOTED. `FINAL_DECISION.md` records program-level rejection.
 - Git: clean working tree.
 
 ## Measurable next task
 
-Gate not elapsed. At/after `2026-11-03T00:55:58.735958+00:00`:
+Gate not elapsed. At/after `2026-11-04T01:35:03.192568+00:00`:
 1. Offline gate check first (compare now >= next_eligible_refresh_at; verify `universe/last_scan.json` unchanged).
 2. If eligible and scan shows expansion available, run at most one 20-page pass: `PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20`.
 3. Recompute floor, inspect below-floor band, update `universe/last_scan.json`.
-4. Do NOT apply any batch without fixtures/grid coverage.
+4. Review candidate DENT/USDT (rank 1989, mcap $3,269,215) for fixtures/grid coverage before any --apply; do NOT apply without coverage.
 5. No grid reruns, no candle fetches, no cost/fill changes. Keep strict confirmatory separate from exploratory.
 
 Constraints (unchanged): historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy. If gate still not elapsed, only perform offline gate check, record result, update handoff, and schedule/await next wakeup; do not make provider calls.
 
-Resume wakeup: `wku_19cf917f30018EtUW41MWbYrU6` due 2026-11-03T01:00:00.000Z (do not duplicate).
+Resume wakeup: `wku_19f3ddca7001zcGvIgiKDbleaQ` due 2026-11-04T01:40:00.000Z (do not duplicate).
+
+- 2026-11-03T02:28:06Z — Read prior agent task from durable handoff and completed. Offline gate check via `universe/last_scan.json` (next_eligible_refresh_at `2026-11-04T01:35:03.192568+00:00`, now `2026-11-03T02:28:06Z`): NOT ELIGIBLE (~23h07m remaining). Verified unchanged (state `EXPANSION_AVAILABLE`, snapshot_id `mcap_snapshot_20261103_013503`, scanned_at `2026-11-03T01:35:03.192568+00:00`, universe_n=275, expansion_floor `ALPINE/USDT` $3,392,434, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"], next_eligible_refresh_at `2026-11-04T01:35:03.192568+00:00`). Independent snapshot reconciliation of `universe/mcap_snapshot_20261103_013503.json`: `fetched_at` == `last_scan.scanned_at` (2026-11-03T01:35:03.192568Z), pages_fetched=20 == pages_requested=20, `all_requested_pages_returned`=true, entries_count=2000 == len(entries)=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3225884. Below-floor band (mcap < $3,392,434): 30 entries; 29 excluded — 28 by `no_tradable_kucoin_spot_usdt_pair` and 1 by `insufficient_hourly_history_for_grid` (HPP rank 1975); exactly 1 eligible unseen: `DENT/USDT` rank 1989, mcap $3,269,215, `kucoin_usdt_pair=true`, `exclusion_reason=null`, matching `eligible_unseen_below_floor_count=1` and `batch_selected=["DENT/USDT"]`. `universe_n=275` consistent. Candidate coverage review: `data/fixtures/DENT_USDT.csv` absent and no grid config for DENT — no fixtures/grid coverage, so `--apply` NOT run. `git status --short` empty, `git diff --stat` empty. No provider calls made. No snapshot pass, no `--apply`, no grid reruns, no candle fetches, no cost/fill changes. No pending wakeups in this session; scheduled resume wakeup `wku_19f3ddca7001zcGvIgiKDbleaQ` due `2026-11-04T01:40:00.000Z` (just after the bound; not duplicating). `INITIAL_TASK_FOR_NEXT_AGENT.md` refreshed clean; this handoff entry appended. Gate remains closed; nothing actionable before `2026-11-04T01:35:03.192568+00:00`.
 
 - 2026-11-02T10:44:23+00:00 — Read prior agent task from durable handoff and completed. Offline gate check via `universe/last_scan.json` (next_eligible_refresh_at 2026-11-03T00:55:58.735958+00:00, now 2026-11-02T10:44:23Z): NOT ELIGIBLE (~14h11m remaining). Verified unchanged (state AWAITING_NEW_ELIGIBLE_CANDIDATES, universe_n=275, expansion_floor PIXEL/USDT $3312119, eligible_unseen_below_floor_count=0, batch_selected=[]). No provider call, no snapshot pass, no --apply, no grid reruns/candle fetches/cost changes. Existing wakeup wku_19bd50244001PyZb5b6lrM6bl6 due 2026-11-03T01:00:00Z retained (not duplicated). Prior task completed: offline gate check performed and recorded; gate remains closed. Handoff updated.
 - 2026-11-02T10:47:16+00:00 — Re-verified gate still closed. `universe/last_scan.json` unchanged (snapshot_id mcap_snapshot_20261102_005558, scanned_at 2026-11-02T00:55:58.735958Z, state AWAITING_NEW_ELIGIBLE_CANDIDATES, next_eligible_refresh_at 2026-11-03T00:55:58.735958Z). Bound not elapsed: now 2026-11-02T10:47:16Z < bound (~14h08m remaining). No provider calls made. No state changes. Handoff and initial task message for next agent refreshed below.
