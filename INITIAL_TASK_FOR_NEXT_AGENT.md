@@ -44,3 +44,5 @@ Resume wakeup: `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (
 **Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
 **Wakeup:** `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (retain).
+
+- 2026-11-03T12:23:56Z — Re-verified gate. NOT ELIGIBLE until 2026-11-04T01:35:03.192568+00:00 (~13h11m). DENT/USDT only eligible unseen below floor; no fixtures/grid coverage → do not apply. Wakeup wku_19fbd8c47001bdVTRQ36qHnW8N retained. Clean tree.
