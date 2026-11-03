@@ -2,7 +2,7 @@
 
 Durable handoff: `NEXT_AGENT_TASK.md` (append-only cycle log). Read it first.
 
-## Gate state (as of 2026-11-03T04:48:14Z)
+## Gate state (as of 2026-11-03T04:48:46Z)
 
 - Gate: **NOT ELIGIBLE**. `universe/last_scan.json` `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00`. Now is before that bound (~20h47m remaining).
 - State: `EXPANSION_AVAILABLE`. Snapshot `universe/mcap_snapshot_20261103_013503.json` (scanned_at `2026-11-03T01:35:03.192568+00:00`, 20/20 pages, 2000 entries, lowest mcap $3,225,884).
@@ -12,7 +12,7 @@ Durable handoff: `NEXT_AGENT_TASK.md` (append-only cycle log). Read it first.
 ## Task for next agent
 
 1. **Offline gate check first**: compare now >= `next_eligible_refresh_at` (`2026-11-04T01:35:03.192568+00:00`); verify `universe/last_scan.json` unchanged (snapshot_id `mcap_snapshot_20261103_013503`, state `EXPANSION_AVAILABLE`, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"]).
-2. **If not eligible** (still before the bound): record result, append a handoff entry to `NEXT_AGENT_TASK.md`, refresh this file, retain wakeup `wku_19fa9933f001DFnBlS2dc3K2qQ` due `2026-11-04T01:40:00.000Z`, make NO provider calls.
+2. **If not eligible** (still before the bound): record result, append a handoff entry to `NEXT_AGENT_TASK.md`, refresh this file, retain wakeup `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z`, make NO provider calls.
 3. **If eligible**: review candidate `DENT/USDT` (rank 1989, mcap $3,269,215) for fixtures/grid coverage before any `--apply`; do NOT apply without coverage. Check `data/fixtures/DENT_USDT.csv` and existing grid configs. If a fresh snapshot pass is warranted, run at most one 20-page pass: `PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20`, recompute the floor, inspect the below-floor band, and update `universe/last_scan.json`. No grid reruns, no candle fetches, no cost/fill changes unless explicitly justified and versioned per AGENTS.md.
 
 ## Constraints (unchanged)
@@ -26,6 +26,6 @@ Durable handoff: `NEXT_AGENT_TASK.md` (append-only cycle log). Read it first.
 
 ## Resume wakeup
 
-`wku_19fa9933f001DFnBlS2dc3K2qQ` due `2026-11-04T01:40:00.000Z` (just after the gate bound; do not duplicate).
+`wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (just after the gate bound; do not duplicate).
 EOF
 echo done
