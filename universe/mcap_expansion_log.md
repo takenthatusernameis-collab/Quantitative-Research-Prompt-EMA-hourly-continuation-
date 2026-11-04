@@ -2,6 +2,18 @@
 
 ---
 
+## Gate re-check (2026-11-04T05:23Z) — no ranking pass made
+
+- Offline gate check (run at `2026-11-04T05:23:39Z`): `eligible=False`, bound `2026-11-05T02:42:21.634264+00:00` not yet elapsed (~21h19m remaining). No provider contact made.
+- **No provider contact.** No snapshot written. `last_scan.json` unchanged (state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, scanned_at `2026-11-04T02:42:21.634264+00:00`, recorded_at `2026-11-04T02:42:21.885606+00:00`, floor `ZKJ/USDT` $3,404,245, `eligible_unseen_below_floor_count = 1`, N = 275).
+- Direct reconciliation of `mcap_snapshot_20261104_024221.json`: len(entries)=2000 == `entries_count`, pages_fetched=20, pages_requested=20, `all_requested_pages_returned=true`, `lowest_rank_covered=2000`, `lowest_market_cap_usd=3222980`, `fetched_at` == `last_scan.scanned_at` (2026-11-04T02:42:21.634264+00:00), `history_probe_failure_count`=0. Floor `ZKJ/USDT` confirmed at rank 1960 with `kucoin_usdt_pair=true` and `exclusion_reason=null`.
+- Below-floor band (mcap < $3,404,245): 40 entries; 39 excluded; exactly 1 eligible unseen: `SUKU/USDT` (rank 1996, mcap $3,231,609, `kucoin_usdt_pair=true`, `exclusion_reason=null`). `universe_n=275`.
+- Candidate coverage review: `data/fixtures/SUKU_USDT.csv` absent (ls exit=2), no `SUKU` references in `results/` (grep -rl exit=1) — no fixtures/grid coverage, so `--apply` NOT run.
+- Session prep (verified this turn): `git status --short` empty, `git diff --stat` empty. Baseline grid `results/20261019_135940_grid` verified complete (18150/18150, all_symbols_processed=true, next_cell=null, pooled mean net PF 0.4987).
+- Wakeup `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z` retained (do not re-schedule a duplicate).
+- Handoffs `INITIAL_TASK_FOR_NEXT_AGENT.md` and `NEXT_AGENT_TASK.md` updated with this verification.
+- The gated market-cap expansion cycle cannot proceed until the bound elapses — nothing is actionable before `2026-11-05T02:42:21.634264+00:00`.
+
 ## Gate re-check (2026-11-02T21:55Z) — no ranking pass made
 
 - Offline gate check (run at `2026-11-02T21:55:49Z`): `eligible=False`, bound `2026-11-03T00:55:58.735958+00:00` not yet elapsed (~2h 59m remaining). No provider contact made.
