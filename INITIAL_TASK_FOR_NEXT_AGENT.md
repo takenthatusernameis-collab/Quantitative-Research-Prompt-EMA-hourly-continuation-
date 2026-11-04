@@ -4,7 +4,7 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-04T04:16:38Z):**
+**Current state (as of 2026-11-04T04:17:43Z):**
 - Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~22h25m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid) and `scripts.refresh_gate.gate_status` (eligible=false).
 - State `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, snapshot_path `universe/mcap_snapshot_20261104_024221.json`, scanned_at `2026-11-04T02:42:21.634264+00:00`, recorded_at `2026-11-04T02:42:21.885606+00:00`, snapshot_source `CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)`.
 - Coverage: pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3222980, coverage_reaches_below_floor=true.
