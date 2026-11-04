@@ -1,10 +1,10 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
+**Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` before acting.
 
-## Current state (as of 2026-11-04T14:04:26Z)
+## Current state (as of 2026-11-04T14:11:19Z)
 
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~12h37m remaining).
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~12h31m remaining).
 - `universe/last_scan.json` unchanged: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor `ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
 - SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid config in `results/` → `--apply` must NOT run without coverage.
 - Baseline grid `results/20261019_135940_grid` complete; mutations NOT_PROMOTED; `FINAL_DECISION.md` records program-level rejection. Git tree clean.
@@ -22,7 +22,4 @@ Historical research only; no orders/live/paper trading; preserve EMA signal/fill
 
 ## Wakeup
 
-Retained: due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
-
-## Update (2026-11-04T14:08:24Z) — handoff refreshed
-- Re-checked gate: now `2026-11-04T14:08:24Z`, `next_eligible_refresh_at` `2026-11-05T02:42:21.634264+00:00` → NOT ELIGIBLE (~12h34m). `universe/last_scan.json` unchanged; candidate SUKU/USDT has no fixture (`data/fixtures/SUKU_USDT.csv` absent) and no grid coverage in `results/` → `--apply` must not run without coverage. Baseline/rejection state intact. Wakeup retained for `2026-11-05T02:45:00.000Z`. No other changes.
+Retained: `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z`.
