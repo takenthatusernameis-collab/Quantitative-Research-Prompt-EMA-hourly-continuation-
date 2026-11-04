@@ -2,9 +2,9 @@
 
 **Task:** Offline gate re-check for EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` before acting.
 
-## Current state (as of 2026-11-04T11:11:45Z)
+## Current state (as of 2026-11-04T11:19:46Z)
 
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~15:30:36 remaining).
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~15:22:35 remaining).
 - `universe/last_scan.json` unchanged: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor `ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
 - SUKU has NO fixture and NO grid coverage → `--apply` MUST NOT run.
 - Baseline grid complete; program-level rejection recorded. Git tree clean.
@@ -12,7 +12,7 @@
 ## What to do (next agent)
 
 1. Re-verify gate eligibility: compare current UTC time vs `next_eligible_refresh_at` in `universe/last_scan.json`.
-2. If still not eligible: record offline check in `NEXT_AGENT_TASK.md`, do not schedule duplicate wakeup, await `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z`. No provider calls.
+2. If still not eligible: record offline check in `NEXT_AGENT_TASK.md`, do not schedule duplicate wakeup, await `wku_1a64c6fd3001mcnJiTnf05Ac4c` due `2026-11-05T02:45:00.000Z`. No provider calls.
 3. If eligible: run at most one 20-page snapshot pass, recompute floor, inspect below-floor band, update `last_scan.json`, review candidate coverage before any `--apply`. Do NOT apply without coverage.
 4. Never rerun grids, fetch candles, change costs/fills, or blur confirmatory vs exploratory.
 
@@ -22,4 +22,4 @@ Historical research only; no orders/live/paper trading; preserve EMA signal/fill
 
 ## Wakeup
 
-Retained: `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z`. Do not re-schedule a duplicate.
+Retained: `wku_1a64c6fd3001mcnJiTnf05Ac4c` due `2026-11-05T02:45:00.000Z`. Do not re-schedule a duplicate.
