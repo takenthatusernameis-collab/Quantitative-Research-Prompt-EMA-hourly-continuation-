@@ -2,8 +2,8 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-04T09:16:27Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~17h26m remaining). Verified via direct read of `universe/last_scan.json` (35 lines, JSON valid, unchanged) and independent time comparison at env time `2026-11-04T09:16:27Z` (gate_status: eligible=false, now=`2026-11-04T09:16:40.395752+00:00`). State unchanged: recorded_at=`2026-11-04T02:42:21.885606+00:00`, state=EXPANSION_AVAILABLE, snapshot_id=`mcap_snapshot_20261104_024221`, snapshot_path=`universe/mcap_snapshot_20261104_024221.json`, scanned_at=`2026-11-04T02:42:21.634264+00:00`, coverage pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3222980, coverage_reaches_below_floor=true, universe_n=275, expansion_floor ZKJ/USDT $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
+**Current state (as of 2026-11-04T09:17:21Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~17h25m remaining). Verified via direct read of `universe/last_scan.json` (35 lines, JSON valid, unchanged) and independent time comparison at env time `2026-11-04T09:17:36Z` (eligible=false, reason="the 24 h refresh bound 2026-11-05T02:42:21.634264+00:00 has not elapsed yet"). State unchanged: recorded_at=`2026-11-04T02:42:21.885606+00:00`, state=EXPANSION_AVAILABLE, snapshot_id=`mcap_snapshot_20261104_024221`, snapshot_path=`universe/mcap_snapshot_20261104_024221.json`, scanned_at=`2026-11-04T02:42:21.634264+00:00`, coverage pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3222980, coverage_reaches_below_floor=true, universe_n=275, expansion_floor ZKJ/USDT $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
 - SUKU has no fixture (`data/fixtures/SUKU_USDT.csv` absent, ls exit=2) and no grid coverage in `results/` (grep -rl exit=1, 0 matches) → no fixtures/grid coverage, so `--apply` MUST NOT run. Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` present recording program-level rejection. `git status --short` empty, `git diff --stat` empty.
 
 **What to do:**
@@ -14,4 +14,4 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-**Wakeup:** `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Gate closed for ~17h31m from 2026-11-04T09:11:16Z. Retained — do not re-schedule a duplicate.
+**Wakeup:** `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Gate closed for ~17h25m from 2026-11-04T09:17:21Z. Retained — do not re-schedule a duplicate.
