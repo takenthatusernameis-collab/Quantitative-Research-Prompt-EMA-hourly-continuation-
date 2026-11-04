@@ -2,8 +2,7 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`, and this file before acting.
 
-**Current state (as of 2026-11-04T13:37:27Z):**
-
+**Current state (as of 2026-11-04T14:03:21Z):**
 - Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~13:04:45 remaining). Verified via direct read of `universe/last_scan.json` (JSON valid, file unchanged) and via inline Python `datetime.fromisoformat` at env time `2026-11-04T13:37:36Z` (`date -u`). State unchanged: snapshot_id=`mcap_snapshot_20261104_024221`, scanned_at=`2026-11-04T02:42:21.634264+00:00`, universe_n=275, expansion_floor=`ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
 - Candidate `SUKU/USDT` has NO fixture (`data/fixtures/SUKU_USDT.csv` absent, `ls` exit=2) and NO `SUKU` references in `results/` (grep exit=1, 0 matches) → no fixtures/grid coverage, so `--apply` MUST NOT run.
 - Baseline grid `results/20261019_135940_grid` complete (progress.json `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `results/FINAL_DECISION.md` (23304 bytes) records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty).
