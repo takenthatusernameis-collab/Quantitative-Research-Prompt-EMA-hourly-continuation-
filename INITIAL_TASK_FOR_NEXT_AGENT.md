@@ -23,3 +23,6 @@ Historical research only; no orders/live/paper trading; preserve EMA signal/fill
 ## Wakeup
 
 Retained: due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
+
+## Update (2026-11-04T14:08:24Z) — handoff refreshed
+- Re-checked gate: now `2026-11-04T14:08:24Z`, `next_eligible_refresh_at` `2026-11-05T02:42:21.634264+00:00` → NOT ELIGIBLE (~12h34m). `universe/last_scan.json` unchanged; candidate SUKU/USDT has no fixture (`data/fixtures/SUKU_USDT.csv` absent) and no grid coverage in `results/` → `--apply` must not run without coverage. Baseline/rejection state intact. Wakeup retained for `2026-11-05T02:45:00.000Z`. No other changes.
