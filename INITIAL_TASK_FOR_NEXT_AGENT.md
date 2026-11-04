@@ -13,4 +13,4 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-**Wakeup:** `wku_1a5b579950012NwH6abkt0DK4c` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Gate closed for ~18h09m from 2026-11-04T08:33:48Z. Retained — do not re-schedule a duplicate.
+**Wakeup:** `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Gate closed for ~18h09m from 2026-11-04T08:33:48Z. Retained — do not re-schedule a duplicate.
