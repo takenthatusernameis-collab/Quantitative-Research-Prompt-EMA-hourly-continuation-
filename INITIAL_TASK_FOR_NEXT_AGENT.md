@@ -1,18 +1,25 @@
-Resume the EMA hourly continuation universe-refresh gate.
+# INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
+**Task:** Offline gate re-check for EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` before acting.
 
-**Current state (as of 2026-11-04T11:01:23Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~15h41m remaining). Verified via direct read of `universe/last_scan.json` (35 lines, JSON valid, unchanged) and independent inline-Python gate status check: eligible=false, bound=`2026-11-05T02:42:21.634264+00:00`, remaining=15:40:50. State unchanged: recorded_at=`2026-11-04T02:42:21.885606+00:00`, state=EXPANSION_AVAILABLE, snapshot_id=`mcap_snapshot_20261104_024221`, snapshot_path=`universe/mcap_snapshot_20261104_024221.json`, scanned_at=`2026-11-04T02:42:21.634264+00:00`, coverage pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3222980, coverage_reaches_below_floor=true, universe_n=275, expansion_floor ZKJ/USDT $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
-- SUKU has no fixture (`data/fixtures/SUKU_USDT.csv` absent, ls exit=2) and no grid coverage in `results/` (grep -rl exit=1, 0 matches) → no fixtures/grid coverage, so `--apply` MUST NOT run. Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` present recording program-level rejection. `git status --short` empty, `git diff --stat` empty.
-- Wakeup scheduled: `wku_1a63b7553001PqzYoOuzmeNnFZ` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
+## Current state (as of 2026-11-04T11:06:10Z)
 
-**What to do:**
-1. Re-verify gate eligibility at start (NOT ELIGIBLE until `2026-11-05T02:42:21.634264+00:00`).
-2. If still not eligible: do nothing but record the offline check in `NEXT_AGENT_TASK.md`, update this handoff if needed, and await the scheduler wakeup. No provider calls.
-3. If eligible: run at most one 20-page snapshot pass (`PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20`), recompute the floor, inspect the below-floor band, update `universe/last_scan.json`, then review any new candidate(s) for fixture/grid coverage before any `--apply`. Do NOT apply without coverage.
-4. Never: rerun grids, fetch candles, change costs/fills, or blur confirmatory vs exploratory.
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~15h36m remaining).
+- `universe/last_scan.json` unchanged: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor ZKJ/USDT $3,404,245, eligible_unseen_below_floor_count=1 (SUKU/USDT).
+- SUKU has NO fixture and NO grid config → `--apply` MUST NOT run.
+- Baseline grid complete; program-level rejection recorded. Git tree clean.
 
-**Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
+## What to do (next agent)
 
-**Wakeup:** `wku_1a63b7553001PqzYoOuzmeNnFZ` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Gate closed for ~15h41m from 2026-11-04T11:01:23Z. Retained — do not re-schedule a duplicate.
+1. Re-verify gate eligibility: compare current UTC time vs `next_eligible_refresh_at` in `universe/last_scan.json`.
+2. If still not eligible: record offline check in `NEXT_AGENT_TASK.md`, do not schedule duplicate wakeup, await `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z`. No provider calls.
+3. If eligible: run at most one 20-page snapshot pass, recompute floor, inspect below-floor band, update `last_scan.json`, review candidate coverage before any `--apply`. Do NOT apply without coverage.
+4. Never rerun grids, fetch candles, change costs/fills, or blur confirmatory vs exploratory.
+
+## Constraints
+
+Historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; separate exploratory from confirmatory; preserve negative/blocked results.
+
+## Wakeup
+
+Retained: `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z`. Do not re-schedule a duplicate.
