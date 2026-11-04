@@ -4,8 +4,8 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-04T01:17:10Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00` in `universe/last_scan.json`. NOT ELIGIBLE at handoff time (~17m53s remaining; re-verify at resume — likely ELIGIBLE after ~01:35:03Z, and wakeup `wku_19fbd8c47001bdVTRQ36qHnW8N` fires at 01:40:00Z).
+**Current state (as of 2026-11-04T01:18:08Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-04T01:35:03.192568+00:00` in `universe/last_scan.json`. NOT ELIGIBLE at handoff time (~16m55s remaining; re-verify at resume — likely ELIGIBLE after ~01:35:03Z; wakeup `wku_19fbd8c47001bdVTRQ36qHnW8N` fires at 01:40:00Z).
 - State `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261103_013503`, scanned_at `2026-11-03T01:35:03.192568Z`, coverage 20/20 pages, 2000 entries, universe_n=275, expansion floor `ALPINE/USDT` $3,392,434, eligible_unseen_below_floor_count=1, batch_selected=["DENT/USDT"].
 - Only eligible unseen below-floor candidate: `DENT/USDT` (rank 1989, mcap $3,269,215). No fixture (`data/fixtures/DENT_USDT.csv` absent) and no grid config in `results/` → `--apply` must NOT run without coverage.
 - Baseline grid `results/20261019_135940_grid` complete (18150/18150); mutations NOT_PROMOTED; `FINAL_DECISION.md` records program-level rejection. Git tree clean.
@@ -19,3 +19,6 @@ Resume the EMA hourly continuation universe-refresh gate.
 **Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
 **Wakeup:** `wku_19fbd8c47001bdVTRQ36qHnW8N` due `2026-11-04T01:40:00.000Z` (retain).
+
+(End of file - total 21 lines)
+EOF
