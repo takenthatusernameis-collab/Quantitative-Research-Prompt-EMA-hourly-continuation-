@@ -1,22 +1,25 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`, and this file before acting.
+**Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-**Current state (as of 2026-11-04T14:03:21Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~13:04:45 remaining). Verified via direct read of `universe/last_scan.json` (JSON valid, file unchanged) and via inline Python `datetime.fromisoformat` at env time `2026-11-04T13:37:36Z` (`date -u`). State unchanged: snapshot_id=`mcap_snapshot_20261104_024221`, scanned_at=`2026-11-04T02:42:21.634264+00:00`, universe_n=275, expansion_floor=`ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
-- Candidate `SUKU/USDT` has NO fixture (`data/fixtures/SUKU_USDT.csv` absent, `ls` exit=2) and NO `SUKU` references in `results/` (grep exit=1, 0 matches) → no fixtures/grid coverage, so `--apply` MUST NOT run.
-- Baseline grid `results/20261019_135940_grid` complete (progress.json `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `results/FINAL_DECISION.md` (23304 bytes) records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty).
-- Wakeup retained for this session: `wku_1a6c9914a001pwoNREuXazyIvl` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). No prior pending wakeups existed (`cancel_wakeup list` returned none), so no duplicate risk.
+## Current state (as of 2026-11-04T14:04:26Z)
 
-**What to do:**
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~12h37m remaining).
+- `universe/last_scan.json` unchanged: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor `ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
+- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid config in `results/` → `--apply` must NOT run without coverage.
+- Baseline grid `results/20261019_135940_grid` complete; mutations NOT_PROMOTED; `FINAL_DECISION.md` records program-level rejection. Git tree clean.
 
-1. Re-verify gate eligibility at start (NOT ELIGIBLE until `2026-11-05T02:42:21.634264+00:00`).
+## What to do
+
+1. Re-verify gate eligibility: compare current UTC time against `next_eligible_refresh_at` in `universe/last_scan.json`; confirm the file is unchanged.
 2. If still not eligible: do nothing but record the offline check in `NEXT_AGENT_TASK.md`, update this handoff if needed, and await the scheduler wakeup. No provider calls.
 3. If eligible: run at most one 20-page snapshot pass (`PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20`), recompute the floor, inspect the below-floor band, update `universe/last_scan.json`, then review any new candidate(s) for fixture/grid coverage before any `--apply`. Do NOT apply without coverage.
 4. Never: rerun grids, fetch candles, change costs/fills, or blur confirmatory vs exploratory.
 
-**Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
+## Constraints
 
-**Wakeup:** `wku_1a6c17dc0001vJF6Ilf35w7Wxc` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Gate closed for ~13h14m from `2026-11-04T13:27:41Z`. Retain — do not re-schedule a duplicate.
-EOF
-echo done
+Historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
+
+## Wakeup
+
+Retained: due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
