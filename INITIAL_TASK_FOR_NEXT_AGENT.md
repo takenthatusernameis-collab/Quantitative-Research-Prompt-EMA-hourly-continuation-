@@ -4,8 +4,8 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-04T04:05:59Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~22h45m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid).
+**Current state (as of 2026-11-04T04:09:47Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~22h32m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid).
 - State `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, snapshot_path `universe/mcap_snapshot_20261104_024221.json`, scanned_at `2026-11-04T02:42:21.634264+00:00`, recorded_at `2026-11-04T02:42:21.885606+00:00`, snapshot_source `CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)`.
 - Coverage: pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3222980, coverage_reaches_below_floor=true.
 - Universe_n=275, expansion floor `ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1, batch_selected=["SUKU/USDT"].
@@ -20,6 +20,6 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-**Wakeup:** `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Gate closed for ~22h45m from 2026-11-04T03:57:07Z.
+**Wakeup:** `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Gate closed for ~22h32m from 2026-11-04T04:09:47Z.
 EOF
 echo done
