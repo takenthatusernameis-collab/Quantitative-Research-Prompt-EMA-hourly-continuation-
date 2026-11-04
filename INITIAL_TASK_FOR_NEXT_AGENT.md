@@ -2,11 +2,11 @@
 
 **Task:** Offline gate re-check for EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` before acting.
 
-## Current state (as of 2026-11-04T11:06:10Z)
+## Current state (as of 2026-11-04T11:10:43Z)
 
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~15h36m remaining).
-- `universe/last_scan.json` unchanged: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor ZKJ/USDT $3,404,245, eligible_unseen_below_floor_count=1 (SUKU/USDT).
-- SUKU has NO fixture and NO grid config → `--apply` MUST NOT run.
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~15:31:37 remaining).
+- `universe/last_scan.json` unchanged: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor `ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
+- SUKU has NO fixture and NO grid coverage → `--apply` MUST NOT run.
 - Baseline grid complete; program-level rejection recorded. Git tree clean.
 
 ## What to do (next agent)
