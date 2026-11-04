@@ -2,9 +2,9 @@
 
 **Task:** Offline gate re-check for EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` before acting.
 
-## Current state (as of 2026-11-04T12:02:26Z)
+## Current state (as of 2026-11-04T12:06:08Z)
 
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~14h39m remaining).
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~14h36m remaining).
 - `universe/last_scan.json` unchanged: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor `ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
 - SUKU has NO fixture and NO grid coverage → `--apply` MUST NOT run.
 - Baseline grid complete; program-level rejection recorded. Git tree clean.
@@ -22,4 +22,4 @@ Historical research only; no orders/live/paper trading; preserve EMA signal/fill
 
 ## Wakeup
 
-Retained: `wku_1a488323b001plz6i4dUtUGZkO` due `2026-11-05T02:45:00.000Z`. Do not re-schedule a duplicate.
+Retained: `wku_1a488323b001plz6i4dUtUGZkO` (also `wku_1a64c6fd3001mcnJiTnf05Ac4c`) due `2026-11-05T02:45:00.000Z`. Do not re-schedule a duplicate.
