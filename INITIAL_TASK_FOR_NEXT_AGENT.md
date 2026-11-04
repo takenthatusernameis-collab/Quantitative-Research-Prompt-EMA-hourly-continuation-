@@ -4,13 +4,12 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-04T22:41:02Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~4h04m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid, unchanged) and independent time comparison. Gate status: eligible=false.
+**Current state (as of 2026-11-04T22:42:12Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE until then (~3h58m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid, 35 lines, unchanged) and independent time comparison (`date -u` = `2026-11-04T22:42:12Z`). Gate status: eligible=false.
 - State `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor=`ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=["SUKU/USDT"].
-- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO references in `results/` → no fixtures/grid coverage, so `--apply` MUST NOT run.
-- Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` records program-level rejection. Git tree clean.
-- Wakeup scheduled: `wku_1a8b8c052001aN2Dd6lysVS9n3` due `2026-11-05T02:47:21.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
-
+- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent; `ls | grep -i suku` exit=1) and NO references in `results/` (`grep -rl SUKU results/` exit=1, 0 matches) → no fixtures/grid coverage, so `--apply` MUST NOT run.
+- Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty).
+- Wakeup scheduled: `wku_1a8bb8b3a001UQJOV3NcjiI8bk` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). No prior wakeups were pending for this session (`cancel_wakeup list` returned none), so a fresh one was created. Do not re-schedule a duplicate.
 
 **What to do:**
 1. Re-verify gate eligibility at start (read `universe/last_scan.json`, compare with current UTC time).
@@ -19,5 +18,3 @@ Resume the EMA hourly continuation universe-refresh gate.
 4. Never: rerun grids, fetch candles, change costs/fills, or blur confirmatory vs exploratory.
 
 **Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
-EOF
-echo done
