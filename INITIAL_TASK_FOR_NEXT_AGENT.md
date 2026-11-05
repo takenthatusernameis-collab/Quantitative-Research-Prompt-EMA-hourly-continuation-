@@ -1,6 +1,6 @@
 Resume the EMA hourly continuation universe-refresh gate.
 
-**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` (latest record: 2026-11-05T21:24:42Z).
+**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` (latest record: 2026-11-05T21:25:33Z).
 
 **Current state (verified 2026-11-05T21:23:56Z):**
 - Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (source of truth: `universe/last_scan.json`, JSON valid/unchanged). **NOT ELIGIBLE** (~22660s / ~6h17m remaining at verification). Re-verified offline via direct file read + independent Python `datetime.now(timezone.utc)` derivation (now=`2026-11-05T21:23:56.938873+00:00`).
