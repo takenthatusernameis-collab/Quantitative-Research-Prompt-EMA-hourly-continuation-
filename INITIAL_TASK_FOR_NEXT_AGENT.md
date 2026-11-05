@@ -2,12 +2,12 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-## Current state (as of 2026-11-05T06:24:46Z)
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE (~21h16m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid; unchanged) and independent inline Python (`json.load` + `datetime.fromisoformat`): eligible=false, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T06:24:46.640952+00:00`, remaining=21:16:50.512865.
+## Current state (as of 2026-11-05T06:28:21Z)
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE (~21h13m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid; unchanged) and independent inline Python (`json.load` + `datetime.fromisoformat`): eligible=false, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T06:28:21Z`, remaining~21:13:16.
 - `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
 - SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` → `--apply` MUST NOT run without coverage.
 - Baseline grid `results/20261019_135940_grid` verified complete (`all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `results/FINAL_DECISION.md` records program-level rejection. `scripts/fetch_mcap_snapshot.py` and `scripts/refresh_gate.py` present. Git tree clean.
-- Wakeup retained for this session: `wku_1aa33bb0b001x1MROZ0W65t6xA` due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
+- Wakeup retained: due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 ## What to do
 1. Re-verify gate eligibility: compare current UTC time against `next_eligible_refresh_at` in `universe/last_scan.json`; confirm the file is unchanged.
