@@ -2,10 +2,9 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-**Current state (2026-11-05T04:10:03Z):**
-- Gate NOT eligible. `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (last refresh 2026-11-05T03:41:37). ~23h 31m remaining. Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid) and inline Python: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:10:10.678749+00:00`, eligible=false, remaining=23:31:26.
-- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37).
-- Expansion floor `PIXEL/USDT` ($3,351,513). Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
+**Current state (2026-11-05T04:14:18Z):**
+- Gate NOT eligible. `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (last refresh 2026-11-05T03:41:37). ~23h 27m remaining. Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid) and inline Python: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:14:18Z`, eligible=false.
+- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` ($3,351,513). Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
 - SUKU has NO fixture and NO grid coverage → `--apply` must NOT run without coverage.
 - Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` records program-level rejection.
 - Wakeup scheduled: due 2026-11-06T03:46:56Z (5 min after gate opens).
