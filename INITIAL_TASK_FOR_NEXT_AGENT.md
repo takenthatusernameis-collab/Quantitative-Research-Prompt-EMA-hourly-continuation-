@@ -1,20 +1,22 @@
-# Initial task for next agent
+# Initial task message for the next agent
 
-Time: 2026-11-05T05:25:46Z
+**Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-## Handoff read (completed)
-- Read `NEXT_AGENT_TASK.md` (new entry appended this turn) and `INITIAL_TASK_FOR_NEXT_AGENT.md` (prior).
-- Gate state from `universe/last_scan.json` (unchanged): `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` scanned at `2026-11-05T03:41:37.153817+00:00`, `next_eligible_refresh_at=2026-11-06T03:41:37.153817+00:00`, expansion floor `PIXEL/USDT ($3,351,513)`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, universe_n=275.
-- Gate check (this turn): NOT eligible (~22h15m remaining), re-derived independently via inline Python. Wakeup scheduled for this session `wku_1aa2d4a180016y82cS3RKM5YWy` due `2026-11-06T03:46:56Z` (5 min after gate opens); do not duplicate.
+## Current state (as of 2026-11-05T05:29:38Z)
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE (~22h11m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged) and inline Python: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T05:29:38.181475+00:00`, eligible=false, remaining=22:11:58.972342.
+- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
+- No eligible candidates remain; prior SUKU candidate (from snapshot `mcap_snapshot_20261104_024221`) superseded. SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` (no matches) → `--apply` MUST NOT run without coverage.
+- Baseline grid `results/20261019_135940_grid` complete (`all_symbols_processed=true`, `stopped=false`, `next_cell=null`); `results/FINAL_DECISION.md` records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty).
+- Wakeup retained due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
-## What to do next
-1. **Do not apply anything.** Batch is empty; SUKU still has no fixture/grid coverage. Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` records program-level rejection.
-2. **Wait for gate eligibility.** At/after `2026-11-06T03:41:37.153817+00:00`, re-check with `scripts.refresh_gate.gate_status` and run `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 20` to get a fresh snapshot, then review any new candidate(s) for fixture/grid coverage before any `--apply`. Do NOT apply without coverage. If eligible with candidates, follow `AGENTS.md`/README constraints strictly (historical research only, no live/paper trading, preserve signal/cost assumptions, document provenance/selection/survivorship). If still no candidates, update `universe/last_scan.json` via refresh flow and set a new wakeup ~5 min after next `next_eligible_refresh_at`.
-3. **Preserve history.** Append timestamped gate re-check to `NEXT_AGENT_TASK.md` before ending. Keep clean git state (`git status --short` empty). Do not modify unrelated projects or trigger paid services.
+## What to do
+1. Re-verify gate eligibility: compare current UTC time against `next_eligible_refresh_at` in `universe/last_scan.json`; confirm the file is unchanged.
+2. If still not eligible: record the offline check in `NEXT_AGENT_TASK.md`, update this handoff if needed, and await the scheduler wakeup. No provider calls.
+3. If eligible: run at most one 20-page snapshot pass (`PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20`), recompute the floor, inspect the below-floor band, update `universe/last_scan.json`, then review any new candidate(s) for fixture/grid coverage before any `--apply`. Do NOT apply without coverage.
+4. Never: rerun grids, fetch candles, change costs/fills, or blur confirmatory vs exploratory.
 
 ## Constraints
-- Historical research only; no orders/deploys.
-- Preserve EMA signal/fill/cost assumptions.
-- If blocked/unavailable, follow adaptive policy: exploratory only if explicitly versioned/labeled, never treat current snapshot as confirmatory history.
-- Do not silently relax frozen history/sample/execution/cost requirements; relaxed versions need new ID with survivorship/selection/uncertainty/cost sensitivity.
-- Append to `NEXT_AGENT_TASK.md` on each gate re-check; update this file for the following agent.
+Historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
+
+## Wakeup
+Due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
