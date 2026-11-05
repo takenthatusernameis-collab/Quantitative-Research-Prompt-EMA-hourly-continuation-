@@ -2,11 +2,10 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-05T04:18:27Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE until then (~23h 23m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged) and independent re-derivation via `scripts.refresh_gate.gate_status(state)`: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:18:27.175420+00:00`, eligible=false, remaining=23:23:09.978397, reason="the 24 h refresh bound ... has not elapsed yet". This turn's offline re-check is complete and recorded in `NEXT_AGENT_TASK.md`.
-- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
-- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` → `--apply` must NOT run without coverage.
-- Baseline grid `results/20261019_135940_grid` complete (all_symbols_processed=true, stopped=false, next_cell=null); `FINAL_DECISION.md` records program-level rejection. Git tree clean.
+**Current state (as of 2026-11-05T04:21:41Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE until then (~23h20m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged) and time comparison. State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
+- SUKU still has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` → `--apply` must NOT run without coverage (currently no candidates anyway).
+- Baseline grid `results/20261019_135940_grid` complete; `FINAL_DECISION.md` records program-level rejection. Git tree: modified `universe/last_scan.json`, untracked `universe/mcap_snapshot_20261105_034137.json`.
 - Wakeup retained due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 **What to do:**
@@ -17,6 +16,4 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Constraints:** Historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-**Wakeup:** due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
-""" , filePath">
-/home/runner/work/Quantitative-Research-Prompt-EMA-hourly-continuation-/Quantitative-Research-Prompt-EMA-hourly-continuation-/INITIAL_TASK_FOR_NEXT_AGENT.md
+**Wakeup:** due `2026-11-06T03:46:56Z`. Do not re-schedule a duplicate.
