@@ -16,4 +16,4 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Constraints:** historical research only; no orders/live/paper trading; no fixtures as market evidence; free/public data and no-cost tooling only; follow `AGENTS.md` gate policy.
 
-**Wakeup:** no wakeup pending in this session (`cancel_wakeup list` returned none); schedule one due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate unless none is pending.
+**Wakeup:** wakeup scheduled this session due `2026-11-06T03:46:56Z` (wku_1ad546701001PJDHDtAGaFB87R); do not re-schedule a duplicate unless none is pending.
