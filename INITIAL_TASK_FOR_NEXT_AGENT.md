@@ -2,11 +2,11 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-**Current state (2026-11-05T07:38:04Z, offline re-check completed):**
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. **NOT ELIGIBLE** (~20h03m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid; unchanged) and inline Python: `eligible=false`, remaining≈20:03:33.
+**Current state (2026-11-05T07:40:00Z, offline re-check completed):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. **NOT ELIGIBLE** (~20h01m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged) and inline Python: `eligible=false`, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T07:40:54.579560+00:00`, remaining≈20:00:42.
 - `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, scanned 2026-11-05T03:41:37Z). Expansion floor `PIXEL/USDT` $3,351,513. `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. No candidates to apply.
-- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` → `--apply` MUST NOT run without coverage.
-- Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` records program-level rejection. Git clean.
+- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent, `ls` exit=2) and NO grid coverage in `results/` (`grep -rl SUKU results/` no output) → `--apply` MUST NOT run without coverage.
+- Baseline grid `results/20261019_135940_grid` complete (progress.json `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `results/FINAL_DECISION.md` records program-level rejection. Git clean (`git status --short` empty, `git diff --stat` empty).
 - Wakeup retained: due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 **What to do:**
