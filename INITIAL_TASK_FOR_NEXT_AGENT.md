@@ -2,12 +2,12 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-## Current state (as of 2026-11-05T05:34:25Z)
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE (~22h07m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged vs prior record) and independent inline Python (`json.load` + `datetime.fromisoformat`): eligible=false, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T05:34:25.215463+00:00`, remaining=22:07:11.938354.
+## Current state (as of 2026-11-05T05:38:12Z)
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE (~22h03m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged vs prior record) and independent inline Python (`json.load` + `datetime.fromisoformat`): eligible=false, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T05:38:12.906487+00:00`, remaining=22:03:24.906487.
 - `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
-- No eligible candidates remain; prior SUKU candidate (from snapshot `mcap_snapshot_20261104_024221`) superseded. SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent, `ls` exit=2) and NO grid coverage in `results/` (no matches) → `--apply` MUST NOT run without coverage.
-- Baseline grid `results/20261019_135940_grid` verified complete (progress.json present, `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `results/FINAL_DECISION.md` records program-level rejection. `scripts/fetch_mcap_snapshot.py` and `scripts/refresh_gate.py` present. Git tree clean (`git status --short` empty, `git diff --stat` empty).
-- Wakeup scheduled for this session: `wku_1aa33bb0b001x1MROZ0W65t6xA` due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
+- No eligible candidates remain; prior SUKU candidate (from snapshot `mcap_snapshot_20261104_024221`) superseded. SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` (no matches) → `--apply` MUST NOT run without coverage.
+- Baseline grid `results/20261019_135940_grid` verified complete (progress.json present, `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `results/FINAL_DECISION.md` records program-level rejection. `scripts/fetch_mcap_snapshot.py` and `scripts/refresh_gate.py` present. Git tree clean.
+- Wakeup retained for this session: `wku_1aa33bb0b001x1MROZ0W65t6xA` due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 ## What to do
 1. Re-verify gate eligibility: compare current UTC time against `next_eligible_refresh_at` in `universe/last_scan.json`; confirm the file is unchanged.
