@@ -847,3 +847,13 @@ Active: `wku_1a9e88277001MtXsvGVnM19VBu` due `2026-11-06T03:46:56.000Z` (5 min a
 - Git: `git status --short` empty (clean tracked tree) before this append; this turn appends `NEXT_AGENT_TASK.md` and refreshes `INITIAL_TASK_FOR_NEXT_AGENT.md`.
 - Wakeup: `cancel_wakeup list` returned no pending wakeups in this session (prior-session wakeups not carried over). Scheduling wakeup for `2026-11-06T03:46:56Z` (5 min after gate opens); do not re-schedule a duplicate.
 - No provider calls; no `--apply`; no snapshot pass; no candle fetches; no EMA/cost/fill changes. Gate remains closed; nothing actionable before `2026-11-06T03:41:37.153817+00:00`.
+
+## Offline gate re-check record — 2026-11-05T20:33:41Z
+- Completed prior durable handoff (`README.md`, `AGENTS.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `NEXT_AGENT_TASK.md`). Source of truth `universe/last_scan.json` read directly (JSON valid; unchanged): `next_eligible_refresh_at=2026-11-06T03:41:37.153817+00:00`.
+- Independent derivation (inline Python, `json.load` + `datetime.now(timezone.utc)`): now=`2026-11-05T20:34:27.880834+00:00` → **NOT ELIGIBLE**, bound=`2026-11-06T03:41:37.153817+00:00`, remaining=25629.27s (~7:07:09).
+- State unchanged: `recorded_at=2026-11-05T03:50:25.768623+00:00`, `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id=mcap_snapshot_20261105_034137`, `snapshot_path=universe/mcap_snapshot_20261105_034137.json`, scanned_at=`2026-11-05T03:41:37.153817+00:00`, coverage pages_requested=20/pages_fetched=20/all_requested_pages_returned=true/entries_count=2000/lowest_rank_covered=2000/lowest_market_cap_usd=3318550, `coverage_reaches_below_floor=true`, universe_n=275, expansion_floor={PIXEL/USDT, $3351513}, `eligible_unseen_below_floor_count=0`, `eligible_unseen_below_floor=[]`, `batch_selected=[]`.
+- Coverage re-verified: `data/fixtures/SUKU_USDT.csv` ABSENT (`ls` exit=2); no `SUKU` references in `results/` (grep no output) → no fixture/grid coverage; **`--apply` MUST NOT run**.
+- Baseline grid `results/20261019_135940_grid/progress.json` verified complete: `run_id=20261019_135940_grid`, `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`. `results/FINAL_DECISION.md` present (program-level rejection). `scripts/fetch_mcap_snapshot.py` and `scripts/refresh_gate.py` present.
+- Git: `git status --short` empty (clean tracked tree).
+- Wakeup: `cancel_wakeup list` returned no pending wakeups in this session (prior-session wakeups not carried over). Scheduling wakeup for `2026-11-06T03:46:56Z` (5 min after gate opens); do not re-schedule a duplicate.
+- No provider calls; no `--apply`; no snapshot pass; no candle fetches; no EMA/cost/fill changes. Gate remains closed; nothing actionable before `2026-11-06T03:41:37.153817+00:00`.
