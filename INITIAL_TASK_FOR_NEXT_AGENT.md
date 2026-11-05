@@ -1,14 +1,14 @@
 Resume the EMA hourly continuation universe-refresh gate.
 
-**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` (latest record: 2026-11-05T23:00:00Z).
+**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` (latest record: 2026-11-05T23:08:34Z).
 
-**Current state (re-verified 2026-11-05T23:04:14Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (source of truth: `universe/last_scan.json`, JSON valid/unchanged). **NOT ELIGIBLE** (~4h37m remaining at independent check 2026-11-05T23:04:14Z UTC; Python `json.load` + `datetime.now(timezone.utc)`: eligible=false, now=`2026-11-05T23:04:47.588874+00:00`, remaining=16609s).
+**Current state (re-verified 2026-11-05T23:08:34Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (source of truth: `universe/last_scan.json`, JSON valid/unchanged). **NOT ELIGIBLE** (~4h33m remaining at independent check 2026-11-05T23:08:34Z UTC; Python `json.load` + `datetime.now(timezone.utc)`: eligible=false, now=`2026-11-05T23:08:34.181440+00:00`, remaining=16382s).
 - `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id=mcap_snapshot_20261105_034137` (scanned 2026-11-05T03:41:37Z, 20/20 pages, 2000 entries, lowest_rank_covered=2000, lowest_market_cap_usd=3318550, coverage_reaches_below_floor=true), universe_n=275, expansion_floor=`PIXEL/USDT` $3,351,513, `eligible_unseen_below_floor_count=0`, `eligible_unseen_below_floor=[]`, `batch_selected=[]`.
 - Coverage: `data/fixtures/SUKU_USDT.csv` ABSENT; no `SUKU` filename refs in `results/` (`find results -name '*SUKU*'` empty); `grep -rl SUKU results` did not complete quickly on the large results tree but no evidence of SUKU fixture/grid coverage found. **`--apply` MUST NOT run** without verified coverage.
 - Baseline grid `results/20261019_135940_grid/progress.json` complete (`run_id=20261019_135940_grid`, `all_symbols_processed=true`, `stopped=false`, `next_cell=null`); `results/FINAL_DECISION.md` records program-level rejection. `scripts/fetch_mcap_snapshot.py` and `scripts/refresh_gate.py` present.
 - Wakeup scheduled for this session: `wku_1adf51427001MhFCSOsCt1Xpb2` due `2026-11-06T03:46:56Z` (~5 min after gate opens). Do not re-schedule a duplicate. Git was clean before this turn's handoff writes.
-- **Exact evidence:** `universe/last_scan.json` read directly; Python derivation `eligible=False`, `bound=2026-11-06T03:41:37.153817+00:00`, `now=2026-11-05T23:04:47.588874+00:00`, `remaining_s=16609`; `test -f data/fixtures/SUKU_USDT.csv` → ABSENT (exit=1); `find results -name '*SUKU*'` → no output.
+- **Exact evidence:** `universe/last_scan.json` read directly; Python derivation `eligible=False`, `bound=2026-11-06T03:41:37.153817+00:00`, `now=2026-11-05T23:08:34.181440+00:00`, `remaining_s=16382`; `test -f data/fixtures/SUKU_USDT.csv` → ABSENT (exit=1); `find results -name '*SUKU*'` → no output.
 
 **What to do (in order):**
 1. Re-verify gate eligibility at start from `universe/last_scan.json` (source of truth). **Not eligible** until `2026-11-06T03:41:37.153817+00:00`.
