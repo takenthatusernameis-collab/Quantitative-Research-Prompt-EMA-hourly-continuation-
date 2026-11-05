@@ -2,8 +2,8 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-05T19:02:11Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE until then (~8h39m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid, file unchanged) and independent time comparison at env time `2026-11-05T19:02:11Z`.
+**Current state (as of 2026-11-05T19:03:44Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE until then (~8h38m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid, file unchanged) and independent time comparison at env time `2026-11-05T19:03:44Z`.
 - State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261105_034137`, scanned_at=`2026-11-05T03:41:37.153817+00:00`, universe_n=275, expansion_floor=`PIXEL/USDT` $3,351,513, eligible_unseen_below_floor_count=0, batch_selected=[].
 - Coverage: pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3318550, coverage_reaches_below_floor=true.
 - Candidate pool empty below floor; `data/fixtures/SUKU_USDT.csv` absent and no SUKU refs in `results/` → no fixtures/grid coverage, so `--apply` MUST NOT run.
