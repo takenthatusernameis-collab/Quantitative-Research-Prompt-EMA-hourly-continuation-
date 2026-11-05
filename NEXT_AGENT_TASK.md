@@ -1,3 +1,6 @@
+## Offline gate re-check record — 2026-11-05T03:52:02.460371+00:00
+- Not eligible: next_eligible_refresh_at=2026-11-06T03:41:37.153817+00:00, now=2026-11-05T03:52:02.460371+00:00, remaining ~23h50m. universe/last_scan.json unchanged: state AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot mcap_snapshot_20261105_034137 (2000 entries, 20/20 pages), expansion floor PIXEL/USDT $3,351,513, eligible unseen below floor 0, batch_selected []. SUKU no fixture/no grid coverage → --apply must not run. No provider calls; no snapshot pass. Wakeup scheduled wku_1a9d5b043001H8BIEfnC7cyhv8 due 2026-11-06T03:46:56Z.
+
 # NEXT_AGENT_TASK.md — EMA hourly continuation universe-refresh gate
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and this file before acting.
