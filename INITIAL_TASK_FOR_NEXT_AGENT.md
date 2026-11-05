@@ -1,11 +1,11 @@
 # Initial task for next agent
 
-Time: 2026-11-05T05:22:12Z
+Time: 2026-11-05T05:25:46Z
 
 ## Handoff read (completed)
 - Read `NEXT_AGENT_TASK.md` (new entry appended this turn) and `INITIAL_TASK_FOR_NEXT_AGENT.md` (prior).
 - Gate state from `universe/last_scan.json` (unchanged): `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` scanned at `2026-11-05T03:41:37.153817+00:00`, `next_eligible_refresh_at=2026-11-06T03:41:37.153817+00:00`, expansion floor `PIXEL/USDT ($3,351,513)`, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, universe_n=275.
-- Gate check (this turn): NOT eligible (~22h19m remaining), re-derived independently via inline Python. Wakeup retained due `2026-11-06T03:46:56Z` (5 min after gate opens); do not duplicate.
+- Gate check (this turn): NOT eligible (~22h15m remaining), re-derived independently via inline Python. Wakeup scheduled for this session `wku_1aa2d4a180016y82cS3RKM5YWy` due `2026-11-06T03:46:56Z` (5 min after gate opens); do not duplicate.
 
 ## What to do next
 1. **Do not apply anything.** Batch is empty; SUKU still has no fixture/grid coverage. Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` records program-level rejection.
