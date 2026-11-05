@@ -727,3 +727,15 @@ Active: `wku_1a9e88277001MtXsvGVnM19VBu` due `2026-11-06T03:46:56.000Z` (5 min a
 
 ## Offline gate re-check record — 2026-11-05T18:04:44Z
 - Offline gate re-check (this turn, completing prior handoff). Source of truth `universe/last_scan.json` (read directly, 26 lines, JSON valid; unchanged vs prior record): `next_eligible_refresh_at` `2026-11-06T03:41:37.153817+00:00`, now `2026-11-05T18:04:44Z` (env `date -u` = `2026-11-05T18:04:44 UTC`) → NOT ELIGIBLE (~9h36m remaining). Gate status re-derived independently via inline Python (json.load + datetime.fromisoformat): eligible=false, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T18:04:44.000000+00:00`, remaining≈9:36:53. State unchanged: recorded_at=`2026-11-05T03:50:25.768623+00:00`, state=`AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261105_034137`, snapshot_path=`universe/mcap_snapshot_20261105_034137.json`, scanned_at=`2026-11-05T03:41:37.153817+00:00`, coverage pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3318550, coverage_reaches_below_floor=true, universe_n=275, expansion_floor={PIXEL/USDT, $3,351,513}, eligible_unseen_below_floor_count=0, eligible_unseen_below_floor=[], batch_selected=[]. Coverage re-verified: `data/fixtures/SUKU_USDT.csv` absent (`ls` exit=2, "No such file or directory"), no `SUKU` references in `results/` (`grep -rl SUKU results/` no output) — no fixtures/grid coverage, so `--apply` MUST NOT run. Baseline grid `results/20261019_135940_grid` verified complete (progress.json `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`). `results/FINAL_DECISION.md` present recording program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty). No pending wakeups in this session (`cancel_wakeup list` returned none) — prior-session wakeup not carried over; wakeup retained due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate. No provider calls; no `--apply`; no snapshot pass; no candle fetches; no cost/fill changes. Gate remains closed; nothing actionable before `2026-11-06T03:41:37.153817+00:00`.
+
+---
+
+## Offline re-check record — 2026-11-05T18:11:48Z
+
+- Gate `next_eligible_refresh_at=2026-11-06T03:41:37.153817+00:00` (unchanged in `universe/last_scan.json`).
+- Current UTC 2026-11-05T18:11:48Z → NOT ELIGIBLE (~9h30m remaining).
+- `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=mcap_snapshot_20261105_034137, universe_n=275, expansion floor PIXEL/USDT $3,351,513, eligible_unseen_below_floor_count=0, batch_selected=[].
+- `data/fixtures/SUKU_USDT.csv` absent; no SUKU references in results/ → `--apply` MUST NOT run.
+- Baseline grid results/20261019_135940_grid complete; results/FINAL_DECISION.md present.
+- Git tree clean. No pending wakeups in session (cancel_wakeup list returned none).
+- Action: offline re-check only; no provider calls, no snapshot, no apply.
