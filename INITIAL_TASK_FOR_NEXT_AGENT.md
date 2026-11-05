@@ -2,8 +2,9 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (verified 2026-11-05T23:20:10Z, source of truth `universe/last_scan.json`):**
-- `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. **NOT ELIGIBLE** until then (~4.36h remaining). Re-derived independently via Python (`json.load` + `datetime.now(timezone.utc)`): eligible=false, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T23:20:10.811162+00:00`, remaining=15686s (~4:21:26).
+**Current state (verified 2026-11-05T23:29:46Z session-8 recovery, source of truth `universe/last_scan.json`):**
+- `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. **NOT ELIGIBLE** until then (~4h11m remaining). Re-derived independently via Python (`json.load` + `datetime.now(timezone.utc)`): eligible=false, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T23:29:46.287636+00:00`, remaining=15111s (4h11m50s).
+- **Persistence (same-run recovery, not claimed):** local HEAD `b9d4401a7c42979c54f7567e3db946afc9ba48da` (1 commit ahead); `origin/main` still `377f8af1ad414ba8209664a90efb160f137959e2` after fetch. Controller recovery bundle verified at `/home/runner/work/_temp/kilo-recovery-42121783144-1.bundle`; extra patch `/home/runner/work/_temp/kilo-session8-recovery-b9d4401a7c.patch`. Do not claim persistence until remote SHA matches local HEAD.
 - `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id=mcap_snapshot_20261105_034137`, snapshot_path `universe/mcap_snapshot_20261105_034137.json`, scanned_at `2026-11-05T03:41:37.153817+00:00`, recorded_at `2026-11-05T03:50:25.768623+00:00`.
 - Coverage: pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3318550, coverage_reaches_below_floor=true.
 - `universe_n=275`, expansion_floor `{PIXEL/USDT, $3,351,513}`, `eligible_unseen_below_floor_count=0`, `eligible_unseen_below_floor=[]`, `batch_selected=[]`.
