@@ -2,10 +2,10 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-05T04:21:41Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE until then (~23h20m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged) and time comparison. State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
+**Current state (as of 2026-11-05T04:22:51Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE until then (~23h19m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged) and time comparison. State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
 - SUKU still has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` → `--apply` must NOT run without coverage (currently no candidates anyway).
-- Baseline grid `results/20261019_135940_grid` complete; `FINAL_DECISION.md` records program-level rejection. Git tree: modified `universe/last_scan.json`, untracked `universe/mcap_snapshot_20261105_034137.json`.
+- Baseline grid `results/20261019_135940_grid` complete; `FINAL_DECISION.md` records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty). No modified or untracked files.
 - Wakeup retained due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 **What to do:**
