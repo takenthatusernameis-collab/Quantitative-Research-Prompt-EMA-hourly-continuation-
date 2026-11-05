@@ -2,10 +2,10 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-**Current state (2026-11-05T01:39:21Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~1h03m remaining). Verified via direct read of `universe/last_scan.json` (35 lines, JSON valid; unchanged) and inline Python `datetime.fromisoformat`: bound=`2026-11-05T02:42:21.634264+00:00`, now=`2026-11-05T01:39:30.738612+00:00`, eligible=false, remaining=1:02:50.895652.
+**Current state (2026-11-05T01:43:15Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~59m remaining). Verified via direct read of `universe/last_scan.json` (35 lines, JSON valid; unchanged) and inline Python `datetime.fromisoformat`: bound=`2026-11-05T02:42:21.634264+00:00`, now=`2026-11-05T01:43:15.950751+00:00`, eligible=false, remaining=0:59:05.683513.
 - `universe/last_scan.json` unchanged: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor `ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=['SUKU/USDT'].
-- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent, grep/ls exit non-zero) and NO grid coverage in `results/` (`grep -rl SUKU results/` exit=1, 0 matches) → `--apply` must NOT run without coverage.
+- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` (`grep -rl SUKU results/` exit=1, 0 matches) → `--apply` must NOT run without coverage.
 - Baseline grid `results/20261019_135940_grid` complete (progress.json `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `FINAL_DECISION.md` records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty).
 - No pending wakeups in this session (`cancel_wakeup list` returned none). Existing wakeup `wku_1a9270d7d001X3kJrIYayNY7kU` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
