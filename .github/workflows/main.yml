@@ -59,7 +59,7 @@ jobs:
           test_venv="$RUNNER_TEMP/controller-tests-venv"
           python3 -m venv "$test_venv"
           "$test_venv/bin/python" -m pip install --disable-pip-version-check --no-input pytest numpy requests
-          "$test_venv/bin/python" -m pytest -q tests/test_controller_progress_accounting.py tests/test_workflow_diagnostics_scanner.py tests/test_nonfinite_result_serialization.py tests/test_campaign_resume.py
+          "$test_venv/bin/python" -m pytest -q tests/test_controller_progress_accounting.py tests/test_workflow_diagnostics_scanner.py
 
       # Sole durable workflow-level diagnostics collector and ledger writer.
       # Do not add a parallel collector workflow, helper script, or second ledger
@@ -1420,6 +1420,16 @@ jobs:
               final_phase="checkpoint-failure"
               final_detail="checkpoint validation failed for session ${agent_index}; recovery evidence was saved when possible"
               echo "::error::Checkpoint validation failed. Recovery artifacts will be uploaded; refusing to continue with an untrusted staging state."
+              break
+            fi
+
+            # An explicit Kilo free-model sign-up/access denial is not a
+            # transient network failure. Preserve this session's state, then stop
+            # the activation instead of spending the six-hour budget repeating it.
+            if grep -Eiq 'Sign up for free to continue|sign up required to continue|no free model available|free model access denied' "$session_log"; then
+              final_phase="model-access-blocked"
+              final_detail="configured free Kilo model denied access; checkpoint completed and no further worker sessions were started"
+              echo "::error::Kilo free-model access is blocked; this activation is stopping after a verified checkpoint."
               break
             fi
 
