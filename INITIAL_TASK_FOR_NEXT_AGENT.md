@@ -2,8 +2,8 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-**Current state (2026-11-05T06:36:36Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE (~21h05m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged) and inline Python: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T06:36:36+00:00`, eligible=false.
+**Current state (2026-11-05T06:37:38Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE (~21h04m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged) and inline Python: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T06:37:38+00:00`, eligible=false.
 - `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
 - SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` → `--apply` must NOT run without coverage.
 - Baseline grid `results/20261019_135940_grid` complete (progress.json `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `FINAL_DECISION.md` records program-level rejection. Git tree clean.
