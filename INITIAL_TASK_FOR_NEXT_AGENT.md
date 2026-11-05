@@ -2,8 +2,8 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-**Current state (2026-11-05T04:00:09Z):**
-- Gate NOT eligible. `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (last refresh 2026-11-05T03:41:37). ~23h 41m remaining. Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged vs prior record) and inline Python `datetime.fromisoformat`: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:00:19.836463+00:00`, eligible=false, remaining=23:41:17.317354.
+**Current state (2026-11-05T04:03:40Z):**
+- Gate NOT eligible. `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (last refresh 2026-11-05T03:41:37). ~23h 38m remaining. Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid) and inline Python: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:03:40.768597+00:00`, eligible=false, remaining=23:37:56.
 - `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37).
 - Expansion floor `PIXEL/USDT` ($3,351,513). Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
 - SUKU has NO fixture and NO grid coverage → `--apply` must NOT run without coverage.
