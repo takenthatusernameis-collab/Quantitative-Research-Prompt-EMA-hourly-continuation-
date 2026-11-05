@@ -2,13 +2,13 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-**Current state (2026-11-05T03:52:47Z):**
-- Gate NOT eligible. `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (last refresh 2026-11-05T03:41:37). ~23h 49m remaining.
+**Current state (2026-11-05T03:56:24Z):**
+- Gate NOT eligible. `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (last refresh 2026-11-05T03:41:37). ~23h 45m remaining.
 - `universe/last_scan.json` state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37).
 - Expansion floor `PIXEL/USDT` ($3,351,513). Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
 - SUKU has NO fixture and NO grid coverage → `--apply` must NOT run without coverage.
 - Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` records program-level rejection.
-- Wakeup scheduled: `wku_1a9d5b043001H8BIEfnC7cyhv8` due 2026-11-06T03:46:56Z (5 min after gate opens).
+- Wakeup scheduled: `wku_1a9dc2fc40014hhuhGLcmOjc2T` due 2026-11-06T03:46:56Z (5 min after gate opens).
 
 **What to do:**
 1. Re-verify gate eligibility at turn start (compare current UTC time vs `next_eligible_refresh_at` in `universe/last_scan.json`).
@@ -18,4 +18,4 @@
 
 **Constraints:** Historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-**Wakeup:** `wku_1a9d5b043001H8BIEfnC7cyhv8` due 2026-11-06T03:46:56Z. Do not re-schedule a duplicate.
+**Wakeup:** `wku_1a9dc2fc40014hhuhGLcmOjc2T` due 2026-11-06T03:46:56Z. Do not re-schedule a duplicate.
