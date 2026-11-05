@@ -1,35 +1,26 @@
 {
-  "recorded_at": "2026-11-04T02:42:21.885606+00:00",
-  "state": "EXPANSION_AVAILABLE",
-  "snapshot_id": "mcap_snapshot_20261104_024221",
-  "snapshot_path": "universe/mcap_snapshot_20261104_024221.json",
+  "recorded_at": "2026-11-05T03:50:25.768623+00:00",
+  "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
+  "snapshot_id": "mcap_snapshot_20261105_034137",
+  "snapshot_path": "universe/mcap_snapshot_20261105_034137.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-11-04T02:42:21.634264+00:00",
+  "scanned_at": "2026-11-05T03:41:37.153817+00:00",
   "coverage": {
     "pages_requested": 20,
     "pages_fetched": 20,
     "all_requested_pages_returned": true,
     "entries_count": 2000,
     "lowest_rank_covered": 2000,
-    "lowest_market_cap_usd": 3222980
+    "lowest_market_cap_usd": 3318550
   },
   "coverage_reaches_below_floor": true,
   "universe_n": 275,
   "expansion_floor": {
-    "symbol": "ZKJ/USDT",
-    "market_cap_usd": 3404245
+    "symbol": "PIXEL/USDT",
+    "market_cap_usd": 3351513
   },
-  "eligible_unseen_below_floor_count": 1,
-  "eligible_unseen_below_floor": [
-    {
-      "rank": 1996,
-      "symbol": "SUKU",
-      "name": "SUKU",
-      "market_cap_usd": 3231609
-    }
-  ],
-  "batch_selected": [
-    "SUKU/USDT"
-  ],
-  "next_eligible_refresh_at": "2026-11-05T02:42:21.634264+00:00"
+  "eligible_unseen_below_floor_count": 0,
+  "eligible_unseen_below_floor": [],
+  "batch_selected": [],
+  "next_eligible_refresh_at": "2026-11-06T03:41:37.153817+00:00"
 }
