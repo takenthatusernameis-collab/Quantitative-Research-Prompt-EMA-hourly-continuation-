@@ -1,13 +1,13 @@
 Resume the EMA hourly continuation universe-refresh gate.
 
-**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` (latest record: 2026-11-05T22:11:42Z).
+**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` (latest record: 2026-11-05T22:12:08Z).
 
-**Current state (re-verified 2026-11-05T22:11:42Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (source of truth: `universe/last_scan.json`, JSON valid/unchanged). **NOT ELIGIBLE** (~5h30m remaining at check; independent Python `datetime.now(timezone.utc)` derivation: eligible=false, now=`2026-11-05T22:11:42.041194+00:00`, remaining=19795.11s).
+**Current state (re-verified 2026-11-05T22:12:08Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (source of truth: `universe/last_scan.json`, JSON valid/unchanged). **NOT ELIGIBLE** (~5h29m remaining at check; independent Python `datetime.now(timezone.utc)` derivation: eligible=false, now=`2026-11-05T22:12:46.732434+00:00`, remaining=19730.42s).
 - `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id=mcap_snapshot_20261105_034137` (scanned 2026-11-05T03:41:37Z, 20/20 pages, 2000 entries, lowest_rank_covered=2000, lowest_market_cap_usd=3318550, coverage_reaches_below_floor=true), universe_n=275, expansion_floor=`PIXEL/USDT` $3,351,513, `eligible_unseen_below_floor_count=0`, `eligible_unseen_below_floor=[]`, `batch_selected=[]`.
 - Coverage: `data/fixtures/SUKU_USDT.csv` ABSENT; no `SUKU` references in `results/` → no fixture/grid coverage. **`--apply` MUST NOT run** without coverage.
 - Baseline grid `results/20261019_135940_grid/progress.json` complete (`run_id=20261019_135940_grid`, `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `results/FINAL_DECISION.md` records program-level rejection. `scripts/fetch_mcap_snapshot.py` and `scripts/refresh_gate.py` present.
-- Wakeup: none pending in this session (`cancel_wakeup list` returned none); scheduled for `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
+- Wakeup: scheduled due `2026-11-06T03:46:56Z` (id `wku_1adc8043f001ClvC6c3nN5F8L5`, 5 min after gate opens). Do not re-schedule a duplicate unless missing. Git tree clean (HEAD `9a84ae5bd6`).
 
 **What to do (in order):**
 1. Re-verify gate eligibility at start from `universe/last_scan.json` (source of truth). **Not eligible** until `2026-11-06T03:41:37.153817+00:00`.
