@@ -1,13 +1,13 @@
 Resume the EMA hourly continuation universe-refresh gate.
 
-**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` (latest record: 2026-11-05T21:20:27Z).
+**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` (latest record: 2026-11-05T21:23:56Z).
 
-**Current state (verified 2026-11-05T21:20:27Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (source of truth: `universe/last_scan.json`, JSON valid/unchanged). **NOT ELIGIBLE** (~22869s / ~6h21m remaining at verification). Re-verified offline via direct file read + independent Python `datetime.now(timezone.utc)` derivation (now=`2026-11-05T21:20:27.920301+00:00`).
+**Current state (verified 2026-11-05T21:23:56Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (source of truth: `universe/last_scan.json`, JSON valid/unchanged). **NOT ELIGIBLE** (~22660s / ~6h17m remaining at verification). Re-verified offline via direct file read + independent Python `datetime.now(timezone.utc)` derivation (now=`2026-11-05T21:23:56.938873+00:00`).
 - `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id=mcap_snapshot_20261105_034137` (scanned 2026-11-05T03:41:37Z, 20/20 pages, 2000 entries, lowest_rank_covered=2000, lowest_market_cap_usd=3318550, coverage_reaches_below_floor=true), universe_n=275, expansion_floor=`PIXEL/USDT` $3,351,513, `eligible_unseen_below_floor_count=0`, `eligible_unseen_below_floor=[]`, `batch_selected=[]`.
 - Coverage: `data/fixtures/SUKU_USDT.csv` ABSENT; no `SUKU` references in `results/` → no fixture/grid coverage. **`--apply` MUST NOT run** without coverage.
 - Baseline grid `results/20261019_135940_grid/progress.json` complete (`all_symbols_processed=true`, `stopped=false`, `next_cell=null`); `results/FINAL_DECISION.md` records program-level rejection. `scripts/fetch_mcap_snapshot.py` and `scripts/refresh_gate.py` present.
-- Git tree clean (`git status --short` empty, `git diff --stat` empty; HEAD `65d2ee5dee chore(kilo): checkpoint agent session`).
+- Git tree clean (`git status --short` empty, `git diff --stat` empty).
 
 **What to do (in order):**
 1. Re-verify gate eligibility at start from `universe/last_scan.json` (source of truth). **Not eligible** until `2026-11-06T03:41:37.153817+00:00`.
@@ -20,3 +20,5 @@ Resume the EMA hourly continuation universe-refresh gate.
 **Wakeup:** scheduled for `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 (End of file - total 25 lines)
+" filePath">
+/home/runner/work/Quantitative-Research-Prompt-EMA-hourly-continuation-/Quantitative-Research-Prompt-EMA-hourly-continuation-/INITIAL_TASK_FOR_NEXT_AGENT.md
