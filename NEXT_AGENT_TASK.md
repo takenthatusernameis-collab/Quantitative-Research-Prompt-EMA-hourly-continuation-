@@ -1,3 +1,6 @@
+## Offline gate re-check record — 2026-11-05T04:10:03Z
+- Offline gate re-check (this turn, completing prior handoff task). Source of truth `universe/last_scan.json` (read directly, 26 lines, JSON valid; unchanged vs prior record): `next_eligible_refresh_at` `2026-11-06T03:41:37.153817+00:00`, now `2026-11-05T04:10:03Z` (env `date -u` = `2026-11-05T04:10:03 UTC`) → NOT ELIGIBLE (~23h 31m remaining). Gate status re-derived independently via inline Python (json.load + datetime.fromisoformat): eligible=false, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:10:10.678749+00:00`, remaining=23:31:26.475068. State unchanged: recorded_at=`2026-11-05T03:50:25.768623+00:00`, state=`AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261105_034137`, snapshot_path=`universe/mcap_snapshot_20261105_034137.json`, scanned_at=`2026-11-05T03:41:37.153817+00:00`, coverage pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3318550, coverage_reaches_below_floor=true, universe_n=275, expansion_floor={PIXEL/USDT, $3,351,513}, eligible_unseen_below_floor_count=0, eligible_unseen_below_floor=[], batch_selected=[]. Coverage re-verified: `data/fixtures/SUKU_USDT.csv` absent (`ls` exit=2, "No such file or directory"), no `SUKU` references in `results/` (`grep -rl SUKU results/` exit=0 with no output) — no fixtures/grid coverage, so `--apply` MUST NOT run. Baseline grid `results/20261019_135940_grid` verified complete (progress.json `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`). `results/FINAL_DECISION.md` present (23304 bytes) recording program-level rejection. `scripts/fetch_mcap_snapshot.py` and `scripts/refresh_gate.py` present. Git tree clean (`git status --short` empty, `git diff --stat` empty). No provider calls; no `--apply`; no snapshot pass; no candle fetches; no cost/fill changes. Gate remains closed; nothing actionable before `2026-11-06T03:41:37.153817+00:00`. No pending wakeups in this session (`cancel_wakeup list` returned none) — prior session wakeup `wku_1a9dc2fc40014hhuhGLcmOjc2T` not carried over; new wakeup scheduled for this session due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
+
 ## Offline gate re-check record — 2026-11-05T04:00:09Z
 - Offline gate re-check (this turn, completing prior handoff task). Source of truth `universe/last_scan.json` (read directly, 26 lines, JSON valid; unchanged vs prior record): `next_eligible_refresh_at` `2026-11-06T03:41:37.153817+00:00`, now `2026-11-05T04:00:09Z` (env `date -u` = `2026-11-05T04:00:09 UTC`) → NOT ELIGIBLE (~23h 41m remaining). Gate status re-derived independently via inline Python (json.load + datetime.fromisoformat): eligible=false, bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:00:19.836463+00:00`, remaining=23:41:17.317354. State unchanged: recorded_at=`2026-11-05T03:50:25.768623+00:00`, state=`AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261105_034137`, snapshot_path=`universe/mcap_snapshot_20261105_034137.json`, scanned_at=`2026-11-05T03:41:37.153817+00:00`, coverage pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3318550, coverage_reaches_below_floor=true, universe_n=275, expansion_floor={PIXEL/USDT, $3,351,513}, eligible_unseen_below_floor_count=0, eligible_unseen_below_floor=[], batch_selected=[]. Coverage re-verified: `data/fixtures/SUKU_USDT.csv` absent, no `SUKU` references in `results/` — no fixtures/grid coverage, so `--apply` MUST NOT run. Baseline grid `results/20261019_135940_grid` verified complete (progress.json `all_symbols_processed=true`, `stopped=false`, `next_cell=null`). `results/FINAL_DECISION.md` present recording program-level rejection. `scripts/fetch_mcap_snapshot.py` and `scripts/refresh_gate.py` present. Git tree clean (`git status --short` empty, `git diff --stat` empty). No provider calls; no `--apply`; no snapshot pass; no candle fetches; no cost/fill changes. Gate remains closed; nothing actionable before `2026-11-06T03:41:37.153817+00:00`. No pending wakeups in this session (`cancel_wakeup list` returned none) — prior session wakeup `wku_1a9d5b043001H8BIEfnC7cyhv8` not carried over; new wakeup sched...
 
@@ -60,7 +63,7 @@ Historical research only; no orders/live/paper trading; preserve EMA signal/fill
 
 ## Wakeup
 
-Active: `wku_1a9270d7d001X3kJrIYayNY7kU` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
+Active: `wku_1a9e88277001MtXsvGVnM19VBu` due `2026-11-06T03:46:56.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 
 ---
@@ -69,12 +72,12 @@ Active: `wku_1a9270d7d001X3kJrIYayNY7kU` due `2026-11-05T02:45:00.000Z` (5 min a
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `INITIAL_TASK_FOR_NEXT_AGENT.md` before acting.
 
-**Current state (2026-11-05T01:31:12Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-05T02:42:21.634264+00:00`. NOT ELIGIBLE (~1h11m remaining).
-- `universe/last_scan.json` unchanged (35 lines, JSON valid): state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261104_024221`, universe_n=275, expansion_floor `ZKJ/USDT` $3,404,245, eligible_unseen_below_floor_count=1 (SUKU rank 1996, mcap $3,231,609), batch_selected=['SUKU/USDT'].
-- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent, `ls | grep -i suku` exit=1) and NO grid coverage in `results/` (`grep -rl SUKU results/` exit=1, 0 matches) → `--apply` must NOT run without coverage.
-- Baseline grid `results/20261019_135940_grid` complete (progress.json `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `FINAL_DECISION.md` records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty).
-- No pending wakeups in this session (`cancel_wakeup list` returned none). Retained wakeup `wku_1a9270d7d001X3kJrIYayNY7kU` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
+**Current state (2026-11-05T04:10:03Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE (~23h 31m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged vs prior record) and inline Python: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:10:10.678749+00:00`, eligible=false, remaining=23:31:26.
+- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
+- No eligible candidates remain; the prior SUKU candidate (from snapshot `mcap_snapshot_20261104_024221`) has been superseded. SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent, `ls` exit=2) and NO grid coverage in `results/` (`grep -rl SUKU results/` no output) → `--apply` must NOT run without coverage.
+- Baseline grid `results/20261019_135940_grid` complete (progress.json `all_symbols_processed=true`, `stopped=false`, `stop_reason=null`, `next_cell=null`); `FINAL_DECISION.md` (23304 bytes) records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty).
+- No pending wakeups in this session (`cancel_wakeup list` returned none). New wakeup scheduled for this session: due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 **What to do:**
 1. Re-verify gate eligibility: compare current UTC time against `next_eligible_refresh_at` in `universe/last_scan.json`; confirm the file is unchanged.
@@ -84,7 +87,7 @@ Active: `wku_1a9270d7d001X3kJrIYayNY7kU` due `2026-11-05T02:45:00.000Z` (5 min a
 
 **Constraints:** Historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-**Wakeup:** `wku_1a9270d7d001X3kJrIYayNY7kU` due `2026-11-05T02:45:00.000Z` (5 min after gate opens). Do not re-schedule a duplicate.
+**Wakeup:** due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 ---
 
