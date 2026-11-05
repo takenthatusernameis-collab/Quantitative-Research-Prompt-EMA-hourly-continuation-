@@ -1,20 +1,22 @@
-# INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
+Resume the EMA hourly continuation universe-refresh gate.
 
-**Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
+**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (2026-11-05T04:14:18Z):**
-- Gate NOT eligible. `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00` (last refresh 2026-11-05T03:41:37). ~23h 27m remaining. Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid) and inline Python: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:14:18Z`, eligible=false.
-- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` ($3,351,513). Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
-- SUKU has NO fixture and NO grid coverage → `--apply` must NOT run without coverage.
-- Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` records program-level rejection.
-- Wakeup scheduled: due 2026-11-06T03:46:56Z (5 min after gate opens).
+**Current state (as of 2026-11-05T04:17:06Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-06T03:41:37.153817+00:00`. NOT ELIGIBLE until then (~23h 24m remaining). Verified via direct read of `universe/last_scan.json` (26 lines, JSON valid; unchanged) and inline Python: bound=`2026-11-06T03:41:37.153817+00:00`, now=`2026-11-05T04:17:06.963385+00:00`, eligible=false, remaining=23:24:30.
+- `universe/last_scan.json` unchanged: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261105_034137` (2000 entries, 20/20 pages, fetched 2026-11-05T03:41:37). Expansion floor `PIXEL/USDT` $3,351,513. Eligible unseen below floor: 0, batch_selected: []. No candidates to apply.
+- SUKU has NO fixture (`data/fixtures/SUKU_USDT.csv` absent) and NO grid coverage in `results/` → `--apply` must NOT run without coverage.
+- Baseline grid `results/20261019_135940_grid` complete (all_symbols_processed=true, stopped=false, next_cell=null); `FINAL_DECISION.md` records program-level rejection. Git tree clean.
+- Wakeup retained due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
 
 **What to do:**
-1. Re-verify gate eligibility at turn start (compare current UTC time vs `next_eligible_refresh_at` in `universe/last_scan.json`).
-2. If not eligible: record offline check in `NEXT_AGENT_TASK.md`, update this handoff if needed, await wakeup. No provider calls.
-3. If eligible: run at most one 20-page snapshot pass (`PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20`), recompute floor/candidates, update `universe/last_scan.json`. Review candidates for fixture/grid coverage before any `--apply`. Do NOT apply without coverage.
+1. Re-verify gate eligibility: compare current UTC time against `next_eligible_refresh_at` in `universe/last_scan.json`; confirm the file is unchanged.
+2. If still not eligible: record the offline check in `NEXT_AGENT_TASK.md`, update this handoff if needed, and await the scheduler wakeup. No provider calls.
+3. If eligible: run at most one 20-page snapshot pass (`PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20`), recompute the floor, inspect the below-floor band, update `universe/last_scan.json`, then review any new candidate(s) for fixture/grid coverage before any `--apply`. Do NOT apply without coverage.
 4. Never: rerun grids, fetch candles, change costs/fills, or blur confirmatory vs exploratory.
 
 **Constraints:** Historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-**Wakeup:** due 2026-11-06T03:46:56Z (5 min after gate opens). Do not re-schedule a duplicate.
+**Wakeup:** due `2026-11-06T03:46:56Z` (5 min after gate opens). Do not re-schedule a duplicate.
+""" , filePath">
+/home/runner/work/Quantitative-Research-Prompt-EMA-hourly-continuation-/Quantitative-Research-Prompt-EMA-hourly-continuation-/INITIAL_TASK_FOR_NEXT_AGENT.md
