@@ -1050,3 +1050,9 @@ Active: `wku_1a9e88277001MtXsvGVnM19VBu` due `2026-11-06T03:46:56.000Z` (5 min a
 - Git: `git status --short` clean before this turn's handoff writes.
 - Wakeup: `cancel_wakeup list` returned no pending wakeups in this session (prior-session wakeups not carried over). Scheduled wakeup due `2026-11-07T10:21:00Z` (~5 min after gate opens). **Do not re-schedule a duplicate.**
 - No provider calls; no `--apply`; no snapshot pass; no candle fetches; no EMA/cost/fill changes. Gate remains closed; nothing actionable before `2026-11-07T10:16:12.893046+00:00`. Constraints preserved: historical research only; free public data/no-cost tooling; fixtures are not market evidence; confirmatory/exploratory kept separate; negative/blocked results preserved.
+
+---
+
+## Offline gate check — 2026-11-06T10:30:17Z (NOT ELIGIBLE)
+- Re-verified eligibility from `universe/last_scan.json` (JSON valid): `next_eligible_refresh_at` = `2026-11-07T10:16:12.893046+00:00`. Independent derivation (`json.load` + `datetime.now(timezone.utc)`): eligible=false, bound=`2026-11-07T10:16:12.893046+00:00`, now=`2026-11-06T10:30:17.851880+00:00`, remaining≈85,555s (~23.77h). `scripts.refresh_gate.gate_status(state)` → eligible=false, reason="the 24 h refresh bound ... has not elapsed yet". State unchanged: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261106_101612`, coverage 20/20 pages, 2000 entries, lowest rank 2000 @ $3,179,353, universe_n=275, expansion_floor PIXEL/USDT $3,254,887, eligible_unseen_below_floor_count=0, batch_selected=[].
+- No provider calls; no `--apply`; no snapshot pass; no candle fetches; no EMA/cost/fill changes. Gate remains closed; nothing actionable before `2026-11-07T10:16:12.893046+00:00`.
