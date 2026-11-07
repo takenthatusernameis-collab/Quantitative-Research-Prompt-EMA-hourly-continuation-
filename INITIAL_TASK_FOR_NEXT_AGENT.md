@@ -2,9 +2,9 @@
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md` (latest entry is authoritative). Do **not** guess gate state.
 
-## Current gate state (offline re-check 2026-11-07T08:27:15Z)
+## Current gate state (offline re-check 2026-11-07T08:28:03Z)
 - **NOT ELIGIBLE** for a new 20-page snapshot pass.
-- `now=2026-11-07T08:27:15.181036+00:00`, `next_eligible_refresh_at=2026-11-07T10:16:12.893046+00:00`, `remaining≈6584.75s` (~1h49m45s). Source: `universe/last_scan.json` + independent `datetime.now(timezone.utc)` cross-check.
+- `now=2026-11-07T08:28:03.480330+00:00`, `next_eligible_refresh_at=2026-11-07T10:16:12.893046+00:00`, `remaining≈6489.41s` (~1h48m09s). Source: `universe/last_scan.json` + independent `datetime.now(timezone.utc)` cross-check.
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261106_101612` (`universe/mcap_snapshot_20261106_101612.json`), scanned `2026-11-06T10:16:12.893046+00:00`, CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), 20/20 pages/2000 entries, `lowest_rank_covered=2000`, `lowest_market_cap_usd=3179353`, `coverage_reaches_below_floor=true`, `universe_n=275`, floor `{PIXEL/USDT, $3,254,887}`, `eligible_unseen_below_floor_count=0`, `eligible_unseen_below_floor=[]`, `batch_selected=[]`.
 - Guards: **`data/fixtures/SUKU_USDT.csv` ABSENT; no `*SUKU*` in tree → `--apply` MUST NOT run** without verified fixture/grid coverage for any selected candidate. Baseline grid `results/20261019_135940_grid/progress.json` complete (`completed_cells=18150, n_symbols=275, n_pairs=66, all_symbols_processed=true, stopped=false, stop_reason=null, next_cell=null`); `results/FINAL_DECISION.md` preserved (program-level rejection).
 
