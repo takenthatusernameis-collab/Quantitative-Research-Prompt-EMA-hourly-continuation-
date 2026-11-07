@@ -19,14 +19,10 @@
 - State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, snapshot_path present, scanned_at=2026-11-07T15:12:00.314643+00:00, coverage 20/20 pages/2000 entries/below floor, floor PIXEL/USDT $3,190,848, eligible_unseen_below_floor_count=0, batch_selected=[].
 - `data/fixtures/SUKU_USDT.csv` still absent (coverage guard holds). Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` preserved. No grids/candles/EMA/cost/fill changes.
 
-## What to do
-1. Re-verify gate eligibility at start from `universe/last_scan.json` (do not guess). NOT ELIGIBLE until `2026-11-08T15:12:00.314643+00:00`.
-2. If still not eligible: make **no provider calls**. Record an offline check here (exact now/bound/remaining, state evidence), update handoff if needed, and stop. Do not schedule duplicate wakeups.
-3. If eligible: run **at most one** 20-page snapshot pass (`PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20`), recompute the floor, inspect the below-floor band, update `universe/last_scan.json`, then review any new candidate(s) for fixture/grid coverage before any `--apply`. Do NOT apply without verified coverage.
-4. Never: rerun grids, fetch candles, place orders, change EMA/cost/fill assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory.
-
-## Constraints
-Historical research only; no orders/live/paper trading; free public data/no-cost tooling; preserve EMA signal/fill/cost assumptions; preserve negative/blocked results; separate exploratory from confirmatory; follow `AGENTS.md` gate policy.
+## Completed this turn (2026-11-07T15:25Z)
+- Re-verified gate eligibility from `universe/last_scan.json` (JSON valid, re-read): eligible=false, `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, now=2026-11-07T15:25:51Z (independent `date -u`), remaining ≈ 23h46m09s. Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. **No provider calls** made (offline check only).
+- State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, snapshot_path present, scanned_at=2026-11-07T15:12:00.314643+00:00, coverage 20/20 pages/2000 entries/below floor, floor PIXEL/USDT $3,190,848, eligible_unseen_below_floor_count=0, batch_selected=[].
+- `data/fixtures/SUKU_USDT.csv` still absent (coverage guard holds). Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` preserved. No grids/candles/EMA/cost/fill changes.
 
 ## Wakeup
 No wakeup scheduled by this agent (environment may not persist agent-scheduled wakeups across runs; rely on next activation). Next eligible gate opens `2026-11-08T15:12:00.314643+00:00`.
