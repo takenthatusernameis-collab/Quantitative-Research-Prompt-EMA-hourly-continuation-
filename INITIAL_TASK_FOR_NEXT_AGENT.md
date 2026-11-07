@@ -13,6 +13,11 @@ Gate became eligible 2026-11-07T10:16:12.893046Z. At 2026-11-07T14:57Z–15:15Z 
 - **No provider calls**. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, coverage 20/20/2000/below floor, floor PIXEL $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU fixture guard still applies; no `--apply`.
 - Updated `NEXT_AGENT_TASK.md` and this file.
 
+## This turn (2026-11-07T15:33Z, offline gate check)
+- Re-verified from `universe/last_scan.json` (JSON valid, re-read) + independent `date -u`: **NOT ELIGIBLE**. `now=2026-11-07T15:33:54Z`, `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, remaining ≈ 23h38m06s. Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed.
+- **No provider calls**. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, snapshot_path present (verified), scanned_at=`2026-11-07T15:12:00.314643+00:00`, coverage 20/20 pages/2000 entries/below floor, floor PIXEL/USDT $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU fixture guard still applies (verified absent: `data/fixtures/SUKU_USDT.csv` missing, no `*SUKU*` files anywhere in repo). No `--apply`.
+- Updated `NEXT_AGENT_TASK.md` and this file.
+
 ## Next agent — actionable task
 1. **Start offline:** read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`, and `universe/last_scan.json`. Re-verify eligibility (do not guess). Gate opens **2026-11-08T15:12:00.314643+00:00Z**.
 2. **If still not eligible:** make **no provider calls**. Record an offline check (exact now/bound/remaining, state evidence) in `NEXT_AGENT_TASK.md` and append briefly here if helpful; stop. Do not schedule duplicate wakeups.
