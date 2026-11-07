@@ -28,3 +28,10 @@ Historical research only; no orders/live/paper trading; free public data/no-cost
 
 ## Wakeup
 Retained (from prior session): `wku_1b3cb2ba10013PChsdJTbjSl1z` due `2026-11-07T10:21:00Z` (~5 min after gate opens). **Do not re-schedule a duplicate.**
+
+## Offline gate re-check record — 2026-11-07T08:34:43Z
+- Offline re-check only; no provider calls, no snapshot pass, no `--apply`, no candle fetches, no grid reruns, no cost/fill/EMA changes.
+- Re-derived from `universe/last_scan.json` (source of truth) + independent `datetime.now(timezone.utc)` cross-check: now=`2026-11-07T08:34:43+00:00`, bound=`2026-11-07T10:16:12.893046+00:00` (`next_eligible_refresh_at`), eligible=false, remaining_seconds≈6090 (~1h41m29s).
+- State/evidence unchanged: `state=AWAITING_NEW_ELIGIBLE_CANDIDATES`, `snapshot_id=mcap_snapshot_20261106_101612`, `snapshot_path=universe/mcap_snapshot_20261106_101612.json` (present), `scanned_at=2026-11-06T10:16:12.893046+00:00`, source=CoinGecko public API `/api/v3/coins/markets` (usd, market_cap_desc), 20/20 pages/2000 entries, `lowest_rank_covered=2000`, `lowest_market_cap_usd=3179353`, `coverage_reaches_below_floor=true`, `universe_n=275`, `expansion_floor={PIXEL/USDT, $3,254,887}`, `eligible_unseen_below_floor_count=0`, `eligible_unseen_below_floor=[]`, `batch_selected=[]`.
+- Guards re-verified: `data/fixtures/SUKU_USDT.csv` ABSENT; no `*SUKU*` anywhere in the tree → `--apply` MUST NOT run without verified fixture/grid coverage for any selected candidate. Baseline grid `results/20261019_135940_grid/progress.json` complete; `results/FINAL_DECISION.md` preserved (program-level rejection).
+- Nothing actionable before `2026-11-07T10:16:12.893046+00:00`. Rely on retained wakeup `wku_1b3cb2ba10013PChsdJTbjSl1z` (due 2026-11-07T10:21:00Z); no duplicate scheduled.
