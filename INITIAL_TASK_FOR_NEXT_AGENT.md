@@ -30,7 +30,7 @@ Historical research only; free public data/no-cost tooling; follow `AGENTS.md` a
 - **No provider calls**. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, coverage 20/20/2000/below floor, floor PIXEL $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU fixture guard still applies; no `--apply`.
 - Updated `NEXT_AGENT_TASK.md` and this file.
 
-## This turn (2026-11-07T15:31Z, offline gate check)
-- Re-verified from `universe/last_scan.json` (JSON valid) + independent `date -u`: **NOT ELIGIBLE**. `now=2026-11-07T15:31:17Z`, `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, remaining ≈ 23h40m43s. Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed.
-- **No provider calls**. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, coverage 20/20/2000/below floor, floor PIXEL $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU fixture guard still applies; no `--apply`.
+## This turn (2026-11-07T15:35Z, offline gate check)
+- Re-verified from `universe/last_scan.json` (JSON valid) + independent `date -u`: **NOT ELIGIBLE**. `now=2026-11-07T15:34:59Z`, `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, remaining ≈ 23h37m01s. Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed.
+- **No provider calls**. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, snapshot_path present (verified), scanned_at=`2026-11-07T15:12:00.314643+00:00`, coverage 20/20 pages/2000 entries/below floor, floor PIXEL/USDT $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU fixture guard still applies (verified absent: `data/fixtures/SUKU_USDT.csv` missing, no `*SUKU*` files anywhere in repo). No `--apply`.
 - Updated `NEXT_AGENT_TASK.md` and this file.
