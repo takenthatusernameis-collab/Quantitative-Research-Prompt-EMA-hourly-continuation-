@@ -1,26 +1,26 @@
 {
-  "recorded_at": "2026-11-06T10:16:13.427723+00:00",
+  "recorded_at": "2026-11-07T15:15:21.048234+00:00",
   "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
-  "snapshot_id": "mcap_snapshot_20261106_101612",
-  "snapshot_path": "universe/mcap_snapshot_20261106_101612.json",
+  "snapshot_id": "mcap_snapshot_20261107_151200",
+  "snapshot_path": "universe/mcap_snapshot_20261107_151200.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-11-06T10:16:12.893046+00:00",
+  "scanned_at": "2026-11-07T15:12:00.314643+00:00",
   "coverage": {
     "pages_requested": 20,
     "pages_fetched": 20,
     "all_requested_pages_returned": true,
     "entries_count": 2000,
     "lowest_rank_covered": 2000,
-    "lowest_market_cap_usd": 3179353
+    "lowest_market_cap_usd": 3140232
   },
   "coverage_reaches_below_floor": true,
   "universe_n": 275,
   "expansion_floor": {
     "symbol": "PIXEL/USDT",
-    "market_cap_usd": 3254887
+    "market_cap_usd": 3190848
   },
   "eligible_unseen_below_floor_count": 0,
   "eligible_unseen_below_floor": [],
   "batch_selected": [],
-  "next_eligible_refresh_at": "2026-11-07T10:16:12.893046+00:00"
+  "next_eligible_refresh_at": "2026-11-08T15:12:00.314643+00:00"
 }
