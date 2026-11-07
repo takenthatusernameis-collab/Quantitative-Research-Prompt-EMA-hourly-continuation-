@@ -20,3 +20,7 @@ Gate became eligible 2026-11-07T10:16:12.893046Z. At 2026-11-07T14:57Z–15:15Z 
 4. **Never:** rerun grids, fetch candles, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`.
 
 Historical research only; free public data/no-cost tooling; follow `AGENTS.md` adaptive gate policy.
+## This turn (2026-11-07T15:30Z, offline gate check)
+- Re-verified from `universe/last_scan.json` (JSON valid) + independent `date -u`: **NOT ELIGIBLE**. `now=2026-11-07T15:30:04Z`, `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, remaining ≈ 23h41m56s. Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed.
+- **No provider calls**. State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, coverage 20/20/2000/below floor, floor PIXEL $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU fixture guard still applies; no `--apply`.
+- Updated `NEXT_AGENT_TASK.md` and this file.
