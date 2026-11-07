@@ -63,9 +63,9 @@ Historical research only; free public data/no-cost tooling; follow `AGENTS.md` a
 - No snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes.
 - Durable handoff: follow `NEXT_AGENT_TASK.md` "Next agent — clear initial task"; gate opens **2026-11-08T15:12:00.314643Z**.
 
-## This turn (2026-11-07T19:30Z, offline gate check)
-- Re-verified from `universe/last_scan.json` (JSON valid, re-read + `json.tool` OK) + independent UTC (`date -u` = `2026-11-07T19:30:08Z` + Python `now=2026-11-07T19:30:12Z`): **NOT ELIGIBLE**. `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, remaining ≈ 19h41m47s (70907s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed since `scanned_at=2026-11-07T15:12:00.314643Z`. Gate opens **2026-11-08T15:12:00.314643Z**.
-- **No provider calls** (offline only). State unchanged (re-read): `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, snapshot_path=`universe/mcap_snapshot_20261107_151200.json`, coverage 20/20/2000/`coverage_reaches_below_floor=true`, floor PIXEL/USDT $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU guard holds (`data/fixtures/SUKU_USDT.csv` **ABSENT**); `--apply` prohibited without verified coverage. `results/FINAL_DECISION.md` + baseline grid `results/20261019_135940_grid/progress.json` preserved.
+## This turn (2026-11-07T19:34Z, offline gate check)
+- Re-verified from `universe/last_scan.json` (re-read) + independent UTC (`date -u` = `2026-11-07T19:34:44Z` + Python `now=2026-11-07T19:34:48Z`): **NOT ELIGIBLE**. `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, remaining ≈ 19h37m11s (70631s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed since `scanned_at=2026-11-07T15:12:00.314643Z`. Gate opens **2026-11-08T15:12:00.314643Z**.
+- **No provider calls** (offline only). State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, snapshot_path=`universe/mcap_snapshot_20261107_151200.json` (present), coverage 20/20/2000/below floor, floor PIXEL/USDT $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU guard holds (`data/fixtures/SUKU_USDT.csv` **ABSENT**); `--apply` prohibited without verified coverage. `results/FINAL_DECISION.md` + baseline grid preserved.
 - No snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders.
 
 ## Initial task for next agent (clear)
