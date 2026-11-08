@@ -1,7 +1,7 @@
 # Initial Task for Next Agent
 
-## Prior state (2026-11-08T08:15Z offline check, gate NOT eligible)
-- Re-verified 2026-11-08T08:15:00Z: `universe/last_scan.json` JSON valid, `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, independent `date -u`=`2026-11-08T08:15:00Z`, Python `now=2026-11-08T08:15:00.334975+00:00`, remaining ≈ 6h57m00s (25019s), **eligible=false** (PROMPT.md §2.1.5). **No provider calls.**
+## Prior state (2026-11-08T08:18Z offline check, gate NOT eligible)
+- Re-verified 2026-11-08T08:18Z: `universe/last_scan.json` JSON valid, `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, independent `date -u`=`2026-11-08T08:16:46Z`, Python `now=2026-11-08T08:18:55.746017+00:00`, remaining ≈ 6h53m05s (24784s), **eligible=false** (PROMPT.md §2.1.5). **No provider calls.**
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, snapshot_path present, scanned_at `2026-11-07T15:12:00.314643+00:00`, coverage 20/20 pages / 2000 entries / `coverage_reaches_below_floor=true` / lowest rank 2000 / lowest mcap $3,140,232, floor PIXEL/USDT $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
 - Coverage guard: `data/fixtures/SUKU_USDT.csv` **ABSENT** (0 `*suku*` matches under repo root) — `--apply` prohibited without verified fixture + baseline grid coverage. Preserved: `results/FINAL_DECISION.md`, `results/20261019_135940_grid/progress.json`. Git tree clean. No snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders.
 
@@ -10,5 +10,3 @@
 2. **If not eligible (expected until gate opens):** make **no provider calls**. Append a brief offline-check record (exact now/bound/remaining, state evidence, SUKU guard status) to `NEXT_AGENT_TASK.md` and this file; stop. Do not schedule duplicate wakeups.
 3. **If eligible:** run **at most one** 20-page snapshot pass: `PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20` (no `--apply`). Recompute floor vs included-universe fixtures, inspect below-floor band, update `universe/last_scan.json` (snapshot path/id, scanned_at, coverage, floor, eligible_unseen_below_floor, `next_eligible_refresh_at`). Before any `--apply`, verify fixture + baseline grid coverage for every selected candidate; **do not apply** without verified coverage (`data/fixtures/SUKU_USDT.csv` absent).
 4. **Never:** rerun grids, fetch candles, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow `AGENTS.md` adaptive gate policy.
-" filePath">
-/home/runner/work/Quantitative-Research-Prompt-EMA-hourly-continuation-/Quantitative-Research-Prompt-EMA-hourly-continuation-/INITIAL_TASK_FOR_NEXT_AGENT.md
