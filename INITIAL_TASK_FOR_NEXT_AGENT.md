@@ -1,7 +1,7 @@
 # Initial Task for Next Agent
 
-## Prior state (2026-11-08T01:54Z snapshot, gate NOT eligible)
-Gate opens **2026-11-08T15:12:00.314643Z**. Current state `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot_id=`mcap_snapshot_20261107_151200` (20/20 pages, 2000 entries, lowest rank 2000, lowest mcap $3,140,232, coverage below floor); floor PIXEL/USDT $3,190,848; `eligible_unseen_below_floor_count=0`; `batch_selected=[]`; `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`. SUKU fixture absent (`data/fixtures/SUKU_USDT.csv`); `--apply` prohibited without verified fixture + baseline grid coverage. Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` preserved.
+## Prior state (2026-11-08T01:55Z snapshot, gate NOT eligible)
+Gate opens **2026-11-08T15:12:00.314643Z**. Current state `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot_id=`mcap_snapshot_20261107_151200` (20/20 pages, 2000 entries, lowest rank 2000, lowest mcap $3,140,232, coverage below floor); floor PIXEL/USDT $3,190,848; `eligible_unseen_below_floor_count=0`; `batch_selected=[]`; `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`. SUKU fixture absent (`data/fixtures/SUKU_USDT.csv`); `--apply` prohibited without verified fixture + baseline grid coverage. Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` preserved. Last offline check: now=2026-11-08T01:55:39.907388Z, remaining ≈ 13h16m20s (47780s). No provider calls made.
 
 ## Clear initial task
 1. **Offline first:** read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`, `universe/last_scan.json`. Recompute eligibility from `next_eligible_refresh_at` vs independent UTC; do not guess. Gate opens **2026-11-08T15:12:00.314643Z**.
