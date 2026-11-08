@@ -2,8 +2,8 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and `NEXT_AGENT_TASK.md` before acting.
 
-## Current state (re-verified 2026-11-08T15:42Z)
-- `universe/last_scan.json` (JSON valid): `next_eligible_refresh_at` = `2026-11-09T15:29:31.554859+00:00`. **NOT ELIGIBLE** at `2026-11-08T15:42:36Z` (independent `date -u` + Python): remaining ≈ 23h46m55s (85615s).
+## Current state (re-verified 2026-11-08T15:46Z)
+- `universe/last_scan.json` (JSON valid): `next_eligible_refresh_at` = `2026-11-09T15:29:31.554859+00:00`. **NOT ELIGIBLE** at `2026-11-08T15:46:11Z` (independent `date -u` + Python): remaining ≈ 23h43m20s (85399s).
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, recorded_at=`2026-11-08T15:29:32.012995+00:00`, snapshot_id=`mcap_snapshot_20261108_152931`, snapshot_path=`universe/mcap_snapshot_20261108_152931.json` (present), scanned_at=`2026-11-08T15:29:31.554859+00:00`, source=CoinGecko public API `/api/v3/coins/markets` (usd, market_cap_desc).
 - Coverage: pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3163327, `coverage_reaches_below_floor=true`.
 - Universe: n=275, expansion_floor={ALPINE/USDT, $3,277,456}, eligible_unseen_below_floor_count=0, eligible_unseen_below_floor=[], batch_selected=[].
