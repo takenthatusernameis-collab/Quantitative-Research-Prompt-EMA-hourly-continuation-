@@ -1,6 +1,6 @@
 # Initial Task for Next Agent
 
-## Prior state (2026-11-07T23:13Z snapshot, gate NOT eligible)
+## Prior state (2026-11-08T01:54Z snapshot, gate NOT eligible)
 Gate opens **2026-11-08T15:12:00.314643Z**. Current state `AWAITING_NEW_ELIGIBLE_CANDIDATES`; snapshot_id=`mcap_snapshot_20261107_151200` (20/20 pages, 2000 entries, lowest rank 2000, lowest mcap $3,140,232, coverage below floor); floor PIXEL/USDT $3,190,848; `eligible_unseen_below_floor_count=0`; `batch_selected=[]`; `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`. SUKU fixture absent (`data/fixtures/SUKU_USDT.csv`); `--apply` prohibited without verified fixture + baseline grid coverage. Baseline grid `results/20261019_135940_grid` complete; `results/FINAL_DECISION.md` preserved.
 
 ## Clear initial task
@@ -8,12 +8,3 @@ Gate opens **2026-11-08T15:12:00.314643Z**. Current state `AWAITING_NEW_ELIGIBLE
 2. **If not eligible (expected until gate opens):** make **no provider calls**. Append a brief offline-check record (exact now/bound/remaining, state evidence, SUKU guard status) to `NEXT_AGENT_TASK.md` and this file; stop.
 3. **If eligible:** run **at most one** 20-page snapshot pass: `PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20` (no `--apply`). Recompute floor vs included-universe fixtures, inspect below-floor band, update `universe/last_scan.json` (snapshot path/id, scanned_at, coverage, floor, eligible_unseen_below_floor, `next_eligible_refresh_at`). Before any `--apply`, verify fixture + baseline grid coverage for every selected candidate; **do not apply** without verified coverage (`data/fixtures/SUKU_USDT.csv` absent).
 4. **Never:** rerun grids, fetch candles, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow `AGENTS.md` adaptive gate policy.
-
-## Completed this turn (2026-11-07T23:14:04Z, offline gate check)
-- Re-verified gate eligibility from `universe/last_scan.json` (JSON valid, re-read) + independent UTC (`date -u` = `2026-11-07T23:14:04Z`): **NOT ELIGIBLE**. `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00` (scanned_at `2026-11-07T15:12:00.314643+00:00`), remaining ≈ 15h57m56s (~57476s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-08T15:12:00.314643Z**.
-- **No provider calls** (offline only). State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, coverage 20/20/2000/below floor, floor PIXEL/USDT $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU guard holds (`data/fixtures/SUKU_USDT.csv` absent). Preserved: `results/FINAL_DECISION.md`, baseline grid progress. No snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders.
-EOF
-echo done
-## Completed this turn (2026-11-07T23:15Z, offline gate check)
-- Re-verified gate eligibility from `universe/last_scan.json` (JSON valid, re-read) + independent UTC (`date -u` = `2026-11-07T23:15:05Z` + Python `now=2026-11-07T23:15:05.698203+00:00`): **NOT ELIGIBLE**. `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00` (scanned_at `2026-11-07T15:12:00.314643+00:00`), remaining ≈ 15h56m54s (57414s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-08T15:12:00.314643Z**.
-- **No provider calls** (offline only). State unchanged: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, coverage 20/20/2000/below floor, floor PIXEL/USDT $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`. SUKU guard holds (`data/fixtures/SUKU_USDT.csv` absent). Preserved: `results/FINAL_DECISION.md`, baseline grid progress. No snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders.
