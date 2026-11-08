@@ -1,6 +1,6 @@
 # Initial Task for Next Agent
 
-## Prior state (2026-11-08T08:18Z offline check, gate NOT eligible)
+## Prior state (2026-11-08T08:23Z offline check, gate NOT eligible)
 - Re-verified 2026-11-08T08:18Z: `universe/last_scan.json` JSON valid, `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`, independent `date -u`=`2026-11-08T08:16:46Z`, Python `now=2026-11-08T08:18:55.746017+00:00`, remaining ≈ 6h53m05s (24784s), **eligible=false** (PROMPT.md §2.1.5). **No provider calls.**
 - State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261107_151200`, snapshot_path present, scanned_at `2026-11-07T15:12:00.314643+00:00`, coverage 20/20 pages / 2000 entries / `coverage_reaches_below_floor=true` / lowest rank 2000 / lowest mcap $3,140,232, floor PIXEL/USDT $3,190,848, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
 - Coverage guard: `data/fixtures/SUKU_USDT.csv` **ABSENT** (0 `*suku*` matches under repo root) — `--apply` prohibited without verified fixture + baseline grid coverage. Preserved: `results/FINAL_DECISION.md`, `results/20261019_135940_grid/progress.json`. Git tree clean. No snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders.
