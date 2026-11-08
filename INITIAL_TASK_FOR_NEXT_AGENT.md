@@ -1,12 +1,9 @@
 # Initial Task for Next Agent
 
-## Prior state (2026-11-08T15:29Z — snapshot pass executed, gate now NOT eligible until 2026-11-09T15:29:31Z)
-- Gate **ELIGIBLE** at 2026-11-08T15:13:04Z (independent `date -u`) >= `next_eligible_refresh_at=2026-11-08T15:12:00.314643+00:00`. Ran **one** 20-page snapshot pass (no `--apply`): `PYTHONPATH=. timeout 900 python3 scripts/fetch_mcap_snapshot.py --pages 20`.
-- New snapshot `universe/mcap_snapshot_20261108_152931.json`: 2000 entries, pages 20/20, all_requested_pages_returned=true, lowest covered rank 2000 ($3,163,327), `coverage_reaches_below_floor=true`.
-- Expansion floor recomputed: **ALPINE/USDT at $3,277,456** (was PIXEL/USDT $3,190,848; PIXEL now excluded/None in fresh snapshot).
-- Eligible unseen names below floor: **0** → state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `batch_selected=[]`. No `--apply` run.
-- Updated `universe/last_scan.json`: snapshot_id=`mcap_snapshot_20261108_152931`, snapshot_path=`universe/mcap_snapshot_20261108_152931.json`, scanned_at=`2026-11-08T15:29:31.554859+00:00`, coverage 20/20/2000/below floor, floor ALPINE/USDT $3,277,456, `eligible_unseen_below_floor_count=0`, `next_eligible_refresh_at=2026-11-09T15:29:31.554859+00:00`.
-- Coverage guard: `data/fixtures/SUKU_USDT.csv` **ABSENT** — `--apply` prohibited without verified fixture + baseline grid coverage. Preserved: `results/FINAL_DECISION.md`, `results/20261019_135940_grid/progress.json`. No candle fetches, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders.
+## Prior state (2026-11-08T15:31Z — offline gate check; NOT eligible)
+- Independent UTC `2026-11-08T15:31:33Z` < `next_eligible_refresh_at=2026-11-09T15:29:31.554859+00:00` (scanned_at `2026-11-08T15:29:31.554859+00:00`). Remaining ≈ 23h57m59s. **No provider calls** made.
+- State: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261108_152931`, snapshot_path=`universe/mcap_snapshot_20261108_152931.json` (present), coverage 20/20 pages / 2000 entries / `coverage_reaches_below_floor=true` / lowest rank 2000 / lowest mcap $3,163,327, floor ALPINE/USDT $3,277,456, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
+- Coverage guard: `data/fixtures/SUKU_USDT.csv` **ABSENT** — `--apply` prohibited without verified fixture + baseline grid coverage for every selected candidate. Preserved: `results/FINAL_DECISION.md`, `results/20261019_135940_grid/progress.json`. No candle fetches, no grid reruns, no EMA signal/fill/cost assumption changes.
 
 ## Clear initial task
 1. **Offline first:** read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`, `universe/last_scan.json`. Recompute eligibility from `next_eligible_refresh_at` vs independent UTC; do not guess. Gate opens **2026-11-09T15:29:31.554859Z**.
