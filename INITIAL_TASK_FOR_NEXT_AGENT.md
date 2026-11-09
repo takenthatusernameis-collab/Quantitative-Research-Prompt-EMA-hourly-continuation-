@@ -1,6 +1,6 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-## Initial task message for the next agent (current as of 2026-11-09T22:12Z)
+## Initial task message for the next agent (current as of 2026-11-09T22:16Z)
 
 **Your job:** resume the EMA hourly continuation universe-refresh gate. Nothing is eligible yet; do an offline gate check first, then act only if the gate has opened.
 
@@ -9,7 +9,7 @@
 2. Recompute eligibility from `next_eligible_refresh_at` in `universe/last_scan.json` against an **independent** UTC source (`date -u`). Do not guess.
 3. Confirm `data/fixtures/SUKU_USDT.csv` is absent — `--apply` is prohibited without verified fixture + baseline grid coverage for every selected candidate.
 
-**Step 2 — If NOT eligible (expected; gate opens 2026-11-10T21:27:34.909283Z, ≈ 23h15m from 22:12Z):**
+**Step 2 — If NOT eligible (expected; gate opens 2026-11-10T21:27:34.909283Z, ≈ 23h10m36s from 22:16Z):**
 - Make **no provider calls**.
 - Append a brief offline-check record (exact now / bound / remaining / state evidence / SUKU guard status) to `NEXT_AGENT_TASK.md` and this file.
 - Stop. Do **not** schedule duplicate wakeups.
@@ -23,9 +23,9 @@
 
 **Never:** rerun grids, fetch candles, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data / no-cost tooling; follow `AGENTS.md` adaptive gate policy.
 
-## Current state (re-verified 2026-11-09T22:12Z, offline)
+## Current state (re-verified 2026-11-09T22:16Z, offline)
 - `universe/last_scan.json` (JSON valid, re-read): state=`AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261109_212734`, snapshot_path=`universe/mcap_snapshot_20261109_212734.json` (present, 543,953 bytes), scanned_at=`2026-11-09T21:27:34.909283+00:00`, source=CoinGecko public API `/api/v3/coins/markets` (usd, market_cap_desc).
-- `next_eligible_refresh_at` = `2026-11-10T21:27:34.909283+00:00`. **NOT ELIGIBLE** at `2026-11-09T22:12:21.586135+00:00` (independent `date -u` = `2026-11-09T22:12:05Z`; Python = `2026-11-09T22:12:21.586135+00:00`): remaining ≈ **23h15m13s** (83713.32s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-10T21:27:34.909283Z**.
+- `next_eligible_refresh_at` = `2026-11-10T21:27:34.909283+00:00`. **NOT ELIGIBLE** at `2026-11-09T22:16:58.586241+00:00` (independent `date -u` = `2026-11-09T22:16:58.574124308+0000`; Python = `2026-11-09T22:16:58.586241+00:00`): remaining ≈ **23h10m36s** (83436.32s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-10T21:27:34.909283Z**.
 - Coverage: pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3083741, `coverage_reaches_below_floor=true`.
 - Universe: n=275, expansion_floor={PIXEL/USDT, $3,143,487}, eligible_unseen_below_floor_count=0, eligible_unseen_below_floor=[], batch_selected=[].
 - Coverage guard: `data/fixtures/SUKU_USDT.csv` **ABSENT** (`find -iname '*suku*'` = 0 matches, exit 0; `ls` No such file or directory). **`--apply` MUST NOT run** without verified fixture + baseline grid coverage for every selected candidate.
@@ -39,6 +39,7 @@
 
 ## Offline gate-check records (append-only summary)
 - 2026-11-09T22:12Z: NOT ELIGIBLE (now 22:12:21Z, bound 2026-11-10T21:27:34.909283Z, ~23h15m13s). State/evidence unchanged; SUKU absent; no provider calls.
+- 2026-11-09T22:16Z: NOT ELIGIBLE (now 22:16:58Z, bound 2026-11-10T21:27:34.909283Z, ~23h10m36s / 83436s). State/evidence unchanged; SUKU absent; no provider calls.
 - 2026-11-09T22:07Z: NOT ELIGIBLE (~23h19m42s). State/evidence unchanged; SUKU absent; no provider calls.
 - 2026-11-09T22:03Z: NOT ELIGIBLE (~23h23m59s). State/evidence unchanged; SUKU absent; no provider calls.
 - 2026-11-09T21:57Z: NOT ELIGIBLE (~23h29m57s). State/evidence unchanged; SUKU absent; no provider calls.
@@ -51,7 +52,7 @@
 - Earlier 2026-11-08/09 checks (pre-eligible and post-eligible on old bound) preserved in git history and `NEXT_AGENT_TASK.md` detail; do not treat fixtures as market evidence.
 
 ## Clear initial task for next agent (measurable)
-1. **Offline first:** read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `universe/last_scan.json`. Recompute eligibility from `next_eligible_refresh_at` vs independent UTC; do not guess. Gate opens **2026-11-10T21:27:34.909283Z** (~23h15m from 2026-11-09T22:12Z).
+1. **Offline first:** read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `universe/last_scan.json`. Recompute eligibility from `next_eligible_refresh_at` vs independent UTC; do not guess. Gate opens **2026-11-10T21:27:34.909283Z** (~23h10m36s from 2026-11-09T22:16Z).
 2. **If not eligible (expected):** make **no provider calls**. Append a brief offline-check record (exact now/bound/remaining, state evidence, SUKU guard status) to `NEXT_AGENT_TASK.md` and this file; stop. Do not schedule duplicate wakeups.
 3. **If eligible:** run **at most one** 20-page snapshot pass: `PYTHONPATH=. timeout 1800 python3 scripts/fetch_mcap_snapshot.py --pages 20` (no `--apply`; 900s cap too short). Recompute floor vs included-universe fixtures, inspect below-floor band, update `universe/last_scan.json` (snapshot path/id, scanned_at, coverage, floor, eligible_unseen_below_floor, `next_eligible_refresh_at`). Before any `--apply`, verify fixture + baseline grid coverage for every selected candidate; **do not apply** without verified coverage (SUKU fixture absent).
 4. **Never:** rerun grids, fetch candles, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow `AGENTS.md` adaptive gate policy.
