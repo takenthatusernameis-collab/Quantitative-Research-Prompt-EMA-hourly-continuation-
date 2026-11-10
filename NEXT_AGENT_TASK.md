@@ -68,6 +68,13 @@
 - SUKU guard: `data/fixtures/SUKU_USDT.csv` **ABSENT** (`find -iname '*suku*'` = 0 matches, exit 0; `ls` = No such file or directory). `--apply` prohibited without verified fixture + baseline grid coverage for every selected candidate.
 - No provider calls, no snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. No duplicate wakeups scheduled (cron_list empty). Historical research only; no orders.
 
+## Offline gate-check record (2026-11-10T11:12Z, no provider calls)
+- 2026-11-10T11:12Z: **NOT ELIGIBLE**. now=`2026-11-10T11:12:09Z` (independent `date -u` = `2026-11-10T11:12:09Z`; Python `2026-11-10T11:12:25.746260+00:00`), bound=`2026-11-10T21:27:34.909283+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **10h15m09s** (36909.16s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-10T21:27:34.909283Z**.
+- State unchanged (re-read `universe/last_scan.json`, JSON valid): state=`AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261109_212734`, snapshot_path=`universe/mcap_snapshot_20261109_212734.json` present (543,953 bytes), scanned_at=`2026-11-09T21:27:34.909283+00:00`, coverage 20/20 pages / 2000 entries / `all_requested_pages_returned=true` / `coverage_reaches_below_floor=true` / lowest rank 2000 / lowest mcap $3,083,741, universe_n=275, expansion floor PIXEL/USDT $3,143,487, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
+- Preserved artifacts re-verified present: `results/FINAL_DECISION.md` (23,304 bytes), `results/20261019_135940_grid/progress.json` (1,478,918 bytes), `universe/mcap_snapshot_20261109_212734.json` (543,953 bytes).
+- SUKU guard: `data/fixtures/SUKU_USDT.csv` **ABSENT** (`find -iname '*suku*'` = 0 matches, exit 0). `--apply` prohibited without verified fixture + baseline grid coverage for every selected candidate.
+- No provider calls, no snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. No duplicate wakeups scheduled. Historical research only; no orders.
+
 ## Next agent — clear initial task
 1. **Offline first:** read `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `universe/last_scan.json`. Recompute eligibility from `next_eligible_refresh_at` vs independent UTC time; do not guess. Gate opens **2026-11-10T21:27:34.909283Z** (~10h19m53s from 2026-11-10T11:07Z).
 2. **If not eligible (expected until gate opens):** make **no provider calls**. Append a brief offline-check record (exact now/bound/remaining, state evidence, SUKU guard status) to `NEXT_AGENT_TASK.md` and `INITIAL_TASK_FOR_NEXT_AGENT.md`; stop. Do not schedule duplicate wakeups.
