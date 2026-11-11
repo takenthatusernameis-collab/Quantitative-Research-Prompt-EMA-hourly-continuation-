@@ -574,3 +574,15 @@
 - Coverage NOT verified for every selected candidate → `--apply` NOT run, `--apply` prohibited. Stop cleanly.
 - Preserved artifacts re-verified present: `results/FINAL_DECISION.md` (23,304 bytes), `results/20261019_135940_grid/progress.json` (1,478,918 bytes), `universe/mcap_snapshot_20261111_000546.json` (543,959 bytes).
 - No provider calls, no snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders. No duplicate wakeups scheduled.
+
+## Offline gate-check record (2026-11-11T03:27:52Z, no provider calls)
+
+- 2026-11-11T03:27:52Z: **NOT ELIGIBLE**. now=`2026-11-11T03:27:52Z` (independent `date -u` = Wed Nov 11 03:27:52 UTC 2026; Python = `2026-11-11T03:27:52.480619+00:00`), bound=`2026-11-12T00:05:46.653861+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **20h 37m 54s (74274.17s)**. Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-12T00:05:46.653861Z**.
+- State unchanged (re-read `universe/last_scan.json`, JSON valid): state=`EXPANSION_AVAILABLE`, snapshot_id=`mcap_snapshot_20261111_000546`, snapshot_path=`universe/mcap_snapshot_20261111_000546.json` (present, 543,959 bytes), scanned_at=`2026-11-11T00:05:46.653861+00:00`, coverage 20/20 pages / 2000 entries / `all_requested_pages_returned=true` / `coverage_reaches_below_floor=true` / lowest rank 2000 / lowest mcap $3,008,633, universe_n=275, expansion_floor=PIXEL/USDT $3,222,550, `eligible_unseen_below_floor_count=3`, batch_selected=[DENT/USDT, SUKU/USDT, ESE/USDT].
+- Coverage check outcome (per candidate, offline, no provider calls):
+  - DENT/USDT: fixture **ABSENT** (`ls` = No such file or directory); baseline grid coverage in `results/20261019_135940_grid/progress.json` **ABSENT** (grep `DENT/USDT` = 0 matches).
+  - SUKU/USDT: fixture **ABSENT**; baseline grid coverage **ABSENT** (grep `SUKU/USDT` = 0 matches).
+  - ESE/USDT: fixture **ABSENT**; baseline grid coverage **ABSENT** (grep `ESE/USDT` = 0 matches).
+- Coverage NOT verified for every selected candidate → `--apply` NOT run, `--apply` prohibited. Stop cleanly.
+- Preserved artifacts re-verified present: `results/FINAL_DECISION.md` (23,304 bytes), `results/20261019_135940_grid/progress.json` (1,478,918 bytes), `universe/mcap_snapshot_20261111_000546.json` (543,959 bytes).
+- No provider calls, no snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders. No duplicate wakeups scheduled.
