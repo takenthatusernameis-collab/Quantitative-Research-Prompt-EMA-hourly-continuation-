@@ -2,9 +2,9 @@
 
 **Task:** Resume the EMA hourly continuation universe-refresh gate. Read `README.md`, `AGENTS.md`, and this file before acting.
 
-## Current state (re-verified 2026-11-11T00:17:57Z, offline)
+## Current state (re-verified 2026-11-11T00:28:27Z, offline)
 - Source of truth `universe/last_scan.json` (JSON valid, re-read): state=`EXPANSION_AVAILABLE`, snapshot_id=`mcap_snapshot_20261111_000546`, snapshot_path=`universe/mcap_snapshot_20261111_000546.json` (present, 543,959 bytes), scanned_at=`2026-11-11T00:05:46.653861+00:00`, source=CoinGecko public API `/api/v3/coins/markets` (usd, market_cap_desc).
-- `next_eligible_refresh_at` = `2026-11-12T00:05:46.653861+00:00`. **NOT ELIGIBLE** at `2026-11-11T00:17:57Z` (independent `date -u` and Python both = `2026-11-11T00:17:57Z`): remaining ≈ 23 h 48 m (85669 s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-12T00:05:46.653861+00:00**.
+- `next_eligible_refresh_at` = `2026-11-12T00:05:46.653861+00:00`. **NOT ELIGIBLE** at `2026-11-11T00:28:27Z` (independent `date -u` and Python = `2026-11-11T00:28:27.645486+00:00`): remaining ≈ 23h37m19s (85039s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-12T00:05:46.653861+00:00**.
 - Coverage: pages_requested=20, pages_fetched=20, all_requested_pages_returned=true, entries_count=2000, lowest_rank_covered=2000, lowest_market_cap_usd=3008633, `coverage_reaches_below_floor=true`.
 - Universe: n=275, expansion_floor=PIXEL/USDT $3,222,550, eligible_unseen_below_floor_count=3, batch_selected=[DENT/USDT, SUKU/USDT, ESE/USDT].
 - Coverage check (offline, no provider calls): `data/fixtures/DENT_USDT.csv`, `data/fixtures/SUKU_USDT.csv`, `data/fixtures/ESE_USDT.csv` all **ABSENT** (`ls` = No such file or directory). Baseline grid coverage in `results/20261019_135940_grid/progress.json`: grep `DENT/USDT|SUKU/USDT|ESE/USDT` = 0 matches → **ABSENT** for all three.
@@ -506,3 +506,11 @@
 - Coverage NOT verified for every selected candidate → `--apply` NOT run, `--apply` prohibited without verified fixture + baseline grid coverage. Blocker recorded; stop cleanly.
 - Preserved artifacts re-verified present: `results/FINAL_DECISION.md` (23,304 bytes), `results/20261019_135940_grid/progress.json` (1,478,918 bytes), `universe/mcap_snapshot_20261111_000546.json` (543,959 bytes).
 - No provider calls, no snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. No duplicate wakeups scheduled (cron_list empty). Historical research only; no orders.
+
+## Offline gate-check record (2026-11-11T00:28:27Z, no provider calls)
+- 2026-11-11T00:28:27Z: **NOT ELIGIBLE — coverage blocker**. now=`2026-11-11T00:28:27Z` (independent `date -u` = `2026-11-11T00:28:27Z`; Python = `2026-11-11T00:28:27+00:00`), bound=`2026-11-12T00:05:46.653861+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **23h37m19s (85039s)**. Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-12T00:05:46.653861+00:00**.
+- State unchanged (re-read `universe/last_scan.json`, JSON valid): state=`EXPANSION_AVAILABLE`, snapshot_id=`mcap_snapshot_20261111_000546`, snapshot_path=`universe/mcap_snapshot_20261111_000546.json` present (543,959 bytes), scanned_at=`2026-11-11T00:05:46.653861+00:00`, coverage 20/20 pages / 2000 entries / `all_requested_pages_returned=true` / `coverage_reaches_below_floor=true` / lowest rank 2000 / lowest mcap $3,008,633, universe_n=275, expansion floor PIXEL/USDT $3,222,550, `eligible_unseen_below_floor_count=3`, `batch_selected=[DENT/USDT, SUKU/USDT, ESE/USDT]`.
+- Coverage check per candidate (offline, no provider calls): fixtures `data/fixtures/DENT_USDT.csv`, `data/fixtures/SUKU_USDT.csv`, `data/fixtures/ESE_USDT.csv` all **ABSENT** (`ls` = No such file or directory). Baseline grid coverage in `results/20261019_135940_grid/progress.json`: grep `DENT/USDT|SUKU/USDT|ESE/USDT` = 0 matches → **ABSENT** for all three.
+- Coverage NOT verified for every selected candidate → `--apply` NOT run, `--apply` prohibited without verified fixture + baseline grid coverage. Blocker recorded; stop cleanly.
+- Preserved artifacts re-verified present: `results/FINAL_DECISION.md` (23,304 bytes), `results/20261019_135940_grid/progress.json` (1,478,918 bytes), `universe/mcap_snapshot_20261111_000546.json` (543,959 bytes).
+- No provider calls, no snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. No duplicate wakeups scheduled. Historical research only; no orders.
