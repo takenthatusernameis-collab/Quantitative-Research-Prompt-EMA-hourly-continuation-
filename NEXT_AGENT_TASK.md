@@ -121,6 +121,17 @@
 - SUKU guard: `data/fixtures/SUKU_USDT.csv` **ABSENT** (`find -iname '*suku*'` = 0 matches). `--apply` prohibited without verified fixture + baseline grid coverage for every selected candidate.
 - No provider calls, no snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders.
 
+## Offline gate-check record (2026-11-11T03:39:57Z, no provider calls)
+- 2026-11-11T03:39:57Z: **NOT ELIGIBLE**. now=`2026-11-11T03:39:57.671399+00:00` (independent `date -u` = `Wed Nov 11 03:39:52 UTC 2026`; Python = `2026-11-11T03:39:57.671399+00:00`), bound=`2026-11-12T00:05:46.653861+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **20h25m49s** (73548.98s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-12T00:05:46.653861Z**.
+- State unchanged (re-read `universe/last_scan.json`, JSON valid): state=`EXPANSION_AVAILABLE`, snapshot_id=`mcap_snapshot_20261111_000546`, snapshot_path=`universe/mcap_snapshot_20261111_000546.json` (present, 543,959 bytes), scanned_at=`2026-11-11T00:05:46.653861+00:00`, coverage 20/20 pages / 2000 entries / `all_requested_pages_returned=true` / `coverage_reaches_below_floor=true` / lowest rank 2000 / lowest mcap $3,008,633, universe_n=275, expansion_floor=PIXEL/USDT $3,222,550, `eligible_unseen_below_floor_count=3`, batch_selected=[DENT/USDT, SUKU/USDT, ESE/USDT].
+- Coverage check outcome (per candidate, offline, no provider calls):
+  - DENT/USDT: fixture **ABSENT** (`ls` = No such file or directory); baseline grid coverage **ABSENT** (grep `DENT/USDT` = 0 matches).
+  - SUKU/USDT: fixture **ABSENT**; baseline grid coverage **ABSENT** (grep `SUKU/USDT` = 0 matches).
+  - ESE/USDT: fixture **ABSENT**; baseline grid coverage **ABSENT** (grep `ESE/USDT` = 0 matches).
+- Coverage NOT verified for every selected candidate → `--apply` NOT run, `--apply` prohibited. Stop cleanly.
+- Preserved artifacts re-verified present: `results/FINAL_DECISION.md` (23,304 bytes), `results/20261019_135940_grid/progress.json` (1,478,918 bytes), `universe/mcap_snapshot_20261111_000546.json` (543,959 bytes).
+- No provider calls, no snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders. No duplicate wakeups scheduled.
+
 ## Offline gate-check record (2026-11-08T20:01Z, no provider calls)
 - 2026-11-08T20:01Z: **NOT ELIGIBLE**. now=`2026-11-08T20:01:53Z` (independent `date -u`), bound=`2026-11-09T15:29:31.554859+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **19h27m38s** (70058s). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed. Gate opens **2026-11-09T15:29:31.554859Z**.
 - State unchanged (re-read `universe/last_scan.json`, JSON valid): state=`AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261108_152931`, snapshot_path=`universe/mcap_snapshot_20261108_152931.json` present (543,610 bytes), scanned_at=`2026-11-08T15:29:31.554859+00:00`, coverage 20/20 pages / 2000 entries / `all_requested_pages_returned=true` / `coverage_reaches_below_floor=true` / lowest rank 2000 / lowest mcap $3,163,327, universe_n=275, expansion floor ALPINE/USDT $3,277,456, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
