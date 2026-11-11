@@ -1,26 +1,49 @@
 {
-  "recorded_at": "2026-11-09T21:27:35.356659+00:00",
-  "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
-  "snapshot_id": "mcap_snapshot_20261109_212734",
-  "snapshot_path": "universe/mcap_snapshot_20261109_212734.json",
+  "recorded_at": "2026-11-11T00:05:46.952549+00:00",
+  "state": "EXPANSION_AVAILABLE",
+  "snapshot_id": "mcap_snapshot_20261111_000546",
+  "snapshot_path": "universe/mcap_snapshot_20261111_000546.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-11-09T21:27:34.909283+00:00",
+  "scanned_at": "2026-11-11T00:05:46.653861+00:00",
   "coverage": {
     "pages_requested": 20,
     "pages_fetched": 20,
     "all_requested_pages_returned": true,
     "entries_count": 2000,
     "lowest_rank_covered": 2000,
-    "lowest_market_cap_usd": 3083741
+    "lowest_market_cap_usd": 3008633
   },
   "coverage_reaches_below_floor": true,
   "universe_n": 275,
   "expansion_floor": {
     "symbol": "PIXEL/USDT",
-    "market_cap_usd": 3143487
+    "market_cap_usd": 3222550
   },
-  "eligible_unseen_below_floor_count": 0,
-  "eligible_unseen_below_floor": [],
-  "batch_selected": [],
-  "next_eligible_refresh_at": "2026-11-10T21:27:34.909283+00:00"
+  "eligible_unseen_below_floor_count": 3,
+  "eligible_unseen_below_floor": [
+    {
+      "rank": 1945,
+      "symbol": "DENT",
+      "name": "Dent",
+      "market_cap_usd": 3214122
+    },
+    {
+      "rank": 1959,
+      "symbol": "SUKU",
+      "name": "SUKU",
+      "market_cap_usd": 3170943
+    },
+    {
+      "rank": 1998,
+      "symbol": "ESE",
+      "name": "Eesee",
+      "market_cap_usd": 3026755
+    }
+  ],
+  "batch_selected": [
+    "DENT/USDT",
+    "SUKU/USDT",
+    "ESE/USDT"
+  ],
+  "next_eligible_refresh_at": "2026-11-12T00:05:46.653861+00:00"
 }
