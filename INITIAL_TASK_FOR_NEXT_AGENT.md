@@ -1,13 +1,13 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-## Status at handoff (2026-11-12T07:53Z)
+## Status at handoff (2026-11-12T07:57Z)
 
 Gate state: **AWAITING_NEW_ELIGIBLE_CANDIDATES** — most recent eligible snapshot pass completed 2026-11-12T00:58:05Z with 0 eligible unseen candidates below the expansion floor. **No provider calls** until `next_eligible_refresh_at`.
 
 - `universe/last_scan.json` (re-read, JSON valid): state=`AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261112_005805`, snapshot_path=`universe/mcap_snapshot_20261112_005805.json` (present, 544,098 bytes), scanned_at=`2026-11-12T00:58:05.114706+00:00`, source=CoinGecko public API `/api/v3/coins/markets` (usd, market_cap_desc).
 - Coverage: pages 20/20, entries_count=2000, `all_requested_pages_returned=true`, lowest_rank_covered=2000, lowest_market_cap_usd=$3,032,868, `coverage_reaches_below_floor=true`.
 - Universe: n=275. Expansion floor (recomputed vs included-universe fixtures): **ZKJ/USDT $3,149,088**. `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
-- `next_eligible_refresh_at` = **`2026-11-13T00:58:05.114706+00:00`**. At handoff now `2026-11-12T07:53Z` (independent `date -u`/Python) the gate is **NOT ELIGIBLE** (~17h04m46s / 61486.49s remaining). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed.
+- `next_eligible_refresh_at` = **`2026-11-13T00:58:05.114706+00:00`**. At handoff now `2026-11-12T07:57Z` (independent `date -u`/Python) the gate is **NOT ELIGIBLE** (~17h00m53s / 61252.78s remaining). Reason (PROMPT.md §2.1.5): 24h refresh bound has not elapsed.
 - Coverage re-check (offline): DENT/USDT, SUKU/USDT, ESE/USDT fixtures all **ABSENT**; baseline grid `results/20261019_135940_grid/progress.json` (968,480 chars) contains **none** of DENT/USDT, SUKU/USDT, ESE/USDT, ZKJ/USDT. No `--apply` was run (nothing to apply). `--apply` remains prohibited for any candidate without verified fixture + baseline grid coverage.
 - Preserved artifacts present: `results/FINAL_DECISION.md` (23,304 bytes), `results/20261019_135940_grid/progress.json` (1,478,918 bytes), `universe/mcap_snapshot_20261112_005805.json` (544,098 bytes). EMA signal/fill/cost assumptions unchanged. Historical research only; no orders. No duplicate wakeups scheduled (cron_list empty).
 
