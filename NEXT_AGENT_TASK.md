@@ -1,18 +1,18 @@
 # NEXT_AGENT_TASK.md — EMA hourly continuation universe-refresh gate
 
-**Updated:** 2026-11-15T20:43:18Z (this agent: offline only, no provider calls).
+**Updated:** 2026-11-15T20:44:19Z (this agent: offline only, no provider calls).
 
 Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `universe/last_scan.json` and `universe/mcap_rank.json` before acting.
 
 ## 1. Status
 
-- **Gate: NOT ELIGIBLE.** now=`2026-11-15T20:43:18.313840+00:00` (independent `date -u` = `Sun Nov 15 20:43:18 UTC 2026`; Python `datetime.now(timezone.utc)`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **10h44m54.6s (38,694.6s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed.
+- **Gate: NOT ELIGIBLE.** now=`2026-11-15T20:44:19.731491+00:00` (independent `date -u` = `Sun Nov 15 20:44:10 UTC 2026`; Python `datetime.now(timezone.utc)`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **10h43m53.2s (38,633.2s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed.
 - Gate opens **2026-11-16T07:28:12.929462+00:00**. Status derived offline via `scripts.refresh_gate.gate_status(state)` (PYTHONPATH=.) → `eligible=false`.
 - Scan state: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261115_072812`, scanned_at=`2026-11-15T07:28:12.929462+00:00`, source=CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), 25/25 pages, 2500 entries, `all_requested_pages_returned=true`, `coverage_reaches_below_floor=true`, lowest rank 2500, lowest mcap **$1,519,127**, `universe_n=276`, `batch_selected=["CERE/USDT"]`, `eligible_unseen_below_floor_count=0`.
 - Expansion floor: **CERE/USDT $1,521,812** (rank 2495).
 - CERE expansion is complete and audited: `grid_expansion` 2026-11-15T14:37:24.394504Z added CERE/USDT (66 cells, new_n=276, previous_n=275); `grid_verification` 2026-11-15T14:37:28.352788Z confirms 276 symbols / 18,216/18,216 cells / `cells_blocked=0` / `incomplete_symbols=[]` / `symbols_without_fixture=[]`. `universe/mcap_rank.json` updated_at=`2026-11-15T14:34:58.596658Z`, n_symbols=276, CERE/USDT last. No further CERE action is required.
 
-## 2. Independent offline verification (2026-11-15T20:43Z, stdlib only, no network)
+## 2. Independent offline verification (2026-11-15T20:44Z, stdlib only, no network)
 
 - **Floor + band re-derived** from the frozen snapshot plus `mcap_rank.json`: 276/276 universe symbols matched in the 2500-entry snapshot; lowest included market cap = **CERE/USDT $1,521,812**; **0 eligible unseen** entries strictly below the floor.
 - **5 entries strictly below the floor** (all excluded): rank 2496 VAPI $1,521,123 `no_tradable_kucoin_spot_usdt_pair`; 2497 GM $1,519,405 `no_tradable_kucoin_spot_usdt_pair`; 2498 OFC $1,519,208 `insufficient_hourly_history_for_grid`; 2499 FUSD $1,519,196 `no_tradable_kucoin_spot_usdt_pair`; 2500 WFRAGSOL $1,519,127 `no_tradable_kucoin_spot_usdt_pair`. Structural coverage is sufficient either way.
@@ -25,8 +25,7 @@ Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `
 ## 3. What this session did
 
 - Recomputed the gate offline (`scripts.refresh_gate.gate_status`); gate closed, so **no provider calls**, no snapshot/candle fetch, no `--apply`, no grid rerun.
-- Independently re-derived the floor/band and grid coverage with a stdlib audit; all handoff claims reproduced exactly.
-- Rewrote both handoff files for clarity; no research artifacts or assumptions were changed.
+- Appended one gate-check line to both handoff logs. No research artifacts or assumptions were changed.
 
 ## 4. Your task (one measurable task)
 
@@ -36,7 +35,7 @@ Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `
 4. **Before any `--apply`:** verify fixture + baseline grid coverage in `results/20261019_135940_grid/progress.json` for **every** selected candidate. If any candidate lacks either, **do not apply**; record the blocker per candidate and stop cleanly.
 5. **Never:** rerun existing grid cells, re-fetch a fixture the grid already used, fetch candles unnecessarily, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow the AGENTS.md adaptive gate policy.
 
-**One measurable next task:** perform exactly one offline gate evaluation (gate is closed), update both handoff files, and stop.
+**One measurable next task:** perform exactly one offline gate evaluation (gate is closed until 2026-11-16T07:28:12Z), update both handoff files, and stop.
 
 ## 5. Gate-check log (compact)
 
@@ -51,3 +50,4 @@ All checks are offline, stdlib-only, no provider calls, no `--apply`, no grid re
 | 2026-11-15T20:30:00Z | 10h58m12.0s | NOT ELIGIBLE; 5 entries below floor |
 | 2026-11-15T20:34:21Z | 10h53m51.7s | NOT ELIGIBLE; 5 entries below floor |
 | 2026-11-15T20:43:18Z | 10h44m54.6s | NOT ELIGIBLE; floor/band and 18,216-cell grid independently re-verified |
+| 2026-11-15T20:44:19Z | 10h43m53.2s | NOT ELIGIBLE; offline gate recomputed (eligible=false), no provider calls |

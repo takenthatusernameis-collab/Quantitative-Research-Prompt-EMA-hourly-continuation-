@@ -1,10 +1,10 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Handoff written:** 2026-11-15T20:43:18Z (offline only, no provider calls). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
+**Handoff written:** 2026-11-15T20:44:19Z (offline only, no provider calls). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
 
 ## 1. Status at handoff
 
-- **Gate: NOT ELIGIBLE.** now=`2026-11-15T20:43:18.313840+00:00` (independent `date -u` = `Sun Nov 15 20:43:18 UTC 2026`; Python `datetime.now(timezone.utc)`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **10h44m54.6s (38,694.6s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed. Gate opens **2026-11-16T07:28:12.929462+00:00**. Derived offline with `scripts.refresh_gate.gate_status(state)` (PYTHONPATH=.) → `eligible=false`.
+- **Gate: NOT ELIGIBLE.** now=`2026-11-15T20:44:19.731491+00:00` (independent `date -u` = `Sun Nov 15 20:44:10 UTC 2026`; Python `datetime.now(timezone.utc)`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **10h43m53.2s (38,633.2s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed. Gate opens **2026-11-16T07:28:12.929462+00:00**. Derived offline with `scripts.refresh_gate.gate_status(state)` (PYTHONPATH=.) → `eligible=false`.
 - Scan state: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261115_072812`, scanned_at=`2026-11-15T07:28:12.929462+00:00`, CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), 25/25 pages, 2500 entries, `coverage_reaches_below_floor=true`, lowest mcap **$1,519,127**, universe_n=276, expansion floor **CERE/USDT $1,521,812** (rank 2495), `eligible_unseen_below_floor_count=0`, `batch_selected=["CERE/USDT"]`.
 - Below-floor band: **5 entries strictly below the floor**, all excluded — VAPI $1,521,123 and GM $1,519,405 and FUSD $1,519,196 and WFRAGSOL $1,519,127 (`no_tradable_kucoin_spot_usdt_pair`), OFC $1,519,208 (`insufficient_hourly_history_for_grid`); **0 eligible unseen**.
 - Grid: 276 symbols × 66 pairs = **18,216/18,216 cells complete** (`results/20261019_135940_grid/progress.json`), `cells_blocked=0`, `incomplete_symbols=[]`, `symbols_without_fixture=[]`, `all_symbols_processed=true`. CERE/USDT expansion (66 cells, previous_n=275 → new_n=276) is complete and audited; no further CERE action is needed.
@@ -36,3 +36,4 @@
 | 2026-11-15T20:30:00Z | 10h58m12.0s | NOT ELIGIBLE; 5 entries below floor |
 | 2026-11-15T20:34:21Z | 10h53m51.7s | NOT ELIGIBLE; 5 entries below floor |
 | 2026-11-15T20:43:18Z | 10h44m54.6s | NOT ELIGIBLE; floor/band and 18,216-cell grid independently re-verified |
+| 2026-11-15T20:44:19Z | 10h43m53.2s | NOT ELIGIBLE; offline gate recomputed (eligible=false), no provider calls |
