@@ -1,6 +1,36 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-## Status at handoff (2026-11-15T07:38:20Z)
+## Status at handoff (updated 2026-11-15T14:28:51Z; no provider calls by this agent)
+
+Gate state: **NOT ELIGIBLE**. now=`2026-11-15T14:28:51.599745+00:00` (independent `date -u` = `Sun Nov 15 14:28:51 UTC 2026`; Python `datetime.now(timezone.utc)`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **16h59m21.3s (61,161.3s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed. Gate opens **2026-11-16T07:28:12.929462+00:00**. Derived offline via `scripts.refresh_gate.gate_status(state)` → `eligible=false`.
+
+- **Material change since the 07:38 handoff (made by a later agent, not this one):** `data/fixtures/CERE_USDT.csv` is now **PRESENT** (1,601,043 bytes): 22,000 hourly rows, `2024-05-12 17:00:00+00:00` → `2026-11-15 08:00:00+00:00`, 0 non-hourly gaps, 0 invalid OHLC, price-identity `|log(last_close/ranked_price)| = 0.0009995` ≤ 0.20 vs the frozen snapshot's CERE price `$0.00017017`; `data/fixtures/fetch_manifest.json` now carries the CERE/USDT row (22,000 rows). Commit `632d5ee0cd` (2026-11-15T08:11Z) added it and added a `fixtures` block to `last_scan.json` (`fetched_at=2026-11-15T08:10:06.687420+00:00`, `target_bars=22000`, `results=[]`). **The "CERE fixture ABSENT" blocker is resolved.**
+- The same commit changed `scripts/fetch_mcap_snapshot.py` (+tests): `build_scan_record` now always sets `next_eligible_refresh_at = bound_after(scanned_at)`, so an `EXPANSION_AVAILABLE` pass can no longer leave the gate open.
+- `universe/last_scan.json` (re-read, JSON valid, now 1,193 bytes): state=`EXPANSION_AVAILABLE`, snapshot_id=`mcap_snapshot_20261115_072812`, snapshot_path present (683,184 bytes), recorded_at=`2026-11-15T07:28:13.508555+00:00`, scanned_at=`2026-11-15T07:28:12.929462+00:00`, source=CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), coverage 25/25 pages / 2500 entries / `all_requested_pages_returned=true` / `coverage_reaches_below_floor=true` / lowest rank 2500 / lowest mcap $1,519,127, universe_n=275, expansion_floor=BOSON/USDT $1,612,630, `eligible_unseen_below_floor_count=1`, `eligible_unseen_below_floor`=[CERE rank 2495, $1,521,812], `batch_selected=["CERE/USDT"]`, `next_eligible_refresh_at=2026-11-16T07:28:12.929462+00:00`.
+- Floor + band unchanged (offline): below-floor band = 55 entries (ranks 2446-2500, $1,610,416 → $1,519,127) = 50 `no_tradable_kucoin_spot_usdt_pair`, 4 `insufficient_hourly_history_for_grid`, 1 eligible (CERE/USDT). Structural coverage sufficient.
+- **Grid coverage still absent for CERE:** `results/20261019_135940_grid/progress.json` (1,478,918 bytes) has 275 symbols, `n_pairs=66`, `completed_cells=18150`, `stopped=False`, `all_symbols_processed=True`, `next_cell=None`, no CERE reference; `results/20261019_135940_grid/results/CERE_USDT/` does not exist. `universe/mcap_rank.json` unchanged (275 symbols, updated_at `2026-10-22T12:15:58.878331+00:00`): CERE is **not** yet in the universe.
+- Preserved artifacts present: `results/FINAL_DECISION.md` (23,304 bytes), `results/20261019_135940_grid/progress.json` (1,478,918 bytes), `universe/mcap_snapshot_20261115_072812.json` (683,184 bytes), `universe/last_scan.json` (1,193 bytes), `universe/mcap_rank.json` (5,301 bytes), `data/fixtures/CERE_USDT.csv` (1,601,043 bytes). `cron_list` empty. `git status --short` clean. No provider calls, no snapshot/candle fetches, no `--apply`, no grid runs, no EMA signal/fill/cost assumption changes. Historical research only; no orders.
+- **Environment note:** this session's `python3` (3.12.3) lacks `pandas`, `numpy` and `pytest` (`requests` is present); `scripts/refresh_universe.py` and the grid runner cannot run here until dependencies are installed, while `scripts/fetch_mcap_snapshot.py` can run.
+
+## Your task (measurable, updated 2026-11-15T14:28:51Z)
+
+The CERE fixture is now present and valid, so the expansion is no longer blocked by missing data. The frozen snapshot already selects CERE, and applying a frozen snapshot makes **no provider call** and is **not** gated (`fetch_mcap_snapshot.py --apply-from`). The recommended next action is to advance the CERE expansion from the existing snapshot rather than wait for the ranking gate.
+
+1. **Offline first:** read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, this file, `universe/last_scan.json` and `universe/mcap_rank.json`. Recompute eligibility from `next_eligible_refresh_at` (`2026-11-16T07:28:12.929462+00:00`) vs independent UTC; never guess. Expected **NOT ELIGIBLE** for a *new ranking pass* until the gate opens (~17h from 2026-11-15T14:28:51Z).
+2. **To process CERE now (no provider call, allowed while the gate is closed):** apply the already-frozen snapshot and run the normal expansion phases one step at a time, verifying after each:
+   - `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --apply-from universe/mcap_snapshot_20261115_072812.json --apply --batch-size 10` → appends `CERE/USDT` to `universe/mcap_rank.json` (275 → 276); no provider call.
+   - `PYTHONPATH=. python3 scripts/refresh_universe.py fixtures` → CERE already has a fixture, so it should fetch nothing.
+   - `PYTHONPATH=. python3 scripts/refresh_universe.py grid` → runs the 66-pair EMA grid for CERE only; existing cells are not re-run.
+   - `PYTHONPATH=. python3 scripts/refresh_universe.py state` → verifies cells and rewrites `last_scan.json`.
+   - `PYTHONPATH=. python3 scripts/refresh_universe.py log` → appends the batch to `universe/mcap_expansion_log.md`.
+   - **Prerequisite:** install `pandas` and `numpy` (and `pytest` for tests) in the execution environment first; `requests` is already present.
+3. **If you do not run the expansion this turn:** make **no provider calls**, append one concise offline gate-check record (exact now/bound/remaining, state/floor/band/coverage outcome) to `NEXT_AGENT_TASK.md` and this file, and stop. Do not schedule duplicate wakeups.
+4. **A new ranking pass is gated until `2026-11-16T07:28:12.929462+00:00`.** When eligible, run **at most one** pass with enough pages to reach below the current floor: `PYTHONPATH=. timeout 1800 python3 scripts/fetch_mcap_snapshot.py --pages 25` (no `--apply`; 30s/page sleeps plus KuCoin probes).
+5. **Never:** rerun existing grid cells, re-fetch a fixture the grid already used, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow the AGENTS.md adaptive gate policy.
+
+**One measurable next task:** advance the CERE expansion from the frozen `mcap_snapshot_20261115_072812` snapshot (ungated `--apply-from` → fixtures → grid → state → log, verifying each phase); or, if deferring, perform exactly one offline gate evaluation and update both handoff files without applying an unverified candidate.
+
+## Superseded status at handoff (2026-11-15T07:38:20Z)
 
 Gate state: **NOT ELIGIBLE**. now=`2026-11-15T07:38:20.678225+00:00` (independent `date -u` = `2026-11-15T07:38:20.654334790Z`; Python `datetime.now(timezone.utc)`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **23h49m52.3s (85,792.3s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed. Gate opens **2026-11-16T07:28:12.929462+00:00**. Derived offline via `scripts.refresh_gate.gate_status(state)` → `eligible=false`.
 
@@ -11,7 +41,7 @@ Gate state: **NOT ELIGIBLE**. now=`2026-11-15T07:38:20.678225+00:00` (independen
 - Coverage blocker: `data/fixtures/CERE_USDT.csv` is **ABSENT**; baseline grid `results/20261019_135940_grid/progress.json` has 275 symbols, `completed_cells=18150`, `stopped=False`, `next_cell=None`, and contains **no** CERE reference. Fixture + baseline-grid coverage are not verified for the selected candidate → **do not run `--apply`**.
 - Preserved artifacts present: `results/FINAL_DECISION.md` (23,304 bytes), `results/20261019_135940_grid/progress.json` (1,478,918 bytes), `universe/mcap_snapshot_20261115_072812.json` (683,184 bytes), `universe/last_scan.json` (1,033 bytes), `universe/mcap_rank.json` (5,301 bytes). `cron_list` empty. No provider calls by this agent, no new snapshot/candle fetches, no `--apply`, no grid reruns, no EMA signal/fill/cost assumption changes. Historical research only; no orders.
 
-## Your task (measurable, in order)
+## Superseded task (measurable, in order, 2026-11-15T07:38:20Z)
 
 1. **Offline first:** read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2 and §2.1.5), `NEXT_AGENT_TASK.md`, this file, and `universe/last_scan.json`. Recompute eligibility from `next_eligible_refresh_at` (`2026-11-16T07:28:12.929462+00:00`) vs independent UTC (`date -u` and/or Python); never guess. Expected: **NOT ELIGIBLE** until the gate opens (~23h50m from 2026-11-15T07:38:20Z).
 2. **If not eligible (expected until 2026-11-16T07:28:12Z):** make **no provider calls**. Append one concise offline gate-check record (exact now/bound/remaining, state evidence, floor/band/coverage outcome) to `NEXT_AGENT_TASK.md` and this file; stop. Do not schedule duplicate wakeups.
