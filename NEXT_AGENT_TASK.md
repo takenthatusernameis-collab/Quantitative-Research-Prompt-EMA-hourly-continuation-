@@ -1,13 +1,13 @@
 # NEXT_AGENT_TASK.md — EMA hourly continuation universe-refresh gate
 
-**Updated:** 2026-11-15T23:46:09Z (this agent: offline only, no provider calls).
+**Updated:** 2026-11-15T23:50:01Z (this agent: offline only, no provider calls).
 
 Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `universe/last_scan.json` and `universe/mcap_rank.json` before acting.
 
 ## 1. Status
 
-- **Gate: NOT ELIGIBLE.** now=`2026-11-15T23:46:09.534815+00:00` (independent `date -u` = `2026-11-15T23:46:09Z`; Python `datetime.now(timezone.utc)`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **7h42m03.4s (27,723.4s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed.
-- Gate opens **2026-11-16T07:28:12.929462+00:00**. Status derived offline via `scripts.refresh_gate.gate_status(state)` (PYTHONPATH=.) → `eligible=false`. Status derived offline via `scripts.refresh_gate.gate_status(state)` (PYTHONPATH=.) → `eligible=false`.
+- **Gate: NOT ELIGIBLE.** now=`2026-11-15T23:50:01.524276+00:00` (independent `date -u` = `2026-11-15T23:50:01Z`; Python `datetime.now(timezone.utc)`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **7h38m04s (27,484s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed.
+- Gate opens **2026-11-16T07:28:12.929462+00:00**. Status derived offline via `scripts.refresh_gate.gate_status(state)` (PYTHONPATH=.) → `eligible=false`.
 - Scan state: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261115_072812`, scanned_at=`2026-11-15T07:28:12.929462+00:00`, source=CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), 25/25 pages, 2500 entries, `all_requested_pages_returned=true`, `coverage_reaches_below_floor=true`, lowest rank 2500, lowest mcap **$1,519,127**, `universe_n=276`, `batch_selected=["CERE/USDT"]`, `eligible_unseen_below_floor_count=0`.
 - Expansion floor: **CERE/USDT $1,521,812** (rank 2495).
 - CERE expansion is complete and audited: `grid_expansion` 2026-11-15T14:37:24.394504Z added CERE/USDT (66 cells, new_n=276, previous_n=275); `grid_verification` 2026-11-15T14:37:28.352788Z confirms 276 symbols / 18,216/18,216 cells / `cells_blocked=0` / `incomplete_symbols=[]` / `symbols_without_fixture=[]`. `universe/mcap_rank.json` updated_at=`2026-11-15T14:34:58.596658Z`, n_symbols=276, CERE/USDT last. No further CERE action is required.
@@ -53,3 +53,4 @@ All checks are offline, stdlib-only, no provider calls, no `--apply`, no grid re
 | 2026-11-15T20:44:19Z | 10h43m53.2s | NOT ELIGIBLE; offline gate recomputed (eligible=false), no provider calls |
 | 2026-11-15T23:44:36Z | 7h43m36.7s | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-15T23:46:09Z | 7h42m03.4s | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-15T23:50:01Z | 7h38m04s | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
