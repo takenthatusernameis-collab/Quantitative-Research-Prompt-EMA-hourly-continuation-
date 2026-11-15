@@ -4920,3 +4920,35 @@ Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated w
 - 2026-11-02T20:55Z — Read prior agent task from durable handoff and completed. Re-verified `universe/last_scan.json` reconciles (state AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot mcap_snapshot_20261102_005558, scanned_at 2026-11-02T00:55:58.735958+00:00, coverage 20/20 pages, entries_count=2000, lowest_market_cap_usd=3271138, universe_n=275, expansion_floor PIXEL/USDT $3,312,119, eligible_unseen_below_floor_count=0, batch_selected=[], next_eligible_refresh_at 2026-11-03T00:55:58.735958+00:00). Offline gate check (`scripts.refresh_gate.gate_status`): **not eligible** (bound 2026-11-03T00:55:58.735958+00:00 not elapsed; now 2026-11-02T20:55:27Z, ~4h00m remaining). No provider contact, no snapshot written, `last_scan.json` unchanged. Existing wakeup `wku_19e06f1e8001RyoNdZaPalab60` due 2026-11-03T01:00:00.000Z retained; do not duplicate. Updated NEXT_AGENT_TASK.md and INITIAL_TASK_FOR_NEXT_AGENT.md.
 
 - 2026-11-13T03:27:01Z — Read prior agent task from durable handoff and completed it. The due ranking pass had already run at 2026-11-13T03:19:44Z (snapshot `mcap_snapshot_20261113_031944`, 544,171 bytes) after the 2026-11-13T00:58:05Z bound elapsed; this session re-verified it offline and made **no further provider call**. Snapshot integrity: 20/20 pages, entries_count=2000, unique ranks 1..2000, `history_probe_failures=[]`, fetched_at==scanned_at 2026-11-13T03:19:44.023343+00:00, lowest_rank_covered=2000, lowest_market_cap_usd=2,945,402; one adjacent mcap inversion at ranks 100/101 (PEARL 518,143,003 vs DASH 518,271,585) — provider artifact far above the floor. Floor recomputed with the script's own helpers (`included_market_caps`, `expansion_floor`, `select_expansion_candidates`): **PIXEL/USDT $3,006,746**; `select_expansion_candidates`=0, `eligible_unseen_below_floor_count=0`, `batch_selected=[]` — matches `universe/last_scan.json` field-for-field. Below-floor band: 16 entries (ranks 1985-2000, $3,006,028 → $2,945,402), all unseen, all excluded — 15 `no_tradable_kucoin_spot_usdt_pair`, 1 `insufficient_hourly_history_for_grid` (REACT rank 1986); only band name with a KuCoin USDT pair is PIXEL (rank 1984, already in universe). Rank drift vs 20261112: floor ZKJ/USDT (rank 1967, $3,149,088) → PIXEL/USDT (rank 1984, $3,006,746); ZKJ now rank 1951 $3,121,839; ALPINE rank 1970 $3,052,740; ESE/USDT reappears rank 1981 $3,014,499 but excluded for history; lowest covered mcap $3,032,868 → $2,945,402. SWELL/USDT (rank 1962, $3,081,438) and NIM/USDT (rank 1969, $3,056,497) are unseen/tradable/unexcluded but sit above the floor, so they are correctly not batch candidates (PROMPT.md §2.1.2). Coverage: no fixture and no baseline-grid row for any of the 16 band names; `batch_selected=[]` → `--apply` not run, `universe/mcap_rank.json` untouched (275 symbols, updated_at 2026-10-22T12:15:58Z). Offline gate check (`scripts.refresh_gate.gate_status` semantics): **not eligible**, bound `2026-11-14T03:19:44.023343+00:00` (~23h52m43s / 85,962.65 s remaining). No provider contact, no candle fetch, no grid rerun, no signal/fill/cost change, no orders, `cron_list` empty. Updated `NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md` and this log.
+
+---
+
+## Batch 31 (applied 2026-11-15T07:28:12.929462+00:00) - CERE (N 275 -> 276)
+
+<!-- expansion-key: mcap_snapshot_20261115_072812|CERE/USDT -->
+
+**Universe ranks added:** 276-276 (of 276).
+
+**Source snapshot:** `universe/mcap_snapshot_20261115_072812.json` (CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc), fetched 2026-11-15T07:28:12.929462+00:00).
+
+**Expansion floor after the batch:** `CERE/USDT` $1521812. `universe/last_scan.json` reports `universe_n=276`, `eligible_unseen_below_floor_count=0`.
+
+### Selection (descending market cap, strictly below the previous floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) | Fixture |
+|---|---|---|---|---|---|
+| 2495 | 276 | CERE/USDT | Cere Network | 1,521,812 | `data/fixtures/CERE_USDT.csv` (22000 rows) |
+
+### Grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF | Cells net PF > 1 |
+|---|---|---|---|---|---|
+| CERE/USDT | 66 | 58073 | 0.3913 | 0.5774 | 0 |
+
+### Cumulative state after the batch
+
+- **18216 / 18216 cells** complete (276 symbols x 66 EMA pairs), 0 blocked.
+- Eligible unseen names below the floor: **0**.
+- Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
+- Next eligible refresh: **2026-11-16T07:28:12.929462+00:00**.
+- The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.

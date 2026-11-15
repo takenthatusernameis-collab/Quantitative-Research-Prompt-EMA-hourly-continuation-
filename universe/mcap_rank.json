@@ -1,30 +1,14 @@
 {
-  "updated_at": "2026-10-22T12:15:58.878331+00:00",
-  "snapshot_id": "mcap_snapshot_20261022_121558",
+  "updated_at": "2026-11-15T14:34:58.596658Z",
+  "snapshot_id": "mcap_snapshot_20261115_072812",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "snapshot_fetched_at": "2026-10-22T12:15:58.876534+00:00",
-  "n_symbols": 275,
+  "snapshot_fetched_at": "2026-11-15T07:28:12.929462+00:00",
+  "n_symbols": 276,
   "added_in_this_expansion": [
-    "BLZ/USDT",
-    "PIXEL/USDT",
-    "ALEX/USDT",
-    "CWEB/USDT",
-    "TRADE/USDT",
-    "ZPAY/USDT",
-    "ZKJ/USDT",
-    "BOSON/USDT",
-    "ALPINE/USDT"
+    "CERE/USDT"
   ],
   "added_market_caps_usd": {
-    "BLZ": 4426543,
-    "PIXEL": 3946380,
-    "ALEX": 3926041,
-    "CWEB": 3898532,
-    "TRADE": 3829622,
-    "ZPAY": 3761991,
-    "ZKJ": 3686819,
-    "BOSON": 3633288,
-    "ALPINE": 3614141
+    "CERE": 1521812
   },
   "symbols": [
     "BTC/USDT",
@@ -301,6 +285,7 @@
     "ZPAY/USDT",
     "ZKJ/USDT",
     "BOSON/USDT",
-    "ALPINE/USDT"
+    "ALPINE/USDT",
+    "CERE/USDT"
   ]
 }
