@@ -37,3 +37,4 @@
 | 2026-11-15T20:34:21Z | 10h53m51.7s | NOT ELIGIBLE; 5 entries below floor |
 | 2026-11-15T20:43:18Z | 10h44m54.6s | NOT ELIGIBLE; floor/band and 18,216-cell grid independently re-verified |
 | 2026-11-15T20:44:19Z | 10h43m53.2s | NOT ELIGIBLE; offline gate recomputed (eligible=false), no provider calls |
+| 2026-11-15T23:44:36Z | 7h43m36.7s | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
