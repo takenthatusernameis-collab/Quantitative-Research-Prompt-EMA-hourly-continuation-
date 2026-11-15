@@ -66,7 +66,10 @@ def test_scan_record_reports_expansion_available_when_names_exist():
     assert record['state'] == 'EXPANSION_AVAILABLE'
     assert record['eligible_unseen_below_floor_count'] == 1
     assert record['coverage_reaches_below_floor'] is True
-    assert record['next_eligible_refresh_at'] is None
+    # The bound belongs to the pass, not to the batch: an empty bound reads as
+    # "the gate is open" and would allow a second provider pass inside the
+    # 24 h window (PROMPT.md §2.1.5).
+    assert record['next_eligible_refresh_at'] == '2026-10-21T10:00:00+00:00'
 
 
 def test_scan_record_waits_24h_after_a_complete_but_empty_pass():

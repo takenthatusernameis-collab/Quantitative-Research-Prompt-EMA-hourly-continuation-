@@ -327,16 +327,18 @@ def build_scan_record(snapshot: dict, snapshot_path: Path, current_symbols: list
     """Machine-readable record of one ranking pass (PROMPT.md §2.1.5)."""
     facts = coverage_facts(snapshot)
     reaches = coverage_reaches_below_floor(snapshot, floor_mcap)
+    # The 24 h bound belongs to the *ranking pass*, never to the batch: an
+    # empty bound reads as "the gate is open" in `refresh_gate.gate_status`,
+    # so a pass that found eligible names would otherwise allow a second
+    # provider pass inside the same window. `main` states the same invariant
+    # explicitly; the record built here already carries it.
+    next_refresh = bound_after(scanned_at)
     if eligible_below:
         state = 'EXPANSION_AVAILABLE'
-        next_refresh = None
     elif reaches:
         state = 'AWAITING_NEW_ELIGIBLE_CANDIDATES'
-        scanned = datetime.fromisoformat(scanned_at)
-        next_refresh = (scanned + timedelta(hours=24)).isoformat()
     else:
         state = 'INCOMPLETE_SCAN'
-        next_refresh = datetime.now(timezone.utc).isoformat()
     return {
         'recorded_at': datetime.now(timezone.utc).isoformat(),
         'state': state,
@@ -584,11 +586,11 @@ def main():
         snapshot, snapshot_path, current_symbols, floor_mcap, floor_symbol,
         eligible_below, added, snapshot['fetched_at'])
     # The 24 h bound is an invariant of the record: it is the time of the
-    # ranking pass plus 24 h, never the end of the expansion. build_scan_record
-    # leaves it empty while the band still holds names, and an empty bound
-    # reads as "the gate is open" - which would allow a second provider pass
-    # inside the window. Applying a frozen snapshot does not refresh the
-    # ranking, so the bound of the pass that produced the snapshot applies.
+    # ranking pass plus 24 h, never the end of the expansion. An empty bound
+    # reads as "the gate is open" in `refresh_gate.gate_status` - which would
+    # allow a second provider pass inside the window. Applying a frozen
+    # snapshot does not refresh the ranking, so the bound of the pass that
+    # produced the snapshot applies.
     record['next_eligible_refresh_at'] = bound_after(
         record.get('scanned_at') or snapshot.get('fetched_at'))
     record_path.parent.mkdir(parents=True, exist_ok=True)

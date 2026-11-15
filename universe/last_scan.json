@@ -31,5 +31,12 @@
   "batch_selected": [
     "CERE/USDT"
   ],
-  "next_eligible_refresh_at": "2026-11-16T07:28:12.929462+00:00"
+  "next_eligible_refresh_at": "2026-11-16T07:28:12.929462+00:00",
+  "fixtures": {
+    "fetched_at": "2026-11-15T08:10:06.687420+00:00",
+    "target_bars": 22000,
+    "results": [],
+    "excluded": [],
+    "conflicts": []
+  }
 }

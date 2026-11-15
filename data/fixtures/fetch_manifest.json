@@ -550,6 +550,16 @@
     "file": "data/fixtures/CELR_USDT.csv"
   },
   {
+    "symbol": "CERE/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-05-12 17:00:00+00:00",
+    "end": "2026-11-15 08:00:00+00:00",
+    "file": "data/fixtures/CERE_USDT.csv"
+  },
+  {
     "symbol": "CETUS/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",

@@ -162,7 +162,13 @@ def test_a_reason_alone_does_not_override_the_bound(workspace, monkeypatch):
 
 
 def test_the_classic_path_records_the_bound_even_when_names_are_eligible(workspace, monkeypatch):
-    """A pass that finds names must not leave the gate open for another one."""
+    """A pass that finds names must not leave the gate open for another one.
+
+    The bound of this pass (2026-10-23T12:00:00Z) is already in the past for
+    the wall clock of 2026-11-15, so eligibility is asserted against the pass
+    time and not against `datetime.now()`: what the record must never do is
+    carry no bound at all, which is what `gate_status` reads as "open".
+    """
     _install_snapshot(monkeypatch, _snapshot([
         _entry(1, 'AAA', 5000),
         _entry(2, 'BBB', 900),
@@ -174,7 +180,7 @@ def test_the_classic_path_records_the_bound_even_when_names_are_eligible(workspa
     record = json.loads(workspace['scan'].read_text())
     assert record['state'] == 'EXPANSION_AVAILABLE'
     assert record['next_eligible_refresh_at'] == '2026-10-23T12:00:00+00:00'
-    assert gate.gate_status(record)['eligible'] is False
+    assert gate.gate_status(record, now=gate.parse_iso('2026-10-22T12:00:01+00:00'))['eligible'] is False
 
 
 def test_applying_a_frozen_snapshot_is_not_gated(workspace, monkeypatch):
