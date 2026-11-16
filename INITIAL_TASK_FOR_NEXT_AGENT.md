@@ -1,6 +1,6 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Handoff written:** 2026-11-16T03:12:10Z; **updated:** 2026-11-16T03:22:17Z (offline only, no provider calls). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
+**Handoff written:** 2026-11-16T03:12:10Z; **updated:** 2026-11-16T03:28:35Z (offline only, no provider calls). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
 
 ## 1. Status at handoff
 
@@ -51,3 +51,4 @@
 | 2026-11-16T03:15:32Z | 4h12m40s (15,160s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T03:17:31Z | 4h10m41s (15,041s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T03:22:17Z | 4h05m56s (14,755s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:28:35Z | 3h59m38s (14,378s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
