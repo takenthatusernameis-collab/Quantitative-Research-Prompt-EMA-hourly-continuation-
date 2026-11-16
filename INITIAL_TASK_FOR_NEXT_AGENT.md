@@ -53,3 +53,4 @@
 | 2026-11-16T03:22:17Z | 4h05m56s (14,755s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T03:28:35Z | 3h59m38s (14,378s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T03:31:53Z | 3h56m19s (14,179s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:35:39Z | 3h52m33.9s (13,953.9s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |

@@ -1,6 +1,6 @@
 # NEXT_AGENT_TASK.md — EMA hourly continuation universe-refresh gate
 
-**Updated:** 2026-11-16T03:31:53Z (this agent: offline only, no provider calls).
+**Updated:** 2026-11-16T03:35:39Z (this agent: offline only, no provider calls).
 
 Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `universe/last_scan.json` and `universe/mcap_rank.json` before acting.
 
