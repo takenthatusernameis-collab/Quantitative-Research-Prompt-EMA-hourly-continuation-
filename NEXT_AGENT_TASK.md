@@ -1,6 +1,6 @@
 # NEXT_AGENT_TASK.md — EMA hourly continuation universe-refresh gate
 
-**Updated:** 2026-11-16T11:28:00Z (this session: gate opened, one provider snapshot pass completed; no `--apply`, no grid rerun).
+**Updated:** 2026-11-16T11:37:42Z (this session: offline gate re-check only; NOT ELIGIBLE; no provider calls; no apply; no grid rerun).
 
 Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `universe/last_scan.json` and `universe/mcap_rank.json` before acting.
 
@@ -15,9 +15,7 @@ Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `
 
 ## 2. This session did
 
-- Verified gate was eligible (`scripts.refresh_gate.gate_status` showed bound elapsed) and ran **exactly one** snapshot pass: `PYTHONPATH=. timeout 1800 python3 scripts/fetch_mcap_snapshot.py --pages 25` (no `--apply`, no `--verify-prices`). Pass completed (~18 min), wrote `universe/mcap_snapshot_20261116_112757.json` and updated `universe/last_scan.json` to `EXPANSION_AVAILABLE` with the batch above and next bound 2026-11-17T11:27:57.316789+00:00.
-- Confirmed blockers before any apply: no fixtures for NUM/GMEE and no grid coverage; environment missing pandas/numpy/pytest. Did **not** apply, did **not** fetch candles/fixtures, did **not** run grid, did **not** schedule wakeups. `cron_list` empty.
-- Updated handoff files with exact evidence for next agent.
+- Recomputed gate eligibility offline: `now=2026-11-16T11:37:52Z` vs `next_eligible_refresh_at=2026-11-17T11:27:57.316789+00:00` → **NOT ELIGIBLE** (remaining ~23h50m). Made **no provider calls**. Verified blockers unchanged: `data/fixtures/NUM_USDT.csv` and `data/fixtures/GMEE_USDT.csv` missing; grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, both NUM/USDT and GMEE/USDT absent from grid symbols. Did not apply, did not fetch fixtures, did not run grid, did not schedule wakeups. `cron_list` empty. Appended gate-check lines to this file and `INITIAL_TASK_FOR_NEXT_AGENT.md`.
 
 ## 3. Your task (one measurable task)
 
@@ -62,3 +60,4 @@ Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `
 | 2026-11-16T03:31:53Z | 2026-11-16T07:28:12.929462Z | 3h56m19s (14,179s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T03:35:39Z | 2026-11-16T07:28:12.929462Z | 3h52m33.9s (13,953.9s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T11:28:00Z | 2026-11-17T11:27:57.316789Z | ~23h59m57s | **ELIGIBLE pass executed:** 1 snapshot pass (`--pages 25`, no `--apply`) → `mcap_snapshot_20261116_112757.json`, state `EXPANSION_AVAILABLE`, batch `["NUM/USDT","GMEE/USDT"]` (ranks 2454/2497, $1,583,626/$1,515,271), floor CWEB/USDT $1,719,547. **Blocked:** no fixtures (`data/fixtures/NUM_USDT.csv`,`GMEE_USDT.csv`) and no grid coverage for candidates; env lacks pandas/numpy/pytest so fixture fetch/grid/apply not possible this session. Next bound set to 2026-11-17T11:27:57.316789Z. No orders, no EMA/fill/cost changes. |
+| 2026-11-16T11:37:42Z | 2026-11-17T11:27:57.316789Z | 23h50m05s | NOT ELIGIBLE; offline gate recomputed (eligible=false, `EXPANSION_AVAILABLE`, batch NUM/GMEE pending), no provider calls. Blockers re-verified unchanged: `data/fixtures/NUM_USDT.csv` and `GMEE_USDT.csv` missing; grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, NUM/USDT and GMEE/USDT both absent from grid symbols. No apply, no fixtures, no grid rerun. |

@@ -1,13 +1,13 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Handoff updated:** 2026-11-16T11:28:00Z (gate opened, one provider snapshot pass completed; no `--apply`, no grid rerun). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
+**Handoff updated:** 2026-11-16T11:37:42Z (offline gate re-check only; NOT ELIGIBLE; no provider calls; no `--apply`; no grid rerun). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
 
 ## 1. Status at handoff
 
-- **Gate:** bound elapsed and **one snapshot pass executed** at 2026-11-16T11:27:57Z (`PYTHONPATH=. timeout 1800 python3 scripts/fetch_mcap_snapshot.py --pages 25`, no `--apply`). New bound: **`2026-11-17T11:27:57.316789+00:00`** → gate **NOT ELIGIBLE** until then (PROMPT.md §2.1.5).
+- **Gate:** bound `2026-11-17T11:27:57.316789+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`). Recomputed offline at `2026-11-16T11:37:52Z` → **NOT ELIGIBLE** (remaining ~23h50m). **No provider calls made this session.**
 - Scan state: **`EXPANSION_AVAILABLE`**, snapshot_id=`mcap_snapshot_20261116_112757`, scanned_at=`2026-11-16T11:27:57.316789+00:00`, CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), 25/25 pages, 2500 entries, `coverage_reaches_below_floor=true`, lowest mcap **$1,509,877**, universe_n=276, expansion floor **CWEB/USDT $1,719,547**.
-- Batch selected (pending): **`["NUM/USDT","GMEE/USDT"]`** — rank 2454 NUM/USDT (Numbers Protocol, $1,583,626), rank 2497 GMEE/USDT (GAMEE, $1,515,271). `eligible_unseen_below_floor_count=2`.
-- **Blockers (per candidate, apply must not proceed):** `NUM/USDT` — missing fixture `data/fixtures/NUM_USDT.csv`, no grid coverage in `results/20261019_135940_grid/progress.json`. `GMEE/USDT` — missing fixture `data/fixtures/GMEE_USDT.csv`, no grid coverage. Baseline grid remains 276 symbols / 18,216/18,216 cells complete, unchanged.
+- Batch selected (pending, unresolved): **`["NUM/USDT","GMEE/USDT"]`** — rank 2454 NUM/USDT (Numbers Protocol, $1,583,626), rank 2497 GMEE/USDT (GAMEE, $1,515,271). `eligible_unseen_below_floor_count=2`.
+- **Blockers (per candidate, unchanged, verified this session):** `NUM/USDT` — missing fixture `data/fixtures/NUM_USDT.csv`, no grid coverage in `results/20261019_135940_grid/progress.json`. `GMEE/USDT` — missing fixture `data/fixtures/GMEE_USDT.csv`, no grid coverage. Baseline grid remains 276 symbols / 18,216/18,216 cells complete, unchanged.
 - `universe/mcap_rank.json` unchanged (n_symbols=276). Preserved artifacts intact: `results/FINAL_DECISION.md`, grid progress/snapshot files. No fixtures/candles fetched for batch, no `--apply`, no grid expansion/reruns, no EMA signal/fill/cost changes, no orders. `cron_list` empty.
 - **Environment:** `python3` 3.12.3 without `pandas`, `numpy`, `pytest`; `requests` 2.31.0 present. `scripts/refresh_gate.py` and `scripts/fetch_mcap_snapshot.py` run; fixture/grid/aggregation paths requiring pandas cannot run until dependencies are installed.
 
@@ -48,3 +48,4 @@
 | 2026-11-16T03:31:53Z | 2026-11-16T07:28:12.929462Z | 3h56m19s (14,179s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T03:35:39Z | 2026-11-16T07:28:12.929462Z | 3h52m33.9s (13,953.9s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T11:28:00Z | 2026-11-17T11:27:57.316789Z | ~23h59m57s | **ELIGIBLE pass executed:** 1 snapshot pass (`--pages 25`, no `--apply`) → `mcap_snapshot_20261116_112757.json`, state `EXPANSION_AVAILABLE`, batch `["NUM/USDT","GMEE/USDT"]` (ranks 2454/2497). **Blocked:** no fixtures (`NUM_USDT.csv`,`GMEE_USDT.csv`) and no grid coverage for candidates; env lacks pandas/numpy/pytest. New bound 2026-11-17T11:27:57.316789Z. No orders, no EMA/fill/cost changes. |
+| 2026-11-16T11:37:42Z | 2026-11-17T11:27:57.316789Z | 23h50m05s | NOT ELIGIBLE; offline gate recomputed (eligible=false, `EXPANSION_AVAILABLE`, batch NUM/GMEE pending), no provider calls. Blockers re-verified unchanged: `data/fixtures/NUM_USDT.csv` and `GMEE_USDT.csv` missing; grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, NUM/USDT and GMEE/USDT both absent from grid symbols. No apply, no fixtures, no grid rerun. |
