@@ -1,56 +1,50 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Handoff written:** 2026-11-16T03:12:10Z; **updated:** 2026-11-16T03:31:53Z (offline only, no provider calls). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
+**Handoff updated:** 2026-11-16T11:28:00Z (gate opened, one provider snapshot pass completed; no `--apply`, no grid rerun). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
 
 ## 1. Status at handoff
 
-- **Gate: NOT ELIGIBLE.** now=`2026-11-16T03:31:53Z` (independent `date -u` = `2026-11-16T03:30:13Z`; Python `datetime.now(timezone.utc)` = `2026-11-16T03:30:14.281273+00:00`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **3h56m19s (14,179s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed. Gate opens **2026-11-16T07:28:12.929462+00:00**. Derived offline with `scripts.refresh_gate.gate_status(state)` (PYTHONPATH=.) → `eligible=false`.
-- Scan state: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261115_072812`, scanned_at=`2026-11-15T07:28:12.929462+00:00`, CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), 25/25 pages, 2500 entries, `coverage_reaches_below_floor=true`, lowest mcap **$1,519,127**, universe_n=276, expansion floor **CERE/USDT $1,521,812** (rank 2495), `eligible_unseen_below_floor_count=0`, `batch_selected=["CERE/USDT"]`.
-- Below-floor band: **5 entries strictly below the floor**, all excluded — VAPI $1,521,123 and GM $1,519,405 and FUSD $1,519,196 and WFRAGSOL $1,519,127 (`no_tradable_kucoin_spot_usdt_pair`), OFC $1,519,208 (`insufficient_hourly_history_for_grid`); **0 eligible unseen**.
-- Grid: 276 symbols × 66 pairs = **18,216/18,216 cells complete** (`results/20261019_135940_grid/progress.json`), `cells_blocked=0`, `incomplete_symbols=[]`, `symbols_without_fixture=[]`, `all_symbols_processed=true`. CERE/USDT expansion (66 cells, previous_n=275 → new_n=276) is complete and audited; no further CERE action is needed.
-- Preserved artifacts present: `results/FINAL_DECISION.md` (23,304 B), `results/20261019_135940_grid/progress.json` (1,484,320 B), `universe/mcap_snapshot_20261115_072812.json` (683,184 B), `universe/mcap_rank.json` (5,003 B, 276 symbols), `data/fixtures/CERE_USDT.csv` (1,601,043 B). `cron_list` empty. `git status --short` clean before handoff edits. No provider calls, no snapshot/candle fetch, no `--apply`, no grid reruns, no EMA signal/fill/cost changes, no orders.
-- **Environment:** `python3` 3.12.3 without `pandas`, `numpy`, `pytest`; `requests` 2.31.0 present. `scripts/refresh_gate.py` (stdlib) and `scripts/fetch_mcap_snapshot.py` (stdlib + requests) run here. `scripts/refresh_universe.py` and the grid/aggregation scripts import `pandas` and cannot run until dependencies are installed.
+- **Gate:** bound elapsed and **one snapshot pass executed** at 2026-11-16T11:27:57Z (`PYTHONPATH=. timeout 1800 python3 scripts/fetch_mcap_snapshot.py --pages 25`, no `--apply`). New bound: **`2026-11-17T11:27:57.316789+00:00`** → gate **NOT ELIGIBLE** until then (PROMPT.md §2.1.5).
+- Scan state: **`EXPANSION_AVAILABLE`**, snapshot_id=`mcap_snapshot_20261116_112757`, scanned_at=`2026-11-16T11:27:57.316789+00:00`, CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), 25/25 pages, 2500 entries, `coverage_reaches_below_floor=true`, lowest mcap **$1,509,877**, universe_n=276, expansion floor **CWEB/USDT $1,719,547**.
+- Batch selected (pending): **`["NUM/USDT","GMEE/USDT"]`** — rank 2454 NUM/USDT (Numbers Protocol, $1,583,626), rank 2497 GMEE/USDT (GAMEE, $1,515,271). `eligible_unseen_below_floor_count=2`.
+- **Blockers (per candidate, apply must not proceed):** `NUM/USDT` — missing fixture `data/fixtures/NUM_USDT.csv`, no grid coverage in `results/20261019_135940_grid/progress.json`. `GMEE/USDT` — missing fixture `data/fixtures/GMEE_USDT.csv`, no grid coverage. Baseline grid remains 276 symbols / 18,216/18,216 cells complete, unchanged.
+- `universe/mcap_rank.json` unchanged (n_symbols=276). Preserved artifacts intact: `results/FINAL_DECISION.md`, grid progress/snapshot files. No fixtures/candles fetched for batch, no `--apply`, no grid expansion/reruns, no EMA signal/fill/cost changes, no orders. `cron_list` empty.
+- **Environment:** `python3` 3.12.3 without `pandas`, `numpy`, `pytest`; `requests` 2.31.0 present. `scripts/refresh_gate.py` and `scripts/fetch_mcap_snapshot.py` run; fixture/grid/aggregation paths requiring pandas cannot run until dependencies are installed.
 
 ## 2. Your task (measurable, one item)
 
-1. **Offline first.** Recompute eligibility from `next_eligible_refresh_at` (`2026-11-16T07:28:12.929462+00:00`) against independent UTC (`date -u` and `datetime.now(timezone.utc)`); never guess. Expected **NOT ELIGIBLE** until the gate opens.
-2. **If NOT eligible (expected until 2026-11-16T07:28:12Z):** make **no provider calls**. Append exactly one concise offline gate-check line (exact now/bound/remaining, state evidence) to the gate-check log in `NEXT_AGENT_TASK.md` and to section 4 below; stop. Do not schedule wakeups (`cron_list` must stay empty).
-3. **If eligible (after 2026-11-16T07:28:12Z):** run **at most one** snapshot pass deep enough to reach below the current floor: `PYTHONPATH=. timeout 1800 python3 scripts/fetch_mcap_snapshot.py --pages 25` (no `--apply`; ~30 s/page sleeps plus KuCoin probes; 20 pages previously stopped above the floor). Recompute the floor via `included_market_caps` / `expansion_floor` / `select_expansion_candidates`, inspect the band strictly below the floor (excluding the floor symbol), and update `universe/last_scan.json`. If nothing eligible remains, record `AWAITING_NEW_ELIGIBLE_CANDIDATES`; if the pass stops above the floor, record `INCOMPLETE_SCAN` rather than claiming an empty band.
-4. **Before any `--apply`:** verify fixture + baseline grid coverage in `results/20261019_135940_grid/progress.json` for **every** selected candidate. If any candidate lacks either, **do not apply**; record the blocker per candidate and stop cleanly.
-5. **Never:** rerun existing grid cells, re-fetch a fixture the grid already used, fetch candles unnecessarily, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow the AGENTS.md adaptive gate policy.
+1. **Offline first.** Recompute eligibility from `next_eligible_refresh_at` (`2026-11-17T11:27:57.316789+00:00`) against independent UTC (`date -u`, `datetime.now(timezone.utc)`); never guess. Expected **NOT ELIGIBLE** until bound.
+2. **If NOT eligible:** make **no provider calls**. Append exactly one concise offline gate-check line (exact now/bound/remaining, state `EXPANSION_AVAILABLE`, batch NUM/GMEE pending, blockers unchanged unless resolved) to `NEXT_AGENT_TASK.md` log and section 3 below; stop. Do not schedule wakeups.
+3. **If eligible:** only take a new provider pass if required by policy/state; prefer resolving recorded batch first when environment allows. Before any `--apply` verify fixture + baseline grid coverage in `results/20261019_135940_grid/progress.json` for every selected candidate; if any lacks either, **do not apply** and record blocker per candidate.
+4. **Batch resolution (when env permits):** for NUM/USDT and GMEE/USDT confirm tradable KuCoin spot USDT identity/price and sufficient hourly history, fetch fixtures only for new symbols, validate integrity, expand grid only for new symbols via resume path (no rerun of existing cells, no re-fetch of grid-used fixtures), then apply only after all candidates covered. Never change EMA signal/fill/cost assumptions or use fixtures as market evidence.
 
-## 3. Evidence already verified offline (do not redo)
+## 3. Gate-check log (append one line per offline check)
 
-- 276/276 universe symbols matched the frozen snapshot; floor reproduced as CERE/USDT $1,521,812; 0 eligible unseen entries strictly below it.
-- 18,216 = 276 × 66 grid cells complete; 0 universe symbols missing a fixture.
-- Artifact sizes and `last_scan.json` state as listed in section 1.
-
-## 4. Gate-check log (append one line per offline check)
-
-| UTC now | Remaining | Outcome |
-| --- | --- | --- |
-| 2026-11-15T14:49:24Z | 16h38m48.5s | NOT ELIGIBLE; same state |
-| 2026-11-15T20:18:50Z | 11h09m22.6s | NOT ELIGIBLE; 5 entries below floor |
-| 2026-11-15T20:22:26Z | 11h05m46.9s | NOT ELIGIBLE; 5 entries below floor |
-| 2026-11-15T20:26:17Z | 11h01m55.8s | NOT ELIGIBLE; 5 entries below floor |
-| 2026-11-15T20:30:00Z | 10h58m12.0s | NOT ELIGIBLE; 5 entries below floor |
-| 2026-11-15T20:34:21Z | 10h53m51.7s | NOT ELIGIBLE; 5 entries below floor |
-| 2026-11-15T20:43:18Z | 10h44m54.6s | NOT ELIGIBLE; floor/band and 18,216-cell grid independently re-verified |
-| 2026-11-15T20:44:19Z | 10h43m53.2s | NOT ELIGIBLE; offline gate recomputed (eligible=false), no provider calls |
-| 2026-11-15T23:44:36Z | 7h43m36.7s | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-15T23:46:09Z | 7h42m03.4s | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-15T23:50:01Z | 7h38m04s | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-15T23:55:07Z | 7h33m05s | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-15T23:58:24Z | 7h29m48s | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T00:02:29Z | 7h21m56s (26,516s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T00:06:16Z | 7h21m56s (26,516s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T00:09:32Z | 7h18m40s (26,320s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T00:10:47Z | 7h17m25.7s (26,246s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0); 276×66=18,216 grid cells re-checked; no provider calls |
-| 2026-11-16T00:14:16Z | 7h13m57s (26,037s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T03:12:10Z | 4h16m02s (15,362s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T03:15:32Z | 4h12m40s (15,160s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T03:17:31Z | 4h10m41s (15,041s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T03:22:17Z | 4h05m56s (14,755s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T03:28:35Z | 3h59m38s (14,378s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T03:31:53Z | 3h56m19s (14,179s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
-| 2026-11-16T03:35:39Z | 3h52m33.9s (13,953.9s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| UTC now | Bound | Remaining | Outcome |
+| --- | --- | --- | --- |
+| 2026-11-15T14:49:24Z | 2026-11-16T07:28:12.929462Z | 16h38m48.5s | NOT ELIGIBLE; same state |
+| 2026-11-15T20:18:50Z | 2026-11-16T07:28:12.929462Z | 11h09m22.6s | NOT ELIGIBLE; 5 entries below floor |
+| 2026-11-15T20:22:26Z | 2026-11-16T07:28:12.929462Z | 11h05m46.9s | NOT ELIGIBLE; 5 entries below floor |
+| 2026-11-15T20:26:17Z | 2026-11-16T07:28:12.929462Z | 11h01m55.8s | NOT ELIGIBLE; 5 entries below floor |
+| 2026-11-15T20:30:00Z | 2026-11-16T07:28:12.929462Z | 10h58m12.0s | NOT ELIGIBLE; 5 entries below floor |
+| 2026-11-15T20:34:21Z | 2026-11-16T07:28:12.929462Z | 10h53m51.7s | NOT ELIGIBLE; 5 entries below floor |
+| 2026-11-15T20:43:18Z | 2026-11-16T07:28:12.929462Z | 10h44m54.6s | NOT ELIGIBLE; floor/band and 18,216-cell grid independently re-verified |
+| 2026-11-15T20:44:19Z | 2026-11-16T07:28:12.929462Z | 10h43m53.2s | NOT ELIGIBLE; offline gate recomputed (eligible=false), no provider calls |
+| 2026-11-15T23:44:36Z | 2026-11-16T07:28:12.929462Z | 7h43m36.7s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-15T23:46:09Z | 2026-11-16T07:28:12.929462Z | 7h42m03.4s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-15T23:50:01Z | 2026-11-16T07:28:12.929462Z | 7h38m04s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-15T23:55:07Z | 2026-11-16T07:28:12.929462Z | 7h33m05s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-15T23:58:24Z | 2026-11-16T07:28:12.929462Z | 7h29m48s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T00:02:29Z | 2026-11-16T07:28:12.929462Z | 7h21m56s (26,516s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T00:06:16Z | 2026-11-16T07:28:12.929462Z | 7h21m56s (26,516s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T00:09:32Z | 2026-11-16T07:28:12.929462Z | 7h18m40s (26,320s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T00:10:47Z | 2026-11-16T07:28:12.929462Z | 7h17m25.7s (26,246s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0); 276×66=18,216 grid cells re-checked; no provider calls |
+| 2026-11-16T00:14:16Z | 2026-11-16T07:28:12.929462Z | 7h13m57s (26,037s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:12:10Z | 2026-11-16T07:28:12.929462Z | 4h16m02s (15,362s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:15:32Z | 2026-11-16T07:28:12.929462Z | 4h12m40s (15,160s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:17:31Z | 2026-11-16T07:28:12.929462Z | 4h10m41s (15,041s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:22:17Z | 2026-11-16T07:28:12.929462Z | 4h05m56s (14,755s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:28:35Z | 2026-11-16T07:28:12.929462Z | 3h59m38s (14,378s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:31:53Z | 2026-11-16T07:28:12.929462Z | 3h56m19s (14,179s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:35:39Z | 2026-11-16T07:28:12.929462Z | 3h52m33.9s (13,953.9s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T11:28:00Z | 2026-11-17T11:27:57.316789Z | ~23h59m57s | **ELIGIBLE pass executed:** 1 snapshot pass (`--pages 25`, no `--apply`) → `mcap_snapshot_20261116_112757.json`, state `EXPANSION_AVAILABLE`, batch `["NUM/USDT","GMEE/USDT"]` (ranks 2454/2497). **Blocked:** no fixtures (`NUM_USDT.csv`,`GMEE_USDT.csv`) and no grid coverage for candidates; env lacks pandas/numpy/pytest. New bound 2026-11-17T11:27:57.316789Z. No orders, no EMA/fill/cost changes. |

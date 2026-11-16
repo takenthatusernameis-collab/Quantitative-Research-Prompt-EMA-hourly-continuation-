@@ -1,67 +1,42 @@
 {
-  "recorded_at": "2026-11-15T14:34:58.596407+00:00",
-  "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
-  "snapshot_id": "mcap_snapshot_20261115_072812",
-  "snapshot_path": "universe/mcap_snapshot_20261115_072812.json",
+  "recorded_at": "2026-11-16T11:27:57.765657+00:00",
+  "state": "EXPANSION_AVAILABLE",
+  "snapshot_id": "mcap_snapshot_20261116_112757",
+  "snapshot_path": "universe/mcap_snapshot_20261116_112757.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-11-15T07:28:12.929462+00:00",
+  "scanned_at": "2026-11-16T11:27:57.316789+00:00",
   "coverage": {
     "pages_requested": 25,
     "pages_fetched": 25,
     "all_requested_pages_returned": true,
     "entries_count": 2500,
     "lowest_rank_covered": 2500,
-    "lowest_market_cap_usd": 1519127
+    "lowest_market_cap_usd": 1509877
   },
   "coverage_reaches_below_floor": true,
   "universe_n": 276,
   "expansion_floor": {
-    "symbol": "CERE/USDT",
-    "market_cap_usd": 1521812
+    "symbol": "CWEB/USDT",
+    "market_cap_usd": 1719547
   },
-  "eligible_unseen_below_floor_count": 0,
-  "eligible_unseen_below_floor": [],
-  "batch_selected": [
-    "CERE/USDT"
+  "eligible_unseen_below_floor_count": 2,
+  "eligible_unseen_below_floor": [
+    {
+      "rank": 2454,
+      "symbol": "NUM",
+      "name": "Numbers Protocol",
+      "market_cap_usd": 1583626
+    },
+    {
+      "rank": 2497,
+      "symbol": "GMEE",
+      "name": "GAMEE",
+      "market_cap_usd": 1515271
+    }
   ],
-  "next_eligible_refresh_at": "2026-11-16T07:28:12.929462+00:00",
-  "fixtures": {
-    "fetched_at": "2026-11-15T14:35:07.402422+00:00",
-    "target_bars": 22000,
-    "results": [],
-    "excluded": [],
-    "conflicts": []
-  },
-  "grid_expansion": {
-    "run": "results/20261019_135940_grid",
-    "expanded_at": "2026-11-15T14:37:24.394504+00:00",
-    "previous_n": 275,
-    "new_n": 276,
-    "symbols": [
-      "CERE/USDT"
-    ],
-    "outcomes": [
-      {
-        "symbol": "CERE/USDT",
-        "cells": 66,
-        "blocked": 0,
-        "missing": [],
-        "expected": 66
-      }
-    ]
-  },
-  "history_probe_failure_count": 0,
-  "coverage_reaches_below_current_floor": true,
-  "grid_verification": {
-    "run": "results/20261019_135940_grid",
-    "verified_at": "2026-11-15T14:37:28.352788+00:00",
-    "symbols": 276,
-    "cells_complete": 18216,
-    "cells_expected": 18216,
-    "cells_blocked": 0,
-    "incomplete_symbols": [],
-    "symbols_without_fixture": []
-  },
-  "last_verified_at": "2026-11-15T14:37:28.352788+00:00",
-  "last_verification_note": ""
+  "batch_selected": [
+    "NUM/USDT",
+    "GMEE/USDT"
+  ],
+  "next_eligible_refresh_at": "2026-11-17T11:27:57.316789+00:00"
 }
