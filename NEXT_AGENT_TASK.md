@@ -1,6 +1,6 @@
 # NEXT_AGENT_TASK.md — EMA hourly continuation universe-refresh gate
 
-**Updated:** 2026-11-16T11:48:16Z (this session: offline gate re-check only; NOT ELIGIBLE; no provider calls; no apply; no grid rerun; no wakeups).
+**Updated:** 2026-11-16T11:54:49Z (this session: offline gate re-check only; NOT ELIGIBLE; no provider calls; no apply; no grid rerun; no wakeups).
 
 Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `universe/last_scan.json` and `universe/mcap_rank.json` before acting.
 
@@ -15,7 +15,7 @@ Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `
 
 ## 2. This session did
 
-- Recomputed gate eligibility offline: `now=2026-11-16T11:37:52Z` vs `next_eligible_refresh_at=2026-11-17T11:27:57.316789+00:00` → **NOT ELIGIBLE** (remaining ~23h50m). Made **no provider calls**. Verified blockers unchanged: `data/fixtures/NUM_USDT.csv` and `data/fixtures/GMEE_USDT.csv` missing; grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, both NUM/USDT and GMEE/USDT absent from grid symbols. Did not apply, did not fetch fixtures, did not run grid, did not schedule wakeups. `cron_list` empty. Appended gate-check lines to this file and `INITIAL_TASK_FOR_NEXT_AGENT.md`.
+- Recomputed gate eligibility offline: `now=2026-11-16T11:54:49.716835Z` vs `next_eligible_refresh_at=2026-11-17T11:27:57.316789+00:00` → **NOT ELIGIBLE** (remaining ~23h33m). Made **no provider calls**. Verified blockers unchanged: `data/fixtures/NUM_USDT.csv` and `data/fixtures/GMEE_USDT.csv` missing (fixtures dir holds 279 files, no NUM/GMEE); grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, both NUM/USDT and GMEE/USDT absent from grid symbols. Did not apply, did not fetch fixtures, did not run grid, did not schedule wakeups. `cron_list` empty. Appended gate-check lines to this file and `INITIAL_TASK_FOR_NEXT_AGENT.md`.
 
 ## 3. Your task (one measurable task)
 
@@ -64,3 +64,4 @@ Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `
 | 2026-11-16T11:40:46Z | 2026-11-17T11:27:57.316789Z | 23h47m11s | NOT ELIGIBLE; offline gate recomputed (eligible=false, `EXPANSION_AVAILABLE`, batch NUM/GMEE pending), no provider calls. Blockers re-verified unchanged: `data/fixtures/NUM_USDT.csv` and `GMEE_USDT.csv` missing; grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, NUM/USDT and GMEE/USDT both absent from grid symbols. No apply, no fixtures, no grid rerun. |
 | 2026-11-16T11:44:01Z | 2026-11-17T11:27:57.316789Z | 23h43m56s (85436s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, `EXPANSION_AVAILABLE`, batch NUM/GMEE pending), no provider calls. Blockers re-verified unchanged: `data/fixtures/NUM_USDT.csv` and `GMEE_USDT.csv` missing; grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, NUM/USDT and GMEE/USDT both absent from grid symbols. No apply, no fixtures, no grid rerun. No wakeups scheduled (`cron_list` empty). |
 | 2026-11-16T11:48:16Z | 2026-11-17T11:27:57.316789Z | 23h39m41s (85180s) | NOT ELIGIBLE; offline gate recomputed via `scripts/refresh_gate.py:gate_status` (eligible=false, bound not elapsed), state `EXPANSION_AVAILABLE`, batch NUM/GMEE pending, no provider calls. Blockers re-verified unchanged: `data/fixtures/NUM_USDT.csv` and `GMEE_USDT.csv` missing; grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, NUM/USDT and GMEE/USDT absent from grid symbols. Env still lacks pandas/numpy/pytest (requests 2.31.0 present). No apply, no fixtures, no grid rerun, no wakeups. |
+| 2026-11-16T11:54:49.716835Z | 2026-11-17T11:27:57.316789Z | 23h33m07.6s (84787.6s) | NOT ELIGIBLE; offline gate recomputed via `scripts/refresh_gate.py:gate_status` (eligible=false, bound not elapsed), state `EXPANSION_AVAILABLE`, batch NUM/GMEE pending, no provider calls. Blockers re-verified unchanged: `data/fixtures/NUM_USDT.csv` and `GMEE_USDT.csv` missing (fixtures dir 279 files, no NUM/GMEE); grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, NUM/USDT and GMEE/USDT absent from grid symbols. Env still lacks pandas/numpy/pytest (requests 2.31.0 present). No apply, no fixtures, no grid rerun, no wakeups. |
