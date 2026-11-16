@@ -1,12 +1,12 @@
 # NEXT_AGENT_TASK.md — EMA hourly continuation universe-refresh gate
 
-**Updated:** 2026-11-16T03:17:31Z (this agent: offline only, no provider calls).
+**Updated:** 2026-11-16T03:22:17Z (this agent: offline only, no provider calls).
 
 Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `INITIAL_TASK_FOR_NEXT_AGENT.md`, `universe/last_scan.json` and `universe/mcap_rank.json` before acting.
 
 ## 1. Status
 
-- **Gate: NOT ELIGIBLE.** now=`2026-11-16T03:17:31Z` (independent `date -u` = `2026-11-16T03:17:24Z`; Python `datetime.now(timezone.utc)` = `2026-11-16T03:17:31.691941+00:00`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **4h10m41s (15,041s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed.
+- **Gate: NOT ELIGIBLE.** now=`2026-11-16T03:22:17Z` (independent `date -u` = `2026-11-16T03:22:07Z`; Python `datetime.now(timezone.utc)` = `2026-11-16T03:22:17.259541+00:00`), bound=`2026-11-16T07:28:12.929462+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`), remaining ≈ **4h05m56s (14,755s)**. Reason (PROMPT.md §2.1.5): the 24 h refresh bound has not elapsed.
 - Gate opens **2026-11-16T07:28:12.929462+00:00**. Status derived offline via `scripts.refresh_gate.gate_status(state)` (PYTHONPATH=.) → `eligible=false`.
 - Scan state: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261115_072812`, scanned_at=`2026-11-15T07:28:12.929462+00:00`, source=CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), 25/25 pages, 2500 entries, `all_requested_pages_returned=true`, `coverage_reaches_below_floor=true`, lowest rank 2500, lowest mcap **$1,519,127**, `universe_n=276`, `batch_selected=["CERE/USDT"]`, `eligible_unseen_below_floor_count=0`.
 - Expansion floor: **CERE/USDT $1,521,812** (rank 2495).
@@ -26,6 +26,7 @@ Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5, §6), this file, `
 
 - Recomputed the gate offline (`scripts.refresh_gate.gate_status`, PYTHONPATH=.); gate closed (eligible=false, remaining ~7h30m), so **no provider calls**, no snapshot/candle fetch, no `--apply`, no grid rerun.
 - Appended one gate-check line to both handoff logs. No research artifacts or assumptions were changed.
+- Recomputed the gate offline again at 2026-11-16T03:22:17Z (eligible=false, remaining 4h05m56s / 14,755s); appended one gate-check line to both handoff logs. No provider calls, no snapshot/candle fetch, no `--apply`, no grid rerun, no research artifacts or assumptions changed.
 
 ## 4. Your task (one measurable task)
 
@@ -64,3 +65,4 @@ All checks are offline, stdlib-only, no provider calls, no `--apply`, no grid re
 | 2026-11-16T03:12:10Z | 4h16m02s (15,362s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T03:15:32Z | 4h12m40s (15,160s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T03:17:31Z | 4h10m41s (15,041s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-16T03:22:17Z | 4h05m56s (14,755s) | NOT ELIGIBLE; offline gate recomputed via scripts.refresh_gate.gate_status (eligible=false, state=AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
