@@ -1,6 +1,6 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Handoff updated:** 2026-11-16T11:37:42Z (offline gate re-check only; NOT ELIGIBLE; no provider calls; no `--apply`; no grid rerun). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
+**Handoff updated:** 2026-11-16T11:40:46Z (offline gate re-check only; NOT ELIGIBLE; no provider calls; no `--apply`; no grid rerun). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
 
 ## 1. Status at handoff
 
@@ -49,3 +49,4 @@
 | 2026-11-16T03:35:39Z | 2026-11-16T07:28:12.929462Z | 3h52m33.9s (13,953.9s) | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-16T11:28:00Z | 2026-11-17T11:27:57.316789Z | ~23h59m57s | **ELIGIBLE pass executed:** 1 snapshot pass (`--pages 25`, no `--apply`) → `mcap_snapshot_20261116_112757.json`, state `EXPANSION_AVAILABLE`, batch `["NUM/USDT","GMEE/USDT"]` (ranks 2454/2497). **Blocked:** no fixtures (`NUM_USDT.csv`,`GMEE_USDT.csv`) and no grid coverage for candidates; env lacks pandas/numpy/pytest. New bound 2026-11-17T11:27:57.316789Z. No orders, no EMA/fill/cost changes. |
 | 2026-11-16T11:37:42Z | 2026-11-17T11:27:57.316789Z | 23h50m05s | NOT ELIGIBLE; offline gate recomputed (eligible=false, `EXPANSION_AVAILABLE`, batch NUM/GMEE pending), no provider calls. Blockers re-verified unchanged: `data/fixtures/NUM_USDT.csv` and `GMEE_USDT.csv` missing; grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, NUM/USDT and GMEE/USDT both absent from grid symbols. No apply, no fixtures, no grid rerun. |
+| 2026-11-16T11:40:46Z | 2026-11-17T11:27:57.316789Z | 23h47m11s | NOT ELIGIBLE; offline gate recomputed (eligible=false, `EXPANSION_AVAILABLE`, batch NUM/GMEE pending), no provider calls. Blockers re-verified unchanged: `data/fixtures/NUM_USDT.csv` and `GMEE_USDT.csv` missing; grid `results/20261019_135940_grid/progress.json` `completed_cells=18216`, `n_symbols=276`, NUM/USDT and GMEE/USDT both absent from grid symbols. No apply, no fixtures, no grid rerun. |
