@@ -4952,3 +4952,37 @@ Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated w
 - Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
 - Next eligible refresh: **2026-11-16T07:28:12.929462+00:00**.
 - The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.
+
+---
+
+## Batch 32 (applied 2026-11-16T11:27:57.316789+00:00) - NUM, GMEE (N 276 -> 278)
+
+<!-- expansion-key: mcap_snapshot_20261116_112757|GMEE/USDT,NUM/USDT -->
+
+**Universe ranks added:** 277-278 (of 278).
+
+**Source snapshot:** `universe/mcap_snapshot_20261116_112757.json` (CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc), fetched 2026-11-16T11:27:57.316789+00:00).
+
+**Expansion floor after the batch:** `GMEE/USDT` $1515271. `universe/last_scan.json` reports `universe_n=278`, `eligible_unseen_below_floor_count=0`.
+
+### Selection (descending market cap, strictly below the previous floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) | Fixture |
+|---|---|---|---|---|---|
+| 2454 | 277 | NUM/USDT | Numbers Protocol | 1,583,626 | `data/fixtures/NUM_USDT.csv` (22000 rows) |
+| 2497 | 278 | GMEE/USDT | GAMEE | 1,515,271 | `data/fixtures/GMEE_USDT.csv` (22000 rows) |
+
+### Grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF | Cells net PF > 1 |
+|---|---|---|---|---|---|
+| NUM/USDT | 66 | 53087 | 0.4349 | 0.6284 | 0 |
+| GMEE/USDT | 66 | 52608 | 0.4688 | 0.6701 | 0 |
+
+### Cumulative state after the batch
+
+- **18348 / 18348 cells** complete (278 symbols x 66 EMA pairs), 0 blocked.
+- Eligible unseen names below the floor: **0**.
+- Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
+- Next eligible refresh: **2026-11-17T11:27:57.316789+00:00**.
+- The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.

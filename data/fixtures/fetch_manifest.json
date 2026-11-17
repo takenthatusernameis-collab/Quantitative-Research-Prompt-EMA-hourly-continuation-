@@ -1140,6 +1140,16 @@
     "file": "data/fixtures/GLM_USDT.csv"
   },
   {
+    "symbol": "GMEE/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-05-14 21:00:00+00:00",
+    "end": "2026-11-17 12:00:00+00:00",
+    "file": "data/fixtures/GMEE_USDT.csv"
+  },
+  {
     "symbol": "GMT/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
@@ -1708,6 +1718,16 @@
     "start": "2024-05-16 12:00:00+00:00",
     "end": "2026-10-20 11:00:00+00:00",
     "file": "data/fixtures/NOT_USDT.csv"
+  },
+  {
+    "symbol": "NUM/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-05-14 21:00:00+00:00",
+    "end": "2026-11-17 12:00:00+00:00",
+    "file": "data/fixtures/NUM_USDT.csv"
   },
   {
     "symbol": "NYM/USDT",
