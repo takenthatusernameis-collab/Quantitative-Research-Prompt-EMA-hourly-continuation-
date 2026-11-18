@@ -1,6 +1,6 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Handoff updated:** 2026-11-18T19:22:44Z (offline gate re-check: bound elapsed, gate ELIGIBLE; state AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0, no pending batch; no provider pass required by state; no provider calls, no apply, no grid rerun, no wakeups).
+**Handoff updated:** 2026-11-18T19:24:31Z (offline gate re-check: bound elapsed, gate ELIGIBLE; state AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0, no pending batch; no provider pass required by state; no provider calls, no apply, no grid rerun, no wakeups).
 
 
 - **Gate:** bound `2026-11-18T12:59:40.659540+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`). Recomputed offline at `2026-11-18T19:14:46Z` via `scripts/refresh_gate.py:gate_status` (`now=2026-11-18T19:14:46.009282+00:00`, state loaded from `universe/last_scan.json`; system `date -u` 2026-11-18T19:14:10Z, `datetime.now(timezone.utc)` 2026-11-18T19:14:46.009282+00:00) → **ELIGIBLE** (bound elapsed). **No provider calls made this session; state does not require a new pass.**
@@ -11,7 +11,7 @@
 
 ## 2. Your task (measurable, one item)
 
-1. **Offline first.** Recompute eligibility from `next_eligible_refresh_at` (`2026-11-18T12:59:40.659540+00:00`) against independent UTC (`date -u`, `datetime.now(timezone.utc)`); never guess. Gate is now **ELIGIBLE** (bound elapsed).
+1. **Offline first.** Recompute eligibility from `next_eligible_refresh_at` (`2026-11-18T12:59:40.659540+00:00`) against independent UTC (`date -u`, `datetime.now(timezone.utc)`); never guess. Gate is now **ELIGIBLE** (bound elapsed since 2026-11-18T12:59:40.659540Z).
 2. **If NOT eligible:** make **no provider calls**. Append exactly one concise offline gate-check line (exact now/bound/remaining, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, no pending batch, NUM/GMEE resolved, and the real environment status — currently `requests` 2.31.0 only, no pandas/numpy/pytest) to `NEXT_AGENT_TASK.md` log and section 3 below; stop. Do not schedule wakeups (`cron_list` must stay empty).
 3. **If eligible (current state):** only take a new provider pass if required by policy/state; current state `AWAITING_NEW_ELIGIBLE_CANDIDATES` with `eligible_unseen_below_floor_count=0` means no expansion batch is pending — **no provider call needed**.
 4. **Never:** rerun existing grid cells, re-fetch fixtures the grid already used, fetch candles unnecessarily, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow AGENTS.md adaptive gate policy.
@@ -86,3 +86,4 @@
 | 2026-11-18T19:13:12.117198Z | 2026-11-18T12:59:40.659540Z | 0s (elapsed) | ELIGIBLE (bound elapsed); state AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0, batch none pending; no provider pass required by state; no provider call, no apply, no grid rerun, no wakeups. Env: requests 2.31.0 only — pandas/numpy/pytest NOT importable. |
 | 2026-11-18T19:14:46Z | 2026-11-18T12:59:40.659540Z | 0s (elapsed) | ELIGIBLE (bound elapsed); state AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0, batch none pending; no provider pass required by state; no provider call, no apply, no grid rerun, no wakeups. Env: requests 2.31.0 only — pandas/numpy/pytest NOT importable. |
 | 2026-11-18T19:22:44Z | 2026-11-18T12:59:40.659540Z | 0s (elapsed) | ELIGIBLE (bound elapsed); state AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0, batch none pending; no provider pass required by state; no provider call, no apply, no grid rerun, no wakeups. Env: requests 2.31.0 only — pandas/numpy/pytest NOT importable. |
+| 2026-11-18T19:24:31Z | 2026-11-18T12:59:40.659540Z | 0s (elapsed) | ELIGIBLE (bound elapsed); state AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0, batch none pending; no provider pass required by state; no provider call, no apply, no grid rerun, no wakeups. Env: requests 2.31.0 only — pandas/numpy/pytest NOT importable. |
