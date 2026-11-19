@@ -1,25 +1,21 @@
-# INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
+Resume the EMA hourly continuation universe-refresh gate.
 
-**Handoff updated:** 2026-11-19T08:58:11Z (offline gate check only; NOT ELIGIBLE; no provider calls; no `--apply`; no grid rerun; no wakeups). Read `README.md`, `AGENTS.md`, `PROMPT.md` (§2.1.2, §2.1.5), `NEXT_AGENT_TASK.md`, `universe/last_scan.json` and `universe/mcap_rank.json` first.
+**Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-## 1. Status at handoff
+**Current state (as of 2026-11-19T09:12:17Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-19T19:50:23.792771+00:00`. NOT ELIGIBLE until then (~10h38m remaining). Verified via direct read of `universe/last_scan.json` (JSON valid, file unchanged) and independent time comparison at env time `2026-11-19T09:12:17Z`. Gate status re-derived via `scripts.refresh_gate.gate_status(state)` (PYTHONPATH=.): eligible=false, bound=`2026-11-19T19:50:23.792771+00:00`, reason="the 24 h refresh bound has not elapsed yet". State unchanged: snapshot_id=`mcap_snapshot_20261118_195023`, scanned_at=`2026-11-18T19:50:23.792771+00:00`, universe_n=278, expansion_floor=`CERE/USDT` $1,528,741, eligible_unseen_below_floor_count=0, batch_selected=[].
+- State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261118_195023`, snapshot_path `universe/mcap_snapshot_20261118_195023.json`, scanned_at `2026-11-18T19:50:23.792771+00:00`, recorded_at `2026-11-18T19:50:24.206114+00:00`, snapshot_source `CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)`.
+- Coverage: pages_requested=25, pages_fetched=25, all_requested_pages_returned=true, entries_count=2500, lowest_rank_covered=2500, lowest_market_cap_usd=1484631, coverage_reaches_below_floor=true.
+- Universe_n=278, expansion floor `CERE/USDT` $1,528,741, eligible_unseen_below_floor_count=0, batch_selected=[] (no new candidates).
+- Baseline grid `results/20261019_135940_grid` complete (18348/18348 cells, 278 symbols × 66 pairs, all_symbols_processed=true, stopped=false, next_cell=null). `results/FINAL_DECISION.md` records program-level rejection. Git tree clean (`git status --short` empty, `git diff --stat` empty).
+- Env verified: pandas 3.1.1, numpy 2.5.5, pytest 9.2.0, requests 2.31.0, python 3.12.3.
 
-- **Gate:** bound `2026-11-19T19:50:23.792771+00:00` (`universe/last_scan.json` `next_eligible_refresh_at`). Recomputed offline at `2026-11-19T08:58:11Z` via `scripts/refresh_gate.py:gate_status` and `scripts/refresh_universe.py plan` → **NOT ELIGIBLE** (remaining 10h52m12.8s / 39,132.8s). **No provider calls made this session.**
-- Scan state: **`AWAITING_NEW_ELIGIBLE_CANDIDATES`**, snapshot_id=`mcap_snapshot_20261118_195023`, scanned_at=`2026-11-18T19:50:23.792771+00:00`, CoinGecko `/api/v3/coins/markets` (usd, market_cap_desc), 25/25 pages, 2500 entries, `coverage_reaches_below_floor=true`, lowest mcap **$1,484,631**, universe_n=278, expansion floor **CERE/USDT $1,528,741**.
-- Batch selected: **`[]`** — `eligible_unseen_below_floor_count=0`, `eligible_unseen_below_floor=[]`.
-- **Blockers (unchanged, verified this session):** no new candidates below the floor. Baseline grid remains 278 symbols / 18,348/18,348 cells complete, unchanged.
-- `universe/mcap_rank.json` unchanged (n_symbols=278). Preserved artifacts intact: `results/FINAL_DECISION.md`, grid progress/snapshot files. No fixtures/candles fetched, no `--apply`, no grid expansion/reruns, no EMA signal/fill/cost changes, no orders. `cron_list` empty.
-- **Environment:** `python3` 3.12.3 with `pandas` 3.1.1, `numpy` 2.5.5, `pytest` 9.2.0, `requests` 2.31.0 (installed via `pip install --user` under temp home `/home/runner/work/_temp/kilo-home/.local` — **re-verify at start of next session**; if missing, reinstall before any grid/signal/pytest work). Gate tooling remains stdlib-only.
+**What to do:**
+1. Re-verify gate eligibility at start (NOT ELIGIBLE until `2026-11-19T19:50:23.792771+00:00`).
+2. If still not eligible: do nothing but record the offline check in `NEXT_AGENT_TASK.md`, update this handoff if needed, and await the scheduler wakeup. No provider calls.
+3. If eligible: run at most one 25-page snapshot pass (`PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 25 --batch-size 10`), recompute the floor, inspect the below-floor band, update `universe/last_scan.json`, then review any new candidate(s) for fixture/grid coverage before any `--apply`. Do NOT apply without coverage.
+4. Never: rerun grids, fetch candles, change costs/fills, or blur confirmatory vs exploratory.
 
-## 2. Your task (measurable, one item)
+**Constraints:** historical research only; no orders/live/paper trading; preserve EMA signal/fill/cost assumptions; no fixtures as market evidence; separate exploratory from confirmatory; preserve negative/blocked results; follow AGENTS.md gate policy.
 
-1. **Offline first.** Recompute eligibility from `next_eligible_refresh_at` (`2026-11-19T19:50:23.792771+00:00`) against independent UTC (`date -u`, `datetime.now(timezone.utc)`); never guess. Expected **NOT ELIGIBLE** until bound.
-2. **If NOT eligible:** make **no provider calls**. Append exactly one concise offline gate-check line (exact now/bound/remaining, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `eligible_unseen_below_floor_count=0`, batch none pending, blockers unchanged) to `NEXT_AGENT_TASK.md` log and section 3 below; stop. Do not schedule wakeups (`cron_list` must stay empty). Expected NOT ELIGIBLE until 2026-11-19T19:50:23.792771Z.
-3. **If eligible:** only take a new provider pass if required by policy/state; prefer resolving recorded batch first when environment allows. Before any `--apply` verify fixture + baseline grid coverage in `results/20261019_135940_grid/progress.json` for every selected candidate; if any lacks either, **do not apply** and record blocker per candidate.
-4. **Batch resolution (when env permits):** for any new candidates confirm tradable KuCoin spot USDT identity/price and sufficient hourly history, fetch fixtures only for new symbols, validate integrity, expand grid only for new symbols via resume path (no rerun of existing cells, no re-fetch of grid-used fixtures), then apply only after all candidates covered. Never change EMA signal/fill/cost assumptions or use fixtures as market evidence.
-
-## 3. Gate-check log (append one line per offline check)
-
-| UTC now | Bound | Remaining | Outcome |
-| --- | --- | --- | --- |
-| 2026-11-19T08:58:11Z | 2026-11-19T19:50:23.792771Z | 10h52m12.8s (39,132.8s) | NOT ELIGIBLE; offline gate recomputed via `scripts/refresh_gate.py:gate_status` (eligible=false, bound not elapsed), `scripts/refresh_universe.py plan` → `refresh_allowed_now=false`, state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261118_195023`, floor CERE/USDT $1,528,741, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`, batch none pending, no provider calls. Universe verified: `universe_n=278`, `symbols_without_fixture=[]`, `symbols_without_grid_cells=[]`; grid `completed_cells=18348`, `n_symbols=278` (18348 == 278×66). Env: pandas 3.1.1 / numpy 2.5.5 / pytest 9.2.0 + requests 2.31.0, python 3.12.3. No apply, no fixtures, no candles, no grid rerun, no orders, no wakeups. |
+**Wakeup:** None scheduled. Next gate eligibility at `2026-11-19T19:50:23.792771+00:00`. Do not schedule a wakeup — the next agent will run on its own schedule.
