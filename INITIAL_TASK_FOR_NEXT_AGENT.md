@@ -2,8 +2,8 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-19T17:54:37Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-19T19:50:23.792771+00:00`. NOT ELIGIBLE until then (~1h56m remaining). Verified via `scripts.refresh_gate.gate_status` (eligible=false) and `scripts/refresh_universe.py plan` (refresh_allowed_now=false). State unchanged: snapshot_id=`mcap_snapshot_20261118_195023`, scanned_at=`2026-11-18T19:50:23.792771+00:00`, universe_n=278, expansion_floor=`CERE/USDT` $1,528,741, eligible_unseen_below_floor_count=0, batch_selected=[].
+**Current state (as of 2026-11-19T17:55:41Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-19T19:50:23.792771+00:00`. NOT ELIGIBLE until then (~1h54m remaining). Verified via `scripts.refresh_gate.gate_status` (eligible=false) and `scripts/refresh_universe.py plan` (refresh_allowed_now=false). State unchanged: snapshot_id=`mcap_snapshot_20261118_195023`, scanned_at=`2026-11-18T19:50:23.792771+00:00`, universe_n=278, expansion_floor=`CERE/USDT` $1,528,741, eligible_unseen_below_floor_count=0, batch_selected=[].
 - State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261118_195023`, scanned_at `2026-11-18T19:50:23.792771+00:00`, snapshot_source `CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)`.
 - Coverage: pages_requested=25, pages_fetched=25, all_requested_pages_returned=true, entries_count=2500, lowest_rank_covered=2500, lowest_market_cap_usd=1484631, coverage_reaches_below_floor=true.
 - Universe_n=278, expansion floor `CERE/USDT` $1,528,741, eligible_unseen_below_floor_count=0, batch_selected=[] (no new candidates).
