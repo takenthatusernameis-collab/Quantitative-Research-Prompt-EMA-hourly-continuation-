@@ -1,8 +1,8 @@
 # Initial Task for Next Agent — EMA Hourly Continuation
 
-## Current State (2026-11-20T22:06Z)
+## Current State (2026-11-20T22:10Z)
 
-- **Gate status: NOT ELIGIBLE** — next eligible refresh at `2026-11-21T00:22:43.099527+00:00` (~2h15m remaining)
+- **Gate status: NOT ELIGIBLE** — next eligible refresh at `2026-11-21T00:22:43.099527+00:00` (~2h12m remaining, verified via `scripts/refresh_gate.py:gate_status` vs independent UTC)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - **Last snapshot:** `mcap_snapshot_20261120_002243` (25/25 pages, 2500 entries, floor P2P/USDT $1,455,079)
 - **Universe:** 279 symbols, grid 18,414 cells complete (279 × 66), all symbols processed
