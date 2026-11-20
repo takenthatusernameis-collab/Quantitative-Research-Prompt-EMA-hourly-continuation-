@@ -2,10 +2,10 @@ Resume the EMA hourly continuation universe-refresh gate.
 
 **Read first:** `README.md`, `AGENTS.md`, `NEXT_AGENT_TASK.md`.
 
-**Current state (as of 2026-11-20T05:19Z):**
-- Gate `next_eligible_refresh_at` = `2026-11-21T00:22:43.099527+00:00`. NOT ELIGIBLE until then (~19h03m remaining). Verified offline via `scripts.refresh_gate.gate_status` (eligible=false) against independent UTC (`datetime.now(timezone.utc)`). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261120_002243`, scanned_at=`2026-11-20T00:22:43.099527+00:00`, universe_n=279, expansion_floor=`P2P/USDT` $1,455,079, eligible_unseen_below_floor_count=0, batch_selected=["P2P/USDT"] (P2P/USDT already applied: fixture `P2P_USDT.csv` present, grid 279×66 complete).
+**Current state (as of 2026-11-20T05:21Z):**
+- Gate `next_eligible_refresh_at` = `2026-11-21T00:22:43.099527+00:00`. NOT ELIGIBLE until then (~19h01m remaining). Verified offline via `scripts.refresh_gate.gate_status` (eligible=false) against independent UTC (`date -u`=2026-11-20T05:20:51Z, `datetime.now(timezone.utc)`=2026-11-20T05:21:01Z). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot_id=`mcap_snapshot_20261120_002243`, scanned_at=`2026-11-20T00:22:43.099527+00:00`, universe_n=279, expansion_floor=`P2P/USDT` $1,455,079, eligible_unseen_below_floor_count=0, batch_selected=["P2P/USDT"] (P2P/USDT already applied: fixture `P2P_USDT.csv` present, grid 279×66 complete).
 - Baseline grid `results/20261019_135940_grid` complete (18414/18414 cells, 279 symbols × 66 pairs, all_symbols_processed=true). `results/FINAL_DECISION.md` records program-level rejection. Git tree clean.
-- Env: pandas NOT importable this session (temp home wiped); reinstall `pip install --user pandas numpy pytest` before any grid/signal/pytest work. requests 2.31.0 present. Gate tooling stdlib-only. One gate-check row appended to `NEXT_AGENT_TASK.md` §4 this activation (nothing else: no provider call, no fixture/candle fetch, no grid rerun, no apply, no wakeup).
+- Env: pandas NOT importable this session (module not installed); requests 2.31.0 present. Gate tooling stdlib-only, check ran OK. Reinstall `pip install --user pandas numpy pytest` before any grid/signal/pytest work. One gate-check row appended to `NEXT_AGENT_TASK.md` §4 this activation (nothing else: no provider call, no fixture/candle fetch, no grid rerun, no apply, no wakeup).
 
 **What to do:**
 1. Re-verify gate eligibility at start (NOT ELIGIBLE until `2026-11-21T00:22:43.099527+00:00`).
