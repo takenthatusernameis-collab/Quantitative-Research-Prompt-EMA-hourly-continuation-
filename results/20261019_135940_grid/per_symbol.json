@@ -5002,5 +5002,23 @@
     "frac_cells_net_pf_gt_1": 0.0,
     "n_cells_exploratory": 0,
     "n_cells_rejected": 66
+  },
+  {
+    "symbol": "P2P/USDT",
+    "n_cells": 66,
+    "total_trades": 50930,
+    "mean_trades": 771.6666666666666,
+    "median_net_pf": 0.4502549145715171,
+    "mean_net_pf": 0.43421181371594214,
+    "best_net_pf": 0.6780788481511848,
+    "best_cell": "P55_200",
+    "best_sharpe": -2.390114148190855,
+    "worst_net_pf": 0.10319199920135355,
+    "worst_cell": "P20_21",
+    "max_net_sharpe": -2.390114148190855,
+    "n_cells_net_pf_gt_1": 0,
+    "frac_cells_net_pf_gt_1": 0.0,
+    "n_cells_exploratory": 0,
+    "n_cells_rejected": 66
   }
 ]

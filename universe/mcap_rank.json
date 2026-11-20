@@ -1,16 +1,14 @@
 {
-  "updated_at": "2026-11-17T12:28:51.153108Z",
-  "snapshot_id": "mcap_snapshot_20261116_112757",
+  "updated_at": "2026-11-20T00:29:13.195626Z",
+  "snapshot_id": "mcap_snapshot_20261120_002243",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "snapshot_fetched_at": "2026-11-16T11:27:57.316789+00:00",
-  "n_symbols": 278,
+  "snapshot_fetched_at": "2026-11-20T00:22:43.099527+00:00",
+  "n_symbols": 279,
   "added_in_this_expansion": [
-    "NUM/USDT",
-    "GMEE/USDT"
+    "P2P/USDT"
   ],
   "added_market_caps_usd": {
-    "NUM": 1583626,
-    "GMEE": 1515271
+    "P2P": 1455079
   },
   "symbols": [
     "BTC/USDT",
@@ -290,6 +288,7 @@
     "ALPINE/USDT",
     "CERE/USDT",
     "NUM/USDT",
-    "GMEE/USDT"
+    "GMEE/USDT",
+    "P2P/USDT"
   ]
 }

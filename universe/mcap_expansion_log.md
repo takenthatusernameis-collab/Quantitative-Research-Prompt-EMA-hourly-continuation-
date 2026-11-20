@@ -4986,3 +4986,35 @@ Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated w
 - Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
 - Next eligible refresh: **2026-11-17T11:27:57.316789+00:00**.
 - The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.
+
+---
+
+## Batch 33 (applied 2026-11-20T00:22:43.099527+00:00) - P2P (N 278 -> 279)
+
+<!-- expansion-key: mcap_snapshot_20261120_002243|P2P/USDT -->
+
+**Universe ranks added:** 279-279 (of 279).
+
+**Source snapshot:** `universe/mcap_snapshot_20261120_002243.json` (CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc), fetched 2026-11-20T00:22:43.099527+00:00).
+
+**Expansion floor after the batch:** `P2P/USDT` $1455079. `universe/last_scan.json` reports `universe_n=279`, `eligible_unseen_below_floor_count=0`.
+
+### Selection (descending market cap, strictly below the previous floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) | Fixture |
+|---|---|---|---|---|---|
+| 2487 | 279 | P2P/USDT | Sentinel | 1,455,079 | `data/fixtures/P2P_USDT.csv` (22000 rows) |
+
+### Grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF | Cells net PF > 1 |
+|---|---|---|---|---|---|
+| P2P/USDT | 66 | 50930 | 0.4342 | 0.6781 | 0 |
+
+### Cumulative state after the batch
+
+- **18414 / 18414 cells** complete (279 symbols x 66 EMA pairs), 0 blocked.
+- Eligible unseen names below the floor: **0**.
+- Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
+- Next eligible refresh: **2026-11-21T00:22:43.099527+00:00**.
+- The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.

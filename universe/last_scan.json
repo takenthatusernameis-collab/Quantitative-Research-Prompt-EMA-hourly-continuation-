@@ -1,26 +1,85 @@
 {
-  "recorded_at": "2026-11-18T19:50:24.206114+00:00",
+  "recorded_at": "2026-11-20T00:29:13.195318+00:00",
   "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
-  "snapshot_id": "mcap_snapshot_20261118_195023",
-  "snapshot_path": "universe/mcap_snapshot_20261118_195023.json",
+  "snapshot_id": "mcap_snapshot_20261120_002243",
+  "snapshot_path": "universe/mcap_snapshot_20261120_002243.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-11-18T19:50:23.792771+00:00",
+  "scanned_at": "2026-11-20T00:22:43.099527+00:00",
   "coverage": {
     "pages_requested": 25,
     "pages_fetched": 25,
     "all_requested_pages_returned": true,
     "entries_count": 2500,
     "lowest_rank_covered": 2500,
-    "lowest_market_cap_usd": 1484631
+    "lowest_market_cap_usd": 1427461
   },
   "coverage_reaches_below_floor": true,
-  "universe_n": 278,
+  "universe_n": 279,
   "expansion_floor": {
-    "symbol": "CERE/USDT",
-    "market_cap_usd": 1528741
+    "symbol": "P2P/USDT",
+    "market_cap_usd": 1455079
   },
   "eligible_unseen_below_floor_count": 0,
   "eligible_unseen_below_floor": [],
-  "batch_selected": [],
-  "next_eligible_refresh_at": "2026-11-19T19:50:23.792771+00:00"
+  "batch_selected": [
+    "P2P/USDT"
+  ],
+  "next_eligible_refresh_at": "2026-11-21T00:22:43.099527+00:00",
+  "fixtures": {
+    "fetched_at": "2026-11-20T00:33:39.412733+00:00",
+    "target_bars": 22000,
+    "results": [
+      {
+        "symbol": "P2P/USDT",
+        "ok": true,
+        "checks": {
+          "rows": 22000,
+          "min_bars": 17520,
+          "enough_bars": true,
+          "duplicate_timestamps": 0,
+          "non_hourly_steps": 0,
+          "invalid_ohlc_rows": 0,
+          "last_close": 4.06e-05,
+          "price_identity_log_ratio": 0.0029600416284767256,
+          "price_identity_ok": true,
+          "ok": true
+        },
+        "rows": 22000
+      }
+    ],
+    "excluded": [],
+    "conflicts": []
+  },
+  "grid_expansion": {
+    "run": "results/20261019_135940_grid",
+    "expanded_at": "2026-11-20T00:35:57.321885+00:00",
+    "previous_n": 278,
+    "new_n": 279,
+    "symbols": [
+      "P2P/USDT"
+    ],
+    "outcomes": [
+      {
+        "symbol": "P2P/USDT",
+        "cells": 66,
+        "blocked": 0,
+        "missing": [],
+        "expected": 66
+      }
+    ]
+  },
+  "history_probe_failure_count": 0,
+  "coverage_reaches_below_current_floor": true,
+  "grid_verification": {
+    "run": "results/20261019_135940_grid",
+    "verified_at": "2026-11-20T00:36:01.373077+00:00",
+    "symbols": 279,
+    "cells_complete": 18414,
+    "cells_expected": 18414,
+    "cells_blocked": 0,
+    "incomplete_symbols": [],
+    "symbols_without_fixture": []
+  },
+  "last_verified_at": "2026-11-20T00:36:01.373077+00:00",
+  "last_verification_note": ""
 }

@@ -1830,6 +1830,16 @@
     "file": "data/fixtures/OSMO_USDT.csv"
   },
   {
+    "symbol": "P2P/USDT",
+    "source": "KuCoin public API /api/v1/market/candles",
+    "interval": "1hour",
+    "timezone": "UTC",
+    "rows": 22000,
+    "start": "2024-05-17 09:00:00+00:00",
+    "end": "2026-11-20 00:00:00+00:00",
+    "file": "data/fixtures/P2P_USDT.csv"
+  },
+  {
     "symbol": "PENDLE/USDT",
     "source": "KuCoin public API /api/v1/market/candles",
     "interval": "1hour",
