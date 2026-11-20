@@ -1,13 +1,13 @@
 # Initial Task for Next Agent — EMA Hourly Continuation
 
-## Current State (2026-11-20T14:28Z)
+## Current State (2026-11-20T21:51Z)
 
-- **Gate status: NOT ELIGIBLE** — next eligible refresh at `2026-11-21T00:22:43.099527+00:00` (~9h54m remaining)
+- **Gate status: NOT ELIGIBLE** — next eligible refresh at `2026-11-21T00:22:43.099527+00:00` (~2h31m remaining)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - **Last snapshot:** `mcap_snapshot_20261120_002243` (25/25 pages, 2500 entries, floor P2P/USDT $1,455,079)
 - **Universe:** 279 symbols, grid 18,414 cells complete (279 × 66), all symbols processed
 - **Batch:** P2P/USDT already applied (fixture `P2P_USDT.csv` present, grid expanded)
-- **Environment:** pandas NOT importable (`ModuleNotFoundError`); requests 2.31.0 present; gate tooling stdlib-only
+- **Environment:** pandas/numpy/pytest NOT importable (`ModuleNotFoundError`); `requests` 2.31.0 present; gate tooling stdlib-only
 - **Git:** clean
 
 ## Your Task (One Measurable Task)
@@ -20,7 +20,7 @@
 
 4. **If that pass yields a batch** (`EXPANSION_AVAILABLE`): apply it through the repo's own cycle — `refresh_universe.py fetch` (or `fetch_mcap_snapshot.py --apply`), then `fixtures`, `grid`, `state`, `log` — new symbols only, full 66-pair grid, ascending compute but descending market cap; acceptance is `completed_cells == universe_n * 66`. Requires pandas installed (reinstall with `pip install --user pandas numpy pytest` if missing).
 
-5. **Never:** rerun existing grid cells, re-fetch a fixture the grid already used, fetch candles unnecessarily, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow the AGENTS.md adaptive gate policy.
+5. **Never:** rerun existing grid cells, re-fetch a fixture the grid already used, fetch candles unnecessarily, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow AGENTS.md adaptive gate policy.
 
 ## Key Files
 
