@@ -1,6 +1,6 @@
 # Task for Next Agent — EMA hourly continuation universe-refresh gate
 
-**Time of handoff:** 2026-11-21T10:41Z (UTC). Bound: `2026-11-22T03:13:02.267371+00:00`. Gate is **AWAITING_NEW_ELIGIBLE_CANDIDATES** (NOT ELIGIBLE) until then (~16h32m remaining at handoff; last check 2026-11-21T10:41:20Z, remaining 16h31m41s). The prior bound `2026-11-21T00:22:43.099527+00:00` elapsed and the due 24 h ranking pass was taken and fully applied (batch HTR/USDT → universe 280 / grid 18480).
+**Time of handoff:** 2026-11-21T17:45Z (UTC). Bound: `2026-11-22T03:13:02.267371+00:00`. Gate is **AWAITING_NEW_ELIGIBLE_CANDIDATES** (NOT ELIGIBLE) until then (~9h27m remaining at handoff; last check 2026-11-21T17:45:32Z, remaining 9h27m29s). The prior bound `2026-11-21T00:22:43.099527+00:00` elapsed and the due 24 h ranking pass was taken and fully applied (batch HTR/USDT → universe 280 / grid 18480).
 
 This file is a short pointer. The canonical handoff is `INITIAL_TASK_FOR_NEXT_AGENT.md`; the full gate-check log is `NEXT_AGENT_TASK.md` §4.
 
@@ -19,7 +19,9 @@ Recompute the gate eligibility offline using `scripts/refresh_gate.py:gate_statu
 
 ## Environment (verified this session)
 
-`python3` 3.12.3 with `pandas 3.1.1`, `numpy 2.5.5`, `pytest 9.2.0`, `requests 2.31.0` all importable. The gate check is stdlib-only and needs no install.
+`python3` 3.12.3 with `requests 2.31.0` importable. **pandas/numpy/pytest are NOT importable
+this session** (`ModuleNotFoundError`); reinstall them (free PyPI) before any grid/signal work
+that needs pandas. The gate check is stdlib-only and needs no install.
 
 ## Never
 
