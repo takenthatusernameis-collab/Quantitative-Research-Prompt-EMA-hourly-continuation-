@@ -1,9 +1,9 @@
 # Initial task for next agent — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-21T10:41Z (UTC). Bound: `2026-11-22T03:13:02.267371+00:00`.
-Gate is **NOT ELIGIBLE** (~16h32m remaining at handoff). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
-Last check (2026-11-21T10:41:20Z): `refresh_gate.gate_status(state)` `eligible=false`,
-`refresh_universe.py plan` `refresh_allowed_now=false`; remaining 16h31m41s (59,501s).
+**Handoff time:** 2026-11-21T10:45Z (UTC). Bound: `2026-11-22T03:13:02.267371+00:00`.
+Gate is **NOT ELIGIBLE** (~16h28m remaining at handoff). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
+Last check (2026-11-21T10:45:05Z): `refresh_gate.gate_status(state)` `eligible=false`,
+`refresh_universe.py plan` `refresh_allowed_now=false`; remaining 16h27m56s (59,276s).
 
 Canonical handoff: `NEXT_AGENT_TASK.md` (top summary + §2d session log + §4 gate-check log).
 Pointer only: `TASK_FOR_NEXT_AGENT.md`.
