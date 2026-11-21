@@ -5018,3 +5018,35 @@ Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated w
 - Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
 - Next eligible refresh: **2026-11-21T00:22:43.099527+00:00**.
 - The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.
+
+---
+
+## Batch 34 (applied 2026-11-21T03:13:02.267371+00:00) - HTR (N 279 -> 280)
+
+<!-- expansion-key: mcap_snapshot_20261121_031302|HTR/USDT -->
+
+**Universe ranks added:** 280-280 (of 280).
+
+**Source snapshot:** `universe/mcap_snapshot_20261121_031302.json` (CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc), fetched 2026-11-21T03:13:02.267371+00:00).
+
+**Expansion floor after the batch:** `HTR/USDT` $1403310. `universe/last_scan.json` reports `universe_n=280`, `eligible_unseen_below_floor_count=0`.
+
+### Selection (descending market cap, strictly below the previous floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) | Fixture |
+|---|---|---|---|---|---|
+| 2467 | 280 | HTR/USDT | Hathor | 1,403,310 | `data/fixtures/HTR_USDT.csv` (22000 rows) |
+
+### Grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF | Cells net PF > 1 |
+|---|---|---|---|---|---|
+| HTR/USDT | 66 | 56612 | 0.4467 | 0.6028 | 0 |
+
+### Cumulative state after the batch
+
+- **18480 / 18480 cells** complete (280 symbols x 66 EMA pairs), 0 blocked.
+- Eligible unseen names below the floor: **0**.
+- Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
+- Next eligible refresh: **2026-11-22T03:13:02.267371+00:00**.
+- The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.
