@@ -1,6 +1,6 @@
 # Initial task for next agent — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-22T11:20Z (UTC). Bound: `2026-11-23T10:35:56.872136+00:00`. Gate is **NOT ELIGIBLE** (~23h16m remaining at handoff). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
+**Handoff time:** 2026-11-22T11:23Z (UTC). Bound: `2026-11-23T10:35:56.872136+00:00`. Gate is **NOT ELIGIBLE** (~23h12m remaining at handoff). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
 Last check (2026-11-22T11:20:04Z): `refresh_gate.gate_status(state)` `eligible=false`, remaining 23h15m53s (83,753s). Environment this session: pandas 3.1.1 / numpy 2.5.5 / pytest 9.2.0 + requests 2.31.0, python 3.12.3. The gate check is stdlib-only and needs no install.
 
 Canonical handoff: `NEXT_AGENT_TASK.md` (top summary + §2e session log + §4 gate-check log).
