@@ -1,7 +1,7 @@
 # Initial task for next agent — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-22T11:23Z (UTC). Bound: `2026-11-23T10:35:56.872136+00:00`. Gate is **NOT ELIGIBLE** (~23h12m remaining at handoff). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
-Last check (2026-11-22T11:20:04Z): `refresh_gate.gate_status(state)` `eligible=false`, remaining 23h15m53s (83,753s). Environment this session: pandas 3.1.1 / numpy 2.5.5 / pytest 9.2.0 + requests 2.31.0, python 3.12.3. The gate check is stdlib-only and needs no install.
+**Handoff time:** 2026-11-22T11:24Z (UTC). Bound: `2026-11-23T10:35:56.872136+00:00`. Gate is **NOT ELIGIBLE** (~23h11m remaining at handoff). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
+Last check (2026-11-22T11:24:41Z): `refresh_gate.gate_status(state)` `eligible=false`, remaining 23h11m16s (83,476s). Environment this session: pandas 3.1.1 / numpy 2.5.5 / pytest 9.2.0 + requests 2.31.0, python 3.12.3. The gate check is stdlib-only and needs no install.
 
 Canonical handoff: `NEXT_AGENT_TASK.md` (top summary + §2e session log + §4 gate-check log).
 Pointer only: `TASK_FOR_NEXT_AGENT.md`.
@@ -31,7 +31,7 @@ Pointer only: `TASK_FOR_NEXT_AGENT.md`.
    `results/FINAL_DECISION.md`. Historical research only; free public data / no-cost tooling;
    follow the AGENTS.md adaptive gate policy.
 
-## Current state (verified 2026-11-22T11:20Z)
+## Current state (verified 2026-11-22T11:24Z)
 
 - `universe/last_scan.json`: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot
   `mcap_snapshot_20261122_103556` (scanned_at 2026-11-22T10:35:56.872136Z, 25/25 pages,
