@@ -88,6 +88,7 @@
 | 2026-11-15T20:44:19Z | 2026-11-16T07:28:12.929462Z | 10h43m53.2s | NOT ELIGIBLE; offline gate recomputed (eligible=false), no provider calls |
 | 2026-11-15T23:44:36Z | 2026-11-16T07:28:12.929462Z | 7h43m36.7s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-15T23:46:09Z | 2026-11-16T07:28:12.929462Z | 7h42m03.4s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
+| 2026-11-22T11:27:59Z | 2026-11-23T10:35:56.872136Z | 23h07m57.3s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, snapshot mcap_snapshot_20261122_103556, eligible_unseen_below_floor_count=0), no provider calls, no apply, no fixtures/candles, no grid rerun, no orders, no wakeups |
 | 2026-11-15T23:50:01Z | 2026-11-16T07:28:12.929462Z | 7h38m04s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-15T23:55:07Z | 2026-11-16T07:28:12.929462Z | 7h33m05s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
 | 2026-11-15T23:58:24Z | 2026-11-16T07:28:12.929462Z | 7h29m48s | NOT ELIGIBLE; offline gate recomputed (eligible=false, AWAITING_NEW_ELIGIBLE_CANDIDATES, eligible_unseen_below_floor_count=0), no provider calls |
