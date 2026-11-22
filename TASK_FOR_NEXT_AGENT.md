@@ -1,6 +1,6 @@
 # Task for Next Agent — EMA hourly continuation universe-refresh gate
 
-**Time of handoff:** 2026-11-22T02:37Z (UTC). Bound: `2026-11-22T03:13:02.267371+00:00`. Gate is **AWAITING_NEW_ELIGIBLE_CANDIDATES** (NOT ELIGIBLE) until then (~34m57s remaining at handoff; last check 2026-11-22T02:37:55Z, remaining 34m57s / 2,097s). The prior bound `2026-11-21T00:22:43.099527+00:00` elapsed and the due 24 h ranking pass was taken and fully applied (batch HTR/USDT → universe 280 / grid 18480).
+**Time of handoff:** 2026-11-22T02:42Z (UTC). Bound: `2026-11-22T03:13:02.267371+00:00`. Gate is **AWAITING_NEW_ELIGIBLE_CANDIDATES** (NOT ELIGIBLE) until then (~30m6s remaining at handoff; last check 2026-11-22T02:42:55.667004Z, remaining 30m6.6s / 1,806.6s). The prior bound `2026-11-21T00:22:43.099527+00:00` elapsed and the due 24 h ranking pass was taken and fully applied (batch HTR/USDT → universe 280 / grid 18480).
 
 This file is a short pointer. The canonical handoff is `INITIAL_TASK_FOR_NEXT_AGENT.md`; the full gate-check log is `NEXT_AGENT_TASK.md` §4.
 
