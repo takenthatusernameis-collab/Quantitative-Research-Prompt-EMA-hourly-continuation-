@@ -5050,3 +5050,35 @@ Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated w
 - Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
 - Next eligible refresh: **2026-11-22T03:13:02.267371+00:00**.
 - The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.
+
+---
+
+## Batch 35 (applied 2026-11-22T10:35:56.872136+00:00) - AZERO (N 280 -> 281)
+
+<!-- expansion-key: mcap_snapshot_20261122_103556|AZERO/USDT -->
+
+**Universe ranks added:** 281-281 (of 281).
+
+**Source snapshot:** `universe/mcap_snapshot_20261122_103556.json` (CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc), fetched 2026-11-22T10:35:56.872136+00:00).
+
+**Expansion floor after the batch:** `AZERO/USDT` $1377054. `universe/last_scan.json` reports `universe_n=281`, `eligible_unseen_below_floor_count=0`.
+
+### Selection (descending market cap, strictly below the previous floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) | Fixture |
+|---|---|---|---|---|---|
+| 2481 | 281 | AZERO/USDT | Aleph Zero | 1,377,054 | `data/fixtures/AZERO_USDT.csv` (22099 rows) |
+
+### Grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF | Cells net PF > 1 |
+|---|---|---|---|---|---|
+| AZERO/USDT | 66 | 47235 | 0.5498 | 0.8730 | 0 |
+
+### Cumulative state after the batch
+
+- **18546 / 18546 cells** complete (281 symbols x 66 EMA pairs), 0 blocked.
+- Eligible unseen names below the floor: **0**.
+- Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
+- Next eligible refresh: **2026-11-23T10:35:56.872136+00:00**.
+- The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.

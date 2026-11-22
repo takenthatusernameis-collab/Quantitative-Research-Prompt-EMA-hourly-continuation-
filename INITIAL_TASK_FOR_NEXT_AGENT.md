@@ -1,11 +1,7 @@
 # Initial task for next agent — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-22T02:46Z (UTC). Bound: `2026-11-22T03:13:02.267371+00:00`.
-Gate is **NOT ELIGIBLE** (~26m15s remaining at handoff). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
-Last check (2026-11-22T02:46:47.248599Z): `refresh_gate.gate_status(state)` `eligible=false`,
-remaining 26m15s (1,575s). Environment this session: pandas/numpy/pytest NOT importable
-(`ModuleNotFoundError`, so `refresh_universe.py plan` was not runnable offline); `requests 2.31.0`,
-`python 3.12.3`. The gate check is stdlib-only and needs no install.
+**Handoff time:** 2026-11-22T11:08Z (UTC). Bound: `2026-11-23T10:35:56.872136+00:00`. Gate is **NOT ELIGIBLE** (~23h28m remaining at handoff). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`.
+Last check (2026-11-22T11:08:12Z): `refresh_gate.gate_status(state)` `eligible=false`, remaining 23h28m (84,464s). Environment this session: pandas 3.1.1 / numpy 2.5.5 / pytest 9.2.0 + requests 2.31.0, python 3.12.3. The gate check is stdlib-only and needs no install.
 
 Canonical handoff: `NEXT_AGENT_TASK.md` (top summary + §2e session log + §4 gate-check log).
 Pointer only: `TASK_FOR_NEXT_AGENT.md`.
@@ -16,7 +12,7 @@ Pointer only: `TASK_FOR_NEXT_AGENT.md`.
    Recompute eligibility with `scripts/refresh_gate.py:gate_status(state)` (note: it takes the
    parsed `universe/last_scan.json` state as its argument) against independent UTC
    (`date -u`, `datetime.now(timezone.utc)`). Never guess.
-2. **If NOT eligible (expected until 2026-11-22T03:13:02Z):** make **no provider calls**.
+2. **If NOT eligible (expected until 2026-11-23T10:35:56Z):** make **no provider calls**.
    Append exactly **one** gate-check row to `NEXT_AGENT_TASK.md` §4 (now / bound / remaining /
    outcome, with real environment status), refresh this file's handoff time/state, then stop.
    Repeated activations inside the same bound stay strictly offline — one row each, nothing else.
@@ -35,19 +31,17 @@ Pointer only: `TASK_FOR_NEXT_AGENT.md`.
    `results/FINAL_DECISION.md`. Historical research only; free public data / no-cost tooling;
    follow the AGENTS.md adaptive gate policy.
 
-## Current state (verified 2026-11-22T02:46Z)
+## Current state (verified 2026-11-22T11:08Z)
 
 - `universe/last_scan.json`: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot
-  `mcap_snapshot_20261121_031302` (scanned_at 2026-11-21T03:13:02.267371Z, 25/25 pages,
-  2500 entries, lowest rank 2500 / $1,348,381, coverage reaches below floor),
-  `universe_n=280`, expansion floor HTR/USDT $1,403,310, `eligible_unseen_below_floor_count=0`,
-  `batch_selected=["HTR/USDT"]` (already applied), `next_eligible_refresh_at=2026-11-22T03:13:02.267371+00:00`.
-- Universe/grid verified: `universe_n=280`, `symbols_without_fixture=[]`,
+  `mcap_snapshot_20261122_103556` (scanned_at 2026-11-22T10:35:56.872136Z, 25/25 pages,
+  2500 entries, lowest rank 2500 / $1,344,087, coverage reaches below floor),
+  `universe_n=281`, expansion floor AZERO/USDT $1,377,054, `eligible_unseen_below_floor_count=0`,
+  `batch_selected=["AZERO/USDT"]` (already applied), `next_eligible_refresh_at=2026-11-23T10:35:56.872136+00:00`.
+- Universe/grid verified: `universe_n=281`, `symbols_without_fixture=[]`,
   `symbols_without_grid_cells=[]`; grid `results/20261019_135940_grid/progress.json`
-  `completed_cells=18480`, `n_symbols=280`, `all_symbols_processed=true`, `next_cell=null`,
-  `stopped=false` (18480 == 280×66). `data/fixtures` 283 files incl. `HTR_USDT.csv`;
-  `universe/mcap_rank.json` n_symbols=280. `results/FINAL_DECISION.md` preserved. Git tree clean.
-- Environment: `python3` 3.12.3 with `requests 2.31.0` importable; **pandas/numpy/pytest
-  NOT importable this session** (`ModuleNotFoundError`, so `refresh_universe.py plan` could not
-  run offline). If a batch needs applying, reinstall `pandas numpy pytest` first (free PyPI).
-  The gate check is stdlib-only and needs no install.
+  `completed_cells=18546`, `n_symbols=281`, `all_symbols_processed=true`, `next_cell=null`,
+  `stopped=false` (18546 == 281×66). `data/fixtures` 284 files incl. `AZERO_USDT.csv`;
+  `universe/mcap_rank.json` n_symbols=281. `results/FINAL_DECISION.md` preserved. Git tree clean.
+- Environment: `python3` 3.12.3 with `pandas 3.1.1` / `numpy 2.5.5` / `pytest 9.2.0` +
+  `requests 2.31.0` importable. Gate tooling is stdlib-only and needs no install.

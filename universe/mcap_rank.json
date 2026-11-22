@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-21T03:14:42.684891Z",
-  "snapshot_id": "mcap_snapshot_20261121_031302",
+  "updated_at": "2026-11-22T11:03:05.121097Z",
+  "snapshot_id": "mcap_snapshot_20261122_103556",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "snapshot_fetched_at": "2026-11-21T03:13:02.267371+00:00",
-  "n_symbols": 280,
+  "snapshot_fetched_at": "2026-11-22T10:35:56.872136+00:00",
+  "n_symbols": 281,
   "added_in_this_expansion": [
-    "HTR/USDT"
+    "AZERO/USDT"
   ],
   "added_market_caps_usd": {
-    "HTR": 1403310
+    "AZERO": 1377054
   },
   "symbols": [
     "BTC/USDT",
@@ -290,6 +290,7 @@
     "NUM/USDT",
     "GMEE/USDT",
     "P2P/USDT",
-    "HTR/USDT"
+    "HTR/USDT",
+    "AZERO/USDT"
   ]
 }
