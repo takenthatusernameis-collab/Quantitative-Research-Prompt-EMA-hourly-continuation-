@@ -1,85 +1,26 @@
 {
-  "recorded_at": "2026-11-22T11:03:05.120696+00:00",
+  "recorded_at": "2026-11-23T14:01:08.990050+00:00",
   "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
-  "snapshot_id": "mcap_snapshot_20261122_103556",
-  "snapshot_path": "universe/mcap_snapshot_20261122_103556.json",
+  "snapshot_id": "mcap_snapshot_20261123_140108",
+  "snapshot_path": "universe/mcap_snapshot_20261123_140108.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-11-22T10:35:56.872136+00:00",
+  "scanned_at": "2026-11-23T14:01:08.626759+00:00",
   "coverage": {
     "pages_requested": 25,
     "pages_fetched": 25,
     "all_requested_pages_returned": true,
     "entries_count": 2500,
     "lowest_rank_covered": 2500,
-    "lowest_market_cap_usd": 1344087
+    "lowest_market_cap_usd": 1374604
   },
   "coverage_reaches_below_floor": true,
   "universe_n": 281,
   "expansion_floor": {
-    "symbol": "AZERO/USDT",
-    "market_cap_usd": 1377054
+    "symbol": "NUM/USDT",
+    "market_cap_usd": 1385628
   },
   "eligible_unseen_below_floor_count": 0,
   "eligible_unseen_below_floor": [],
-  "batch_selected": [
-    "AZERO/USDT"
-  ],
-  "next_eligible_refresh_at": "2026-11-23T10:35:56.872136+00:00",
-  "fixtures": {
-    "fetched_at": "2026-11-22T11:05:21.693095+00:00",
-    "target_bars": 22000,
-    "results": [
-      {
-        "symbol": "AZERO/USDT",
-        "ok": true,
-        "checks": {
-          "rows": 22099,
-          "min_bars": 17520,
-          "enough_bars": true,
-          "duplicate_timestamps": 0,
-          "non_hourly_steps": 0,
-          "invalid_ohlc_rows": 0,
-          "last_close": 0.00458,
-          "price_identity_log_ratio": 0.00546249052600995,
-          "price_identity_ok": true,
-          "ok": true
-        },
-        "rows": 22099
-      }
-    ],
-    "excluded": [],
-    "conflicts": []
-  },
-  "grid_expansion": {
-    "run": "results/20261019_135940_grid",
-    "expanded_at": "2026-11-22T11:07:37.942609+00:00",
-    "previous_n": 280,
-    "new_n": 281,
-    "symbols": [
-      "AZERO/USDT"
-    ],
-    "outcomes": [
-      {
-        "symbol": "AZERO/USDT",
-        "cells": 66,
-        "blocked": 0,
-        "missing": [],
-        "expected": 66
-      }
-    ]
-  },
-  "history_probe_failure_count": 0,
-  "coverage_reaches_below_current_floor": true,
-  "grid_verification": {
-    "run": "results/20261019_135940_grid",
-    "verified_at": "2026-11-22T11:07:41.040480+00:00",
-    "symbols": 281,
-    "cells_complete": 18546,
-    "cells_expected": 18546,
-    "cells_blocked": 0,
-    "incomplete_symbols": [],
-    "symbols_without_fixture": []
-  },
-  "last_verified_at": "2026-11-22T11:07:41.040480+00:00",
-  "last_verification_note": ""
+  "batch_selected": [],
+  "next_eligible_refresh_at": "2026-11-24T14:01:08.626759+00:00"
 }
