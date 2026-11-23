@@ -1,6 +1,6 @@
 # Task for Next Agent — EMA hourly continuation universe-refresh gate
 
-**Time of handoff:** 2026-11-23T03:40:35Z (UTC). Bound `2026-11-23T10:35:56.872136+00:00` → gate **NOT ELIGIBLE** (~6h55m21s / 24,921s remaining at handoff). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261122_103556` (25/25 pages, 2500 entries, floor `AZERO/USDT` $1,377,054, `eligible_unseen_below_floor_count=0`, batch none pending). Expansion already applied: universe 280 → 281 (AZERO/USDT added), grid 18546/18546 complete, new bound set. One offline gate-check row appended to `NEXT_AGENT_TASK.md` §4 this session.
+**Time of handoff:** 2026-11-23T03:44:05Z (UTC). Bound `2026-11-23T10:35:56.872136+00:00` → gate **NOT ELIGIBLE** (~6h52m remaining). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261122_103556` (25/25 pages, 2500 entries, floor `AZERO/USDT` $1,377,054, `eligible_unseen_below_floor_count=0`, batch none pending — AZERO/USDT already applied). Expansion already applied: universe 280 → 281 (AZERO/USDT added), grid 18546/18546 complete, new bound set. One offline gate-check row appended to `NEXT_AGENT_TASK.md` §4 this session.
 
 This file is a short pointer. The canonical handoff is `INITIAL_TASK_FOR_NEXT_AGENT.md`; the full gate-check log is `NEXT_AGENT_TASK.md` §4.
 
