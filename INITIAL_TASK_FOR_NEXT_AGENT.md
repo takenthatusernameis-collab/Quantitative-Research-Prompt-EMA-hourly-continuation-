@@ -1,10 +1,10 @@
 # Initial Task for Next Agent — EMA Hourly Continuation Universe-Refresh Gate
 
-**Handoff time:** 2026-11-24T10:58Z (offline gate check completed; one gate-check row appended to `NEXT_AGENT_TASK.md` §4)
+**Handoff time:** 2026-11-24T11:10Z (offline gate check completed; one gate-check row appended to `NEXT_AGENT_TASK.md` §4)
 
 ## Current State (verified this session)
 
-- **Gate status:** NOT ELIGIBLE — bound `2026-11-24T14:01:08.626759+00:00` has not elapsed (~3h02m24s / 10,944s remaining)
+- **Gate status:** NOT ELIGIBLE — bound `2026-11-24T14:01:08.626759+00:00` has not elapsed (~2h50m44s / 10,244s remaining)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - **Last snapshot:** `mcap_snapshot_20261123_140108` (25/25 pages, 2500 entries, lowest rank 2500 / $1,374,604, `coverage_reaches_below_floor=true`)
 - **Expansion floor:** NUM/USDT $1,385,628
@@ -49,7 +49,7 @@ Add a row to the table in `NEXT_AGENT_TASK.md` §4:
 
 | UTC now | Bound | Remaining | Outcome |
 | --- | --- | --- | --- |
-| 2026-11-24T01:25:15.529240+00:00 | 2026-11-24T14:01:08.626759+00:00 | ~12h35m47s (45,347s) | NOT ELIGIBLE; [your verification summary] |
+| 2026-11-24T11:10:24.397908+00:00 | 2026-11-24T14:01:08.626759+00:00 | ~2h50m44s (10,244s) | NOT ELIGIBLE; offline gate recomputed via `scripts/refresh_gate.py:gate_status(state)` (eligible=false) against independent UTC (`date -u`, `datetime.now(timezone.utc)`), state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261123_140108`, floor `NUM/USDT` $1,385,628, `eligible_unseen_below_floor_count=0`, batch none pending; universe 281 / grid 18546 == 281×66, 284 fixtures incl. `AZERO_USDT.csv`, `results/FINAL_DECISION.md` preserved, git tree clean; env pandas/numpy/pytest NOT importable, requests 2.31.0 + python 3.12.3; no provider calls, no apply, no fixtures/candles, no grid rerun, no orders, no wakeups. |
 
 ---
 
