@@ -1,10 +1,10 @@
 # Initial Task for Next Agent — EMA Hourly Continuation Universe-Refresh Gate
 
-**Handoff time:** 2026-11-24T01:06Z (offline gate check completed)
+**Handoff time:** 2026-11-24T01:08Z (offline gate check completed)
 
 ## Current State (verified this session)
 
-- **Gate status:** NOT ELIGIBLE — bound `2026-11-24T14:01:08.626759+00:00` has not elapsed (~12h55m remaining)
+- **Gate status:** NOT ELIGIBLE — bound `2026-11-24T14:01:08.626759+00:00` has not elapsed (~12h52m remaining)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - **Last snapshot:** `mcap_snapshot_20261123_140108` (25/25 pages, 2500 entries, lowest rank 2500 / $1,374,604, `coverage_reaches_below_floor=true`)
 - **Expansion floor:** NUM/USDT $1,385,628
@@ -49,7 +49,7 @@ Add a row to the table in `NEXT_AGENT_TASK.md` §4:
 
 | UTC now | Bound | Remaining | Outcome |
 | --- | --- | --- | --- |
-| 2026-11-24T01:05:58.717693+00:00 | 2026-11-24T14:01:08.626759+00:00 | ~12h55m10s (46,510s) | NOT ELIGIBLE; [your verification summary] |
+| 2026-11-24T01:08:41.514457+00:00 | 2026-11-24T14:01:08.626759+00:00 | ~12h52m27s (46,347s) | NOT ELIGIBLE; [your verification summary] |
 
 ---
 
