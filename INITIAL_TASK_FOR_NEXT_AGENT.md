@@ -1,10 +1,10 @@
 # Initial Task for Next Agent — EMA Hourly Continuation Universe-Refresh Gate
 
-**Handoff time:** 2026-11-24T22:30Z (ELIGIBLE dry-run pass taken this session; one gate-check row appended to `NEXT_AGENT_TASK.md` §4; no batch yielded → no expansion cycle).
+**Handoff time:** 2026-11-24T22:39:05Z (gate NOT ELIGIBLE; one offline gate-check row appended to `NEXT_AGENT_TASK.md` §4 this session; no batch yielded → no expansion cycle; git tree modified: `universe/last_scan.json` + snapshot `mcap_snapshot_20261124_222829.json`).
 
 ## Current State (verified this session)
 
-- **Gate status:** NOT ELIGIBLE — bound `2026-11-25T22:28:29.522210+00:00` has not elapsed (~24h remaining)
+- **Gate status:** NOT ELIGIBLE — bound `2026-11-25T22:28:29.522210+00:00` has not elapsed (~23h49m24s remaining at 2026-11-24T22:39:05Z)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - **Last snapshot:** `mcap_snapshot_20261124_222829` (25/25 pages, 2500 entries, lowest rank 2500 / $1,337,556, `coverage_reaches_below_floor=true`)
 - **Expansion floor:** P2P/USDT $1,373,063 (drift from NUM/USDT $1,385,628)
@@ -48,7 +48,7 @@ Add a row to the table in `NEXT_AGENT_TASK.md` §4:
 
 | UTC now | Bound | Remaining | Outcome |
 | --- | --- | --- | --- |
-| 2026-11-24T22:28:30.185825+00:00 | 2026-11-25T22:28:29.522210+00:00 | 0s (elapsed ~8h20m ago) | ELIGIBLE pass taken ... |
+| 2026-11-24T22:39:05.152313+00:00 | 2026-11-25T22:28:29.522210+00:00 | ~23h49m24s | NOT ELIGIBLE; offline gate recomputed (eligible=false), no provider calls |
 
 ---
 
