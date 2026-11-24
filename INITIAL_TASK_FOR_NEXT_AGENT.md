@@ -1,15 +1,15 @@
 # Initial Task for Next Agent — EMA Hourly Continuation Universe-Refresh Gate
 
-**Handoff time:** 2026-11-24T11:16Z (offline gate check completed; one gate-check row appended to `NEXT_AGENT_TASK.md` §4)
+**Handoff time:** 2026-11-24T22:30Z (ELIGIBLE dry-run pass taken this session; one gate-check row appended to `NEXT_AGENT_TASK.md` §4; no batch yielded → no expansion cycle).
 
 ## Current State (verified this session)
 
-- **Gate status:** NOT ELIGIBLE — bound `2026-11-24T14:01:08.626759+00:00` has not elapsed (~2h45m0s / 9,900s remaining)
+- **Gate status:** NOT ELIGIBLE — bound `2026-11-25T22:28:29.522210+00:00` has not elapsed (~24h remaining)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
-- **Last snapshot:** `mcap_snapshot_20261123_140108` (25/25 pages, 2500 entries, lowest rank 2500 / $1,374,604, `coverage_reaches_below_floor=true`)
-- **Expansion floor:** NUM/USDT $1,385,628
+- **Last snapshot:** `mcap_snapshot_20261124_222829` (25/25 pages, 2500 entries, lowest rank 2500 / $1,337,556, `coverage_reaches_below_floor=true`)
+- **Expansion floor:** P2P/USDT $1,373,063 (drift from NUM/USDT $1,385,628)
 - **Eligible unseen below floor:** 0
-- **Batch pending:** none
+- **Batch pending:** none (pass found no eligible unseen name below the floor)
 
 ## Universe/Grid Verification (offline, all checks passed)
 
@@ -17,23 +17,22 @@
 - Grid: `results/20261019_135940_grid/progress.json` → `completed_cells=18546`, `n_symbols=281`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false` (18546 == 281×66)
 - Fixtures: 284 files in `data/fixtures/` (283 CSV + `fetch_manifest.json`), incl. `AZERO_USDT.csv`
 - `results/FINAL_DECISION.md` preserved
-- Git tree clean (`git status --short` empty, `git diff --stat` empty)
+- Git tree modified (uncommitted): `universe/last_scan.json` + new snapshot `universe/mcap_snapshot_20261124_222829.json` (single dry-run pass; no grid/fixture changes)
 
 ## Environment
 
-- Python 3.12.3 + requests 2.31.0 only
-- pandas/numpy/pytest NOT importable (`ModuleNotFoundError`; temp home wiped again)
+- Python 3.12.3 + pandas 3.1.1 + numpy 2.5.5 + pytest 9.2.0 + requests 2.31.0 (all importable)
 - Gate tooling is stdlib-only and ran OK
 
 ## Your Task (one measurable task)
 
-1. **Offline first:** read `NEXT_AGENT_TASK.md` and `universe/last_scan.json`. Recompute eligibility from `next_eligible_refresh_at` (`2026-11-24T14:01:08.626759+00:00`) with `scripts/refresh_gate.py:gate_status` vs independent UTC (`date -u`, `datetime.now(timezone.utc)`); never guess.
+1. **Offline first:** read `NEXT_AGENT_TASK.md` and `universe/last_scan.json`. Recompute eligibility from `next_eligible_refresh_at` (`2026-11-25T22:28:29.522210+00:00`) with `scripts/refresh_gate.py:gate_status` vs independent UTC (`date -u`, `datetime.now(timezone.utc)`); never guess.
 
-2. **If NOT eligible (expected until 2026-11-24T14:01:08Z):** make **no provider calls**. Append exactly one gate-check row to the log in `NEXT_AGENT_TASK.md`, then stop. Do not schedule wakeups. Repeated activations inside the same bound stay strictly offline (no provider call, no fixture/candle fetch, no grid rerun, no apply); each activation records exactly one row and nothing else.
+2. **If NOT eligible (expected until 2026-11-25T22:28:29Z):** make **no provider calls**. Append exactly one gate-check row to the log in `NEXT_AGENT_TASK.md`, then stop. Do not schedule wakeups. Repeated activations inside the same bound stay strictly offline (no provider call, no fixture/candle fetch, no grid rerun, no apply); each activation records exactly one row and nothing else.
 
 3. **If eligible:** run **exactly one** pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 25 --batch-size 10` (no `--apply`; provider calls allowed only after the bound). Record snapshot id, coverage (must reach below the floor), floor, `eligible_unseen_below_floor_count`, new bound.
 
-4. **If that pass yields a batch** (`EXPANSION_AVAILABLE`): apply it through the repo's own cycle — `refresh_universe.py fetch` (or `fetch_mcap_snapshot.py --apply`), then `fixtures`, `grid`, `state`, `log` — new symbols only, full 66-pair grid, ascending compute but descending market cap; acceptance is `completed_cells == universe_n * 66`. Requires pandas installed (reinstall with `pip install --user pandas numpy pytest` if missing).
+4. **If that pass yields a batch** (`EXPANSION_AVAILABLE`): apply it through the repo's own cycle — `fetch_mcap_snapshot.py --apply-from <snapshot> --apply` (no new provider call), then `refresh_universe.py fixtures`, `grid`, `state`, `log` — new symbols only, full 66-pair grid, ascending compute but descending market cap; acceptance is `completed_cells == universe_n * 66`.
 
 5. **Never:** rerun existing grid cells, re-fetch a fixture the grid already used, fetch candles unnecessarily, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data/no-cost tooling; follow the AGENTS.md adaptive gate policy.
 
@@ -49,8 +48,8 @@ Add a row to the table in `NEXT_AGENT_TASK.md` §4:
 
 | UTC now | Bound | Remaining | Outcome |
 | --- | --- | --- | --- |
-| 2026-11-24T11:10:24.397908+00:00 | 2026-11-24T14:01:08.626759+00:00 | ~2h50m44s (10,244s) | NOT ELIGIBLE; offline gate recomputed via `scripts/refresh_gate.py:gate_status(state)` (eligible=false) against independent UTC (`date -u`, `datetime.now(timezone.utc)`), state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261123_140108`, floor `NUM/USDT` $1,385,628, `eligible_unseen_below_floor_count=0`, batch none pending; universe 281 / grid 18546 == 281×66, 284 fixtures incl. `AZERO_USDT.csv`, `results/FINAL_DECISION.md` preserved, git tree clean; env pandas/numpy/pytest NOT importable, requests 2.31.0 + python 3.12.3; no provider calls, no apply, no fixtures/candles, no grid rerun, no orders, no wakeups. |
+| 2026-11-24T22:28:30.185825+00:00 | 2026-11-25T22:28:29.522210+00:00 | 0s (elapsed ~8h20m ago) | ELIGIBLE pass taken ... |
 
 ---
 
-**No provider calls were made this session. No wakeups scheduled. The next agent should perform only an offline gate check unless the 24-hour bound has elapsed.**
+**No provider calls were made after the single ranking pass this session. No wakeups scheduled. The next agent should perform only an offline gate check unless the 2026-11-25T22:28:29Z bound has elapsed.**
