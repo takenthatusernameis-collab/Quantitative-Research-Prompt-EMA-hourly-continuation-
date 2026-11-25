@@ -1,21 +1,21 @@
 # INITIAL TASK FOR NEXT AGENT — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-25T04:09:44Z (offline gate check completed; gate NOT ELIGIBLE)
+**Handoff time:** 2026-11-25T04:14:19Z (offline gate check completed; gate NOT ELIGIBLE)
 
 ## Current state (from `universe/last_scan.json`)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - **Snapshot:** `mcap_snapshot_20261124_222829` (25/25 pages, 2500 entries, lowest rank 2500 / $1,337,556, `coverage_reaches_below_floor=true`)
 - **Expansion floor:** `P2P/USDT` $1,373,063 (drift from NUM/USDT $1,385,628)
 - **Eligible unseen below floor:** 0 (`batch_selected=[]`, no batch pending)
-- **Next eligible refresh (bound):** `2026-11-25T22:28:29.522210+00:00` (~18h19m from handoff)
-- **Last gate check:** `refresh_gate.gate_status(state)` → `eligible=false`, reason "the 24 h refresh bound 2026-11-25T22:28:29.522210+00:00 has not elapsed yet" (checked 2026-11-25T04:09:44.824674+00:00 vs independent `date -u`=2026-11-25T04:09:44Z).
+- **Next eligible refresh (bound):** `2026-11-25T22:28:29.522210+00:00` (~18h14m from handoff)
+- **Last gate check:** `refresh_gate.gate_status(state)` → `eligible=false`, reason "the 24 h refresh bound 2026-11-25T22:28:29.522210+00:00 has not elapsed yet" (checked 2026-11-25T04:14:19.992998+00:00 vs independent `date -u`=2026-11-25T04:14:19Z).
 
 ## Universe / Grid verification
 - **Universe:** 281 symbols (`universe/mcap_rank.json` n=281)
 - **Grid:** 18,546 completed cells (18546 == 281×66, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`) at `results/20261019_135940_grid/progress.json`
 - **Fixtures:** 284 files in `data/fixtures/` (283 CSV + `fetch_manifest.json`) incl. `AZERO_USDT.csv`
 - **Results:** `results/FINAL_DECISION.md` preserved
-- **Git:** tree clean (`git status --short` empty); prior `last_scan.json`/snapshot changes already committed by checkpoint
+- **Git:** tree clean (`git status --short` empty)
 
 ## Environment
 - python 3.12.3 + requests 2.31.0 importable.
