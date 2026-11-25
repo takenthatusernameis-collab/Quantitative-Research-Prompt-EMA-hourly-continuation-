@@ -1,14 +1,14 @@
 # INITIAL TASK FOR NEXT AGENT — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-25T13:50:33Z (offline gate check completed; gate NOT ELIGIBLE)
+**Handoff time:** 2026-11-25T14:27:39Z (offline gate check completed; gate NOT ELIGIBLE)
 
 ## Current state (from `universe/last_scan.json`)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
 - **Snapshot:** `mcap_snapshot_20261124_222829` (25/25 pages, 2500 entries, lowest rank 2500 / $1,337,556, `coverage_reaches_below_floor=true`)
 - **Expansion floor:** `P2P/USDT` $1,373,063 (drift from NUM/USDT $1,385,628)
 - **Eligible unseen below floor:** 0 (`batch_selected=[]`, no batch pending)
-- **Next eligible refresh (bound):** `2026-11-25T22:28:29.522210+00:00` (~8h37m56s remaining)
-- **Last gate check:** `refresh_gate.gate_status(state)` → `eligible=false`, reason "the 24 h refresh bound 2026-11-25T22:28:29.522210+00:00 has not elapsed yet" (checked 2026-11-25T13:50:33.440734+00:00 vs independent `date -u`=Wed Nov 25 13:50:32 UTC 2026).
+- **Next eligible refresh (bound):** `2026-11-25T22:28:29.522210+00:00` (~8h01m / ~28,849s remaining)
+- **Last gate check:** `refresh_gate.gate_status(state)` → `eligible=false`, reason "the 24 h refresh bound 2026-11-25T22:28:29.522210+00:00 has not elapsed yet" (checked 2026-11-25T14:27:39.666751+00:00 vs independent `date -u`=Wed Nov 25 14:27:39 UTC 2026).
 
 ## Universe / Grid verification
 - **Universe:** 281 symbols (`universe/mcap_rank.json` n=281)
