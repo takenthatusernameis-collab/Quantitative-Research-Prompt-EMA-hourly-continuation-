@@ -1,6 +1,6 @@
 # Task for Next Agent — EMA hourly continuation universe-refresh gate
 
-**Time of handoff:** 2026-11-25T14:27:39Z (UTC). Bound `2026-11-25T22:28:29.522210+00:00` → gate **NOT ELIGIBLE** (~8h01m / ~28,849s remaining). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261124_222829` (25/25 pages, 2500 entries, lowest rank 2500 / $1,337,556, `coverage_reaches_below_floor=true`), floor `P2P/USDT` $1,373,063 (drift from NUM/USDT $1,385,628), `eligible_unseen_below_floor_count=0`, batch none pending. Two gate-check rows appended to `NEXT_AGENT_TASK.md` §4 this session (2026-11-25T13:54:29.467903+00:00 and 2026-11-25T14:27:39.666751+00:00) recording the NOT-ELIGIBLE offline rechecks.
+**Time of handoff:** 2026-11-25T14:29:45Z (UTC). Bound `2026-11-25T22:28:29.522210+00:00` → gate **NOT ELIGIBLE** (~7h58m / ~28,723s remaining). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261124_222829` (25/25 pages, 2500 entries, lowest rank 2500 / $1,337,556, `coverage_reaches_below_floor=true`), floor `P2P/USDT` $1,373,063 (drift from NUM/USDT $1,385,628), `eligible_unseen_below_floor_count=0`, batch none pending. Three gate-check rows appended to `NEXT_AGENT_TASK.md` §4 this session (2026-11-25T13:54:29.467903+00:00, 2026-11-25T14:27:39.666751+00:00, 2026-11-25T14:29:45.974463+00:00) recording the NOT-ELIGIBLE offline rechecks.
 
 This file is a short pointer. The canonical handoff is `INITIAL_TASK_FOR_NEXT_AGENT.md`; the full gate-check log is `NEXT_AGENT_TASK.md` §4.
 
