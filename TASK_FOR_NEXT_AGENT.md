@@ -1,6 +1,6 @@
 # Task for Next Agent — EMA hourly continuation universe-refresh gate
 
-**Time of handoff:** 2026-11-25T04:14:19Z (UTC). Bound `2026-11-25T22:28:29.522210+00:00` → gate **NOT ELIGIBLE** (~18h14m remaining). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261124_222829` (25/25 pages, 2500 entries, lowest rank 2500 / $1,337,556, `coverage_reaches_below_floor=true`), floor `P2P/USDT` $1,373,063 (drift from NUM/USDT $1,385,628), `eligible_unseen_below_floor_count=0`, batch none pending. One gate-check row appended to `NEXT_AGENT_TASK.md` §4 this session (2026-11-25T04:14:19.992998+00:00) recording the NOT-ELIGIBLE offline recheck.
+**Time of handoff:** 2026-11-25T04:17:49Z (UTC). Bound `2026-11-25T22:28:29.522210+00:00` → gate **NOT ELIGIBLE** (~18h10m40s remaining). State `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261124_222829` (25/25 pages, 2500 entries, lowest rank 2500 / $1,337,556, `coverage_reaches_below_floor=true`), floor `P2P/USDT` $1,373,063 (drift from NUM/USDT $1,385,628), `eligible_unseen_below_floor_count=0`, batch none pending. One gate-check row appended to `NEXT_AGENT_TASK.md` §4 this session (2026-11-25T04:17:49.778467+00:00) recording the NOT-ELIGIBLE offline recheck.
 
 This file is a short pointer. The canonical handoff is `INITIAL_TASK_FOR_NEXT_AGENT.md`; the full gate-check log is `NEXT_AGENT_TASK.md` §4.
 
@@ -12,7 +12,7 @@ This file is a short pointer. The canonical handoff is `INITIAL_TASK_FOR_NEXT_AG
 
 Never: rerun existing grid cells, re-fetch fixtures the grid already used, fetch candles unnecessarily, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data / no-cost tooling; follow AGENTS.md adaptive gate policy.
 
-## Current state (verified 2026-11-25T04:14:19Z)
+## Current state (verified 2026-11-25T04:17:49Z)
 
 - `universe/last_scan.json`: state `AWAITING_NEW_ELIGIBLE_CANDIDATES`, snapshot `mcap_snapshot_20261124_222829`, `scanned_at=2026-11-24T22:28:29.522210+00:00`, `next_eligible_refresh_at=2026-11-25T22:28:29.522210+00:00`, `coverage_reaches_below_floor=true`, lowest rank 2500 / $1,337,556, expansion floor `P2P/USDT` $1,373,063, `eligible_unseen_below_floor_count=0`, `batch_selected=[]`.
 - Universe/grid verified: `universe_n=281`, grid `results/20261019_135940_grid/progress.json` `completed_cells=18546`, `n_symbols=281`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false` (18546 == 281×66). `data/fixtures` 284 files (283 CSV + `fetch_manifest.json`) incl. `AZERO_USDT.csv`. `universe/mcap_rank.json` n_symbols=281. `results/FINAL_DECISION.md` preserved. Git tree clean.
