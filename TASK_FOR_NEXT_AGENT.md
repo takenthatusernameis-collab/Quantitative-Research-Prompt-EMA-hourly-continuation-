@@ -1,6 +1,6 @@
 # Task for Next Agent — EMA hourly continuation universe-refresh gate
 
-**Time of handoff:** 2026-11-26T04:41:44Z (UTC). Bound `2026-11-26T23:10:42.705217+00:00` → gate **NOT ELIGIBLE** until then (~18h28m58s / 66,538s remaining). State `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261125_231042` (25/25 pages, 2500 entries, lowest rank 2500 / $1,329,650, `coverage_reaches_below_floor=true`), floor `NUM/USDT` $1,374,073, `eligible_unseen_below_floor_count=1`, batch `["SHR/USDT"]` — ranking already applied to `mcap_rank.json` (281→282), SHR/USDT fixture+grid pending (requires pandas). pandas/numpy/pytest NOT importable this session (temp home wiped). One gate-check row appended to `NEXT_AGENT_TASK.md` §4 (2026-11-26T04:41:44+00:00).
+**Time of handoff:** 2026-11-26T05:04:33Z (UTC). Bound `2026-11-26T23:10:42.705217+00:00` → gate **NOT ELIGIBLE** until then (~18h06m09s / 65,169s remaining). State `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261125_231042` (25/25 pages, 2500 entries, lowest rank 2500 / $1,329,650, `coverage_reaches_below_floor=true`), floor `NUM/USDT` $1,374,073, `eligible_unseen_below_floor_count=1`, batch `["SHR/USDT"]` — ranking already applied to `mcap_rank.json` (281→282), SHR/USDT fixture+grid pending (requires pandas). pandas/numpy/pytest NOT importable this session (temp home wiped). One gate-check row appended to `NEXT_AGENT_TASK.md` §4 (2026-11-26T05:04:33+00:00).
 
 This file is a short pointer. The canonical handoff is `INITIAL_TASK_FOR_NEXT_AGENT.md`; the full gate-check log is `NEXT_AGENT_TASK.md` §4.
 
@@ -12,8 +12,8 @@ This file is a short pointer. The canonical handoff is `INITIAL_TASK_FOR_NEXT_AG
 
 Never: rerun existing grid cells, re-fetch fixtures the grid already used, fetch candles unnecessarily, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data / no-cost tooling; follow AGENTS.md adaptive gate policy.
 
-## Current state (verified 2026-11-26T04:41:44Z)
+## Current state (verified 2026-11-26T05:04:33Z)
 
 - `universe/last_scan.json`: state `EXPANSION_AVAILABLE`, snapshot `mcap_snapshot_20261125_231042`, `scanned_at=2026-11-25T23:10:42.705217+00:00`, `next_eligible_refresh_at=2026-11-26T23:10:42.705217+00:00`, `coverage_reaches_below_floor=true`, lowest rank 2500 / $1,329,650, expansion floor `NUM/USDT` $1,374,073, `eligible_unseen_below_floor_count=1`, batch `["SHR/USDT"]`.
 - Universe/grid verified: `universe_n=282`, grid `results/20261019_135940_grid/progress.json` `completed_cells=18546`, `n_symbols=281`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false` (18546 == 281×66; SHR/USDT not yet in grid, 66 pending). `data/fixtures` 284 files (283 CSV + `fetch_manifest.json`) — `SHR_USDT.csv` NOT present. `universe/mcap_rank.json` n_symbols=282. `results/FINAL_DECISION.md` preserved. Git tree clean.
-- Environment: `python3` 3.12.3 + `requests` 2.31.0 importable; **pandas 3.1.1 / numpy 2.5.5 / pytest 9.2.0 installed this session** (imports verified).
+- Environment: `python3` 3.12.3 + `requests` 2.31.0 importable; **pandas / numpy / pytest NOT importable this session (`ModuleNotFoundError`, temp home wiped again — reinstall `pip install --user pandas numpy pytest` before any grid/signal/pytest work)**. Gate tooling is stdlib-only and ran OK.
