@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-25T23:42:44Z (gate NOT ELIGIBLE; offline check only; SHR/USDT fixture+grid pending until gate bound).
+**Handoff time:** 2026-11-25T23:59:21Z (gate NOT ELIGIBLE; offline check only; SHR/USDT fixture+grid pending until gate bound).
 
 ## Current state (from `universe/last_scan.json`)
 - **State:** `EXPANSION_AVAILABLE`
@@ -8,7 +8,7 @@
 - **Expansion floor:** `NUM/USDT` $1,374,073
 - **Eligible unseen below floor:** 1 — `SHR/USDT` (ShareToken), rank 2473, $1,365,535
 - **Batch selected:** `["SHR/USDT"]` — ranking already applied to `universe/mcap_rank.json` (281→282 symbols)
-- **Next eligible refresh (bound):** `2026-11-26T23:10:42.705217+00:00` (~23h37m remaining from 2026-11-25T23:34Z)
+- **Next eligible refresh (bound):** `2026-11-26T23:10:42.705217+00:00` (~23h11m remaining from 2026-11-25T23:59Z)
 
 ## Universe / Grid verification
 - **Universe:** 282 symbols (`universe/mcap_rank.json` n=282, SHR/USDT appended last)
