@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-27T00:25:16Z (gate NOT ELIGIBLE — 24 h bound `2026-11-27T23:57:22.462338+00:00`, ~23h32m06s / 84,726s remaining). Prior task is COMPLETE: SHR/USDT expansion verified AND the step-4 ranking pass already executed (0 new candidates → `AWAITING_NEW_ELIGIBLE_CANDIDATES`). Offline checks only until the bound.
+**Handoff time:** 2026-11-27T05:03:01Z (gate NOT ELIGIBLE — 24 h bound `2026-11-27T23:57:22.462338+00:00`, ~18h54m20s / 68,060s remaining). Prior task is COMPLETE: SHR/USDT expansion verified AND the step-4 ranking pass already executed (0 new candidates → `AWAITING_NEW_ELIGIBLE_CANDIDATES`). Offline checks only until the bound. Env note: pandas/numpy/pytest NOT importable this session (temp home wiped again); gate tooling is stdlib-only so offline checks run without install — reinstall `pip install --user pandas numpy pytest` before any grid/signal/pytest work.
 
 ## Current state (from `universe/last_scan.json`, recorded 2026-11-26T23:57:23Z)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
@@ -15,10 +15,10 @@
 - **Grid acceptance MET:** `results/20261019_135940_grid/progress.json` `completed_cells=18612` (282×66), `n_symbols=282`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`.
 - **Step-4 ranking pass DONE:** executed at `2026-11-26T23:57:22.462338+00:00` (a surviving background process from the earlier timed-out/killed attempts; this handoff made NO new provider call) → 0 eligible unseen below floor → `AWAITING_NEW_ELIGIBLE_CANDIDATES`, new bound above.
 - **Results preserved:** `results/FINAL_DECISION.md` (no credible edge; program keeps expanding) unchanged.
-- **Git:** tree modified/uncommitted — `universe/last_scan.json`, `universe/mcap_expansion_log.md`, grid `progress.json`/`run_config.json`, `data/fixtures/fetch_manifest.json`, plus untracked `data/fixtures/SHR_USDT.csv`, `results/20261019_135940_grid/results/SHR_USDT/`, `universe/mcap_snapshot_20261126_235722.json`.
+- **Git:** tree clean except the handoff/log docs (`INITIAL_TASK_FOR_NEXT_AGENT.md`, `TASK_FOR_NEXT_AGENT.md`, `NEXT_AGENT_TASK.md`) modified/uncommitted. SHR/USDT expansion artifacts (`universe/last_scan.json`, `universe/mcap_expansion_log.md`, grid `progress.json`/`run_config.json`, `data/fixtures/fetch_manifest.json`, `data/fixtures/SHR_USDT.csv`, `results/20261019_135940_grid/results/SHR_USDT/`, `universe/mcap_snapshot_20261126_235722.json`) already committed via checkpoint.
 
 ## Environment
-- python 3.12.3 + requests 2.31.0 + **pandas 3.1.1 / numpy 2.5.5 / pytest 9.2.0 importable** (reinstalled this session). Gate tooling (`scripts/refresh_gate.py`) is stdlib-only.
+- python 3.12.3 + requests 2.31.0 importable. **pandas/numpy/pytest NOT importable this session** (temp home wiped again — `ModuleNotFoundError`); gate tooling (`scripts/refresh_gate.py`) is stdlib-only so offline checks run without install. Reinstall `pip install --user pandas numpy pytest` before any grid/signal/pytest work.
 
 ## Your task (one measurable task)
 
