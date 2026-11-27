@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-26T23:59:43Z (gate NOT ELIGIBLE — 24 h bound `2026-11-27T23:57:22.462338+00:00`, ~23h57m39s / 86,259s remaining). Prior task is COMPLETE: SHR/USDT expansion verified AND the step-4 ranking pass already executed (0 new candidates → `AWAITING_NEW_ELIGIBLE_CANDIDATES`). Offline checks only until the bound.
+**Handoff time:** 2026-11-27T00:02:47Z (gate NOT ELIGIBLE — 24 h bound `2026-11-27T23:57:22.462338+00:00`, ~23h57m39s / 86,259s remaining). Prior task is COMPLETE: SHR/USDT expansion verified AND the step-4 ranking pass already executed (0 new candidates → `AWAITING_NEW_ELIGIBLE_CANDIDATES`). Offline checks only until the bound.
 
 ## Current state (from `universe/last_scan.json`, recorded 2026-11-26T23:57:23Z)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
