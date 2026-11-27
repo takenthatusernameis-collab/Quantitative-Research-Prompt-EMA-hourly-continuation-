@@ -1,33 +1,32 @@
 # INITIAL TASK FOR NEXT AGENT — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-26T15:05:59Z (gate NOT ELIGIBLE; offline check only; SHR/USDT fixture+grid still pending until the gate bound).
+**Handoff time:** 2026-11-26T23:59:43Z (gate NOT ELIGIBLE — 24 h bound `2026-11-27T23:57:22.462338+00:00`, ~23h57m39s / 86,259s remaining). Prior task is COMPLETE: SHR/USDT expansion verified AND the step-4 ranking pass already executed (0 new candidates → `AWAITING_NEW_ELIGIBLE_CANDIDATES`). Offline checks only until the bound.
 
-## Current state (from `universe/last_scan.json`)
-- **State:** `EXPANSION_AVAILABLE`
-- **Snapshot:** `mcap_snapshot_20261125_231042` (25/25 pages, 2500 entries, lowest rank 2500 / $1,329,650, `coverage_reaches_below_floor=true`)
-- **Expansion floor:** `NUM/USDT` $1,374,073
-- **Eligible unseen below floor:** 1 — `SHR/USDT` (ShareToken), rank 2473, $1,365,535
-- **Batch selected:** `["SHR/USDT"]` — ranking already applied to `universe/mcap_rank.json` (281→282 symbols)
-- **Next eligible refresh (bound):** `2026-11-26T23:10:42.705217+00:00` (~8h04m43s / 29,083s remaining from 2026-11-26T15:05:59Z)
+## Current state (from `universe/last_scan.json`, recorded 2026-11-26T23:57:23Z)
+- **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
+- **Snapshot:** `mcap_snapshot_20261126_235722` (CoinGecko public API, 25/25 pages, 2500 entries, lowest rank 2500 / $1,326,252, `coverage_reaches_below_floor=true`), `fetched_at=2026-11-26T23:57:22.462338+00:00`
+- **Expansion floor:** `SHR/USDT` $1,375,627
+- **Eligible unseen below floor:** 0 — `batch_selected=[]` (nothing to apply)
+- **Universe:** 282 symbols (`universe/mcap_rank.json` n=282, SHR/USDT appended last; this pass did NOT change the ranking)
+- **Next eligible refresh (bound):** `2026-11-27T23:57:22.462338+00:00`
 
-## Universe / Grid verification (verified 2026-11-26T15:05:59Z)
-- **Universe:** 282 symbols (`universe/mcap_rank.json` n=282, SHR/USDT appended last)
-- **Grid:** 18,546 completed cells (281×66, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`) at `results/20261019_135940_grid/progress.json` — SHR/USDT has **0 grid cells** (66 pending)
-- **Fixtures:** 284 files in `data/fixtures/` (283 CSV + `fetch_manifest.json`) — `SHR_USDT.csv` NOT present
-- **Results:** `results/FINAL_DECISION.md` preserved
-- **Git:** tree clean (`git status --short` empty)
+## Prior task completion (verified 2026-11-26T23:59:43Z)
+- **SHR/USDT expansion (steps 1–3) DONE:** fixture `data/fixtures/SHR_USDT.csv` present (22,099 rows, `enough_bars`, `price_identity_ok`); grid `results/20261019_135940_grid` expanded to SHR/USDT with **66 cells** (`results/20261019_135940_grid/results/SHR_USDT/`, each with config/trades/equity/summary).
+- **Grid acceptance MET:** `results/20261019_135940_grid/progress.json` `completed_cells=18612` (282×66), `n_symbols=282`, `all_symbols_processed=true`, `next_cell=null`, `stopped=false`.
+- **Step-4 ranking pass DONE:** executed at `2026-11-26T23:57:22.462338+00:00` (a surviving background process from the earlier timed-out/killed attempts; this handoff made NO new provider call) → 0 eligible unseen below floor → `AWAITING_NEW_ELIGIBLE_CANDIDATES`, new bound above.
+- **Results preserved:** `results/FINAL_DECISION.md` (no credible edge; program keeps expanding) unchanged.
+- **Git:** tree modified/uncommitted — `universe/last_scan.json`, `universe/mcap_expansion_log.md`, grid `progress.json`/`run_config.json`, `data/fixtures/fetch_manifest.json`, plus untracked `data/fixtures/SHR_USDT.csv`, `results/20261019_135940_grid/results/SHR_USDT/`, `universe/mcap_snapshot_20261126_235722.json`.
 
 ## Environment
-- python 3.12.3 + requests 2.31.0 importable.
-- **pandas / numpy / pytest NOT importable this session (`ModuleNotFoundError` — temp home wiped again).** Reinstall with `pip install --user pandas numpy pytest` before any grid/signal/pytest work. Gate tooling (`scripts/refresh_gate.py`) is stdlib-only and ran without them.
+- python 3.12.3 + requests 2.31.0 + **pandas 3.1.1 / numpy 2.5.5 / pytest 9.2.0 importable** (reinstalled this session). Gate tooling (`scripts/refresh_gate.py`) is stdlib-only.
 
 ## Your task (one measurable task)
 
-**SHR/USDT expansion cycle (requires pandas):**
+**Offline gate check until `2026-11-27T23:57:22Z`; one ranking pass after the bound.**
 
-1. **Gate stays closed until `2026-11-26T23:10:42Z`** — make **no provider calls**, no fixtures, no candles, no grid work before the bound. Recompute eligibility with `scripts/refresh_gate.py:gate_status(state)` vs independent UTC (`date -u`, `datetime.now(timezone.utc)`) at each activation inside the bound; append exactly one gate-check row to `NEXT_AGENT_TASK.md` §4 and stop. Do not schedule wakeups.
-2. **After the bound:** run `refresh_universe.py fixtures` to download `SHR_USDT.csv` (22k hourly bars), then `refresh_universe.py grid` to run the full 66-pair EMA grid for SHR/USDT only, then `refresh_universe.py state` + `refresh_universe.py log`.
-3. **Acceptance:** `results/20261019_135940_grid/progress.json` `completed_cells == universe_n * 66` (282 × 66 = 18,612), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`, SHR/USDT fixture present with 66 grid cells.
-4. **Then:** recompute gate eligibility with `scripts/refresh_gate.py:gate_status(state)` vs independent UTC. If NOT eligible (expected until next bound), append exactly one gate-check row to `NEXT_AGENT_TASK.md` §4, refresh handoff files, then stop. If eligible, run exactly one fetch pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 25 --batch-size 10` (no `--apply`).
+1. **Offline first:** recompute eligibility with `scripts/refresh_gate.py:gate_status(state)` vs independent UTC (`date -u`, `datetime.now(timezone.utc)`); never guess. Read `universe/last_scan.json` for the bound.
+2. **If NOT eligible (expected until 2026-11-27T23:57:22Z):** make **no provider calls**, no fixtures, no candles, no grid work. Append **exactly one** gate-check row to `NEXT_AGENT_TASK.md` §4, refresh this file's handoff time/state and the `NEXT_AGENT_TASK.md` header, then stop. Do not schedule wakeups. Each activation inside the bound records one row and nothing else.
+3. **If eligible:** run **exactly one** pass `PYTHONPATH=. python3 scripts/fetch_mcap_snapshot.py --pages 25 --batch-size 10` (no `--apply`), then record snapshot id, coverage (must reach below the floor), floor, `eligible_unseen_below_floor_count`, and the new bound.
+4. **If that pass yields a batch (`EXPANSION_AVAILABLE`):** apply it through the repo cycle — `fetch_mcap_snapshot.py --apply-from <snapshot> --apply`, then `refresh_universe.py fixtures` / `grid` / `state` / `log` — new symbols only, full 66-pair grid. Acceptance: `completed_cells == universe_n * 66`. If the pass is empty (`AWAITING_NEW_ELIGIBLE_CANDIDATES`), append one gate-check row, refresh the handoff, and stop.
 
 **Never:** rerun existing grid cells, re-fetch a fixture the grid already used, fetch candles unnecessarily, place orders, change EMA signal/fill/cost assumptions, use fixtures as market evidence, or blur confirmatory vs exploratory. Preserve negative/blocked results and `results/FINAL_DECISION.md`. Historical research only; free public data / no-cost tooling; follow the AGENTS.md adaptive gate policy.

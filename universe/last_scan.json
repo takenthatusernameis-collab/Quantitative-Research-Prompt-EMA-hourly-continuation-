@@ -1,35 +1,26 @@
 {
-  "recorded_at": "2026-11-25T23:14:37.694171+00:00",
-  "state": "EXPANSION_AVAILABLE",
-  "snapshot_id": "mcap_snapshot_20261125_231042",
-  "snapshot_path": "universe/mcap_snapshot_20261125_231042.json",
+  "recorded_at": "2026-11-26T23:57:23.128285+00:00",
+  "state": "AWAITING_NEW_ELIGIBLE_CANDIDATES",
+  "snapshot_id": "mcap_snapshot_20261126_235722",
+  "snapshot_path": "universe/mcap_snapshot_20261126_235722.json",
   "snapshot_source": "CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc)",
-  "scanned_at": "2026-11-25T23:10:42.705217+00:00",
+  "scanned_at": "2026-11-26T23:57:22.462338+00:00",
   "coverage": {
     "pages_requested": 25,
     "pages_fetched": 25,
     "all_requested_pages_returned": true,
     "entries_count": 2500,
     "lowest_rank_covered": 2500,
-    "lowest_market_cap_usd": 1329650
+    "lowest_market_cap_usd": 1326252
   },
   "coverage_reaches_below_floor": true,
   "universe_n": 282,
   "expansion_floor": {
-    "symbol": "NUM/USDT",
-    "market_cap_usd": 1374073
+    "symbol": "SHR/USDT",
+    "market_cap_usd": 1375627
   },
-  "eligible_unseen_below_floor_count": 1,
-  "eligible_unseen_below_floor": [
-    {
-      "rank": 2473,
-      "symbol": "SHR",
-      "name": "ShareToken",
-      "market_cap_usd": 1365535
-    }
-  ],
-  "batch_selected": [
-    "SHR/USDT"
-  ],
-  "next_eligible_refresh_at": "2026-11-26T23:10:42.705217+00:00"
+  "eligible_unseen_below_floor_count": 0,
+  "eligible_unseen_below_floor": [],
+  "batch_selected": [],
+  "next_eligible_refresh_at": "2026-11-27T23:57:22.462338+00:00"
 }

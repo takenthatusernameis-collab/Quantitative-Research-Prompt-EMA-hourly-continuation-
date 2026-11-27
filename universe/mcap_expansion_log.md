@@ -5082,3 +5082,45 @@ Both handoffs (`NEXT_AGENT_TASK.md`, `INITIAL_TASK_FOR_NEXT_AGENT.md`) updated w
 - Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
 - Next eligible refresh: **2026-11-23T10:35:56.872136+00:00**.
 - The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.
+
+---
+
+## Batch 36 (applied 2026-11-25T23:10:42.705217+00:00) - SHR (N 281 -> 282)
+
+<!-- expansion-key: mcap_snapshot_20261125_231042|SHR/USDT -->
+
+**Universe ranks added:** 282-282 (of 282).
+
+**Source snapshot:** `universe/mcap_snapshot_20261125_231042.json` (CoinGecko public API /api/v3/coins/markets (vs_currency=usd, order=market_cap_desc), fetched 2026-11-25T23:10:42.705217+00:00).
+
+**Expansion floor after the batch:** `SHR/USDT` $1365535. `universe/last_scan.json` reports `universe_n=282`, `eligible_unseen_below_floor_count=0`.
+
+### Selection (descending market cap, strictly below the previous floor)
+
+| Rank in snapshot | Universe rank | Symbol | Name | Market cap (USD) | Fixture |
+|---|---|---|---|---|---|
+| 2473 | 282 | SHR/USDT | ShareToken | 1,365,535 | `data/fixtures/SHR_USDT.csv` (22099 rows) |
+
+### Grid outcome (66 pairs per symbol, net of costs)
+
+| Symbol | Cells | Trades | Mean net PF | Best net PF | Cells net PF > 1 |
+|---|---|---|---|---|---|
+| SHR/USDT | 66 | 71922 | 0.3934 | 0.5680 | 0 |
+
+### Cumulative state after the batch
+
+- **18612 / 18612 cells** complete (282 symbols x 66 EMA pairs), 0 blocked.
+- Eligible unseen names below the floor: **0**.
+- Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
+- Next eligible refresh: **2026-11-26T23:10:42.705217+00:00**.
+- The pooled report over the whole universe is produced with `PYTHONPATH=. python3 scripts/aggregate_grid.py --run results/20261019_135940_grid`.
+
+---
+
+## Awaiting pass (no batch) — 2026-11-26T23:57:22.462338+00:00
+
+The 24 h ranking refresh fell due (bound `2026-11-26T23:10:42.705217+00:00` elapsed). One dry-run pass `fetch_mcap_snapshot.py --pages 25 --batch-size 10` (no `--apply`) produced snapshot `mcap_snapshot_20261126_235722` (25/25 pages, 2500 entries, lowest rank 2500 / $1,326,252, `coverage_reaches_below_floor=true`). Expansion floor `SHR/USDT` $1,375,627; **eligible unseen names below the floor: 0** → no batch to apply. `universe/mcap_rank.json` unchanged (n_symbols=282, last SHR/USDT).
+
+- Program state: **AWAITING_NEW_ELIGIBLE_CANDIDATES**.
+- Next eligible refresh (supersedes the batch-36 value above): **2026-11-27T23:57:22.462338+00:00**.
+- Grid remains complete: 18612 / 18612 cells (282 symbols x 66 EMA pairs), 0 blocked.
