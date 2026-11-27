@@ -5,7 +5,7 @@
 ## State
 - Gate: `AWAITING_NEW_ELIGIBLE_CANDIDATES`, `eligible_unseen_below_floor_count=0`, snapshot `mcap_snapshot_20261126_235722` (25/25 pages, 2500 entries, lowest rank 2500 / $1,326,252, coverage below floor).
 - Expansion floor: SHR/USDT $1,375,627. Universe n=282, grid `completed_cells=18612` (282×66), all symbols processed, next_cell=null, stopped=false. Fixtures 284 CSV + fetch_manifest (SHR_USDT.csv present). results/FINAL_DECISION.md preserved. Git tree clean.
-- Next eligible refresh bound: `2026-11-27T23:57:22.462338+00:00` (~52m remaining at creation).
+- Last offline check: 2026-11-27T23:09:25Z — NOT ELIGIBLE (bound 2026-11-27T23:57:22Z, ~48m remaining); gate row appended to NEXT_AGENT_TASK.md §4. No provider calls.
 
 ## Your task (one measurable task)
 1. Offline first: read this file, `NEXT_AGENT_TASK.md`, `universe/last_scan.json`. Recompute eligibility with `scripts/refresh_gate.py:gate_status` vs independent UTC (`date -u`, `datetime.now(timezone.utc)`). Never guess.
