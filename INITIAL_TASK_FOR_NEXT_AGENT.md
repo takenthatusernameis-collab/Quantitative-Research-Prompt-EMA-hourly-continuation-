@@ -1,6 +1,6 @@
 # INITIAL TASK FOR NEXT AGENT — EMA hourly continuation universe-refresh gate
 
-**Handoff time:** 2026-11-27T15:09:50Z (gate NOT ELIGIBLE — 24 h bound `2026-11-27T23:57:22.462338+00:00`, ~8h47m32s / 31,652s remaining). Prior task COMPLETE: SHR/USDT expansion verified AND the step-4 ranking pass already executed (0 new → AWAITING). Offline checks only until the bound. Env: pandas/numpy/pytest NOT importable (temp home wiped); gate tooling stdlib-only. One gate-check row appended this activation (2026-11-27T15:09:50Z).
+**Handoff time:** 2026-11-27T15:20:37Z (gate NOT ELIGIBLE — 24 h bound `2026-11-27T23:57:22.462338+00:00`, ~8h36m45s / 31,005s remaining). Prior task COMPLETE: SHR/USDT expansion verified AND the step-4 ranking pass already executed (0 new → AWAITING). Offline checks only until the bound. Env: pandas/numpy/pytest NOT importable (temp home wiped); gate tooling stdlib-only. One gate-check row appended this activation (2026-11-27T15:20:37Z; 317 lines total in `NEXT_AGENT_TASK.md`).
 
 ## Current state (from `universe/last_scan.json`, recorded 2026-11-26T23:57:23Z)
 - **State:** `AWAITING_NEW_ELIGIBLE_CANDIDATES`
