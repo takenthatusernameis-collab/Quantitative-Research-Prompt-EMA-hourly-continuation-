@@ -1,6 +1,6 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Generated:** 2026-11-28T13:49:27Z (this session appended one gate-check row to `NEXT_AGENT_TASK.md` §4; 337 lines total).
+**Generated:** 2026-11-28T21:25:54Z (this session appended one gate-check row to `NEXT_AGENT_TASK.md` §4; 339 lines total).
 
 ## Current state (from `universe/last_scan.json` and `refresh_universe.py plan`)
 
@@ -11,7 +11,7 @@
 - **Grid:** 18,612 / 18,612 cells complete (282 × 66), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`
 - **Fixtures:** 284 CSV files in `data/fixtures/` (incl. `SHR_USDT.csv`, 22,099 rows; 66 SHR grid cells)
 - **Eligible unseen below floor:** 0 (`eligible_unseen_below_floor_count=0`, `batch_selected=[]`)
-- **Next eligible refresh (24 h bound):** `2026-11-29T05:29:55.373985+00:00` (~15h40m27s from generation)
+- **Next eligible refresh (24 h bound):** `2026-11-29T05:29:55.373985+00:00` (~8h04m00s / 29,040s from generation)
 - **`results/FINAL_DECISION.md`** preserved; git tree clean
 
 ## Your single measurable task (offline first)
@@ -47,4 +47,4 @@ print(f'All processed: {progress[\"all_symbols_processed\"]}')
 
 ## Environment note
 
-This session verified `python 3.12.3` + `requests 2.31.0` + `pandas 3.1.1` / `numpy 2.5.5` importable; `pytest` was NOT importable this session (`ModuleNotFoundError`, temp home partially wiped — only pytest missing). The temp home may be wiped between sessions — re-verify at the start of the next session; if missing, reinstall (`pip install --user pandas numpy pytest`) before any grid/signal/pytest work. Gate tooling (`refresh_gate.py`) is stdlib-only and runs without pandas.
+This session verified `python 3.12.3` + `requests 2.31.0` importable; `pandas` / `numpy` / `pytest` were NOT importable (`ModuleNotFoundError` — temp home wiped again, all three missing). The temp home may be wiped between sessions — re-verify at the start of the next session; if missing, reinstall (`pip install --user pandas numpy pytest`) before any grid/signal/pytest work. Gate tooling (`refresh_gate.py`) is stdlib-only and runs without pandas, so the offline gate check still works even when pandas is absent.
