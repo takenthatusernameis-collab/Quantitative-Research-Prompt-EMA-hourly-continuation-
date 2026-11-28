@@ -1,6 +1,6 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Generated:** 2026-11-28T06:04:55Z (this session appended one gate-check row to `NEXT_AGENT_TASK.md` §4; 332 lines total).
+**Generated:** 2026-11-28T13:42:11Z (this session appended one gate-check row to `NEXT_AGENT_TASK.md` §4; 334 lines total).
 
 ## Current state (from `universe/last_scan.json` and `refresh_universe.py plan`)
 
