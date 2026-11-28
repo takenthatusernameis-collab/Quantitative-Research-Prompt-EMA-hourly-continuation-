@@ -1,6 +1,6 @@
 # INITIAL_TASK_FOR_NEXT_AGENT.md — EMA hourly continuation universe-refresh gate
 
-**Generated:** 2026-11-28T05:52:13Z (this session appended one gate-check row to `NEXT_AGENT_TASK.md` §4; 328 lines total).
+**Generated:** 2026-11-28T05:53:42Z (this session appended one gate-check row to `NEXT_AGENT_TASK.md` §4; 330 lines total).
 
 ## Current state (from `universe/last_scan.json` and `refresh_universe.py plan`)
 
@@ -11,7 +11,7 @@
 - **Grid:** 18,612 / 18,612 cells complete (282 × 66), `all_symbols_processed=true`, `next_cell=null`, `stopped=false`
 - **Fixtures:** 284 CSV files in `data/fixtures/` (incl. `SHR_USDT.csv`, 22,099 rows; 66 SHR grid cells)
 - **Eligible unseen below floor:** 0 (`eligible_unseen_below_floor_count=0`, `batch_selected=[]`)
-- **Next eligible refresh (24 h bound):** `2026-11-29T05:29:55.373985+00:00` (~23h 41m from generation)
+- **Next eligible refresh (24 h bound):** `2026-11-29T05:29:55.373985+00:00` (~23h36m from generation)
 - **`results/FINAL_DECISION.md`** preserved; git tree clean
 
 ## Your single measurable task (offline first)
